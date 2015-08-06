@@ -17,4 +17,9 @@ public class MenuList
 	{
 		return menuList.getLast();
 	}
+	
+	public void render()
+	{
+		
+	}
 }
