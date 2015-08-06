@@ -11,21 +11,25 @@ import core.Main;
 
 public class Screen extends JPanel
 {
-	public static final int CAM_OFFSET = 16;
-	public static int camXOffset = 0, camYOffset = 0;
 	private static JFrame frame;
-	private static Screen instance = new Screen(); 
+	private static Screen instance;
 	private static BufferedImage buffer;
 	private static Graphics g;
+
+	static void init()
+	{
+		instance = new Screen();
+	}
 
 	private Screen()
 	{
 		// init stuff
-		frame = new JFrame("Dungeon");
+		frame = new JFrame("Mini Arrows");
 		frame.add(this);
 		frame.setSize(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		frame.setResizable(false);
 		buffer = new BufferedImage(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
 		g = buffer.getGraphics();
 		frame.setFocusable(true);
