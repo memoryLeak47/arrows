@@ -1,0 +1,34 @@
+Arena:
+Jeder Spieler hat ein Leben. Man spawnt erst wieder nachdem ein Team die Runde gewonnen hat
+(Kein anderes Team hat lebende Mitglieder)
+
+Team-deathmatch:
+    - n lives per
+        - player
+        - team
+    - with{,out} respawntime
+    - everybody spawns {at spawnpoint, where he wants}
+
+Capture the flag:
+    - playerbound-flag
+    - with{,out} respawntime
+
+Zombie-mode:
+    - ?
+
+Ace enemy team:
+    - with respawn time
+
+Differenz:
+    - nur 2 Teams
+    - Bei einem Kill gewinnt man einen ScorePunkt
+    - Bei Death verliert man einen ScorePunkt
+    - Das Team, dass zuerst n ScorePunkte hat, hat gewonnen
+
+Acer:
+    - Jedes Team hat ScorePunkte
+    - Kill{ScorePunkt++}
+    - Death{ScorePunkt = 0}
+    - Wer nach x Minuten die meisten ScorePunkte hat gewinnt.
+
+

@@ -1,3 +1,3 @@
-# mini_arrows
-Minimized Arrows game. close to cuBlock
+# arrows
+2D, Jump and Run, PvP-game
 Auf alle Fälle geile Sache

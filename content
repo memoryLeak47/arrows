@@ -1,0 +1,261 @@
+                             CONTENT
+                                                                                            
+***** MAIN  *****
+___________________________________________________________________________________________________________________________________________________
+Main.main(String[] args):
+Das Programm beginnt mit der "Main.main(String[] args)".
+Hier findet die Initialisierung statt. ("Screen.init(); menuList = new MenuList();")
+menuList added die eigenen Listener auf "Screen.get()".
+
+___________________________________________________________________________________________________________________________________________________
+Main.run():
+Danach wird die "Main.run()" aufgerufen, welche in periodischen Intervallen "Main.tick()" und "Main.render()" aufruft.
+
+___________________________________________________________________________________________________________________________________________________
+Main.tick():
+"Main.tick()" führt "menuList.tick()" (und falls existent "networkDevice.tick()") aus.
+
+___________________________________________________________________________________________________________________________________________________
+Main.render():
+"Main.render()" führt "menuList.render()" und "Screen.update()" aus.
+
+___________________________________________________________________________________________________________________________________________________
+MenuList.tick():
+"menuList.tick()" tickt das aktive (das oberste) Menu.
+
+___________________________________________________________________________________________________________________________________________________
+Listener/Event Handling:
+zudem  verfügt "MenuList" über Listener auf "Screen". Die erhaltenen Events  werden an das aktive, also oberste/letzte Menu übergeben.
+Dieses  verarbeitet diese sofort (z.B. Weitergabe an aktive "MenuComponent").
+
+***** NETWORK  *****
+___________________________________________________________________________________________________________________________________________________
+
+
+Am Anfang des Spieles wird folgendes gesendet:
+Server -> Client
+- 
+
+Client -> Server
+- Avatar des Clients
+
+LobbyMenu:
+    - ?
+
+Mouse/Keyboard to Game:
+    - Tastatur/Maus-event
+        wird per Listener in MenuList als Event an das oberste Menu weitergegeben
+    - Das GameInterface (oberstes Menu) führt Main.getNetworkDevice().onEvent(EventStack es)
+        - Beim Client sendet dies den EventStack an den Server
+            - Dieser verändert dann den Player (Server.IPtoPlayer)
+        - Beim Server wird sofort der Server-player verändert
+
+Beispiele:
+
+Client
+Das Spiel läuft bereits
+Taste A wird gedrückt
+{
+    Tastatur
+        ↓
+    >> KeyListener
+        ↓
+    MenuList // Konvertierung zu Event
+        ↓
+    >> MenuList.getTopMenu().onEvent(Event event) //Hier wird nicht GameInterface direkt angesprochen, sondern das TopMenu. (Wenn das Spiel läuft ist das TopMenu = GameInterface)
+        ↓
+    GameInterface
+        ↓
+    >> GameInterface.networkDevice.onEvent(Event event) // Hier wird nicht direkt der Client angesprochen, sondern über "networkDevice" damit auch der Server angesprochen werden kann.
+        ↓
+    [Client // in case of server this part is ignored
+        ↓
+    >> Client.send() ]
+        ↓
+    Server
+        ↓
+    >> Server.IPtoPlayer(ReceiveIP).onEvent(event)
+        ↓
+    Game
+}
+
+
+Game to Screen:
+    - Game (Bilder senden)
+    - Server
+    (- Client) // in case of server this part is ignored
+    - GameInterface
+        - GameInterface draws it ...
+        
+        
+Events:
+    - KeyPress
+    - KeyRelease
+    - MousePress
+    - MouseRelease
+    - MousePos
+
+
+***** GAME *****
+Game hat eine Liste von Playern.
+Jeder Player hat eine Liste von Bullets.
+Die Klasse "Bullet" hat die Funktion "boolean isDead()". Sie gibt an, ob das Bullet zerstört werden soll.
+Die tick-Funktion in Player removed tote Bullets und tickt lebendige.
+Normalerweise wird das Bullet removed, wenn es irgendetwas trifft.
+
+***** SKILLS *****
+Skills:
+
+class Skill
+{
+    List<Bullets> bullets;
+    Player owner;
+
+    final void endPrep()
+    {
+        for (Bullet bullet : bullets)
+        {
+            owner.bullets.add(bullet);
+        }
+        owner.activeSkill = null;
+        startAction();
+    }
+
+    final void tick()
+    {
+        if (inPrep())
+        {
+            prepTick();
+        } else
+        {
+            actionTick();
+        }
+    }
+
+    boolean inPrep() { return owner.activeSkill == this; }
+
+    abstract void render(); // Vllt {Bullets.render()}
+    public abstract prepTick();
+    public abstract actionTick();
+    protected abstract startAction();
+}
+_________________________________________________________________________________________________________________________________________
+public abstract class SkillTrigger
+{
+    int cooldown = 0;
+    public final boolean definePrep(Player owner)
+    {
+        if (cooldown <= 0)
+        {
+            cooldown = getMaxCooldown();
+            owner.prepSkill = createSkill();
+            owner.prepSkill.setOwner(owner);
+            return true;
+        }
+        return false;
+    }
+    public final void tick()
+    {
+        if (cooldown > 0)
+        {
+            cooldown--;
+        }
+    }
+    public abstract Skill createSkill();
+    public abstract int getMaxCooldown();
+}
+
+- Press Trigger Pfeil
+- Release Trigger Pfeil
+- SMG, die nicht sofort schießt
+- Schwert
+- LavaWurf
+- Wirbelschwert
+
+SkillTrigger:
+Der Player hat keine Bullet Liste, sondern eine Skill Liste, 
+damit auch später noch auf unterschiedliche Bullets aus unterschiedlichen Skills eingegriffen werden kann.
+Der Player verfügt über eine 'Skill prepSkill;'-member diese enthält,
+falls es einen Skill in der PrepPhase gibt, den Skill in der Prep-phase.
+Der Player muss bei dem Drücken der Taste Q prüfen,
+ob prepSkill == null ist. Falls prepSkill == null ist,
+wird prepSkill über den SkillTrigger.definePrep(Player owner) auf einen neuen Skill gesetzt.
+Dabei wird auch der cooldown hochgesetzt
+Wenn ein neuer prepSkill gesetzt wurde,
+wird in 'int Player.prepSkillKey' gespeichert durch welche Taste der prepSkill erzeugt wurde.
+KeyEvents für diese Taste und MouseEvents werden nur an den prepSkill weitergegeben.
+Alle anderen Events werden direkt von Player bearbeitet.
+SkillTrigger[5] Player.skillTriggers; // Q, W, E, R und UtilityslotSkill
+Ein Skill kann in der PrepPhase sein. Ein Skill ist in der PrepPhase,
+wenn noch durch Tastatureingaben Änderungen an den Skills vorgenommen werden können.
+Der Skill, der in der PrepPhase ist, befindet sich in owner.prepSkill. Es kann maximal ein Skill in der PrepPhase sein.
+Für jeden Skill gibt es eine Klasse, die von SkillTrigger abgeleitet ist. 
+Dieser SkillTrigger wird in der dazugehörigen Skill Klasse definiert und heißt nur Trigger.
+Der SkillTrigger ist zuständig für den Cooldown, sowie die Instanzierung des Skills. 
+Sie muss vom Player getickt werden, um den Cooldown zu berechnen.
+SkillTrigger.definePrep(…) gibt als boolean zurück, ob getriggerte Skill wieder einsatzbereit war(Cooldown). 
+Falls der Skill einsatzbereit ist, wird der Übergabewert auf eine neue Instanz des jeweiligen Skills gesetzt.
+Dieses Array wird dafür verwendet die Skills zu triggern. 0 <=> Q; 1 <=> W; 2 <=> E; 3 <=> R.
+
+
+___________________________________________________________________________________________________________________________________________________
+SPIELPRINZIP:
+
+Equipment:
+Es gibt drei Equipment-Slots für jeden Player. Diese sind "AttackSlot" "UtilitySlot" und "DefenseSlot".
+Bestimmte Equipments sind Avatar-abhängig und/oder Slotabhängig.
+Die Equipments können:
+- Stats verändern
+- Der "UtilitySlot" kann ausgeführt werden: (DoppelSprung, JetPack, Magnet)
+- Wenn man attackiert, wird der AttackSlot eingebunden(über onDamage-Funktionen)
+- Wenn man angegriffen wird, wird der DefenseSlot eingebunden(über onDamaged-Funktionen)
+
+Stats:
+AvatarStats geben die Eigenschaften eines Spielers an:
+- Health{,Regeneration}
+- {Hit,Cut,Magic}{Damage,Resistance}
+- Mass
+
+- Accuracy: 
+    - Genauigkeit der Bullets
+    - Schadensradius der Nahkampf-Angriffe wird größer
+    
+(
+- Force:
+    - Bullets fliegen schneller (außer "magische Bullets")
+    - Rückstoß
+    - Beschleunigung der Player
+    
+- Wisdom:
+    - Cooldown Reduction
+    - Effektverlängerung (z.B. Feuer)
+)
+___________________________________________________________________________________________________________________________________________________
+
+
+Definitionen:
+
+TILESIZE: 64 (?)
+Image: Ein Image ist ein Bild, das nicht in weitere Bilder aufgeteilt werden kann.
+Spritesheet: Zusammenschluss von (mehreren) Images in einer Datei in "res"
+fileID: ist eine ID, die als Index "ImageLoader.images" verwendet werden kann. Sie repräsentiert ein Spritesheet
+ImageID:  ist die Kombination aus "int fileID" und "int index". Sie repräsentiert  das index-te Image in "images[fileID]", also "images[fileID][index]"
+SendableImage: repräsentiert (ein Bild oder Schriftzug) und eine dazugehörige Position (und eine Drehung?)
+ImageLoader: lädt und enthält alle benötigten Bilder und spritesheets. speichert sie in BufferedImage[]
+
+Animation: entweder Static-, Dynamic- oder Multiple-Animation (Interface)
+StaticAnimation: Animation mit einem einzigen Image. Die render() Funktion zählt nicht den StaticAnimation.index hoch.
+DynamicAnimation: Animation mit mehreren Images die nach "DynamicAnimation.interval"-frames wechseln
+AnimationContainer: container von mehreren Animationen
+
+Die Image-Files (in res) sind Spritesheets, also Animationen oder Einzelbilder.
+Jedem Image-File=Jeder Animation=Jedem Spritesheet ist eine "intID" als "ImageLoader.int-Konstante" zugeordnet.
+Diese "ID" ist der Index über die man auf "BufferedImage[] ImageLoader.images" zugreifen kann.
+Falls ein File kein Einzelbild ist, wird es in ein Array gepackt, das wiederum in "BufferedImage[] ImageLoader.images" liegt.
+Falls es ein Einzelbild ist, wird es in ein Array der Länge 1 gepackt.
+
+Beim Senden von Server an Client, sendet der Server eine List<SendableImage>
+
+Der "ImageLoader" lädt nicht am Anfang des Programms alle "ImagePackets", sondern wenn bekannt ist welche Klassen gebraucht werden die zugehörigen Image-Packete.
+
+

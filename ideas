@@ -1,0 +1,163 @@
+IDEAS
+___________________________________________________________________________________________________________________________________________________
+***** ARMOR *****
+
+Stoff, Leather, Iron
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+Spiky, Poison, Ice, SuperLight (Paper)
+
+___________________________________________________________________________________________________________________________________________________
+***** CLASSES *****
+
+Knight (sword), Archer (bow n arrows), Mage (staff), Warrior (shield), Ninja (stick), Bomber (cannon) (manfred), Rogue (dagger)
+
+___________________________________________________________________________________________________________________________________________________
+***** WEAPONS *****
+LavaSword(Selfdamage, aber gute Werte)
+
+________________________________________________________________________________________________________________________________________________
+***** PLAYER-STATS *****
+
+MaxHealth, Regeneration, Acceleration
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+Acccuracy, Force, Agility
+- - - - - - - - - - - - - - - - - - - - - - - - - - -
+CutResistance, HitResistance, MagicResistance
+
+___________________________________________________________________________________________________________________________________________________
+***** SKILLS *****
+Schwert:
+    1. Hieb: normale Attacke
+    2. Drehwirbel: 
+    3. Sprungschlag
+    4. Schwertwurf (losing sword)
+    5. piks
+    6. Schlag mit Ausholen
+
+Pfeil und Bogen:
+    1. Shot
+    2. Longshot (Rückstoß)
+    3. Multishot (2-5), Pfeil von oben
+    4. Pfeile die durch Wände gehen
+    5. SeilPfeil (zum Ranziehen (massebezogen))
+
+Schurke:
+    1. Unsichtbarkeit
+    2. shaco's Q
+    3. Rauchbombe
+    4. kurze Teleportation
+    5. Wurfmesser (nxt hit stun)
+    6. dash
+    7. damage-dash
+    8. spellshield
+    9. nah-dran-low-cooldown-much-damage-of-doom-and-pain(-and-darkness)
+
+Wissenschaftler:
+    1. Protonen-Kanone
+    2. Säure schütten
+    3. Zeit anhalten(keine Fähigkeiten, Vlt nur in Bereich)
+    4. Teleport
+    5. Elektroschock
+    6. Kleber
+    7. Teleportstation: Kann stationiert werden, um sich, wenn man in der Nähe ist, ran teleportieren zu können.
+    
+Magier:
+    1. Einfacher Zauberspruch
+    2. karthus Q: kleine Bombe, geringer Cooldown, geringer Umkreisschaden
+    3. Magischer Glibber von oben
+    4. Lava
+    5. Explosion -- Irgendwo
+    6. Ward-skill
+    7. langsamer TelePort
+    8. Flammenwerfer(LavaStrahl): kurze Range
+    9. großer breiter FeuerStrahl: Long Range
+
+Priester:
+    1. heilt andere/sich selbst
+    2. umkreisschaden (auch an Teamkameraden)
+    3. umkreisheilung (auch an gegnern)
+    4. Beschwörung kleiner Viecher
+    5. Leben klauen
+
+Kanonenmann:
+    1. Schuss
+    2. starker Schuss
+    3. Explodierende Munition
+    4. Streufeuer
+    5. C4
+    6. rollin Bomb: Bombe, die er zum Gegner rollt
+    7. Explosion bei Pokémon
+    8. Fakebombe
+
+Ninja:
+    1. Hieb
+    2. Rotor
+    3. mega Jump
+    4. downsmash
+    5. windstoß (any direction) (wie thrash e) (trifft alle personen)
+    6. windstoß (any direction) (wie cho'gath w)
+    7. sprungschlag
+    8. Stab werfen
+
+ShieldMan:
+    1. Schutz(auch für Teammitglieder)
+    2. WegdrückAttacke
+    3. rutschen
+    4. Rundumschlag
+    5. Schild werfen
+    
+Roboter: (kriegt Schaden von Wasser)
+    1. SMG
+    2. Lenkraketen: Immer der aus hinterher
+    3. Elektroschock: Im Wasser überträgt sich der Elektroschock
+    4. 
+___________________________________________________________________________________________________________________________________________________
+***** BLOCKS *****
+
+Solid Block:
+Mud: No collision-Damage(Fall Damage), less JumpPower
+Water: No Collision-Damage, swimming
+Lava: Death
+Ice: Less Acceleration
+Breakable: break
+Stealth Block: Like grass in LoL
+Trampoline Block: Reflects Bullets and Players
+Dynamite Block: explode when damaged
+TeleportBlock: (Idee: Farbe beginnt mit bestimmten Code (Bsp: fefexx) und xx bestimmt dann die Zugehörigkeit der Teleporttiles). 
+
+______________________________________________________________________________
+***** NETWORK *****
+
+16bit short int
+32bit int, float
+64bit long int
+
+WLAN capacity = 54.000.000 bit/s
+
+per Frame:
+500 Blocks x 3 integer
+500*3*32*30 bit/s = 1,500,000 bit/s < 54 Mbit/s
+
+$data={graphical cooldown/static blocks/entities/dynamic blocks}
+$image={as it is.../imageIDs/BufferedImages/Animations/DrawObjects}
+
+Server sendet zu Beginn die StaticMap (Blöcke, die nicht verändert werden können).
+In jedem Frame wird alles andere gesendet:
+- dynamic Blocks
+- Players
+- Bullets
+- Cooldowns
+- Usernames
+
+________________________________________________________________________________________________________________________________________________________
+***** GAME CONCEPT *****
+
+Spieler können in der Luft steuern.
+Man sieht unsichtbare Teamkameraden.
+Man sieht das, was man selbst und Teamkameraden sehen können.
+Im LobbyMenu kann der Server wählen, ob FriendlyFire aktiviert ist.
+Man kann mit Geld () Items, Avatare und Skills kaufen.
+Geld bekommt man durch Kills und gewonnene Spiele (und killing streaks/shut-downs?).
+
+
+

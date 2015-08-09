@@ -1,11 +1,12 @@
 package core;
 
+import java.awt.Toolkit;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.awt.Toolkit;
 
 import core.menu.MenuList;
 import network.NetworkDevice;
+import core.menu.Menu;
 
 public class Main
 {
@@ -14,7 +15,7 @@ public class Main
 	public static final int SCREEN_HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
 	private static MenuList menuList;
-	private NetworkDevice networkDevice;
+	private static NetworkDevice networkDevice;
 
 	public static void main(String args[])
 	{
@@ -49,6 +50,7 @@ public class Main
 		{
 			networkDevice.tick();
 		}
+		menuList.tick();
 		
 	}
 
@@ -57,4 +59,7 @@ public class Main
 		menuList.render();
 		Screen.update();
 	}
+
+	public static Menu getActiveMenu() { return menuList.getActiveMenu(); }
+	public static NetworkDevice getNetworkDevice() { return networkDevice; }
 }

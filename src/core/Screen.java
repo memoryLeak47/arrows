@@ -14,7 +14,7 @@ public class Screen extends JPanel
 	private static JFrame frame;
 	private static Screen instance;
 	private static BufferedImage buffer;
-	private static Graphics g;
+	private static Graphics g; // graphics for the buffer
 
 	static void init()
 	{
@@ -24,7 +24,7 @@ public class Screen extends JPanel
 	private Screen()
 	{
 		// init stuff
-		frame = new JFrame("Mini Arrows");
+		frame = new JFrame("Arrows");
 		frame.add(this);
 		frame.setSize(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
