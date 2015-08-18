@@ -50,6 +50,7 @@ public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 	@Override public void mouseClicked(MouseEvent event) {}
 	@Override public void mouseEntered(MouseEvent event) {}
 	@Override public void mouseExited(MouseEvent event) {}
+	@Override public void mouseDragged(MouseEvent event) {}
 
 	@Override
 	public void mousePressed(MouseEvent event)
@@ -61,7 +62,6 @@ public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 	public void mouseReleased(MouseEvent event)
 	{
 		onEvent(new MouseButtonRelease(event));
-		System.out.println("Release");
 	}
 
 	@Override
@@ -71,16 +71,16 @@ public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 	}
 
 	@Override
-	public void mouseDragged(MouseEvent event)
-	{}
-
-	@Override
 	public void keyPressed(KeyEvent event)
-	{}
+	{
+		onEvent(new KeyPress(event));
+	}
 
 	@Override
 	public void keyReleased(KeyEvent event)
-	{}
+	{
+		onEvent(new KeyRelease(event));
+	}
 
 	@Override public void keyTyped(KeyEvent event) {}
 }

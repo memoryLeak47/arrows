@@ -67,6 +67,18 @@ public abstract class Menu
 				getHoveredComponent().onClick(((MouseButtonRelease) event).getMouseButton());
 			}
 		}
+		else if (event instanceof KeyPress)
+		{
+			// TODO
+		}
+		else if (event instanceof KeyRelease)
+		{
+			// TODO
+		}
+		else
+		{
+			System.out.println("bad Event-subclass");
+		}
 	}
 
 	protected final void add(MenuComponent menuComponent)
