@@ -3,7 +3,6 @@ package core.menu.components;
 import core.menu.MenuComponent;
 import core.menu.Menu;
 import misc.math.Rect;
-import network.sendable.events.MouseButton;
 
 public class Button extends MenuComponent
 {

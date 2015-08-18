@@ -6,10 +6,12 @@ import network.sendable.Event;
 
 public final class KeyRelease implements Event
 {
-	Key key;
+	char key;
 
 	public KeyRelease(KeyEvent keyEvent)
 	{
-		key = Key.codeToKey(keyEvent.getKeyCode());
+		key = keyEvent.getKeyChar();
 	}
+
+	public char getKeyCode() { return key; }
 }

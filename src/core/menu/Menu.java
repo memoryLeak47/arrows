@@ -69,11 +69,17 @@ public abstract class Menu
 		}
 		else if (event instanceof KeyPress)
 		{
-			// TODO
+			if (getFocusedComponent() != null)
+			{
+				getFocusedComponent().onKeyPress(((KeyPress) event).getKeyCode());
+			}
 		}
 		else if (event instanceof KeyRelease)
 		{
-			// TODO
+			if (getFocusedComponent() != null)
+			{
+				getFocusedComponent().onKeyRelease(((KeyRelease) event).getKeyCode());
+			}
 		}
 		else
 		{

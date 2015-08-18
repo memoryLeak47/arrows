@@ -3,7 +3,6 @@ package core.menu;
 import misc.math.Rect;
 import misc.math.Position;
 import core.menu.Menu;
-import network.sendable.events.MouseButton;
 
 public abstract class MenuComponent extends Rect
 {
@@ -29,8 +28,10 @@ public abstract class MenuComponent extends Rect
 	public abstract void render();
 
 	// TODO: onEventFunctions
-	public void onClick(MouseButton mouseButton) {}
+	public void onClick(int mouseButton) {}
 	public void onMouseEnter(Position mousePos) {}
 	public void onMouseMove(Position mousePos) {}
 	public void onMouseExit(Position mousePos) {}	
+	public void onKeyPress(char key) {}
+	public void onKeyRelease(char key) {}
 }

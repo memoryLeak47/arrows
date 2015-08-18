@@ -3,25 +3,24 @@ package network.sendable.events;
 import java.awt.event.MouseEvent;
 
 import network.sendable.Event;
-import network.sendable.events.MouseButton;
 
 public final class MouseButtonRelease implements Event
 {
-	MouseButton mouseButton;
+	int mouseButton;
 
 	public MouseButtonRelease(MouseEvent event)
 	{
 		if (event.getButton() == event.BUTTON1)
 		{
-			mouseButton = MouseButton.LEFT;
+			mouseButton = 1;
 		}
 		else if (event.getButton() == event.BUTTON2)
 		{
-			mouseButton = MouseButton.MIDDLE;
+			mouseButton = 2;
 		}
 		else if (event.getButton() == event.BUTTON3)
 		{
-			mouseButton = MouseButton.RIGHT;
+			mouseButton = 3;
 		}
 		else
 		{
@@ -29,5 +28,5 @@ public final class MouseButtonRelease implements Event
 		}
 	}
 
-	public MouseButton getMouseButton() { return mouseButton; }
+	public int getMouseButton() { return mouseButton; }
 }
