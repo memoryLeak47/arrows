@@ -3,6 +3,7 @@ package core;
 import java.awt.Toolkit;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.LinkedList;
 
 import core.menu.MenuList;
 import network.NetworkDevice;
@@ -62,4 +63,5 @@ public class Main
 
 	public static Menu getActiveMenu() { return menuList.getActiveMenu(); }
 	public static NetworkDevice getNetworkDevice() { return networkDevice; }
+	public static LinkedList<Menu> getMenues() { return menuList.getMenues(); }
 }

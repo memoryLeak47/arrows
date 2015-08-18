@@ -83,4 +83,6 @@ public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 	}
 
 	@Override public void keyTyped(KeyEvent event) {}
+
+	public LinkedList<Menu> getMenues() { return menues; }
 }
