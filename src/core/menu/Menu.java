@@ -4,11 +4,13 @@ import java.util.LinkedList;
 
 import core.menu.MenuComponent;
 import network.sendable.Event;
+import core.Screen;
+import network.sendable.events.*;
 
 public abstract class Menu
 {
 	LinkedList<MenuComponent> menuComponents;
-	MenuComponent focusedComponent;
+	MenuComponent focusedComponent, hoveredComponent;
 
 	public Menu() // ?
 	{
@@ -35,7 +37,36 @@ public abstract class Menu
 
 	void onEvent(Event event)
 	{
-		// TODO: focusedComponent.on…
+		if (event instanceof MouseMove)
+		{
+			for (int i = menuComponents.size()-1; i >= 0; i--)
+			{
+				if (Screen.getCursorPosition().inRect(menuComponents.get(i)))
+				{
+					hoveredComponent = menuComponents.get(i);
+					return;
+				}
+			}
+			hoveredComponent = null;
+		}
+		else if (event instanceof MouseButtonPress)
+		{
+			if (getHoveredComponent() != null)
+			{
+				focusedComponent = getHoveredComponent();
+			}
+			else
+			{
+				focusedComponent = null;
+			}
+		}
+		else if (event instanceof MouseButtonRelease)
+		{
+			if (getHoveredComponent() != null)
+			{
+				getHoveredComponent().onClick(((MouseButtonRelease) event).getMouseButton());
+			}
+		}
 	}
 
 	protected final void add(MenuComponent menuComponent)
@@ -43,10 +74,8 @@ public abstract class Menu
 		menuComponents.add(menuComponent);
 	}
 
-	public final MenuComponent getFocusedComponent()
-	{
-		return focusedComponent;
-	}
+	public final MenuComponent getFocusedComponent() { return focusedComponent; }
+	public final MenuComponent getHoveredComponent() { return hoveredComponent; }
 
 	public abstract boolean isFullscreen();
 }

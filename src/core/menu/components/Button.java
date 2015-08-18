@@ -3,18 +3,23 @@ package core.menu.components;
 import core.menu.MenuComponent;
 import core.menu.Menu;
 import misc.math.Rect;
+import network.sendable.events.MouseButton;
 
 public class Button extends MenuComponent
 {
-	public Button(Menu menu, Rect rect)
+	private String caption;
+	
+	public Button(Menu menu, Rect rect, String caption)
 	{
 		super(menu, rect);
-		System.out.println("Button created");
+		this.caption = caption;
 	}
 
 	public void render()
 	{
 		core.Screen.g().setColor(java.awt.Color.RED);
 		core.Screen.g().fillRect(getPosition().getX(), getPosition().getY(), getSize().getX(), getSize().getY());
+		core.Screen.g().setColor(java.awt.Color.BLACK);
+		core.Screen.g().drawString(caption, getPosition().getX() + 1, getPosition().getY() + 12);
 	}
 }

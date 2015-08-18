@@ -1,12 +1,19 @@
 package core.menu;
 
 import java.util.LinkedList;
+import java.awt.event.MouseListener;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.KeyEvent;
 
 import core.menu.Menu;
 import core.menu.menues.MainMenu;
 import network.sendable.Event;
+import network.sendable.events.*;
+import core.Screen;
 
-public class MenuList // TODO: implements Listener
+public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 {
 	private LinkedList<Menu> menues;
 
@@ -14,7 +21,9 @@ public class MenuList // TODO: implements Listener
 	{
 		menues = new LinkedList<Menu>();
 		menues.add(new MainMenu());
-		// TODO: Screen.get().addListeners…(this);
+		Screen.get().addMouseListener(this);
+		Screen.get().addKeyListener(this);
+		Screen.get().addMouseMotionListener(this);
 	}
 
 	public void tick()
@@ -37,4 +46,41 @@ public class MenuList // TODO: implements Listener
 	{
 		menues.getLast().onEvent(event);
 	}
+	
+	@Override public void mouseClicked(MouseEvent event) {}
+	@Override public void mouseEntered(MouseEvent event) {}
+	@Override public void mouseExited(MouseEvent event) {}
+
+	@Override
+	public void mousePressed(MouseEvent event)
+	{
+		onEvent(new MouseButtonPress(event));
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent event)
+	{
+		onEvent(new MouseButtonRelease(event));
+		System.out.println("Release");
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent event)
+	{
+		onEvent(new MouseMove(event));
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent event)
+	{}
+
+	@Override
+	public void keyPressed(KeyEvent event)
+	{}
+
+	@Override
+	public void keyReleased(KeyEvent event)
+	{}
+
+	@Override public void keyTyped(KeyEvent event) {}
 }

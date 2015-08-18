@@ -3,6 +3,7 @@ package core.menu;
 import misc.math.Rect;
 import misc.math.Position;
 import core.menu.Menu;
+import network.sendable.events.MouseButton;
 
 public abstract class MenuComponent extends Rect
 {
@@ -24,14 +25,11 @@ public abstract class MenuComponent extends Rect
 		return this == menu.getFocusedComponent();
 	}
 
-	// TODO: Vec2D position, size;
 	public void tick() {}
 	public abstract void render();
 
 	// TODO: onEventFunctions
-	public void onGainFocus() {}
-	public void onLoseFocus() {}
-	public void onClick(Position mousePos) {}
+	public void onClick(MouseButton mouseButton) {}
 	public void onMouseEnter(Position mousePos) {}
 	public void onMouseMove(Position mousePos) {}
 	public void onMouseExit(Position mousePos) {}	

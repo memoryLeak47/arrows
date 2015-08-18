@@ -21,6 +21,11 @@ public class Rect
 		setSize(rect.getSize());
 	}
 
+	public Rect(int x, int y, int w, int h)
+	{
+		this(new Position(x, y), new Size(w, h));
+	}
+
 	public void setPosition(Point point)
 	{
 		position = new Position(point);
