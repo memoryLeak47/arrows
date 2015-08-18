@@ -1,18 +1,38 @@
 package core.menu;
 
-public abstract class MenuComponent
+import misc.math.Rect;
+import misc.math.Position;
+import core.menu.Menu;
+
+public abstract class MenuComponent extends Rect
 {
+	private Menu menu;
+
+	public MenuComponent(Menu menu, Rect rect)
+	{
+		super(rect);
+		this.menu = menu;
+	}
+
+	protected final boolean isHovered()
+	{
+		return false; // TODO
+	}
+
+	protected final boolean isFocused()
+	{
+		return this == menu.getFocusedComponent();
+	}
+
 	// TODO: Vec2D position, size;
-	public abstract void tick();
+	public void tick() {}
 	public abstract void render();
 
-	/* TODO: onEventFunctions
-		public void onGainFocus() {}
-		public void onLoseFocus() {}
-		public void onClick(MousePos?) {}
-		public void onMouseEnter(MousePos?) {}
-		public void onMouseMove(MousePos?) {}
-		public void onMouseExit(MousePos?) {}
-		…
-	*/
+	// TODO: onEventFunctions
+	public void onGainFocus() {}
+	public void onLoseFocus() {}
+	public void onClick(Position mousePos) {}
+	public void onMouseEnter(Position mousePos) {}
+	public void onMouseMove(Position mousePos) {}
+	public void onMouseExit(Position mousePos) {}	
 }

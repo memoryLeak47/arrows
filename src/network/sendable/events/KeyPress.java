@@ -1,7 +1,7 @@
-package network.sendable;
+package network.sendable.events;
 
 import network.sendable.Event;
-import network.sendable.Key;
+import network.sendable.events.Key;
 
 public final class KeyPress implements Event
 {

@@ -1,4 +1,4 @@
-package network.sendable;
+package network.sendable.events;
 
 public enum Key
 {

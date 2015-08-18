@@ -29,7 +29,8 @@ public class MenuList // TODO: implements Listener
 	
 	public void render()
 	{
-		// TODO: needed menues.render()
+		// TODO
+		menues.getLast().render();
 	}
 
 	void onEvent(Event event)

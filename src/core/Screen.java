@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.awt.Color;
 
 import core.Main;
+import misc.math.Position;
 
 public class Screen extends JPanel
 {
@@ -44,6 +45,15 @@ public class Screen extends JPanel
 		g = buffer.getGraphics(); // setups g (used in Screen.draw(...))
 		g.setColor(Color.BLACK); // clears ...
 		g.fillRect(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT); // ... screen
+	}
+
+	public static Position getCursorPosition()
+	{
+		if (get().getMousePosition() == null)
+		{
+			return new Position(-1,-1);
+		}
+		return new Position(get().getMousePosition().x, get().getMousePosition().y);
 	}
 
 	public static Graphics g() { return g; }
