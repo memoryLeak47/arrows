@@ -16,7 +16,7 @@ public abstract class MenuComponent extends Rect
 
 	protected final boolean isHovered()
 	{
-		return false; // TODO
+		return this == menu.getHoveredComponent();
 	}
 
 	protected final boolean isFocused()

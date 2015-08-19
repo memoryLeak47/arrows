@@ -1,9 +1,15 @@
 package network.sendable;
 
 import network.sendable.SendableImage;
+import misc.math.Position;
 
-public class SendableString implements SendableImage
+public class SendableString extends Position implements SendableImage
 {
-	// TODO: Point position, size, (rotation)
-	String string;
+	String text;
+
+	public SendableString(Position position, String text)
+	{
+		super(position);
+		this.text = text;
+	}
 }

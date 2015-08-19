@@ -20,10 +20,10 @@ public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 	public MenuList()
 	{
 		menues = new LinkedList<Menu>();
-		menues.add(new MainMenu());
 		Screen.get().addMouseListener(this);
 		Screen.get().addKeyListener(this);
 		Screen.get().addMouseMotionListener(this);
+		menues.add(new MainMenu());
 	}
 
 	public void tick()
@@ -38,8 +38,12 @@ public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 	
 	public void render()
 	{
-		// TODO
-		menues.getLast().render();
+		for (int i = getMenues().size()-1; i >= 0; i--)
+		{
+			menues.get(i).render();
+			if (menues.get(i).isFullscreen())
+				break;
+		}
 	}
 
 	void onEvent(Event event)

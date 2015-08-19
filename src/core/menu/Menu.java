@@ -12,10 +12,9 @@ public abstract class Menu
 	LinkedList<MenuComponent> menuComponents;
 	MenuComponent focusedComponent, hoveredComponent;
 
-	public Menu() // ?
+	public Menu()
 	{
 		menuComponents = new LinkedList<MenuComponent>();
-		// TODO
 	}
 
 	public void tick()
@@ -28,7 +27,6 @@ public abstract class Menu
 
 	public void render()
 	{
-		// TODO: renders all needed menuComponents
 		for (int i = 0; i < menuComponents.size(); i++)
 		{
 			menuComponents.get(i).render();
