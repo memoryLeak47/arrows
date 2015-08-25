@@ -7,6 +7,12 @@ public class LoginUserPacket extends UserPacket
 	private String name;
 	private int rank;
 
+	public LoginUserPacket(LoginUserPacket packet)
+	{
+		name = new String(packet.getName());
+		rank = packet.getRank();
+	}
+
 	public String getName() { return name; }
 	public int getRank() { return rank; }
 }
