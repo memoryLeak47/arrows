@@ -10,7 +10,7 @@ public class CreateServerMenu extends Menu
 	public CreateServerMenu()
 	{
 		add(new Label(this, new Rect(400, 10, 200, 40), "Create Server"));
-		add(new EditField(this, new Rect(300, 100, 100, 20), "Enter Map path"));
+		add(new LinkButton(this, new Rect(300, 300, 100, 100), "Create Server", new ServerLobbyMenu()));
 		add(new BackButton(this, new Position(10, 500)));
 	}
 
