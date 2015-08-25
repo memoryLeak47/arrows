@@ -5,6 +5,8 @@ import java.awt.Color;
 import core.menu.MenuComponent;
 import network.lobby.LobbyPlayer;
 import core.Screen;
+import misc.math.Rect;
+import core.menu.Menu;
 
 public class PlayerIcon extends MenuComponent
 {
