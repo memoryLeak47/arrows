@@ -57,11 +57,11 @@ public class Main
 
 	private void render()
 	{
-		menuList.render();
-		Screen.update();
+		Screen.render();
 	}
 
-	public static Menu getActiveMenu() { return menuList.getActiveMenu(); }
+	public static Menu getActiveMenu() { return getMenuList().getActiveMenu(); }
 	public static NetworkDevice getNetworkDevice() { return networkDevice; }
-	public static LinkedList<Menu> getMenues() { return menuList.getMenues(); }
+	public static LinkedList<Menu> getMenues() { return getMenuList().getMenues(); }
+	public static MenuList getMenuList() { return menuList; }
 }
