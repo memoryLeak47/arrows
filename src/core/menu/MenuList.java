@@ -9,8 +9,8 @@ import java.awt.event.KeyEvent;
 
 import core.menu.Menu;
 import core.menu.menues.MainMenu;
-import network.packets.EventPacket;
-import network.packets.events.*;
+import network.game.packets.EventPacket;
+import network.game.packets.events.*;
 import core.Screen;
 
 public class MenuList implements MouseMotionListener, MouseListener, KeyListener

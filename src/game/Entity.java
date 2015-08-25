@@ -1,7 +1,7 @@
 package game;
 
 import game.graphics.Animation;
-import network.packets.images.EntityImagePacket;
+import network.game.packets.images.EntityImagePacket;
 
 public abstract class Entity
 {

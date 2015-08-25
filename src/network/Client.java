@@ -4,7 +4,7 @@ import java.net.*;
 import java.lang.Thread;
 
 import network.NetworkDevice;
-import network.packets.EventPacket;
+import network.game.packets.EventPacket;
 import network.Packet;
 
 public class Client extends NetworkDevice

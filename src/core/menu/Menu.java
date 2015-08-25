@@ -3,8 +3,8 @@ package core.menu;
 import java.util.LinkedList;
 
 import core.menu.MenuComponent;
-import network.packets.EventPacket;
-import network.packets.events.*;
+import network.game.packets.EventPacket;
+import network.game.packets.events.*;
 import core.Screen;
 
 public abstract class Menu

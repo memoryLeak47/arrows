@@ -1,8 +1,8 @@
-package network.packets.lobby;
+package network.lobby.packets.user;
 
-import network.packets.LobbyPacket;
+import network.lobby.packets.UserPacket;
 
-public class UserLobbyPacket extends LobbyPacket
+public class LoginUserPacket extends UserPacket
 {
 	private String name;
 	private int rank;

@@ -1,7 +1,7 @@
-package network.packets.events;
+package network.game.packets.events;
 
 import java.awt.event.MouseEvent;
-import network.packets.EventPacket;
+import network.game.packets.EventPacket;
 import misc.math.Position;
 
 public final class MouseMoveEventPacket extends EventPacket

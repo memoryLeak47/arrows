@@ -2,7 +2,7 @@ package network;
 
 import java.net.*;
 
-import network.packets.EventPacket;
+import network.game.packets.EventPacket;
 import core.menu.menues.GameInterface;
 import core.menu.menues.LobbyMenu;
 import core.Main;

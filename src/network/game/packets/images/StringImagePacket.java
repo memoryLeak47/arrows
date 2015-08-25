@@ -1,6 +1,6 @@
-package network.packets.images;
+package network.game.packets.images;
 
-import network.packets.ImagePacket;
+import network.game.packets.ImagePacket;
 
 public class StringImagePacket extends ImagePacket
 {

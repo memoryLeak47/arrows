@@ -1,4 +1,4 @@
-package network.packets;
+package network.game.packets;
 
 import network.Packet;
 import misc.math.Body;

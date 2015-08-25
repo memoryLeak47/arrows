@@ -1,8 +1,8 @@
-package network.packets.events;
+package network.game.packets.events;
 
 import java.awt.event.KeyEvent;
 
-import network.packets.EventPacket;
+import network.game.packets.EventPacket;
 
 public final class KeyPressEventPacket extends EventPacket
 {

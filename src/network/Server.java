@@ -7,7 +7,7 @@ import java.lang.Thread;
 
 import game.Player;
 import game.Game;
-import network.packets.EventPacket;
+import network.game.packets.EventPacket;
 import network.Packet;
 
 public class Server extends NetworkDevice
