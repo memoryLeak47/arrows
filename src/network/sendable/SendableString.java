@@ -5,7 +5,7 @@ import misc.math.Position;
 
 public class SendableString extends Position implements SendableImage
 {
-	String text;
+	private String text;
 
 	public SendableString(Position position, String text)
 	{

@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import game.graphics.ImageID;
 
 public final class ImageLoader
-	// loads and stores all Images and Animations
+// loads and stores all Images and Animations
 {
 	private static BufferedImage[][] images;
 

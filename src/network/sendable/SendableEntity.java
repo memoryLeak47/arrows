@@ -6,5 +6,5 @@ import game.graphics.ImageID;
 public class SendableEntity implements SendableImage
 {
 	// TODO: Point position, size, rotation
-	ImageID imageID;
+	private ImageID imageID;
 }

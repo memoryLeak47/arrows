@@ -2,7 +2,7 @@ package misc.math;
 
 public class Body extends Rect
 {
-	int rotation;
+	private int rotation;
 
 	public Body(Rect rect, int rotation)
 	{

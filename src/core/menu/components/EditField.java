@@ -6,7 +6,7 @@ import misc.math.Rect;
 
 public class EditField extends MenuComponent
 {
-	String text;
+	private String text;
 
 	public EditField(Menu menu, Rect rect, String text)
 	{
@@ -14,21 +14,28 @@ public class EditField extends MenuComponent
 		this.text = text;
 	}
 
-	@Override
-	public void onKeyPress(char key)
+	@Override public void onKeyPress(char key)
 	{	
 		if (((int) key) == 8)
+		{
+			if (text.length() <= 0)
+			{
+				return;
+			}
 			text = text.substring(0,text.length()-1);
+		}
 
 		if (!misc.KeyChecker.isSign(key))
+		{
 			return;
-
+		}
 		else
+		{
 			text += key;
+		}
 	}
 
-	@Override
-	public void render()
+	@Override public void render()
 	{
 		core.Screen.g().setColor(java.awt.Color.BLUE);
 		core.Screen.g().fillRect(getPosition().getX(), getPosition().getY(), getSize().getX(), getSize().getY());

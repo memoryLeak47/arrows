@@ -27,8 +27,7 @@ public class Main
 	{
 		init();
 
-		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new TimerTask()
+		new Timer().scheduleAtFixedRate(new TimerTask()
 		{
 			@Override
 			public void run()

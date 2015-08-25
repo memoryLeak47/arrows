@@ -6,7 +6,7 @@ import network.sendable.SendableEntity;
 public abstract class Entity
 {
 	// TODO: Vec2D position, size, rotation;
-	Animation animation;
+	private Animation animation;
 
 	public SendableEntity toSendableEntity()
 	{

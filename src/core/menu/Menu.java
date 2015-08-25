@@ -9,8 +9,8 @@ import network.sendable.events.*;
 
 public abstract class Menu
 {
-	LinkedList<MenuComponent> menuComponents;
-	MenuComponent focusedComponent, hoveredComponent;
+	private LinkedList<MenuComponent> menuComponents;
+	private MenuComponent focusedComponent, hoveredComponent;
 
 	public Menu()
 	{
@@ -69,14 +69,14 @@ public abstract class Menu
 		{
 			if (getFocusedComponent() != null)
 			{
-				getFocusedComponent().onKeyPress(((KeyPress) event).getKeyCode());
+				getFocusedComponent().onKeyPress(((KeyPress) event).getKeyChar());
 			}
 		}
 		else if (event instanceof KeyRelease)
 		{
 			if (getFocusedComponent() != null)
 			{
-				getFocusedComponent().onKeyRelease(((KeyRelease) event).getKeyCode());
+				getFocusedComponent().onKeyRelease(((KeyRelease) event).getKeyChar());
 			}
 		}
 		else

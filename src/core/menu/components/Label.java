@@ -6,7 +6,7 @@ import misc.math.Rect;
 
 public class Label extends MenuComponent
 {
-	String caption;
+	private String caption;
 
 	public Label(Menu menu, Rect rect, String caption)
 	{
@@ -14,8 +14,7 @@ public class Label extends MenuComponent
 		this.caption = caption;
 	}
 
-	@Override
-	public void render()
+	@Override public void render()
 	{
 		core.Screen.g().setColor(java.awt.Color.GREEN);
 		core.Screen.g().fillRect(getPosition().getX(), getPosition().getY(), getSize().getX(), getSize().getY());

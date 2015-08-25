@@ -42,7 +42,9 @@ public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 		{
 			menues.get(i).render();
 			if (menues.get(i).isFullscreen())
+			{
 				break;
+			}
 		}
 	}
 
@@ -56,32 +58,27 @@ public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 	@Override public void mouseExited(MouseEvent event) {}
 	@Override public void mouseDragged(MouseEvent event) {}
 
-	@Override
-	public void mousePressed(MouseEvent event)
+	@Override public void mousePressed(MouseEvent event)
 	{
 		onEvent(new MouseButtonPress(event));
 	}
 
-	@Override
-	public void mouseReleased(MouseEvent event)
+	@Override public void mouseReleased(MouseEvent event)
 	{
 		onEvent(new MouseButtonRelease(event));
 	}
 
-	@Override
-	public void mouseMoved(MouseEvent event)
+	@Override public void mouseMoved(MouseEvent event)
 	{
 		onEvent(new MouseMove(event));
 	}
 
-	@Override
-	public void keyPressed(KeyEvent event)
+	@Override public void keyPressed(KeyEvent event)
 	{
 		onEvent(new KeyPress(event));
 	}
 
-	@Override
-	public void keyReleased(KeyEvent event)
+	@Override public void keyReleased(KeyEvent event)
 	{
 		onEvent(new KeyRelease(event));
 	}

@@ -11,9 +11,9 @@ import network.sendable.Event;
 
 public class Server extends NetworkDevice
 {
-	DatagramSocket socket;
-	Map<InetAddress, Player> IPtoPlayer;
-	Game game;
+	private DatagramSocket socket;
+	private Map<InetAddress, Player> IPtoPlayer;
+	private Game game;
 
 	public Server()
 	{
@@ -25,20 +25,18 @@ public class Server extends NetworkDevice
 		// TODO: manipulates server-player
 	}
 
-	@Override
-	public void lobbyTick()
+	@Override public void lobbyTick()
 	{
 		// TODO
 	}
 
-	@Override
-	public void gameTick()
+	@Override public void gameTick()
 	{
 		game.tick();
 		send();
 	}
 
-	void send()
+	private void send()
 	{
 		// sends image of Game to all clients (player-specific)
 	}

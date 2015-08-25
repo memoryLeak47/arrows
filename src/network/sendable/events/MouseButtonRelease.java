@@ -6,7 +6,7 @@ import network.sendable.Event;
 
 public final class MouseButtonRelease implements Event
 {
-	int mouseButton;
+	private int mouseButton;
 
 	public MouseButtonRelease(MouseEvent event)
 	{

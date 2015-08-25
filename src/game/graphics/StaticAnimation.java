@@ -5,7 +5,7 @@ import game.graphics.ImageID;
 
 public class StaticAnimation implements Animation
 {
-	ImageID imageID;
+	private ImageID imageID;
 
 	public void render()
 	{

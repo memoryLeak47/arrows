@@ -13,6 +13,5 @@ public class JoinServerMenu extends Menu
 		add(new BackButton(this, new Position(10, 500)));
 	}
 
-	@Override
-	public boolean isFullscreen() { return true; }
+	@Override public boolean isFullscreen() { return true; }
 }
