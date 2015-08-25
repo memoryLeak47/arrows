@@ -9,8 +9,8 @@ import java.awt.event.KeyEvent;
 
 import core.menu.Menu;
 import core.menu.menues.MainMenu;
-import network.sendable.Event;
-import network.sendable.events.*;
+import network.packets.EventPacket;
+import network.packets.events.*;
 import core.Screen;
 
 public class MenuList implements MouseMotionListener, MouseListener, KeyListener
@@ -48,7 +48,7 @@ public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 		}
 	}
 
-	void onEvent(Event event)
+	void onEvent(EventPacket event)
 	{
 		menues.getLast().onEvent(event);
 	}
@@ -60,27 +60,27 @@ public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 
 	@Override public void mousePressed(MouseEvent event)
 	{
-		onEvent(new MouseButtonPress(event));
+		onEvent(new MouseButtonPressEventPacket(event));
 	}
 
 	@Override public void mouseReleased(MouseEvent event)
 	{
-		onEvent(new MouseButtonRelease(event));
+		onEvent(new MouseButtonReleaseEventPacket(event));
 	}
 
 	@Override public void mouseMoved(MouseEvent event)
 	{
-		onEvent(new MouseMove(event));
+		onEvent(new MouseMoveEventPacket(event));
 	}
 
 	@Override public void keyPressed(KeyEvent event)
 	{
-		onEvent(new KeyPress(event));
+		onEvent(new KeyPressEventPacket(event));
 	}
 
 	@Override public void keyReleased(KeyEvent event)
 	{
-		onEvent(new KeyRelease(event));
+		onEvent(new KeyReleaseEventPacket(event));
 	}
 
 	@Override public void keyTyped(KeyEvent event) {}

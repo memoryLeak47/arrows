@@ -1,14 +1,14 @@
-package network.sendable.events;
+package network.packets.events;
 
 import java.awt.event.MouseEvent;
 
-import network.sendable.Event;
+import network.packets.EventPacket;
 
-public final class MouseButtonPress implements Event
+public final class MouseButtonPressEventPacket extends EventPacket
 {
 	private int mouseButton;
 
-	public MouseButtonPress(MouseEvent event)
+	public MouseButtonPressEventPacket(MouseEvent event)
 	{
 		if (event.getButton() == event.BUTTON1)
 		{

@@ -1,14 +1,17 @@
 package network;
 
-import network.sendable.Event;
+import java.net.*;
+
+import network.packets.EventPacket;
 import core.menu.menues.GameInterface;
 import core.menu.menues.LobbyMenu;
 import core.Main;
 
 public abstract class NetworkDevice // server or client
 {
+	private DatagramSocket socket;
 
-	public void onEvent(Event event)
+	public void onEvent(EventPacket event)
 	{
 		// TODO
 	}
@@ -30,6 +33,18 @@ public abstract class NetworkDevice // server or client
 		}
 	}
 
+	public void send(Packet packet, InetAddress ip)
+	{
+		// TODO
+	}
+
+	public void receive()
+	{
+		// TODO
+		//handlePacket('received Packet', 'Ip of sender');
+	}
+
+	public abstract void handlePacket(Packet packet, InetAddress sender);
 	public abstract void lobbyTick();
 	public abstract void gameTick();
 }

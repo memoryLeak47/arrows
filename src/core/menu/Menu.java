@@ -3,9 +3,9 @@ package core.menu;
 import java.util.LinkedList;
 
 import core.menu.MenuComponent;
-import network.sendable.Event;
+import network.packets.EventPacket;
+import network.packets.events.*;
 import core.Screen;
-import network.sendable.events.*;
 
 public abstract class Menu
 {
@@ -33,22 +33,28 @@ public abstract class Menu
 		}
 	}
 
-	void onEvent(Event event)
+	private void calcHoveredComponent()
 	{
-		if (event instanceof MouseMove)
+		for (int i = menuComponents.size()-1; i >= 0; i--)
 		{
-			for (int i = menuComponents.size()-1; i >= 0; i--)
+			if (Screen.getCursorPosition().inRect(menuComponents.get(i)))
 			{
-				if (Screen.getCursorPosition().inRect(menuComponents.get(i)))
-				{
-					hoveredComponent = menuComponents.get(i);
-					return;
-				}
+				hoveredComponent = menuComponents.get(i);
+				return;
 			}
-			hoveredComponent = null;
 		}
-		else if (event instanceof MouseButtonPress)
+		hoveredComponent = null;
+	}
+
+	void onEvent(EventPacket event)
+	{
+		if (event instanceof MouseMoveEventPacket)
 		{
+			calcHoveredComponent();
+		}
+		else if (event instanceof MouseButtonPressEventPacket)
+		{
+			calcHoveredComponent();
 			if (getHoveredComponent() != null)
 			{
 				focusedComponent = getHoveredComponent();
@@ -58,25 +64,25 @@ public abstract class Menu
 				focusedComponent = null;
 			}
 		}
-		else if (event instanceof MouseButtonRelease)
+		else if (event instanceof MouseButtonReleaseEventPacket)
 		{
 			if (getHoveredComponent() != null)
 			{
-				getHoveredComponent().onClick(((MouseButtonRelease) event).getMouseButton());
+				getHoveredComponent().onClick(((MouseButtonReleaseEventPacket) event).getMouseButton());
 			}
 		}
-		else if (event instanceof KeyPress)
+		else if (event instanceof KeyPressEventPacket)
 		{
 			if (getFocusedComponent() != null)
 			{
-				getFocusedComponent().onKeyPress(((KeyPress) event).getKeyChar());
+				getFocusedComponent().onKeyPress(((KeyPressEventPacket) event).getKeyChar());
 			}
 		}
-		else if (event instanceof KeyRelease)
+		else if (event instanceof KeyReleaseEventPacket)
 		{
 			if (getFocusedComponent() != null)
 			{
-				getFocusedComponent().onKeyRelease(((KeyRelease) event).getKeyChar());
+				getFocusedComponent().onKeyRelease(((KeyReleaseEventPacket) event).getKeyChar());
 			}
 		}
 		else

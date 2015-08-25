@@ -1,14 +1,14 @@
 package game;
 
 import game.graphics.Animation;
-import network.sendable.SendableEntity;
+import network.packets.images.EntityImagePacket;
 
 public abstract class Entity
 {
 	// TODO: Vec2D position, size, rotation;
 	private Animation animation;
 
-	public SendableEntity toSendableEntity()
+	public EntityImagePacket toEntityImagePacket()
 	{
 		// TODO: toSendableEntity()
 		return null;

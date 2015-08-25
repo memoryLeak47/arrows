@@ -1,18 +1,24 @@
 package network;
 
-import java.net.DatagramSocket;
+import java.net.*;
 import java.lang.Thread;
 
 import network.NetworkDevice;
-import network.sendable.Event;
+import network.packets.EventPacket;
+import network.Packet;
 
 public class Client extends NetworkDevice
 {
 	private DatagramSocket socket;
 
-	public void onEvent(Event event)
+	public void onEvent(EventPacket event)
 	{
 		// sends to Server
+	}
+
+	@Override public void handlePacket(Packet packet, InetAddress ip)
+	{
+		
 	}
 
 	@Override public void lobbyTick()
@@ -22,15 +28,4 @@ public class Client extends NetworkDevice
 
 	@Override public void gameTick() {}
 
-	static class ClientReceiver extends Thread
-	{
-		public void run()
-		{
-			while (true)
-			{
-				// TODO: receive
-				// TODO: render
-			}
-		}
-	}
 }

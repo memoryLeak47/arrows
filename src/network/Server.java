@@ -1,13 +1,14 @@
 package network;
 
-import java.net.DatagramSocket;
+import java.net.*;
 import java.util.Map;
 import java.net.InetAddress;
 import java.lang.Thread;
 
 import game.Player;
 import game.Game;
-import network.sendable.Event;
+import network.packets.EventPacket;
+import network.Packet;
 
 public class Server extends NetworkDevice
 {
@@ -20,9 +21,14 @@ public class Server extends NetworkDevice
 		// TODO: init
 	}
 
-	public void onEvent(Event event)
+	public void onEvent(EventPacket event)
 	{
 		// TODO: manipulates server-player
+	}
+
+	@Override public void handlePacket(Packet packet, InetAddress ip)
+	{
+		
 	}
 
 	@Override public void lobbyTick()
@@ -39,16 +45,5 @@ public class Server extends NetworkDevice
 	private void send()
 	{
 		// sends image of Game to all clients (player-specific)
-	}
-
-	static class ServerReceiver extends Thread
-	{
-		public void run()
-		{
-			/* TODO: void run()
-				receives Event from client
-				tells it game
-			*/
-		}
 	}
 }

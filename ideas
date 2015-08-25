@@ -128,6 +128,16 @@ TeleportBlock: (Idee: Farbe beginnt mit bestimmten Code (Bsp: fefexx) und xx bes
 ______________________________________________________________________________
 ***** NETWORK *****
 
+LobbyMenu:
+	- Alle wählen avatar, man sieht nur die avatare des eigenen teams. jeder avatar nur einmal pro team
+	- alle lockt in
+	-> alle sehen jeden und wählen items und attacken (nicht sichtbar für gegner)
+	- alle lockt in
+	-> lade menu (jeder sieht alles)
+	-> game
+
+
+
 16bit short int
 32bit int, float
 64bit long int
