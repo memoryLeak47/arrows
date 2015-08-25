@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import network.Packet;
 import network.lobby.LobbyPlayer;
 
-public class LobbyPlayersPacket implements Packet
+public class LobbyPlayersPacket extends Packet
 {
 	private LinkedList<LobbyPlayer> players;
 }

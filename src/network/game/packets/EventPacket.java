@@ -2,7 +2,7 @@ package network.game.packets;
 
 import network.Packet;
 
-public class EventPacket implements Packet
+public class EventPacket extends Packet
 {
 	
 }

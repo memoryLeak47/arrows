@@ -1,3 +1,6 @@
 package network;
 
-public interface Packet extends java.io.Serializable {}
+public class Packet implements java.io.Serializable
+{
+	public static final int MAX_SIZE = 2048;
+}
