@@ -12,18 +12,23 @@ public class MainMenu extends Menu
 	{
 		add(new Label(this, new Rect(400, 10, 200, 40), "Main Menu"));
 		add(new EditField(this, new Rect(200, 200, 100, 100), "text"));
-		add(new Button(this, new Rect(10, 10, 100, 30), "Create Server")
+		add(new Button(this, new Rect(300, 100, 100, 30), "Create Server")
 		{
-			@Override
-			public void onClick(int mouseButton)
+			@Override public void onClick(int mouseButton)
 			{
 				Main.getMenues().add(new CreateServerMenu());
 			}
 		});
+		add(new Button(this, new Rect(300, 150, 100, 30), "Join Server")
+		{
+			@Override public void onClick(int mouseButton)
+			{
+				Main.getMenues().add(new JoinServerMenu());
+			}
+		});
 	}
 
-	@Override
-	public boolean isFullscreen() { return true; }
+	@Override public boolean isFullscreen() { return true; }
 
 	
 
