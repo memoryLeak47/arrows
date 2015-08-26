@@ -12,6 +12,7 @@ import core.menu.menues.MainMenu;
 import network.game.packets.EventPacket;
 import network.game.packets.events.*;
 import core.Screen;
+import misc.Debug;
 
 public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 {
@@ -35,16 +36,25 @@ public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 	{
 		return menues.getLast();
 	}
-	
-	public void render()
+
+	private int getTopmostFullscreenMenuIndex()
 	{
 		for (int i = getMenues().size()-1; i >= 0; i--)
 		{
-			menues.get(i).render();
-			if (menues.get(i).isFullscreen())
+			if (getMenues().get(i).isFullscreen())
 			{
-				break;
+				return i;
 			}
+		}
+		Debug.quit("MenuList.getTopmostFullscreenMenuIndex() return 0");
+		return 0;
+	}
+	
+	public void render()
+	{
+		for (int i = getTopmostFullscreenMenuIndex(); i < getMenues().size(); i++)
+		{
+			getMenues().get(i).render();
 		}
 	}
 
