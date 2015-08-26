@@ -1,8 +1,10 @@
 package core.menu;
 
 import java.util.LinkedList;
+import java.net.InetAddress;
 
 import core.menu.MenuComponent;
+import network.Packet;
 import network.game.packets.EventPacket;
 import network.game.packets.events.*;
 import core.Screen;

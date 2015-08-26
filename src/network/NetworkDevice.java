@@ -3,37 +3,24 @@ package network;
 import java.net.*;
 
 import network.game.packets.EventPacket;
-import core.menu.menues.GameInterface;
-import core.menu.menues.LobbyMenu;
+import core.menu.NetworkingMenu;
 import core.Main;
 import static misc.Serializer.*;
 import misc.Debug;
 
-public abstract class NetworkDevice // server or client
+public class NetworkDevice
 {
 	public static final short PORT = 4208;
 	private DatagramSocket socket;
+	private NetworkingMenu menu;
 
-	public void onEvent(EventPacket event)
+	public NetworkDevice(NetworkingMenu menu)
 	{
-		// TODO
-	}
-
-	public final void tick() // calledby Main.run()
-	{
-		if (Main.getActiveMenu() instanceof GameInterface)
+		this.menu = menu;
+		try
 		{
-			gameTick();
-		}
-		else if (Main.getActiveMenu() instanceof LobbyMenu)
-		{
-			lobbyTick();
-		}
-		else
-		{
-			System.out.println("ERROR: NetworkDevice.tick() - NetworkDevice created, but Menu != GameInterface and Menu != LobbyMenu");
-			System.exit(1);
-		}
+			socket = new DatagramSocket();
+		} catch (Exception e) { Debug.quit("can't create socket"); }
 	}
 
 	public void send(Packet packet, InetAddress ip)
@@ -54,10 +41,6 @@ public abstract class NetworkDevice // server or client
 		{
 			socket.receive(datagramPacket);
 		} catch (Exception e) { Debug.quit("Failed to receive data"); }
-		handlePacket((Packet) byteArrayToObject(data), datagramPacket.getAddress());
+		menu.handlePacket((Packet) byteArrayToObject(data), datagramPacket.getAddress());
 	}
-
-	public abstract void handlePacket(Packet packet, InetAddress sender);
-	public abstract void lobbyTick();
-	public abstract void gameTick();
 }

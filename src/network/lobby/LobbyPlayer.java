@@ -9,6 +9,7 @@ import misc.Debug;
 public class LobbyPlayer
 {
 	private InetAddress ip;
+	private boolean local;
 
 	private LoginUserPacket loginPacket;
 	private LockUserPacket lockPacket;
@@ -43,6 +44,9 @@ public class LobbyPlayer
 			Debug.quit("LobbyPlayer.applyUserPacket got wrong packet");
 		}
 	}
+
+	public void setLocal(boolean local) { this.local = local; }
+	public boolean isLocal() { return local; }
 
 	public InetAddress getIP() { return ip; }
 	public String getName() { return loginPacket.getName(); }

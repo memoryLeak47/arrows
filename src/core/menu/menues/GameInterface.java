@@ -1,10 +1,14 @@
 package core.menu.menues;
 
-import core.menu.Menu;
+import java.net.InetAddress;
 
-public class GameInterface extends Menu
+import core.menu.NetworkingMenu;
+import network.Packet;
+
+public class GameInterface extends NetworkingMenu
 // gives Event to NetworkDevice.onEvent(event)
 {
 	// TODO much
+	@Override public void handlePacket(Packet packet, InetAddress ip) {/*TODO*/}
 	@Override public boolean isFullscreen() { return true; }
 }
