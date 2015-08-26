@@ -26,22 +26,19 @@ public class Rect
 		this(new Position(x, y), new Size(w, h));
 	}
 
-	public void setPosition(Point point)
-	{
-		position = new Position(point);
-	}
-
-	public void setSize(Point point)
-	{
-		size = new Size(point);
-	}
-
-	public Size getSize() { return size; }
-	public Position getPosition() { return position; }
-
 	public float distanceTo(Point point)
 	{
 		// TODO
 		return 2;
 	}
+
+	public void setPosition(Point point) { position = new Position(point); }
+	public void setSize(Point point) { size = new Size(point); }
+
+	public int getX() { return getPosition().getX(); }
+	public int getY() { return getPosition().getY(); }
+	public int getWidth() { return getSize().getX(); }
+	public int getHeight() { return getSize().getY(); }
+	public Size getSize() { return size; }
+	public Position getPosition() { return position; }
 }

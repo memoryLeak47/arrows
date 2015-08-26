@@ -22,7 +22,8 @@ public class LobbyMenu extends NetworkingMenu
 
 	public LobbyMenu()
 	{
-		add(new Label(this, new Rect(300, 10, 100, 20), "Lobby"));
+		getComponents().add(new Label(this, new Rect(300, 10, 100, 20), "Lobby"));
+		
 		phase = TEAM_PHASE;
 		players = new LinkedList<LobbyPlayer>();
 		Main.getNetworkDevice().setMenu(this);

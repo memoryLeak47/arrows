@@ -47,7 +47,7 @@ public class Screen extends Canvas
 			return;
 		}
 		g = bs.getDrawGraphics();
-		g.setColor(Color.BLACK); // clears ...
+		g.setColor(Color.GREEN); // clears ...
 		g.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT); // ... screen
 		// RENDER
 		Main.getMenuList().render();

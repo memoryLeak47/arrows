@@ -12,6 +12,7 @@ public class EditField extends MenuComponent
 	{
 		super(menu, rect);
 		this.text = text;
+		updateImage();
 	}
 
 	@Override public void onKeyPress(char key)
@@ -35,12 +36,12 @@ public class EditField extends MenuComponent
 		}
 	}
 
-	@Override public void render()
+	@Override public void updateImage()
 	{
-		core.Screen.g().setColor(java.awt.Color.BLUE);
-		core.Screen.g().fillRect(getPosition().getX(), getPosition().getY(), getSize().getX(), getSize().getY());
-		core.Screen.g().setColor(java.awt.Color.BLACK);
-		core.Screen.g().drawString(text, getPosition().getX() + 1, getPosition().getY() + 12);
+		getGraphics().setColor(java.awt.Color.BLUE);
+		getGraphics().fillRect(0, 0, getSize().getX(), getSize().getY());
+		getGraphics().setColor(java.awt.Color.BLACK);
+		getGraphics().drawString(text, 1, 12);
 	}
 
 }
