@@ -14,13 +14,18 @@ public class NetworkDevice
 	private DatagramSocket socket;
 	private NetworkingMenu menu;
 
-	public NetworkDevice(NetworkingMenu menu)
+	public NetworkDevice()
 	{
-		this.menu = menu;
 		try
 		{
 			socket = new DatagramSocket();
 		} catch (Exception e) { Debug.quit("can't create socket"); }
+	}
+
+	public NetworkDevice(NetworkingMenu menu)
+	{
+		this();
+		setMenu(menu);
 	}
 
 	public void send(Packet packet, InetAddress ip)
@@ -43,4 +48,6 @@ public class NetworkDevice
 		} catch (Exception e) { Debug.quit("Failed to receive data"); }
 		menu.handlePacket((Packet) byteArrayToObject(data), datagramPacket.getAddress());
 	}
+
+	public void setMenu(NetworkingMenu menu) { this.menu = menu; }
 }

@@ -3,9 +3,9 @@ package core.menu.menues;
 import java.util.LinkedList;
 import java.net.InetAddress;
 
+import core.Main;
 import core.menu.NetworkingMenu;
 import core.menu.components.*;
-import network.NetworkDevice;
 import network.lobby.LobbyPlayer;
 import network.Packet;
 import misc.Debug;
@@ -18,15 +18,14 @@ public class LobbyMenu extends NetworkingMenu
 	public static final int ATTRIBUTE_PHASE = 2;
  
 	private int phase;
-	private NetworkDevice networkDevice;
 	private LinkedList<LobbyPlayer> players;
 
 	public LobbyMenu()
 	{
 		add(new Label(this, new Rect(300, 10, 100, 20), "Lobby"));
 		phase = TEAM_PHASE;
-		networkDevice = new NetworkDevice(this);
 		players = new LinkedList<LobbyPlayer>();
+		Main.getNetworkDevice().setMenu(this);
 	}
 
 	public final void addPlayer(LobbyPlayer player)

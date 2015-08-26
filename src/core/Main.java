@@ -16,6 +16,7 @@ public class Main
 	public static final int SCREEN_HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
 	private static MenuList menuList;
+	private static NetworkDevice networkDevice;
 
 	public static void main(String args[])
 	{
@@ -41,6 +42,7 @@ public class Main
 	{
 		Screen.init();
 		menuList = new MenuList();
+		networkDevice = new NetworkDevice();
 	}
 
 	private void tick()
@@ -57,4 +59,5 @@ public class Main
 	public static Menu getActiveMenu() { return getMenuList().getActiveMenu(); }
 	public static LinkedList<Menu> getMenues() { return getMenuList().getMenues(); }
 	public static MenuList getMenuList() { return menuList; }
+	public static NetworkDevice getNetworkDevice() { return networkDevice; }
 }
