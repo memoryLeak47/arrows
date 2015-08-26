@@ -4,10 +4,11 @@ import java.util.LinkedList;
 import java.net.InetAddress;
 
 import core.menu.MenuComponent;
+import core.Screen;
 import network.Packet;
 import network.game.packets.EventPacket;
 import network.game.packets.events.*;
-import core.Screen;
+import misc.Debug;
 
 public abstract class Menu
 {

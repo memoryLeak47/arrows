@@ -56,7 +56,7 @@ public class Main
 		Screen.render();
 	}
 
-	public static Menu getActiveMenu() { return getMenuList().getActiveMenu(); }
+	public static Menu getTopmostMenu() { return getMenuList().getTopmostMenu(); }
 	public static LinkedList<Menu> getMenues() { return getMenuList().getMenues(); }
 	public static MenuList getMenuList() { return menuList; }
 	public static NetworkDevice getNetworkDevice() { return networkDevice; }
