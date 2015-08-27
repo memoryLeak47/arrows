@@ -2,52 +2,50 @@ package network;
 
 import java.net.*;
 
-import network.game.packets.EventPacket;
 import core.menu.NetworkingMenu;
 import core.Main;
 import static misc.Serializer.*;
 import misc.Debug;
+import network.game.packets.EventPacket;
 
 public class NetworkDevice
 {
 	public static final short PORT = 4208;
 	private DatagramSocket socket;
-	private NetworkingMenu menu;
+	private NetworkingMenu menu; // when packet was received, menu.handlePacket(...) will take care of the packet
 
 	public NetworkDevice()
 	{
 		try
 		{
-			socket = new DatagramSocket();
+			socket = new DatagramSocket(); // create socket
 		} catch (Exception e) { Debug.quit("can't create socket"); }
 	}
 
-	public NetworkDevice(NetworkingMenu menu)
+	public void send(Packet packet, InetAddress ip) // send packet to ip
 	{
-		this();
-		setMenu(menu);
-	}
-
-	public void send(Packet packet, InetAddress ip)
-	{
-		byte[] data = objectToByteArray(packet);
-		DatagramPacket datagramPacket = new DatagramPacket(data, data.length, ip, PORT);
+		byte[] data = objectToByteArray(packet); // serialize packet -> data
+		DatagramPacket datagramPacket = new DatagramPacket(data, data.length, ip, PORT); // create datagramPacket
 		try
 		{
-			socket.send(datagramPacket);
+			socket.send(datagramPacket); // send
 		} catch (Exception e) { Debug.quit("Failed to send data"); }
 	}
 
-	public void receive()
+	public void receive() // called by Main.run() permanently, receives packets and gives them to menu.handlePacket(...)
 	{
-		byte[] data = new byte[Packet.MAX_SIZE];
-		DatagramPacket datagramPacket = new DatagramPacket(data, data.length);
+		byte[] data = new byte[Packet.MAX_SIZE]; // create byte[] data
+		DatagramPacket datagramPacket = new DatagramPacket(data, data.length); // create DatagramPacket
 		try
 		{
-			socket.receive(datagramPacket);
+			socket.receive(datagramPacket); // receive packet
 		} catch (Exception e) { Debug.quit("Failed to receive data"); }
-		menu.handlePacket((Packet) byteArrayToObject(data), datagramPacket.getAddress());
+
+		if (menu != null) // if there is a target menu
+		{
+			menu.handlePacket((Packet) byteArrayToObject(data), datagramPacket.getAddress()); // let it handle the packet
+		}
 	}
 
-	public void setMenu(NetworkingMenu menu) { this.menu = menu; }
+	public void setMenu(NetworkingMenu menu) { this.menu = menu; } // set target menu
 }

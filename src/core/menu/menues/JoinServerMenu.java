@@ -9,8 +9,8 @@ public class JoinServerMenu extends Menu
 {
 	public JoinServerMenu()
 	{
-		getComponents().add(new Label(this, new Rect(400, 10, 200, 40), "Join Server"));
-		getComponents().add(new BackButton(this, new Position(10, 500)));
+		getComponents().add(new Label(this, new Rect(400, 10, 200, 40), "Join Server")); // add Label "Join Server"
+		getComponents().add(new BackButton(this, new Position(10, 500))); // add Button "back"
 	}
 
 	@Override public boolean isFullscreen() { return true; }

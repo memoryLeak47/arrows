@@ -11,7 +11,7 @@ public class GameInterface extends NetworkingMenu
 {
 	public GameInterface()
 	{
-		Main.getNetworkDevice().setMenu(this);
+		Main.getNetworkDevice().setMenu(this); // when receiving a packet give it to this.handlePacket(...)
 	}
 
 	// TODO much

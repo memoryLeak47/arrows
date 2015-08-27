@@ -9,15 +9,15 @@ public class CreateServerMenu extends Menu
 {
 	public CreateServerMenu()
 	{
-		getComponents().add(new Label(this, new Rect(400, 10, 200, 40), "Create Server"));
-		getComponents().add(new Button(this, new Rect(300, 300, 100, 100), "Create Server")
+		getComponents().add(new Label(this, new Rect(400, 10, 200, 40), "Create Server")); // add Label "Create Server"
+		getComponents().add(new Button(this, new Rect(300, 300, 100, 100), "Create Server") // add Button "Create Server"
 		{
-			@Override public void onClick(int mouseButton)
+			@Override public void onClick(int mouseButton) // on click
 			{
-				Main.getMenues().add(new ServerLobbyMenu());
+				Main.getMenues().add(new ServerLobbyMenu()); // add new ServerLobbyMenu
 			}
 		});
-		getComponents().add(new BackButton(this, new Position(10, 500)));
+		getComponents().add(new BackButton(this, new Position(10, 500))); // add backbutton
 	}
 
 	@Override public boolean isFullscreen() { return true; }

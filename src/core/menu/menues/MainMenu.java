@@ -4,6 +4,7 @@ import core.Main;
 import core.menu.Menu;
 import core.menu.MenuComponent;
 import core.menu.components.*;
+import misc.Debug;
 import misc.math.*;
 
 public class MainMenu extends Menu
@@ -24,6 +25,13 @@ public class MainMenu extends Menu
 			@Override public void onClick(int mouseButton)
 			{
 				Main.getMenues().add(new JoinServerMenu());
+			}
+		});
+		getComponents().add(new Button(this, new Rect(20, 500, 100, 30), "Quit")
+		{
+			@Override public void onClick(int mouseButton)
+			{
+				Debug.quit();
 			}
 		});
 	}

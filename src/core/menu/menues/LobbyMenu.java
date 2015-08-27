@@ -26,7 +26,7 @@ public class LobbyMenu extends NetworkingMenu
 		
 		phase = TEAM_PHASE;
 		players = new LinkedList<LobbyPlayer>();
-		Main.getNetworkDevice().setMenu(this);
+		Main.getNetworkDevice().setMenu(this); // when receiving a packet give it to this.handlePacket(...)
 	}
 
 	public final void addPlayer(LobbyPlayer player)

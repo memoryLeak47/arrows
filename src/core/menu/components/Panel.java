@@ -16,8 +16,8 @@ public class Panel extends ComponentContainer
 
 	@Override public void updateImage()
 	{
-		super.updateImage();
-		getGraphics().setColor(Color.BLUE);
-		getGraphics().drawRect(0, 0, getWidth(), getHeight());
+		super.updateImage(); // draw content of all components
+		getGraphics().setColor(Color.BLUE); // set color to blue
+		getGraphics().drawRect(0, 0, getWidth(), getHeight()); // draw border
 	}
 }

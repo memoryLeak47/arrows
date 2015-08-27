@@ -9,6 +9,7 @@ import network.Packet;
 import network.game.packets.EventPacket;
 import network.game.packets.events.*;
 import misc.Debug;
+import misc.math.Position;
 
 public abstract class Menu
 {
@@ -40,15 +41,19 @@ public abstract class Menu
 
 	private void calcHoveredComponent() // calculates and sets the hoveredComponent
 	{
-		for (int i = menuComponents.size()-1; i >= 0; i--) // for all components (counting from back to front?? <TODO>)
+		Position cursor = Screen.getCursorPosition();
+		if (cursor != null) // if the cursor is in Screen
 		{
-			if (Screen.getCursorPosition().inRect(menuComponents.get(i))) // if the mouse points at you
+			for (int i = menuComponents.size()-1; i >= 0; i--) // for all components (counting from back to front?? <TODO>)
 			{
-				hoveredComponent = menuComponents.get(i); // be hovered
-				return; // done
-			}
-		}
-		hoveredComponent = null; // if none is hovered set hoveredComponent to null
+				if (cursor.inRect(menuComponents.get(i))) // if the mouse points at you
+				{
+					hoveredComponent = menuComponents.get(i); // be hovered
+					return; // done
+				}
+			} // if none is hovered
+		} // or if mouse is out of screen
+		hoveredComponent = null; // set hoveredComponent to null
 	}
 
 	void onEvent(EventPacket event) // called by menu, handles events

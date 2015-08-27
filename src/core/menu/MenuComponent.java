@@ -14,14 +14,16 @@ public abstract class MenuComponent extends Rect
 {
 	private Menu menu; // Menu which contains this MenuComponent
 	private Graphics graphics; // Graphics of image
-	private BufferedImage image; // image of the MenuComponent
+	private BufferedImage image; // image of the MenuComponent, created in updateImage(), rendered in render()
 
 	public MenuComponent(Menu menu, Rect rect)
 	{
-		super(rect);
+		super(rect); // setup rect per copy-constructor
 		this.menu = menu; // set owner menu
-		image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB); // setup image size=this.size
+		image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB); // setup image (size=this.size)
 		graphics = image.getGraphics(); // setup graphics
+
+		// TODO: every subclass has to call updateImage() in constructor this should be taken care of by this class
 	}
 
 	protected final boolean isHovered()
@@ -36,9 +38,9 @@ public abstract class MenuComponent extends Rect
 
 	public void tick() {} // TODO why this?
 
-	public final void render()
+	public final void render() // draws image to Screen
 	{
-		Screen.g().drawImage(image, getX(), getY(), getWidth(), getHeight(), null); // draws image to the screen
+		Screen.g().drawImage(image, getX(), getY(), getWidth(), getHeight(), null);
 	}
 
 	// onEventFunctions: may be overwritten by subclasses
@@ -49,7 +51,7 @@ public abstract class MenuComponent extends Rect
 	public void onKeyPress(char key) {}
 	public void onKeyRelease(char key) {}
 
-	public abstract void updateImage(); // sets image correctly
+	public abstract void updateImage(); // draws on getGraphics() -> sets image correctly
 
 	protected Graphics getGraphics() { return graphics; }
 	public BufferedImage getImage() { return image; }

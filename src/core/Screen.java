@@ -8,63 +8,60 @@ import java.awt.image.BufferedImage;
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
 
+import core.Main;
 import misc.math.Position;
 import misc.Debug;
 
 public class Screen extends Canvas
 {
-	public static final int SCREEN_WIDTH = 1200, SCREEN_HEIGHT = 1000;
-	private static JFrame frame;
-	private static Screen instance;
-	private static Graphics g;
+	private static JFrame frame; // window
+	private static Screen instance; // the Singleton instance, needed for doing stuff with a canvas like adding listeners
+	private static Graphics g; // graphics for the BufferStrategy bs
 	private static BufferStrategy bs;
 
-	public static void init()
+	public static void init() // called by Main.init()
 	{
-		instance = new Screen("GameNetworking - CatchGame");
+		instance = new Screen("GameNetworking - CatchGame"); // creates the Singleton instance
 	}
 
 	private Screen(String caption)
 	{
 		// init stuff
-		frame = new JFrame(caption);
-		frame.add(this);
-		frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		frame.setResizable(false);
-		frame.setFocusable(true);
-		setFocusable(true);
-		requestFocusInWindow();
+		frame = new JFrame(caption); // creates window
+		frame.add(this); // adds this Screen as Canvas to it
+		frame.setSize(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT); // set Size of the window to Main.SCREEN_{WIDTH,HEIGHT}
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // window closes on pressing the x button
+		frame.setVisible(true); // window is visible
+		frame.setResizable(true); // to make it fullscreen
+		frame.setFocusable(true); // listeners only work when frame is focused
+		requestFocusInWindow();  // as above
 	}
 
-	public static void render()
+	public static void render() // called by Main.render() in a fixed rate
 	{
-		bs = get().getBufferStrategy();
-		if (bs == null)
+		bs = get().getBufferStrategy(); // create bs to the Bufferstrategy of the singleton instance
+		if (bs == null) // if it didn't work
 		{
-			get().createBufferStrategy(3);
-			return;
+			get().createBufferStrategy(3); // create a BufferStrategy for the singleton instance
+			return; // and return
 		}
-		g = bs.getDrawGraphics();
-		g.setColor(Color.BLACK); // clears ...
-		g.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT); // ... screen
-		// RENDER
-		Main.getMenuList().render();
-		// }
-		g.dispose();
-		bs.show();
+		g = bs.getDrawGraphics(); // if it worked, set g to the graphics of the bs
+		g.setColor(Color.BLACK); // clear Screen
+		g.fillRect(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT); // as above
+		Main.getMenuList().render(); // render the menuList
+		g.dispose(); // dispose the graphics
+		bs.show(); // flip the buffer(strategy)
 	}
 
-	public static Position getCursorPosition()
+	public static Position getCursorPosition() // returns cursor position or null when Mouse is out of Screen
 	{
-		if (get().getMousePosition() == null)
+		if (get().getMousePosition() == null) // if mouse is out of screen
 		{
-			return new Position(-1,-1);
+			return null; // return null
 		}
-		return new Position(get().getMousePosition().x, get().getMousePosition().y);
+		return new Position(get().getMousePosition().x, get().getMousePosition().y); // return mousePosition as Position
 	}
 
-	public static Graphics g() { return g; }
-	public static Screen get() { return instance; }
+	public static Graphics g() { return g; } // returns graphics or bs, needed for rendering
+	public static Screen get() { return instance; } // returns singleton instance
 }

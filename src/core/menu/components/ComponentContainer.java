@@ -6,24 +6,23 @@ import core.menu.MenuComponent;
 import core.menu.Menu;
 import misc.math.Rect;
 
-
-public abstract class ComponentContainer extends MenuComponent
+public abstract class ComponentContainer extends MenuComponent // abstract for not instanciating
 {
-	private LinkedList<MenuComponent> components;
+	private LinkedList<MenuComponent> components; // list of components
 
 	public ComponentContainer(Menu menu, Rect rect)
 	{
 		super(menu, rect);
-		components = new LinkedList<MenuComponent>();
+		components = new LinkedList<MenuComponent>(); // create components
 	}
 
-	@Override public void updateImage()
+	@Override public void updateImage() // sets image to the addition of all other images
 	{
-		for (MenuComponent component : getComponents())
+		for (MenuComponent component : getComponents()) // for all components
 		{
-			getGraphics().drawImage(component.getImage(), component.getX(), component.getY(), null);
+			getGraphics().drawImage(component.getImage(), component.getX(), component.getY(), null); // draw their picture on this.getGraphics() relative to the position of the ComponentContainer
 		}
 	}
 
-	protected LinkedList<MenuComponent> getComponents() { return components; }
+	protected LinkedList<MenuComponent> getComponents() { return components; } // needed for the subclasses
 }

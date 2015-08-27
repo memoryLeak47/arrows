@@ -13,6 +13,4 @@ public class Size extends Point
 	{
 		this(point.getX(), point.getY());
 	}
-
-	// Ist eigentlich genauso wie Point ^^
 }
