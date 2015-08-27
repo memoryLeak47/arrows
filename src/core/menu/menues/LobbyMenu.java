@@ -11,7 +11,7 @@ import network.Packet;
 import misc.Debug;
 import misc.math.Rect;
 
-public class LobbyMenu extends NetworkingMenu
+public abstract class LobbyMenu extends NetworkingMenu
 {
 	public static final int TEAM_PHASE = 0;
 	public static final int AVATAR_PHASE = 1;
@@ -46,6 +46,5 @@ public class LobbyMenu extends NetworkingMenu
 		players.remove(id);
 	}
 
-	@Override public void handlePacket(Packet packet, InetAddress ip) {/*TODO*/}
 	@Override public boolean isFullscreen() { return true; }
 }
