@@ -42,7 +42,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 					}
 					else if (userPacket instanceof LoginUserPacket)
 					{
-						LobbyPlayer player = new LobbyPlayer((LoginUserPacket) packet);
+						LobbyPlayer player = new LobbyPlayer((LoginUserPacket) userPacket);
 						players.add(player);
 						if (localPlayer == null)
 						{
