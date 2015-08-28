@@ -44,7 +44,7 @@ public abstract class Menu
 		Position cursor = Screen.getCursorPosition();
 		if (cursor != null) // if the cursor is in Screen
 		{
-			for (int i = menuComponents.size()-1; i >= 0; i--) // for all components (counting from back to front?? <TODO>)
+			for (int i = menuComponents.size()-1; i >= 0; i--) // for all components (counting from back to front, because last component is rendered ontop)
 			{
 				if (cursor.inRect(menuComponents.get(i))) // if the mouse points at you
 				{

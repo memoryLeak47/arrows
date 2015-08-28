@@ -18,7 +18,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 	public static final int ATTRIBUTE_PHASE = 2;
  
 	private int phase;
-	private LinkedList<LobbyPlayer> players;
+	protected LinkedList<LobbyPlayer> players;
 
 	public LobbyMenu()
 	{
@@ -94,8 +94,13 @@ public abstract class LobbyMenu extends NetworkingMenu
 		players.remove(id);
 	}
 
+	protected abstract LobbyPlayer getLocalPlayer();
+
 	public abstract void lockPressed();
 	public abstract void teamPressed(int team);
 	public abstract void mapPressed();
+	public abstract void nextPhase();
+
+	protected int getPhase() { return phase; }
 	@Override public boolean isFullscreen() { return true; }
 }

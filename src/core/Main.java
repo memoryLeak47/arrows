@@ -60,6 +60,9 @@ public class Main
 		Screen.render(); // renders Screen
 	}
 
+	public static String getName() { return "myname"; }
+	public static int getRank() { return 2; }
+
 	public static LinkedList<Menu> getMenues() { return getMenuList().getMenues(); } // returns menues, needed for MenuComponent
 	public static MenuList getMenuList() { return menuList; } // needed in Screen.render()
 	public static NetworkDevice getNetworkDevice() { return networkDevice; } // needed for the NetworkingMenues
