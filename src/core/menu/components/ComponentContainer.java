@@ -39,8 +39,6 @@ public abstract class ComponentContainer extends MenuComponent // abstract for n
 	{
 		calcCursorPosition(mousePos);
 
-		System.out.println(getCursorPosition());
-
 		// bestimmen von hoveredComponent
 		for (MenuComponent component : getComponents())
 		{

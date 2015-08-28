@@ -9,13 +9,23 @@ import misc.Debug;
 public class LobbyPlayer
 {
 	private InetAddress ip;
-	private boolean local;
 
 	private LoginUserPacket loginPacket;
 	private LockUserPacket lockPacket;
 	private AvatarUserPacket avatarPacket;
 	private TeamUserPacket teamPacket;
 	private AttributeUserPacket attributePacket;
+
+	public LobbyPlayer(LoginUserPacket loginPacket, InetAddress ip)
+	{
+		this.loginPacket = loginPacket;
+		this.ip = ip;
+	}
+
+	public LobbyPlayer(LoginUserPacket loginPacket)
+	{
+		this.loginPacket = loginPacket;
+	}
 
 	public final void applyUserPacket(UserPacket packet)
 	{
@@ -44,9 +54,6 @@ public class LobbyPlayer
 			Debug.quit("LobbyPlayer.applyUserPacket got wrong packet");
 		}
 	}
-
-	public void setLocal(boolean local) { this.local = local; }
-	public boolean isLocal() { return local; }
 
 	public InetAddress getIP() { return ip; }
 	public String getName() { return loginPacket.getName(); }
