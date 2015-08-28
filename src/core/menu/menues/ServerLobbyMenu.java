@@ -25,4 +25,8 @@ public class ServerLobbyMenu extends LobbyMenu // lobby menu for the server
 	{
 		// TODO
 	}
+
+	@Override public void nextPhase()
+	{
+	}
 }

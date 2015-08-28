@@ -25,4 +25,6 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 	{
 		// TODO
 	}
+
+	@Override public void nextPhase(){}
 }

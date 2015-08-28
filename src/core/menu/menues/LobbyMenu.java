@@ -18,46 +18,19 @@ public abstract class LobbyMenu extends NetworkingMenu
 	public static final int ATTRIBUTE_PHASE = 2;
  
 	private int phase;
-	private LinkedList<LobbyPlayer> players;
+	protected LinkedList<LobbyPlayer> players;
 
 	public LobbyMenu()
 	{
 		getComponents().add(new Label(this, new Rect(300, 10, 100, 20), "Lobby"));
-		getComponents().add(new Button(this, new Rect(100, 50, 200, 50), "Team None") // Button "Team None"
-		{
-			@Override public void onClick(int mouseButton)
-			{
-				teamPressed(0);
-			}
-		}); // Next Step Button
-		getComponents().add(new Button(this, new Rect(100, 200, 200, 50), "Team Blue") // Button "Team Blue"
-		{
-			@Override public void onClick(int mouseButton)
-			{
-				teamPressed(1);
-			}
-		}); // Next Step Button
-		getComponents().add(new Button(this, new Rect(100, 350, 200, 50), "Team Red") // Button "Team Red"
-		{
-			@Override public void onClick(int mouseButton)
-			{
-				teamPressed(2);
-			}
-		}); // Next Step Button
-		getComponents().add(new Button(this, new Rect(100, 500, 200, 50), "Team Green") // Button "Team Green"
-		{
-			@Override public void onClick(int mouseButton)
-			{
-				teamPressed(3);
-			}
-		}); // Next Step Button
+
 		getComponents().add(new Button(this, new Rect(1000, 600, 200, 60), "Next Step")
 		{
 			@Override public void onClick(int mouseButton)
 			{
 				lockPressed();
 			}
-		}); // Next Step Button
+		}); // Team Yellow Button
 
 		getComponents().add(new Button(this, new Rect(1000, 100, 200, 140), "Map Placeholder")
 		{
@@ -65,7 +38,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 			{
 				mapPressed();
 			}
-		}); // Next Step Button
+		}); // Map Placeholder
 		
 		phase = TEAM_PHASE;
 		players = new LinkedList<LobbyPlayer>();
@@ -97,5 +70,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 	public abstract void lockPressed();
 	public abstract void teamPressed(int team);
 	public abstract void mapPressed();
+	public abstract void nextPhase();
+
 	@Override public boolean isFullscreen() { return true; }
 }

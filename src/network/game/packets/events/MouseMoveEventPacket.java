@@ -12,4 +12,6 @@ public final class MouseMoveEventPacket extends EventPacket
 	{
 		position = new Position(event.getX(), event.getY());
 	}
+
+	public Position getMousePosition() { return position; }
 }

@@ -61,6 +61,10 @@ public abstract class Menu
 		if (event instanceof MouseMoveEventPacket) // if the mouse moved
 		{
 			calcHoveredComponent(); // check if the hoveredComponent has changed
+			if (getHoveredComponent() != null)
+			{
+				getHoveredComponent().onMouseMove(((MouseMoveEventPacket)event).getMousePosition());
+			}
 		}
 		else if (event instanceof MouseButtonPressEventPacket) // if the mouse was pressed
 		{

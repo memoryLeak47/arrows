@@ -18,6 +18,6 @@ public class Panel extends ComponentContainer
 	{
 		super.updateImage(); // draw content of all components
 		getGraphics().setColor(Color.BLUE); // set color to blue
-		getGraphics().drawRect(0, 0, getWidth(), getHeight()); // draw border
+		getGraphics().drawRect(0, 0, getWidth()-1, getHeight()-1); // draw border
 	}
 }

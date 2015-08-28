@@ -56,4 +56,5 @@ public abstract class MenuComponent extends Rect
 	protected void setImage(BufferedImage image) { this.image = image; }
 	protected Graphics getGraphics() { return graphics; }
 	public BufferedImage getImage() { return image; }
+	protected Menu getParentMenu() { return menu; }
 }
