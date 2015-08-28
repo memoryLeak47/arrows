@@ -1,12 +1,13 @@
 package network.lobby;
 
+import java.io.Serializable;
 import java.net.InetAddress;
 
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.user.*;
 import misc.Debug;
 
-public class LobbyPlayer
+public class LobbyPlayer implements Serializable
 {
 	private InetAddress ip;
 
