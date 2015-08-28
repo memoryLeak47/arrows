@@ -53,6 +53,7 @@ public abstract class MenuComponent extends Rect
 
 	public abstract void updateImage(); // draws on getGraphics() -> sets image correctly
 
+	protected void setImage(BufferedImage image) { this.image = image; }
 	protected Graphics getGraphics() { return graphics; }
 	public BufferedImage getImage() { return image; }
 }

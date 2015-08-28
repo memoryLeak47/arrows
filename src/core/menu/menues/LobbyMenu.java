@@ -27,7 +27,6 @@ public abstract class LobbyMenu extends NetworkingMenu
 		getComponents().add(new Button(this, new Rect(100, 200, 200, 50), "Team Blue")); // Button "Team Blue"
 		getComponents().add(new Button(this, new Rect(100, 350, 200, 50), "Team Red")); // Button "Team Red"
 		getComponents().add(new Button(this, new Rect(100, 500, 200, 50), "Team Green")); // Button "Team Green"
-		getComponents().add(new Button(this, new Rect(100, 650, 200, 50), "Team Yellow")); // Button "Team Yellow"
 		
 		phase = TEAM_PHASE;
 		players = new LinkedList<LobbyPlayer>();

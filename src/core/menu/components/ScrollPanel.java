@@ -2,8 +2,9 @@ package core.menu.components;
 
 import java.awt.image.BufferedImage;
 
-import core.menu.components.Panel;
 import core.menu.Menu;
+import core.menu.MenuComponent;
+import core.menu.components.Panel;
 import misc.math.Rect;
 
 public class ScrollPanel extends Panel
@@ -13,7 +14,7 @@ public class ScrollPanel extends Panel
 		super(menu, rect);
 	}
 
-	@Override public void addComponent(menuComponent component)
+	@Override public void addComponent(MenuComponent component)
 	{
 		super.addComponent(component);
 
@@ -53,9 +54,9 @@ public class ScrollPanel extends Panel
 			}
 		}
 
-		if (right != image.getWidth() || bot != image.getHeight())
+		if (right != getImage().getWidth() || bot != getImage().getHeight())
 		{
-			image = new BufferedImage(right, bot, BufferedImage.TYPE_INT_ARGB);
+			setImage(new BufferedImage(right, bot, BufferedImage.TYPE_INT_ARGB));
 		}
 	}
 }
