@@ -24,5 +24,11 @@ public abstract class ComponentContainer extends MenuComponent // abstract for n
 		}
 	}
 
+	public void addComponent(MenuComponent component)
+	{
+		components.add(component);
+		updateImage();
+	}
+	
 	protected LinkedList<MenuComponent> getComponents() { return components; } // needed for the subclasses
 }
