@@ -10,4 +10,19 @@ public class ServerLobbyMenu extends LobbyMenu // lobby menu for the server
 	{
 		// TODO
 	}
+
+	@Override public void mapPressed()
+	{
+		// TODO
+	}
+
+	@Override public void teamPressed(int team)
+	{
+		// TODO
+	}
+
+	@Override public void lockPressed()
+	{
+		// TODO
+	}
 }

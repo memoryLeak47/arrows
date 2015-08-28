@@ -10,4 +10,19 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 	{
 		// TODO
 	}
+
+	@Override public void mapPressed()
+	{
+		// TODO
+	}
+
+	@Override public void teamPressed(int team)
+	{
+		// TODO
+	}
+
+	@Override public void lockPressed()
+	{
+		// TODO
+	}
 }
