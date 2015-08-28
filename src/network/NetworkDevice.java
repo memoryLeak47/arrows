@@ -18,7 +18,7 @@ public class NetworkDevice
 	{
 		try
 		{
-			socket = new DatagramSocket(); // create socket
+			socket = new DatagramSocket(PORT); // create socket
 		} catch (Exception e) { Debug.quit("can't create socket"); }
 	}
 
