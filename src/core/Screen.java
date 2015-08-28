@@ -22,7 +22,7 @@ public class Screen extends Canvas
 
 	public static void init() // called by Main.init()
 	{
-		instance = new Screen("GameNetworking - CatchGame"); // creates the Singleton instance
+		instance = new Screen("Arrows"); // creates the Singleton instance
 	}
 
 	private Screen(String caption)
