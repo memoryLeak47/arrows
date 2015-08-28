@@ -32,6 +32,26 @@ public class Rect
 		return 2;
 	}
 
+	public final int getBot()
+	{
+		return (getY() + getHeight());
+	}
+
+	public final int getLeft()
+	{
+		return getX();
+	}
+
+	public final int getRight()
+	{
+		return (getX() + getWidth());
+	}
+
+	public final int getTop()
+	{
+		return getY();
+	}
+
 	public void setPosition(Point point) { position = new Position(point); }
 	public void setSize(Point point) { size = new Size(point); }
 
