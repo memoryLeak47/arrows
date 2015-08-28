@@ -13,6 +13,14 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 	private LobbyPlayer localPlayer;
 	private InetAddress serverIP;
 
+	public ClientLobbyMenu(String serverIPString)
+	{
+		try
+		{
+			this.serverIP = InetAddress.getByName(serverIPString);
+		} catch (Exception e) { Debug.log("ClientLobbyMenu not a valid ip address"); }
+	}
+
 	@Override public void handlePacket(Packet packet, InetAddress ip)
 	{
 		if (packet instanceof LobbyPlayersPacket)

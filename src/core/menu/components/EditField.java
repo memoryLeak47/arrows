@@ -17,6 +17,11 @@ public class EditField extends MenuComponent
 		updateImage(); // create image
 	}
 
+	public EditField(Menu menu, Rect rect)
+	{
+		this(menu, rect, "");
+	}
+
 	@Override public void onKeyPress(char key)
 	{	
 		if (((int) key) == 8) // if backspace is pressed
@@ -47,5 +52,7 @@ public class EditField extends MenuComponent
 		getGraphics().setColor(Color.BLACK); // set color to black
 		getGraphics().drawString(text, 1, 12); // draw text in rect
 	}
+
+	public String getText() { return text; }
 
 }
