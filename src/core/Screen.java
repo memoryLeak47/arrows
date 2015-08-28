@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
+import java.awt.Point;
 
 import core.Main;
 import misc.math.Position;
@@ -55,11 +56,12 @@ public class Screen extends Canvas
 
 	public static Position getCursorPosition() // returns cursor position or null when Mouse is out of Screen
 	{
-		if (get().getMousePosition() == null) // if mouse is out of screen
+		Point position = get().getMousePosition();
+		if (position == null) // if mouse is out of screen
 		{
 			return null; // return null
 		}
-		return new Position(get().getMousePosition().x, get().getMousePosition().y); // return mousePosition as Position
+		return new Position(position.x, position.y); // return mousePosition as Position
 	}
 
 	public static Graphics g() { return g; } // returns graphics or bs, needed for rendering
