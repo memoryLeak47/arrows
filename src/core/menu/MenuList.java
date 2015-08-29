@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.KeyEvent;
 
 import core.menu.Menu;
-import core.menu.menues.MainMenu;
+import core.menu.menues.LoginMenu;
 import network.game.packets.EventPacket;
 import network.game.packets.events.*;
 import core.Screen;
@@ -21,7 +21,7 @@ public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 	public MenuList()
 	{
 		menues = new LinkedList<Menu>(); // creates menues
-		menues.add(new MainMenu()); // adds MainMenu
+		menues.add(new LoginMenu()); // adds MainMenu
 
 		// adds 'this'-listener to the Screen
 		Screen.get().addMouseListener(this);

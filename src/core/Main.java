@@ -4,19 +4,25 @@ import java.awt.Toolkit;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.LinkedList;
+import java.util.HashMap;
 
-import core.menu.MenuList;
-import network.NetworkDevice;
 import core.menu.Menu;
+import core.menu.MenuList;
+import misc.Account;
+import misc.Debug;
+import static misc.Serializer.*;
+import network.NetworkDevice;
 
 public class Main
 {
 	public static final int FRAME_INTERVAL = 40; // interval in which tick() and render() are called
 	public static final int SCREEN_WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(); // max width of your screen
 	public static final int SCREEN_HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight(); // max height of your screen
+	public static final String accounts_filename = ".accounts";
 
 	private static MenuList menuList;
 	private static NetworkDevice networkDevice;
+	private static Account account;
 
 	public static void main(String args[])
 	{
@@ -50,6 +56,12 @@ public class Main
 		networkDevice = new NetworkDevice(); // create networkDevice
 	}
 
+	public static void quit()
+	{
+		Account.updateAccount(account);
+		Debug.quit("closed properly");
+	}
+
 	private void tick() // called by run()
 	{
 		menuList.tick(); // tick menuList
@@ -60,9 +72,11 @@ public class Main
 		Screen.render(); // renders Screen
 	}
 
-	public static String getName() { return "myname"; }
-	public static int getRank() { return 2; }
+	public static void setAccount(Account newAccount) { account = newAccount; }
 
+	public static String getName() { return getAccount().getName(); }
+	public static int getRank() { return getAccount().getRank(); }
+	public static Account getAccount() { return account; }
 	public static LinkedList<Menu> getMenues() { return getMenuList().getMenues(); } // returns menues, needed for MenuComponent
 	public static MenuList getMenuList() { return menuList; } // needed in Screen.render()
 	public static NetworkDevice getNetworkDevice() { return networkDevice; } // needed for the NetworkingMenues

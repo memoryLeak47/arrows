@@ -31,7 +31,14 @@ public class MainMenu extends Menu
 		{
 			@Override public void onClick(int mouseButton)
 			{
-				Debug.quit();
+				Main.quit();
+			}
+		});
+		getComponents().add(new Button(this, new Rect(140, 500, 100, 30), "Logout")
+		{
+			@Override public void onClick(int mouseButton)
+			{
+				Main.getMenues().remove(Main.getMenues().getLast());
 			}
 		});
 	}

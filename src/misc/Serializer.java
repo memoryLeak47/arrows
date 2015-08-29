@@ -30,4 +30,25 @@ public final class Serializer
 		} catch (Exception e) { Debug.quit("Can't deserialize bytes"); }
 		return null;
 	}
+
+	public static void objectToFile(Object object, File file)
+	{
+		try
+		{
+			FileOutputStream fout = new FileOutputStream(file);
+			ObjectOutputStream oos = new ObjectOutputStream(fout);
+			oos.writeObject(object);
+		} catch (Exception e) { Debug.quit("can't write object to file"); }
+	}
+
+	public static Object fileToObject(File file)
+	{
+		try
+		{
+			FileInputStream fis = new FileInputStream(file);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			return ois.readObject();
+		} catch (Exception e) { Debug.quit("can't read object from file"); }
+		return null;
+	}
 }

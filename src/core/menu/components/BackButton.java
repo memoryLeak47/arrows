@@ -12,6 +12,11 @@ public class BackButton extends Button
 		super(menu, new Rect(position, new Size(100, 50)), "Back"); // button constructor
 	}
 
+	public BackButton(Menu menu, Rect rect)
+	{
+		super(menu, rect, "Back"); // button constructor
+	}
+
 	@Override public void onClick(int button) // when button is pressed
 	{
 		Main.getMenues().remove(Main.getMenues().size()-1); // remove last menu

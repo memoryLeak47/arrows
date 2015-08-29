@@ -3,8 +3,10 @@ package core.menu;
 import java.util.LinkedList;
 import java.net.InetAddress;
 
-import core.menu.MenuComponent;
+import core.Main;
 import core.Screen;
+import core.menu.MenuComponent;
+import core.menu.menues.PopupMenu;
 import network.Packet;
 import network.game.packets.EventPacket;
 import network.game.packets.events.*;
@@ -103,6 +105,11 @@ public abstract class Menu
 		{
 			Debug.quit("bad Event-subclass"); // print error and quit
 		}
+	}
+
+	protected final void popup(String text)
+	{
+		Main.getMenues().add(new PopupMenu(text));
 	}
 
 	public final MenuComponent getFocusedComponent() { return focusedComponent; }
