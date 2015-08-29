@@ -14,7 +14,7 @@ public class LoginMenu extends Menu
 	{
 		getComponents().add(new Label(this, new Rect(350, 20, 100, 20), "Login"));
 		getComponents().add(usernameField = new EditField(this, new Rect(350, 200, 100, 20)));
-		getComponents().add(passwordField = new EditField(this, new Rect(350, 230, 100, 20)));
+		getComponents().add(passwordField = new PasswordField(this, new Rect(350, 230, 100, 20)));
 		getComponents().add(new Button(this, new Rect(350, 260, 40, 20), "Login")
 		{
 			@Override public void onClick(int mouseButton)
