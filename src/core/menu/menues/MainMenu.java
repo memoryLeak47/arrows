@@ -27,13 +27,6 @@ public class MainMenu extends Menu
 				Main.getMenues().add(new JoinServerMenu());
 			}
 		});
-		getComponents().add(new Button(this, new Rect(20, 500, 100, 30), "Quit")
-		{
-			@Override public void onClick(int mouseButton)
-			{
-				Main.quit();
-			}
-		});
 		getComponents().add(new Button(this, new Rect(140, 500, 100, 30), "Logout")
 		{
 			@Override public void onClick(int mouseButton)
@@ -41,6 +34,7 @@ public class MainMenu extends Menu
 				Main.getMenues().remove(Main.getMenues().getLast());
 			}
 		});
+		getComponents().add(new QuitButton(this, new Rect(20, 500, 100, 30)));
 	}
 
 	@Override public boolean isFullscreen() { return true; }

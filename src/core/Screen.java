@@ -10,8 +10,9 @@ import java.awt.Color;
 import java.awt.Point;
 
 import core.Main;
-import misc.math.Position;
 import misc.Debug;
+import misc.JFrameListener;
+import misc.math.Position;
 
 public class Screen extends Canvas
 {
@@ -35,6 +36,7 @@ public class Screen extends Canvas
 		frame.setVisible(true); // window is visible
 		frame.setResizable(true); // to make it fullscreen
 		frame.setFocusable(true); // listeners only work when frame is focused
+		frame.addWindowListener(new JFrameListener());
 		requestFocusInWindow();  // as above
 	}
 

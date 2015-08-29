@@ -58,7 +58,10 @@ public class Main
 
 	public static void quit()
 	{
-		Account.updateAccount(account);
+		if (account != null)
+		{
+			Account.updateAccount(account);
+		}
 		Debug.quit("closed properly");
 	}
 
