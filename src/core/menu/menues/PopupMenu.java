@@ -11,7 +11,7 @@ public class PopupMenu extends Menu
 	public PopupMenu(String text)
 	{
 		this.text = text;
-		getComponents().add(new Label(this, new Rect(350, 20, 100, 20), text));
+		getComponents().add(new Label(this, new Rect(400-text.length()*6, 20, text.length()*12, 20), text));
 		getComponents().add(new BackButton(this, new Rect(370, 50, 60, 20)));
 	}
 

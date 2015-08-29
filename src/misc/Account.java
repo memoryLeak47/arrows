@@ -57,6 +57,10 @@ public final class Account implements Serializable
 	{
 		LinkedList<Account> accounts = getAccounts();
 		Account account = getByName(name, accounts);
+		if (account == null)
+		{
+			return null;
+		}
 		if (account.getPassword().equals(password))
 		{
 			return account;
