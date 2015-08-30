@@ -32,29 +32,17 @@ public class Rect
 		return 2;
 	}
 
-	public final int getBot()
-	{
-		return (getY() + getHeight());
-	}
-
-	public final int getLeft()
-	{
-		return getX();
-	}
-
-	public final int getRight()
-	{
-		return (getX() + getWidth());
-	}
-
-	public final int getTop()
-	{
-		return getY();
-	}
-
 	public void setPosition(Point point) { position = new Position(point); }
 	public void setSize(Point point) { size = new Size(point); }
+	public void setLeft(int left) { getPosition().setX(left); }
+	public void setTop(int top) { getPosition().setX(top); }
+	public void setWidth(int width) { getSize().setX(width); }
+	public void setHeight(int height) { getSize().setY(height); }
 
+	public final int getBot() { return (getY() + getHeight()); }
+	public final int getLeft() { return getX(); }
+	public final int getRight() { return (getX() + getWidth()); }
+	public final int getTop() { return getY(); }
 	public int getX() { return getPosition().getX(); }
 	public int getY() { return getPosition().getY(); }
 	public int getWidth() { return getSize().getX(); }

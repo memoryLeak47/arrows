@@ -1,53 +1,44 @@
 package core.menu.components;
 
+import java.util.LinkedList;
+
 import core.menu.components.Panel;
+import core.menu.components.LobbyTeamPanel;
 import core.menu.menues.LobbyMenu;
 import core.menu.NetworkingMenu;
 import core.menu.Menu;
 import misc.math.Rect;
+import network.lobby.LobbyPlayer;
 
 public class TeamListPanel extends Panel
 {
-	public TeamListPanel(Menu menu, Rect rect)
+	private LinkedList<LobbyPlayer> players;
+
+	public TeamListPanel(Menu menu, Rect rect, LinkedList<LobbyPlayer> players)
 	{
 		super(menu, rect);
+
+		this.players = players; // Verweis auf die Player, die angezeigt werden sollen
 		
-		addComponent(new Button(getParentMenu(), new Rect(100, 50, 200, 50), "Team None") // Button "Team None"
-		{
-			@Override public void onClick(int mouseButton)
-			{
-				getParentLobbyMenu().teamPressed(NetworkingMenu.TEAM_NONE);
-			}
-		}); // Team None Button
-
-		addComponent(new Button(getParentMenu(), new Rect(100, 200, 200, 50), "Team Blue") // Button "Team Blue"
-		{
-			@Override public void onClick(int mouseButton)
-			{
-				getParentLobbyMenu().teamPressed(NetworkingMenu.TEAM_BLUE);
-			}
-		}); // Team Blue Button
-
-		addComponent(new Button(getParentMenu(), new Rect(100, 350, 200, 50), "Team Red") // Button "Team Red"
-		{
-			@Override public void onClick(int mouseButton)
-			{
-				getParentLobbyMenu().teamPressed(NetworkingMenu.TEAM_RED);
-			}
-		}); // Team Red Button
-
-		addComponent(new Button(getParentMenu(), new Rect(100, 500, 200, 50), "Team Green") // Button "Team Green"
-		{
-			@Override public void onClick(int mouseButton)
-			{
-				getParentLobbyMenu().teamPressed(NetworkingMenu.TEAM_GREEN);
-			}
-		}); // Team Green Button
+		addComponent(new LobbyTeamPanel(getParentLobbyMenu(), new Rect(20, 20, 140, 60), "Team None"));
+		addComponent(new LobbyTeamPanel(getParentLobbyMenu(), new Rect(20, 120, 140, 60), "Team Blue"));
+		addComponent(new LobbyTeamPanel(getParentLobbyMenu(), new Rect(20, 220, 140, 60), "Team Red"));
+		addComponent(new LobbyTeamPanel(getParentLobbyMenu(), new Rect(20, 320, 140, 60), "Team Green"));
+		addComponent(new LobbyTeamPanel(getParentLobbyMenu(), new Rect(20, 420, 140, 60), "Team Yellow"));
+		//calcSize();
+		updateImage();
 	}
 
 	@Override public void updateImage()
 	{
 		super.updateImage();
+	}
+
+	// Wird aufgerufen, wenn sich die Konstellation eines Spielers verändert
+	public void update()
+	{
+
+		//calcSize();
 	}
 
 	public LobbyMenu getParentLobbyMenu() { return (LobbyMenu) getParentMenu(); }

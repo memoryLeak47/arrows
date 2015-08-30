@@ -13,7 +13,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby menu for the server
 {
 	public ServerLobbyMenu()
 	{
-		players.add(new LobbyPlayer(new LoginUserPacket(Main.getName(), Main.getRank()))); // server adds itself
+		getPlayers().add(new LobbyPlayer(new LoginUserPacket(Main.getName(), Main.getRank()))); // server adds itself
 	}
 
 	@Override public void handlePacket(Packet packet, InetAddress ip)
@@ -35,8 +35,8 @@ public class ServerLobbyMenu extends LobbyMenu // lobby menu for the server
 					else
 					{
 						LobbyPlayer newPlayer = new LobbyPlayer((LoginUserPacket) packet, ip); // neuer spieler wird erstellt
-						send(new LobbyPlayersPacket(players), ip); // liste ohne neuen an die ip des neuen senden.
-						players.add(newPlayer); // zur player liste hinzufügen
+						send(new LobbyPlayersPacket(getPlayers()), ip); // liste ohne neuen an die ip des neuen senden.
+						getPlayers().add(newPlayer); // zur player liste hinzufügen
 						// goto redirectUserPacket(packet);
 					}
 				}
@@ -107,9 +107,9 @@ public class ServerLobbyMenu extends LobbyMenu // lobby menu for the server
 
 	private int ipToID(InetAddress ip)
 	{
-		for (int i = 1; i < players.size(); i++)
+		for (int i = 1; i < getPlayers().size(); i++)
 		{
-			if (players.get(i).getIP().equals(ip))
+			if (getPlayers().get(i).getIP().equals(ip))
 			{
 				return i;
 			}
@@ -121,7 +121,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby menu for the server
 
 	private LobbyPlayer ipToPlayer(InetAddress ip)
 	{
-		return players.get(ipToID(ip));
+		return getPlayers().get(ipToID(ip));
 	}
 
 	private void redirectUserPacket(UserPacket packet, InetAddress ip)
@@ -131,17 +131,17 @@ public class ServerLobbyMenu extends LobbyMenu // lobby menu for the server
 
 	private void sendToAllClients(Packet packet)
 	{
-		for (int i = 1; i < players.size(); i++) // für all client spieler
+		for (int i = 1; i < getPlayers().size(); i++) // für all client spieler
 		{
-			send(packet, players.get(i).getIP()); // erhalte das packet!
+			send(packet, getPlayers().get(i).getIP()); // erhalte das packet!
 		}
 	}
 
 	private boolean gotIP(InetAddress ip)
 	{
-		for (int i = 1; i < players.size(); i++)
+		for (int i = 1; i < getPlayers().size(); i++)
 		{
-			if (players.get(i).getIP().equals(ip))
+			if (getPlayers().get(i).getIP().equals(ip))
 			{
 				return true;
 			}
@@ -149,5 +149,5 @@ public class ServerLobbyMenu extends LobbyMenu // lobby menu for the server
 		return false;
 	}
 
-	@Override protected LobbyPlayer getLocalPlayer() { return players.get(0); }
+	@Override protected LobbyPlayer getLocalPlayer() { return getPlayers().get(0); }
 }
