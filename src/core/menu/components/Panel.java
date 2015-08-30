@@ -7,7 +7,6 @@ import core.menu.MenuComponent;
 import core.menu.Menu;
 import misc.math.Rect;
 import misc.math.Size;
-import misc.math.StandardFunctions;
 
 public class Panel extends ComponentContainer
 {
@@ -35,8 +34,8 @@ public class Panel extends ComponentContainer
 		// sucht die width/height indem alle Komponenten durchlaufen werden und die am weitesten rechts und unten gespeichert werden
 		for (MenuComponent component : getComponents())
 		{
-			right = StandardFunctions.getUpper(right, component.getRight() + padding.getX());
-			bot = StandardFunctions.getUpper(bot, component.getBot() + padding.getY());
+			right = Math.max(right, component.getRight() + padding.getX());
+			bot = Math.max(bot, component.getBot() + padding.getY());
 		}
 
 		if (right != this.getWidth())
