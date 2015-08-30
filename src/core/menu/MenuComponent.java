@@ -43,6 +43,43 @@ public abstract class MenuComponent extends Rect
 		Screen.g().drawImage(image, getX(), getY(), getWidth(), getHeight(), null);
 	}
 
+	public void centerX(int width)
+	{
+		int left;
+		left = (int)((width - this.getWidth()) / 2);
+		setLeft(left);
+	}
+
+	public void centerY(int height)
+	{
+		int top;
+		top = (int)((height - this.getHeight()) / 2);
+		setTop(top);
+	}
+
+	// zentriert die Komponente im übergebenen Rectangle
+	public void center(Rect rect)
+	{
+		centerX(rect);
+		centerY(rect);
+	}
+
+	// zentriert die Komponente im übergebenen Rectangle in X-Richtung
+	public void centerX(Rect rect)
+	{
+		int left;
+		left = (int)((rect.getWidth() - this.getWidth()) / 2);
+		setLeft(rect.getLeft() + left);
+	}
+
+	// zentriert die Komponente im übergebenen Rectangle in Y-Richtung
+	public void centerY(Rect rect)
+	{
+		int top;
+		top = (int)((rect.getHeight() - this.getHeight()) / 2);
+		setTop(rect.getTop() + top);
+	}
+
 	// onEventFunctions: may be overwritten by subclasses
 	public void onClick(int mouseButton) {}
 	public void onMouseEnter(Position mousePos) {}

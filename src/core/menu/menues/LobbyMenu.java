@@ -18,13 +18,15 @@ public abstract class LobbyMenu extends NetworkingMenu
 	public static final int ATTRIBUTE_PHASE = 2;
  
 	private int phase;
-	protected LinkedList<LobbyPlayer> players;
+	private LinkedList<LobbyPlayer> players; // Bluemi: protected -> private; added setter
+	private TeamListPanel teamListPanel; // Nicht zwingend nötig, nur einfacherer Zugriff, da nicht über index
 
 	public LobbyMenu()
 	{
 		getComponents().add(new Label(this, new Rect(300, 10, 100, 20), "Lobby"));
 
-		getComponents().add(new TeamListPanel(this, new Rect(100, 100, 600, 600)));
+		teamListPanel = new TeamListPanel(this, new Rect(100, 100, 600, 600), getPlayers());
+		getComponents().add(teamListPanel);
 
 		getComponents().add(new Button(this, new Rect(1000, 600, 200, 60), "Next Step")
 		{
@@ -77,5 +79,12 @@ public abstract class LobbyMenu extends NetworkingMenu
 	public abstract void nextPhase();
 
 	protected int getPhase() { return phase; }
+	protected LinkedList<LobbyPlayer> getPlayers() { return players; }
 	@Override public boolean isFullscreen() { return true; }
+
+	protected void setPlayers(LinkedList<LobbyPlayer> players) 
+	{ 
+		this.players = players; 
+		teamListPanel.update();
+	}
 }

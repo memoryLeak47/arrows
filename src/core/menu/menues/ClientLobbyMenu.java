@@ -23,18 +23,20 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 
 	@Override public void handlePacket(Packet packet, InetAddress ip)
 	{
+		// Wenn es sich bei dem Packet um die Liste aller Player handelt, dann
 		if (packet instanceof LobbyPlayersPacket)
 		{
 			localPlayer = null;
-			players = ((LobbyPlayersPacket) packet).getPlayers();
+			setPlayers(((LobbyPlayersPacket) packet).getPlayers()); // setzte die komplette Liste neu
 			return;
 		}
-		else if (packet instanceof UserPacketWithID)
+		else if (packet instanceof UserPacketWithID) // Wenn es sich bei dem Packet um UserPacketWithID handelt, dann
 		{
 			UserPacket userPacket = ((UserPacketWithID) packet).getUserPacket();
 
 			switch (getPhase())
 			{
+				// Falls man in der Team Phase ist
 				case TEAM_PHASE:
 					if (userPacket instanceof TeamUserPacket)
 					{
@@ -43,7 +45,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 					else if (userPacket instanceof LoginUserPacket)
 					{
 						LobbyPlayer player = new LobbyPlayer((LoginUserPacket) userPacket);
-						players.add(player);
+						getPlayers().add(player);
 						if (localPlayer == null)
 						{
 							localPlayer = player;
@@ -110,7 +112,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 	private LobbyPlayer getPlayer(Packet packet) // converts a UserPacketWithID to a player
 	{
 		UserPacketWithID userPacketWithID = (UserPacketWithID) packet;
-		return players.get(userPacketWithID.getID());
+		return getPlayers().get(userPacketWithID.getID());
 	}
 
 	private void sendToServer(Packet packet)
