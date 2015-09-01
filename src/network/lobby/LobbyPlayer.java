@@ -3,9 +3,10 @@ package network.lobby;
 import java.io.Serializable;
 import java.net.InetAddress;
 
+import game.Team;
+import misc.Debug;
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.user.*;
-import misc.Debug;
 
 public class LobbyPlayer implements Serializable
 {
@@ -60,7 +61,7 @@ public class LobbyPlayer implements Serializable
 	public String getName() { return loginPacket.getName(); }
 	public int getRank() { return loginPacket.getRank(); }
 	public boolean isLocked() { return lockPacket.isLocked(); }
-	public int getTeam() { return teamPacket.getTeam(); }
+	public Team getTeam() { return teamPacket.getTeam(); }
 	public int getAvatarID() { return avatarPacket.getAvatarID(); }
 	public int[] getSkillIDs() { return attributePacket.getSkillIDs(); }
 	public int[] getItemIDs() { return attributePacket.getItemIDs(); }

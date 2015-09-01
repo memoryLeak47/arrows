@@ -1,20 +1,21 @@
 package core.menu.components;
 
 import core.Main;
-import core.menu.Menu;
+import core.Screen;
+import core.menu.ComponentContainer;
 import core.menu.components.Button;
 import misc.math.*;
 
 public class QuitButton extends Button
 {
-	public QuitButton(Menu menu, Position position)
+	public QuitButton(ComponentContainer parent, Position position)
 	{
-		super(menu, new Rect(position, new Size(100, 50)), "Quit"); // button constructor
+		super(parent, new Rect(position, new Size(100, 50)), "Quit"); // button constructor
 	}
 
-	public QuitButton(Menu menu, Rect rect)
+	public QuitButton(ComponentContainer parent, Rect rect)
 	{
-		super(menu, rect, "Quit"); // button constructor
+		super(parent, rect, "Quit"); // button constructor
 	}
 
 	@Override public void onClick(int button) // when button is pressed

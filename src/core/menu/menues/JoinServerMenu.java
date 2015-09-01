@@ -30,6 +30,4 @@ public class JoinServerMenu extends Menu
 			}
 		});
 	}
-
-	@Override public boolean isFullscreen() { return true; }
 }

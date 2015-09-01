@@ -16,6 +16,33 @@ public class Point
 		setY(point.getY());
 	}
 
+	public boolean equals(Point point)
+	{
+		return (getX() == point.getX() && getY() == point.getY());
+	}
+
+	public void add(Point point)
+	{
+		setX(getX() + point.getX());
+		setY(getY() + point.getY());
+	}
+
+	public void subtract(Point point)
+	{
+		setX(getX() - point.getX());
+		setY(getY() - point.getY());
+	}
+
+	public Point plus(Point point)
+	{
+		return new Point(getX() + point.getX(), getY() + point.getY());
+	}
+
+	public Point minus(Point point)
+	{
+		return new Point(getX() - point.getX(), getY() - point.getY());
+	}
+
 	public int getX() { return x; }
 	public int getY() { return y; }
 	public String toString() { return "X = " + getX() + "; Y = " + getY(); }

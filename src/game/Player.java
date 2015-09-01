@@ -7,6 +7,6 @@ import game.Bullet;
 
 public class Player extends Entity
 {
-	private int team; // team == 0: all players are enemies
+	private Team team; // team == 0: all players are enemies
 	private LinkedList<Bullet> bullets;
 }

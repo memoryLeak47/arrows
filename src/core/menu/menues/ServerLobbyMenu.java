@@ -3,6 +3,7 @@ package core.menu.menues;
 import java.net.InetAddress;
 
 import core.Main;
+import game.Team;
 import misc.Debug;
 import network.Packet;
 import network.lobby.LobbyPlayer;
@@ -79,9 +80,9 @@ public class ServerLobbyMenu extends LobbyMenu // lobby menu for the server
 		// TODO
 	}
 
-	@Override public void teamPressed(int team)
+	@Override public void teamPressed(Team team)
 	{
-		teamPressedWithID(team, 0);
+		teamPressedWithID(0, team);
 	}
 
 	@Override public void lockPressed()
@@ -95,7 +96,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby menu for the server
 		// TODO
 	}
 
-	private void teamPressedWithID(int id, int team)
+	private void teamPressedWithID(int id, Team team)
 	{
 		sendToAllClients(new UserPacketWithID(new TeamUserPacket(team), id));
 	}

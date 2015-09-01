@@ -2,6 +2,7 @@ package core.menu.menues;
 
 import java.net.InetAddress;
 
+import game.Team;
 import misc.Debug;
 import network.Packet;
 import network.lobby.LobbyPlayer;
@@ -92,7 +93,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 		// TODO
 	}
 
-	@Override public void teamPressed(int team)
+	@Override public void teamPressed(Team team)
 	{
 		sendToServer(new TeamUserPacket(team));
 	}

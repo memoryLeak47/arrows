@@ -19,6 +19,4 @@ public class CreateServerMenu extends Menu
 		});
 		getComponents().add(new BackButton(this, new Position(10, 500))); // add backbutton
 	}
-
-	@Override public boolean isFullscreen() { return true; }
 }

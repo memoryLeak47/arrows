@@ -1,20 +1,20 @@
 package core.menu.components;
 
 import core.Main;
-import core.menu.Menu;
+import core.menu.ComponentContainer;
 import core.menu.components.Button;
 import misc.math.*;
 
 public class BackButton extends Button
 {
-	public BackButton(Menu menu, Position position)
+	public BackButton(ComponentContainer parent, Position position)
 	{
-		super(menu, new Rect(position, new Size(100, 50)), "Back"); // button constructor
+		super(parent, new Rect(position, new Size(100, 50)), "Back"); // button constructor
 	}
 
-	public BackButton(Menu menu, Rect rect)
+	public BackButton(ComponentContainer parent, Rect rect)
 	{
-		super(menu, rect, "Back"); // button constructor
+		super(parent, rect, "Back"); // button constructor
 	}
 
 	@Override public void onClick(int button) // when button is pressed

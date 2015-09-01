@@ -2,7 +2,8 @@ package core.menu.components;
 
 import java.awt.Color;
 
-import core.menu.components.ComponentContainer;
+import core.Screen;
+import core.menu.ComponentContainer;
 import core.menu.MenuComponent;
 import core.menu.Menu;
 import misc.math.Rect;
@@ -12,17 +13,17 @@ public class Panel extends ComponentContainer
 {
 	private static final Size padding = new Size(20, 20); // über "padding" wird der Abstand innerhalb des KomponentenContainers zu den Komponenten gespeichert. Wird in calcSize() benötigt
 
-	public Panel(Menu menu, Rect rect)
+	public Panel(ComponentContainer parent, Rect rect)
 	{
-		super(menu, rect);
-		updateImage();
+		super(parent, rect);
 	}
 
-	@Override public void updateImage()
+	@Override public void render()
 	{
-		super.updateImage(); // draw content of all components
-		getGraphics().setColor(Color.BLUE); // set color to blue
-		getGraphics().drawRect(0, 0, getWidth()-1, getHeight()-1); // draw border
+		calcSize();
+		super.render(); // draw content of all components
+		Screen.g().setColor(Color.BLUE); // set color to blue
+		Screen.g().drawRect(getOffset().getX(), getOffset().getY(), getWidth()-1, getHeight()-1); // draw border
 	}
 
 	// ändert die Size des Panels so, dass zwischen der Komponente links unten noch padding Platz ist

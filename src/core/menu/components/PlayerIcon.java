@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import core.Screen;
 import core.menu.MenuComponent;
-import core.menu.Menu;
+import core.menu.ComponentContainer;
 import misc.math.Rect;
 import network.lobby.LobbyPlayer;
 
@@ -12,16 +12,15 @@ public class PlayerIcon extends MenuComponent
 {
 	private LobbyPlayer player; // player to display stats of
 
-	public PlayerIcon(Menu menu, Rect rect, LobbyPlayer player)
+	public PlayerIcon(ComponentContainer parent, Rect rect, LobbyPlayer player)
 	{
-		super(menu, rect);
+		super(parent, rect);
 		this.player = player; // set player
-		updateImage(); // setup image
 	}
 
-	@Override public void updateImage()
+	@Override public void render()
 	{
-		getGraphics().setColor(Color.YELLOW); // set color to yellow
-		getGraphics().fillRect(0, 0, getWidth(), getHeight()); // fill rect
+		Screen.g().setColor(Color.YELLOW); // set color to yellow
+		Screen.g().fillRect(0, 0, getWidth(), getHeight()); // fill rect
 	}
 }

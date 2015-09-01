@@ -1,23 +1,24 @@
 package network.lobby.packets.user;
 
+import game.Team;
 import network.lobby.packets.UserPacket;
 
 public class TeamUserPacket extends UserPacket
 {
-	private int team;
+	private int teamID;
 
-	public TeamUserPacket(int value)
+	public TeamUserPacket(Team team)
 	{
-		team = value;
+		teamID = team.getID();
 	}
 
 	public TeamUserPacket(TeamUserPacket packet)
 	{
-		team = packet.getTeam();
+		teamID = packet.teamID;
 	}
 
-	public int getTeam()
+	public Team getTeam()
 	{
-		return team;
+		return Team.getByID(teamID);
 	}
 }

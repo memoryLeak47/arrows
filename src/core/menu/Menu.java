@@ -6,63 +6,72 @@ import java.net.InetAddress;
 import core.Main;
 import core.Screen;
 import core.menu.MenuComponent;
+import core.menu.ComponentContainer;
 import core.menu.menues.PopupMenu;
 import network.Packet;
 import network.game.packets.EventPacket;
 import network.game.packets.events.*;
 import misc.Debug;
 import misc.math.Position;
+import misc.math.Rect;
 
-public abstract class Menu
+public abstract class Menu extends ComponentContainer
 {
-	private LinkedList<MenuComponent> menuComponents; // the menuComponents
-	private MenuComponent focusedComponent, hoveredComponent;
+	private MenuComponent focusedComponent;
 
-	public Menu() // constructor
+	public Menu(Rect rect)
 	{
-		menuComponents = new LinkedList<MenuComponent>(); // creates the list menuComponents
+		super(null, rect);
 	}
 
-	public void tick() // ticks menuComponents, needed for <TODO>?
+	public Menu()
+	{
+		super(null, new Rect(0,0,Screen.getScreenSize().getX(), Screen.getScreenSize().getY()));
+	}
+
+	public void tick() // ticks getComponents(), needed for <TODO>?
 	{
 		
-		for (int i = 0; i < menuComponents.size(); i++) // for all menuComponents
+		for (int i = 0; i < getComponents().size(); i++) // for all getComponents()
 		{
-			menuComponents.get(i).tick(); // tick!
+			getComponents().get(i).tick(); // tick!
 		}
 		// Falls man nicht gehoverte MenuComponents ticken möchte
 	}
 
-	public void render() // renders menuComponents
+	public void render() // renders getComponents()
 	{
-		for (int i = 0; i < menuComponents.size(); i++) // for all menuComponents
+		for (int i = 0; i < getComponents().size(); i++) // for all getComponents()
 		{
-			menuComponents.get(i).render(); // render image to Screen
+			getComponents().get(i).render(); // render image to Screen
 		}
 	}
 
-	private void calcHoveredComponent() // calculates and sets the hoveredComponent
+	@Override protected MenuComponent getHoveredComponent() // calculates and sets the hoveredComponent
 	{
 		Position cursor = Screen.getCursorPosition();
 		if (cursor != null) // if the cursor is in Screen
 		{
-			for (int i = menuComponents.size()-1; i >= 0; i--) // for all components (counting from back to front, because last component is rendered ontop)
+			for (int i = getComponents().size()-1; i >= 0; i--) // for all components (counting from back to front, because last component is rendered ontop)
 			{
-				if (cursor.inRect(menuComponents.get(i))) // if the mouse points at you
+				if (cursor.inRect(getComponents().get(i))) // if the mouse points at you
 				{
-					hoveredComponent = menuComponents.get(i); // be hovered
-					return; // done
+					if (getComponents().get(i) instanceof ComponentContainer)
+					{
+						return ((ComponentContainer) getComponents().get(i)).getHoveredComponent(); // be hovered
+					}
+					return getComponents().get(i); // be hovered
 				}
-			} // if none is hovered
+			}
 		} // or if mouse is out of screen
-		hoveredComponent = null; // set hoveredComponent to null
+
+		return null; // returnt diese Komponente, falls in diesem ComponentContainer keine weiteren Components gehovert sind.
 	}
 
 	void onEvent(EventPacket event) // called by menu, handles events
 	{
 		if (event instanceof MouseMoveEventPacket) // if the mouse moved
 		{
-			calcHoveredComponent(); // check if the hoveredComponent has changed
 			if (getHoveredComponent() != null)
 			{
 				getHoveredComponent().onMouseMove(((MouseMoveEventPacket)event).getMousePosition());
@@ -70,7 +79,6 @@ public abstract class Menu
 		}
 		else if (event instanceof MouseButtonPressEventPacket) // if the mouse was pressed
 		{
-			calcHoveredComponent(); // check if the hoveredComponent has changed (like when pressing a button which links to another menu)
 			if (getHoveredComponent() != null) // if there is a hoveredComponent
 			{
 				focusedComponent = getHoveredComponent(); // let it be the focusedComponent
@@ -112,10 +120,13 @@ public abstract class Menu
 		Main.getMenues().add(new PopupMenu(text));
 	}
 
-	public final MenuComponent getFocusedComponent() { return focusedComponent; }
-	public final MenuComponent getHoveredComponent() { return hoveredComponent; }
-	protected final LinkedList<MenuComponent> getComponents() { return menuComponents; }
+	// needed for checking what menues are to render
+	public final boolean isFullscreen()
+	{
+		return (getSize().equals(Screen.getScreenSize()));
+	}
 
-	public abstract boolean isFullscreen(); // needed for checking what menues are to render
-	// because you can't see menues which are under a fullscreen-menu
+	@Override public Position getOffset() { return new Position(getPosition()); }
+
+	public final MenuComponent getFocusedComponent() { return focusedComponent; }
 }

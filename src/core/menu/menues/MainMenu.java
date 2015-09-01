@@ -37,8 +37,4 @@ public class MainMenu extends Menu
 		getComponents().add(new QuitButton(this, new Rect(20, 500, 100, 30)));
 	}
 
-	@Override public boolean isFullscreen() { return true; }
-
-	
-
 }

@@ -14,6 +14,33 @@ public class Position extends Point
 		this(point.getX(), point.getY());
 	}
 
+	public boolean equals(Position position)
+	{
+		return (getX() == position.getX() && getY() == position.getY());
+	}
+
+	public void add(Position position)
+	{
+		setX(getX() + position.getX());
+		setY(getY() + position.getY());
+	}
+
+	public void subtract(Position position)
+	{
+		setX(getX() - position.getX());
+		setY(getY() - position.getY());
+	}
+
+	public Position plus(Position position)
+	{
+		return new Position(getX() + position.getX(), getY() + position.getY());
+	}
+
+	public Position minus(Position position)
+	{
+		return new Position(getX() - position.getX(), getY() - position.getY());
+	}
+
 	public boolean inRect(Position pos, Size size)
 	{
 		return getX() >= pos.getX()

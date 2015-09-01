@@ -2,24 +2,24 @@ package core.menu.components;
 
 import java.awt.Color;
 
+import core.Screen;
 import core.menu.MenuComponent;
-import core.menu.Menu;
+import core.menu.ComponentContainer;
 import misc.math.Rect;
 
 public class EditField extends MenuComponent
 {
 	private String text;
 
-	public EditField(Menu menu, Rect rect, String text)
+	public EditField(ComponentContainer parent, Rect rect, String text)
 	{
-		super(menu, rect);
+		super(parent, rect);
 		this.text = text; // set text
-		updateImage(); // create image
 	}
 
-	public EditField(Menu menu, Rect rect)
+	public EditField(ComponentContainer parent, Rect rect)
 	{
-		this(menu, rect, "");
+		this(parent, rect, "");
 	}
 
 	@Override public void onKeyPress(char key)
@@ -31,7 +31,6 @@ public class EditField extends MenuComponent
 				return; // return, because backspace has no function then
 			}
 			text = text.substring(0,text.length()-1); // remove last letter
-			updateImage();
 		}
 
 		if (!misc.KeyChecker.isSign(key)) // if the key is not a valid sign
@@ -41,16 +40,15 @@ public class EditField extends MenuComponent
 		else // else
 		{
 			text += key; // add it to text
-			updateImage();
 		}
 	}
 
-	@Override public void updateImage() // TODO make prettier
+	@Override public void render() // TODO make prettier
 	{
-		getGraphics().setColor(Color.BLUE); // set color to blue
-		getGraphics().fillRect(0, 0, getWidth(), getHeight()); // fill rect
-		getGraphics().setColor(Color.BLACK); // set color to black
-		getGraphics().drawString(text, 1, 12); // draw text in rect
+		Screen.g().setColor(Color.BLUE); // set color to blue
+		Screen.g().fillRect(getOffset().getX(), getOffset().getY(), getWidth(), getHeight()); // fill rect
+		Screen.g().setColor(Color.BLACK); // set color to black
+		Screen.g().drawString(text, getOffset().getX() + 1, getOffset().getY() + 12); // draw text in rect
 	}
 
 	public String getText() { return text; }

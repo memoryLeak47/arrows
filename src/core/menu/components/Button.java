@@ -2,26 +2,26 @@ package core.menu.components;
 
 import java.awt.Color;
 
+import core.Screen;
 import core.menu.MenuComponent;
-import core.menu.Menu;
+import core.menu.ComponentContainer;
 import misc.math.Rect;
 
 public class Button extends MenuComponent
 {
 	private String caption;
 	
-	public Button(Menu menu, Rect rect, String caption)
+	public Button(ComponentContainer parent, Rect rect, String caption)
 	{
-		super(menu, rect); // setup menu which contains this Button and the rect of the button
+		super(parent, rect); // setup menu which contains this Button and the rect of the button
 		this.caption = caption; // set caption
-		updateImage(); // setup image
 	}
 
-	@Override public void updateImage() // draws content on getGraphics() -> on image
+	@Override public void render() // draws content on getGraphics() -> on image
 	{
-		getGraphics().setColor(Color.RED); // sets graphics color to red
-		getGraphics().fillRect(0, 0, getWidth(), getHeight()); // fill rect of the button
-		getGraphics().setColor(Color.BLACK); // set color to black
-		getGraphics().drawString(caption, 1, 12); // write caption on the rect
+		Screen.g().setColor(Color.RED); // sets graphics color to red
+		Screen.g().fillRect(getOffset().getX(), getOffset().getY(), getWidth(), getHeight()); // fill rect of the button
+		Screen.g().setColor(Color.BLACK); // set color to black
+		Screen.g().drawString(caption, getOffset().getX() + 1, getOffset().getY() + 12); // write caption on the rect
 	}
 }

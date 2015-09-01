@@ -12,7 +12,7 @@ import java.awt.Point;
 import core.Main;
 import misc.Debug;
 import misc.JFrameListener;
-import misc.math.Position;
+import misc.math.*;
 
 public class Screen extends Canvas
 {
@@ -68,4 +68,5 @@ public class Screen extends Canvas
 
 	public static Graphics g() { return g; } // returns graphics or bs, needed for rendering
 	public static Screen get() { return instance; } // returns singleton instance
+	public static Size getScreenSize() { return new Size((int)frame.getSize().getWidth(), (int)frame.getSize().getHeight()); }
 }

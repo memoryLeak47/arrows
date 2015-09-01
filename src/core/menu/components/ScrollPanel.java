@@ -14,49 +14,8 @@ public class ScrollPanel extends Panel
 		super(menu, rect);
 	}
 
-	@Override public void addComponent(MenuComponent component)
+	@Override public void render()
 	{
-		super.addComponent(component);
-
-	}
-
-	@Override public void updateImage()
-	{
-		resizeImage();
-		if (getImage().getWidth() > this.getWidth())
-		{
-			// TODO: waagerechten Scrollbalken rendern
-		}
-
-		if (getImage().getHeight() > this.getHeight())
-		{
-			// TODO: senkrechten Scrollbalken rendern
-		}
-		
-	}
-
-	private final void resizeImage()
-	{
-		int right = 0;
-		int bot = 0;
-		for (MenuComponent component : getComponents())
-		{
-			if (component.getBot() > bot)
-			{
-				bot = component.getBot();
-			}
-
-			if (component.getRight() > right) // wenn hinzugefügte Component weiter unten ist als das jBild groß ist, dann
-			{
-				right = component.getRight();
-				
-				// image.height vergrößern
-			}
-		}
-
-		if (right != getImage().getWidth() || bot != getImage().getHeight())
-		{
-			setImage(new BufferedImage(right, bot, BufferedImage.TYPE_INT_ARGB));
-		}
+		super.render(); // TODO
 	}
 }

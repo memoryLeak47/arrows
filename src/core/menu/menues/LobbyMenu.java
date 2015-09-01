@@ -6,10 +6,11 @@ import java.net.InetAddress;
 import core.Main;
 import core.menu.NetworkingMenu;
 import core.menu.components.*;
-import network.lobby.LobbyPlayer;
-import network.Packet;
+import game.Team;
 import misc.Debug;
 import misc.math.Rect;
+import network.lobby.LobbyPlayer;
+import network.Packet;
 
 public abstract class LobbyMenu extends NetworkingMenu
 {
@@ -46,7 +47,6 @@ public abstract class LobbyMenu extends NetworkingMenu
 		
 		phase = TEAM_PHASE;
 		players = new LinkedList<LobbyPlayer>();
-		updateComponents();
 	}
 
 	public final void addPlayer(LobbyPlayer player)
@@ -61,11 +61,6 @@ public abstract class LobbyMenu extends NetworkingMenu
 		}
 	}
 
-	public final void updateComponents() // sets all components to the right place, sets all componnt-propertiers, called by any menu changing action
-	{
-		
-	}
-
 	public final void removePlayer(int id)
 	{
 		players.remove(id);
@@ -74,17 +69,15 @@ public abstract class LobbyMenu extends NetworkingMenu
 	protected abstract LobbyPlayer getLocalPlayer();
 
 	public abstract void lockPressed();
-	public abstract void teamPressed(int team);
+	public abstract void teamPressed(Team team);
 	public abstract void mapPressed();
 	public abstract void nextPhase();
 
 	protected int getPhase() { return phase; }
 	protected LinkedList<LobbyPlayer> getPlayers() { return players; }
-	@Override public boolean isFullscreen() { return true; }
 
 	protected void setPlayers(LinkedList<LobbyPlayer> players) 
 	{ 
 		this.players = players; 
-		teamListPanel.update();
 	}
 }

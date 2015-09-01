@@ -9,5 +9,4 @@ import network.Packet;
 public abstract class GameInterface extends NetworkingMenu
 // gives Event to NetworkDevice.onEvent(event)
 {
-	@Override public boolean isFullscreen() { return true; }
 }
