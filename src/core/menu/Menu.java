@@ -27,7 +27,6 @@ public abstract class Menu extends ComponentContainer
 	public Menu()
 	{
 		super(null, new Rect(0,0,Screen.getScreenSize().getX(), Screen.getScreenSize().getY()));
-		Debug.log("Menu.<init> -> Screen.getScreenSize(): " + Screen.getScreenSize());
 	}
 
 	public void tick() // ticks getComponents(), needed for <TODO>?
@@ -124,7 +123,6 @@ public abstract class Menu extends ComponentContainer
 	// needed for checking what menues are to render
 	public final boolean isFullscreen()
 	{
-		Debug.log("Menu.isFullscreen() -> getSize(): " + getSize() + " == Screen.getScreenSize(): " + Screen.getScreenSize());
 		return (getSize().equals(Screen.getScreenSize()));
 	}
 

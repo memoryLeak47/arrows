@@ -1,6 +1,5 @@
 package core;
 
-import java.awt.Toolkit;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.LinkedList;
@@ -16,9 +15,6 @@ import network.NetworkDevice;
 public class Main
 {
 	public static final int FRAME_INTERVAL = 40; // interval in which tick() and render() are called
-	public static final int SCREEN_WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(); // max width of your screen
-	public static final int SCREEN_HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight(); // max height of your screen
-	public static final String accounts_filename = ".accounts";
 
 	private static MenuList menuList;
 	private static NetworkDevice networkDevice;

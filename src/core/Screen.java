@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import java.awt.Dimension;
 import java.awt.Canvas;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
@@ -16,6 +17,9 @@ import misc.math.*;
 
 public class Screen extends Canvas
 {
+	public static final int WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(); // max width of your screen
+	public static final int HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight(); // max height of your screen
+
 	private static JFrame frame; // window
 	private static Screen instance; // the Singleton instance, needed for doing stuff with a canvas like adding listeners
 	private static Graphics g; // graphics for the BufferStrategy bs
@@ -31,7 +35,7 @@ public class Screen extends Canvas
 		// init stuff
 		frame = new JFrame(caption); // creates window
 		frame.add(this); // adds this Screen as Canvas to it
-		frame.setSize(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT); // set Size of the window to Main.SCREEN_{WIDTH,HEIGHT}
+		frame.setSize(WIDTH, HEIGHT); // set Size of the window to {WIDTH,HEIGHT}
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // window closes on pressing the x button
 		frame.setVisible(true); // window is visible
 		frame.setResizable(true); // to make it fullscreen
@@ -50,7 +54,7 @@ public class Screen extends Canvas
 		}
 		g = bs.getDrawGraphics(); // if it worked, set g to the graphics of the bs
 		g.setColor(Color.BLACK); // clear Screen
-		g.fillRect(0, 0, Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT); // as above
+		g.fillRect(0, 0, WIDTH, HEIGHT); // as above
 		Main.getMenuList().render(); // render the menuList
 		g.dispose(); // dispose the graphics
 		bs.show(); // flip the buffer(strategy)
@@ -68,5 +72,5 @@ public class Screen extends Canvas
 
 	public static Graphics g() { return g; } // returns graphics or bs, needed for rendering
 	public static Screen get() { return instance; } // returns singleton instance
-	public static Size getScreenSize() { return new Size((int)frame.getSize().getWidth(), (int)frame.getSize().getHeight()); }
+	public static Size getScreenSize() { return new Size(WIDTH, HEIGHT); }
 }
