@@ -17,115 +17,113 @@ import misc.math.Rect;
 
 public abstract class Menu extends ComponentContainer
 {
-	private MenuComponent focusedComponent;
+	private MenuComponent focusedComponent; // die fokusierte component
 
+	// erstellung eines menues mit angegebenem rect (position und größe)
 	public Menu(Rect rect)
 	{
 		super(null, rect);
 	}
 
+	// erstellung eines fullscreen-menues
 	public Menu()
 	{
 		super(null, new Rect(0,0,Screen.getScreenSize().getX(), Screen.getScreenSize().getY()));
 	}
 
-	public void tick() // ticks getComponents(), needed for <TODO>?
+	// tickt alle components, needed for <TODO>
+	public void tick()
 	{
-		
-		for (int i = 0; i < getComponents().size(); i++) // for all getComponents()
+		for (int i = 0; i < getComponents().size(); i++) // für alle components
 		{
-			getComponents().get(i).tick(); // tick!
-		}
-		// Falls man nicht gehoverte MenuComponents ticken möchte
-	}
-
-	public void render() // renders getComponents()
-	{
-		for (int i = 0; i < getComponents().size(); i++) // for all getComponents()
-		{
-			getComponents().get(i).render(); // render image to Screen
+			getComponents().get(i).tick(); // tick
 		}
 	}
 
-	@Override protected MenuComponent getHoveredComponent() // calculates and sets the hoveredComponent
+	// rendert alle components
+	public void render()
+	{
+		for (int i = 0; i < getComponents().size(); i++) // für alle components
+		{
+			getComponents().get(i).render(); // render to Screen
+		}
+	}
+
+	// kalkuliert gehoverte komponents
+	@Override protected MenuComponent getHoveredComponent()
 	{
 		Position cursor = Screen.getCursorPosition();
-		if (cursor != null) // if the cursor is in Screen
+		if (cursor != null) // wenn die maus im fenster ist
 		{
-			for (int i = getComponents().size()-1; i >= 0; i--) // for all components (counting from back to front, because last component is rendered ontop)
+			for (int i = getComponents().size()-1; i >= 0; i--) // für alle MenuComponents (von hinten nach vorne, denn letzte MenuComponent wird nach oben gerendert)
 			{
-				if (cursor.inRect(getComponents().get(i))) // if the mouse points at you
+				if (cursor.inRect(getComponents().get(i))) // wenn die maus auf die MenuComponent zeigt
 				{
-					if (getComponents().get(i) instanceof ComponentContainer)
+					if (getComponents().get(i) instanceof ComponentContainer) // und sie ein ComponentContainer ist
 					{
-						return ((ComponentContainer) getComponents().get(i)).getHoveredComponent(); // be hovered
-					}
-					return getComponents().get(i); // be hovered
+						return ((ComponentContainer) getComponents().get(i)).getHoveredComponent(); // returne die gehoverte MenuComponent des ComponentContainers
+					} // falls die MenuComponent kein ComponentContainer ist
+					return getComponents().get(i); // returne die MenuComponent selbst
 				}
-			}
-		} // or if mouse is out of screen
-
-		return null; // returnt diese Komponente, falls in diesem ComponentContainer keine weiteren Components gehovert sind.
+			} // falls auf keine MenuComponent gezeigt wird
+		} // oder die maus außerhalb des fensters ist
+		return null; // returnt null
 	}
 
-	void onEvent(EventPacket event) // called by menu, handles events
+	// bearbeitet die events vom menu
+	void onEvent(EventPacket event)
 	{
-		if (event instanceof MouseMoveEventPacket) // if the mouse moved
+		if (event instanceof MouseMoveEventPacket) // wenn sich die maus bewegt hat
 		{
-			if (getHoveredComponent() != null)
+			if (getHoveredComponent() != null) // und es eine gehoverte MenuComponent gibt
 			{
-				getHoveredComponent().onMouseMove(((MouseMoveEventPacket)event).getMousePosition());
+				getHoveredComponent().onMouseMove(((MouseMoveEventPacket)event).getMousePosition()); // gebe das event an getHoveredComponent() weiter
 			}
 		}
-		else if (event instanceof MouseButtonPressEventPacket) // if the mouse was pressed
+		else if (event instanceof MouseButtonPressEventPacket) // wenn die maus gedrückt wurde
 		{
-			if (getHoveredComponent() != null) // if there is a hoveredComponent
+			focusedComponent = getHoveredComponent(); // lasse die fokusierte MenuComponent die gehoverte sein
+		}
+		else if (event instanceof MouseButtonReleaseEventPacket) // wenn die maus losgelassen wurde
+		{
+			if (getHoveredComponent() != null) // und es eine gehoverte MenuComponent gibt
 			{
-				focusedComponent = getHoveredComponent(); // let it be the focusedComponent
-			}
-			else // else
-			{
-				focusedComponent = null; // there is no focusedComponent
+				getHoveredComponent().onClick(((MouseButtonReleaseEventPacket) event).getMouseButton()); // gebe das event an getHoveredComponent() weiter
 			}
 		}
-		else if (event instanceof MouseButtonReleaseEventPacket) // if the mouse was released
+		else if (event instanceof KeyPressEventPacket) // wenn die tastatur gedrückt wurde
 		{
-			if (getHoveredComponent() != null) // and there is a hoveredComponent
+			if (getFocusedComponent() != null) // und es eine fokusierte MenuComponent gibt 
 			{
-				getHoveredComponent().onClick(((MouseButtonReleaseEventPacket) event).getMouseButton()); // call onClick to it
+				getFocusedComponent().onKeyPress(((KeyPressEventPacket) event).getKeyChar()); // gebe das event an getFocusedComponent() weiter
 			}
 		}
-		else if (event instanceof KeyPressEventPacket) // if a keyboard-key was pressed
+		else if (event instanceof KeyReleaseEventPacket) // wenn die tastatur losgelassen wurde
 		{
-			if (getFocusedComponent() != null) // and there is a focused component
+			if (getFocusedComponent() != null) // und es eine fokusierte MenuCompoent gibt
 			{
-				getFocusedComponent().onKeyPress(((KeyPressEventPacket) event).getKeyChar()); // call onKeyPress to it
+				getFocusedComponent().onKeyRelease(((KeyReleaseEventPacket) event).getKeyChar()); // gebe das event an getFocusedComponent() weiter
 			}
 		}
-		else if (event instanceof KeyReleaseEventPacket) // if a key was released
+		else // falls das event ein anderes ist
 		{
-			if (getFocusedComponent() != null) // and there is a focused component
-			{
-				getFocusedComponent().onKeyRelease(((KeyReleaseEventPacket) event).getKeyChar()); // call onKeyRelease to it
-			}
-		}
-		else // if the event is none of these
-		{
-			Debug.quit("bad Event-subclass"); // print error and quit
+			Debug.quit("bad Event-subclass"); // printe nen error und beende das programm
 		}
 	}
 
-	protected final void popup(String text)
+	// öffnet ein popup menu mit text als information
+	protected static final void popup(String text)
 	{
 		Main.getMenues().add(new PopupMenu(text));
 	}
 
-	// needed for checking what menues are to render
+	// gebraucht um zu wissen welches menu welches verdeckt (rendern)
 	public final boolean isFullscreen()
 	{
 		return (getSize().equals(Screen.getScreenSize()));
 	}
 
+	// <TODO>
 	@Override public Position getOffset() { return new Position(getPosition()); }
 
 	public final MenuComponent getFocusedComponent() { return focusedComponent; }

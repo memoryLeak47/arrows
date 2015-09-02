@@ -17,60 +17,62 @@ import misc.math.*;
 
 public class Screen extends Canvas
 {
-	public static final int WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(); // max width of your screen
-	public static final int HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight(); // max height of your screen
+	public static final int WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(); // bildschirmbreite
+	public static final int HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight(); // bildschirmhöhe
 
-	private static JFrame frame; // window
-	private static Screen instance; // the Singleton instance, needed for doing stuff with a canvas like adding listeners
-	private static Graphics g; // graphics for the BufferStrategy bs
-	private static BufferStrategy bs;
+	private static JFrame frame; // fenster
+	private static Screen instance; // singleton-instanz
+	private static Graphics g; // graphics auf die BufferStrategy bs
+	private static BufferStrategy bs; // backbuffer
 
-	public static void init() // called by Main.init()
+	// ausgeführt von Main.init()
+	public static void init()
 	{
-		instance = new Screen("Arrows"); // creates the Singleton instance
+		instance = new Screen("Arrows"); // erstellung der singleton-instanz
 	}
 
 	private Screen(String caption)
 	{
-		// init stuff
-		frame = new JFrame(caption); // creates window
-		frame.add(this); // adds this Screen as Canvas to it
-		frame.setSize(WIDTH, HEIGHT); // set Size of the window to {WIDTH,HEIGHT}
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // window closes on pressing the x button
-		frame.setVisible(true); // window is visible
-		frame.setResizable(true); // to make it fullscreen
-		frame.setFocusable(true); // listeners only work when frame is focused
-		frame.addWindowListener(new JFrameListener());
-		requestFocusInWindow();  // as above
+		frame = new JFrame(caption); // erstellung des fensters
+		frame.add(this); // diese Screen instanz zum fenster hinzufügen
+		frame.setSize(WIDTH, HEIGHT); // größe des fensters auf die größe des bildschirms setzen
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // -> fenster schließt, wenn man auf das kreuz drückt
+		frame.setVisible(true); // -> fenster ist sichtbar
+		frame.setResizable(true); // -> fenstergröße ist variabel (fullscreen ist möglich)
+		frame.setFocusable(true); // -> man kann das fenster focusen, listeners können nur funktionieren wenn das fenster gefocust ist
+		frame.addWindowListener(new JFrameListener()); // ein neuer JFrameListener wird dem fenster hinzugefügt -> wenn es schließt wird Main.quit() ausgeführt
+		requestFocusInWindow();  // das fenster wird fokusiert
 	}
 
-	public static void render() // called by Main.render() in a fixed rate
+	// called by Main.render() in a fixed rate
+	public static void render()
 	{
-		bs = get().getBufferStrategy(); // create bs to the Bufferstrategy of the singleton instance
-		if (bs == null) // if it didn't work
+		bs = get().getBufferStrategy(); // setzt bs auf die BufferStrategy der singleton-instanz
+		if (bs == null) // falls es noch keine BufferStrategy gibt
 		{
-			get().createBufferStrategy(3); // create a BufferStrategy for the singleton instance
-			return; // and return
-		}
-		g = bs.getDrawGraphics(); // if it worked, set g to the graphics of the bs
-		g.setColor(Color.BLACK); // clear Screen
-		g.fillRect(0, 0, WIDTH, HEIGHT); // as above
-		Main.getMenuList().render(); // render the menuList
-		g.dispose(); // dispose the graphics
-		bs.show(); // flip the buffer(strategy)
+			get().createBufferStrategy(3); // erstelle sie
+			return; // und beende die render funktion
+		} // falls wir nun eine bufferstrategy haben
+		g = bs.getDrawGraphics(); // setze g auf deren graphics
+		g.setColor(Color.BLACK); // setze farbe auf schwarz
+		g.fillRect(0, 0, WIDTH, HEIGHT); // fülle den bildschirm schwarz
+		Main.getMenuList().render(); // render die menuList
+		g.dispose(); // dispose die graphics
+		bs.show(); // flip den buffer
 	}
 
-	public static Position getCursorPosition() // returns cursor position or null when Mouse is out of Screen
+	// returt die cursor position oder null falls Maus außerhalb des fensters ist
+	public static Position getCursorPosition()
 	{
 		Point position = get().getMousePosition();
-		if (position == null) // if mouse is out of screen
+		if (position == null) // wenn die maus außerhalb des fensters ist
 		{
 			return null; // return null
-		}
-		return new Position(position.x, position.y); // return mousePosition as Position
+		} // falls sie im fenster ist
+		return new Position(position.x, position.y); // returne die maus-position
 	}
 
-	public static Graphics g() { return g; } // returns graphics or bs, needed for rendering
-	public static Screen get() { return instance; } // returns singleton instance
-	public static Size getScreenSize() { return new Size(WIDTH, HEIGHT); }
+	public static Graphics g() { return g; } // returnt die graphics, gebraucht zum rendern
+	public static Screen get() { return instance; } // returnt die singleton-instance
+	public static Size getScreenSize() { return new Size(WIDTH, HEIGHT); } // returnt die fenstergröße (= bildschirmgröße)
 }

@@ -16,63 +16,70 @@ import misc.Debug;
 
 public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 {
-	private LinkedList<Menu> menues; // all menues
+	private LinkedList<Menu> menues; // alle menues
 
+	// wenn eine MenuList erstellt wird (nur einmal am anfang des programms)
 	public MenuList()
 	{
-		menues = new LinkedList<Menu>(); // creates menues
-		menues.add(new LoginMenu()); // adds MainMenu
+		menues = new LinkedList<Menu>(); // erstelle die menu-liste
+		menues.add(new LoginMenu()); // füge das login-menu hinzu
 
-		// adds 'this'-listener to the Screen
+		// füge die eigenen listener zum Screen hinzu
 		Screen.get().addMouseListener(this);
 		Screen.get().addKeyListener(this);
 		Screen.get().addMouseMotionListener(this);
 	}
 
-	public void tick() // ticks topmost menu
+	// tickt das oberste menu
+	public void tick()
 	{
 		getTopmostMenu().tick();
 	}
 
+	// returne das oberste menu
 	public Menu getTopmostMenu()
 	{
 		return menues.getLast();
 	}
 
-	private int getTopmostFullscreenMenuIndex() // needed for knowing what menu is to render, see 'Menu.isFullscreen()'
+	// returne den index des obersten menues
+	private int getTopmostFullscreenMenuIndex()
 	{
-		for (int i = getMenues().size()-1; i >= 0; i--) // for all menues (count from back to front)
+		for (int i = getMenues().size()-1; i >= 0; i--) // für alle menues (von hinten nach vorne)
 		{
-			if (getMenues().get(i).isFullscreen()) // if you are fullscreen
+			if (getMenues().get(i).isFullscreen()) // wenn du fullscreen bist
 			{
-				return i; // return your index
+				return i; // returne deinen index
 			}
-		}
-		Debug.quit("MenuList.getTopmostFullscreenMenuIndex() no fullscreen menu!"); // if none is fullscreen, error and quit
+		} // wenn keins fullscreen ist
+		Debug.quit("MenuList.getTopmostFullscreenMenuIndex() no fullscreen menu!"); // beende das programm und schmeiß nen error
 		return 0;
 	}
-	
+
+	// zeiche alle sichtbaren menues
 	public void render()
 	{
 		for (int i = getTopmostFullscreenMenuIndex(); i < getMenues().size(); i++)
-		// for all menues on top of the topmost fullscreen menu (including it)
+		// für alle menues die auf dem obersten fullscreen menu liegen (und dem obersten fullscreen-menu)
 		{
 			getMenues().get(i).render(); // render
 		}
 	}
 
-	void onEvent(EventPacket event) // give event to topmost menu
+	// gebe das event an das oberste menu weiter
+	void onEvent(EventPacket event)
 	{
 		getTopmostMenu().onEvent(event);
 	}
 	
-	// not needed listener functions
+	// nutzlose event-funktionen der listener
 	@Override public void mouseClicked(MouseEvent event) {}
 	@Override public void mouseEntered(MouseEvent event) {}
 	@Override public void mouseExited(MouseEvent event) {}
 	@Override public void mouseDragged(MouseEvent event) {}
+	@Override public void keyTyped(KeyEvent event) {}
 
-	// needed listener functions, give event to this.onEvent(...)
+	// gebrauchte event-funktionen der listener -> gebe event weiter an onEvent(Event)
 	@Override public void mousePressed(MouseEvent event)
 	{
 		onEvent(new MouseButtonPressEventPacket(event));
@@ -98,7 +105,6 @@ public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 		onEvent(new KeyReleaseEventPacket(event));
 	}
 
-	@Override public void keyTyped(KeyEvent event) {}
-
+	// returnt alle menues
 	public LinkedList<Menu> getMenues() { return menues; }
 }
