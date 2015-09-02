@@ -123,6 +123,7 @@ public abstract class Menu extends ComponentContainer
 	// needed for checking what menues are to render
 	public final boolean isFullscreen()
 	{
+		Debug.log("size:" + getSize() + " == " + Screen.getScreenSize());
 		return (getSize().equals(Screen.getScreenSize()));
 	}
 
