@@ -49,23 +49,6 @@ public abstract class LobbyMenu extends NetworkingMenu
 		players = new LinkedList<LobbyPlayer>();
 	}
 
-	public final void addPlayer(LobbyPlayer player)
-	{
-		if (phase == TEAM_PHASE)
-		{
-			players.add(player);
-		}
-		else
-		{
-			Debug.quit("LobbyMenu.addPlayer: called while not in phase \"TEAM_PHASE\"");
-		}
-	}
-
-	public final void removePlayer(int id)
-	{
-		players.remove(id);
-	}
-
 	protected abstract LobbyPlayer getLocalPlayer();
 
 	public abstract void lockPressed();

@@ -11,96 +11,97 @@ import network.lobby.packets.*;
 
 public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 {
-	private LobbyPlayer localPlayer;
-	private InetAddress serverIP;
+	private LobbyPlayer localPlayer; // Verweiß auf den eigenen LobbyPlayer
+	private InetAddress serverIP; // Speichert die IP adresse des Servers
 
 	public ClientLobbyMenu(String serverIPString)
 	{
 		try
 		{
-			this.serverIP = InetAddress.getByName(serverIPString);
-		} catch (Exception e) { Debug.log("ClientLobbyMenu not a valid ip address"); }
+			this.serverIP = InetAddress.getByName(serverIPString); // Speichert die Internet-Adresse vom Server; Wird von JoinServerMenu übergeben
+		} catch (Exception e) { Debug.log("ClientLobbyMenu not a valid ip address: " + serverIPString); }
 	}
 
+	// Wird ausgeführt von Main.networkDevice.receive()
 	@Override public void handlePacket(Packet packet, InetAddress ip)
 	{
-		// Wenn es sich bei dem Packet um die Liste aller Player handelt, dann
-		if (packet instanceof LobbyPlayersPacket)
+		if (packet instanceof LobbyPlayersPacket) // Wenn es sich bei dem Packet um die Liste aller Player handelt, dann
 		{
-			localPlayer = null;
 			setPlayers(((LobbyPlayersPacket) packet).getPlayers()); // setzte die komplette Liste neu
 			return;
 		}
 		else if (packet instanceof UserPacketWithID) // Wenn es sich bei dem Packet um UserPacketWithID handelt, dann
 		{
-			UserPacket userPacket = ((UserPacketWithID) packet).getUserPacket();
+			UserPacket userPacket = ((UserPacketWithID) packet).getUserPacket(); // entpacken des UserPackets aus dem UserpacketWithID
 
 			switch (getPhase())
 			{
-				// Falls man in der Team Phase ist
-				case TEAM_PHASE:
-					if (userPacket instanceof TeamUserPacket)
+				case TEAM_PHASE: // Falls man in der Team Phase ist
+					if (userPacket instanceof TeamUserPacket) // Wenn Spieler das Team wechselt
 					{
-						getPlayer(packet).applyUserPacket(userPacket);
+						getPlayer(packet).applyUserPacket(userPacket); // setzte das Team des jeweilgen Spielers
 					}
-					else if (userPacket instanceof LoginUserPacket)
+					else if (userPacket instanceof LoginUserPacket) // Wenn sich ein Spieler einloggt
 					{
-						LobbyPlayer player = new LobbyPlayer((LoginUserPacket) userPacket);
-						getPlayers().add(player);
-						if (localPlayer == null)
+						LobbyPlayer player = new LobbyPlayer((LoginUserPacket) userPacket); // Neuen LobbyPlayer erstellen
+						getPlayers().add(player); // Zur Liste der LobbyPlayer hinzufügen
+						if (localPlayer == null) // Da das erste LoginUserPacket, das man bekommt, das eigene ist
 						{
-							localPlayer = player;
+							localPlayer = player; // Diesen LobbyPlayer als eigenen abspeichern
 						}
 					}
 					else
 					{
-						Debug.quit("Client can't accept packet in team phase");
+						Debug.quit("Client can't accept packet in team phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
 					}
 					break;
-				case AVATAR_PHASE:
-					if (userPacket instanceof AvatarUserPacket)
+				case AVATAR_PHASE: // Wenn man sich in der AvatarPhase befindet
+					if (userPacket instanceof AvatarUserPacket) // Falls ein Spieler seinen Avatar wechselt
 					{
-						getPlayer(packet).applyUserPacket(userPacket);
+						getPlayer(packet).applyUserPacket(userPacket); // Des jeweiligen Spielers Avatar wird in den LobbyPlayern geändert
 					}
 					else
 					{
-						Debug.quit("Client can't accept packet in avatar phase");
+						Debug.quit("Client can't accept packet in avatar phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
 					}
 					break;
-				case ATTRIBUTE_PHASE:
-					if (userPacket instanceof AttributeUserPacket)
+				case ATTRIBUTE_PHASE: // Wenn man in der AttributPhase ist (Items/Skills)
+					if (userPacket instanceof AttributeUserPacket) // Wenn ein Spieler ein Skill/Item wechselt
 					{
-						getPlayer(packet).applyUserPacket(userPacket);
+						getPlayer(packet).applyUserPacket(userPacket); // In der LobbyPlayer Liste übernehmen
 					}
 					else
 					{
-						Debug.quit("Client can't accept packet in attribute phase");
+						Debug.quit("Client can't accept packet in attribute phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
 					}
 					break;
 				default:
-					Debug.quit("ClientLobbyMenu.handlePacket(...): wrong phase");
+					Debug.quit("ClientLobbyMenu.handlePacket(...): wrong phase"); // Da ist was ganz komisch gelaufen; Ungültige Phase
 					break;
 			}
 		}
 		else
 		{
-			Debug.quit("Client received wrong packet");
+			Debug.quit("Client received wrong packet"); // packets, die nicht vom Typ UserPacketWithID sind werden nicht angenommen
 		}
 	}
 
+	// Wird aufgerufen, wenn man auf die Map clickt
 	@Override public void mapPressed()
 	{
-		// TODO
+		// TODO: Map anzeigen
 	}
 
+	// Wird aufgerufen, wenn man sein Team wechselt
 	@Override public void teamPressed(Team team)
 	{
-		sendToServer(new TeamUserPacket(team));
+		sendToServer(new TeamUserPacket(team)); // An die anderen Spieler senden
 	}
 
+	// Wird aufgerufen, wenn man sein Team wechselt
 	@Override public void lockPressed()
 	{
-		sendToServer(new LockUserPacket(!getLocalPlayer().isLocked()));
+		sendToServer(new LockUserPacket(!getLocalPlayer().isLocked())); // sendet an den Server, dass man sein Team gewechselt hat
 	}
 
 	@Override public void nextPhase()
@@ -110,12 +111,14 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 
 	@Override protected LobbyPlayer getLocalPlayer() { return localPlayer; }
 
-	private LobbyPlayer getPlayer(Packet packet) // converts a UserPacketWithID to a player
+	// returnt den Spieler, der den das übergebene Packet anspricht
+	private LobbyPlayer getPlayer(Packet packet)	
 	{
 		UserPacketWithID userPacketWithID = (UserPacketWithID) packet;
 		return getPlayers().get(userPacketWithID.getID());
 	}
 
+	// Sendet das Packet zum Server
 	private void sendToServer(Packet packet)
 	{
 		send(packet, serverIP);

@@ -4,7 +4,7 @@ import misc.Debug;
 
 public enum Team
 {
-	TEAM0(0, "NONE"), TEAM1(1, "RED"), TEAM2(2, "BLUE"), TEAM3(3, "GREEN"), TEAM4(4, "YELLOW");
+	TEAM0(0, "None"), TEAM1(1, "Red"), TEAM2(2, "Blue"), TEAM3(3, "Green"), TEAM4(4, "Yellow");
 
 	private int id;
 	private String name;
