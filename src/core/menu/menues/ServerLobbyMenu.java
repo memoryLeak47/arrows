@@ -100,7 +100,10 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	private void teamPressedWithID(int id, Team team)
 	{
-		sendToAllClients(new UserPacketWithID(new TeamUserPacket(team), id));
+		TeamUserPacket packet;
+		sendToAllClients(new UserPacketWithID(packet = new TeamUserPacket(team), id));
+		getLocalPlayer().applyUserPacket(packet);
+		updatePlayerIcons();
 	}
 
 	private void sendUserPacketFromServer(UserPacket packet)

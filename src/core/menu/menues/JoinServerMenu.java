@@ -17,7 +17,7 @@ public class JoinServerMenu extends Menu
 	{
 		getComponents().add(new Label(this, new Rect(400, 10, 200, 40), "Join Server")); // add Label "Join Server"
 		getComponents().add(new BackButton(this, new Position(10, 500))); // add Button "back"
-		getComponents().add(ipField = new EditField(this, new Rect(300, 200, 100, 20)));
+		getComponents().add(ipField = new EditField(this, new Rect(300, 200, 100, 20), "192.168.178."));
 		getComponents().add(new Button(this, new Rect(420, 200, 100, 20), "Join Server")
 		{
 			@Override public void onClick(int mouseButton)
