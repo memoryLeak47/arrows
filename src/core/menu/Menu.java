@@ -105,5 +105,6 @@ public abstract class Menu extends ComponentContainer
 	// <TODO>
 	@Override public Position getOffset() { return new Position(getPosition()); }
 
-	public final MenuComponent getFocusedComponent() { return focusedComponent; }
+	// wird von ComponentContainer.getFocusedComponent() genutzt
+	@Override public final MenuComponent getFocusedComponent() { return focusedComponent; }
 }

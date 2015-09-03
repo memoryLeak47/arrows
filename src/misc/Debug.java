@@ -6,11 +6,11 @@ import java.text.DecimalFormat;
 
 public class Debug
 {
-	private static LinkedList<String> logs = new LinkedList<String>(); // list of logs
-	private static final String STANDART_LOGFILE = "log"; // standart logfile
+	private static LinkedList<String> logs = new LinkedList<String>(); // liste der logs
+	private static final String STANDART_LOGFILE = "log"; // standart-logfile
 	private static long lastTime = 0;
 
-	private Debug() {} // can't create a Debug from outside
+	private Debug() {}
 
 	public static void log(String string) // prints log and adds it to logs
 	{
@@ -18,6 +18,7 @@ public class Debug
 		addLog(string); // adds it to logs
 	}
 
+	// das gleiche wie log, ./cleanup löscht aber alle zeilen mit Debug.testLog -> gut für schnelles testen
 	public static void testLog(String string)
 	{
 		log("TEST: " + string);
