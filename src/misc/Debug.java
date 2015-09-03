@@ -18,6 +18,11 @@ public class Debug
 		addLog(string); // adds it to logs
 	}
 
+	public static void testLog(String string)
+	{
+		log("TEST: " + string);
+	}
+
 	public static void timeLog(String string) // prints time difference of last timeLog(...)
 	{
 		if (lastTime == 0) // if there was no last timeLog()

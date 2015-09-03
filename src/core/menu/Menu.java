@@ -49,27 +49,6 @@ public abstract class Menu extends ComponentContainer
 		}
 	}
 
-	// kalkuliert gehoverte komponents
-	@Override protected MenuComponent getHoveredComponent()
-	{
-		Position cursor = Screen.getCursorPosition();
-		if (cursor != null) // wenn die maus im fenster ist
-		{
-			for (int i = getComponents().size()-1; i >= 0; i--) // für alle MenuComponents (von hinten nach vorne, denn letzte MenuComponent wird nach oben gerendert)
-			{
-				if (cursor.inRect(getComponents().get(i))) // wenn die maus auf die MenuComponent zeigt
-				{
-					if (getComponents().get(i) instanceof ComponentContainer) // und sie ein ComponentContainer ist
-					{
-						return ((ComponentContainer) getComponents().get(i)).getHoveredComponent(); // returne die gehoverte MenuComponent des ComponentContainers
-					} // falls die MenuComponent kein ComponentContainer ist
-					return getComponents().get(i); // returne die MenuComponent selbst
-				}
-			} // falls auf keine MenuComponent gezeigt wird
-		} // oder die maus außerhalb des fensters ist
-		return null; // returnt null
-	}
-
 	// bearbeitet die events vom menu
 	void onEvent(EventPacket event)
 	{

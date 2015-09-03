@@ -13,12 +13,12 @@ import misc.math.Position;
 
 public abstract class MenuComponent extends Rect
 {
-	private ComponentContainer parent; // Menu which contains this MenuComponent
+	private ComponentContainer parent; // ComponentContainer wo this enthalten ist
 
 	public MenuComponent(ComponentContainer parent, Rect rect)
 	{
-		super(rect); // setup rect per copy-constructor
-		this.parent = parent; // set owner menu
+		super(rect);
+		this.parent = parent;
 	}
 
 	protected final boolean isHovered()
@@ -31,10 +31,22 @@ public abstract class MenuComponent extends Rect
 		return this == getParent().getFocusedComponent();
 	}
 
-	public void tick() {} // TODO why this?
+	// returnt (rekursiv) das menu in dem ich mich im Ent-effekt befinde, gebraucht für TeamPanel-button-event-weitergabe ...
+	public Menu getParentMenu()
+	{
+		if (this instanceof Menu) // falls ich ein menu bin
+		{
+			return ((Menu) this); // bin ich mein parent-menu
+		}
+		else // falls nicht
+		{
+			return getParent().getParentMenu(); // returne das getParentMenu() meines parents -> Rekursion
+		}
+	}
 
+	public void tick() {} // <TODO>
 
-	// onEventFunctions: may be overwritten by subclasses
+	// onEventFunctions: bei bedarf von den MenuComponent-unterklassen überschrieben
 	public void onClick(int mouseButton) {}
 	public void onMouseEnter(Position mousePos) {}
 	public void onMouseMove(Position mousePos) {}
@@ -44,18 +56,10 @@ public abstract class MenuComponent extends Rect
 
 	public abstract void render();
 
+	// returnt die Position auf dem fenster, (getPosition() returnt die position relativ zum parent)
 	public Position getOffset() { return (Position) getParent().getOffset().plus(getPosition()); }
 
+	// returnt den parent
 	protected ComponentContainer getParent() { return parent; }
-	public Menu getParentMenu()
-	{
-		if (this instanceof Menu)
-		{
-			return ((Menu) this);
-		}
-		else
-		{
-			return getParent().getParentMenu();
-		}
-	}
+
 }

@@ -1,0 +1,6 @@
+#!/bin/bash
+# cleanup v0
+
+# removes all test logs
+
+sed "/Debug.testLog/d" -i $(find -name "*.java")

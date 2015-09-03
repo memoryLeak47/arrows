@@ -33,8 +33,8 @@ public abstract class ComponentContainer extends MenuComponent // abstract for n
 		cursorPos.subtract(getOffset());
 		return cursorPos;
 	}
-	
-	protected MenuComponent getHoveredComponent() // calculates and sets the hoveredComponent
+
+	protected final MenuComponent getHoveredComponent() // calculates and sets the hoveredComponent
 	{
 		Position cursor = getCursorPosition();
 		if (cursor != null) // if the cursor is in Screen
@@ -43,16 +43,16 @@ public abstract class ComponentContainer extends MenuComponent // abstract for n
 			{
 				if (cursor.inRect(getComponents().get(i))) // if the mouse points at you
 				{
-					if (getComponents().get(i) instanceof ComponentContainer)
+					if (getComponents().get(i) instanceof ComponentContainer && ((ComponentContainer) getComponents().get(i)).getHoveredComponent() != null) // and you are a ComponentContainer
 					{
-						return ((ComponentContainer) getComponents().get(i)).getHoveredComponent(); // be hovered
-					}
+						return ((ComponentContainer) getComponents().get(i)).getHoveredComponent(); // let your hoveredComponent be hovered
+					} // if not
 					return getComponents().get(i); // be hovered
 				}
 			}
 		} // or if mouse is out of screen
 
-		return this; // returnt diese Komponente, falls in diesem ComponentContainer keine weiteren Components gehovert sind.
+		return null; // returnt diese Komponente, falls in diesem ComponentContainer keine weiteren Components gehovert sind.
 	}
 
 	protected LinkedList<MenuComponent> getComponents() { return components; } // needed for the subclasses
