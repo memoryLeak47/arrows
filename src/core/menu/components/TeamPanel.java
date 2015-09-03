@@ -3,6 +3,7 @@ package core.menu.components;
 import java.util.LinkedList;
 
 import core.menu.Menu;
+import core.menu.menues.LobbyMenu;
 import core.menu.ComponentContainer;
 import core.menu.components.Button;
 import core.menu.components.Panel;
@@ -17,14 +18,20 @@ public class TeamPanel extends Panel
 	public TeamPanel(ComponentContainer parent, Rect rect, Team team)
 	{
 		super(parent, rect);
-		this.team = team;
+		this.team = team; // Jedes TeamPanel representiert ein Team
 		update(null);
 	}
 
 	public void update(LinkedList<LobbyPlayer> players)
 	{
 		getComponents().clear();
-		getComponents().add(new Button(this, new Rect(20, 20, 100, 30), "Team " + team.getName()));
+		getComponents().add(new Button(this, new Rect(20, 20, 100, 30), "Team " + team.getName())
+		{		
+			@Override public void onClick(int mouseButton)
+			{
+				((LobbyMenu) getParentMenu()).teamPressed(team);
+			}					
+		});
 		if (players == null)
 		{
 			return;

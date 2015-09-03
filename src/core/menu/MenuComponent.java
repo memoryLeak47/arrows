@@ -47,4 +47,15 @@ public abstract class MenuComponent extends Rect
 	public Position getOffset() { return (Position) getParent().getOffset().plus(getPosition()); }
 
 	protected ComponentContainer getParent() { return parent; }
+	public Menu getParentMenu()
+	{
+		if (this instanceof Menu)
+		{
+			return ((Menu) this);
+		}
+		else
+		{
+			return getParent().getParentMenu();
+		}
+	}
 }
