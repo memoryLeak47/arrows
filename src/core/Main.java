@@ -47,6 +47,7 @@ public class Main
 
 	private void init()
 	{
+		Debug.init();
 		Screen.init(); // init Screen
 		menuList = new MenuList(); // init menuList
 		networkDevice = new NetworkDevice(); // init networkDevice

@@ -1,21 +1,31 @@
 package misc;
 
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.LinkedList;
 import java.text.DecimalFormat;
 
 public class Debug
 {
 	private static LinkedList<String> logs = new LinkedList<String>(); // liste der logs
-	private static final String STANDART_LOGFILE = "log"; // standart-logfile
+	private static final String STANDARD_LOGFILE = "log"; // standart-logfile
 	private static long lastTime = 0;
 
 	private Debug() {}
+
+	public static void init()
+	{
+		try
+		{
+			PrintWriter pw = new PrintWriter(STANDARD_LOGFILE);
+			pw.close();	
+		} catch (Exception e) { quit("failed to init Debug"); }
+	}
 
 	public static void log(String string) // prints log and adds it to logs
 	{
 		System.out.println(string); // prints log
 		addLog(string); // adds it to logs
+		writeLog(string);
 	}
 
 	// das gleiche wie log, ./cleanup löscht aber alle zeilen mit Debug.testLog -> gut für schnelles testen
@@ -39,19 +49,18 @@ public class Debug
 		addLog(string); // add the log
 	}
 
-	public static void quit() // quits, writes logfile
+	public static void quit() // quits
 	{
-		writeLogfile();
 		System.exit(0);
 	}
 
-	public static void quit(String string) // quits and gives error message, writes logfile
+	public static void quit(String string) // quits and gives error message
 	{
 		log(string);
 		quit();
 	}
 
-	public static void timeQuit(String string) // quits and prints timeLog(string), write logfile
+	public static void timeQuit(String string) // quits and prints timeLog(string)
 	{
 		timeLog(string);
 		quit();
@@ -67,21 +76,20 @@ public class Debug
 		logs.add(string);
 	}
 
-	public static void writeLogfile() // writes log to standart logfile
-	{
-		writeLogfile(STANDART_LOGFILE);
-	}
-
-	public static void writeLogfile(String filename) // writes log to logfile
+	public static void writeLog(String string)
 	{
 		try
 		{
-			PrintWriter writer = new PrintWriter(filename, "UTF-8"); // creates filename
-			for (int i = 0; i < logs.size(); i++) // for all logs
-			{
-				writer.println(logs.get(i)); // write them into the log
-			}
-			writer.close(); // close the printwriter
-		} catch (Exception e) { quit("Can't write logfile"); }
+			File dir = new File(".");
+			String loc = dir.getCanonicalPath() + File.separator + STANDARD_LOGFILE;
+	 
+			FileWriter fstream = new FileWriter(loc, true);
+			BufferedWriter out = new BufferedWriter(fstream);
+	 
+			out.write(string);
+			out.newLine();
+	 
+			out.close();
+		} catch (Exception e) { quit("failed to write Log to file " + STANDARD_LOGFILE); }
 	}
 }
