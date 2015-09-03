@@ -84,6 +84,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 		{
 			Debug.quit("Client received wrong packet"); // packets, die nicht vom Typ UserPacketWithID sind werden nicht angenommen
 		}
+		updatePlayerIcons(); // Wenn sich ein Spieler verändert hat, werden die PlayerIcons aktualisiert
 	}
 
 	// Wird aufgerufen, wenn man auf die Map clickt

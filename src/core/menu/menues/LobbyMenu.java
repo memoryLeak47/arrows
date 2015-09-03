@@ -26,7 +26,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 	{
 		getComponents().add(new Label(this, new Rect(300, 10, 100, 20), "Lobby"));
 
-		teamListPanel = new TeamListPanel(this, new Rect(100, 100, 600, 600), getPlayers());
+		teamListPanel = new TeamListPanel(this, new Rect(100, 100, 600, 600));
 		getComponents().add(teamListPanel);
 
 		getComponents().add(new Button(this, new Rect(1000, 600, 200, 60), "Next Step")
@@ -49,6 +49,12 @@ public abstract class LobbyMenu extends NetworkingMenu
 		players = new LinkedList<LobbyPlayer>();
 	}
 
+	// Wird von unterklassen aufgerufen, nachdem ein Spieler bearbeitet wurde
+	protected final void updatePlayerIcons()
+	{
+		teamListPanel.update();
+	}
+
 	protected abstract LobbyPlayer getLocalPlayer();
 
 	public abstract void lockPressed();
@@ -57,7 +63,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 	public abstract void nextPhase();
 
 	protected int getPhase() { return phase; }
-	protected LinkedList<LobbyPlayer> getPlayers() { return players; }
+	public LinkedList<LobbyPlayer> getPlayers() { return players; } // public damit TeamListPanel darauf zugreifen kann
 
 	protected void setPlayers(LinkedList<LobbyPlayer> players) 
 	{ 

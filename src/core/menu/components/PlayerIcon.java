@@ -21,6 +21,6 @@ public class PlayerIcon extends MenuComponent
 	@Override public void render()
 	{
 		Screen.g().setColor(Color.YELLOW); // set color to yellow
-		Screen.g().fillRect(0, 0, getWidth(), getHeight()); // fill rect
+		Screen.g().fillRect(getOffset().getX(), getOffset().getY(), getWidth(), getHeight()); // fill rect
 	}
 }

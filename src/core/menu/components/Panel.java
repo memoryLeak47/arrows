@@ -20,7 +20,6 @@ public class Panel extends ComponentContainer
 
 	@Override public void render()
 	{
-		calcSize();
 		super.render(); // draw content of all components
 		Screen.g().setColor(Color.BLUE); // set color to blue
 		Screen.g().drawRect(getOffset().getX(), getOffset().getY(), getWidth()-1, getHeight()-1); // draw border

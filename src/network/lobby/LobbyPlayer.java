@@ -18,14 +18,25 @@ public class LobbyPlayer implements Serializable
 	private TeamUserPacket teamPacket;
 	private AttributeUserPacket attributePacket;
 
+	private LobbyPlayer()
+	{
+		// TODO
+		lockPacket = new LockUserPacket(false);
+		//avatarPacket = new AvatarUserPacket();
+		teamPacket = new TeamUserPacket(Team.TEAM0);
+		//attributePacket = new AttributeUserPacket();
+	}
+
 	public LobbyPlayer(LoginUserPacket loginPacket, InetAddress ip)
 	{
+		this();
 		this.loginPacket = loginPacket;
 		this.ip = ip;
 	}
 
 	public LobbyPlayer(LoginUserPacket loginPacket)
 	{
+		this();
 		this.loginPacket = loginPacket;
 	}
 

@@ -79,7 +79,9 @@ public class Rect
 	}
 
 	public void setPosition(Point point) { position = new Position(point); }
+	public void setPosition(int x, int y) { position = new Position(x, y); }
 	public void setSize(Point point) { size = new Size(point); }
+	public void setSize(int x, int y) { size = new Size(x, y); }
 	public void setLeft(int left) { getPosition().setX(left); }
 	public void setTop(int top) { getPosition().setX(top); }
 	public void setWidth(int width) { getSize().setX(width); }

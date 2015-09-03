@@ -15,6 +15,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 	public ServerLobbyMenu()
 	{
 		getPlayers().add(new LobbyPlayer(new LoginUserPacket(Main.getName(), Main.getRank()))); // server fügt eigenen lobby-player hinzu
+		updatePlayerIcons();
 	}
 
 	@Override public void handlePacket(Packet packet, InetAddress ip)
@@ -73,6 +74,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 				break;
 		}
 		redirectUserPacket((UserPacket) packet, ip); // das erhaltene packet wird an alle clients weitergegeben
+		updatePlayerIcons(); // Wenn sich ein Spieler verändert hat, werden die PlayerIcons aktualisiert
 	}
 
 	@Override public void mapPressed()
