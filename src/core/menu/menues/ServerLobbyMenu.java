@@ -10,11 +10,11 @@ import network.lobby.LobbyPlayer;
 import network.lobby.packets.user.*;
 import network.lobby.packets.*;
 
-public class ServerLobbyMenu extends LobbyMenu // lobby menu for the server
+public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 {
 	public ServerLobbyMenu()
 	{
-		getPlayers().add(new LobbyPlayer(new LoginUserPacket(Main.getName(), Main.getRank()))); // server adds itself
+		getPlayers().add(new LobbyPlayer(new LoginUserPacket(Main.getName(), Main.getRank()))); // server fügt eigenen lobby-player hinzu
 	}
 
 	@Override public void handlePacket(Packet packet, InetAddress ip)
@@ -27,23 +27,23 @@ public class ServerLobbyMenu extends LobbyMenu // lobby menu for the server
 					ipToPlayer(ip).applyUserPacket((TeamUserPacket) packet); // setze das TeamUserPacket vom sender-player auf das erhaltene
 					// goto redirectUserPacket(packet);
 				}
-				else if (packet instanceof LoginUserPacket)
+				else if (packet instanceof LoginUserPacket) // falls das packet ein LoginUserPacket ist
 				{
-					if (gotIP(ip))
+					if (gotIP(ip)) // und er schon einer der spieler ist
 					{
-						Debug.quit("server already got player with ip " + ip.getHostName());
+						Debug.quit("server already got player with ip " + ip.getHostName()); // error
 					}
-					else
+					else // falls der spieler wirklich neu ist
 					{
 						LobbyPlayer newPlayer = new LobbyPlayer((LoginUserPacket) packet, ip); // neuer spieler wird erstellt
-						send(new LobbyPlayersPacket(getPlayers()), ip); // liste ohne neuen an die ip des neuen senden.
-						getPlayers().add(newPlayer); // zur player liste hinzufügen
+						send(new LobbyPlayersPacket(getPlayers()), ip); // liste ohne den Neuen an den Neuen senden.
+						getPlayers().add(newPlayer); // Neuen zur player liste hinzufügen
 						// goto redirectUserPacket(packet);
 					}
 				}
-				else
+				else // falls das packet iwas andres ist
 				{
-					Debug.quit("Server can't accept packet in team phase");
+					Debug.quit("Server can't accept packet in team phase"); // error
 				}
 				break;
 			case AVATAR_PHASE: // falls wir in der avatar phase sind
@@ -108,17 +108,16 @@ public class ServerLobbyMenu extends LobbyMenu // lobby menu for the server
 
 	private int ipToID(InetAddress ip)
 	{
-		for (int i = 1; i < getPlayers().size(); i++)
+		for (int i = 1; i < getPlayers().size(); i++) // für alle clients
 		{
-			if (getPlayers().get(i).getIP().equals(ip))
+			if (getPlayers().get(i).getIP().equals(ip)) // wenn eure ip die ip ist
 			{
-				return i;
+				return i; // returne deine ID
 			}
-		}
-		Debug.log("ServerLobbyMenu.ipToPlayerID(...): no LobbyPlayer with ip " + ip.getHostName());
+		} // falls kein spieler gefunden wurde
+		Debug.log("ServerLobbyMenu.ipToPlayerID(...): no LobbyPlayer with ip " + ip.getHostName()); // error
 		return -1;
 	}
-
 
 	private LobbyPlayer ipToPlayer(InetAddress ip)
 	{
@@ -132,7 +131,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby menu for the server
 
 	private void sendToAllClients(Packet packet)
 	{
-		for (int i = 1; i < getPlayers().size(); i++) // für all client spieler
+		for (int i = 1; i < getPlayers().size(); i++) // für all client-spieler
 		{
 			send(packet, getPlayers().get(i).getIP()); // erhalte das packet!
 		}
@@ -140,14 +139,14 @@ public class ServerLobbyMenu extends LobbyMenu // lobby menu for the server
 
 	private boolean gotIP(InetAddress ip)
 	{
-		for (int i = 1; i < getPlayers().size(); i++)
+		for (int i = 1; i < getPlayers().size(); i++) // für alle client-spieler
 		{
-			if (getPlayers().get(i).getIP().equals(ip))
+			if (getPlayers().get(i).getIP().equals(ip)) // wenn dies deine IP ist
 			{
-				return true;
+				return true; // returne true
 			}
-		}
-		return false;
+		} // falls die ip neu ist
+		return false; // returne false
 	}
 
 	@Override protected LobbyPlayer getLocalPlayer() { return getPlayers().get(0); }
