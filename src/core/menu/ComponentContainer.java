@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import core.Screen;
 import core.menu.MenuComponent;
 import core.menu.Menu;
+import misc.Debug;
 import misc.math.Rect;
 import misc.math.Position;
 
@@ -35,9 +36,10 @@ public abstract class ComponentContainer extends MenuComponent // abstract for n
 	
 	protected MenuComponent getHoveredComponent() // calculates and sets the hoveredComponent
 	{
-		Position cursor = Screen.getCursorPosition();
+		Position cursor = getCursorPosition();
 		if (cursor != null) // if the cursor is in Screen
 		{
+			Debug.log("Cursor rel to this: " + cursor);
 			for (int i = getComponents().size()-1; i >= 0; i--) // for all components (counting from back to front, because last component is rendered ontop)
 			{
 				if (cursor.inRect(getComponents().get(i))) // if the mouse points at you

@@ -29,7 +29,7 @@ public class TeamPanel extends Panel
 		{		
 			@Override public void onClick(int mouseButton)
 			{
-				((LobbyMenu) getParentMenu()).teamPressed(team);
+				((LobbyMenu) getParentMenu()).teamPressed(team); // Übergabe an LobbyMenu, dass wir Team wechseln
 			}					
 		});
 		if (players == null)
