@@ -26,7 +26,7 @@ public class PasswordField extends EditField
 		String dotString = "";
 		for (int i = 0; i < getText().length(); i++)
 		{
-			dotString += ".";
+			dotString += "*";
 		}
 		return dotString;
 	}
