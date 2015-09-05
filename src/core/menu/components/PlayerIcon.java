@@ -20,7 +20,14 @@ public class PlayerIcon extends MenuComponent
 
 	@Override public void render()
 	{
-		Screen.g().setColor(Color.YELLOW); // set color to yellow
+		if (player.isLocked())
+		{
+			Screen.g().setColor(Color.LIGHT_GRAY); // set color to yellow
+		}
+		else
+		{
+			Screen.g().setColor(Color.YELLOW); // set color to yellow
+		}
 		Screen.g().fillRect(getOffset().getX(), getOffset().getY(), getWidth(), getHeight()); // fill rect
 	}
 }
