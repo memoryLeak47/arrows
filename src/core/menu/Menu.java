@@ -49,35 +49,15 @@ public abstract class Menu extends ComponentContainer
 		}
 	}
 
-	// kalkuliert gehoverte komponents
-	@Override protected MenuComponent getHoveredComponent()
-	{
-		Position cursor = Screen.getCursorPosition();
-		if (cursor != null) // wenn die maus im fenster ist
-		{
-			for (int i = getComponents().size()-1; i >= 0; i--) // für alle MenuComponents (von hinten nach vorne, denn letzte MenuComponent wird nach oben gerendert)
-			{
-				if (cursor.inRect(getComponents().get(i))) // wenn die maus auf die MenuComponent zeigt
-				{
-					if (getComponents().get(i) instanceof ComponentContainer) // und sie ein ComponentContainer ist
-					{
-						return ((ComponentContainer) getComponents().get(i)).getHoveredComponent(); // returne die gehoverte MenuComponent des ComponentContainers
-					} // falls die MenuComponent kein ComponentContainer ist
-					return getComponents().get(i); // returne die MenuComponent selbst
-				}
-			} // falls auf keine MenuComponent gezeigt wird
-		} // oder die maus außerhalb des fensters ist
-		return null; // returnt null
-	}
-
 	// bearbeitet die events vom menu
 	void onEvent(EventPacket event)
 	{
 		if (event instanceof MouseMoveEventPacket) // wenn sich die maus bewegt hat
 		{
-			if (getHoveredComponent() != null) // und es eine gehoverte MenuComponent gibt
+			MenuComponent hovered = getHoveredComponent(); // Verhinderung einer null-pointer-exception
+			if (hovered != null) // und es eine gehoverte MenuComponent gibt
 			{
-				getHoveredComponent().onMouseMove(((MouseMoveEventPacket)event).getMousePosition()); // gebe das event an getHoveredComponent() weiter
+				hovered.onMouseMove(((MouseMoveEventPacket)event).getMousePosition()); // gebe das event an getHoveredComponent() weiter
 			}
 		}
 		else if (event instanceof MouseButtonPressEventPacket) // wenn die maus gedrückt wurde
@@ -86,9 +66,10 @@ public abstract class Menu extends ComponentContainer
 		}
 		else if (event instanceof MouseButtonReleaseEventPacket) // wenn die maus losgelassen wurde
 		{
-			if (getHoveredComponent() != null) // und es eine gehoverte MenuComponent gibt
+			MenuComponent hovered = getHoveredComponent();
+			if (hovered != null) // und es eine gehoverte MenuComponent gibt
 			{
-				getHoveredComponent().onClick(((MouseButtonReleaseEventPacket) event).getMouseButton()); // gebe das event an getHoveredComponent() weiter
+				hovered.onClick(((MouseButtonReleaseEventPacket) event).getMouseButton()); // gebe das event an getHoveredComponent() weiter
 			}
 		}
 		else if (event instanceof KeyPressEventPacket) // wenn die tastatur gedrückt wurde
@@ -126,5 +107,6 @@ public abstract class Menu extends ComponentContainer
 	// <TODO>
 	@Override public Position getOffset() { return new Position(getPosition()); }
 
-	public final MenuComponent getFocusedComponent() { return focusedComponent; }
+	// wird von ComponentContainer.getFocusedComponent() genutzt
+	@Override public final MenuComponent getFocusedComponent() { return focusedComponent; }
 }

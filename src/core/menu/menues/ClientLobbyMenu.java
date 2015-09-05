@@ -102,7 +102,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 	// Wird aufgerufen, wenn man sein Team wechselt
 	@Override public void lockPressed()
 	{
-		sendToServer(new LockUserPacket(!getLocalPlayer().isLocked())); // sendet an den Server, dass man sein Team gewechselt hat
+		sendToServer(new LockUserPacket(!getLocalPlayer().isLocked())); // sendet an den Server, dass man den lock-button betätigt hat
 	}
 
 	@Override public void nextPhase()
