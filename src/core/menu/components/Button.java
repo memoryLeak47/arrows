@@ -19,9 +19,17 @@ public class Button extends MenuComponent
 
 	@Override public void render() // draws content on getGraphics() -> on image
 	{
-		Screen.g().setColor(Color.RED); // sets graphics color to red
-		Screen.g().fillRect(getOffset().getX(), getOffset().getY(), getWidth(), getHeight()); // fill rect of the button
-		Screen.g().setColor(Color.BLACK); // set color to black
-		Screen.g().drawString(caption, getOffset().getX() + 1, getOffset().getY() + 12); // write caption on the rect
+		// Farbe abfragen, je nachdem, ob enabled oder nicht
+		if (isEnabled()) // Falls der Button enabled ist
+		{
+			Screen.g().setColor(Color.RED); // Farbe auf RED setzen
+		}
+		else // Falls Button disabled ist
+		{
+			Screen.g().setColor(Color.GRAY); // Farbe auf GRAY setzen
+		}
+		Screen.g().fillRect(getOffset().getX(), getOffset().getY(), getWidth(), getHeight()); // "Körper" des Buttons zeichnen
+		Screen.g().setColor(Color.BLACK); // Farbe auf schwarz setzen für die Schrift
+		Screen.g().drawString(caption, getOffset().getX() + 1, getOffset().getY() + 12); // Caption auf den Button zeichnen
 	}
 }

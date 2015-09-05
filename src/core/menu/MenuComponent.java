@@ -14,6 +14,7 @@ import misc.math.Position;
 public abstract class MenuComponent extends Rect
 {
 	private ComponentContainer parent; // Menu which contains this MenuComponent
+	boolean enabled = true;
 
 	public MenuComponent(ComponentContainer parent, Rect rect)
 	{
@@ -44,6 +45,10 @@ public abstract class MenuComponent extends Rect
 
 	public abstract void render();
 
+	// Setter Funktionen
+	public void setEnabled(boolean enabled) { this.enabled = enabled; }
+
+	// Getter Funktionen
 	public Position getOffset() { return (Position) getParent().getOffset().plus(getPosition()); }
 
 	protected ComponentContainer getParent() { return parent; }
@@ -58,4 +63,5 @@ public abstract class MenuComponent extends Rect
 			return getParent().getParentMenu();
 		}
 	}
+	public boolean isEnabled() { return enabled; }
 }
