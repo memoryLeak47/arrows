@@ -19,6 +19,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 	public static final int ATTRIBUTE_PHASE = 2;
  
 	private int phase;
+	protected Button lockButton; // Verweiß auf den NextStep/LockIn Button
 	private LinkedList<LobbyPlayer> players; // Bluemi: protected -> private; added setter
 	private TeamListPanel teamListPanel; // Nicht zwingend nötig, nur einfacherer Zugriff, da nicht über index
 
@@ -29,13 +30,14 @@ public abstract class LobbyMenu extends NetworkingMenu
 		teamListPanel = new TeamListPanel(this, new Rect(100, 100, 600, 600));
 		getComponents().add(teamListPanel);
 
-		getComponents().add(new Button(this, new Rect(1000, 600, 200, 60), getLockButtonCaption())
+		lockButton = new Button(this, new Rect(1000, 600, 200, 60), getLockButtonCaption())
 		{
 			@Override public void onClick(int mouseButton)
 			{
 				lockPressed();
 			}
-		}); // Team Yellow Button
+		}; // Lock-Button
+		getComponents().add(lockButton);
 
 		getComponents().add(new Button(this, new Rect(1000, 100, 200, 140), "Map Placeholder")
 		{
