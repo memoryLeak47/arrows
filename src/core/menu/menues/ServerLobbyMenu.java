@@ -23,6 +23,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		if (packet instanceof LockUserPacket)
 		{
 			ipToPlayer(ip).applyUserPacket((UserPacket) packet);
+			updateLockButton(); // setzt LockButton.enabled
 		}
 		else
 		{
@@ -48,8 +49,9 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 							getPlayers().add(newPlayer); // Neuen zur player liste hinzufügen
 							// goto redirectUserPacket(packet);
 						}
+						updateLockButton(); // Setzt Button.enabled auf false
 					}
-					else // falls das packet iwas andres ist
+					else // falls das packet iwas anderes ist
 					{
 						Debug.quit("Server can't accept packet in team phase"); // error
 					}
@@ -104,6 +106,20 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 	@Override public void nextPhase()
 	{
 		// TODO
+	}
+
+	// Prüft, ob der LockButton enabled ist oder nicht
+	private void updateLockButton()
+	{
+		boolean enable = true;
+		for (int i = 1; i < getPlayers().size(); i++) // i = 1 -> für alle Client-Spieler
+		{
+			if (!getPlayers().get(i).isLocked()) // Falls ein Spieler nicht gelockt ist:
+			{
+				enable = false; // den Button disablen
+			}
+		}
+		lockButton.setEnabled(enable);
 	}
 
 	private void teamPressedWithID(int id, Team team)
