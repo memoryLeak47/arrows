@@ -29,7 +29,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 		teamListPanel = new TeamListPanel(this, new Rect(100, 100, 600, 600));
 		getComponents().add(teamListPanel);
 
-		getComponents().add(new Button(this, new Rect(1000, 600, 200, 60), "Next Step")
+		getComponents().add(new Button(this, new Rect(1000, 600, 200, 60), getLockButtonCaption())
 		{
 			@Override public void onClick(int mouseButton)
 			{
@@ -68,5 +68,19 @@ public abstract class LobbyMenu extends NetworkingMenu
 	protected void setPlayers(LinkedList<LobbyPlayer> players) 
 	{ 
 		this.players = players; 
+	}
+
+	private String getLockButtonCaption()
+	{
+		if (this instanceof ClientLobbyMenu)
+		{
+			return "Ready";
+		}
+		else if (this instanceof ServerLobbyMenu)
+		{
+			return "Next Phase";
+		}
+		Debug.quit("LobbyMenu.getLockButtonCaption: wrong lobby-menu-subclass");
+		return null;
 	}
 }

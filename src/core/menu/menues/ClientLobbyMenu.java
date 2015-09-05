@@ -34,50 +34,57 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 		{
 			UserPacket userPacket = ((UserPacketWithID) packet).getUserPacket(); // entpacken des UserPackets aus dem UserpacketWithID
 
-			switch (getPhase())
+			if (userPacket instanceof LockUserPacket) // wenn du ein lock-packet erhalten hast
 			{
-				case TEAM_PHASE: // Falls man in der Team Phase ist
-					if (userPacket instanceof TeamUserPacket) // Wenn Spieler das Team wechselt
-					{
-						getPlayer(packet).applyUserPacket(userPacket); // setzte das Team des jeweilgen Spielers
-					}
-					else if (userPacket instanceof LoginUserPacket) // Wenn sich ein Spieler einloggt
-					{
-						LobbyPlayer player = new LobbyPlayer((LoginUserPacket) userPacket); // Neuen LobbyPlayer erstellen
-						getPlayers().add(player); // Zur Liste der LobbyPlayer hinzufügen
-						if (localPlayer == null) // Da das erste LoginUserPacket, das man bekommt, das eigene ist
+				getPlayer(packet).applyUserPacket(userPacket);
+			}
+			else // falls nicht.
+			{
+				switch (getPhase())
+				{
+					case TEAM_PHASE: // Falls man in der Team Phase ist
+						if (userPacket instanceof TeamUserPacket) // Wenn Spieler das Team wechselt
 						{
-							localPlayer = player; // Diesen LobbyPlayer als eigenen abspeichern
+							getPlayer(packet).applyUserPacket(userPacket); // setzte das Team des jeweilgen Spielers
 						}
-					}
-					else
-					{
-						Debug.quit("Client can't accept packet in team phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
-					}
-					break;
-				case AVATAR_PHASE: // Wenn man sich in der AvatarPhase befindet
-					if (userPacket instanceof AvatarUserPacket) // Falls ein Spieler seinen Avatar wechselt
-					{
-						getPlayer(packet).applyUserPacket(userPacket); // Des jeweiligen Spielers Avatar wird in den LobbyPlayern geändert
-					}
-					else
-					{
-						Debug.quit("Client can't accept packet in avatar phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
-					}
-					break;
-				case ATTRIBUTE_PHASE: // Wenn man in der AttributPhase ist (Items/Skills)
-					if (userPacket instanceof AttributeUserPacket) // Wenn ein Spieler ein Skill/Item wechselt
-					{
-						getPlayer(packet).applyUserPacket(userPacket); // In der LobbyPlayer Liste übernehmen
-					}
-					else
-					{
-						Debug.quit("Client can't accept packet in attribute phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
-					}
-					break;
-				default:
-					Debug.quit("ClientLobbyMenu.handlePacket(...): wrong phase"); // Da ist was ganz komisch gelaufen; Ungültige Phase
-					break;
+						else if (userPacket instanceof LoginUserPacket) // Wenn sich ein Spieler einloggt
+						{
+							LobbyPlayer player = new LobbyPlayer((LoginUserPacket) userPacket); // Neuen LobbyPlayer erstellen
+							getPlayers().add(player); // Zur Liste der LobbyPlayer hinzufügen
+							if (localPlayer == null) // Da das erste LoginUserPacket, das man bekommt, das eigene ist
+							{
+								localPlayer = player; // Diesen LobbyPlayer als eigenen abspeichern
+							}
+						}
+						else
+						{
+							Debug.quit("Client can't accept packet in team phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
+						}
+						break;
+					case AVATAR_PHASE: // Wenn man sich in der AvatarPhase befindet
+						if (userPacket instanceof AvatarUserPacket) // Falls ein Spieler seinen Avatar wechselt
+						{
+							getPlayer(packet).applyUserPacket(userPacket); // Des jeweiligen Spielers Avatar wird in den LobbyPlayern geändert
+						}
+						else
+						{
+							Debug.quit("Client can't accept packet in avatar phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
+						}
+						break;
+					case ATTRIBUTE_PHASE: // Wenn man in der AttributPhase ist (Items/Skills)
+						if (userPacket instanceof AttributeUserPacket) // Wenn ein Spieler ein Skill/Item wechselt
+						{
+							getPlayer(packet).applyUserPacket(userPacket); // In der LobbyPlayer Liste übernehmen
+						}
+						else
+						{
+							Debug.quit("Client can't accept packet in attribute phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
+						}
+						break;
+					default:
+						Debug.quit("ClientLobbyMenu.handlePacket(...): wrong phase"); // Da ist was ganz komisch gelaufen; Ungültige Phase
+						break;
+				}
 			}
 		}
 		else
