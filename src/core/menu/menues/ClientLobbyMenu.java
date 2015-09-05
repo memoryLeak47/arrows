@@ -103,7 +103,10 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 	// Wird aufgerufen, wenn man sein Team wechselt
 	@Override public void teamPressed(Team team)
 	{
-		sendToServer(new TeamUserPacket(team)); // An die anderen Spieler senden
+		if (!getLocalPlayer().isLocked())
+		{
+			sendToServer(new TeamUserPacket(team)); // An die anderen Spieler senden
+		}
 	}
 
 	// Wird aufgerufen, wenn man sein Team wechselt
