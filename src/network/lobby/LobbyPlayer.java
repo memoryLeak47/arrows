@@ -16,7 +16,8 @@ public class LobbyPlayer implements Serializable
 	private LockUserPacket lockPacket;
 	private AvatarUserPacket avatarPacket;
 	private TeamUserPacket teamPacket;
-	private AttributeUserPacket attributePacket;
+	private SkillUserPacket skillPacket;
+	private ItemUserPacket itemPacket;
 
 	private LobbyPlayer()
 	{
@@ -24,7 +25,8 @@ public class LobbyPlayer implements Serializable
 		lockPacket = new LockUserPacket(false);
 		//avatarPacket = new AvatarUserPacket();
 		teamPacket = new TeamUserPacket(Team.TEAM0);
-		//attributePacket = new AttributeUserPacket();
+		//skillPacket = new SkillUserPacket();
+		//itemPacket = new ItemUserPacket();
 	}
 
 	public LobbyPlayer(LoginUserPacket loginPacket, InetAddress ip)
@@ -38,6 +40,16 @@ public class LobbyPlayer implements Serializable
 	{
 		this();
 		this.loginPacket = loginPacket;
+	}
+
+	public LobbyPlayer(LobbyPlayer lobbyPlayer)
+	{
+		loginPacket = new LoginUserPacket(lobbyPlayer.loginPacket);
+		lockPacket = new LockUserPacket(lobbyPlayer.lockPacket);
+		avatarPacket = new AvatarUserPacket(lobbyPlayer.avatarPacket);
+		teamPacket = new TeamUserPacket(lobbyPlayer.teamPacket);
+		skillPacket = new SkillUserPacket(lobbyPlayer.skillPacket);
+		itemPacket = new ItemUserPacket(lobbyPlayer.itemPacket);
 	}
 
 	public final void applyUserPacket(UserPacket packet)
@@ -58,9 +70,13 @@ public class LobbyPlayer implements Serializable
 		{
 			teamPacket = new TeamUserPacket((TeamUserPacket) packet);
 		}
-		else if (packet instanceof AttributeUserPacket)
+		else if (packet instanceof SkillUserPacket)
 		{
-			attributePacket = new AttributeUserPacket((AttributeUserPacket) packet);
+			skillPacket = new SkillUserPacket((SkillUserPacket) packet);
+		}
+		else if (packet instanceof ItemUserPacket)
+		{
+			itemPacket = new ItemUserPacket((ItemUserPacket) packet);
 		}
 		else
 		{
@@ -74,6 +90,6 @@ public class LobbyPlayer implements Serializable
 	public boolean isLocked() { return lockPacket.isLocked(); }
 	public Team getTeam() { return teamPacket.getTeam(); }
 	public int getAvatarID() { return avatarPacket.getAvatarID(); }
-	public int[] getSkillIDs() { return attributePacket.getSkillIDs(); }
-	public int[] getItemIDs() { return attributePacket.getItemIDs(); }
+	public int[] getSkillIDs() { return skillPacket.getSkillIDs(); }
+	public int[] getItemIDs() { return itemPacket.getItemIDs(); }
 }
