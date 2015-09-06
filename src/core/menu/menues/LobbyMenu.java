@@ -7,16 +7,21 @@ import core.Main;
 import core.menu.NetworkingMenu;
 import core.menu.components.*;
 import game.Team;
+import game.avatar.AvatarInfo;
+import game.skill.SkillInfo;
+import game.item.ItemInfo;
 import misc.Debug;
 import misc.math.Rect;
 import network.lobby.LobbyPlayer;
+import network.lobby.packets.user.LockUserPacket;
 import network.Packet;
 
 public abstract class LobbyMenu extends NetworkingMenu
 {
 	public static final int TEAM_PHASE = 0;
 	public static final int AVATAR_PHASE = 1;
-	public static final int ATTRIBUTE_PHASE = 2;
+	public static final int SKILL_PHASE = 2;
+	public static final int ITEM_PHASE = 3;
  
 	private int phase;
 	protected Button lockButton; // Verweiß auf den NextStep/LockIn Button
@@ -46,6 +51,13 @@ public abstract class LobbyMenu extends NetworkingMenu
 				mapPressed();
 			}
 		}); // Map Placeholder
+		getComponents().add(new Button(this, new Rect(20, 500, 20, 20), "Disconnect")
+		{
+			@Override public void onClick(int mouseButton)
+			{
+				disconnectPressed();	
+			}
+		});
 		
 		phase = TEAM_PHASE;
 		players = new LinkedList<LobbyPlayer>();
@@ -57,12 +69,14 @@ public abstract class LobbyMenu extends NetworkingMenu
 		teamListPanel.update();
 	}
 
-	protected abstract LobbyPlayer getLocalPlayer();
-
 	public abstract void lockPressed();
 	public abstract void teamPressed(Team team);
+	public abstract void avatarPressed(AvatarInfo avatar);
+	public abstract void skillPressed(SkillInfo[] skills);
+	public abstract void itemPressed(ItemInfo[] items);
 	public abstract void mapPressed();
-	public abstract void nextPhase();
+	public abstract void disconnectPressed();
+	protected abstract LobbyPlayer getLocalPlayer();
 
 	protected int getPhase() { return phase; }
 	public LinkedList<LobbyPlayer> getPlayers() { return players; } // public damit TeamListPanel darauf zugreifen kann
@@ -84,5 +98,24 @@ public abstract class LobbyMenu extends NetworkingMenu
 		}
 		Debug.quit("LobbyMenu.getLockButtonCaption: wrong lobby-menu-subclass");
 		return null;
+	}
+
+	protected void nextPhase()
+	{
+		phase++;
+		unlockAll();
+	}
+
+	protected void unlockAll()
+	{
+		for (LobbyPlayer player : getPlayers())
+		{
+			player.applyUserPacket(new LockUserPacket(false));
+		}
+	}
+
+	protected void removePlayer(LobbyPlayer player)
+	{
+		getPlayers().remove(player);
 	}
 }

@@ -2,11 +2,12 @@ package game;
 
 import java.util.LinkedList;
 
+import game.Team;
 import game.Entity;
-import game.Bullet;
+import game.skill.Skill;
 
 public class Player extends Entity
 {
-	private Team team; // team == 0: all players are enemies
-	private LinkedList<Bullet> bullets;
+	private Team team;
+	private Skill[/*5*/] skills;
 }
