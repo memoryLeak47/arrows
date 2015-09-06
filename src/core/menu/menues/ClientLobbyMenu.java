@@ -4,6 +4,9 @@ import java.net.InetAddress;
 
 import core.Main;
 import game.Team;
+import game.avatar.AvatarInfo;
+import game.skill.SkillInfo;
+import game.item.ItemInfo;
 import misc.Debug;
 import network.Packet;
 import network.lobby.LobbyPlayer;
@@ -153,9 +156,23 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 	}
 
 
-	@Override public void avatarPressed(AvatarInfo avatar) {}
-	@Override public void skillPressed(SkillInfo[] skills) {}
-	@Override public void itemPressed(ItemInfo[] items) {}
+	@Override public void avatarPressed(AvatarInfo avatar)
+	{
+		// if new avatar TODO
+		sendToServer(new AvatarUserPacket(avatar));
+	}
+
+	@Override public void skillPressed(SkillInfo[] skills)
+	{
+		// if new skills TODO
+		sendToServer(new SkillUserPacket(skills));
+	}
+
+	@Override public void itemPressed(ItemInfo[] items)
+	{
+		// if new items TODO
+		sendToServer(new ItemUserPacket(items));
+	}
 
 	@Override protected LobbyPlayer getLocalPlayer() { return localPlayer; }
 

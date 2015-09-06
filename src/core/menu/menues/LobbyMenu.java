@@ -102,6 +102,24 @@ public abstract class LobbyMenu extends NetworkingMenu
 
 	protected void nextPhase()
 	{
+		switch (getPhase())
+		{
+			case TEAM_PHASE:
+				teamListPanel.setEnableTeam(false);
+				teamListPanel.setEnableAvatar(true);
+				break;
+			case SKILL_PHASE:
+				teamListPanel.setEnableAvatar(false);
+				teamListPanel.setEnableSkill(true);
+				break;
+			case ITEM_PHASE:
+				teamListPanel.setEnableSkill(false);
+				teamListPanel.setEnableItem(true);
+				break;
+			case ITEM_PHASE+1:
+				Debug.log("run game! :)");
+				break;
+		}
 		phase++;
 		unlockAll();
 	}

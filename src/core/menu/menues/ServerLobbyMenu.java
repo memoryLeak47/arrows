@@ -5,6 +5,9 @@ import java.util.LinkedList;
 
 import core.Main;
 import game.Team;
+import game.avatar.AvatarInfo;
+import game.skill.SkillInfo;
+import game.item.ItemInfo;
 import misc.Debug;
 import network.Packet;
 import network.lobby.LobbyPlayer;
@@ -212,11 +215,11 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		sendToAllClients(new UserPacketWithID(packet, 0));
 	}
 
-	private int ipToID(InetAddress ip)
+	private int ipToID(InetAddress ip, LinkedList<LobbyPlayer> players)
 	{
-		for (int i = 1; i < getPlayers().size(); i++) // für alle clients
+		for (int i = 1; i < players.size(); i++) // für alle clients
 		{
-			if (getPlayers().get(i).getIP().equals(ip)) // wenn eure ip die ip ist
+			if (players.get(i).getIP().equals(ip)) // wenn eure ip die ip ist
 			{
 				return i; // returne deine ID
 			}
@@ -227,12 +230,12 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	private LobbyPlayer ipToPlayer(InetAddress ip, LinkedList<LobbyPlayer> players)
 	{
-		return players.get(ipToID(ip));
+		return players.get(ipToID(ip, getPlayers()));
 	}
 
 	private void redirectUserPacket(UserPacket packet, InetAddress ip)
 	{
-		sendToAllClients(new UserPacketWithID(packet, ipToID(ip)));
+		sendToAllClients(new UserPacketWithID(packet, ipToID(ip, getPlayers())));
 	}
 
 	private void sendToAllClients(Packet packet)
