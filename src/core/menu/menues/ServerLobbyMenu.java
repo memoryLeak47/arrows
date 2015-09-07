@@ -47,6 +47,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 			removePlayer(ipToPlayer(ip, getPlayers()));
 			redirectUserPacket((UserPacket) packet, ip); // das erhaltene packet wird an alle clients weitergegeben
 			unlockAll();
+			updatePlayerIcons();
 		}
 		else
 		{
