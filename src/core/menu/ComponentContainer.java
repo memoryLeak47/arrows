@@ -30,11 +30,12 @@ public abstract class ComponentContainer extends MenuComponent // abstract for n
 	// returnt cursor position relativ zu sich
 	public Position getCursorPosition() 
 	{ 
-		if (Screen.getCursorPosition() == null)
+		Position pos = Screen.getCursorPosition();
+		if (pos == null)
 		{
 			return null;
 		}
-		return Screen.getCursorPosition().minus(getOffset());
+		return pos.minus(getOffset());
 	}
 
 	// kalkuliert und setzt hoveredComponent
