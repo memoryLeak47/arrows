@@ -4,10 +4,11 @@ import network.lobby.packets.UserPacket;
 
 public class ItemUserPacket extends UserPacket
 {
-	private int[] itemIDs;
+	private byte[] itemIDs;
 
-	public ItemUserPacket(int[] itemIDs)
+	public ItemUserPacket(byte[] itemIDs)
 	{
+		this.itemIDs = new byte[3];
 		for (int i = 0; i < itemIDs.length; i++)
 		{
 			this.itemIDs[i] = itemIDs[i];
@@ -19,7 +20,7 @@ public class ItemUserPacket extends UserPacket
 		this(packet.getItemIDs());
 	}
 
-	public int[] getItemIDs()
+	public byte[] getItemIDs()
 	{
 		return itemIDs;
 	}

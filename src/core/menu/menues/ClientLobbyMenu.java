@@ -159,19 +159,19 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 	@Override public void avatarPressed(AvatarInfo avatar)
 	{
 		// if new avatar TODO
-		sendToServer(new AvatarUserPacket(avatar));
+		// sendToServer(new AvatarUserPacket(avatar)); // TODO
 	}
 
 	@Override public void skillPressed(SkillInfo[] skills)
 	{
 		// if new skills TODO
-		sendToServer(new SkillUserPacket(skills));
+		// sendToServer(new SkillUserPacket(skills));
 	}
 
 	@Override public void itemPressed(ItemInfo[] items)
 	{
 		// if new items TODO
-		sendToServer(new ItemUserPacket(items));
+		// sendToServer(new ItemUserPacket(items));
 	}
 
 	@Override protected LobbyPlayer getLocalPlayer() { return localPlayer; }

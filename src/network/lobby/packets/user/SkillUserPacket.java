@@ -4,10 +4,11 @@ import network.lobby.packets.UserPacket;
 
 public class SkillUserPacket extends UserPacket
 {
-	private int[] skillIDs;
+	private byte[] skillIDs;
 
-	public SkillUserPacket(int[] skillIDs)
+	public SkillUserPacket(byte[] skillIDs)
 	{
+		this.skillIDs = new byte[4];
 		for (int i = 0; i < skillIDs.length; i++)
 		{
 			this.skillIDs[i] = skillIDs[i];
@@ -19,7 +20,7 @@ public class SkillUserPacket extends UserPacket
 		this(packet.getSkillIDs());
 	}
 
-	public int[] getSkillIDs()
+	public byte[] getSkillIDs()
 	{
 		return skillIDs;
 	}

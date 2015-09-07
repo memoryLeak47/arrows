@@ -23,10 +23,12 @@ public class LobbyPlayer implements Serializable
 	{
 		// TODO
 		lockPacket = new LockUserPacket(false);
-		//avatarPacket = new AvatarUserPacket();
+		avatarPacket = new AvatarUserPacket((byte)0);
 		teamPacket = new TeamUserPacket(Team.TEAM0);
-		//skillPacket = new SkillUserPacket();
-		//itemPacket = new ItemUserPacket();
+		byte[] skills = {0,0,0,0};
+		skillPacket = new SkillUserPacket(skills);
+		byte[] items = {0,0,0};
+		itemPacket = new ItemUserPacket(items);
 	}
 
 	public LobbyPlayer(LoginUserPacket loginPacket, InetAddress ip)
@@ -89,7 +91,7 @@ public class LobbyPlayer implements Serializable
 	public int getRank() { return loginPacket.getRank(); }
 	public boolean isLocked() { return lockPacket.isLocked(); }
 	public Team getTeam() { return teamPacket.getTeam(); }
-	public int getAvatarID() { return avatarPacket.getAvatarID(); }
-	public int[] getSkillIDs() { return skillPacket.getSkillIDs(); }
-	public int[] getItemIDs() { return itemPacket.getItemIDs(); }
+	public byte getAvatarID() { return avatarPacket.getAvatarID(); }
+	public byte[] getSkillIDs() { return skillPacket.getSkillIDs(); }
+	public byte[] getItemIDs() { return itemPacket.getItemIDs(); }
 }

@@ -30,6 +30,9 @@ public abstract class LobbyMenu extends NetworkingMenu
 
 	public LobbyMenu()
 	{
+		phase = TEAM_PHASE;
+		players = new LinkedList<LobbyPlayer>();
+
 		getComponents().add(new Label(this, new Rect(300, 10, 100, 20), "Lobby"));
 
 		teamListPanel = new TeamListPanel(this, new Rect(100, 100, 600, 600));
@@ -58,9 +61,6 @@ public abstract class LobbyMenu extends NetworkingMenu
 				disconnectPressed();	
 			}
 		});
-		
-		phase = TEAM_PHASE;
-		players = new LinkedList<LobbyPlayer>();
 	}
 
 	// Wird von unterklassen aufgerufen, nachdem ein Spieler bearbeitet wurde

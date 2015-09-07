@@ -7,9 +7,10 @@ import core.menu.menues.LobbyMenu;
 import core.menu.ComponentContainer;
 import core.menu.components.Button;
 import core.menu.components.Panel;
+import core.menu.components.PlayerPanel;
 import game.Team;
 import misc.math.Rect;
-import network.lobby.LobbyPlayer;
+import network.lobby.LobbyPlayer;;
 
 public class TeamPanel extends Panel
 {
@@ -41,7 +42,7 @@ public class TeamPanel extends Panel
 		{
 			if (player.getTeam().equals(team))
 			{
-				getComponents().add(new PlayerIcon(this, new Rect(getX() + 5 + i*50, 55, 50, 50), player));
+				getComponents().add(new PlayerPanel(this, new Rect(getX() + 5 + i*65, 55, 60, 60), player));
 				i++;
 			}
 		}

@@ -24,7 +24,12 @@ public abstract class MenuComponent extends Rect
 
 	protected final boolean isHovered()
 	{
-		return this == getParent().getHoveredComponent();
+		if (getParent() != null && getParent().getHoveredComponent() != null)
+		{
+			return this == getParent().getHoveredComponent();
+		}
+		return false;
+		// return Screen.getCursorPosition().inRect(new Rect(getOffset(), getSize()));
 	}
 
 	protected final boolean isFocused()
