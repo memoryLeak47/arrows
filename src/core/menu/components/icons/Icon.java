@@ -33,6 +33,6 @@ public abstract class Icon extends MenuComponent
 		Screen.g().fillRect(getOffset().getX(), getOffset().getY(), getWidth(), getHeight());
 	}
 
-	// Diese Funktion wird von den unterklassen überschieben, um die unterschiedlichen Quellen der Image zu ermöglichen. (Mit den Quellen sind gemeint: SkillInfo, ItemInfo, AvatarInfo)
-	protected abstract int getImageID(); // TODO: int -> ImageID
+	// Diese Funktion wird von den unterklassen überschieben, um die unterschiedlichen Quellen der Image zu ermöglichen. (Mit den Quellen sind gemeint: Skill, Item, Avatar)
+	public abstract ImageID getImageID();
 }

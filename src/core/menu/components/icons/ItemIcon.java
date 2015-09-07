@@ -2,22 +2,22 @@ package core.menu.components.icons;
 
 import core.menu.components.icons.Icon;
 import core.menu.ComponentContainer;
-//import game.avatar.AvatarInfo;
-//import game.graphics.ImageID;
+import game.item.Item;
+import game.graphics.ImageID;
 import misc.math.Rect;
 
 public class ItemIcon extends Icon
 {
-	private int itemInfo; // TODO: int itemInfo -> ItemInfo itemInfo
+	private Item item;
 
-	public ItemIcon(ComponentContainer parent, Rect rect, int itemInfo)
+	public ItemIcon(ComponentContainer parent, Rect rect, Item item)
 	{
 		super(parent, rect);
-		this.itemInfo = itemInfo;
+		this.item = item;
 	}
 
-	@Override public int getImageID() // TODO: int getImageID() -> ImageID getImageID()
+	@Override public ImageID getImageID()
 	{
-		return itemInfo;
+		return item.getIconImageID();
 	}
 }

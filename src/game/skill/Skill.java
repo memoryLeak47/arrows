@@ -1,21 +1,36 @@
 package game.skill;
 
-import java.util.LinkedList;
+import game.skill.skills.*;
+import game.graphics.ImageID;
+import misc.Debug;
 
-import game.Player;
-import game.skill.Bullet;
-
-public class Skill
+public abstract class Skill
 {
-	private Player owner;
-	private LinkedList<Bullet> bullets;
+	private byte id;
+	private static Skill[] skills;
 
-	public Skill(Player owner)
+	static
 	{
-		this.owner = owner;
-		bullets = new LinkedList<Bullet>();
+		skills = new Skill[]
+		{
+			new Arrow()
+		};
+
+		for (byte i = 0; i < skills.length; i++)
+		{
+			skills[i].id = i;
+		}
 	}
 
-	public Player getOwner() { return owner; }
-	public LinkedList<Bullet> getBullets() { return bullets; }
+	// Getter
+	public static Skill getByID(byte id)
+	{
+		if (id >= 0 && id < skills.length)
+		{
+			return skills[id];
+		}
+		return null;
+	}
+	public final byte getID() { return id; }
+	public abstract ImageID getIconImageID();
 }

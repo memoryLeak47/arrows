@@ -3,6 +3,9 @@ package network.lobby;
 import java.io.Serializable;
 import java.net.InetAddress;
 
+import game.avatar.Avatar;
+import game.skill.Skill;
+import game.item.Item;
 import game.Team;
 import misc.Debug;
 import network.lobby.packets.UserPacket;
@@ -91,7 +94,7 @@ public class LobbyPlayer implements Serializable
 	public int getRank() { return loginPacket.getRank(); }
 	public boolean isLocked() { return lockPacket.isLocked(); }
 	public Team getTeam() { return teamPacket.getTeam(); }
-	public byte getAvatarID() { return avatarPacket.getAvatarID(); }
-	public byte[] getSkillIDs() { return skillPacket.getSkillIDs(); }
-	public byte[] getItemIDs() { return itemPacket.getItemIDs(); }
+	public Avatar getAvatar() { return avatarPacket.getAvatar(); }
+	public Skill[] getSkills() { return skillPacket.getSkills(); }
+	public Item[] getItems() { return itemPacket.getItems(); }
 }

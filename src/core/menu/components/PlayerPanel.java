@@ -27,16 +27,16 @@ public class PlayerPanel extends ComponentContainer
 		this.player = player; // set player
 
 		// AvatarIcon
-		getComponents().add(new AvatarIcon(this, new Rect(0,0,45,45), this.player.getAvatarID()));
+		getComponents().add(new AvatarIcon(this, new Rect(0,0,45,45), this.player.getAvatar()));
 		// SkillIcons
-		getComponents().add(new SkillIcon(this, new Rect(0,45,15,15), this.player.getSkillIDs()[0]));
-		getComponents().add(new SkillIcon(this, new Rect(15,45,15,15), this.player.getSkillIDs()[1]));
-		getComponents().add(new SkillIcon(this, new Rect(30,45,15,15), this.player.getSkillIDs()[2]));
-		getComponents().add(new SkillIcon(this, new Rect(45,45,15,15), this.player.getSkillIDs()[3]));
+		getComponents().add(new SkillIcon(this, new Rect(0,45,15,15), this.player.getSkills()[0]));
+		getComponents().add(new SkillIcon(this, new Rect(15,45,15,15), this.player.getSkills()[1]));
+		getComponents().add(new SkillIcon(this, new Rect(30,45,15,15), this.player.getSkills()[2]));
+		getComponents().add(new SkillIcon(this, new Rect(45,45,15,15), this.player.getSkills()[3]));
 		// ItemIcons
-		getComponents().add(new ItemIcon(this, new Rect(45,0,15,15), this.player.getItemIDs()[0]));
-		getComponents().add(new ItemIcon(this, new Rect(45,15,15,15), this.player.getItemIDs()[1]));
-		getComponents().add(new ItemIcon(this, new Rect(45,30,15,15), this.player.getItemIDs()[2]));
+		getComponents().add(new ItemIcon(this, new Rect(45,0,15,15), this.player.getItems()[0]));
+		getComponents().add(new ItemIcon(this, new Rect(45,15,15,15), this.player.getItems()[1]));
+		getComponents().add(new ItemIcon(this, new Rect(45,30,15,15), this.player.getItems()[2]));
 	}
 
 	@Override public void render()

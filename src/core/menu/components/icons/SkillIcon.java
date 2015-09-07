@@ -2,22 +2,22 @@ package core.menu.components.icons;
 
 import core.menu.components.icons.Icon;
 import core.menu.ComponentContainer;
-//import game.skill.SkillInfo;
-//import game.graphics.ImageID;
+import game.skill.Skill;
+import game.graphics.ImageID;
 import misc.math.Rect;
 
 public class SkillIcon extends Icon
 {
-	private int skillInfo; // TODO: int avatarinfo -> AvatarInfo avatarInfo
+	private Skill skill;
 
-	public SkillIcon(ComponentContainer parent, Rect rect, int skillInfo)
+	public SkillIcon(ComponentContainer parent, Rect rect, Skill skill)
 	{
 		super(parent, rect);
-		this.skillInfo = skillInfo;
+		this.skill = skill;
 	}
 
-	@Override public int getImageID() // TODO: int getImageID() -> ImageID getImageID()
+	@Override public ImageID getImageID()
 	{
-		return skillInfo;
+		return skill.getIconImageID();
 	}
 }

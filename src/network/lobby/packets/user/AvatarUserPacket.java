@@ -1,5 +1,6 @@
 package network.lobby.packets.user;
 
+import game.avatar.Avatar;
 import network.lobby.packets.UserPacket;
 
 public class AvatarUserPacket extends UserPacket
@@ -14,6 +15,11 @@ public class AvatarUserPacket extends UserPacket
 	public AvatarUserPacket(AvatarUserPacket packet)
 	{
 		avatarID = packet.getAvatarID();
+	}
+
+	public Avatar getAvatar()
+	{
+		return Avatar.getByID(avatarID);
 	}
 
 	public byte getAvatarID()

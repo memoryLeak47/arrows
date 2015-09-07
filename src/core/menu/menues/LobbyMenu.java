@@ -7,9 +7,9 @@ import core.Main;
 import core.menu.NetworkingMenu;
 import core.menu.components.*;
 import game.Team;
-import game.avatar.AvatarInfo;
-import game.skill.SkillInfo;
-import game.item.ItemInfo;
+import game.avatar.Avatar;
+import game.skill.Skill;
+import game.item.Item;
 import misc.Debug;
 import misc.math.Rect;
 import network.lobby.LobbyPlayer;
@@ -71,9 +71,9 @@ public abstract class LobbyMenu extends NetworkingMenu
 
 	public abstract void lockPressed();
 	public abstract void teamPressed(Team team);
-	public abstract void avatarPressed(AvatarInfo avatar);
-	public abstract void skillPressed(SkillInfo[] skills);
-	public abstract void itemPressed(ItemInfo[] items);
+	public abstract void avatarPressed(Avatar avatar);
+	public abstract void skillPressed(Skill[] skills);
+	public abstract void itemPressed(Item[] items);
 	public abstract void mapPressed();
 	public abstract void disconnectPressed();
 	protected abstract LobbyPlayer getLocalPlayer();

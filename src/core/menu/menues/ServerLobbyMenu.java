@@ -5,9 +5,9 @@ import java.util.LinkedList;
 
 import core.Main;
 import game.Team;
-import game.avatar.AvatarInfo;
-import game.skill.SkillInfo;
-import game.item.ItemInfo;
+import game.avatar.Avatar;
+import game.skill.Skill;
+import game.item.Item;
 import misc.Debug;
 import network.Packet;
 import network.lobby.LobbyPlayer;
@@ -165,9 +165,9 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		Main.getMenues().remove(Main.getMenues().getLast());
 	}
 
-	@Override public void avatarPressed(AvatarInfo avatar) {}
-	@Override public void skillPressed(SkillInfo[] skills) {}
-	@Override public void itemPressed(ItemInfo[] items) {}
+	@Override public void avatarPressed(Avatar avatar) {}
+	@Override public void skillPressed(Skill[] skills) {}
+	@Override public void itemPressed(Item[] items) {}
 
 	@Override protected void nextPhase()
 	{
