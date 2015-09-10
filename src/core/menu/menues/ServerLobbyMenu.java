@@ -44,8 +44,8 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		}
 		else if (packet instanceof DisconnectUserPacket)
 		{
-			redirectUserPacket((UserPacket) packet, ip); // das erhaltene packet wird an alle clients weitergegeben, (TODO leider auch den der disconnected ist)
-			removePlayer(ipToPlayer(ip, getPlayers())); //
+			redirectUserPacket((UserPacket) packet, ip); // das erhaltene packet wird an alle clients weitergegeben, (leider auch dem der disconnected ist)
+			removePlayer(ipToPlayer(ip, getPlayers()));
 			unlockAll();
 			updatePlayerIcons();
 		}

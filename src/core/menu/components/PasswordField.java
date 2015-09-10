@@ -13,12 +13,12 @@ public class PasswordField extends EditField
 		super(parent, rect);
 	}
 
-	@Override public void render() // TODO make prettier
+	@Override public void render()
 	{
-		Screen.g().setColor(Color.BLUE); // set color to blue
-		Screen.g().fillRect(getOffset().getX(), getOffset().getY(), getWidth(), getHeight()); // fill rect
-		Screen.g().setColor(Color.BLACK); // set color to black
-		Screen.g().drawString(getDotString(), getOffset().getX() + 1, getOffset().getY() + 12); // draw text in rect
+		Screen.g().setColor(Color.BLUE);
+		Screen.g().fillRect(getOffset().getX(), getOffset().getY(), getWidth(), getHeight());
+		Screen.g().setColor(Color.BLACK);
+		Screen.g().drawString(getDotString(), getOffset().getX() + 1, getOffset().getY() + 12);
 	}
 
 	private String getDotString()

@@ -37,7 +37,8 @@ public abstract class MenuComponent extends Rect
 		return this == getParent().getFocusedComponent();
 	}
 
-	public void tick() {} // <TODO>
+	// tick, bei bedarf überschrieben
+	public void tick() {}
 
 	// onEventFunctions: bei bedarf von den MenuComponent-unterklassen überschrieben
 	public void onClick(int mouseButton) {}
@@ -52,8 +53,9 @@ public abstract class MenuComponent extends Rect
 	// Setter Funktionen
 	public void setEnabled(boolean enabled) { this.enabled = enabled; }
 
-	// Getter Funktionen
-	// returnt die Position auf dem fenster, (getPosition() returnt die position relativ zum parent)
+	// Getter
+
+	// Position relativ zum Screen
 	public Position getOffset() { return (Position) getParent().getOffset().plus(getPosition()); }
 
 	// returnt den parent

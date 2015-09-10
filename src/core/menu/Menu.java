@@ -31,7 +31,7 @@ public abstract class Menu extends ComponentContainer
 		super(null, new Rect(0,0,Screen.getScreenSize().getX(), Screen.getScreenSize().getY()));
 	}
 
-	// tickt alle components, needed for <TODO>
+	// tickt alle components
 	public void tick()
 	{
 		for (int i = 0; i < getComponents().size(); i++) // für alle components
@@ -104,7 +104,7 @@ public abstract class Menu extends ComponentContainer
 		return (getSize().equals(Screen.getScreenSize()));
 	}
 
-	// <TODO>
+	// Position relativ zum Screen (bei Menu: Offset == Position)
 	@Override public Position getOffset() { return new Position(getPosition()); }
 
 	// wird von ComponentContainer.getFocusedComponent() genutzt

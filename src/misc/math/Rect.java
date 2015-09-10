@@ -1,5 +1,6 @@
 package misc.math;
 
+import misc.Debug;
 import misc.math.Point;
 import misc.math.Position;
 import misc.math.Size;
@@ -32,6 +33,7 @@ public class Rect
 
 	public float distanceTo(Point point)
 	{
+		Debug.quit("Rect.distanceTo(Point) not coded yet");
 		// TODO
 		return 2;
 	}

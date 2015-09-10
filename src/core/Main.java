@@ -72,12 +72,22 @@ public class Main
 		Screen.render(); // rendere die menuList auf den 'Screen
 	}
 
-	public static void setAccount(Account newAccount) { account = newAccount; } // gebraucht für <TODO>
+	// needed for LoginMenu
+	public static void setAccount(Account newAccount) { account = newAccount; }
 
-	public static String getName() { return getAccount().getName(); } // gebraucht zum erstellen eines LoginUserPackets für diesen spieler 
-	public static int getRank() { return getAccount().getRank(); } // wie darüber
+	// gebraucht zum erstellen eines LoginUserPackets für diesen spieler 
+	public static String getName() { return getAccount().getName(); }
+	public static int getRank() { return getAccount().getRank(); }
+
+	// gebraucht für das darüber ^^
 	public static Account getAccount() { return account; }
-	public static LinkedList<Menu> getMenues() { return getMenuList().getMenues(); } // returnt menues, gebraucht in MenuComponent
-	public static MenuList getMenuList() { return menuList; } // gebraucht in Screen.render()
-	public static NetworkDevice getNetworkDevice() { return networkDevice; } // gebraucht in NetworkingMenu
+
+	// gebrauch in MenuComponent to add or remove menues
+	public static LinkedList<Menu> getMenues() { return getMenuList().getMenues(); }
+
+	// gebraucht in Screen.render()
+	public static MenuList getMenuList() { return menuList; }
+
+	// gebraucht in NetworkingMenu zum setzen der networkDevice.menu
+	public static NetworkDevice getNetworkDevice() { return networkDevice; }
 }

@@ -10,15 +10,15 @@ public class QuitButton extends Button
 {
 	public QuitButton(ComponentContainer parent, Position position)
 	{
-		super(parent, new Rect(position, new Size(100, 50)), "Quit"); // button constructor
+		super(parent, new Rect(position, new Size(100, 50)), "Quit");
 	}
 
 	public QuitButton(ComponentContainer parent, Rect rect)
 	{
-		super(parent, rect, "Quit"); // button constructor
+		super(parent, rect, "Quit");
 	}
 
-	@Override public void onClick(int button) // when button is pressed
+	@Override public void onClick(int button)
 	{
 		Main.quit();
 	}

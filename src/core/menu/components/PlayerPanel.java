@@ -19,20 +19,22 @@ import network.lobby.LobbyPlayer;
 
 public class PlayerPanel extends ComponentContainer
 {
-	private LobbyPlayer player; // player to display stats of
+	private LobbyPlayer player;
 
 	public PlayerPanel(ComponentContainer parent, Rect rect, LobbyPlayer player)
 	{
 		super(parent, rect);
-		this.player = player; // set player
+		this.player = player;
 
 		// AvatarIcon
 		getComponents().add(new AvatarIcon(this, new Rect(0,0,45,45), this.player.getAvatar()));
+
 		// SkillIcons
 		getComponents().add(new SkillIcon(this, new Rect(0,45,15,15), this.player.getSkills()[0]));
 		getComponents().add(new SkillIcon(this, new Rect(15,45,15,15), this.player.getSkills()[1]));
 		getComponents().add(new SkillIcon(this, new Rect(30,45,15,15), this.player.getSkills()[2]));
 		getComponents().add(new SkillIcon(this, new Rect(45,45,15,15), this.player.getSkills()[3]));
+
 		// ItemIcons
 		getComponents().add(new ItemIcon(this, new Rect(45,0,15,15), this.player.getItems()[0]));
 		getComponents().add(new ItemIcon(this, new Rect(45,15,15,15), this.player.getItems()[1]));
@@ -41,14 +43,6 @@ public class PlayerPanel extends ComponentContainer
 
 	@Override public void render()
 	{
-		if (player.isLocked())
-		{
-			Screen.g().setColor(Color.LIGHT_GRAY); // set color to yellow
-		}
-		else
-		{
-			Screen.g().setColor(Color.YELLOW); // set color to yellow
-		}
-		super.render();
+		super.render(); // zeichne alle MenuComponents
 	}
 }

@@ -20,9 +20,9 @@ public class Panel extends ComponentContainer
 
 	@Override public void render()
 	{
-		super.render(); // draw content of all components
-		Screen.g().setColor(Color.BLUE); // set color to blue
-		Screen.g().drawRect(getOffset().getX(), getOffset().getY(), getWidth()-1, getHeight()-1); // draw border
+		super.render(); // rendere alle MenuComponents
+		Screen.g().setColor(Color.BLUE);
+		Screen.g().drawRect(getOffset().getX(), getOffset().getY(), getWidth()-1, getHeight()-1); // zeichne blauen rand
 	}
 
 	// ändert die Size des Panels so, dass zwischen der Komponente links unten noch padding Platz ist
