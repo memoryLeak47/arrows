@@ -19,7 +19,7 @@ public abstract class ComponentContainer extends MenuComponent // abstract for n
 		components = new LinkedList<MenuComponent>(); // create components
 	}
 
-	@Override public void render() // sets image to the addition of all other images
+	@Override public synchronized void render() // sets image to the addition of all other images
 	{
 		for (MenuComponent component : getComponents()) // for all components
 		{
