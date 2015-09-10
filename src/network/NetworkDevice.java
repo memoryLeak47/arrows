@@ -43,7 +43,7 @@ public class NetworkDevice
 
 		if (menu != null) // if there is a target menu
 		{
-			menu.handlePacket((Packet) byteArrayToObject(data), datagramPacket.getAddress()); // let it handle the packet
+			menu.receivePacket((Packet) byteArrayToObject(data), datagramPacket.getAddress()); // let it handle the packet
 		}
 	}
 

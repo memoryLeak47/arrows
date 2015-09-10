@@ -69,6 +69,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 		teamListPanel.update();
 	}
 
+	public abstract void handlePacket(Packet packet, InetAddress ip);
 	public abstract void lockPressed();
 	public abstract void teamPressed(Team team);
 	public abstract void avatarPressed(Avatar avatar);
