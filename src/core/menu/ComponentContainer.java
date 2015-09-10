@@ -21,9 +21,12 @@ public abstract class ComponentContainer extends MenuComponent // abstract for n
 
 	@Override public void render() // sets image to the addition of all other images
 	{
-		for (MenuComponent component : getComponents()) // for all components
+		synchronized (getComponents())
 		{
-			component.render();
+			for (MenuComponent component : getComponents()) // for all components
+			{
+				component.render();
+			}
 		}
 	}
 
