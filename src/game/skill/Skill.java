@@ -31,6 +31,10 @@ public abstract class Skill
 		}
 		return null;
 	}
+
 	public final byte getID() { return id; }
+
 	public abstract ImageID getIconImageID();
+	public abstract int getMaxCooldown();
+	public abstract String getDescription();
 }

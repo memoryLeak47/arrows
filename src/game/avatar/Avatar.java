@@ -31,6 +31,9 @@ public abstract class Avatar
 		}
 		return null;
 	}
+
 	public final byte getID() { return id; }
+
 	public abstract ImageID getIconImageID();
+	public abstract String getName();
 }
