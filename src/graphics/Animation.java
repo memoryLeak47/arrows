@@ -1,4 +1,4 @@
-package game.graphics;
+package graphics;
 
 public interface Animation
 {

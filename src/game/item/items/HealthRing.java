@@ -1,6 +1,6 @@
 package game.item.items;
 
-import game.graphics.ImageID;
+import graphics.ImageID;
 import game.item.Item;
 
 public class HealthRing extends Item

@@ -3,7 +3,7 @@ package core.menu.components.icons;
 import core.menu.components.icons.Icon;
 import core.menu.ComponentContainer;
 import game.skill.Skill;
-import game.graphics.ImageID;
+import graphics.ImageID;
 import misc.math.Rect;
 
 public class SkillIcon extends Icon

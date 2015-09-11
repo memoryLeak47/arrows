@@ -1,8 +1,8 @@
-package game.graphics;
+package graphics;
 
 import java.util.LinkedList;
 
-import game.graphics.Animation;
+import graphics.Animation;
 
 public class AnimationContainer implements Animation
 {

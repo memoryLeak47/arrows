@@ -1,6 +1,6 @@
 package game;
 
-import game.graphics.Animation;
+import graphics.Animation;
 import misc.math.Body;
 import misc.math.Rect;
 import network.game.packets.images.EntityImagePacket;

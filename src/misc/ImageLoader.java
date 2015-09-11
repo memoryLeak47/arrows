@@ -1,8 +1,8 @@
-package game.graphics;
+package graphics;
 
 import java.awt.image.BufferedImage;
 
-import game.graphics.ImageID;
+import graphics.ImageID;
 
 public final class ImageLoader
 // loads and stores all Images and Animations

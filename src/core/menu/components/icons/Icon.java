@@ -5,7 +5,7 @@ import java.awt.Color;
 import core.Screen;
 import core.menu.ComponentContainer;
 import core.menu.MenuComponent;
-import game.graphics.ImageID;
+import graphics.ImageID;
 import misc.math.Rect;
 
 public abstract class Icon extends MenuComponent

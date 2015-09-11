@@ -1,9 +1,9 @@
-package game.graphics;
+package graphics;
 
 import java.util.LinkedList;
 
-import game.graphics.Animation;
-import game.graphics.ImageID;
+import graphics.Animation;
+import graphics.ImageID;
 
 public class DynamicAnimation implements Animation
 {

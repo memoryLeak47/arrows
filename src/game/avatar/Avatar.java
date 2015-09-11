@@ -1,7 +1,7 @@
 package game.avatar;
 
 import game.avatar.avatars.*;
-import game.graphics.ImageID;
+import graphics.ImageID;
 import misc.Debug;
 
 public abstract class Avatar
@@ -36,4 +36,5 @@ public abstract class Avatar
 
 	public abstract ImageID getIconImageID();
 	public abstract String getName();
+	public abstract String getClassName();
 }

@@ -1,7 +1,7 @@
 package game.skill;
 
 import game.skill.skills.*;
-import game.graphics.ImageID;
+import graphics.ImageID;
 import misc.Debug;
 
 public abstract class Skill
@@ -37,4 +37,5 @@ public abstract class Skill
 	public abstract ImageID getIconImageID();
 	public abstract int getMaxCooldown();
 	public abstract String getDescription();
+	public abstract String getClassName();
 }

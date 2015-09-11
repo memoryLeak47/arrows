@@ -1,7 +1,7 @@
 package game.item;
 
 import game.item.items.*;
-import game.graphics.ImageID;
+import graphics.ImageID;
 import misc.Debug;
 
 public abstract class Item

@@ -1,4 +1,4 @@
-package game.graphics;
+package graphics;
 
 public final class ImageID
 {
