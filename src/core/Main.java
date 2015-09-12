@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import core.menu.Menu;
 import core.menu.MenuList;
+import core.menu.menues.LobbyMenu;
 import misc.Account;
 import misc.Debug;
 import static misc.Serializer.*;
@@ -58,6 +59,10 @@ public class Main
 		if (account != null) // falls du eingeloggt bist
 		{
 			Account.updateAccount(account); // speichere die änderungen an deinem account
+		}
+		if (getMenues().getLast() instanceof LobbyMenu)
+		{
+			((LobbyMenu) getMenues().getLast()).disconnectPressed();
 		}
 		Debug.quit("closed properly"); // beende das programm
 	}
