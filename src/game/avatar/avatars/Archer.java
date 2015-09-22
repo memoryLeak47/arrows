@@ -8,7 +8,7 @@ public class Archer extends Avatar
 {
 	@Override public ImageID getIconImageID() // works
 	{
-		return ImageFile.ARCHER_ICON.getImageID(0);
+		return ImageFile.ARCHER_ICON.getImageID();
 	}
 
 	@Override public String getName() { return "Legolas ^^"; }

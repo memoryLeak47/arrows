@@ -7,8 +7,13 @@ import misc.Debug;
 
 public abstract class Avatar
 {
-	private byte id;
+	private byte id; // TODO because id = 0 at the beginning, every Avatar is archer from startup
 	private static Avatar[] avatars;
+
+	public Avatar()
+	{
+		id = -1;
+	}
 
 	static
 	{

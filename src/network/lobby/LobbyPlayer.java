@@ -25,7 +25,7 @@ public class LobbyPlayer implements Serializable
 	private LobbyPlayer()
 	{
 		lockPacket = new LockUserPacket(false);
-		avatarPacket = new AvatarUserPacket((byte)0);
+		avatarPacket = new AvatarUserPacket((byte)-1); // -1 => no avatar
 		teamPacket = new TeamUserPacket(Team.TEAM0);
 		byte[] skills = {0,0,0,0};
 		skillPacket = new SkillUserPacket(skills);
