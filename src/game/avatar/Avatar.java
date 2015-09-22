@@ -2,6 +2,7 @@ package game.avatar;
 
 import game.avatar.avatars.*;
 import graphics.ImageID;
+import graphics.ImageFile;
 import misc.Debug;
 
 public abstract class Avatar
@@ -34,7 +35,7 @@ public abstract class Avatar
 
 	public final byte getID() { return id; }
 
-	public abstract ImageID getIconImageID();
+	public ImageID getIconImageID() { return ImageFile.VOID_ICON.getImageID(); }
 	public abstract String getName();
 	public abstract String getClassName();
 }

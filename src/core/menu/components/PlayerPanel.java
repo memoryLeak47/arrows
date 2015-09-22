@@ -45,4 +45,6 @@ public class PlayerPanel extends ComponentContainer
 	{
 		super.render(); // zeichne alle MenuComponents
 	}
+
+	public LobbyPlayer getPlayer() { return player; }
 }

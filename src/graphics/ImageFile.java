@@ -19,7 +19,8 @@ import misc.Debug;
 
 public enum ImageFile
 {
-	example("path");
+	VOID_ICON("icons/void.png"),
+	ARCHER_ICON("icons/avatars/archer.png");
 
 	private int id;
 	private final File file;
@@ -35,7 +36,7 @@ public enum ImageFile
 
 	private ImageFile(String path)
 	{
-		file = new File(path);
+		file = new File("res/" + path);
 	}
 
 	// wird ausgeführt um <images> mit den bildern auf die <file> zeigt zu füllen
@@ -52,6 +53,17 @@ public enum ImageFile
 		else
 		{
 			Debug.quit("Image.load(): " + file.getPath() + " is not a valid target");
+		}
+	}
+
+	public static void loadFromTo(ImageFile if1, ImageFile if2)
+	{
+		for (int i = if1.getID(); i < if2.getID(); i++)
+		{
+			if (!ImageFile.getByID(i).isLoaded())
+			{
+				ImageFile.getByID(i).load();
+			}
 		}
 	}
 
@@ -86,9 +98,27 @@ public enum ImageFile
 	// Getter
 	public static BufferedImage getImageByImageID(ImageID id)
 	{
-		return ImageFile.values()[id.id].getImages()[id.index];
+		if (id == null)
+		{
+			Debug.quit("ImageFile.getImageByImageID(null)");
+		}
+		if (ImageFile.getByID(id.id) == null)
+		{
+			Debug.quit("ImageFile.getImageByImageID: ImageFile.getByID(" + id.id + ") returns null");
+		}
+		return ImageFile.getByID(id.id).getImages()[id.index];
 	}
 
+	public boolean isLoaded() { return images != null; }
+
+	public static ImageFile getByID(int id) 
+	{
+		if (!ImageFile.values()[id].isLoaded())
+		{
+			ImageFile.values()[id].load();
+		}
+		return ImageFile.values()[id];
+	}
 /*
 	public static ImageFile getByImageFileID(ImageFileID id)
 	{
@@ -97,5 +127,15 @@ public enum ImageFile
 */
 	public ImageFileID getImageFileID() { return new ImageFileID(id); }
 	public File getFile() { return file; }
-	public BufferedImage[] getImages() { return images; }
+	public BufferedImage[] getImages()
+	{
+		if (!isLoaded())
+		{
+			load();
+		}
+		return images;
+	}
+	public ImageID getImageID(int index) { return new ImageID(id, index); }
+	public ImageID getImageID() { return getImageID(0); }
+	public int getID() { return id; }
 }

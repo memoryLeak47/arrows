@@ -42,11 +42,9 @@ public class TeamListPanel extends Panel
 		}
 	}
 
-	public void setEnableTeam(boolean value) {} // TODO
-	public void setEnableAvatar(boolean value) {} // TODO
-	public void setEnableSkill(boolean value) {} // TODO
-	public void setEnableItem(boolean value) {} // TODO
+	// Setter
 
+	// Getter
 	private LinkedList<LobbyPlayer> getPlayers()
 	{
 		return ((LobbyMenu) getParent()).getPlayers();

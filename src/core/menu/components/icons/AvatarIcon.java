@@ -1,12 +1,15 @@
 package core.menu.components.icons;
 
-import core.menu.components.icons.Icon;
+import core.menu.components.icons.ChoosableIcon;
 import core.menu.ComponentContainer;
+import core.menu.menues.LobbyMenu;
 import game.avatar.Avatar;
+import game.avatar.avatars.*;
 import graphics.ImageID;
+import graphics.ImageFile;
 import misc.math.Rect;
 
-public class AvatarIcon extends Icon
+public class AvatarIcon extends ChoosableIcon
 {
 	private Avatar avatar;
 
@@ -16,8 +19,21 @@ public class AvatarIcon extends Icon
 		this.avatar = avatar;
 	}
 
-	@Override public ImageID getImageID()
+	// onEvent
+	@Override public void onClick(int mouseButton)
 	{
-		return avatar.getIconImageID();
+		// TODO
 	}
+
+	// Getter
+	@Override public int getChoosePhase() { return LobbyMenu.AVATAR_PHASE; }
+	@Override public ImageID getImageID() 
+	{
+		if (avatar == null || avatar.getIconImageID() == null)
+		{
+			return ImageFile.VOID_ICON.getImageID();
+		}
+		return avatar.getIconImageID(); 
+	} // works
+	public Avatar getAvatar() { return avatar; }
 }

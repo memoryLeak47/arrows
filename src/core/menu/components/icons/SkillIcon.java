@@ -2,11 +2,13 @@ package core.menu.components.icons;
 
 import core.menu.components.icons.Icon;
 import core.menu.ComponentContainer;
+import core.menu.menues.LobbyMenu;
 import game.skill.Skill;
 import graphics.ImageID;
+import graphics.ImageFile;
 import misc.math.Rect;
 
-public class SkillIcon extends Icon
+public class SkillIcon extends ChoosableIcon
 {
 	private Skill skill;
 
@@ -16,8 +18,15 @@ public class SkillIcon extends Icon
 		this.skill = skill;
 	}
 
+	// Getter
+	@Override public int getChoosePhase() { return LobbyMenu.SKILL_PHASE; }
 	@Override public ImageID getImageID()
 	{
+		if (skill == null || skill.getIconImageID() == null)
+		{
+			return ImageFile.VOID_ICON.getImageID();
+		}
 		return skill.getIconImageID();
 	}
+	public Skill getSkill() { return skill; }
 }

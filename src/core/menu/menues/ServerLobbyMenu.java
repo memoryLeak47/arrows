@@ -314,5 +314,5 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		}
 	}
 
-	@Override protected LobbyPlayer getLocalPlayer() { return getPlayers().get(0); }
+	@Override public LobbyPlayer getLocalPlayer() { return getPlayers().get(0); }
 }

@@ -10,6 +10,7 @@ import game.Team;
 import game.avatar.Avatar;
 import game.skill.Skill;
 import game.item.Item;
+import graphics.ImageFile;
 import misc.Debug;
 import misc.math.Rect;
 import network.lobby.LobbyPlayer;
@@ -77,9 +78,9 @@ public abstract class LobbyMenu extends NetworkingMenu
 	public abstract void itemPressed(Item[] items);
 	public abstract void mapPressed();
 	public abstract void disconnectPressed();
-	protected abstract LobbyPlayer getLocalPlayer();
+	public abstract LobbyPlayer getLocalPlayer();
 
-	protected int getPhase() { return phase; }
+	public int getPhase() { return phase; }
 	public LinkedList<LobbyPlayer> getPlayers() { return players; } // public damit TeamListPanel darauf zugreifen kann
 
 	protected void setPlayers(LinkedList<LobbyPlayer> players) 
@@ -103,25 +104,15 @@ public abstract class LobbyMenu extends NetworkingMenu
 
 	protected void nextPhase()
 	{
+		phase++;
 		switch (getPhase())
 		{
-			case TEAM_PHASE:
-				teamListPanel.setEnableTeam(false);
-				teamListPanel.setEnableAvatar(true);
-				break;
-			case SKILL_PHASE:
-				teamListPanel.setEnableAvatar(false);
-				teamListPanel.setEnableSkill(true);
-				break;
-			case ITEM_PHASE:
-				teamListPanel.setEnableSkill(false);
-				teamListPanel.setEnableItem(true);
-				break;
-			case ITEM_PHASE+1:
-				Debug.log("run game! :)");
-				break;
+			case AVATAR_PHASE:
+			{
+				ImageFile.loadFromTo(ImageFile.ARCHER_ICON, ImageFile.ARCHER_ICON);
+				break;	
+			}
 		}
-		phase++;
 		unlockAll();
 	}
 

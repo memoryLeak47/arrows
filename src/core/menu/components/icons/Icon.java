@@ -6,6 +6,8 @@ import core.Screen;
 import core.menu.ComponentContainer;
 import core.menu.MenuComponent;
 import graphics.ImageID;
+import graphics.ImageFile;
+import misc.Debug;
 import misc.math.Rect;
 
 public abstract class Icon extends MenuComponent
@@ -16,21 +18,20 @@ public abstract class Icon extends MenuComponent
 		super(parent, rect);
 	}
 
-	// Diese Funktion wird nicht weiter überschrieben, da alle Icons gleich rendern. Nur das Icon und die Größe ist unterschiedlich
-	@Override public final void render()
+	// Zeichnet einen Rand und unterkomponenten
+	@Override public void render()
 	{
-		if (getParent() != null)
+		if (getImageID() == null)
 		{
-			if (isHovered())
-			{
-				Screen.g().setColor(Color.GREEN);
-			}
-			else
-			{
-				Screen.g().setColor(Color.YELLOW);
-			}
+			Debug.quit("Icon.render tries to render null IconID");
+			return;
 		}
-		Screen.g().fillRect(getOffset().getX(), getOffset().getY(), getWidth(), getHeight());
+		if (ImageFile.getImageByImageID(getImageID()) == null)
+		{
+			Debug.quit("Icon.render tries to render null Icon");
+			return;
+		}
+		Screen.g().drawImage(ImageFile.getImageByImageID(getImageID()), getOffset().getX(), getOffset().getY(), getWidth(), getHeight(), null);
 	}
 
 	// Diese Funktion wird von den unterklassen überschieben, um die unterschiedlichen Quellen der Image zu ermöglichen. (Mit den Quellen sind gemeint: Skill, Item, Avatar)

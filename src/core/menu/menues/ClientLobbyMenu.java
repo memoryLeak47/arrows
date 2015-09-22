@@ -174,7 +174,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 		// sendToServer(new ItemUserPacket(items));
 	}
 
-	@Override protected LobbyPlayer getLocalPlayer() { return localPlayer; }
+	@Override public LobbyPlayer getLocalPlayer() { return localPlayer; }
 
 	// returnt den Spieler, der den das übergebene Packet anspricht
 	private LobbyPlayer getPlayer(Packet packet)	

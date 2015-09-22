@@ -21,17 +21,22 @@ public class Debug
 		} catch (Exception e) { quit("failed to init Debug"); }
 	}
 
+	public static void warn(String string)
+	{
+		log("\033[0;31mWARNING: " + string);
+	}
+
 	public static void log(String string) // prints log and adds it to logs
 	{
 		System.out.println(string); // prints log
 		addLog(string); // adds it to logs
 		writeLog(string);
+		System.out.print("\u001B[0m"); // resets color
 	}
 
-	// das gleiche wie log, ./cleanup löscht aber alle zeilen mit Debug.testLog -> gut für schnelles testen
 	public static void testLog(String string)
 	{
-		log("TEST: " + string);
+		log("\033[0;33m" + string);
 	}
 
 	public static void timeLog(String string) // prints time difference of last timeLog(...)
@@ -56,13 +61,7 @@ public class Debug
 
 	public static void quit(String string) // quits and gives error message
 	{
-		log(string);
-		quit();
-	}
-
-	public static void timeQuit(String string) // quits and prints timeLog(string)
-	{
-		timeLog(string);
+		log("\033[0;31m" + string);
 		quit();
 	}
 
