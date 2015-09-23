@@ -2,6 +2,7 @@ package menu;
 
 import java.util.LinkedList;
 import java.net.InetAddress;
+import java.awt.Color;
 
 import core.Main;
 import core.Screen;
@@ -43,10 +44,11 @@ public abstract class Menu extends ComponentContainer
 	// rendert alle components
 	public void render()
 	{
-		for (int i = 0; i < getComponents().size(); i++) // für alle components
-		{
-			getComponents().get(i).render(); // render to Screen
-		}
+		// Übermalen mit schwarz
+		Screen.g().setColor(Color.BLACK);
+		Screen.g().fillRect(getOffset().getX(), getOffset().getY(), getWidth(), getHeight());
+		// Komponenten zeichnen
+		super.render();
 	}
 
 	// bearbeitet die events vom menu

@@ -47,6 +47,11 @@ public class PlayerPanel extends ComponentContainer
 	@Override public void render()
 	{
 		super.render(); // zeichne alle MenuComponents
+		if (player != null && player.isLocked())
+		{
+			Screen.g().setColor(Color.YELLOW);
+			Screen.g().drawRect(getOffset().getX()-2, getOffset().getY()-2, getWidth()+4, getHeight()+4);
+		}
 	}
 
 	public LobbyPlayer getPlayer() { return player; }

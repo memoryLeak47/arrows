@@ -31,9 +31,13 @@ public abstract class ChoosableIcon extends Icon
 	// returnt, ob dieses Icon angeklickt werden kann, um den Inhalt zu ändern
 	public boolean isChoosable()
 	{
-		return getLobbyMenu().getPhase() == getChoosePhase()
-			&& getLobbyMenu().getLocalPlayer() == getPlayer()
-			&& !getPlayer().isLocked();
+		if (getParentMenu() instanceof LobbyMenu)
+		{
+			return getLobbyMenu().getPhase() == getChoosePhase()
+				&& getLobbyMenu().getLocalPlayer() == getPlayer()
+				&& !getPlayer().isLocked();
+		}
+		return false;
 	}
 
 	// Getter
