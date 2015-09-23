@@ -5,9 +5,9 @@ import java.util.TimerTask;
 import java.util.LinkedList;
 import java.util.HashMap;
 
-import core.menu.Menu;
-import core.menu.MenuList;
-import core.menu.menues.LobbyMenu;
+import menu.Menu;
+import menu.MenuList;
+import menu.menues.LobbyMenu;
 import misc.Account;
 import misc.Debug;
 import static misc.Serializer.*;

@@ -2,7 +2,7 @@ package network;
 
 import java.net.*;
 
-import core.menu.NetworkingMenu;
+import menu.NetworkingMenu;
 import core.Main;
 import static misc.Serializer.*;
 import misc.Debug;
