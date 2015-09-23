@@ -20,7 +20,15 @@ import misc.Debug;
 public enum ImageFile
 {
 	VOID_ICON("icons/void.png"),
-	ARCHER_ICON("icons/avatars/archer.png");
+
+	// avatars
+	ARCHER_ICON("icons/avatars/archer.png"),
+
+	// skills
+	ARROW_ICON("icons/skills/arrow.png")
+
+	// items
+	;
 
 	private int id;
 	private final File file;
@@ -107,6 +115,20 @@ public enum ImageFile
 			Debug.quit("ImageFile.getImageByImageID: ImageFile.getByID(" + id.id + ") returns null");
 		}
 		return ImageFile.getByID(id.id).getImages()[id.index];
+	}
+
+	public static ImageFile[] getFromTo(ImageFile if1, ImageFile if2)
+	{
+		ImageFile[] array = new ImageFile[if2.getID() - if1.getID()];
+		for (int i = if1.getID(); i < if2.getID(); i++)
+		{
+			if (!ImageFile.getByID(i).isLoaded())
+			{
+				ImageFile.getByID(i).load();
+				array[i] = ImageFile.getByID(i);
+			}
+		}
+		return array;
 	}
 
 	public boolean isLoaded() { return images != null; }

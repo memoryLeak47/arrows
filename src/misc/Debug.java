@@ -23,7 +23,14 @@ public class Debug
 
 	public static void warn(String string)
 	{
-		log("\033[0;31mWARNING: " + string);
+		colorLog("\033[0;31m", "WARNING: " + string);
+	}
+
+	private static void colorLog(String color, String string)
+	{
+		System.out.print(color);
+		log(string);
+		System.out.print("\u001B[0m"); // resets color
 	}
 
 	public static void log(String string) // prints log and adds it to logs
@@ -31,12 +38,11 @@ public class Debug
 		System.out.println(string); // prints log
 		addLog(string); // adds it to logs
 		writeLog(string);
-		System.out.print("\u001B[0m"); // resets color
 	}
 
 	public static void testLog(String string)
 	{
-		log("\033[0;33m" + string);
+		colorLog("\033[0;33m", string);
 	}
 
 	public static void timeLog(String string) // prints time difference of last timeLog(...)
@@ -61,7 +67,7 @@ public class Debug
 
 	public static void quit(String string) // quits and gives error message
 	{
-		log("\033[0;31m" + string);
+		colorLog("\033[0;31m", string);
 		quit();
 	}
 

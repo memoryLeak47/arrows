@@ -27,10 +27,8 @@ public class LobbyPlayer implements Serializable
 		lockPacket = new LockUserPacket(false);
 		avatarPacket = new AvatarUserPacket((byte)-1); // -1 => no avatar
 		teamPacket = new TeamUserPacket(Team.TEAM0);
-		byte[] skills = {0,0,0,0};
-		skillPacket = new SkillUserPacket(skills);
-		byte[] items = {0,0,0};
-		itemPacket = new ItemUserPacket(items);
+		skillPacket = new SkillUserPacket(new byte[]{-1,-1,-1,-1});
+		itemPacket = new ItemUserPacket(new byte[]{-1,-1,-1});
 	}
 
 	public LobbyPlayer(LoginUserPacket loginPacket, InetAddress ip)

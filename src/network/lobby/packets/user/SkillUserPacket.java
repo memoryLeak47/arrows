@@ -1,6 +1,7 @@
 package network.lobby.packets.user;
 
 import game.skill.Skill;
+import misc.Debug;
 import network.lobby.packets.UserPacket;
 
 public class SkillUserPacket extends UserPacket
@@ -26,12 +27,10 @@ public class SkillUserPacket extends UserPacket
 		Skill[] skills = new Skill[4];
 		for (byte i = 0; i < 4; i++)
 		{
-			skills[i] = Skill.getByID(i);	
+			skills[i] = Skill.getByID(skillIDs[i]);	
 		}
 		return skills;
 	}
-	public byte[] getSkillIDs()
-	{
-		return skillIDs;
-	}
+
+	public byte[] getSkillIDs() { return skillIDs; }
 }

@@ -5,4 +5,4 @@ disconnect button in lobby-menu
 ImageLoader
 PlayerIcon"
 
-cd ../src; findWord TODO
+cd src; findWord TODO
