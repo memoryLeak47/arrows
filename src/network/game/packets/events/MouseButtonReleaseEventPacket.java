@@ -3,6 +3,7 @@ package network.game.packets.events;
 import java.awt.event.MouseEvent;
 
 import network.game.packets.EventPacket;
+import misc.Debug;
 
 public final class MouseButtonReleaseEventPacket extends EventPacket
 {
@@ -24,7 +25,7 @@ public final class MouseButtonReleaseEventPacket extends EventPacket
 		}
 		else
 		{
-			System.out.println("bad mouse button");
+			Debug.warn("MouseButtonReleaseEventPacket.<init> bad mouse button(" + event.getButton() + ")");
 		}
 	}
 

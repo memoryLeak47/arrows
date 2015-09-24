@@ -60,7 +60,7 @@ public enum ImageFile
 		}
 		else
 		{
-			Debug.quit("Image.load(): " + file.getPath() + " is not a valid target");
+			Debug.error("Image.load(): " + file.getPath() + " is not a valid target");
 		}
 	}
 
@@ -95,7 +95,7 @@ public enum ImageFile
 			return ImageIO.read(file);
 		} catch (Exception e)
 		{
-			Debug.quit("Image.fileToImage(\"" + file.getPath() + "\") caused error");
+			Debug.error("Image.fileToImage(\"" + file.getPath() + "\") caused error");
 		}
 		return null;
 	}
@@ -108,11 +108,11 @@ public enum ImageFile
 	{
 		if (id == null)
 		{
-			Debug.quit("ImageFile.getImageByImageID(null)");
+			Debug.error("ImageFile.getImageByImageID(null)");
 		}
 		if (ImageFile.getByID(id.id) == null)
 		{
-			Debug.quit("ImageFile.getImageByImageID: ImageFile.getByID(" + id.id + ") returns null");
+			Debug.error("ImageFile.getImageByImageID: ImageFile.getByID(" + id.id + ") returns null");
 		}
 		return ImageFile.getByID(id.id).getImages()[id.index];
 	}

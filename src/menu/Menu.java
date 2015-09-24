@@ -90,7 +90,7 @@ public abstract class Menu extends ComponentContainer
 		}
 		else // falls das event ein anderes ist
 		{
-			Debug.quit("bad Event-subclass"); // printe nen error und beende das programm
+			Debug.error("bad Event-subclass"); // printe nen error und beende das programm
 		}
 	}
 

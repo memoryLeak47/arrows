@@ -82,7 +82,7 @@ public class LobbyPlayer implements Serializable
 		}
 		else
 		{
-			Debug.quit("LobbyPlayer.applyUserPacket got wrong packet");
+			Debug.error("LobbyPlayer.applyUserPacket got wrong packet");
 		}
 	}
 

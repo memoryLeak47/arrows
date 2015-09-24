@@ -19,7 +19,7 @@ public class NetworkDevice
 		try
 		{
 			socket = new DatagramSocket(PORT); // create socket
-		} catch (Exception e) { Debug.quit("can't create socket"); }
+		} catch (Exception e) { Debug.error("can't create socket"); }
 	}
 
 	public void send(Packet packet, InetAddress ip) // send packet to ip
@@ -29,7 +29,7 @@ public class NetworkDevice
 		try
 		{
 			socket.send(datagramPacket); // send
-		} catch (Exception e) { Debug.quit("Failed to send data"); }
+		} catch (Exception e) { Debug.error("Failed to send data"); }
 	}
 
 	public void receive() // called by Main.run() permanently, receives packets and gives them to menu.handlePacket(...)
@@ -39,7 +39,7 @@ public class NetworkDevice
 		try
 		{
 			socket.receive(datagramPacket); // receive packet
-		} catch (Exception e) { Debug.quit("Failed to receive data"); }
+		} catch (Exception e) { Debug.error("Failed to receive data"); }
 
 		if (menu != null) // if there is a target menu
 		{

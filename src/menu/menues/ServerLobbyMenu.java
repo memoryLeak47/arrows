@@ -70,7 +70,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 					{
 						if (ipIn(ip, getPlayers())) // und er schon einer der spieler ist
 						{
-							Debug.quit("server already got player with ip " + ip.getHostName()); // error
+							Debug.error("server already got player with ip " + ip.getHostName()); // error
 						}
 						else // falls der spieler wirklich neu ist
 						{
@@ -84,7 +84,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 					}
 					else // falls das packet iwas anderes ist
 					{
-						Debug.quit("Server can't accept packet in team phase"); // error
+						Debug.error("Server can't accept packet in team phase"); // error
 					}
 					break;
 				case AVATAR_PHASE: // falls wir in der avatar phase sind
@@ -99,7 +99,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 					}
 					else
 					{
-						Debug.quit("Server can't accept packet in avatar-phase");
+						Debug.error("Server can't accept packet in avatar-phase");
 					}
 					break;
 				case SKILL_PHASE:
@@ -114,7 +114,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 					}
 					else
 					{
-						Debug.quit("Server can't accept packet in skill-phase");
+						Debug.error("Server can't accept packet in skill-phase");
 					}
 					break;
 				case ITEM_PHASE:
@@ -129,11 +129,11 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 					}
 					else
 					{
-						Debug.quit("Server can't accept packet in item-phase");
+						Debug.error("Server can't accept packet in item-phase");
 					}
 					break;
 				default:
-					Debug.quit("ServerLobbyMenu.handlePacket(...): wrong phase");
+					Debug.error("ServerLobbyMenu.handlePacket(...): wrong phase");
 					break;
 			}
 		}

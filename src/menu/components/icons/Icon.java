@@ -23,12 +23,12 @@ public abstract class Icon extends MenuComponent
 	{
 		if (getImageID() == null)
 		{
-			Debug.quit("Icon.render tries to render null IconID");
+			Debug.error("Icon.render tries to render null IconID");
 			return;
 		}
 		if (ImageFile.getImageByImageID(getImageID()) == null)
 		{
-			Debug.quit("Icon.render tries to render null Icon");
+			Debug.error("Icon.render tries to render null Icon");
 			return;
 		}
 		Screen.g().drawImage(ImageFile.getImageByImageID(getImageID()), getOffset().getX(), getOffset().getY(), getWidth(), getHeight(), null);

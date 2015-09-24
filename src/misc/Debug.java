@@ -18,7 +18,7 @@ public class Debug
 		{
 			PrintWriter pw = new PrintWriter(STANDARD_LOGFILE);
 			pw.close();	
-		} catch (Exception e) { quit("failed to init Debug"); }
+		} catch (Exception e) { error("failed to init Debug"); }
 	}
 
 	public static void warn(String string)
@@ -65,7 +65,7 @@ public class Debug
 		System.exit(0);
 	}
 
-	public static void quit(String string) // quits (with exception) and gives error message
+	public static void error(String string) // quits (with exception) and gives error message
 	{
 		try
 		{
@@ -77,7 +77,7 @@ public class Debug
 			e.printStackTrace();
 			System.out.print("\u001B[0m"); // resets color
 		}
-		System.exit(0);
+		quit();
 	}
 
 	public static boolean isLogged(String string) // check if the string was a log
@@ -104,6 +104,6 @@ public class Debug
 			out.newLine();
 	 
 			out.close();
-		} catch (Exception e) { quit("failed to write Log to file " + STANDARD_LOGFILE); }
+		} catch (Exception e) { error("failed to write Log to file " + STANDARD_LOGFILE); }
 	}
 }

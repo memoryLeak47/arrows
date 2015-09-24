@@ -49,7 +49,7 @@ public final class Account implements Serializable
 		}
 		else
 		{
-			Debug.quit("account-name not chosen yet");
+			Debug.error("account-name not chosen yet");
 		}
 	}
 

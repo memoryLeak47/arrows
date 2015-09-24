@@ -24,7 +24,7 @@ public enum Team
 				return team;
 			}
 		}
-		Debug.quit("team id " + id + " in Team.getByID");
+		Debug.error("team id " + id + " in Team.getByID");
 		return null;
 	}
 

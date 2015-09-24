@@ -43,7 +43,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 			}
 			else
 			{
-				Debug.quit("client> got mappacket out of teamphase");
+				Debug.error("client> got mappacket out of teamphase");
 			}
 		}
 		else if (packet instanceof UserPacketWithID) // Wenn es sich bei dem Packet um UserPacketWithID handelt, dann
@@ -91,7 +91,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 						}
 						else
 						{
-							Debug.quit("Client can't accept packet in team phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
+							Debug.error("Client can't accept packet in team phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
 						}
 						break;
 					case AVATAR_PHASE: // Wenn man sich in der AvatarPhase befindet
@@ -101,7 +101,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 						}
 						else
 						{
-							Debug.quit("Client can't accept packet in avatar phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
+							Debug.error("Client can't accept packet in avatar phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
 						}
 						break;
 					case SKILL_PHASE: // Wenn man in der AttributPhase ist (Items/Skills)
@@ -111,20 +111,20 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 						}
 						else
 						{
-							Debug.quit("Client can't accept packet in attribute phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
+							Debug.error("Client can't accept packet in attribute phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
 						}
 						break;
 					case ITEM_PHASE:
 						break;
 					default:
-						Debug.quit("ClientLobbyMenu.handlePacket(...): wrong phase"); // Da ist was ganz komisch gelaufen; Ungültige Phase
+						Debug.error("ClientLobbyMenu.handlePacket(...): wrong phase"); // Da ist was ganz komisch gelaufen; Ungültige Phase
 						break;
 				}
 			}
 		}
 		else
 		{
-			Debug.quit("Client received wrong packet"); // packets, die nicht vom Typ UserPacketWithID sind werden nicht angenommen
+			Debug.error("Client received wrong packet"); // packets, die nicht vom Typ UserPacketWithID sind werden nicht angenommen
 		}
 	}
 

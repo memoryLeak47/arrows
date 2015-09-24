@@ -52,7 +52,7 @@ public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 				return i; // returne deinen index
 			}
 		} // wenn keins fullscreen ist
-		Debug.quit("MenuList.getTopmostFullscreenMenuIndex() no fullscreen menu!"); // beende das programm und schmeiß nen error
+		Debug.error("MenuList.getTopmostFullscreenMenuIndex() no fullscreen menu!"); // beende das programm und schmeiß nen error
 		return 0;
 	}
 

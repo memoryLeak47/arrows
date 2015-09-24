@@ -98,7 +98,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 		{
 			return "Next Phase";
 		}
-		Debug.quit("LobbyMenu.getLockButtonCaption: wrong lobby-menu-subclass");
+		Debug.error("LobbyMenu.getLockButtonCaption: wrong lobby-menu-subclass");
 		return null;
 	}
 
