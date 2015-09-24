@@ -58,7 +58,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 					{
 						if (ipToPlayer(ip, getPlayers()).isLocked())
 						{
-							Debug.log("locked player sent TeamUserPacket");
+							Debug.note("locked player sent TeamUserPacket");
 							return;
 						}
 						ipToPlayer(ip, getPlayers()).applyUserPacket((TeamUserPacket) packet); // setze das TeamUserPacket vom sender-player auf das erhaltene
@@ -225,7 +225,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 				return i; // returne deine ID
 			}
 		} // falls kein spieler gefunden wurde
-		Debug.log("ServerLobbyMenu.ipToPlayerID(...): no LobbyPlayer with ip " + ip.getHostName()); // error
+		Debug.note("ServerLobbyMenu.ipToPlayerID(...): no LobbyPlayer with ip " + ip.getHostName()); // error
 		return -1;
 	}
 

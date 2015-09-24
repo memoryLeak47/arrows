@@ -18,7 +18,7 @@ public class ServerGameInterface extends GameInterface
 		}
 		else
 		{
-			Debug.log("ServerGameInterface got non-EventPacket"); // ignore packet
+			Debug.note("ServerGameInterface got non-EventPacket"); // ignore packet
 		}
 	}
 }

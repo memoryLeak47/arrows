@@ -16,6 +16,7 @@ public class Debug
 	public static final String ANSI_CYAN = "\u001B[36m";
 	public static final String ANSI_WHITE = "\u001B[37m";
 
+	public static final String NOTE_COLOR = ANSI_YELLOW;
 	public static final String TIME_COLOR = ANSI_CYAN;
 	public static final String TEST_COLOR = ANSI_GREEN;
 	public static final String WARN_COLOR = ANSI_PURPLE;
@@ -37,11 +38,9 @@ public class Debug
 		} catch (Exception e) { error("failed to init Debug"); }
 	}
 
-	public static void log(String string) // prints log and adds it to logs
+	public static void note(String string)
 	{
-		System.out.println(string); // prints log
-		addLog(string); // adds it to logs
-		writeLog(string);
+		colorLog(NOTE_COLOR, "NOTE: " + string);
 	}
 
 	public static void test(String string)
@@ -86,6 +85,13 @@ public class Debug
 	}
 
 	// private
+	private static void log(String string) // prints log and adds it to logs
+	{
+		System.out.println(string); // prints log
+		addLog(string); // adds it to logs
+		writeLog(string);
+	}
+
 	private static void colorLog(String color, String string)
 	{
 		System.out.print(color);
