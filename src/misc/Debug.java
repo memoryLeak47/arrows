@@ -65,10 +65,19 @@ public class Debug
 		System.exit(0);
 	}
 
-	public static void quit(String string) // quits and gives error message
+	public static void quit(String string) // quits (with exception) and gives error message
 	{
-		colorLog("\033[0;31m", string);
-		quit();
+		try
+		{
+			throw new Exception(string);
+		} catch (Exception e)
+		{
+			System.out.print("\033[0;31m");
+			addLog(string);
+			e.printStackTrace();
+			System.out.print("\u001B[0m"); // resets color
+		}
+		System.exit(0);
 	}
 
 	public static boolean isLogged(String string) // check if the string was a log
