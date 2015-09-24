@@ -56,6 +56,14 @@ public class Main
 
 	public static void quit()
 	{
+		Debug.note("note");
+		Debug.warn("warn");
+		Debug.time("t1");
+		Debug.time("t2");
+		Debug.test("test");
+		Debug.error("error");
+		Debug.note("note!");
+
 		if (account != null) // falls du eingeloggt bist
 		{
 			Account.updateAccount(account); // speichere die änderungen an deinem account

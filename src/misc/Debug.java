@@ -6,21 +6,31 @@ import java.text.DecimalFormat;
 
 public class Debug
 {
-	public static final String ANSI_RESET = "\u001B[0m";
-	public static final String ANSI_BLACK = "\u001B[30m";
-	public static final String ANSI_RED = "\u001B[31m";
-	public static final String ANSI_GREEN = "\u001B[32m";
-	public static final String ANSI_YELLOW = "\u001B[33m";
-	public static final String ANSI_BLUE = "\u001B[34m";
-	public static final String ANSI_PURPLE = "\u001B[35m";
-	public static final String ANSI_CYAN = "\u001B[36m";
-	public static final String ANSI_WHITE = "\u001B[37m";
+	public static final String RESET = "\u001B[0m";
 
-	public static final String NOTE_COLOR = ANSI_YELLOW;
-	public static final String TIME_COLOR = ANSI_CYAN;
-	public static final String TEST_COLOR = ANSI_GREEN;
-	public static final String WARN_COLOR = ANSI_PURPLE;
-	public static final String ERROR_COLOR = ANSI_RED;
+	public static final String FBLACK = "\u001B[30m";
+	public static final String FRED = "\u001B[31m";
+	public static final String FGREEN = "\u001B[32m";
+	public static final String FYELLOW = "\u001B[33m";
+	public static final String FBLUE = "\u001B[34m";
+	public static final String FPURPLE = "\u001B[35m";
+	public static final String FCYAN = "\u001B[36m";
+	public static final String FWHITE = "\u001B[37m";
+
+	public static final String BBLACK = "\u001B[40m";
+	public static final String BRED = "\u001B[41m";
+	public static final String BGREEN = "\u001B[42m";
+	public static final String BYELLOW = "\u001B[43m";
+	public static final String BBLUE = "\u001B[44m";
+	public static final String BPURPLE = "\u001B[45m";
+	public static final String BCYAN = "\u001B[46m";
+	public static final String BWHITE = "\u001B[47m";
+
+	public static final String NOTE_COLOR = FYELLOW;
+	public static final String TIME_COLOR = FCYAN;
+	public static final String TEST_COLOR = FGREEN;
+	public static final String WARN_COLOR = FRED;
+	public static final String ERROR_COLOR = FRED;
 
 	private static LinkedList<String> logs = new LinkedList<String>(); // liste der logs
 	private static final String STANDARD_LOGFILE = "log"; // standart-logfile
@@ -96,7 +106,7 @@ public class Debug
 	{
 		System.out.print(color);
 		log(string);
-		System.out.print(ANSI_RESET); // resets color
+		System.out.print(RESET); // resets color
 	}
 
 	private static void addLog(String string) // adds log to loglist
