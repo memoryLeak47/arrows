@@ -25,10 +25,10 @@ public enum ImageFile
 	ARCHER_ICON("icons/avatars/archer.png"),
 
 	// skills
-	ARROW_ICON("icons/skills/arrow.png")
+	ARROW_ICON("icons/skills/arrow.png"),
 
 	// items
-	;
+	HEALTH_RING_ICON("icons/items/healthring.png");
 
 	private int id;
 	private final File file;

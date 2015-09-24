@@ -12,5 +12,5 @@ public class Archer extends Avatar
 	}
 
 	@Override public String getName() { return "Legolas ^^"; }
-	@Override public String getClassName() { return "Archer"; }
+	@Override public String getDescription() { return "a funny fernkämpfer"; }
 }

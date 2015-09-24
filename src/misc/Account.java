@@ -14,8 +14,9 @@ public final class Account implements Serializable
 
 	private String name, password;
 	private int rank, budget;
-	// TODO add bought stuff
+	// private LinkedList<ASI> bought = new LinkedList<ASI>(); // TODO
 
+	// public
 	public Account(String name, String password)
 	{
 		this.name = name;
@@ -68,6 +69,7 @@ public final class Account implements Serializable
 		return null;
 	}
 
+	// private
 	private static Account getByName(String name, LinkedList<Account> accounts)
 	{
 		for (Account account : accounts)
@@ -104,6 +106,7 @@ public final class Account implements Serializable
 		return (getByName(name, accounts) == null);
 	}
 
+	// public Getter
 	public String getName() { return name; }
 	public String getPassword() { return password; }
 	public int getRank() { return rank; }

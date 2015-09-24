@@ -1,10 +1,11 @@
 package game.item;
 
+import game.PlayerAttribute;
 import game.item.items.*;
 import graphics.ImageID;
 import misc.Debug;
 
-public abstract class Item
+public abstract class Item extends PlayerAttribute
 {
 	private byte id;
 	private static Item[] items;
@@ -31,6 +32,6 @@ public abstract class Item
 		}
 		return null;
 	}
+
 	public final byte getID() { return id; }
-	public abstract ImageID getIconImageID();
 }

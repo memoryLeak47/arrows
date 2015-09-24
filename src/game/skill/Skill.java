@@ -1,10 +1,11 @@
 package game.skill;
 
+import game.PlayerAttribute;
 import game.skill.skills.*;
 import graphics.ImageID;
 import misc.Debug;
 
-public abstract class Skill
+public abstract class Skill extends PlayerAttribute
 {
 	private byte id;
 	private static Skill[] skills;
@@ -34,8 +35,5 @@ public abstract class Skill
 
 	public final byte getID() { return id; }
 
-	public abstract ImageID getIconImageID();
 	public abstract int getMaxCooldown();
-	public abstract String getDescription();
-	public abstract String getClassName();
 }

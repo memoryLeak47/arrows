@@ -10,5 +10,4 @@ public class Arrow extends Skill
 
 	@Override public int getMaxCooldown() { return 2; }
 	@Override public String getDescription() { return "shoots an arrow"; }
-	@Override public String getClassName() { return "Arrow"; }
 }

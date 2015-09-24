@@ -28,7 +28,7 @@ public class Debug
 
 	public static final String NOTE_COLOR = FYELLOW;
 	public static final String TIME_COLOR = FCYAN;
-	public static final String TEST_COLOR = FGREEN;
+	public static final String TEST_COLOR = FPURPLE;
 	public static final String WARN_COLOR = FRED;
 	public static final String ERROR_COLOR = FRED;
 

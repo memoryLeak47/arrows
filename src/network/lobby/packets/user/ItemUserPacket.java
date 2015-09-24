@@ -26,13 +26,10 @@ public class ItemUserPacket extends UserPacket
 		Item[] items = new Item[3];
 		for (byte i = 0; i < 3; i++)
 		{
-			items[i] = Item.getByID(i);
+			items[i] = Item.getByID(itemIDs[i]);
 		}
 		return items;
 	}
 
-	public byte[] getItemIDs()
-	{
-		return itemIDs;
-	}
+	public byte[] getItemIDs() { return itemIDs; }
 }
