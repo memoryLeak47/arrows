@@ -6,12 +6,28 @@ import java.text.DecimalFormat;
 
 public class Debug
 {
+	public static final String ANSI_RESET = "\u001B[0m";
+	public static final String ANSI_BLACK = "\u001B[30m";
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_GREEN = "\u001B[32m";
+	public static final String ANSI_YELLOW = "\u001B[33m";
+	public static final String ANSI_BLUE = "\u001B[34m";
+	public static final String ANSI_PURPLE = "\u001B[35m";
+	public static final String ANSI_CYAN = "\u001B[36m";
+	public static final String ANSI_WHITE = "\u001B[37m";
+
+	public static final String TIME_COLOR = ANSI_CYAN;
+	public static final String TEST_COLOR = ANSI_GREEN;
+	public static final String WARN_COLOR = ANSI_PURPLE;
+	public static final String ERROR_COLOR = ANSI_RED;
+
 	private static LinkedList<String> logs = new LinkedList<String>(); // liste der logs
 	private static final String STANDARD_LOGFILE = "log"; // standart-logfile
 	private static long lastTime = 0;
 
 	private Debug() {}
 
+	// public
 	public static void init()
 	{
 		try
@@ -21,18 +37,6 @@ public class Debug
 		} catch (Exception e) { error("failed to init Debug"); }
 	}
 
-	public static void warn(String string)
-	{
-		colorLog("\033[0;31m", "WARNING: " + string);
-	}
-
-	private static void colorLog(String color, String string)
-	{
-		System.out.print(color);
-		log(string);
-		System.out.print("\u001B[0m"); // resets color
-	}
-
 	public static void log(String string) // prints log and adds it to logs
 	{
 		System.out.println(string); // prints log
@@ -40,44 +44,40 @@ public class Debug
 		writeLog(string);
 	}
 
-	public static void testLog(String string)
+	public static void test(String string)
 	{
-		colorLog("\033[0;33m", string);
+		colorLog(TEST_COLOR, "TEST: " + string);
 	}
 
-	public static void timeLog(String string) // prints time difference of last timeLog(...)
+	public static void time(String string) // prints time difference of last timeLog(...)
 	{
 		if (lastTime == 0) // if there was no last timeLog()
 		{
-			System.out.println(string + ": ?"); // print string + ": ?"
+			colorLog(TIME_COLOR, "TIME: " + string + ": first call");
 		}
 		else // if there was
 		{
 			DecimalFormat df = new DecimalFormat("#.###"); // create DecimalFormat
-			System.out.println(string + ": " + df.format((System.nanoTime() - lastTime)/1000000000D) + " seconds"); // print it
+			string += ": " + df.format((System.nanoTime() - lastTime)/1000000000D) + " seconds";
+			colorLog(TIME_COLOR, "TIME: " + string);
 		}
 		lastTime = System.nanoTime(); // set lastTime to now
-		addLog(string); // add the log
 	}
 
-	public static void quit() // quits
+	public static void warn(String string)
 	{
-		System.exit(0);
+		colorLog(WARN_COLOR, "WARN: " + string);
 	}
 
 	public static void error(String string) // quits (with exception) and gives error message
 	{
-		try
+		colorLog(ERROR_COLOR, "ERROR: " + string);
+		StackTraceElement[] trace = new Throwable().getStackTrace();
+		for (int i = 1; i < trace.length; i++)
 		{
-			throw new Exception(string);
-		} catch (Exception e)
-		{
-			System.out.print("\033[0;31m");
-			addLog(string);
-			e.printStackTrace();
-			System.out.print("\u001B[0m"); // resets color
+			colorLog(ERROR_COLOR, "\t" + trace[i]);
 		}
-		quit();
+		System.exit(1);
 	}
 
 	public static boolean isLogged(String string) // check if the string was a log
@@ -85,12 +85,20 @@ public class Debug
 		return logs.contains(string);
 	}
 
-	public static void addLog(String string) // adds log to loglist
+	// private
+	private static void colorLog(String color, String string)
+	{
+		System.out.print(color);
+		log(string);
+		System.out.print(ANSI_RESET); // resets color
+	}
+
+	private static void addLog(String string) // adds log to loglist
 	{
 		logs.add(string);
 	}
 
-	public static void writeLog(String string)
+	private static void writeLog(String string)
 	{
 		try
 		{

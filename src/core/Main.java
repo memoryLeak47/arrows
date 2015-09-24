@@ -65,7 +65,7 @@ public class Main
 			((LobbyMenu) getMenues().getLast()).disconnectPressed();
 		}
 		Debug.log("closed properly"); // beende das programm
-		Debug.quit();
+		System.exit(0);
 	}
 
 	private void tick()

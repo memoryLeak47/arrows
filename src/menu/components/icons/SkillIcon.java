@@ -27,7 +27,7 @@ public class SkillIcon extends ChoosableIcon
 		{
 			return ImageFile.VOID_ICON.getImageID();
 		}
-		Debug.testLog("SkillIcon.getImageID() with skill " + skill.getClassName() + " has IconImageID (" + skill.getIconImageID().id + ", " + skill.getIconImageID().index + ")");
+		Debug.test("SkillIcon.getImageID() with skill " + skill.getClassName() + " has IconImageID (" + skill.getIconImageID().id + ", " + skill.getIconImageID().index + ")");
 		return skill.getIconImageID();
 	}
 	public Skill getSkill() { return skill; }

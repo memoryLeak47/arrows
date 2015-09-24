@@ -19,7 +19,7 @@ public class ChooseAvatarMenu extends ChooseASIMenu
 		for (Avatar avatar : avatars)
 		{
 			getComponents().add(new AvatarIcon(this, new Rect(10,y,30,30), avatar));
-			y = y + 35;
+			y += 35;
 		}
 	}
 
