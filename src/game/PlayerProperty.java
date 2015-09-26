@@ -2,7 +2,7 @@ package game;
 
 import graphics.ImageID;
 
-public abstract class PlayerAttribute
+public abstract class PlayerProperty
 {
 	public abstract String getDescription();
 	public abstract ImageID getIconImageID();

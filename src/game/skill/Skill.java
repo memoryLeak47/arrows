@@ -1,11 +1,11 @@
 package game.skill;
 
-import game.PlayerAttribute;
+import game.PlayerProperty;
 import game.skill.skills.*;
 import graphics.ImageID;
 import misc.Debug;
 
-public abstract class Skill extends PlayerAttribute
+public abstract class Skill extends PlayerProperty
 {
 	private byte id;
 	private static Skill[] skills;
@@ -14,7 +14,7 @@ public abstract class Skill extends PlayerAttribute
 	{
 		skills = new Skill[]
 		{
-			new Arrow()
+			new ArrowShot()
 		};
 
 		for (byte i = 0; i < skills.length; i++)
@@ -35,5 +35,7 @@ public abstract class Skill extends PlayerAttribute
 
 	public final byte getID() { return id; }
 
+	// for sub
 	public abstract int getMaxCooldown();
+	// TODO what happens if skill is casted
 }

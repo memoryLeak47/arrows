@@ -1,11 +1,12 @@
 package game.item;
 
-import game.PlayerAttribute;
-import game.item.items.*;
+import game.PlayerProperty;
+import game.item.items.castable.*;
+import game.item.items.notcastable.*;
 import graphics.ImageID;
 import misc.Debug;
 
-public abstract class Item extends PlayerAttribute
+public abstract class Item extends PlayerProperty
 {
 	private byte id;
 	private static Item[] items;
@@ -22,6 +23,10 @@ public abstract class Item extends PlayerAttribute
 			items[i].id = i;
 		}
 	}
+
+	// for sub
+	public abstract boolean isCastable();
+	public abstract int getMassStat();
 
 	// Getter
 	public static Item getByID(byte id)

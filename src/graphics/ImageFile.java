@@ -19,17 +19,22 @@ import misc.Debug;
 
 public enum ImageFile
 {
+	// Icons
 	VOID_ICON("icons/void.png"),
 
 	// avatars
 	ARCHER_ICON("icons/avatars/archer.png"),
 
 	// skills
-	ARROW_ICON("icons/skills/arrow.png"),
+	ARROWSHOT_ICON("icons/skills/arrow.png"),
 
 	// items
-	HEALTH_RING_ICON("icons/items/healthring.png");
+	// not castable
+	HEALTHRING_ICON("icons/items/healthring.png"),
+	// castable
+	JETPACK_ICON("icons/items/jetpack.png");
 
+	// Not Icons
 	private int id;
 	private final File file;
 	private BufferedImage[] images;

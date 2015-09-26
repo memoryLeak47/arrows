@@ -1,20 +1,16 @@
 package game.avatar;
 
-import game.PlayerAttribute;
+import game.PlayerProperty;
+import game.Damage;
 import game.avatar.avatars.*;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;
 
-public abstract class Avatar extends PlayerAttribute
+public abstract class Avatar extends PlayerProperty
 {
 	private byte id;
 	private static Avatar[] avatars;
-
-	public Avatar()
-	{
-		id = -1;
-	}
 
 	static
 	{
@@ -29,6 +25,15 @@ public abstract class Avatar extends PlayerAttribute
 		}
 	}
 
+	// for sub
+	public abstract int getMassStat();
+	public abstract int getMaxHealthStat();
+	public abstract int getRegenerationStat();
+	public abstract int getAccelerationStat();
+	public abstract Damage getDamageStat();
+	public abstract Damage getResistanceStat();
+	public abstract String getName();
+
 	// Getter
 	public static Avatar getByID(byte id)
 	{
@@ -39,8 +44,7 @@ public abstract class Avatar extends PlayerAttribute
 		return null;
 	}
 
-	public static Avatar[] getAvatars() { return avatars; }
+	public static Avatar[] getAllAvatars() { return avatars; }
 	public final byte getID() { return id; }
 	public ImageID getIconImageID() { return ImageFile.VOID_ICON.getImageID(); } // Wird in den Unterklassen weiter überschrieben
-	public abstract String getName();
 }

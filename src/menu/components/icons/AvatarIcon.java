@@ -28,7 +28,7 @@ public class AvatarIcon extends ChoosableIcon
 		if (isChoosable())
 		{
 			// added ein neues ChooseAvatarMenu.
-			Main.getMenues().add(new ChooseAvatarMenu(new Rect(200, 0, Screen.getScreenSize().getX()-200, Screen.getScreenSize().getY()), Avatar.getAvatars()));
+			Main.getMenues().add(new ChooseAvatarMenu(new Rect(200, 0, Screen.getScreenSize().getX()-200, Screen.getScreenSize().getY()), Avatar.getAllAvatars()));
 		}
 	}
 
