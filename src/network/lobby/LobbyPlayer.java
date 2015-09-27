@@ -86,6 +86,10 @@ public class LobbyPlayer implements Serializable
 		}
 	}
 
+	public AvatarUserPacket getAvatarPacket() { return avatarPacket; }
+	public SkillUserPacket getSkillPacket() { return skillPacket; }
+	public ItemUserPacket getItemPacket() { return itemPacket; }
+	
 	public InetAddress getIP() { return ip; }
 	public String getName() { return loginPacket.getName(); }
 	public int getRank() { return loginPacket.getRank(); }

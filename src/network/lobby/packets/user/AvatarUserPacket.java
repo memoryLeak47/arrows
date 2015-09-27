@@ -1,9 +1,11 @@
 package network.lobby.packets.user;
 
 import game.avatar.Avatar;
+import game.PlayerProperty;
 import network.lobby.packets.UserPacket;
+import network.lobby.packets.PlayerPropertyUserPacket;
 
-public class AvatarUserPacket extends UserPacket
+public class AvatarUserPacket extends UserPacket implements PlayerPropertyUserPacket
 {
 	private byte avatarID;
 
@@ -26,4 +28,6 @@ public class AvatarUserPacket extends UserPacket
 	{
 		return avatarID;
 	}
+
+	@Override public PlayerProperty[] getPlayerProperty() { return new PlayerProperty[]{getAvatar()}; }
 }

@@ -1,4 +1,4 @@
-package menu.components.icons;
+package menu.components;
 
 import java.awt.Color;
 

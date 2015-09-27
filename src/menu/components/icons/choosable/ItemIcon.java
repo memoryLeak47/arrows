@@ -1,6 +1,6 @@
-package menu.components.icons;
+package menu.components.icons.choosable;
 
-import menu.components.icons.Icon;
+import menu.components.icons.ChoosableIcon;
 import menu.ComponentContainer;
 import menu.menues.LobbyMenu;
 import game.item.Item;

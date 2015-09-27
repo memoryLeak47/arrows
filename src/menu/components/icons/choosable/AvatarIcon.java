@@ -1,10 +1,10 @@
-package menu.components.icons;
+package menu.components.icons.choosable;
 
 import core.Screen;
 import menu.components.icons.ChoosableIcon;
-import menu.menues.ChooseAvatarMenu;
 import menu.ComponentContainer;
 import menu.menues.LobbyMenu;
+import menu.menues.ChoosePlayerPropertyMenu;
 import core.Main;
 import game.avatar.Avatar;
 import game.avatar.avatars.*;
@@ -28,7 +28,7 @@ public class AvatarIcon extends ChoosableIcon
 		if (isChoosable())
 		{
 			// added ein neues ChooseAvatarMenu.
-			Main.getMenues().add(new ChooseAvatarMenu(new Rect(200, 0, Screen.getScreenSize().getX()-200, Screen.getScreenSize().getY()), Avatar.getAllAvatars()));
+			Main.getMenues().add(new ChoosePlayerPropertyMenu(getLobbyMenu().getLocalPlayer().getAvatarPacket(), Avatar.getAllAvatars()));
 		}
 	}
 

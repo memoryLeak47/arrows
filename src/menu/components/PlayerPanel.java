@@ -11,9 +11,7 @@ import java.awt.Color;
 
 import core.Screen;
 import menu.ComponentContainer;
-import menu.components.icons.AvatarIcon;
-import menu.components.icons.SkillIcon;
-import menu.components.icons.ItemIcon;
+import menu.components.icons.choosable.*;;
 import misc.Debug;
 import misc.math.Rect;
 import network.lobby.LobbyPlayer;

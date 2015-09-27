@@ -1,9 +1,11 @@
 package network.lobby.packets.user;
 
 import game.item.Item;
+import game.PlayerProperty;
 import network.lobby.packets.UserPacket;
+import network.lobby.packets.PlayerPropertyUserPacket;
 
-public class ItemUserPacket extends UserPacket
+public class ItemUserPacket extends UserPacket implements PlayerPropertyUserPacket
 {
 	private byte[] itemIDs;
 
@@ -32,4 +34,6 @@ public class ItemUserPacket extends UserPacket
 	}
 
 	public byte[] getItemIDs() { return itemIDs; }
+
+	@Override public PlayerProperty[] getPlayerProperty() { return getItems(); }
 }

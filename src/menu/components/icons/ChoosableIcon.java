@@ -1,9 +1,15 @@
+/*
+	Überklasse aller Icons die im PlayerPanel platziert sind
+
+	AvatarIcon, SkillIcon, ItemIcon
+*/
+
 package menu.components.icons;
 
 import java.awt.Color;
 
 import core.Screen;
-import menu.components.icons.Icon;
+import menu.components.Icon;
 import menu.components.PlayerPanel;
 import menu.ComponentContainer;
 import menu.menues.LobbyMenu;

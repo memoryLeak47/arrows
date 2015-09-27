@@ -1,10 +1,12 @@
 package network.lobby.packets.user;
 
 import game.skill.Skill;
+import game.PlayerProperty;
 import misc.Debug;
 import network.lobby.packets.UserPacket;
+import network.lobby.packets.PlayerPropertyUserPacket;
 
-public class SkillUserPacket extends UserPacket
+public class SkillUserPacket extends UserPacket implements PlayerPropertyUserPacket
 {
 	private byte[] skillIDs;
 
@@ -33,4 +35,6 @@ public class SkillUserPacket extends UserPacket
 	}
 
 	public byte[] getSkillIDs() { return skillIDs; }
+
+	@Override public PlayerProperty[] getPlayerProperty() { return getSkills(); }
 }
