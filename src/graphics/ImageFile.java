@@ -140,10 +140,16 @@ public enum ImageFile
 
 	public static ImageFile getByID(int id) 
 	{
+		if ((id < 0) || (id >= ImageFile.values().length))
+		{
+			Debug.error("ImageFile.getByID(): invalid id (" + id + ")");
+		}
+
 		if (!ImageFile.values()[id].isLoaded())
 		{
 			ImageFile.values()[id].load();
 		}
+
 		return ImageFile.values()[id];
 	}
 /*
