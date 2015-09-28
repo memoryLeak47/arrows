@@ -63,10 +63,12 @@ public class ChoosePlayerPropertyMenu extends Menu
 		{
 			@Override public void onClick(int mouseButton)
 			{
-				for (int i = 0; i < slotIcons.size(); i++)
-				{
-					slotPacket.getPlayerProperty()[i] = slotIcons.get(i).getPlayerProperty();
-				}
+				/* TODO
+					for (int i = 0; i < slotIcons.size(); i++)
+					{
+						((ChoosePlayerPropertyMenu) getParent()).slotPacket.getPlayerProperty()[i] = slotIcons.get(i).getPlayerProperty();
+					}
+				*/
 				Main.getMenues().remove(Main.getMenues().getLast());
 			}
 		});
