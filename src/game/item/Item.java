@@ -1,8 +1,7 @@
 package game.item;
 
 import game.PlayerProperty;
-import game.item.items.castable.*;
-import game.item.items.notcastable.*;
+import game.item.items.*;
 import graphics.ImageID;
 import misc.Debug;
 
@@ -25,7 +24,6 @@ public abstract class Item extends PlayerProperty
 	}
 
 	// for sub
-	public abstract boolean isCastable();
 	public abstract int getMassStat();
 
 	// Getter
