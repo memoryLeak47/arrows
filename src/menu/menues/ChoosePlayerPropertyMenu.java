@@ -2,6 +2,7 @@ package menu.menues;
 
 import java.util.LinkedList;
 
+import core.Main;
 import core.Screen;
 import menu.Menu;
 import menu.components.Button;
@@ -62,7 +63,11 @@ public class ChoosePlayerPropertyMenu extends Menu
 		{
 			@Override public void onClick(int mouseButton)
 			{
-				// TODO
+				for (int i = 0; i < slotIcons.size(); i++)
+				{
+					slotPacket.getPlayerProperty()[i] = slotIcons.get(i).getPlayerProperty();
+				}
+				Main.getMenues().remove(Main.getMenues().getLast());
 			}
 		});
 
@@ -70,7 +75,7 @@ public class ChoosePlayerPropertyMenu extends Menu
 		{
 			@Override public void onClick(int mouseButton)
 			{
-				// TODO
+				Main.getMenues().remove(Main.getMenues().getLast());
 			}
 		});
 	}

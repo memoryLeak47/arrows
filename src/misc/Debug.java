@@ -27,7 +27,7 @@ public class Debug
 	public static final String BWHITE = "\u001B[47m";
 
 	public static final String NOTE_COLOR = FYELLOW;
-	public static final String ONCE_COLOR = FPURPLE;
+	public static final String ONCE_COLOR = FYELLOW;
 	public static final String TIME_COLOR = FCYAN;
 	public static final String TEST_COLOR = FPURPLE;
 	public static final String WARN_COLOR = FRED;
