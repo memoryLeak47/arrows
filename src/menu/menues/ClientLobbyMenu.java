@@ -104,17 +104,25 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 							Debug.error("Client can't accept packet (" + packet + ") in avatar phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
 						}
 						break;
-					case SKILL_PHASE: // Wenn man in der AttributPhase ist (Items/Skills)
-						if (userPacket instanceof SkillUserPacket) // Wenn ein Spieler ein Skill/Item wechselt
+					case SKILL_PHASE: // Wenn man in der SkillPhase ist
+						if (userPacket instanceof SkillUserPacket) // Wenn ein Spieler ein Skill wechselt
 						{
 							getPlayer(packet).applyUserPacket(userPacket); // In der LobbyPlayer Liste übernehmen
 						}
 						else
 						{
-							Debug.error("Client can't accept packet (" + packet + ") in attribute phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
+							Debug.error("Client can't accept packet (" + packet + ") in skill phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
 						}
 						break;
 					case ITEM_PHASE:
+						if (userPacket instanceof ItemUserPacket) // Wenn ein Spieler ein Item wechselt
+						{
+							getPlayer(packet).applyUserPacket(userPacket); // In der LobbyPlayer Liste übernehmen
+						}
+						else
+						{
+							Debug.error("Client can't accept packet (" + packet + ") in item phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
+						}
 						break;
 					default:
 						Debug.error("ClientLobbyMenu.handlePacket(...): wrong phase (" + getPhase() + ")"); // Da ist was ganz komisch gelaufen; Ungültige Phase
