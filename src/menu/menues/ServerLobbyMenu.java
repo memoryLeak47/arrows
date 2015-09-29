@@ -146,10 +146,15 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	@Override public void lockPressed()
 	{
+		// Wenn alle Client-Spieler gelockt sind
 		if (allPlayersLocked())
 		{
-			sendUserPacketFromServer(new LockUserPacket(true));
-			nextPhase();
+			// Wenn man seine PlayerProperties gewählt hat
+			if (isPlayerPropertiesChoosen())
+			{
+				sendUserPacketFromServer(new LockUserPacket(true));
+				nextPhase();
+			}
 		}
 	}
 

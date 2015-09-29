@@ -89,6 +89,58 @@ public class LobbyPlayer implements Serializable
 	public AvatarUserPacket getAvatarPacket() { return avatarPacket; }
 	public SkillUserPacket getSkillPacket() { return skillPacket; }
 	public ItemUserPacket getItemPacket() { return itemPacket; }
+
+	public boolean isAvatarChoosen()
+	{
+		// Wenn das AvatarPacket noch nicht erstellt ist
+		if (avatarPacket == null)
+		{
+			Debug.warn("LobbyPlayer.isAvatarChoosen(): avatarPacket == null"); // Warnung anzeigen. Das Packet muss immer erzeugt sein
+			return false;
+		}
+		// Wenn noch kein Avatar ausgerwählt ist
+		if (avatarPacket.getAvatar() == null)
+		{
+			return false; // zurückgeben, dass der Avatar noch nicht belegt wurde
+		}
+		return true; // Der Avatar wurde belegt
+	}
+	public boolean isSkillsChoosen()
+	{
+		// Wenn das SkillPacket noch nicht erstellt ist
+		if (skillPacket == null)
+		{
+			Debug.warn("LobbyPlayer.isSkillChoosen(): skillPacket == null"); // Warnung anzeigen. Das Packet muss immer erzeugt sein
+			return false; // zurückgeben, dass nicht alle Skills belegt wurden
+		}
+		// Wenn ein Skill noch nicht belegt ist
+		for (int i = 0; i < skillPacket.getSkills().length; i++)
+		{
+			if (skillPacket.getSkills()[i] == null)
+			{
+				return false; // zurückgeben, dass nicht alle Skills belegt wurden
+			}
+		}
+		return true; // Alle Skills wurden belegt
+	}
+	public boolean isItemsChoosen()
+	{
+		// Wenn das ItemPacket noch nicht erstellt ist
+		if (itemPacket == null)
+		{
+			Debug.warn("LobbyPlayer.isItemsChoosen(): itemPacket == null"); // Warnung anzeigen. Das Packet muss immer erzeugt sein
+			return false; // zurückgeben, dass nicht alle Items belegt wurden
+		}
+		// Wenn ein Item noch nicht belegt ist
+		for (int i = 0; i < itemPacket.getItems().length; i++)
+		{
+			if (itemPacket.getItems()[i] == null)
+			{
+				return false; // zurückgeben, dass nicht alle Items belegt wurden
+			}
+		}
+		return true; // Alle Items wurden belegt
+	}
 	
 	public InetAddress getIP() { return ip; }
 	public String getName() { return loginPacket.getName(); }

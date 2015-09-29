@@ -128,4 +128,16 @@ public abstract class LobbyMenu extends NetworkingMenu
 	{
 		getPlayers().remove(player);
 	}
+
+	protected boolean isPlayerPropertiesChoosen()
+	{
+		switch (phase)
+		{
+			case AVATAR_PHASE: return getLocalPlayer().isAvatarChoosen();
+			case SKILL_PHASE: return getLocalPlayer().isSkillsChoosen();
+			case ITEM_PHASE: return getLocalPlayer().isItemsChoosen();
+		}
+
+		return true; // In jeder anderen Phase gibt es keine PlayerProperties, die man wählen müsste, es sind also immer alle belegt
+	}
 }

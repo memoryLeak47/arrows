@@ -134,10 +134,17 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 		// TODO: Map anzeigen
 	}
 
-	// Wird aufgerufen, wenn man sein Team wechselt
+	// Wird aufgerufen, wenn man den Lock-Button drückt
 	@Override public void lockPressed()
 	{
-		sendToServer(new LockUserPacket(!getLocalPlayer().isLocked())); // sendet an den Server, dass man den lock-button betätigt hat
+		if (isPlayerPropertiesChoosen())
+		{
+			sendToServer(new LockUserPacket(!getLocalPlayer().isLocked())); // sendet an den Server, dass man den lock-button betätigt hat
+		}
+		else
+		{
+			Debug.note("ClientLobbyMenu.lockPressed: Kann noch nicht locken, da noch nicht alle PlayerProperties gewählt wurden");
+		}
 	}
 
 	@Override public void disconnectPressed()
