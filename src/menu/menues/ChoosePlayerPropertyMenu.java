@@ -33,8 +33,14 @@ public class ChoosePlayerPropertyMenu extends Menu
 			PlayerPropertyIcon icon = new PlayerPropertyIcon
 			(
 				this,
-				new Rect(60 + i * (PlayerPropertyIcon.WIDTH + 15), 40, PlayerPropertyIcon.WIDTH, PlayerPropertyIcon.HEIGHT), slotPacket.getPlayerProperty()[i]
-			);
+				new Rect(60 + i * (PlayerPropertyIcon.WIDTH + 15), 40, PlayerPropertyIcon.WIDTH, PlayerPropertyIcon.HEIGHT), slotPacket.getPlayerProperty()[i])
+				{
+					@Override public void onClick(int mouseButton)
+					{
+						setPlayerProperty(null);
+					}
+				};
+
 			getComponents().add(icon);
 			slotIcons.add(icon);
 		}
@@ -49,7 +55,7 @@ public class ChoosePlayerPropertyMenu extends Menu
 				{
 					@Override public void onClick(int mouseButton)
 					{
-						if (!(((ChoosePlayerPropertyMenu) getParentMenu()).getFirstVoidSlotIcon() == null))
+						if (((ChoosePlayerPropertyMenu) getParentMenu()).getFirstVoidSlotIcon() != null)
 						{
 							((ChoosePlayerPropertyMenu) getParentMenu()).getFirstVoidSlotIcon().setPlayerProperty(getPlayerProperty());
 						}
