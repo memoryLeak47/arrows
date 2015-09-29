@@ -91,7 +91,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 						}
 						else
 						{
-							Debug.error("Client can't accept packet in team phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
+							Debug.error("Client can't accept packet (" + packet + ") in team phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
 						}
 						break;
 					case AVATAR_PHASE: // Wenn man sich in der AvatarPhase befindet
@@ -101,7 +101,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 						}
 						else
 						{
-							Debug.error("Client can't accept packet in avatar phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
+							Debug.error("Client can't accept packet (" + packet + ") in avatar phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
 						}
 						break;
 					case SKILL_PHASE: // Wenn man in der AttributPhase ist (Items/Skills)
@@ -111,20 +111,20 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 						}
 						else
 						{
-							Debug.error("Client can't accept packet in attribute phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
+							Debug.error("Client can't accept packet (" + packet + ") in attribute phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
 						}
 						break;
 					case ITEM_PHASE:
 						break;
 					default:
-						Debug.error("ClientLobbyMenu.handlePacket(...): wrong phase"); // Da ist was ganz komisch gelaufen; Ungültige Phase
+						Debug.error("ClientLobbyMenu.handlePacket(...): wrong phase (" + getPhase() + ")"); // Da ist was ganz komisch gelaufen; Ungültige Phase
 						break;
 				}
 			}
 		}
 		else
 		{
-			Debug.error("Client received wrong packet"); // packets, die nicht vom Typ UserPacketWithID sind werden nicht angenommen
+			Debug.error("Client received wrong packet (" + packet + ")"); // packets, die nicht vom Typ UserPacketWithID sind werden nicht angenommen
 		}
 	}
 
