@@ -75,7 +75,6 @@ public class ChoosePlayerPropertyMenu extends Menu
 					{
 						ids[i] = -1;
 					}
-					Debug.test("id = " + slotIcons.get(i).getPlayerProperty().getID());
 					//slotPacket.getPlayerProperty()[i] = slotIcons.get(i).getPlayerProperty();
 				}
 				((ChoosePlayerPropertyMenu) getParentMenu()).slotPacket.setIDs(ids);
