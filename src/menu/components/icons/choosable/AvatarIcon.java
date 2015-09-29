@@ -11,15 +11,16 @@ import game.avatar.avatars.*;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.math.Rect;
+import network.lobby.LobbyPlayer;
 
 public class AvatarIcon extends ChoosableIcon
 {
-	private Avatar avatar;
+	private LobbyPlayer player;
 
-	public AvatarIcon(ComponentContainer parent, Rect rect, Avatar avatar)
+	public AvatarIcon(ComponentContainer parent, Rect rect, LobbyPlayer player)
 	{
 		super(parent, rect);
-		this.avatar = avatar;
+		this.player = player;
 	}
 
 	// onEvent
@@ -27,7 +28,7 @@ public class AvatarIcon extends ChoosableIcon
 	{
 		if (isChoosable())
 		{
-			// added ein neues ChooseAvatarMenu.
+			// added ein neues ChoosePlayerPropertyMenu
 			Main.getMenues().add(new ChoosePlayerPropertyMenu(getLobbyMenu().getLocalPlayer().getAvatarPacket(), Avatar.getAllAvatars()));
 		}
 	}
@@ -37,11 +38,11 @@ public class AvatarIcon extends ChoosableIcon
 	@Override public ImageID getImageID() 
 	{
 		// Wenn kein Avatar gewählt wurde, oder der Avatar keine imageID hat wird das Void-Icon angezeigt
-		if (avatar == null || avatar.getIconImageID() == null)
+		if ((player.getAvatarPacket() == null) || (player.getAvatarPacket().getAvatar() == null) || (player.getAvatarPacket().getAvatar().getIconImageID() == null))
 		{
 			return ImageFile.VOID_ICON.getImageID();
 		}
-		return avatar.getIconImageID(); 
+		return player.getAvatarPacket().getAvatar().getIconImageID();
 	}
-	public Avatar getAvatar() { return avatar; }
+	public Avatar getAvatar() { return player.getAvatarPacket().getAvatar(); }
 }

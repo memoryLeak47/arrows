@@ -2,6 +2,7 @@ package network.lobby.packets.user;
 
 import game.avatar.Avatar;
 import game.PlayerProperty;
+import misc.Debug;
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.PlayerPropertyUserPacket;
 
@@ -19,15 +20,18 @@ public class AvatarUserPacket extends UserPacket implements PlayerPropertyUserPa
 		avatarID = packet.getAvatarID();
 	}
 
-	public Avatar getAvatar()
+	// Setter
+	@Override public void setIDs(byte[] ids)
 	{
-		return Avatar.getByID(avatarID);
+		avatarID = ids[0];
+		if (ids.length > 1)
+		{
+			Debug.error("AvatarUserPacket.setIDs(): ids enthält mehr als eine id");
+		}
 	}
 
-	public byte getAvatarID()
-	{
-		return avatarID;
-	}
-
+	// Getter
+	public Avatar getAvatar() { return Avatar.getByID(avatarID); }
+	public byte getAvatarID() { return avatarID; }
 	@Override public PlayerProperty[] getPlayerProperty() { return new PlayerProperty[]{getAvatar()}; }
 }

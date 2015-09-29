@@ -28,6 +28,8 @@ public abstract class Item extends PlayerProperty
 	public abstract boolean isCastable();
 	public abstract int getMassStat();
 
+	public static Item[] getAllItems() { return items; }
+
 	// Getter
 	public static Item getByID(byte id)
 	{
@@ -38,5 +40,5 @@ public abstract class Item extends PlayerProperty
 		return null;
 	}
 
-	public final byte getID() { return id; }
+	@Override public final byte getID() { return id; }
 }

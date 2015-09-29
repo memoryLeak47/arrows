@@ -24,6 +24,16 @@ public class SkillUserPacket extends UserPacket implements PlayerPropertyUserPac
 		this(packet.getSkillIDs());
 	}
 
+	// Setter
+	@Override public void setIDs(byte[] ids)
+	{
+		for (int i = 0; i < ids.length; i++)
+		{
+			skillIDs[i] = ids[i];
+		}
+	}
+
+	// Getter
 	public Skill[] getSkills()
 	{
 		Skill[] skills = new Skill[4];

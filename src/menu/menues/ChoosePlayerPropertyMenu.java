@@ -59,18 +59,32 @@ public class ChoosePlayerPropertyMenu extends Menu
 			getComponents().add(icon);
 		}
 
+		// Ok Button
 		getComponents().add(new Button(this, new Rect(100, Screen.HEIGHT-100, 30, 60), "Ok")
 		{
 			@Override public void onClick(int mouseButton)
 			{
+				byte[] ids = new byte[slotIcons.size()];
 				for (int i = 0; i < slotIcons.size(); i++)
 				{
-					slotPacket.getPlayerProperty()[i] = slotIcons.get(i).getPlayerProperty();
+					if (slotIcons.get(i).getPlayerProperty() != null)
+					{
+						ids[i] = slotIcons.get(i).getPlayerProperty().getID();
+					}
+					else
+					{
+						ids[i] = -1;
+					}
+					Debug.test("id = " + slotIcons.get(i).getPlayerProperty().getID());
+					//slotPacket.getPlayerProperty()[i] = slotIcons.get(i).getPlayerProperty();
 				}
+				slotPacket.setIDs(ids);
+
 				Main.getMenues().remove(Main.getMenues().getLast());
 			}
 		});
 
+		// Back Button
 		getComponents().add(new Button(this, new Rect(300, Screen.HEIGHT-100, 30, 60), "Back")
 		{
 			@Override public void onClick(int mouseButton)

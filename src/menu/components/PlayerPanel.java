@@ -28,18 +28,18 @@ public class PlayerPanel extends ComponentContainer
 		this.player = player;
 
 		// AvatarIcon
-		getComponents().add(new AvatarIcon(this, new Rect(0,0,AVATAR_ICON_SIZE,AVATAR_ICON_SIZE), this.player.getAvatar()));
+		getComponents().add(new AvatarIcon(this, new Rect(0,0,AVATAR_ICON_SIZE,AVATAR_ICON_SIZE), this.player));
 
 		// SkillIcons
-		getComponents().add(new SkillIcon(this, new Rect(0,45,SKILL_ICON_SIZE,SKILL_ICON_SIZE), this.player.getSkills()[0]));
-		getComponents().add(new SkillIcon(this, new Rect(15,45,SKILL_ICON_SIZE,SKILL_ICON_SIZE), this.player.getSkills()[1]));
-		getComponents().add(new SkillIcon(this, new Rect(30,45,SKILL_ICON_SIZE,SKILL_ICON_SIZE), this.player.getSkills()[2]));
-		getComponents().add(new SkillIcon(this, new Rect(45,45,SKILL_ICON_SIZE,SKILL_ICON_SIZE), this.player.getSkills()[3]));
+		getComponents().add(new SkillIcon(this, new Rect(0 ,45,SKILL_ICON_SIZE,SKILL_ICON_SIZE), this.player, 0));
+		getComponents().add(new SkillIcon(this, new Rect(15,45,SKILL_ICON_SIZE,SKILL_ICON_SIZE), this.player, 1));
+		getComponents().add(new SkillIcon(this, new Rect(30,45,SKILL_ICON_SIZE,SKILL_ICON_SIZE), this.player, 2));
+		getComponents().add(new SkillIcon(this, new Rect(45,45,SKILL_ICON_SIZE,SKILL_ICON_SIZE), this.player, 3));
 
 		// ItemIcons
-		getComponents().add(new ItemIcon(this, new Rect(45,0,ITEM_ICON_SIZE,ITEM_ICON_SIZE), this.player.getItems()[0]));
-		getComponents().add(new ItemIcon(this, new Rect(45,15,ITEM_ICON_SIZE,ITEM_ICON_SIZE), this.player.getItems()[1]));
-		getComponents().add(new ItemIcon(this, new Rect(45,30,ITEM_ICON_SIZE,ITEM_ICON_SIZE), this.player.getItems()[2]));
+		getComponents().add(new ItemIcon(this, new Rect(45,0 ,ITEM_ICON_SIZE,ITEM_ICON_SIZE), this.player, 0));
+		getComponents().add(new ItemIcon(this, new Rect(45,15,ITEM_ICON_SIZE,ITEM_ICON_SIZE), this.player, 1));
+		getComponents().add(new ItemIcon(this, new Rect(45,30,ITEM_ICON_SIZE,ITEM_ICON_SIZE), this.player, 2));
 	}
 
 	@Override public void render()
