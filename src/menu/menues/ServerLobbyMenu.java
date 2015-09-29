@@ -95,7 +95,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 							ipToPlayer(ip, getPlayers()).applyUserPacket((AvatarUserPacket) packet); // setze das AvatarUserPacket vom sender-player auf das erhaltene
 						}
 						ipToPlayer(ip, getUpdatedPlayers()).applyUserPacket((AvatarUserPacket) packet); // setze das AvatarUserPacket vom sender-player auf das erhaltene
-						sendToTeam(packet, ipToPlayer(ip, getUpdatedPlayers()).getTeam());
+						sendToTeam(new UserPacketWithID((UserPacket) packet, ipToID(ip, getPlayers())), ipToPlayer(ip, getUpdatedPlayers()).getTeam());
 					}
 					else
 					{
@@ -110,7 +110,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 							ipToPlayer(ip, getPlayers()).applyUserPacket((SkillUserPacket) packet);
 						}
 						ipToPlayer(ip, getUpdatedPlayers()).applyUserPacket((SkillUserPacket) packet);
-						sendToTeam(packet, ipToPlayer(ip, getUpdatedPlayers()).getTeam());
+						sendToTeam(new UserPacketWithID((UserPacket) packet, ipToID(ip, getPlayers())), ipToPlayer(ip, getUpdatedPlayers()).getTeam());
 					}
 					else
 					{
@@ -125,7 +125,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 							ipToPlayer(ip, getPlayers()).applyUserPacket((ItemUserPacket) packet);
 						}
 						ipToPlayer(ip, getUpdatedPlayers()).applyUserPacket((ItemUserPacket) packet);
-						sendToTeam(packet, ipToPlayer(ip, getUpdatedPlayers()).getTeam());
+						sendToTeam(new UserPacketWithID((UserPacket) packet, ipToID(ip, getPlayers())), ipToPlayer(ip, getUpdatedPlayers()).getTeam());
 					}
 					else
 					{
