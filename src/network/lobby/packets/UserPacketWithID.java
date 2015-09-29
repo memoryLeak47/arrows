@@ -16,4 +16,6 @@ public class UserPacketWithID extends Packet// sent from server to client to giv
 
 	public UserPacket getUserPacket() { return packet; }
 	public int getID() { return id; }
+
+	@Override public String toString() { return "UserPacketWithID (" + packet + ", " + id + ")"; }
 }
