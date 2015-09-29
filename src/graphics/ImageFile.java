@@ -29,12 +29,8 @@ public enum ImageFile
 	ARROWSHOT_ICON("icons/skills/arrow.png"),
 
 	// items
-	// not castable
-	HEALTHRING_ICON("icons/items/healthring.png"),
-	// castable
-	JETPACK_ICON("icons/items/jetpack.png");
+	HEALTHRING_ICON("icons/items/healthring.png");
 
-	// Not Icons
 	private int id;
 	private final File file;
 	private BufferedImage[] images;
