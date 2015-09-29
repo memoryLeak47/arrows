@@ -30,7 +30,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		getUpdatedPlayers().clear();
 		for (LobbyPlayer player : getPlayers())
 		{
-			getUpdatedPlayers().add(player);
+			getUpdatedPlayers().add(new LobbyPlayer(player));
 		}
 	}
 
