@@ -128,6 +128,25 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 		}
 	}
 
+	// Wird ausgeführt, wenn ChoosePlayerPropertyMenu mit okButton geschlossen wird
+	@Override public void sendPlayerPropertyUpdate()
+	{
+		switch (getPhase())
+		{
+			case AVATAR_PHASE:
+				sendToServer(getLocalPlayer().getAvatarPacket());
+				break;
+			case SKILL_PHASE:
+				sendToServer(getLocalPlayer().getSkillPacket());
+				break;
+			case ITEM_PHASE:
+				sendToServer(getLocalPlayer().getItemPacket());
+				break;
+			default:
+				Debug.error("ClientLobbyMenu.sendPlayerPropertyUpdate(): wrong phase: " + getPhase());
+		}
+	}
+
 	// Wird aufgerufen, wenn man auf die Map clickt
 	@Override public void mapPressed()
 	{

@@ -139,6 +139,25 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		}
 	}
 
+	// Wird ausgeführt, wenn ChoosePlayerPropertyMenu mit okButton geschlossen wird
+	@Override public void sendPlayerPropertyUpdate()
+	{
+		switch (getPhase())
+		{
+			case AVATAR_PHASE:
+				sendToTeam(new UserPacketWithID(getLocalPlayer().getAvatarPacket(), 0), getLocalPlayer().getTeam());
+				break;
+			case SKILL_PHASE:
+				sendToTeam(new UserPacketWithID(getLocalPlayer().getSkillPacket(), 0), getLocalPlayer().getTeam());
+				break;
+			case ITEM_PHASE:
+				sendToTeam(new UserPacketWithID(getLocalPlayer().getItemPacket(), 0), getLocalPlayer().getTeam());
+				break;
+			default:
+				Debug.error("ServerLobbyMenu.sendPlayerPropertyUpdate(): wrong phase: " + getPhase());
+		}
+	}
+
 	@Override public void mapPressed()
 	{
 		// TODO

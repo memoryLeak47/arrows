@@ -78,6 +78,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 	public abstract void itemPressed(Item[] items);
 	public abstract void mapPressed();
 	public abstract void disconnectPressed();
+	public abstract void sendPlayerPropertyUpdate(); // wird ausgeführt, wenn das ChoosePlayerPropertyMenu mit dem Ok-Button geschlossen wird
 	public abstract LobbyPlayer getLocalPlayer();
 
 	public int getPhase() { return phase; }

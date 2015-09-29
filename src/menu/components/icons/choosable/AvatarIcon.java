@@ -29,7 +29,7 @@ public class AvatarIcon extends ChoosableIcon
 		if (isChoosable())
 		{
 			// added ein neues ChoosePlayerPropertyMenu
-			Main.getMenues().add(new ChoosePlayerPropertyMenu(getLobbyMenu().getLocalPlayer().getAvatarPacket(), Avatar.getAllAvatars()));
+			Main.getMenues().add(new ChoosePlayerPropertyMenu(getLobbyMenu(), getLobbyMenu().getLocalPlayer().getAvatarPacket(), Avatar.getAllAvatars()));
 		}
 	}
 

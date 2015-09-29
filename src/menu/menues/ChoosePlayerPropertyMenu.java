@@ -7,6 +7,7 @@ import core.Screen;
 import menu.Menu;
 import menu.components.Button;
 import menu.components.icons.PlayerPropertyIcon;
+import menu.menues.LobbyMenu;
 import misc.math.Rect;
 import misc.Debug;
 import game.PlayerProperty;
@@ -14,14 +15,19 @@ import network.lobby.packets.PlayerPropertyUserPacket;
 
 public class ChoosePlayerPropertyMenu extends Menu
 {
+	private LobbyMenu lobbyMenu;
+
 	private PlayerPropertyUserPacket slotPacket;
 	private PlayerProperty[] chooseProperties;
 
 	private LinkedList<PlayerPropertyIcon> slotIcons;
 
-	public ChoosePlayerPropertyMenu(PlayerPropertyUserPacket slotPacket, PlayerProperty[] chooseProperties)
+	public ChoosePlayerPropertyMenu(LobbyMenu lobbyMenu, PlayerPropertyUserPacket slotPacket, PlayerProperty[] chooseProperties)
 	{
 		super(new Rect(200, 0, Screen.WIDTH-200, Screen.HEIGHT));
+
+		this.lobbyMenu = lobbyMenu;
+
 		this.slotPacket = slotPacket;
 		this.chooseProperties = chooseProperties;
 
@@ -86,6 +92,7 @@ public class ChoosePlayerPropertyMenu extends Menu
 				((ChoosePlayerPropertyMenu) getParentMenu()).slotPacket.setIDs(ids);
 
 				Main.getMenues().remove(Main.getMenues().getLast());
+				((ChoosePlayerPropertyMenu) getParentMenu()).lobbyMenu.sendPlayerPropertyUpdate(); // weist das LobbyMenu darauf hin, dass die Packets neu versendet werden müssen
 			}
 		});
 

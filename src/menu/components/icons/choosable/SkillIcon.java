@@ -28,7 +28,7 @@ public class SkillIcon extends ChoosableIcon
 	{
 		if (isChoosable())
 		{
-			Main.getMenues().add(new ChoosePlayerPropertyMenu(getLobbyMenu().getLocalPlayer().getSkillPacket(), Skill.getAllSkills()));
+			Main.getMenues().add(new ChoosePlayerPropertyMenu(getLobbyMenu(), getLobbyMenu().getLocalPlayer().getSkillPacket(), Skill.getAllSkills()));
 		}
 	}
 

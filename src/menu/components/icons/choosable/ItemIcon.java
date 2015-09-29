@@ -27,7 +27,7 @@ public class ItemIcon extends ChoosableIcon
 	{
 		if (isChoosable())
 		{
-			Main.getMenues().add(new ChoosePlayerPropertyMenu(getLobbyMenu().getLocalPlayer().getItemPacket(), Item.getAllItems()));
+			Main.getMenues().add(new ChoosePlayerPropertyMenu(getLobbyMenu(), getLobbyMenu().getLocalPlayer().getItemPacket(), Item.getAllItems()));
 		}
 	}
 
