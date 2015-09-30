@@ -285,10 +285,9 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	private void updatePlayers()
 	{
-		getPlayers().clear();
-		for (LobbyPlayer player : getUpdatedPlayers())
+		for (int i = 0; i < getUpdatedPlayers().size(); i++)
 		{
-			getPlayers().add(new LobbyPlayer(player));
+			getPlayers().set(i, new LobbyPlayer(getUpdatedPlayers().get(i)));
 		}
 	}
 

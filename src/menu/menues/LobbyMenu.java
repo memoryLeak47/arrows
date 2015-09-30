@@ -160,13 +160,16 @@ public abstract class LobbyMenu extends NetworkingMenu
 				return i; // returne deine ID
 			}
 		} // falls kein spieler gefunden wurde
-		Debug.note("ServerLobbyMenu.ipToPlayerID(...): no LobbyPlayer with ip " + ip.getHostName()); // error
+		Debug.warn("LobbyMenu.ipToPlayerID(...): no LobbyPlayer with ip " + ip.getHostName()); // error
 		return -1;
 	}
 
 	protected LobbyPlayer ipToPlayer(InetAddress ip, LinkedList<LobbyPlayer> players)
 	{
-		return players.get(ipToID(ip, getPlayers()));
+		int id = ipToID(ip, players);
+		if (id < 0 || id > players.size())
+			Debug.error("LobbyMenu.ipToPlayer(" + ip.getHostName() + ", ...): id (" + id + ") out of range");
+		return players.get(ipToID(ip, players));
 	}
 
 	protected boolean ipIn(InetAddress ip, LinkedList<LobbyPlayer> players)
