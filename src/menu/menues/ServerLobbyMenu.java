@@ -25,15 +25,6 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		updatePlayerIcons();
 	}
 
-	private void updatePlayersFromUpdatedPlayers()
-	{
-		getPlayers().clear();
-		for (LobbyPlayer player : getUpdatedPlayers())
-		{
-			getPlayers().add(new LobbyPlayer(player));
-		}
-	}
-
 	@Override public void handlePacket(Packet packet, InetAddress ip)
 	{
 		if (packet instanceof LockUserPacket)
@@ -196,14 +187,15 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 	@Override protected void nextPhase()
 	{
 		super.nextPhase();
+		updatePlayers();
+		sendToAllClients(new LobbyPlayersPacket(getPlayers()));
+
 		switch (getPhase()-1) // -1, da phase++ schon passiert ist
 		{
 			case TEAM_PHASE:
 			{
 				// TODO teamButtonDisable
 				// TODO MapDisable
-				updatePlayersFromUpdatedPlayers();
-				sendToAllClients(new LobbyPlayersPacket(getPlayers()));
 			}
 			break;
 		}
@@ -296,7 +288,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		getPlayers().clear();
 		for (LobbyPlayer player : getUpdatedPlayers())
 		{
-			getPlayers().add(player);
+			getPlayers().add(new LobbyPlayer(player));
 		}
 	}
 
