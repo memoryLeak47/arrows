@@ -34,6 +34,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 			if (getLocalPlayer() == null)
 			{
 				setPlayers(((LobbyPlayersPacket) packet).getPlayers()); // setzte die komplette Liste neu
+				Debug.note("ClientLobbyMenu.handlePacket(): received LobbyPlayersPacket -> eigene players neu gesetzt", Debug.Tags.LOBBYMENUINFO);
 				updatePlayerIcons();
 			}
 			else
@@ -267,6 +268,10 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 	// returnt den Spieler, der den das übergebene Packet anspricht
 	private LobbyPlayer getPlayer(Packet packet)	
 	{
+		if (packet == null)
+		{
+			Debug.error("ClientLobbyMenu.getPlayer(): packet == null");
+		}
 		UserPacketWithID userPacketWithID = (UserPacketWithID) packet;
 		return getPlayers().get(userPacketWithID.getID());
 	}
@@ -284,6 +289,12 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 
 	private LobbyPlayer getServerPlayer()
 	{
+		if (getPlayers() == null)
+			Debug.warn("ClientLobbyMenu.getServerPlayer(): getPlayers() == null");
+		if (getPlayers().get(0) == null)
+		{
+			Debug.warn("ClientLobbyMenu.getServerPlayer(): returns null");
+		}
 		return getPlayers().get(0);
 	}
 }
