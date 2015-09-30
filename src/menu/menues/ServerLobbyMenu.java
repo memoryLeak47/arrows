@@ -43,6 +43,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 			if (ipToPlayer(ip, getPlayers()) == null)
 				Debug.error("ServerLobbyMenu.handlePacket(LockUserPacket): no player with that IP");
 			ipToPlayer(ip, getPlayers()).applyUserPacket((UserPacket) packet);
+			ipToPlayer(ip, getUpdatedPlayers()).applyUserPacket((UserPacket) packet);
 			updateLockButton(); // setzt LockButton.enabled
 			redirectUserPacket((UserPacket) packet, ip); // das erhaltene packet wird an alle clients weitergegeben
 		}
@@ -51,7 +52,8 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 			if (ipToPlayer(ip, getPlayers()) == null)
 				Debug.error("ServerLobbyMenu.handlePacket(DisconnectUserPacket): no player with that IP");
 			redirectUserPacket((UserPacket) packet, ip); // das erhaltene packet wird an alle clients weitergegeben, (leider auch dem der disconnected ist)
-			removePlayer(ipToPlayer(ip, getPlayers()));
+			getPlayers().remove(ipToID(ip, getPlayers()));
+			getUpdatedPlayers().remove(ipToID(ip, getUpdatedPlayers()));
 			unlockAll();
 			updatePlayerIcons();
 		}
@@ -71,6 +73,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 							return;
 						}
 						ipToPlayer(ip, getPlayers()).applyUserPacket((TeamUserPacket) packet); // setze das TeamUserPacket vom sender-player auf das erhaltene
+						ipToPlayer(ip, getUpdatedPlayers()).applyUserPacket((TeamUserPacket) packet); // setze das TeamUserPacket vom sender-player auf das erhaltene
 						redirectUserPacket((UserPacket) packet, ip); // das erhaltene packet wird an alle clients weitergegeben
 						updatePlayerIcons();
 						unlockAll();
@@ -323,23 +326,6 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		updateLockButton(); // Setzt Button.enabled auf false
 	}
 
-	@Override protected void removePlayer(LobbyPlayer player)
-	{
-		if (player == null)
-			Debug.warn("ServerLobbyMenu.removePlayer(null)");
-
-		super.removePlayer(player);
-		if (getUpdatedPlayers().contains(player))
-		{
-			getUpdatedPlayers().remove(player);
-		}
-		else
-		{
-			Debug.warn("ServerLobbyMenu.removePlayer(): player not contained in getUpdatedPlayers()");
-		}
-	}
-
-	private void updatePlayers()
 	{
 		if (getUpdatedPlayers().size() < 1)
 			Debug.warn("ServerLobbyMenu.updatedPlayers(): getUpdatedPlayers().size() = " + getUpdatedPlayers().size());

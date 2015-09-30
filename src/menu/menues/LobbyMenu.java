@@ -135,13 +135,6 @@ public abstract class LobbyMenu extends NetworkingMenu
 		}
 	}
 
-	protected void removePlayer(LobbyPlayer player)
-	{
-		if (!getPlayers().contains(player))
-			Debug.warn("LobbyMenu.removePlayer(...): player not in getPlayers()");
-		getPlayers().remove(player);
-	}
-
 	protected boolean isPlayerPropertiesChoosen()
 	{
 		switch (phase)
