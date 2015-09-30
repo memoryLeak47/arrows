@@ -31,8 +31,18 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 	{
 		if (packet instanceof LobbyPlayersPacket) // Wenn es sich bei dem Packet um die Liste aller Player handelt, dann
 		{
-			setPlayers(((LobbyPlayersPacket) packet).getPlayers()); // setzte die komplette Liste neu
-			updatePlayerIcons();
+			if (getLocalPlayer() == null)
+			{
+				setPlayers(((LobbyPlayersPacket) packet).getPlayers()); // setzte die komplette Liste neu
+				updatePlayerIcons();
+			}
+			else
+			{
+				int i = playerToID(getLocalPlayer(), getPlayers());
+				setPlayers(((LobbyPlayersPacket) packet).getPlayers()); // setzte die komplette Liste neu
+				localPlayer = getPlayers().get(i);
+				updatePlayerIcons();
+			}
 		}
 		else if (packet instanceof MapPacket)
 		{

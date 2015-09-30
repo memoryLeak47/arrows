@@ -141,4 +141,56 @@ public abstract class LobbyMenu extends NetworkingMenu
 
 		return true; // In jeder anderen Phase gibt es keine PlayerProperties, die man wählen müsste, es sind also immer alle belegt
 	}
+
+	protected boolean inMyTeam(LobbyPlayer player)
+	{
+		if (player.getTeam().equals(Team.TEAM0) || getLocalPlayer().getTeam().equals(Team.TEAM0))
+		{
+			return false;
+		}
+		return getLocalPlayer().getTeam().equals(player.getTeam());
+	}
+
+	protected int ipToID(InetAddress ip, LinkedList<LobbyPlayer> players)
+	{
+		for (int i = 1; i < players.size(); i++) // für alle clients
+		{
+			if (players.get(i).getIP().equals(ip)) // wenn eure ip die ip ist
+			{
+				return i; // returne deine ID
+			}
+		} // falls kein spieler gefunden wurde
+		Debug.note("ServerLobbyMenu.ipToPlayerID(...): no LobbyPlayer with ip " + ip.getHostName()); // error
+		return -1;
+	}
+
+	protected LobbyPlayer ipToPlayer(InetAddress ip, LinkedList<LobbyPlayer> players)
+	{
+		return players.get(ipToID(ip, getPlayers()));
+	}
+
+	protected boolean ipIn(InetAddress ip, LinkedList<LobbyPlayer> players)
+	{
+		for (int i = 1; i < players.size(); i++) // für alle client-spieler
+		{
+			if (players.get(i).getIP().equals(ip)) // wenn dies deine IP ist
+			{
+				return true; // returne true
+			}
+		} // falls die ip neu ist
+		return false; // returne false
+	}
+
+	protected int playerToID(LobbyPlayer player, LinkedList<LobbyPlayer> players)
+	{
+		for (int i = 0; i < players.size(); i++)
+		{
+			if (players.get(i) == player)
+			{
+				return i;
+			}
+		}
+		Debug.warn("LobbyMenu.playerToID(...): player to found");
+		return 0;
+	}
 }

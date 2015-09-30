@@ -25,12 +25,12 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		updatePlayerIcons();
 	}
 
-	private void createUpdatedPlayers()
+	private void updatePlayersFromUpdatedPlayers()
 	{
-		getUpdatedPlayers().clear();
-		for (LobbyPlayer player : getPlayers())
+		getPlayers().clear();
+		for (LobbyPlayer player : getUpdatedPlayers())
 		{
-			getUpdatedPlayers().add(new LobbyPlayer(player));
+			getPlayers().add(new LobbyPlayer(player));
 		}
 	}
 
@@ -202,7 +202,8 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 			{
 				// TODO teamButtonDisable
 				// TODO MapDisable
-				createUpdatedPlayers();
+				updatePlayersFromUpdatedPlayers();
+				sendToAllClients(new LobbyPlayersPacket(getPlayers()));
 			}
 			break;
 		}
@@ -240,24 +241,6 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		sendToAllClients(new UserPacketWithID(packet, 0));
 	}
 
-	private int ipToID(InetAddress ip, LinkedList<LobbyPlayer> players)
-	{
-		for (int i = 1; i < players.size(); i++) // für alle clients
-		{
-			if (players.get(i).getIP().equals(ip)) // wenn eure ip die ip ist
-			{
-				return i; // returne deine ID
-			}
-		} // falls kein spieler gefunden wurde
-		Debug.note("ServerLobbyMenu.ipToPlayerID(...): no LobbyPlayer with ip " + ip.getHostName()); // error
-		return -1;
-	}
-
-	private LobbyPlayer ipToPlayer(InetAddress ip, LinkedList<LobbyPlayer> players)
-	{
-		return players.get(ipToID(ip, getPlayers()));
-	}
-
 	private void redirectUserPacket(UserPacket packet, InetAddress ip)
 	{
 		sendToAllClients(new UserPacketWithID(packet, ipToID(ip, getPlayers())));
@@ -287,18 +270,6 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		}
 	}
 
-	private boolean ipIn(InetAddress ip, LinkedList<LobbyPlayer> player)
-	{
-		for (int i = 1; i < getPlayers().size(); i++) // für alle client-spieler
-		{
-			if (getPlayers().get(i).getIP().equals(ip)) // wenn dies deine IP ist
-			{
-				return true; // returne true
-			}
-		} // falls die ip neu ist
-		return false; // returne false
-	}
-
 	private LinkedList<LobbyPlayer> getUpdatedPlayers() { return updatedPlayers; }
 
 	@Override protected void unlockAll()
@@ -318,15 +289,6 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		{
 			getUpdatedPlayers().remove(player);
 		}
-	}
-
-	private boolean inMyTeam(LobbyPlayer player)
-	{
-		if (player.getTeam().equals(Team.TEAM0) || getLocalPlayer().getTeam().equals(Team.TEAM0))
-		{
-			return false;
-		}
-		return getLocalPlayer().getTeam().equals(player.getTeam());
 	}
 
 	private void updatePlayers()
