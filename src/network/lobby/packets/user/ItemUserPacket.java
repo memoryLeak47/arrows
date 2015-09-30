@@ -23,6 +23,12 @@ public class ItemUserPacket extends UserPacket implements PlayerPropertyUserPack
 		this(packet.getItemIDs());
 	}
 
+	public void assign(ItemUserPacket itemPacket)
+	{
+		// TODO fehlerabfragen
+		itemIDs = itemPacket.itemIDs;
+	}
+
 	// Setter
 	@Override public void setIDs(byte[] ids)
 	{

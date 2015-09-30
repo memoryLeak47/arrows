@@ -13,6 +13,12 @@ public class LoginUserPacket extends UserPacket
 		this.rank = rank;
 	}
 
+	public void assign(LoginUserPacket loginPacket)
+	{
+		this.name = loginPacket.name;
+		this.rank = loginPacket.rank;
+	}
+
 	public LoginUserPacket(LoginUserPacket packet)
 	{
 		name = new String(packet.getName());

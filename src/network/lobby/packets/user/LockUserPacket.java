@@ -11,6 +11,12 @@ public class LockUserPacket extends UserPacket
 		locked = value;
 	}
 
+	public void assign(LockUserPacket lockPacket)
+	{
+		// TODO fehlerabfragen
+		locked = lockPacket.locked;
+	}
+
 	public LockUserPacket(LockUserPacket packet)
 	{
 		locked = packet.isLocked();

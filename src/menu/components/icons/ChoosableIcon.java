@@ -44,7 +44,7 @@ public abstract class ChoosableIcon extends Icon
 			boolean chosen = getLobbyMenu().getPhase() == getChoosePhase()
 				&& getLobbyMenu().getLocalPlayer() == getPlayer()
 				&& !getPlayer().isLocked();
-			Debug.once(this + ": choosable = " + chosen + "| Phase: " + (getLobbyMenu().getPhase() == getChoosePhase()) + "| LocalPlayer: " + (getLobbyMenu().getLocalPlayer() == getPlayer()) + ": !Locked: " + getPlayer().isLocked());
+			//Debug.once(this + ": choosable = " + chosen + "| Phase: " + (getLobbyMenu().getPhase() == getChoosePhase()) + "| LocalPlayer: " + (getLobbyMenu().getLocalPlayer() == getPlayer()) + ": !Locked: " + getPlayer().isLocked()); //TODO delete
 			return chosen;
 		}
 		return false;

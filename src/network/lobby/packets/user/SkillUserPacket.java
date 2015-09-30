@@ -24,6 +24,13 @@ public class SkillUserPacket extends UserPacket implements PlayerPropertyUserPac
 		this(packet.getSkillIDs());
 	}
 
+	public void assign(SkillUserPacket skillPacket)
+	{
+		// TODO fehlerabfragen
+		skillIDs = skillPacket.skillIDs;
+	}
+
+
 	// Setter
 	@Override public void setIDs(byte[] ids)
 	{

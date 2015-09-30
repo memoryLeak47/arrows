@@ -20,11 +20,17 @@ public class AvatarUserPacket extends UserPacket implements PlayerPropertyUserPa
 		avatarID = packet.getAvatarID();
 	}
 
+	public void assign(AvatarUserPacket avatarPacket)
+	{
+		// TODO fehlerabfragen
+		avatarID = avatarPacket.avatarID;
+	}
+
 	// Setter
 	@Override public void setIDs(byte[] ids)
 	{
 		avatarID = ids[0];
-		if (ids.length > 1)
+		if (ids.length != 1)
 		{
 			Debug.error("AvatarUserPacket.setIDs(): ids enthält mehr als eine id");
 		}
