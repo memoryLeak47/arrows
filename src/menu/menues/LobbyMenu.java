@@ -153,10 +153,14 @@ public abstract class LobbyMenu extends NetworkingMenu
 
 	protected int ipToID(InetAddress ip, LinkedList<LobbyPlayer> players)
 	{
+		Debug.test("ipToID");
+		Debug.test("players.size() == " + players.size());
 		for (int i = 1; i < players.size(); i++) // für alle clients
 		{
+			Debug.test("ipToID(" + ip.getHostName() + "): testing ip(" + players.get(i).getIP().getHostName() + ")");
 			if (players.get(i).getIP().equals(ip)) // wenn eure ip die ip ist
 			{
+				Debug.test("equal!");
 				return i; // returne deine ID
 			}
 		} // falls kein spieler gefunden wurde
