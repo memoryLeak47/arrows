@@ -4,7 +4,7 @@
 # removes all test logs
 
 if [ "$1" == "-f" ]; then
-	grep "Debug.testLog" -r --with-filename -n ./src/*.java --color=always
+	grep "Debug.test" -r --with-filename -n ./src/* --color=always
 else
-	sed "/Debug.testLog/d" -i $(find -name "*.java")
+	sed "/Debug.test/d" -i $(find -name "*.java")
 fi
