@@ -326,23 +326,10 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		updateLockButton(); // Setzt Button.enabled auf false
 	}
 
-	{
-		if (getUpdatedPlayers().size() < 1)
-			Debug.warn("ServerLobbyMenu.updatedPlayers(): getUpdatedPlayers().size() = " + getUpdatedPlayers().size());
-
-		getPlayers().clear();
-		for (int i = 0; i < getUpdatedPlayers().size(); i++)
-		{
-			getPlayers().add(new LobbyPlayer(getUpdatedPlayers().get(i)));
-		}
-
-		Debug.note("ServerLobbyMenu.updatedPlayers(): now getPlayers().size() = " + getPlayers().size());
-	}
-
 	private void updatePlayers()
 	{
 		if (getUpdatedPlayers().size() < 1)
-			Debug.warn("ServerLobbyMenu.updatedPlayers(): getUpdatedPlayers().size() = " + getUpdatedPlayers().size());
+			Debug.warn("ServerLobbyMenu.updatePlayers(): getUpdatedPlayers().size() = " + getUpdatedPlayers().size());
 
 		getPlayers().clear();
 		for (int i = 0; i < getUpdatedPlayers().size(); i++)
@@ -350,7 +337,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 			getPlayers().add(new LobbyPlayer(getUpdatedPlayers().get(i)));
 		}
 
-		Debug.note("ServerLobbyMenu.updatedPlayers(): now getPlayers().size() = " + getPlayers().size());
+		Debug.note("ServerLobbyMenu.updatePlayers(): now getPlayers().size() = " + getPlayers().size());
 	}
 
 
