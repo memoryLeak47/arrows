@@ -339,6 +339,21 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		Debug.note("ServerLobbyMenu.updatedPlayers(): now getPlayers().size() = " + getPlayers().size());
 	}
 
+	private void updatePlayers()
+	{
+		if (getUpdatedPlayers().size() < 1)
+			Debug.warn("ServerLobbyMenu.updatedPlayers(): getUpdatedPlayers().size() = " + getUpdatedPlayers().size());
+
+		getPlayers().clear();
+		for (int i = 0; i < getUpdatedPlayers().size(); i++)
+		{
+			getPlayers().add(new LobbyPlayer(getUpdatedPlayers().get(i)));
+		}
+
+		Debug.note("ServerLobbyMenu.updatedPlayers(): now getPlayers().size() = " + getPlayers().size());
+	}
+
+
 	@Override public LobbyPlayer getLocalPlayer()
 	{
 		if (getPlayers().size() < 1)
