@@ -170,11 +170,15 @@ public abstract class LobbyMenu extends NetworkingMenu
 	{
 		if (ip == null)
 			Debug.warn("LobbyMenu.ipToID(null, ...)");
+		if (players == null)
+			Debug.error("LobbyMenu.ipToID(): players == null");
 		if (players.size() < 2)
 			Debug.warn("LobbyMenu.ipToID(..., players): players.size = " + players.size());
 
 		for (int i = 1; i < players.size(); i++) // für alle clients
 		{
+			if (players.get(i).getIP() == null)
+				Debug.error("LobbyMenu.ipToID(): players.get(" + i + ").getIP() == null");
 			if (players.get(i).getIP().equals(ip)) // wenn eure ip die ip ist
 			{
 				return i; // returne deine ID

@@ -27,7 +27,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 		updatedPlayers = new LinkedList<LobbyPlayer>();
 		getPlayers().add(new LobbyPlayer(new LoginUserPacket(Main.getName(), Main.getRank()))); // server fügt eigenen lobby-player hinzu
-		updateUpdatedPlayers();
+		getUpdatedPlayers().add(new LobbyPlayer(getPlayers().getLast()));
 		updatePlayerIcons();
 	}
 
@@ -86,6 +86,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 							LobbyPlayer newPlayer = new LobbyPlayer((LoginUserPacket) packet, ip); // neuer spieler wird erstellt
 							send(new LobbyPlayersPacket(getPlayers()), ip); // liste ohne den Neuen an den Neuen senden.
 							getPlayers().add(newPlayer); // Neuen zur player liste hinzufügen
+							getUpdatedPlayers().add(new LobbyPlayer(newPlayer));
 							redirectUserPacket((UserPacket) packet, ip); // das erhaltene packet wird an alle clients weitergegeben
 							updatePlayerIcons();
 							unlockAll();
@@ -336,21 +337,6 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		{
 			Debug.warn("ServerLobbyMenu.removePlayer(): player not contained in getUpdatedPlayers()");
 		}
-	}
-
-	private void updateUpdatedPlayers()
-	{
-		if (getPlayers() == null)
-			Debug.warn("ServerLobbyMenu.updatedUpdatedPlayers(): getPlayers() == null");
-		if (getPlayers().size() < 1)
-			Debug.warn("ServerLobbyMenu.updatedUpdatedPlayers(): getPlayers().size() = " + getPlayers().size());
-
-		getUpdatedPlayers().clear();
-		for (int i = 0; i < getPlayers().size(); i++)
-		{
-			getUpdatedPlayers().add(new LobbyPlayer(getPlayers().get(i)));
-		}
-
 	}
 
 	private void updatePlayers()

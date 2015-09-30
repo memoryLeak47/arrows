@@ -46,7 +46,7 @@ public class LobbyPlayer implements Serializable
 
 	public LobbyPlayer(LobbyPlayer lobbyPlayer)
 	{
-		this.ip = ip;
+		this.ip = lobbyPlayer.ip;
 		loginPacket = new LoginUserPacket(lobbyPlayer.loginPacket);
 		lockPacket = new LockUserPacket(lobbyPlayer.lockPacket);
 		avatarPacket = new AvatarUserPacket(lobbyPlayer.avatarPacket);
@@ -143,7 +143,12 @@ public class LobbyPlayer implements Serializable
 		return true; // Alle Items wurden belegt
 	}
 	
-	public InetAddress getIP() { return ip; }
+	public InetAddress getIP()
+	{
+		if (ip == null)
+			Debug.warn("LobbyPlayer.getIP(): ip == null");
+		return ip;
+	}
 	public String getName() { return loginPacket.getName(); }
 	public int getRank() { return loginPacket.getRank(); }
 	public boolean isLocked() { return lockPacket.isLocked(); }
