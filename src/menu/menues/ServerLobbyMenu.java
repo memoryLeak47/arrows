@@ -20,6 +20,11 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	public ServerLobbyMenu()
 	{
+		if (Main.getName() == null)
+			Debug.warn("ServerLobbyMenu.<init>(): Main.getName() == null");
+		if (getPlayers() == null)
+			Debug.warn("ServerLobbyMenu.<init>(): getPlayers() == null");
+
 		updatedPlayers = new LinkedList<LobbyPlayer>();
 		getPlayers().add(new LobbyPlayer(new LoginUserPacket(Main.getName(), Main.getRank()))); // server fügt eigenen lobby-player hinzu
 		updatePlayerIcons();
@@ -27,14 +32,23 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	@Override public void handlePacket(Packet packet, InetAddress ip)
 	{
+		if (packet == null)
+			Debug.warn("ServerLobbyMenu.handlePacket(null, ip)");
+		if (ip == null)
+			Debug.warn("ServerLobbyMenu.handlePacket(packet, null)");
+
 		if (packet instanceof LockUserPacket)
 		{
+			if (ipToPlayer(ip, getPlayers()) == null)
+				Debug.error("ServerLobbyMenu.handlePacket(LockUserPacket): no player with that IP");
 			ipToPlayer(ip, getPlayers()).applyUserPacket((UserPacket) packet);
 			updateLockButton(); // setzt LockButton.enabled
 			redirectUserPacket((UserPacket) packet, ip); // das erhaltene packet wird an alle clients weitergegeben
 		}
 		else if (packet instanceof DisconnectUserPacket)
 		{
+			if (ipToPlayer(ip, getPlayers()) == null)
+				Debug.error("ServerLobbyMenu.handlePacket(DisconnectUserPacket): no player with that IP");
 			redirectUserPacket((UserPacket) packet, ip); // das erhaltene packet wird an alle clients weitergegeben, (leider auch dem der disconnected ist)
 			removePlayer(ipToPlayer(ip, getPlayers()));
 			unlockAll();
@@ -47,6 +61,9 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 				case TEAM_PHASE: // falls wir in der team/map phase sind
 					if (packet instanceof TeamUserPacket) // und das packet ein TeamUserPacket ist
 					{
+						if (ipToPlayer(ip, getPlayers()) == null)
+							Debug.error("ServerLobbyMenu.handlePacket(TeamUserPacket): no player with that IP");
+
 						if (ipToPlayer(ip, getPlayers()).isLocked())
 						{
 							Debug.note("locked player sent TeamUserPacket");
@@ -81,6 +98,9 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 				case AVATAR_PHASE: // falls wir in der avatar phase sind
 					if (packet instanceof AvatarUserPacket) // und das packet ein AvatarUserPacket ist
 					{
+						if (ipToPlayer(ip, getPlayers()) == null)
+							Debug.error("ServerLobbyMenu.handlePacket(AvatarUserPacket): no player with that IP");
+
 						if (inMyTeam(ipToPlayer(ip, getUpdatedPlayers())))
 						{
 							ipToPlayer(ip, getUpdatedPlayers()).applyUserPacket((AvatarUserPacket) packet); // setze das AvatarUserPacket vom sender-player auf das erhaltene
@@ -96,6 +116,9 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 				case SKILL_PHASE:
 					if (packet instanceof SkillUserPacket) // und das packet ein AttributeUserPacket ist
 					{
+						if (ipToPlayer(ip, getPlayers()) == null)
+							Debug.error("ServerLobbyMenu.handlePacket(SkillUserPacket): no player with that IP");
+
 						if (inMyTeam(ipToPlayer(ip, getPlayers())))
 						{
 							ipToPlayer(ip, getPlayers()).applyUserPacket((SkillUserPacket) packet);
@@ -111,6 +134,9 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 				case ITEM_PHASE:
 					if (packet instanceof ItemUserPacket) // und das packet ein ItemUserPacket ist
 					{
+						if (ipToPlayer(ip, getPlayers()) == null)
+							Debug.error("ServerLobbyMenu.handlePacket(ItemUserPacket): no player with that IP");
+
 						if (inMyTeam(ipToPlayer(ip, getPlayers())))
 						{
 							ipToPlayer(ip, getPlayers()).applyUserPacket((ItemUserPacket) packet);
@@ -173,7 +199,6 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		teamPressedWithID(0, team);
 	}
 
-
 	@Override public void disconnectPressed()
 	{
 		sendUserPacketFromServer(new DisconnectUserPacket());
@@ -187,6 +212,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 	@Override protected void nextPhase()
 	{
 		super.nextPhase();
+		Debug.note("ServerLobbyMenu.nextPhase(): now in phase (" + getPhase() + ")");
 		updatePlayers();
 		sendToAllClients(new LobbyPlayersPacket(getPlayers()));
 
@@ -203,6 +229,9 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	private boolean allPlayersLocked()
 	{
+		if (getPlayers().size() < 1)
+			Debug.warn("ServerLobbyMenu(): getPlayers().size() = " + getPlayers().size());
+
 		boolean enable = true;
 		for (int i = 1; i < getPlayers().size(); i++) // i = 1 -> für alle Client-Spieler
 		{
@@ -211,7 +240,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 				enable = false; // den Button disablen
 			}
 		}
-		return enable;	
+		return enable;
 	}
 
 	// Prüft, ob der LockButton enabled ist oder nicht
@@ -222,6 +251,10 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	private void teamPressedWithID(int id, Team team)
 	{
+		if (id < 0 || id > getUpdatedPlayers().size())
+			Debug.warn("ServerLobbyMenu.teamPressedWithID(): id (" + id + ") is out of range");
+		if (team == null)
+			Debug.warn("ServerLobbyMenu.teamPressedWithID(): team == null");
 		TeamUserPacket packet;
 		sendToAllClients(new UserPacketWithID(packet = new TeamUserPacket(team), id));
 		getLocalPlayer().applyUserPacket(packet);
@@ -235,11 +268,16 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	private void redirectUserPacket(UserPacket packet, InetAddress ip)
 	{
-		sendToAllClients(new UserPacketWithID(packet, ipToID(ip, getPlayers())));
+		int id = ipToID(ip, getUpdatedPlayers());
+		if (id < 0 || id > getUpdatedPlayers().size())
+			Debug.warn("ServerLobbyMenu.redirectUserPacket(): id (" + id + ") is out of range");
+		sendToAllClients(new UserPacketWithID(packet, id));
 	}
 
 	private void sendToAllClients(Packet packet)
 	{
+		if (getPlayers().size() < 1)
+			Debug.warn("ServerLobbyMenu.sendToAllClients(): getPlayers().size() = " + getPlayers().size());
 		for (int i = 1; i < getPlayers().size(); i++) // für all client-spieler
 		{
 			send(packet, getPlayers().get(i).getIP()); // erhalte das packet!
@@ -248,6 +286,8 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	private void sendToTeam(Packet packet, Team team)
 	{
+		if (team == null)
+			Debug.warn("ServerLobbyMenu(): team == null");
 		if (team.equals(Team.TEAM0))
 		{
 			return;
@@ -262,7 +302,12 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		}
 	}
 
-	private LinkedList<LobbyPlayer> getUpdatedPlayers() { return updatedPlayers; }
+	private LinkedList<LobbyPlayer> getUpdatedPlayers()
+	{
+		if (updatedPlayers == null)
+			Debug.warn("ServerLobbyMenu.getUpdatedPlayers(): updatedPlayers = null");
+		return updatedPlayers;
+	}
 
 	@Override protected void unlockAll()
 	{
@@ -276,20 +321,40 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	@Override protected void removePlayer(LobbyPlayer player)
 	{
+		if (player == null)
+			Debug.warn("ServerLobbyMenu.removePlayer(null)");
+
 		super.removePlayer(player);
 		if (getUpdatedPlayers().contains(player))
 		{
 			getUpdatedPlayers().remove(player);
 		}
+		else
+		{
+			Debug.warn("ServerLobbyMenu.removePlayer(): player not contained in getUpdatedPlayers()");
+		}
 	}
 
 	private void updatePlayers()
 	{
+		if (getUpdatedPlayers().size() < 1)
+			Debug.warn("ServerLobbyMenu.updatedPlayers(): getUpdatedPlayers().size() = " + getUpdatedPlayers().size());
+
+		getPlayers().clear();
 		for (int i = 0; i < getUpdatedPlayers().size(); i++)
 		{
-			getPlayers().set(i, new LobbyPlayer(getUpdatedPlayers().get(i)));
+			getPlayers().add(new LobbyPlayer(getUpdatedPlayers().get(i)));
 		}
+
+		Debug.note("ServerLobbyMenu.updatedPlayers(): now getPlayers().size() = " + getPlayers().size());
 	}
 
-	@Override public LobbyPlayer getLocalPlayer() { return getPlayers().get(0); }
+	@Override public LobbyPlayer getLocalPlayer()
+	{
+		if (getPlayers().size() < 1)
+			Debug.warn("ServerLobbyMenu.getLocalPlayer(): getPlayers().size() = " + getPlayers().size());
+		if (getPlayers().get(0) == null)
+			Debug.warn("ServerLobbyMenu.getLocalPlayer(): returns null");
+		return getPlayers().get(0);
+	}
 }
