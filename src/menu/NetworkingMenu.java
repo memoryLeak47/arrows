@@ -28,13 +28,11 @@ public abstract class NetworkingMenu extends Menu
 	protected void send(Packet packet, InetAddress ip)
 	{
 		Main.getNetworkDevice().send(packet, ip);
-		Debug.note("Packet sent: " + packet, Debug.Tags.NETWORK);
 	}
 
 	public final void receivePacket(Packet packet, InetAddress ip)
 	{
 		packets.add(new PacketAndIP(packet, ip));
-		Debug.note("Packet received: " + packet, Debug.Tags.NETWORK);
 	}
 
 	private final void handleAllPackets()
