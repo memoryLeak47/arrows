@@ -82,10 +82,19 @@ public abstract class LobbyMenu extends NetworkingMenu
 	public abstract LobbyPlayer getLocalPlayer();
 
 	public int getPhase() { return phase; }
-	public LinkedList<LobbyPlayer> getPlayers() { return players; } // public damit TeamListPanel darauf zugreifen kann
+	public LinkedList<LobbyPlayer> getPlayers()
+	{
+		if (players == null)
+			Debug.warn("LobbyMenu.getPlayers() returns null");
+		if (players.size() < 1)
+			Debug.warn("LobbyMenu.getPlayers(): size() = " + players.size());
+		return players;
+	} // public damit TeamListPanel darauf zugreifen kann
 
 	protected void setPlayers(LinkedList<LobbyPlayer> players) 
 	{ 
+		if (players == null)
+			Debug.warn("LobbyMenu.setPlayers(null)");
 		this.players = players; 
 	}
 
@@ -113,6 +122,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 				ImageFile.loadFromTo(ImageFile.ARCHER_ICON, ImageFile.ARCHER_ICON);
 				break;	
 			}
+			// TODO load others
 		}
 		unlockAll();
 	}
@@ -127,6 +137,8 @@ public abstract class LobbyMenu extends NetworkingMenu
 
 	protected void removePlayer(LobbyPlayer player)
 	{
+		if (!getPlayers().contains(player))
+			Debug.warn("LobbyMenu.removePlayer(...): player not in getPlayers()");
 		getPlayers().remove(player);
 	}
 
@@ -144,6 +156,9 @@ public abstract class LobbyMenu extends NetworkingMenu
 
 	protected boolean inMyTeam(LobbyPlayer player)
 	{
+		if (player == null)
+			Debug.warn("LobbyMenu.player == null");
+
 		if (player.getTeam().equals(Team.TEAM0) || getLocalPlayer().getTeam().equals(Team.TEAM0))
 		{
 			return false;
@@ -153,11 +168,13 @@ public abstract class LobbyMenu extends NetworkingMenu
 
 	protected int ipToID(InetAddress ip, LinkedList<LobbyPlayer> players)
 	{
-		Debug.test("ipToID");
-		Debug.test("players.size() == " + players.size());
+		if (ip == null)
+			Debug.warn("LobbyMenu.ipToID(null, ...)");
+		if (players.size() < 2)
+			Debug.warn("LobbyMenu.ipToID(..., players): players.size = " + players.size());
+
 		for (int i = 1; i < players.size(); i++) // für alle clients
 		{
-			Debug.test("ipToID(" + ip.getHostName() + "): testing ip(" + players.get(i).getIP().getHostName() + ")");
 			if (players.get(i).getIP().equals(ip)) // wenn eure ip die ip ist
 			{
 				Debug.test("equal!");
@@ -170,6 +187,9 @@ public abstract class LobbyMenu extends NetworkingMenu
 
 	protected LobbyPlayer ipToPlayer(InetAddress ip, LinkedList<LobbyPlayer> players)
 	{
+		if (ip == null)
+			Debug.warn("LobbyMenu.ipToPlayer(null, ...)");
+
 		int id = ipToID(ip, players);
 		if (id < 0 || id > players.size())
 			Debug.error("LobbyMenu.ipToPlayer(" + ip.getHostName() + ", ...): id (" + id + ") out of range");
