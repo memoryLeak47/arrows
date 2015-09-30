@@ -34,19 +34,19 @@ public class Debug
 	public static final String ERROR_COLOR = FRED;
 
 	public static enum Tags
+	{
+		NETWORK(false),
+		LOBBYMENUINFO(true);
+
+		private boolean active;
+
+		Tags(boolean active)
 		{
-			NETWORK(false),
-			LOBBYMENUINFO(true);
+			this.active = active;
+		}
 
-			private boolean active;
-
-			Tags(boolean active)
-			{
-				this.active = active;
-			}
-
-			public boolean isActive() { return active; }
-		};
+		public boolean isActive() { return active; }
+	};
 
 	private static LinkedList<String> logs = new LinkedList<String>(); // liste der logs
 	private static final String STANDARD_LOGFILE = "log"; // standart-logfile
@@ -139,6 +139,7 @@ public class Debug
 	public static void warn(String string)
 	{
 		colorLog(WARN_COLOR, "WARN: " + string);
+		colorLog(WARN_COLOR, "\t" + new Throwable().getStackTrace()[2]);
 	}
 
 	// error
