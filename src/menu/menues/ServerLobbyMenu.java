@@ -326,15 +326,15 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		updateLockButton(); // Setzt Button.enabled auf false
 	}
 
+	// Setzt die "Players" auf den Stand von updated Players
 	private void updatePlayers()
 	{
 		if (getUpdatedPlayers().size() < 1)
 			Debug.warn("ServerLobbyMenu.updatePlayers(): getUpdatedPlayers().size() = " + getUpdatedPlayers().size());
 
-		getPlayers().clear();
 		for (int i = 0; i < getUpdatedPlayers().size(); i++)
 		{
-			getPlayers().add(new LobbyPlayer(getUpdatedPlayers().get(i)));
+			getPlayers().get(i).assign(getUpdatedPlayers().get(i));
 		}
 
 		Debug.note("ServerLobbyMenu.updatePlayers(): now getPlayers().size() = " + getPlayers().size());

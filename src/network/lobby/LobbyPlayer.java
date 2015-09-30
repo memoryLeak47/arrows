@@ -55,6 +55,17 @@ public class LobbyPlayer implements Serializable
 		itemPacket = new ItemUserPacket(lobbyPlayer.itemPacket);
 	}
 
+	public void assign(LobbyPlayer lobbyPlayer)
+	{
+		this.ip = lobbyPlayer.ip;
+		loginPacket = new LoginUserPacket(lobbyPlayer.loginPacket);
+		lockPacket = new LockUserPacket(lobbyPlayer.lockPacket);
+		avatarPacket = new AvatarUserPacket(lobbyPlayer.avatarPacket);
+		teamPacket = new TeamUserPacket(lobbyPlayer.teamPacket);
+		skillPacket = new SkillUserPacket(lobbyPlayer.skillPacket);
+		itemPacket = new ItemUserPacket(lobbyPlayer.itemPacket);	
+	}
+
 	public final void applyUserPacket(UserPacket packet)
 	{
 		if (packet instanceof LoginUserPacket)

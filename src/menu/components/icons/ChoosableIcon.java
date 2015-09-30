@@ -14,6 +14,7 @@ import menu.components.PlayerPanel;
 import menu.ComponentContainer;
 import menu.menues.LobbyMenu;
 import misc.math.Rect;
+import misc.Debug;
 import network.lobby.LobbyPlayer;
 
 public abstract class ChoosableIcon extends Icon
@@ -39,9 +40,12 @@ public abstract class ChoosableIcon extends Icon
 	{
 		if (getParentMenu() instanceof LobbyMenu)
 		{
-			return getLobbyMenu().getPhase() == getChoosePhase()
+
+			boolean chosen = getLobbyMenu().getPhase() == getChoosePhase()
 				&& getLobbyMenu().getLocalPlayer() == getPlayer()
 				&& !getPlayer().isLocked();
+			Debug.once(this + ": choosable = " + chosen + "| Phase: " + (getLobbyMenu().getPhase() == getChoosePhase()) + "| LocalPlayer: " + (getLobbyMenu().getLocalPlayer() == getPlayer()) + ": !Locked: " + getPlayer().isLocked());
+			return chosen;
 		}
 		return false;
 	}
