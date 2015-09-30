@@ -36,7 +36,7 @@ public class Debug
 	public static enum Tags
 		{
 			NETWORK(false),
-			TICK(false);
+			LOBBYMENUINFO(true);
 
 			private boolean active;
 

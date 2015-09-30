@@ -23,7 +23,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 		try
 		{
 			this.serverIP = InetAddress.getByName(serverIPString); // Speichert die Internet-Adresse vom Server; Wird von JoinServerMenu übergeben
-		} catch (Exception e) { Debug.note("ClientLobbyMenu not a valid ip address: " + serverIPString); }
+		} catch (Exception e) { Debug.warn("ClientLobbyMenu not a valid ip address: " + serverIPString); }
 	}
 
 	// Wird ausgeführt von Main.networkDevice.receive()
@@ -41,6 +41,10 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 				int i = playerToID(getLocalPlayer(), getPlayers());
 				setPlayers(((LobbyPlayersPacket) packet).getPlayers()); // setzte die komplette Liste neu
 				localPlayer = getPlayers().get(i);
+				if (localPlayer == null)
+				{
+					Debug.warn("ClientLobbyMenu.handlePacket(): localPlayer == null");
+				}
 				updatePlayerIcons();
 			}
 		}
@@ -73,6 +77,14 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 			}
 			else if (userPacket instanceof DisconnectUserPacket)
 			{
+				if (getPlayers() == null)
+				{
+					Debug.warn("ClientLobbyMenu.handlePacket(): getPlayers() == null");
+				}
+				if (getPlayer(packet) == null)
+				{
+					Debug.warn("ClientLobbyMenu.handlePacket(): getPlayer(packet) == null");
+				}
 				getPlayers().remove(getPlayer(packet));
 				unlockAll();
 				updatePlayerIcons();
@@ -84,6 +96,10 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 					case TEAM_PHASE: // Falls man in der Team Phase ist
 						if (userPacket instanceof TeamUserPacket) // Wenn Spieler das Team wechselt
 						{
+							if (getPlayer(packet) == null)
+							{
+								Debug.warn("ClientLobbyMenu.handlePacket(): getPlayer(packet) == null (2)");
+							}
 							getPlayer(packet).applyUserPacket(userPacket); // setzte das Team des jeweilgen Spielers
 							updatePlayerIcons();
 							unlockAll();
@@ -91,6 +107,10 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 						else if (userPacket instanceof LoginUserPacket) // Wenn sich ein Spieler einloggt
 						{
 							LobbyPlayer player = new LobbyPlayer((LoginUserPacket) userPacket); // Neuen LobbyPlayer erstellen
+							if (getPlayers().size() < 1)
+							{
+								Debug.warn("ClientLobbyMenu.handlePacket(): getPlayers().size() == " + getPlayers().size());
+							}
 							getPlayers().add(player); // Zur Liste der LobbyPlayer hinzufügen
 							if (localPlayer == null) // Da das erste LoginUserPacket, das man bekommt, das eigene ist
 							{
@@ -107,6 +127,10 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 					case AVATAR_PHASE: // Wenn man sich in der AvatarPhase befindet
 						if (userPacket instanceof AvatarUserPacket) // Falls ein Spieler seinen Avatar wechselt
 						{
+							if(getPlayer(packet) == null)
+							{
+								Debug.warn("ClientLobbyMenu.handlePacket(): getPlayer(packet) == null (3)");
+							}
 							getPlayer(packet).applyUserPacket(userPacket); // Des jeweiligen Spielers Avatar wird in den LobbyPlayern geändert
 						}
 						else
@@ -149,6 +173,10 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 	// Wird ausgeführt, wenn ChoosePlayerPropertyMenu mit okButton geschlossen wird
 	@Override public void sendPlayerPropertyUpdate()
 	{
+		if (getLocalPlayer() == null)
+		{
+			Debug.warn("ClientLobbyMenu.sendPlayerPropertyUpdate(): getLocalPlayer == null");
+		}
 		switch (getPhase())
 		{
 			case AVATAR_PHASE:
@@ -176,11 +204,15 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 	{
 		if (isPlayerPropertiesChoosen())
 		{
+			if (getLocalPlayer() == null)
+			{
+				Debug.warn("ClientLobbyMenu.lockPressed(): getLocalPlayer() == null");
+			}
 			sendToServer(new LockUserPacket(!getLocalPlayer().isLocked())); // sendet an den Server, dass man den lock-button betätigt hat
 		}
 		else
 		{
-			Debug.note("ClientLobbyMenu.lockPressed: Kann noch nicht locken, da noch nicht alle PlayerProperties gewählt wurden");
+			Debug.note("ClientLobbyMenu.lockPressed: Kann noch nicht locken, da noch nicht alle PlayerProperties gewählt wurden", Debug.Tags.LOBBYMENUINFO);
 		}
 	}
 
@@ -188,11 +220,16 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 	{
 		sendToServer(new DisconnectUserPacket());
 		Main.getMenues().remove(Main.getMenues().getLast());
+		Debug.note("ClientLobbyMenu.disconnectPressed: LobbyMenu beendet", Debug.Tags.LOBBYMENUINFO);
 	}
 
 	// Wird aufgerufen, wenn man sein Team wechselt
 	@Override public void teamPressed(Team team)
 	{
+		if (getLocalPlayer() == null)
+		{
+			Debug.warn("ClientLobbyMenu.teamPressed(): getLocalPlayer() == null");
+		}
 		if (!getLocalPlayer().isLocked() && !getLocalPlayer().getTeam().equals(team))
 		{
 			sendToServer(new TeamUserPacket(team)); // An die anderen Spieler senden
@@ -218,7 +255,14 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 		// sendToServer(new ItemUserPacket(items));
 	}
 
-	@Override public LobbyPlayer getLocalPlayer() { return localPlayer; }
+	@Override public LobbyPlayer getLocalPlayer()
+	{
+		if (localPlayer == null)
+		{
+			Debug.warn("ClientLobbyMenu.getLocalPlayer(): getLocalPlayer return null");
+		}
+		return localPlayer;
+	}
 
 	// returnt den Spieler, der den das übergebene Packet anspricht
 	private LobbyPlayer getPlayer(Packet packet)	
