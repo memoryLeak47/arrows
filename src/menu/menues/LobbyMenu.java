@@ -160,7 +160,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 				return i; // returne deine ID
 			}
 		} // falls kein spieler gefunden wurde
-		Debug.warn("LobbyMenu.ipToPlayerID(...): no LobbyPlayer with ip " + ip.getHostName()); // error
+		Debug.warn("LobbyMenu.ipToID(...): no LobbyPlayer with ip (" + ip.getHostName() + ") returning -1"); // error
 		return -1;
 	}
 
