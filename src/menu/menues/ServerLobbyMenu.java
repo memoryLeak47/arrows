@@ -1,3 +1,7 @@
+/*
+	getLocalPlayer() == 'updated local player' (gleicher verweis!!)
+*/
+
 package menu.menues;
 
 import java.net.InetAddress;
@@ -27,7 +31,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 		updatedPlayers = new LinkedList<LobbyPlayer>();
 		getPlayers().add(new LobbyPlayer(new LoginUserPacket(Main.getName(), Main.getRank()))); // server fügt eigenen lobby-player hinzu
-		getUpdatedPlayers().add(new LobbyPlayer(getPlayers().getLast()));
+		getUpdatedPlayers().add(getPlayers().getLast());
 		updatePlayerIcons();
 	}
 
