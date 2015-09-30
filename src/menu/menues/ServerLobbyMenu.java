@@ -101,7 +101,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 					}
 					else // falls das packet iwas anderes ist
 					{
-						Debug.error("Server can't accept packet (" + packet + ") in team phase"); // error
+						Debug.warn("Server can't accept packet (" + packet + ") in team phase"); // error
 					}
 					break;
 				case AVATAR_PHASE: // falls wir in der avatar phase sind
@@ -112,14 +112,14 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 						if (inMyTeam(ipToPlayer(ip, getUpdatedPlayers())))
 						{
-							ipToPlayer(ip, getUpdatedPlayers()).applyUserPacket((AvatarUserPacket) packet); // setze das AvatarUserPacket vom sender-player auf das erhaltene
+							ipToPlayer(ip, getPlayers()).applyUserPacket((AvatarUserPacket) packet); // setze das AvatarUserPacket vom sender-player auf das erhaltene
 						}
 						ipToPlayer(ip, getUpdatedPlayers()).applyUserPacket((AvatarUserPacket) packet); // setze das AvatarUserPacket vom sender-player auf das erhaltene
 						sendToTeam(new UserPacketWithID((UserPacket) packet, ipToID(ip, getUpdatedPlayers())), ipToPlayer(ip, getUpdatedPlayers()).getTeam());
 					}
 					else
 					{
-						Debug.error("Server can't accept packet (" + packet + ") in avatar-phase");
+						Debug.warn("Server can't accept packet (" + packet + ") in avatar-phase");
 					}
 					break;
 				case SKILL_PHASE:
@@ -137,7 +137,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 					}
 					else
 					{
-						Debug.error("Server can't accept packet (" + packet + ") in skill-phase");
+						Debug.warn("Server can't accept packet (" + packet + ") in skill-phase");
 					}
 					break;
 				case ITEM_PHASE:
@@ -155,11 +155,11 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 					}
 					else
 					{
-						Debug.error("Server can't accept packet (" + packet + ") in item-phase");
+						Debug.warn("Server can't accept packet (" + packet + ") in item-phase");
 					}
 					break;
 				default:
-					Debug.error("ServerLobbyMenu.handlePacket(...): wrong phase: " + getPhase());
+					Debug.warn("ServerLobbyMenu.handlePacket(...): wrong phase: " + getPhase());
 					break;
 			}
 		}

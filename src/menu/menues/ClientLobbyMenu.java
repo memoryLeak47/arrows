@@ -58,7 +58,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 			}
 			else
 			{
-				Debug.error("client> got mappacket out of teamphase");
+				Debug.warn("client> got mappacket out of teamphase");
 			}
 		}
 		else if (packet instanceof UserPacketWithID) // Wenn es sich bei dem Packet um UserPacketWithID handelt, dann
@@ -122,7 +122,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 						}
 						else
 						{
-							Debug.error("Client can't accept packet (" + packet + ") in team phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
+							Debug.warn("Client can't accept packet (" + packet + ") in team phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
 						}
 						break;
 					case AVATAR_PHASE: // Wenn man sich in der AvatarPhase befindet
@@ -136,7 +136,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 						}
 						else
 						{
-							Debug.error("Client can't accept packet (" + packet + ") in avatar phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
+							Debug.warn("Client can't accept packet (" + packet + ") in avatar phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
 						}
 						break;
 					case SKILL_PHASE: // Wenn man in der SkillPhase ist
@@ -146,7 +146,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 						}
 						else
 						{
-							Debug.error("Client can't accept packet (" + packet + ") in skill phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
+							Debug.warn("Client can't accept packet (" + packet + ") in skill phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
 						}
 						break;
 					case ITEM_PHASE:
@@ -156,18 +156,18 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 						}
 						else
 						{
-							Debug.error("Client can't accept packet (" + packet + ") in item phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
+							Debug.warn("Client can't accept packet (" + packet + ") in item phase"); // Alle anderen Packete werden in dieser Phase nicht angenommen
 						}
 						break;
 					default:
-						Debug.error("ClientLobbyMenu.handlePacket(...): wrong phase (" + getPhase() + ")"); // Da ist was ganz komisch gelaufen; Ungültige Phase
+						Debug.warn("ClientLobbyMenu.handlePacket(...): wrong phase (" + getPhase() + ")"); // Da ist was ganz komisch gelaufen; Ungültige Phase
 						break;
 				}
 			}
 		}
 		else
 		{
-			Debug.error("Client received wrong packet (" + packet + ")"); // packets, die nicht vom Typ UserPacketWithID sind werden nicht angenommen
+			Debug.warn("Client received wrong packet (" + packet + ")"); // packets, die nicht vom Typ UserPacketWithID sind werden nicht angenommen
 		}
 	}
 
@@ -190,7 +190,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 				sendToServer(getLocalPlayer().getItemPacket());
 				break;
 			default:
-				Debug.error("ClientLobbyMenu.sendPlayerPropertyUpdate(): wrong phase: " + getPhase());
+				Debug.warn("ClientLobbyMenu.sendPlayerPropertyUpdate(): wrong phase: " + getPhase());
 		}
 	}
 
