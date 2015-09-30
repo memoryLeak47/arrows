@@ -81,12 +81,12 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 				case AVATAR_PHASE: // falls wir in der avatar phase sind
 					if (packet instanceof AvatarUserPacket) // und das packet ein AvatarUserPacket ist
 					{
-						if (inMyTeam(ipToPlayer(ip, getPlayers())))
+						if (inMyTeam(ipToPlayer(ip, getUpdatedPlayers())))
 						{
-							ipToPlayer(ip, getPlayers()).applyUserPacket((AvatarUserPacket) packet); // setze das AvatarUserPacket vom sender-player auf das erhaltene
+							ipToPlayer(ip, getUpdatedPlayers()).applyUserPacket((AvatarUserPacket) packet); // setze das AvatarUserPacket vom sender-player auf das erhaltene
 						}
 						ipToPlayer(ip, getUpdatedPlayers()).applyUserPacket((AvatarUserPacket) packet); // setze das AvatarUserPacket vom sender-player auf das erhaltene
-						sendToTeam(new UserPacketWithID((UserPacket) packet, ipToID(ip, getPlayers())), ipToPlayer(ip, getUpdatedPlayers()).getTeam());
+						sendToTeam(new UserPacketWithID((UserPacket) packet, ipToID(ip, getUpdatedPlayers())), ipToPlayer(ip, getUpdatedPlayers()).getTeam());
 					}
 					else
 					{

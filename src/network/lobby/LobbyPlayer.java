@@ -46,6 +46,7 @@ public class LobbyPlayer implements Serializable
 
 	public LobbyPlayer(LobbyPlayer lobbyPlayer)
 	{
+		this.ip = ip;
 		loginPacket = new LoginUserPacket(lobbyPlayer.loginPacket);
 		lockPacket = new LockUserPacket(lobbyPlayer.lockPacket);
 		avatarPacket = new AvatarUserPacket(lobbyPlayer.avatarPacket);
