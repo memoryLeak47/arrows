@@ -33,6 +33,21 @@ public class Debug
 	public static final String WARN_COLOR = FRED;
 	public static final String ERROR_COLOR = FRED;
 
+	public static enum Tags
+		{
+			NETWORK(false),
+			TICK(false);
+
+			private boolean active;
+
+			Tags(boolean active)
+			{
+				this.active = active;
+			}
+
+			public boolean isActive() { return active; }
+		};
+
 	private static LinkedList<String> logs = new LinkedList<String>(); // liste der logs
 	private static final String STANDARD_LOGFILE = "log"; // standart-logfile
 	private static long lastTime = 0;
@@ -49,11 +64,27 @@ public class Debug
 		} catch (Exception e) { error("failed to init Debug"); }
 	}
 
+	// note
+	public static void note(String string, Tags tag)
+	{
+		if (tag.isActive())
+		{
+			note(string);
+		}
+	}
 	public static void note(String string)
 	{
 		colorLog(NOTE_COLOR, "NOTE: " + string);
 	}
 
+	// once
+	public static void once(String string, Tags tag)
+	{
+		if (tag.isActive())
+		{
+			once(string);
+		}
+	}
 	public static void once(String string)
 	{
 		if (!isLogged("ONCE: " + string))
@@ -62,11 +93,26 @@ public class Debug
 		}
 	}
 
+	// test
+	public static void test(String string, Tags tag)
+	{
+		if (tag.isActive())
+		{
+			test(string);
+		}
+	}
 	public static void test(String string)
 	{
 		colorLog(TEST_COLOR, "TEST: " + string);
 	}
-
+	// time
+	public static void time(String string, Tags tag)
+	{
+		if (tag.isActive())
+		{
+			time(string);
+		}
+	}
 	public static void time(String string) // prints time difference of last timeLog(...)
 	{
 		if (lastTime == 0) // if there was no last timeLog()
@@ -82,11 +128,27 @@ public class Debug
 		lastTime = System.nanoTime(); // set lastTime to now
 	}
 
+	// warn
+	public static void warn(String string, Tags tag)
+	{
+		if (tag.isActive())
+		{
+			warn(string);
+		}
+	}
 	public static void warn(String string)
 	{
 		colorLog(WARN_COLOR, "WARN: " + string);
 	}
 
+	// error
+	public static void error(String string, Tags tag)
+	{
+		if (tag.isActive())
+		{
+			error(string);
+		}
+	}
 	public static void error(String string) // quits (with exception) and gives error message
 	{
 		colorLog(ERROR_COLOR, "ERROR: " + string);
@@ -103,7 +165,6 @@ public class Debug
 		return logs.contains(string);
 	}
 
-	// private
 	private static void log(String string) // prints log and adds it to logs
 	{
 		System.out.println(string); // prints log
