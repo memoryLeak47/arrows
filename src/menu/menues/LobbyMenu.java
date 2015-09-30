@@ -177,7 +177,6 @@ public abstract class LobbyMenu extends NetworkingMenu
 		{
 			if (players.get(i).getIP().equals(ip)) // wenn eure ip die ip ist
 			{
-				Debug.test("equal!");
 				return i; // returne deine ID
 			}
 		} // falls kein spieler gefunden wurde

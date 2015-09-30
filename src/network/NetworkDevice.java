@@ -30,7 +30,6 @@ public class NetworkDevice
 		{
 			socket.send(datagramPacket); // send
 		} catch (Exception e) { Debug.error("Failed to send data"); }
-		Debug.test("sent packet: " + packet);
 	}
 
 	public void receive() // called by Main.run() permanently, receives packets and gives them to menu.handlePacket(...)
@@ -41,8 +40,6 @@ public class NetworkDevice
 		{
 			socket.receive(datagramPacket); // receive packet
 		} catch (Exception e) { Debug.error("Failed to receive data"); }
-
-		Debug.test("recv packet: " + (Packet) byteArrayToObject(data));
 
 		if (menu != null) // if there is a target menu
 		{
