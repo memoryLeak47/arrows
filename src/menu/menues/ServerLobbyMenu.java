@@ -225,14 +225,15 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		updatePlayers();
 		sendToAllClients(new LobbyPlayersPacket(getPlayers()));
 
-		switch (getPhase()-1) // -1, da phase++ schon passiert ist
+		switch (getPhase()) // -1, da phase++ schon passiert ist
 		{
-			case TEAM_PHASE:
-			{
+			case TEAM_PHASE+1:
 				// TODO teamButtonDisable
 				// TODO MapDisable
-			}
-			break;
+				break;
+			case GAME_PHASE:
+				Main.getMenues().add(new ServerGameInterface(getLobbyTileMap(), getPlayers()));
+				break;
 		}
 	}
 

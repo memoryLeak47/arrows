@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.net.InetAddress;
 
 import core.Main;
+import core.Screen;
 import menu.NetworkingMenu;
 import menu.components.*;
 import game.Team;
@@ -37,12 +38,14 @@ public abstract class LobbyMenu extends NetworkingMenu
 		phase = TEAM_PHASE;
 		players = new LinkedList<LobbyPlayer>();
 
+		// Top Label
 		getComponents().add(new Label(this, new Rect(300, 10, 100, 20), "Lobby"));
 
 		teamListPanel = new TeamListPanel(this, new Rect(100, 100, 600, 600));
 		getComponents().add(teamListPanel);
 
-		lockButton = new Button(this, new Rect(1000, 600, 200, 60), getLockButtonCaption())
+		// lock Button
+		lockButton = new Button(this, new Rect(Screen.WIDTH - 250, 600, 200, 60), getLockButtonCaption())
 		{
 			@Override public void onClick(int mouseButton)
 			{
