@@ -10,6 +10,7 @@ import game.Team;
 import game.avatar.Avatar;
 import game.skill.Skill;
 import game.item.Item;
+import game.tilemap.LobbyTileMap;
 import graphics.ImageFile;
 import misc.Debug;
 import misc.math.Rect;
@@ -23,8 +24,10 @@ public abstract class LobbyMenu extends NetworkingMenu
 	public static final int AVATAR_PHASE = 1;
 	public static final int SKILL_PHASE = 2;
 	public static final int ITEM_PHASE = 3;
+	public static final int GAME_PHASE = 4;
  
 	private int phase;
+	private LobbyTileMap lobbyTileMap;
 	protected Button lockButton; // Verweiß auf den NextStep/LockIn Button
 	private LinkedList<LobbyPlayer> players; // Bluemi: protected -> private; added setter
 	private TeamListPanel teamListPanel; // Nicht zwingend nötig, nur einfacherer Zugriff, da nicht über index
@@ -215,5 +218,14 @@ public abstract class LobbyMenu extends NetworkingMenu
 		}
 		Debug.warn("LobbyMenu.playerToID(...): player to found");
 		return 0;
+	}
+
+	protected LobbyTileMap getLobbyTileMap()
+	{
+		if (lobbyTileMap == null)
+		{
+			Debug.warn("LobbyMenu.getLobbyTileMap(): lobbyTileMap == null");
+		}
+		return lobbyTileMap;
 	}
 }

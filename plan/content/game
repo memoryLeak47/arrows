@@ -1,0 +1,50 @@
+Game:
+
+classes:
+	Game:
+		description:
+			calculates all the Players/Bullets... ticks everything etc.
+		public:
+			public void tick()
+			public <...> getRenderableContent()
+
+/////////////////////////////////////////////////////////////////////////////
+	GameInterface:
+		description:
+		public:
+			public void render(<...>)
+
+////////////////////////////////////////////////////////////////////////////
+	Entity:
+		description:
+			stellt Objekt (Player/Bullet) im Spiel dar, das Folgende Eigenschaften besitzt:
+				- Es hat eine Position
+				- Es kann getickt werden
+				- Es kann gerendert werden
+				- es enthält Effekte (Feuer, Gift, gestunnt, angehalten(TimeStop) ...)
+				- überprüft Kollision (kann auf unterschiedliche Weise mit Kollisionen umgehen(Tile-Collision/Player-Collision/Bullet-Collision))
+				
+		public:
+			SimpleEntity toSimpleEntity()
+			tick()
+
+///////////////////////////////////////////////////////////////////////////
+
+	GamePlayer: (extends Entity)
+		description:
+		public: 
+			<init>(LobbyPlayer)
+
+//////////////////////////////////////////////////////////////////////////
+	SimpleEntity:
+		description:
+			Sendable Entity
+		public:
+
+//////////////////////////////////////////////////////////////////////////
+	Skill:
+		description:
+		public:
+			onKeyEvents
+
+//////////////////////////////////////////////////////////////////////////

@@ -7,6 +7,7 @@ import game.Team;
 import game.avatar.Avatar;
 import game.skill.Skill;
 import game.item.Item;
+import game.tilemap.LobbyTileMap;
 import misc.Debug;
 import network.Packet;
 import network.lobby.LobbyPlayer;
@@ -263,6 +264,15 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 			Debug.warn("ClientLobbyMenu.getLocalPlayer(): getLocalPlayer return null");
 		}
 		return localPlayer;
+	}
+
+	@Override protected void nextPhase()
+	{
+		super.nextPhase();
+		if (getPhase() == GAME_PHASE)
+		{
+			Main.getMenues().add(new ClientGameInterface(getLobbyTileMap(), getPlayers()));
+		}
 	}
 
 	// returnt den Spieler, der den das übergebene Packet anspricht

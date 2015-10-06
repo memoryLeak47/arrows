@@ -3,7 +3,7 @@ package game;
 import java.util.LinkedList;
 
 import game.Player;
-import game.TileMap;
+import game.tilemap.TileMap;
 
 public class Game
 {

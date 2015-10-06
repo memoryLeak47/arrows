@@ -1,4 +1,4 @@
-package game;
+package game.tilemap;
 
 public abstract class Tile // TODO: extends Entity?
 {

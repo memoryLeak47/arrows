@@ -1,4 +1,4 @@
-package game;
+package game.tilemap;
 
 public class TileMap
 {

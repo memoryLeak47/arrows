@@ -1,12 +1,17 @@
 package menu.menues;
 
-import java.net.InetAddress;
+import java.util.LinkedList;
 
 import core.Main;
+import game.tilemap.LobbyTileMap;
 import menu.NetworkingMenu;
+import network.lobby.LobbyPlayer;
 import network.Packet;
 
 public abstract class GameInterface extends NetworkingMenu
-// gives Event to NetworkDevice.onEvent(event)
 {
+	public GameInterface(LobbyTileMap map, LinkedList<LobbyPlayer> lobbyPlayers)
+	{
+		
+	}
 }
