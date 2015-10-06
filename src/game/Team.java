@@ -4,15 +4,17 @@ import misc.Debug;
 
 public enum Team
 {
-	TEAM0(0, "None"), TEAM1(1, "Red"), TEAM2(2, "Blue"), TEAM3(3, "Green"), TEAM4(4, "Yellow");
+	TEAM0(0, "None", "666666"), TEAM1(1, "Red", "ff0000"), TEAM2(2, "Blue", "0000ff"), TEAM3(3, "Green", "00ff00"), TEAM4(4, "Yellow", "ffff00");
 
 	private int id;
 	private String name;
+	private String color;
 
-	private Team(int id, String name)
+	private Team(int id, String name, String color)
 	{
 		this.id = id;
 		this.name = name;
+		this.color = color;
 	}
 
 	public static Team getByID(int id)
@@ -30,4 +32,5 @@ public enum Team
 
 	public int getID() { return id; }
 	public String getName() { return name; }
+	public String getColor() { return color; }
 }
