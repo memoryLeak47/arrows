@@ -123,7 +123,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 					}
 					break;
 				case SKILL_PHASE:
-					if (packet instanceof SkillUserPacket) // und das packet ein AttributeUserPacket ist
+					if (packet instanceof SkillUserPacket) // und das packet ein SkillUserPacket ist
 					{
 						if (ipToPlayer(ip, getPlayers()) == null)
 							Debug.error("ServerLobbyMenu.handlePacket(SkillUserPacket): no player with that IP");
