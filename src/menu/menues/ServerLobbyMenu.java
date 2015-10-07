@@ -337,7 +337,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		if (updatedPlayers == null)
 			Debug.error("ServerLobbyMenu.getUpdatedPlayers(): updatedPlayers = null");
 		if (updatedPlayers.size() < 1)
-			Debug.warn("ServerLobbyMenu.getUpdatedPlayers(): updatedPlayers.size() = " + updatedPlayers.size());
+			Debug.warn("ServerLobbyMenu.getUpdatedPlayers(): updatedPlayers.size() = " + updatedPlayers.size(), Debug.Tags.EXTENDED_WARNINGS);
 		return updatedPlayers;
 	}
 

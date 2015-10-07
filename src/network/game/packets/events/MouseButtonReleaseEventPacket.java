@@ -25,7 +25,7 @@ public final class MouseButtonReleaseEventPacket extends EventPacket
 		}
 		else
 		{
-			Debug.warn("MouseButtonReleaseEventPacket.<init> bad mouse button(" + event.getButton() + ")");
+			Debug.warn("MouseButtonReleaseEventPacket.<init> bad mouse button(" + event.getButton() + ")", Debug.Tags.EXTENDED_WARNINGS);
 		}
 	}
 

@@ -90,7 +90,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 		if (players == null)
 			Debug.warn("LobbyMenu.getPlayers() returns null");
 		if (players.size() < 1)
-			Debug.warn("LobbyMenu.getPlayers(): size() = " + players.size());
+			Debug.warn("LobbyMenu.getPlayers(): size() = " + players.size(), Debug.Tags.EXTENDED_WARNINGS);
 		return players;
 	} // public damit TeamListPanel darauf zugreifen kann
 
