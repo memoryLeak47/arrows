@@ -4,6 +4,7 @@
 
 package menu.menues;
 
+import java.io.File;
 import java.net.InetAddress;
 import java.util.LinkedList;
 
@@ -11,8 +12,9 @@ import core.Main;
 import core.Screen;
 import game.Team;
 import game.avatar.Avatar;
-import game.skill.Skill;
 import game.item.Item;
+import game.skill.Skill;
+import game.tilemap.LobbyTileMap;
 import menu.components.*;
 import misc.Debug;
 import misc.math.Rect;
@@ -24,14 +26,25 @@ import network.lobby.packets.*;
 public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 {
 	private LinkedList<LobbyPlayer> updatedPlayers;
+	private EditField mapSelectEditField;
 
 	public ServerLobbyMenu()
 	{
 		// Map Select - EditField
-		getComponents().add(new EditField(this, new Rect(Screen.WIDTH-240, 250, 50, 20), "default"));
+		getComponents().add(mapSelectEditField = new EditField(this, new Rect(Screen.WIDTH-240, 250, 50, 20), "default"));
 
 		// Map Select - Button
-		getComponents().add(new Button(this, new Rect(Screen.WIDTH-180, 250, 50, 20), "Ok"));
+		getComponents().add(new Button(this, new Rect(Screen.WIDTH-180, 250, 50, 20), "Ok")
+		{
+			@Override public void onClick(int mouseButton)
+			{
+				File path = new File("res/maps/" + mapSelectEditField.getText() + ".png");
+				LobbyTileMap newMap = LobbyTileMap.getByFile(path);
+				if (newMap == null)
+					Debug.warn("ServerLobbyMenu: mapSelectButton.onClick(): can't load '" + path.getAbsolutePath() + "'");
+				getMiniMap().updateTileMap(newMap);
+			}
+		});
 
 		if (Main.getName() == null)
 			Debug.warn("ServerLobbyMenu.<init>(): Main.getName() == null");

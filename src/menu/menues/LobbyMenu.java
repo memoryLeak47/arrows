@@ -30,6 +30,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 	private int phase;
 	private LobbyTileMap lobbyTileMap;
 	protected Button lockButton; // Verweiß auf den NextStep/LockIn Button
+	private LobbyMiniMap miniMap;
 	private LinkedList<LobbyPlayer> players; // Bluemi: protected -> private; added setter
 	private TeamListPanel teamListPanel; // Nicht zwingend nötig, nur einfacherer Zugriff, da nicht über index
 
@@ -39,7 +40,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 		players = new LinkedList<LobbyPlayer>();
 
 		// Top Label
-		getComponents().add(new Label(this, new Rect(300, 10, 100, 20), getHeadline()));
+		getComponents().add(new Label(this, new Rect(300, 10, 150, 20), getHeadline()));
 
 		teamListPanel = new TeamListPanel(this, new Rect(100, 100, 600, 600));
 		getComponents().add(teamListPanel);
@@ -54,8 +55,8 @@ public abstract class LobbyMenu extends NetworkingMenu
 		}; // Lock-Button
 		getComponents().add(lockButton);
 
-		// Map Placeholder
-		getComponents().add(new Button(this, new Rect(1000, 100, 200, 140), "Map Placeholder")); // TODO Button -> MiniMap
+		// MiniMap
+		getComponents().add(miniMap = new LobbyMiniMap(this, new Rect(1000, 100, 200, 140)));
 
 		getComponents().add(new Button(this, new Rect(20, 500, 20, 20), "Disconnect")
 		{
@@ -226,5 +227,12 @@ public abstract class LobbyMenu extends NetworkingMenu
 			Debug.warn("LobbyMenu.getLobbyTileMap(): lobbyTileMap == null");
 		}
 		return lobbyTileMap;
+	}
+
+	protected LobbyMiniMap getMiniMap()
+	{
+		if (miniMap == null)
+			Debug.warn("LobbyMenu.getMiniMap(): returns null");
+		return miniMap;
 	}
 }

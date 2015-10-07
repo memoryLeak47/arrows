@@ -20,7 +20,7 @@ public class LobbyTileMap
 	}
 
 	// returnt eine neue LobbyTileMap aus dem übergebenen Pfad
-	public LobbyTileMap getByFile(File path)
+	public static LobbyTileMap getByFile(File path)
 	{
 		if (!path.exists())
 		{
@@ -57,12 +57,21 @@ public class LobbyTileMap
 
 		for (int x = 0; x < image.getWidth(); x++)
 		{
-			for (int y = 0; y < image.getWidth(); y++)
+			for (int y = 0; y < image.getHeight(); y++)
 			{
 				map[x][y] = image.getRGB(x, y);
 			}
 		}
 
 		return new LobbyTileMap(map);
+	}
+
+	public int[][] getInts()
+	{
+		if (map == null)
+		{
+			Debug.warn("LobbyTileMap.getInts(): returns null");
+		}
+		return map;
 	}
 }
