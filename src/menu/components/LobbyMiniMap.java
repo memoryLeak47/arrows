@@ -12,8 +12,8 @@ public class LobbyMiniMap extends MiniMap
 		super(parent, rect);
 	}
 
-	public void updateTileMap(LobbyTileMap tileMap)
+	public void applyMap(int[][] map)
 	{
-		applyMap(tileMap.getInts());
+		super.applyMap(map);
 	}
 }

@@ -42,7 +42,10 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 				LobbyTileMap newMap = LobbyTileMap.getByFile(path);
 				if (newMap == null)
 					Debug.warn("ServerLobbyMenu: mapSelectButton.onClick(): can't load '" + path.getAbsolutePath() + "'");
-				getMiniMap().updateTileMap(newMap);
+				getMiniMap().applyMap(newMap.getInts());
+
+				// sendet neue Map zu allen Clients
+				sendToAllClients(new MapPacket(newMap.getInts()));
 			}
 		});
 

@@ -54,7 +54,8 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 		{
 			if (getPhase() == TEAM_PHASE)
 			{
-				// TODO apply
+				
+				getMiniMap().applyMap(((MapPacket) packet).getInts());
 				unlockAll();
 			}
 			else
