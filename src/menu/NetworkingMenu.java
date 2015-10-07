@@ -37,9 +37,9 @@ public abstract class NetworkingMenu extends Menu
 
 	private final void handleAllPackets()
 	{
-		for (PacketAndIP packet : getPackets())
+		for (int i = 0; i < getPackets().size(); i++)
 		{
-			handlePacket(packet.getPacket(), packet.getIP());
+			handlePacket(getPackets().get(i).getPacket(), getPackets().get(i).getIP());
 		}
 		getPackets().clear();
 	}
