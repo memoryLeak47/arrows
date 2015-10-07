@@ -27,6 +27,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 {
 	private LinkedList<LobbyPlayer> updatedPlayers;
 	private EditField mapSelectEditField;
+	private Button mapSelectButton;
 
 	public ServerLobbyMenu()
 	{
@@ -34,18 +35,36 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		getComponents().add(mapSelectEditField = new EditField(this, new Rect(Screen.WIDTH-240, 250, 50, 20), "default"));
 
 		// Map Select - Button
-		getComponents().add(new Button(this, new Rect(Screen.WIDTH-180, 250, 50, 20), "Ok")
+		getComponents().add(mapSelectButton = new Button(this, new Rect(Screen.WIDTH-180, 250, 50, 20), "Ok")
 		{
 			@Override public void onClick(int mouseButton)
 			{
-				File path = new File("res/maps/" + mapSelectEditField.getText() + ".png");
-				LobbyTileMap newMap = LobbyTileMap.getByFile(path);
-				if (newMap == null)
-					Debug.warn("ServerLobbyMenu: mapSelectButton.onClick(): can't load '" + path.getAbsolutePath() + "'");
-				getMiniMap().applyMap(newMap.getInts());
+				if (isEnabled())
+				{
+					File path = new File("res/maps/" + mapSelectEditField.getText() + ".png");
+					LobbyTileMap newMap = LobbyTileMap.getByFile(path);
 
-				// sendet neue Map zu allen Clients
-				sendToAllClients(new MapPacket(newMap.getInts()));
+					if (newMap == null)
+					{
+						Debug.warn("ServerLobbyMenu: mapSelectButton.onClick(): can't load '" + path.getAbsolutePath() + "'");
+						return;
+					}
+					if (newMap.getInts() == null)
+					{
+						Debug.warn("ServerLobbyMenu: mapSelectButton.onClick(): newMap.getInts == null");
+						return;
+					}
+					if (getMiniMap() == null)
+					{
+						Debug.error("ServerLobbyMenu: mapSelectButton.onClick(): getMiniMap == null");
+						return;
+					}
+
+					getMiniMap().applyMap(newMap.getInts());
+
+					// sendet neue Map zu allen Clients
+					sendToAllClients(new MapPacket(newMap.getInts()));
+				}
 			}
 		});
 
@@ -248,10 +267,11 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		switch (getPhase()) // -1, da phase++ schon passiert ist
 		{
 			case TEAM_PHASE+1:
-				// TODO teamButtonDisable
-				// TODO MapDisable
+				mapSelectEditField.setEnabled(false);
+				mapSelectButton.setEnabled(false);
 				break;
 			case GAME_PHASE:
+				Debug.note("GAME START");
 				Main.getMenues().add(new ServerGameInterface(getLobbyTileMap(), getPlayers()));
 				break;
 		}
