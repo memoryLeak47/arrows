@@ -195,12 +195,6 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 		}
 	}
 
-	// Wird aufgerufen, wenn man auf die Map clickt
-	@Override public void mapPressed()
-	{
-		// TODO: Map anzeigen
-	}
-
 	// Wird aufgerufen, wenn man den Lock-Button drückt
 	@Override public void lockPressed()
 	{
@@ -274,6 +268,8 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 			Main.getMenues().add(new ClientGameInterface(getLobbyTileMap(), getPlayers()));
 		}
 	}
+
+	@Override protected String getHeadline() { return "Client - LobbyMenu"; }
 
 	// returnt den Spieler, der den das übergebene Packet anspricht
 	private LobbyPlayer getPlayer(Packet packet)	

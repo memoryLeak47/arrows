@@ -39,7 +39,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 		players = new LinkedList<LobbyPlayer>();
 
 		// Top Label
-		getComponents().add(new Label(this, new Rect(300, 10, 100, 20), "Lobby"));
+		getComponents().add(new Label(this, new Rect(300, 10, 100, 20), getHeadline()));
 
 		teamListPanel = new TeamListPanel(this, new Rect(100, 100, 600, 600));
 		getComponents().add(teamListPanel);
@@ -54,13 +54,9 @@ public abstract class LobbyMenu extends NetworkingMenu
 		}; // Lock-Button
 		getComponents().add(lockButton);
 
-		getComponents().add(new Button(this, new Rect(1000, 100, 200, 140), "Map Placeholder")
-		{
-			@Override public void onClick(int mouseButton)
-			{
-				mapPressed();
-			}
-		}); // Map Placeholder
+		// Map Placeholder
+		getComponents().add(new Button(this, new Rect(1000, 100, 200, 140), "Map Placeholder")); // TODO Button -> MiniMap
+
 		getComponents().add(new Button(this, new Rect(20, 500, 20, 20), "Disconnect")
 		{
 			@Override public void onClick(int mouseButton)
@@ -82,10 +78,10 @@ public abstract class LobbyMenu extends NetworkingMenu
 	public abstract void avatarPressed(Avatar avatar);
 	public abstract void skillPressed(Skill[] skills);
 	public abstract void itemPressed(Item[] items);
-	public abstract void mapPressed();
 	public abstract void disconnectPressed();
 	public abstract void sendPlayerPropertyUpdate(); // wird ausgeführt, wenn das ChoosePlayerPropertyMenu mit dem Ok-Button geschlossen wird
 	public abstract LobbyPlayer getLocalPlayer();
+	protected abstract String getHeadline();
 
 	public int getPhase() { return phase; }
 	public LinkedList<LobbyPlayer> getPlayers()

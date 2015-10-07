@@ -8,11 +8,14 @@ import java.net.InetAddress;
 import java.util.LinkedList;
 
 import core.Main;
+import core.Screen;
 import game.Team;
 import game.avatar.Avatar;
 import game.skill.Skill;
 import game.item.Item;
+import menu.components.*;
 import misc.Debug;
+import misc.math.Rect;
 import network.Packet;
 import network.lobby.LobbyPlayer;
 import network.lobby.packets.user.*;
@@ -24,6 +27,12 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	public ServerLobbyMenu()
 	{
+		// Map Select - EditField
+		getComponents().add(new EditField(this, new Rect(Screen.WIDTH-240, 250, 50, 20), "default"));
+
+		// Map Select - Button
+		getComponents().add(new Button(this, new Rect(Screen.WIDTH-180, 250, 50, 20), "Ok"));
+
 		if (Main.getName() == null)
 			Debug.warn("ServerLobbyMenu.<init>(): Main.getName() == null");
 		if (getPlayers() == null)
@@ -182,11 +191,6 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 			default:
 				Debug.error("ServerLobbyMenu.sendPlayerPropertyUpdate(): wrong phase: " + getPhase());
 		}
-	}
-
-	@Override public void mapPressed()
-	{
-		// TODO
 	}
 
 	@Override public void lockPressed()
@@ -354,4 +358,6 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 			Debug.warn("ServerLobbyMenu.getLocalPlayer(): returns null");
 		return getPlayers().get(0);
 	}
+
+	@Override public String getHeadline() { return "Server - LobbyMenu"; }
 }

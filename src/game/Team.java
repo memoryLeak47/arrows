@@ -1,20 +1,26 @@
 package game;
 
+import java.awt.Color;
+
 import misc.Debug;
 
 public enum Team
 {
-	TEAM0(0, "None", "666666"), TEAM1(1, "Red", "ff0000"), TEAM2(2, "Blue", "0000ff"), TEAM3(3, "Green", "00ff00"), TEAM4(4, "Yellow", "ffff00");
+	TEAM0(0, "None", "666666"),
+	TEAM1(1, "Red", "ff0000"),
+	TEAM2(2, "Blue", "0000ff"),
+	TEAM3(3, "Green", "00ff00"),
+	TEAM4(4, "Yellow", "ffff00");
 
 	private int id;
 	private String name;
-	private String color;
+	private int colorID;
 
-	private Team(int id, String name, String color)
+	private Team(int id, String name, String colorString)
 	{
 		this.id = id;
 		this.name = name;
-		this.color = color;
+		this.colorID = Integer.parseInt(colorString, 16);
 	}
 
 	public static Team getByID(int id)
@@ -32,5 +38,6 @@ public enum Team
 
 	public int getID() { return id; }
 	public String getName() { return name; }
-	public String getColor() { return color; }
+	public Color getColor() { return new Color(getColorID()); }
+	public int getColorID() { return colorID; }
 }
