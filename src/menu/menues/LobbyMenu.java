@@ -56,7 +56,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 		getComponents().add(lockButton);
 
 		// MiniMap
-		getComponents().add(miniMap = new LobbyMiniMap(this, new Rect(1000, 100, 200, 140)));
+		getComponents().add(miniMap = new LobbyMiniMap(this, new Rect(Screen.WIDTH-250, 100, 200, 140)));
 
 		getComponents().add(new Button(this, new Rect(20, 500, 20, 20), "Disconnect")
 		{
