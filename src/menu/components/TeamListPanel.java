@@ -43,6 +43,13 @@ public class TeamListPanel extends Panel
 	}
 
 	// Setter
+	public void disableTeamButtons()
+	{
+		for (int i = 0; i < getComponents().size(); i++)
+		{
+			((TeamPanel) getComponents().get(i)).disableTeamButton();
+		}
+	}
 
 	// Getter
 	private LinkedList<LobbyPlayer> getPlayers()

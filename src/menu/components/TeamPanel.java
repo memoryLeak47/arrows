@@ -15,6 +15,7 @@ import network.lobby.LobbyPlayer;;
 public class TeamPanel extends Panel
 {
 	private Team team;
+	private Button teamButton;
 
 	public TeamPanel(ComponentContainer parent, Rect rect, Team team)
 	{
@@ -26,17 +27,20 @@ public class TeamPanel extends Panel
 	public void update(LinkedList<LobbyPlayer> players)
 	{
 		getComponents().clear();
-		getComponents().add(new Button(this, new Rect(20, 20, 100, 30), "Team " + team.getName())
+		getComponents().add(teamButton = new Button(this, new Rect(20, 20, 100, 30), "Team " + team.getName())
 		{		
 			@Override public void onClick(int mouseButton)
 			{
-				((LobbyMenu) getParentMenu()).teamPressed(team); // Übergabe an LobbyMenu, dass wir Team wechseln
+				if (isEnabled())
+					getLobbyMenu().teamPressed(team); // Übergabe an LobbyMenu, dass wir Team wechseln
 			}					
 		});
+
 		if (players == null)
 		{
 			return;
 		}
+
 		int i = 0;
 		for (LobbyPlayer player : players)
 		{
@@ -48,4 +52,8 @@ public class TeamPanel extends Panel
 		}
 
 	}
+
+	public void disableTeamButton() { teamButton.setEnabled(false); }
+
+	private LobbyMenu getLobbyMenu() { return ((LobbyMenu) getParentMenu()); }
 }
