@@ -3,6 +3,7 @@ package menu.menues;
 import java.net.InetAddress;
 import java.util.LinkedList;
 
+import game.ServerGame;
 import game.tilemap.LobbyTileMap;
 import menu.menues.GameInterface;
 import misc.Debug;
@@ -14,7 +15,7 @@ public class ServerGameInterface extends GameInterface
 {
 	public ServerGameInterface(LobbyTileMap map, LinkedList<LobbyPlayer> lobbyPlayers)
 	{
-		super(map, lobbyPlayers);
+		super(new ServerGame(map, lobbyPlayers));
 	}
 	
 	@Override public void handlePacket(Packet packet, InetAddress ip)
