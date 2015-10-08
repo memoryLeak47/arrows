@@ -64,6 +64,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 					// sendet neue Map zu allen Clients
 					sendToAllClients(new MapPacket(newMap.getInts()));
+					unlockAll();
 				}
 			}
 		});
@@ -136,6 +137,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 						{
 							LobbyPlayer newPlayer = new LobbyPlayer((LoginUserPacket) packet, ip); // neuer spieler wird erstellt
 							send(new LobbyPlayersPacket(getPlayers()), ip); // liste ohne den Neuen an den Neuen senden.
+							send(new MapPacket(getLobbyTileMap().getInts()), ip); // Die Map des neuen wird gesetzt
 							getPlayers().add(newPlayer); // Neuen zur player liste hinzufügen
 							getUpdatedPlayers().add(new LobbyPlayer(newPlayer));
 							redirectUserPacket((UserPacket) packet, ip); // das erhaltene packet wird an alle clients weitergegeben
