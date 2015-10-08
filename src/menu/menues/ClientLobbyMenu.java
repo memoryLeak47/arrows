@@ -56,6 +56,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 			{
 				
 				getMiniMap().applyMap(((MapPacket) packet).getInts());
+				setLobbyTileMap(new LobbyTileMap(((MapPacket) packet).getInts()));
 				unlockAll();
 			}
 			else

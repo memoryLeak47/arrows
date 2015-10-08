@@ -230,6 +230,14 @@ public abstract class LobbyMenu extends NetworkingMenu
 		return lobbyTileMap;
 	}
 
+	protected void setLobbyTileMap(LobbyTileMap map)
+	{
+		if (map == null)
+			Debug.warn("LobbyMenu.setLobbyTileMap(null)");
+
+		this.lobbyTileMap = map;
+	}
+
 	protected LobbyMiniMap getMiniMap()
 	{
 		if (miniMap == null)

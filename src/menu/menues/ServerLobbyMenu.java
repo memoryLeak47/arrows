@@ -61,6 +61,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 					}
 
 					getMiniMap().applyMap(newMap.getInts());
+					setLobbyTileMap(newMap);
 
 					// sendet neue Map zu allen Clients
 					sendToAllClients(new MapPacket(newMap.getInts()));
