@@ -26,6 +26,8 @@ public class TeamPanel extends Panel
 
 	public void update(LinkedList<LobbyPlayer> players)
 	{
+		boolean buttonWasEnabled = teamButton.isEnabled();
+
 		getComponents().clear();
 		getComponents().add(teamButton = new Button(this, new Rect(20, 20, 100, 30), "Team " + team.getName())
 		{		
@@ -35,6 +37,8 @@ public class TeamPanel extends Panel
 					getLobbyMenu().teamPressed(team); // Übergabe an LobbyMenu, dass wir Team wechseln
 			}					
 		});
+
+		teamButton.setEnabled(buttonWasEnabled);
 
 		if (players == null)
 		{
