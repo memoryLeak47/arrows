@@ -15,7 +15,12 @@ public class ServerGame extends Game
 
 	public ServerGame(LobbyTileMap lobbyMap, LinkedList<LobbyPlayer> lobbyPlayers)
 	{
-		Debug.warn("ServerGame.<init>(): TODO");
+		super(lobbyMap);
+		players = new LinkedList<ExtendedGamePlayer>();
+		for (LobbyPlayer player : lobbyPlayers)
+		{
+			players.add(new ExtendedGamePlayer(player));
+		}
 	}
 
 	public void handleEvent(EventPacket event, int id)

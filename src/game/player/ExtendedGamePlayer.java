@@ -1,3 +1,12 @@
 package game.player;
 
-public class ExtendedGamePlayer extends MinimizedGamePlayer {}
+import network.lobby.LobbyPlayer;
+
+public class ExtendedGamePlayer extends MinimizedGamePlayer
+{
+	public ExtendedGamePlayer(LobbyPlayer lobbyPlayer)
+	{
+		super(lobbyPlayer);
+		// TODO
+	}
+}
