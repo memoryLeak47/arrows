@@ -82,6 +82,7 @@ public final class Account implements Serializable
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	private static LinkedList<Account> getAccounts()
 	{
 		if (!new File(accounts_filename).isFile())
