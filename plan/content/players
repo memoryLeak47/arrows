@@ -25,6 +25,7 @@ ExtendedGamePlayerFrameUpdate:
 
 ExtendedGamePlayer extends MinimizedGamePlayer:
 // ServerGame hat ein ExtendedGamePlayer für alle Spieler
+	getIP()
 	getEffects() (accurat)
 	getPlayerStats()
 	getCooldowns()

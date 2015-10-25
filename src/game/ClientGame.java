@@ -18,13 +18,19 @@ public class ClientGame extends Game
 
 	public ClientGame(LobbyTileMap lobbyMap, LinkedList<LobbyPlayer> lobbyPlayers, int localPlayerID)
 	{
+		super(lobbyMap);
 		this.localPlayerID = localPlayerID;
-	}
 
-	// TODO
+		players = new LinkedList<MinimizedGamePlayer>();
+		for (LobbyPlayer player : lobbyPlayers)
+		{
+			players.add(new MinimizedGamePlayer(player));
+		}
+	}
 
 	public void apply(GameFrameUpdatePacket updatePacket)
 	{
+		// TODO
 		Debug.warn("ClientGame.update(): TODO");
 	}
 }

@@ -3,6 +3,7 @@ package game;
 import java.util.LinkedList;
 import java.awt.image.BufferedImage;
 
+import game.tilemap.LobbyTileMap;
 import game.tilemap.GameTileMap;
 import game.Entity;
 import game.player.MinimizedGamePlayer;
@@ -12,9 +13,9 @@ public class Game
 {
 	private GameTileMap tileMap;
 
-	public Game()
+	public Game(LobbyTileMap lobbyTileMap)
 	{
-
+		this.tileMap = new GameTileMap(lobbyTileMap);
 	}
 
 	// TODO
