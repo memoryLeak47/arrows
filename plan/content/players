@@ -1,0 +1,37 @@
+LobbyPlayer:
+	*
+
+MinimizedGamePlayer extends Entity:
+// Client hat ein MinimizedGamePlayer für alle anderen Spieler
+	getKD()
+	getPlayerProperties()
+	getName()
+	getRank()
+	getHealth()
+	getEffectsOnOff()
+	getBodImage()
+	apply(MinimizedGamePlayerFrameUpdate)
+
+MinimizedGamePlayerFrameUpdate:
+	getHealth()
+	getEffectsOnOff()
+	getBodImage()
+
+ExtendedGamePlayerFrameUpdate:
+	getEffects() (accurat)
+	getPlayerStats()
+	getCooldowns()
+	
+
+ExtendedGamePlayer extends MinimizedGamePlayer:
+// ServerGame hat ein ExtendedGamePlayer für alle Spieler
+	getEffects() (accurat)
+	getPlayerStats()
+	getCooldowns()
+	toMinimizedGamePlayerFrameUpdate()
+	toExtendedGamePlayerFrameUpdate()
+	apply(MinimizedGamePlayerFrameUpdate)
+	apply(ExtendedGamePlayerFrameUpdate)
+	
+	
+

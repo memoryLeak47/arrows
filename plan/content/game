@@ -1,50 +1,69 @@
 Game:
+	getDynamicEntities() returnt alle Entities, außer Tiles (Cosmetics, Players, Bullets)
+	List<MinimizedGamePlayer> getPlayers() returnt alle Player, gebraucht in der MiniMap
+	getPixelMapImage() // = Minimap without the Players
+	getMapImage() // returnt die GameTileMap als ein Bild wie es im Spiel erscheint
 
-classes:
-	Game:
-		description:
-			calculates all the Players/Bullets... ticks everything etc.
-		public:
-			public void tick()
-			public <...> getRenderableContent()
+ClientGame extends Game:
+	private:
+		List<MinimizedGamePlayer> players;
+		ExtendedGamePlayerFrameUpdate localPlayerUpdate;
+		final int localPlayerID;
 
-/////////////////////////////////////////////////////////////////////////////
-	GameInterface:
-		description:
-		public:
-			public void render(<...>)
+	apply(GameFrameUpdatePacket)
 
-////////////////////////////////////////////////////////////////////////////
-	Entity:
-		description:
-			stellt Objekt (Player/Bullet) im Spiel dar, das Folgende Eigenschaften besitzt:
-				- Es hat eine Position
-				- Es kann getickt werden
-				- Es kann gerendert werden
-				- es enthält Effekte (Feuer, Gift, gestunnt, angehalten(TimeStop) ...)
-				- überprüft Kollision (kann auf unterschiedliche Weise mit Kollisionen umgehen(Tile-Collision/Player-Collision/Bullet-Collision))
-				
-		public:
-			SimpleEntity toSimpleEntity()
-			tick()
+ServerGame extends Game:
+	private:
+		List<ExtendedGamePlayer> players;
 
-///////////////////////////////////////////////////////////////////////////
+	handleEvent(EventPacket, id)
+	tick() lässt das Spiel weiterlaufen
+	ExtendedGamePlayerFrameUpdate getExtendedGamePlayer(id)
 
-	GamePlayer: (extends Entity)
-		description:
-		public: 
-			<init>(LobbyPlayer)
+GameFrameUpdatePacket:
+// Jeden Frame von Server zu Client gesendet
+	List<MinimizedGamePlayerFrameUpdate> getPlayers()
+	List<MinimizedBullet> getBullets()
+	List<UpdatePacket> getFrameUpdatePackets()
+	ExtendedGamePlayerFrameUpdate getLocalExtendedGamePlayerFrameUpdate();
 
-//////////////////////////////////////////////////////////////////////////
-	SimpleEntity:
-		description:
-			Sendable Entity
-		public:
+ClientGameInterface:
+	-> render() nutzt Game.getDynamicEntities()
+	handlePacket(Packet) -> ClientGame.update(CompressedGame, List<UpdatePacket>)
+	onEvent(EventPacket) -> ServerGameInterface.handlePacket
 
-//////////////////////////////////////////////////////////////////////////
-	Skill:
-		description:
-		public:
-			onKeyEvents
+ServerGameInterface:
+	-> render() nutzt Game.getDynamicEntities()
+	handlePacket() -> ServerGame.handleEvent(EventPacket)
+	onEvent(EventPacket) -> ServerGame.handleEvent(EventPacket)
 
-//////////////////////////////////////////////////////////////////////////
+
+InGame Client-Server Data Exchange:
+	* GameInterface.render() wird von MenuList ausgeführt. Die Verzögerung, weil nicht direkt nach dem recieven gerendert wird, wird aktzepiert.
+	* Client -> Server KeyStrokes/MouseEvents
+
+InGame Server -> Client data transmission:
+
+#################################################################################################################################################
+#				#					#			#			# 			#
+#	When    /  For		#	general				#	LocalPlayer	# 	allPlayers 	#	Plullets	#
+#				#					#			#			# 			#
+#################################################################################################################################################
+#				#					-			-			- 			-
+#				#	Map				-			-			- 			-
+#	LobbyMenu		#	all LobbyPlayers		-			-			-			-
+#				#	(Team, Avatar, Skills, 		-			-			-			-
+#				#	Items, Name, rank)		-			-			-			-
+#				#					-			-			- 			-
+#################################----------------------------------------------------------------------------------------------------------------
+#				#					-			-			- 			-
+#				#					-	Effect Stats	-			-			-
+#	Every Game Frame	#					-	Cooldown	-	Health		-	BodImage	-
+#				#					-	PlayerStats	-			-	Effects		-
+#				#					-			-			- 			-
+#################################----------------------------------------------------------------------------------------------------------------
+#				#					-			-			- 			-
+#	onEvent			#	Kills, BBHealth, win	 	-			-			-			-
+#				#	onCreateCosmetic		-			-			- 			-
+#				#					-			-			- 			-
+#################################----------------------------------------------------------------------------------------------------------------

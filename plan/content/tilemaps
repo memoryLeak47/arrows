@@ -1,0 +1,20 @@
+Tile:
+	isStatic()
+	isCollidable()
+	getByColorID()
+
+LobbyTileMap:
+	int[][] getInts()
+	getByBufferedImage()
+	getByFile(File)
+
+GameTileMap:
+	Tile[][] getTiles()
+	int[][] getInts()
+
+LobbyMiniMap:
+	apply(int[][])
+
+GameMiniMap:
+	apply(int[][])
+	applyPlayers(List<MinimizedGamePlayer>)

@@ -2,10 +2,9 @@ package game;
 
 import java.util.LinkedList;
 
-import game.Player;
-import game.tilemap.TileMap;
+import game.tilemap.GameTileMap;
 
-public abstract class Game
+public class Game
 {
-	public abstract GraphicalGame getGraphicalGame();
+	private GameTileMap tileMap;
 }

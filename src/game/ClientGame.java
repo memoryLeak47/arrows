@@ -13,9 +13,5 @@ public class ClientGame extends Game
 	}
 
 	public void update(/*GamePacket*/) {}
-	public GraphicalGame getGraphicalGame()
-	{
-		// TODO
-		return null;
-	}
+	public void /*renderableData*/ getRenderableData() {}
 }

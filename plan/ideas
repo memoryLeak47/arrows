@@ -150,74 +150,11 @@ per Frame:
 
 $data={graphical cooldown/static blocks/entities/dynamic blocks}
 $image={as it is.../imageIDs/BufferedImages/Animations/DrawObjects}
-
-Server sendet zu Beginn die StaticMap (Blöcke, die nicht verändert werden können).
-In jedem Frame wird alles andere gesendet:
-- dynamic Blocks
-- Players
-- Bullets
-- Cooldowns
-- Usernames
-
 ________________________________________________________________________________________________________________________________________________________
 ***** GAME CONCEPT *****
 
 Spieler können in der Luft steuern.
 Man sieht unsichtbare Teamkameraden.
-Man sieht das, was man selbst und Teamkameraden sehen können.
-Im LobbyMenu kann der Server wählen, ob FriendlyFire aktiviert ist.
-Man kann mit Geld () Items, Avatare und Skills kaufen.
+Man sieht alles außer unsichtbare Gegner
+Man kann mit Geld (außschließlich echtgeld :) Items, Avatare und Skills freischalten.
 Geld bekommt man durch Kills und gewonnene Spiele (und killing streaks/shut-downs?).
-
-
-________________________________________________________________________________________________________________________________________________________
-***** GAME *****
-
-defs:
-	Body = pos + size (+ rotation)
-	BodImage = Body + ImageID
-	Plullet = Player/Bullet
-	Cosmetics = Design stuff, decoration (clouds :)
-	Plullemetics = Plullet/Cosmetics
-	LobbyStats = Acceleration, mass, Maxhealth, wisdom, force, etc...
-
-GameInterface.render(ImagePackets): renders imagePackets
-GameInterface.render(ImagePackets): renders imagePackets + map
-* Server -> ClientLobbyMenu: Map, PlayerProperties
-* Server -> Client: onChange(BBHealth, Effects on/off, Stats); frame(Plullemetics.bodImage, health); onCreate(cosmetics); onAction(kills, win, skillused)
-* Client -> Server KeyStrokes/MouseEvents
-Server -> Client: only BodImages
-Server -> Client: whole Game
-* Entity { TransformEntity, GraphicsEntity, CollisionEntity, LifeEntity }
-* CompressedEntity represents an Entity (without CollisitonEntity, Server -> Client)
-* No FogOfWar / No Arrows
-* MiniMap
-
-What and when the server tells the Clients for the game:
-
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-+				+					+			+			+ 			+
-+	When   /  For		+	general				+	LocalPlayer	+ 	allPlayers 	+	Plullets	+
-+				+					+			+			+ 			+
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-+				+					+			+			+ 			+
-+				+	Map				+			+			+ 			+
-+	LobbyMenu		+	all LobbyPlayers		+			+			+			+
-+				+	(Team, Avatar, Skills, 		+			+			+			+
-+				+	Items, Name, rank)		+			+			+			+
-+				+					+			+			+ 			+
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-+				+					+			+			+ 			+
-+				+					+	Effect Stats	+			+			+
-+	Every Game Frame	+					+	Cooldown	+	Health		+	BodImage	+
-+				+					+	LobbyStats	+			+			+
-+				+					+			+			+ 			+
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-+				+					+			+			+ 			+
-+	onEvent			+	Kills			 	+			+			+	Effect On/Off	+
-+				+					+			+			+ 			+
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-LobbyStats, Cooldowns, LobbyStats?

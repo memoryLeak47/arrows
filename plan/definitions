@@ -1,0 +1,8 @@
+Definitions
+
+* Body = pos + size (+ rotation)
+* BodImage = Body + ImageID
+* Plullet = Player/Bullet
+* Cosmetics = Design stuff, decoration (clouds :)
+* Plullemetics = Plullet/Cosmetics
+* PlayerStats = acceleration, mass, maxhealth, force, regeneration, accuracy, agility, {cut,hit,magic}Resistance, {cut,hit,magic}Power

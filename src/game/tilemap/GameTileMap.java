@@ -1,6 +1,6 @@
 package game.tilemap;
 
-public class TileMap
+public class GameTileMap
 {
 	private Tile[][] tiles;
 }

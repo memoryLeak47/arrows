@@ -1,10 +1,6 @@
-TODO-LIST:
+#!/bin/bash
 
-- Renderable Data - datatype
-- GraphicalGameInterface data by getPlayers() or getRenderableData()
-- Score by GamePrinciple
-- What Packets
-- ClientGame.getPlayers() - datatype
-- How ClientGame saves extra localPlayer data
-- ServerGame.getPlayers() - datatype
-- Who is localPlayer?
+echo "start game in fullscreen
+disconnect button in lobby-menu"
+
+cd src; findWord TODO
