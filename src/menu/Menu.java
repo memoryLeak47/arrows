@@ -52,7 +52,7 @@ public abstract class Menu extends ComponentContainer
 	}
 
 	// bearbeitet die events vom menu
-	void onEvent(EventPacket event)
+	protected void onEvent(EventPacket event)
 	{
 		if (event instanceof MouseMoveEventPacket) // wenn sich die maus bewegt hat
 		{

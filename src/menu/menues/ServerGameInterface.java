@@ -20,13 +20,17 @@ public class ServerGameInterface extends GameInterface
 	
 	@Override public void handlePacket(Packet packet, InetAddress ip)
 	{
-		if (packet instanceof EventPacket)
-		{
-			// TODO
-		}
-		else
-		{
-			Debug.note("ServerGameInterface got non-EventPacket"); // ignore packet
-		}
+		Debug.note("ServerGameInterface.handlePacket(): TODO"); // ignore packet
+	}
+
+	@Override public void render()
+	{
+		Debug.note("ServerGameInterface.render(): TODO");
+	}
+
+	@Override public void onEvent(EventPacket packet)
+	{
+		super.onEvent(packet);
+		Debug.note("ServerGameInterface.onEvent(): TODO");
 	}
 }
