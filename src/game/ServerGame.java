@@ -11,7 +11,18 @@ public class ServerGame extends Game
 	{
 		
 	}
-	public void onEvent(/*ID, Event*/) {}
-	public void tick() {}
-	public void /*RenderableData*/ getRendableData() {}
+
+	public void onEvent(/*ID, Event*/)
+	{
+	}
+
+	public void tick()
+	{
+	}
+
+	@Override public GraphicalGame getGraphicalGame()
+	{
+		// TODO
+		return null;
+	}
 }
