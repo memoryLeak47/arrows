@@ -1,3 +1,5 @@
+________________________________________________________________________________________________________________________________________________________________________________________________
+								Game
 Game:
 	getDynamicEntities() returnt alle Entities, außer Tiles (Cosmetics, Players, Bullets)
 	List<MinimizedGamePlayer> getPlayers() returnt alle Player, gebraucht in der MiniMap
@@ -21,6 +23,8 @@ ServerGame extends Game:
 	tick() lässt das Spiel weiterlaufen
 	GameFrameUpdatePacket getGameFrameUpdatePacket(id) // id from ExtendedGamePlayerFrameUpdate of localPlayer
 
+________________________________________________________________________________________________________________________________________________________________________________________________
+								Packet
 GameFrameUpdatePacket:
 // Jeden Frame von Server zu Client gesendet
 	List<MinimizedGamePlayerFrameUpdate> getPlayers()
@@ -28,22 +32,36 @@ GameFrameUpdatePacket:
 	List<EventUpdatePacket> getEventUpdatePackets()
 	ExtendedGamePlayerFrameUpdate getLocalExtendedGamePlayerFrameUpdate();
 
+EventUpdatePacket:
+// Ist im GameFrameUpdatePacket enthalten
+// Muss nicht jeden Frame gesendet werden
+// Unterklassen enthalten folgende Informationen: 
+Unterklassen:
+	- BreakableBlockEventUpdatePacket
+	- KillEventUpdatePacket
+	- CreateCosmeticsEventUpdatePacket
+	- WinEventUpdatePacket
+
+________________________________________________________________________________________________________________________________________________________________________________________________
+								Game Interface
 ClientGameInterface:
-	-> render() nutzt Game.getDynamicEntities()
-	handlePacket(Packet) -> ClientGame.update(CompressedGame, List<EventUpdatePacket>)
-	onEvent(EventPacket) -> ServerGameInterface.handlePacket
+	-> render() // nutzt Game.getDynamicEntities()
+	handlePacket(Packet) // -> ClientGame.update(CompressedGame, List<EventUpdatePacket>)
+	onEvent(EventPacket) // -> ServerGameInterface.handlePacket
 
 ServerGameInterface:
-	-> render() nutzt Game.getDynamicEntities()
-	handlePacket() -> ServerGame.handleEvent(EventPacket)
-	onEvent(EventPacket) -> ServerGame.handleEvent(EventPacket)
+	-> render() // nutzt Game.getDynamicEntities()
+	handlePacket() // -> ServerGame.handleEvent(EventPacket)
+	onEvent(EventPacket) // -> ServerGame.handleEvent(EventPacket)
 
+________________________________________________________________________________________________________________________________________________________________________________________________
+								InGame Client-Server Data Exchange
 
-InGame Client-Server Data Exchange:
-	* GameInterface.render() wird von MenuList ausgeführt. Die Verzögerung, weil nicht direkt nach dem recieven gerendert wird, wird aktzepiert.
-	* Client -> Server KeyStrokes/MouseEvents
+* GameInterface.render() wird von MenuList ausgeführt. Die Verzögerung, weil nicht direkt nach dem recieven gerendert wird, wird akzeptiert.
+* Client -> Server KeyStrokes/MouseEvents
 
-InGame Server -> Client data transmission:
+________________________________________________________________________________________________________________________________________________________________________________________________
+								InGame Server -> Client data transmission:
 
 #################################################################################################################################################
 #				#					#			#			# 			#
@@ -68,3 +86,4 @@ InGame Server -> Client data transmission:
 #				#	onCreateCosmetic		-			-			- 			-
 #				#					-			-			- 			-
 #################################----------------------------------------------------------------------------------------------------------------
+
