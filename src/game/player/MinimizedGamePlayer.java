@@ -1,3 +1,6 @@
+/*
+	
+*/
 package game.player;
 
 import game.Entity;

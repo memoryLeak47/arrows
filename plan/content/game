@@ -15,16 +15,17 @@ ClientGame extends Game:
 ServerGame extends Game:
 	private:
 		List<ExtendedGamePlayer> players;
+		ExtendedGamePlayerFrameUpdate getExtendedGamePlayerFrameUpdateByID(id) // needed for getGameFrameUpdatePacket(id)
 
 	handleEvent(EventPacket, id)
 	tick() lässt das Spiel weiterlaufen
-	ExtendedGamePlayerFrameUpdate getExtendedGamePlayer(id)
+	GameFrameUpdatePacket getGameFrameUpdatePacket(id) // id from ExtendedGamePlayerFrameUpdate of localPlayer
 
 GameFrameUpdatePacket:
 // Jeden Frame von Server zu Client gesendet
 	List<MinimizedGamePlayerFrameUpdate> getPlayers()
 	List<MinimizedBullet> getBullets()
-	List<UpdatePacket> getFrameUpdatePackets()
+	List<EventUpdatePacket> getEventUpdatePackets()
 	ExtendedGamePlayerFrameUpdate getLocalExtendedGamePlayerFrameUpdate();
 
 ClientGameInterface:
