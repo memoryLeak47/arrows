@@ -21,7 +21,7 @@ ServerGame extends Game:
 
 	handleEvent(EventPacket, id)
 	tick() lässt das Spiel weiterlaufen
-	GameFrameUpdatePacket getGameFrameUpdatePacket(id) // id from ExtendedGamePlayerFrameUpdate of localPlayer
+	GameFrameUpdatePacket getGameFrameUpdatePacketByID(id) // id from ExtendedGamePlayerFrameUpdate of localPlayer
 
 ________________________________________________________________________________________________________________________________________________________________________________________________
 								Packet
