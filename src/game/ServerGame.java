@@ -23,6 +23,13 @@ public class ServerGame extends Game
 		}
 	}
 
+	private ExtendedGamePlayerFrameUpdate getExtendedGamePlayerFrameUpdateByID(int id)
+	{
+		Debug.warn("ServerGame.getExtendedGamePlayerFrameUpdateByID(): return null TODO");
+		return null;
+		// TODO
+	}
+
 	public void handleEvent(EventPacket event, int id)
 	{
 		Debug.warn("ServerGame.handleEvent(): TODO");		
@@ -33,9 +40,9 @@ public class ServerGame extends Game
 		Debug.warn("ServerGame.tick(): TODO");		
 	}
 
-	public ExtendedGamePlayerFrameUpdate getExtendedGamePlayerFrameUpdate(int id)
+	public GameFrameUpdatePacket getGameFrameUpdatePacketByID(int id)
 	{
-		Debug.warn("ServerGame.getExtendedGamePlayerFrameUpdate(): TODO");		
+		Debug.warn("ServerGame.getGameFrameUpdatePacketByID(): return null; TODO");		
 		return null;
 	}
 }
