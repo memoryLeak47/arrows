@@ -30,7 +30,7 @@ GameFrameUpdatePacket:
 
 ClientGameInterface:
 	-> render() nutzt Game.getDynamicEntities()
-	handlePacket(Packet) -> ClientGame.update(CompressedGame, List<UpdatePacket>)
+	handlePacket(Packet) -> ClientGame.update(CompressedGame, List<EventUpdatePacket>)
 	onEvent(EventPacket) -> ServerGameInterface.handlePacket
 
 ServerGameInterface:
