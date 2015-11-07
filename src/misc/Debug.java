@@ -130,6 +130,18 @@ public class Debug
 	}
 
 	// warn
+	public static void warnIf(boolean b, String s, Tags tag)
+	{
+		if (b)
+			warn(s, tag);
+	}
+
+	public static void warnIf(boolean b, String s)
+	{
+		if (b)
+			warn(s);
+	}
+
 	public static void warn(String string, Tags tag)
 	{
 		if (tag.isActive())

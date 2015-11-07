@@ -8,6 +8,7 @@ import game.player.ExtendedGamePlayerFrameUpdate;
 import misc.Debug;
 import network.lobby.LobbyPlayer;
 import network.game.packets.EventPacket;
+import network.game.packets.GameFrameUpdatePacket;
 
 public class ServerGame extends Game
 {
