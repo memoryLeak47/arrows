@@ -17,6 +17,8 @@ public class ClientGameInterface extends GameInterface
 		super(new ClientGame(map, lobbyPlayers, localPlayerID));
 	}
 
+	private ClientGame getGame() { return (ClientGame) getUncastedGame(); }
+
 	@Override public void handlePacket(Packet packet, InetAddress ip)
 	{
 		Debug.warn("CGI.handlePacket(): TODO");

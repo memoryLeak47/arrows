@@ -26,4 +26,6 @@ public abstract class GameInterface extends NetworkingMenu
 		this.game = game;
 	}
 
+	protected Game getUncastedGame() { return game; }
+
 }

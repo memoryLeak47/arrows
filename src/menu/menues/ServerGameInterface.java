@@ -17,6 +17,8 @@ public class ServerGameInterface extends GameInterface
 	{
 		super(new ServerGame(map, lobbyPlayers));
 	}
+
+	private ServerGame getGame() { return (ServerGame) getUncastedGame(); }
 	
 	@Override public void handlePacket(Packet packet, InetAddress ip)
 	{
@@ -31,6 +33,7 @@ public class ServerGameInterface extends GameInterface
 	@Override public void onEvent(EventPacket packet)
 	{
 		super.onEvent(packet);
-		Debug.note("ServerGameInterface.onEvent(): TODO");
+		getGame().handleEvent(packet, 0);
 	}
+
 }
