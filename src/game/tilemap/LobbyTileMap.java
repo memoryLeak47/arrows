@@ -5,6 +5,7 @@
 package game.tilemap;
 
 import java.io.File;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
@@ -24,7 +25,7 @@ public class LobbyTileMap
 	{
 		if (!path.exists())
 		{
-			Debug.warn("LobbyTileMap.getByFile(): Try to Load Map \"" + path.getPath() + "\" but it does not exists");
+			Debug.warn("LobbyTileMap.getByFile(): Try to load Map \"" + path.getPath() + "\" but it does not exists");
 			return null;
 		}
 
@@ -59,7 +60,8 @@ public class LobbyTileMap
 		{
 			for (int y = 0; y < image.getHeight(); y++)
 			{
-				map[x][y] = image.getRGB(x, y);
+				Color c = new Color(image.getRGB(x, y));
+				map[x][y] = Integer.parseInt(String.format("%02x%02x%02x", c.getRed(), c.getGreen(), c.getBlue()), 16);
 			}
 		}
 

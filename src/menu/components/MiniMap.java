@@ -50,7 +50,7 @@ public class MiniMap extends MenuComponent
 				for (int xZoom = 0; xZoom < getZoom(); xZoom++)
 					for (int yZoom = 0; yZoom < getZoom(); yZoom++)
 					{
-						tileMapImage.setRGB(x+xZoom, y+yZoom, map[x][y]);
+						tileMapImage.setRGB(x+xZoom, y+yZoom, new Color(map[x][y]).getRGB()); // drittes Argument: int -> Color -> RGB-int
 					}
 			}
 	}
