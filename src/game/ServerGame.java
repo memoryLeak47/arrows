@@ -41,6 +41,13 @@ public class ServerGame extends Game
 		Debug.warn("ServerGame.tick(): TODO");		
 	}
 
+	// Getter
+	@Override public LinkedList<ExtendedGamePlayer> getPlayers()
+	{
+		Debug.warnIf(players == null, "ServerGame.getPlayers() return null");
+		return players;
+	}
+
 	public GameFrameUpdatePacket getGameFrameUpdatePacketByID(int id)
 	{
 		Debug.warn("ServerGame.getGameFrameUpdatePacketByID(): return null; TODO");		

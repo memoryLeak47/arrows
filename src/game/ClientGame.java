@@ -28,6 +28,12 @@ public class ClientGame extends Game
 		}
 	}
 
+	public LinkedList<MinimizedGamePlayer> getPlayers()
+	{
+		Debug.warnIf(players == null, "ClientGame.getPlayers(): return null");
+		return players;
+	}
+
 	public void apply(GameFrameUpdatePacket updatePacket)
 	{
 		// TODO

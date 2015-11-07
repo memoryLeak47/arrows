@@ -1,6 +1,7 @@
 ________________________________________________________________________________________________________________________________________________________________________________________________
 								Game
 Game:
+	abstract LinkedList<? extends MinimizedGamePlayer> getPlayers() // returnt alle Player, gebraucht in der MiniMap
 	getDynamicEntities() returnt alle Entities, außer Tiles (Cosmetics, Players, Bullets)
 	getPixelMapImage() // = Minimap without the Players
 	getMapImage() // returnt die GameTileMap als ein Bild wie es im Spiel erscheint
@@ -12,7 +13,6 @@ ClientGame extends Game:
 		final int localPlayerID;
 
 	apply(GameFrameUpdatePacket)
-	List<MinimizedGamePlayer> getPlayers() returnt alle Player, gebraucht in der MiniMap
 
 ServerGame extends Game:
 	private:
@@ -22,7 +22,6 @@ ServerGame extends Game:
 	handleEvent(EventPacket, id)
 	tick() lässt das Spiel weiterlaufen
 	GameFrameUpdatePacket getGameFrameUpdatePacketByID(id) // id from ExtendedGamePlayerFrameUpdate of localPlayer
-	List<ExtendedGamePlayer> getPlayers() returnt alle Player, gebraucht in der MiniMap
 
 ________________________________________________________________________________________________________________________________________________________________________________________________
 								Packet

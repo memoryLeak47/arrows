@@ -9,7 +9,7 @@ import game.Entity;
 import game.player.MinimizedGamePlayer;
 import misc.Debug;
 
-public class Game
+public abstract class Game
 {
 	private GameTileMap tileMap;
 
@@ -18,7 +18,6 @@ public class Game
 		this.tileMap = new GameTileMap(lobbyTileMap);
 	}
 
-	// TODO
 	// Returnt alle Entities außer Tiles (Player, Bullets, Cosmetics)
 	public LinkedList<Entity> getDynamicEntities()
 	{
@@ -27,11 +26,7 @@ public class Game
 	}
 
 	// Returnt alle Player. Gebraucht für die MiniMap
-	public LinkedList<MinimizedGamePlayer> getPlayers()
-	{
-		Debug.warn("Game.getPlayers(): return null TODO");
-		return null;
-	}
+	public abstract LinkedList<? extends MinimizedGamePlayer> getPlayers();
 
 	// MiniMap Hintergrund
 	public BufferedImage getPixelMapImage()
