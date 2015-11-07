@@ -2,6 +2,7 @@ package game;
 
 import java.util.LinkedList;
 
+import game.bullet.ExtendedBullet;
 import game.tilemap.LobbyTileMap;
 import game.player.ExtendedGamePlayer;
 import game.player.ExtendedGamePlayerFrameUpdate;
@@ -13,6 +14,7 @@ import network.game.packets.GameFrameUpdatePacket;
 public class ServerGame extends Game
 {
 	private LinkedList<ExtendedGamePlayer> players;
+	private LinkedList<ExtendedBullet> bullets;
 
 	public ServerGame(LobbyTileMap lobbyMap, LinkedList<LobbyPlayer> lobbyPlayers)
 	{
@@ -42,6 +44,12 @@ public class ServerGame extends Game
 	}
 
 	// Getter
+	
+	@Override LinkedList<ExtendedBullet> getBullets()
+	{
+		Debug.warnIf(bullets == null, "ServerGame.getBullets() return null");
+		return bullets;
+	}
 	@Override public LinkedList<ExtendedGamePlayer> getPlayers()
 	{
 		Debug.warnIf(players == null, "ServerGame.getPlayers() return null");

@@ -1,6 +1,8 @@
 package game.bullet;
 
-public class MinimizedBullet
+import game.Entity;
+
+public class MinimizedBullet extends Entity
 {
 	// TODO
 }
