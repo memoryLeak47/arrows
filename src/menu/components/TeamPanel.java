@@ -8,7 +8,7 @@ import menu.ComponentContainer;
 import menu.components.Button;
 import menu.components.Panel;
 import menu.components.PlayerPanel;
-import game.Team;
+import misc.game.Team;
 import misc.math.Rect;
 import network.lobby.LobbyPlayer;;
 

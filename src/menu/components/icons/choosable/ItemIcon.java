@@ -5,7 +5,7 @@ import menu.components.icons.ChoosableIcon;
 import menu.ComponentContainer;
 import menu.menues.LobbyMenu;
 import menu.menues.ChoosePlayerPropertyMenu;
-import game.item.Item;
+import playerproperty.item.Item;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.math.Rect;

@@ -1,6 +1,6 @@
 package network.lobby.packets.user;
 
-import game.Team;
+import misc.game.Team;
 import network.lobby.packets.UserPacket;
 
 public class TeamUserPacket extends UserPacket

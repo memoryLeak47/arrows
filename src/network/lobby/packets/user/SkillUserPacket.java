@@ -1,7 +1,7 @@
 package network.lobby.packets.user;
 
-import game.skill.Skill;
-import game.PlayerProperty;
+import playerproperty.skill.Skill;
+import playerproperty.PlayerProperty;
 import misc.Debug;
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.PlayerPropertyUserPacket;

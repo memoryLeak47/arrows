@@ -1,7 +1,7 @@
 package network.lobby.packets.user;
 
-import game.avatar.Avatar;
-import game.PlayerProperty;
+import playerproperty.avatar.Avatar;
+import playerproperty.PlayerProperty;
 import misc.Debug;
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.PlayerPropertyUserPacket;

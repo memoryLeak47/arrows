@@ -10,11 +10,11 @@ import java.util.LinkedList;
 
 import core.Main;
 import core.Screen;
-import game.Team;
-import game.avatar.Avatar;
-import game.item.Item;
-import game.skill.Skill;
-import game.tilemap.LobbyTileMap;
+import misc.game.Team;
+import playerproperty.avatar.Avatar;
+import playerproperty.item.Item;
+import playerproperty.skill.Skill;
+import tilemap.LobbyTileMap;
 import menu.components.*;
 import misc.Debug;
 import misc.math.Rect;

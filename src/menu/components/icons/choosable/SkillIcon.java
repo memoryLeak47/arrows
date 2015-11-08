@@ -5,7 +5,7 @@ import menu.components.icons.ChoosableIcon;
 import menu.ComponentContainer;
 import menu.menues.LobbyMenu;
 import menu.menues.ChoosePlayerPropertyMenu;
-import game.skill.Skill;
+import playerproperty.skill.Skill;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;

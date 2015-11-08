@@ -3,11 +3,11 @@ package menu.menues;
 import java.net.InetAddress;
 
 import core.Main;
-import game.Team;
-import game.avatar.Avatar;
-import game.skill.Skill;
-import game.item.Item;
-import game.tilemap.LobbyTileMap;
+import misc.game.Team;
+import playerproperty.avatar.Avatar;
+import playerproperty.skill.Skill;
+import playerproperty.item.Item;
+import tilemap.LobbyTileMap;
 import misc.Debug;
 import network.Packet;
 import network.lobby.LobbyPlayer;

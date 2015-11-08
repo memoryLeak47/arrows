@@ -9,7 +9,7 @@ import menu.MenuComponent;
 import menu.components.Panel;
 import menu.components.TeamPanel;
 import menu.menues.LobbyMenu;
-import game.Team;
+import misc.game.Team;
 import misc.math.Rect;
 import network.lobby.LobbyPlayer;
 

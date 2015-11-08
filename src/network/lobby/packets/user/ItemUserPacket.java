@@ -1,7 +1,7 @@
 package network.lobby.packets.user;
 
-import game.item.Item;
-import game.PlayerProperty;
+import playerproperty.item.Item;
+import playerproperty.PlayerProperty;
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.PlayerPropertyUserPacket;
 

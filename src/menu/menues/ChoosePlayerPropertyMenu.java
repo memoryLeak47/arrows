@@ -10,7 +10,7 @@ import menu.components.icons.PlayerPropertyIcon;
 import menu.menues.LobbyMenu;
 import misc.math.Rect;
 import misc.Debug;
-import game.PlayerProperty;
+import playerproperty.PlayerProperty;
 import network.lobby.packets.PlayerPropertyUserPacket;
 
 public class ChoosePlayerPropertyMenu extends Menu

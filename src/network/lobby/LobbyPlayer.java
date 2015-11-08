@@ -3,10 +3,10 @@ package network.lobby;
 import java.io.Serializable;
 import java.net.InetAddress;
 
-import game.avatar.Avatar;
-import game.skill.Skill;
-import game.item.Item;
-import game.Team;
+import playerproperty.avatar.Avatar;
+import playerproperty.skill.Skill;
+import playerproperty.item.Item;
+import misc.game.Team;
 import misc.Debug;
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.user.*;

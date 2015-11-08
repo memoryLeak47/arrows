@@ -2,7 +2,7 @@ package menu.components;
 
 import menu.components.MiniMap;
 import menu.ComponentContainer;
-import game.tilemap.LobbyTileMap;
+import tilemap.LobbyTileMap;
 import misc.math.Rect;
 
 public class LobbyMiniMap extends MiniMap

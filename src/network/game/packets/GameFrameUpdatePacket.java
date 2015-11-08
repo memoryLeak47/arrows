@@ -2,9 +2,9 @@ package network.game.packets;
 
 import java.util.LinkedList;
 
-import game.player.MinimizedGamePlayerFrameUpdate;
-import game.player.ExtendedGamePlayerFrameUpdate;
-import game.bullet.MinimizedBullet;
+import entity.player.MinimizedGamePlayerFrameUpdate;
+import entity.player.ExtendedGamePlayerFrameUpdate;
+import entity.bullet.MinimizedBullet;
 import network.game.packets.EventUpdatePacket;
 
 public class GameFrameUpdatePacket

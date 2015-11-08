@@ -3,8 +3,8 @@ package menu.menues;
 import java.net.InetAddress;
 import java.util.LinkedList;
 
-import game.ClientGame;
-import game.tilemap.LobbyTileMap;
+import core.game.ClientGame;
+import tilemap.LobbyTileMap;
 import misc.Debug;
 import network.Packet;
 import network.game.packets.EventPacket;
