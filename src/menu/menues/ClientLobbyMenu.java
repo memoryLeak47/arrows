@@ -239,25 +239,6 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 		}
 	}
 
-
-	@Override public void avatarPressed(Avatar avatar)
-	{
-		// if new avatar TODO
-		// sendToServer(new AvatarUserPacket(avatar)); // TODO
-	}
-
-	@Override public void skillPressed(Skill[] skills)
-	{
-		// if new skills TODO
-		// sendToServer(new SkillUserPacket(skills));
-	}
-
-	@Override public void itemPressed(Item[] items)
-	{
-		// if new items TODO
-		// sendToServer(new ItemUserPacket(items));
-	}
-
 	@Override public LobbyPlayer getLocalPlayer()
 	{
 		if (localPlayer == null)
@@ -266,6 +247,8 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 		}
 		return localPlayer;
 	}
+
+	// protected
 
 	@Override protected void nextPhase()
 	{
@@ -277,6 +260,8 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 	}
 
 	@Override protected String getHeadline() { return "Client - LobbyMenu"; }
+
+	// private
 
 	// returnt den Spieler, der den das übergebene Packet anspricht
 	private LobbyPlayer getPlayer(Packet packet)	

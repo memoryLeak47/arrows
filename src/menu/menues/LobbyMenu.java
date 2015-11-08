@@ -67,18 +67,9 @@ public abstract class LobbyMenu extends NetworkingMenu
 		});
 	}
 
-	// Wird von unterklassen aufgerufen, nachdem ein Spieler bearbeitet wurde
-	protected final void updatePlayerIcons()
-	{
-		teamListPanel.update();
-	}
-
 	public abstract void handlePacket(Packet packet, InetAddress ip);
 	public abstract void lockPressed();
 	public abstract void teamPressed(Team team);
-	public abstract void avatarPressed(Avatar avatar);
-	public abstract void skillPressed(Skill[] skills);
-	public abstract void itemPressed(Item[] items);
 	public abstract void disconnectPressed();
 	public abstract void sendPlayerPropertyUpdate(); // wird ausgeführt, wenn das ChoosePlayerPropertyMenu mit dem Ok-Button geschlossen wird
 	public abstract LobbyPlayer getLocalPlayer();
@@ -94,25 +85,20 @@ public abstract class LobbyMenu extends NetworkingMenu
 		return players;
 	} // public damit TeamListPanel darauf zugreifen kann
 
+	// protected
+
+	// Wird von unterklassen aufgerufen, nachdem ein Spieler bearbeitet wurde
+	protected final void updatePlayerIcons()
+	{
+		teamListPanel.update();
+	}
+
+
 	protected void setPlayers(LinkedList<LobbyPlayer> players) 
 	{ 
 		if (players == null)
 			Debug.warn("LobbyMenu.setPlayers(null)");
 		this.players = players; 
-	}
-
-	private String getLockButtonCaption()
-	{
-		if (this instanceof ClientLobbyMenu)
-		{
-			return "Ready";
-		}
-		else if (this instanceof ServerLobbyMenu)
-		{
-			return "Next Phase";
-		}
-		Debug.error("LobbyMenu.getLockButtonCaption: wrong lobby-menu-subclass");
-		return null;
 	}
 
 	protected void nextPhase()
@@ -249,4 +235,21 @@ public abstract class LobbyMenu extends NetworkingMenu
 	{
 		return lobbyTileMap != null;
 	}
+
+	// private
+
+	private String getLockButtonCaption()
+	{
+		if (this instanceof ClientLobbyMenu)
+		{
+			return "Ready";
+		}
+		else if (this instanceof ServerLobbyMenu)
+		{
+			return "Next Phase";
+		}
+		Debug.error("LobbyMenu.getLockButtonCaption: wrong lobby-menu-subclass");
+		return null;
+	}
+
 }

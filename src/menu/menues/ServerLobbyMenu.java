@@ -251,9 +251,12 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		Main.getMenues().remove(Main.getMenues().getLast());
 	}
 
-	@Override public void avatarPressed(Avatar avatar) {}
-	@Override public void skillPressed(Skill[] skills) {}
-	@Override public void itemPressed(Item[] items) {}
+	@Override public void tick()
+	{
+		lockButton.setEnabled(lockButtonPressable());
+	}
+
+	// protected
 
 	@Override protected void nextPhase()
 	{
@@ -275,6 +278,18 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		}
 	}
 
+	@Override protected void unlockAll()
+	{
+		super.unlockAll();
+		for (LobbyPlayer player : getUpdatedPlayers())
+		{
+			player.applyUserPacket(new LockUserPacket(false));
+		}
+	}
+
+
+	// private
+
 	private boolean allPlayersLocked()
 	{
 		if (getPlayers().size() < 1)
@@ -289,11 +304,6 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 			}
 		}
 		return enable;
-	}
-
-	@Override public void tick()
-	{
-		lockButton.setEnabled(lockButtonPressable());
 	}
 
 	private void teamPressedWithID(int id, Team team)
@@ -358,15 +368,6 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		return updatedPlayers;
 	}
 
-	@Override protected void unlockAll()
-	{
-		super.unlockAll();
-		for (LobbyPlayer player : getUpdatedPlayers())
-		{
-			player.applyUserPacket(new LockUserPacket(false));
-		}
-	}
-
 	private boolean lockButtonPressable()
 	{
 		return (allPlayersLocked() && isLobbyTileMapSet() && arePlayerPropertiesChosen());
@@ -386,6 +387,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		Debug.note("ServerLobbyMenu.updatePlayers(): now getPlayers().size() = " + getPlayers().size());
 	}
 
+	// getter
 
 	@Override public LobbyPlayer getLocalPlayer()
 	{
