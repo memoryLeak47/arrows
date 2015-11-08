@@ -197,10 +197,15 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 		}
 	}
 
+	@Override public void tick()
+	{
+		lockButton.setEnabled(arePlayerPropertiesChosen());
+	}
+
 	// Wird aufgerufen, wenn man den Lock-Button drückt
 	@Override public void lockPressed()
 	{
-		if (isPlayerPropertiesChoosen())
+		if (arePlayerPropertiesChosen())
 		{
 			if (getLocalPlayer() == null)
 			{

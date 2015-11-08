@@ -139,13 +139,13 @@ public abstract class LobbyMenu extends NetworkingMenu
 		}
 	}
 
-	protected boolean isPlayerPropertiesChoosen()
+	protected boolean arePlayerPropertiesChosen()
 	{
 		switch (phase)
 		{
-			case AVATAR_PHASE: return getLocalPlayer().isAvatarChoosen();
-			case SKILL_PHASE: return getLocalPlayer().isSkillsChoosen();
-			case ITEM_PHASE: return getLocalPlayer().isItemsChoosen();
+			case AVATAR_PHASE: return getLocalPlayer().isAvatarChosen();
+			case SKILL_PHASE: return getLocalPlayer().areSkillsChosen();
+			case ITEM_PHASE: return getLocalPlayer().areItemsChosen();
 		}
 
 		return true; // In jeder anderen Phase gibt es keine PlayerProperties, die man wählen müsste, es sind also immer alle belegt
@@ -243,5 +243,10 @@ public abstract class LobbyMenu extends NetworkingMenu
 		if (miniMap == null)
 			Debug.warn("LobbyMenu.getMiniMap(): returns null");
 		return miniMap;
+	}
+
+	protected boolean isLobbyTileMapSet()
+	{
+		return lobbyTileMap != null;
 	}
 }

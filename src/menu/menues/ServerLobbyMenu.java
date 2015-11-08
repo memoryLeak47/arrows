@@ -94,7 +94,6 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 				Debug.error("ServerLobbyMenu.handlePacket(LockUserPacket): no player with that IP");
 			ipToPlayer(ip, getPlayers()).applyUserPacket((UserPacket) packet);
 			ipToPlayer(ip, getUpdatedPlayers()).applyUserPacket((UserPacket) packet);
-			updateLockButton(); // setzt LockButton.enabled
 			redirectUserPacket((UserPacket) packet, ip); // das erhaltene packet wird an alle clients weitergegeben
 		}
 		else if (packet instanceof DisconnectUserPacket)
@@ -234,15 +233,10 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	@Override public void lockPressed()
 	{
-		// Wenn alle Client-Spieler gelockt sind
-		if (allPlayersLocked())
+		if (lockButtonPressable())
 		{
-			// Wenn man seine PlayerProperties gewählt hat
-			if (isPlayerPropertiesChoosen())
-			{
-				sendUserPacketFromServer(new LockUserPacket(true));
-				nextPhase();
-			}
+			sendUserPacketFromServer(new LockUserPacket(true));
+			nextPhase();
 		}
 	}
 
@@ -297,10 +291,9 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		return enable;
 	}
 
-	// Prüft, ob der LockButton enabled ist oder nicht
-	private void updateLockButton()
+	@Override public void tick()
 	{
-		lockButton.setEnabled(allPlayersLocked());
+		lockButton.setEnabled(lockButtonPressable());
 	}
 
 	private void teamPressedWithID(int id, Team team)
@@ -372,7 +365,11 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		{
 			player.applyUserPacket(new LockUserPacket(false));
 		}
-		updateLockButton(); // Setzt Button.enabled auf false
+	}
+
+	private boolean lockButtonPressable()
+	{
+		return (allPlayersLocked() && isLobbyTileMapSet() && arePlayerPropertiesChosen());
 	}
 
 	// Setzt die "Players" auf den Stand von updated Players

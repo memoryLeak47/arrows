@@ -102,7 +102,7 @@ public class LobbyPlayer implements Serializable
 	public SkillUserPacket getSkillPacket() { return skillPacket; }
 	public ItemUserPacket getItemPacket() { return itemPacket; }
 
-	public boolean isAvatarChoosen()
+	public boolean isAvatarChosen()
 	{
 		// Wenn das AvatarPacket noch nicht erstellt ist
 		if (avatarPacket == null)
@@ -117,7 +117,7 @@ public class LobbyPlayer implements Serializable
 		}
 		return true; // Der Avatar wurde belegt
 	}
-	public boolean isSkillsChoosen()
+	public boolean areSkillsChosen()
 	{
 		// Wenn das SkillPacket noch nicht erstellt ist
 		if (skillPacket == null)
@@ -135,7 +135,7 @@ public class LobbyPlayer implements Serializable
 		}
 		return true; // Alle Skills wurden belegt
 	}
-	public boolean isItemsChoosen()
+	public boolean areItemsChosen()
 	{
 		// Wenn das ItemPacket noch nicht erstellt ist
 		if (itemPacket == null)
