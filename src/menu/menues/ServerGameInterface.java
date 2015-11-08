@@ -18,11 +18,12 @@ public class ServerGameInterface extends GameInterface
 		super(new ServerGame(map, lobbyPlayers));
 	}
 
-	private ServerGame getGame() { return (ServerGame) getUncastedGame(); }
-	
 	@Override public void handlePacket(Packet packet, InetAddress ip)
 	{
-		Debug.note("ServerGameInterface.handlePacket(): TODO"); // ignore packet
+		if (packet instanceof EventPacket)
+			getGame().handleEvent((EventPacket) packet, ipToID(ip));
+		else
+			Debug.warn("ServerGameInterface.handlePacket(): wrong packet: " + packet);
 	}
 
 	@Override public void render()
@@ -35,5 +36,23 @@ public class ServerGameInterface extends GameInterface
 		super.onEvent(packet);
 		getGame().handleEvent(packet, 0);
 	}
+
+	// private
+
+	private ServerGame getGame() { return (ServerGame) getUncastedGame(); }
+
+	private int ipToID(InetAddress ip)
+	{
+		for (int i = 0; i < getGame().getPlayers().size(); i++)
+		{
+			if (getGame().getPlayers().get(i).getIP().equals(ip))
+				return i;
+		}
+		Debug.warn("ServerGameInterface.ipToID: no player with that ip");
+		return -1;
+	}
+	
+	
+
 
 }
