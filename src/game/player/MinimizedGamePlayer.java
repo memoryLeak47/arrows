@@ -19,6 +19,9 @@ public class MinimizedGamePlayer extends Entity implements java.io.Serializable
 	private Skill[] skills;
 	private Item[] items;
 
+	private int kills = 0, deaths = 0;
+
+
 	public MinimizedGamePlayer(LobbyPlayer player)
 	{
 		name = player.getName();

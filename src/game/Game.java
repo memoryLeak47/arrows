@@ -15,6 +15,7 @@ public abstract class Game
 {
 	private GameTileMap tileMap;
 	private LinkedList<Cosmetic> cosmetics;
+	private LinkedList<Kill> kills;
 
 	public Game(LobbyTileMap lobbyTileMap)
 	{
