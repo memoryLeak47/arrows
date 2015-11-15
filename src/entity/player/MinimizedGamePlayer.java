@@ -5,6 +5,7 @@ package entity.player;
 
 import entity.Entity;
 import misc.game.Team;
+import misc.game.kill.KDCounter;
 import playerproperty.avatar.Avatar;
 import playerproperty.skill.Skill;
 import playerproperty.item.Item;
@@ -19,8 +20,7 @@ public class MinimizedGamePlayer extends Entity implements java.io.Serializable
 	private Skill[] skills;
 	private Item[] items;
 
-	private int kills = 0, deaths = 0;
-
+	private KDCounter kdCounter = new KDCounter();
 
 	public MinimizedGamePlayer(LobbyPlayer player)
 	{

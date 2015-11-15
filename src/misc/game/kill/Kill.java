@@ -1,4 +1,4 @@
-package misc.game;
+package misc.game.kill;
 
 public class Kill
 {
