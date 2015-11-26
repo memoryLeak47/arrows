@@ -7,6 +7,10 @@ import misc.Debug;
 
 public abstract class Skill extends PlayerProperty
 {
+	public static final short FULL_CHARGE = 32767;
+
+	private short charge;
+
 	private byte id;
 	private static Skill[] skills;
 
@@ -33,10 +37,8 @@ public abstract class Skill extends PlayerProperty
 		return null;
 	}
 
+	public short getCharge() { return charge; }
+
 	@Override public final byte getID() { return id; }
 	public static Skill[] getAllSkills() { return skills; }
-
-	// for sub
-	public abstract int getMaxCooldown();
-	// TODO what happens if skill is casted
 }

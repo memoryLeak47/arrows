@@ -10,7 +10,7 @@ import entity.bullet.MinimizedBullet;
 import entity.cosmetic.Cosmetic;
 import entity.player.MinimizedGamePlayer;
 import misc.Debug;
-import misc.game.Kill;
+import misc.game.kill.Kill;
 
 public abstract class Game
 {

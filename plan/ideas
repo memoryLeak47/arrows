@@ -148,7 +148,7 @@ per Frame:
 500 Blocks x 3 integer
 500*3*32*30 bit/s = 1,500,000 bit/s < 54 Mbit/s
 
-$data={graphical cooldown/static blocks/entities/dynamic blocks}
+$data={graphical charge/static blocks/entities/dynamic blocks}
 $image={as it is.../imageIDs/BufferedImages/Animations/DrawObjects}
 ________________________________________________________________________________________________________________________________________________________
 ***** GAME CONCEPT *****

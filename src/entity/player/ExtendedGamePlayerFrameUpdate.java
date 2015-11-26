@@ -6,5 +6,5 @@ package entity.player;
 
 public class ExtendedGamePlayerFrameUpdate
 {
-	
+	public short charge[];
 }
