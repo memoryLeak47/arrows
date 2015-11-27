@@ -50,6 +50,9 @@ public class PlayerPanel extends ComponentContainer
 			Screen.g().setColor(Color.YELLOW);
 			Screen.g().drawRect(getOffset().getX()-2, getOffset().getY()-2, getWidth()+4, getHeight()+4);
 		}
+		Screen.g().setColor(Color.WHITE);
+		Screen.g().drawString(player.getName(), getOffset().getX(), getOffset().getY() + 72);
+		Screen.g().drawString(player.getRank() +"", getOffset().getX(), getOffset().getY() + 10);
 	}
 
 	public LobbyPlayer getPlayer() { return player; }

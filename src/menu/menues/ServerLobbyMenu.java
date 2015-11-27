@@ -136,6 +136,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 						else // falls der spieler wirklich neu ist
 						{
 							LobbyPlayer newPlayer = new LobbyPlayer((LoginUserPacket) packet, ip); // neuer spieler wird erstellt
+							Debug.note("New Player \"" + newPlayer.getName() + "\" joined the game und ist happy :)");
 							send(new LobbyPlayersPacket(getPlayers()), ip); // liste ohne den Neuen an den Neuen senden.
 							if (getLobbyTileMap() != null)
 								send(new MapPacket(getLobbyTileMap().getInts()), ip); // Die Map des neuen wird gesetzt
