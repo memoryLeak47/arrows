@@ -199,6 +199,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 
 	@Override public void tick()
 	{
+		super.tick();
 		lockButton.setEnabled(arePlayerPropertiesChosen());
 	}
 

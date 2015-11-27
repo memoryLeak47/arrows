@@ -253,6 +253,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	@Override public void tick()
 	{
+		super.tick();
 		lockButton.setEnabled(lockButtonPressable());
 	}
 
