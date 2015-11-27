@@ -1,0 +1,16 @@
+# effects
+
+Der unwissende Client kennt die Effekte der externen Spieler nur als ImageID's.
+
+# list of all effects
+
+- burning
+- frozen
+- slowed
+- timestop
+- stunned
+- poisoned
+- rooted
+- sleeping
+- protected # spawn-protection
+- armored # extra-life

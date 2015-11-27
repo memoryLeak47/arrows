@@ -1,4 +1,4 @@
-________________________________________________________________________________________________________________________________________________________________________________________________
+# game
 								Game
 Game:
 	abstract LinkedList<? extends MinimizedGamePlayer> getPlayers() // returnt alle Player, gebraucht in der MiniMap

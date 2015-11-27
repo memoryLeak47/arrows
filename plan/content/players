@@ -1,8 +1,22 @@
+# players
+
+Datatypes:
+	getPlayerProperties(): Avatar/Item/Skill
+	getName(): String
+	getRank(): int
+	getHealth(): int
+	getEffectsOnOff(): ImageID # if index=-1 -> run whole ImageFile-animation
+	getEffects(): List<Effect>/Effect[] # not clear yet
+	getBodImage(): BodImage # not clear yet
+	getPlayerStats(): PlayerStats/int[]/ints # not clear yet
+	getCharges(): short[]
+	getIP(): InetAddress
+
 LobbyPlayer:
 	*
 
 MinimizedGamePlayer extends Entity:
-// Client hat ein MinimizedGamePlayer für alle anderen Spieler
+# Client hat ein MinimizedGamePlayer für alle anderen Spieler
 	getKD()
 	getPlayerProperties()
 	getName()
@@ -23,9 +37,9 @@ ExtendedGamePlayerFrameUpdate:
 	getCharges()
 
 ExtendedGamePlayer extends MinimizedGamePlayer:
-// ServerGame hat ein ExtendedGamePlayer für alle Spieler
+# ServerGame hat ein ExtendedGamePlayer für alle Spieler
 	getIP()
-	getEffects() (accurat)
+	getEffects() (accurat) # uses Effect-List of MinimizedGamePlayer
 	getPlayerStats()
 	getCharges()
 	toMinimizedGamePlayerFrameUpdate()
