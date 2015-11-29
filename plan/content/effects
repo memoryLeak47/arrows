@@ -24,6 +24,6 @@ Falls der Client ein EffectOffUpdatePacket F erhält und F.imageID in L ist, wir
 
 # effects-full
 
-Die Effekte der ExtendedGamePlayer (localPlayer / serverPlayer) werden als CompressedEffect(ID, byte[] as properties) gesendet.
-Der Client wandelt diesen CompressedEffect wieder in einen Effect um.
+Die Effekte der ExtendedGamePlayer (localPlayer / serverPlayer) werden als MinimizedEffect(ID, byte[] as properties) gesendet.
+Der Client wandelt diesen MinimizedEffect wieder in einen Effect um.
 Sowohl Client als auch Server verfügen über eine Liste von Effekten.

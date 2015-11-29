@@ -6,7 +6,7 @@ Datatypes:
 	getRank(): int
 	getHealth(): int
 	getEffectsOnOff(): ImageID # if index=-1 -> run whole ImageFile-animation
-	getEffects(): (CompressedEffect[] in the packets, List<Effect> in the players)
+	getEffects(): (MinimizedEffect[] in the packets, List<Effect> in the players)
 	getPosition(): Position
 	getImageID(): ImageID
 	getPlayerStats(): PlayerStats/int[]/ints # not clear yet
