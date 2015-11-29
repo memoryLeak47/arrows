@@ -6,7 +6,7 @@ Datatypes:
 	getRank(): int
 	getHealth(): int
 	getEffectsOnOff(): ImageID # if index=-1 -> run whole ImageFile-animation
-	getEffects(): List<Effect>/Effect[] # not clear yet
+	getEffects(): (CompressedEffect[] in the packets, List<Effect> in the players)
 	getBodImage(): BodImage # not clear yet
 	getPlayerStats(): PlayerStats/int[]/ints # not clear yet
 	getCharges(): short[]
@@ -28,7 +28,6 @@ MinimizedGamePlayer extends Entity:
 
 MinimizedGamePlayerFrameUpdate:
 	getHealth()
-	getEffectsOnOff()
 	getBodImage()
 
 ExtendedGamePlayerFrameUpdate:
