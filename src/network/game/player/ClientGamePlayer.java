@@ -1,7 +1,7 @@
 /*
 	
 */
-package entity.player;
+package network.game.player;
 
 import entity.Entity;
 import misc.game.Team;
@@ -11,7 +11,7 @@ import playerproperty.skill.Skill;
 import playerproperty.item.Item;
 import network.lobby.LobbyPlayer;
 
-public class MinimizedGamePlayer extends Entity implements java.io.Serializable
+public class ClientGamePlayer extends Entity implements GamePlayer
 {
 	private String name;
 	private int rank;
@@ -22,7 +22,7 @@ public class MinimizedGamePlayer extends Entity implements java.io.Serializable
 
 	private KDCounter kdCounter = new KDCounter();
 
-	public MinimizedGamePlayer(LobbyPlayer player)
+	public ClientGamePlayer(LobbyPlayer player)
 	{
 		name = player.getName();
 		rank = player.getRank();

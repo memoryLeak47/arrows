@@ -16,8 +16,8 @@ Datatypes:
 LobbyPlayer:
 	*
 
-MinimizedGamePlayer extends Entity:
-# Client hat ein MinimizedGamePlayer für alle anderen Spieler
+ClientGamePlayer implements GamePlayer:
+# Client hat ein ClientGamePlayer für alle anderen Spieler
 	getKD()
 	getPlayerProperties()
 	getName()
@@ -26,25 +26,28 @@ MinimizedGamePlayer extends Entity:
 	getEffectsOnOff()
 	getPosition()
 	getImageID()
-	apply(MinimizedGamePlayerFrameUpdate)
+	apply(ClientGamePlayerFrameUpdate)
 
-MinimizedGamePlayerFrameUpdate:
+ClientGamePlayerFrameUpdate:
 	getHealth()
 	getPosition()
 	getImageID()
 
-ExtendedGamePlayerFrameUpdate:
+LocalClientGamePlayerFrameUpdate:
 	getEffects() (accurat)
 	getPlayerStats()
 	getCharges()
 
-ExtendedGamePlayer extends MinimizedGamePlayer:
-# ServerGame hat ein ExtendedGamePlayer für alle Spieler
-	getIP()
-	getEffects() (accurat) # uses Effect-List of MinimizedGamePlayer
+LocalClientGamePlayer extends ClientGamePlayer:
+	getEffects() (accurat) # uses Effect-List of ClientGamePlayer
 	getPlayerStats()
 	getCharges()
-	toMinimizedGamePlayerFrameUpdate()
-	toExtendedGamePlayerFrameUpdate()
-	apply(MinimizedGamePlayerFrameUpdate)
-	apply(ExtendedGamePlayerFrameUpdate)
+	toClientGamePlayerFrameUpdate()
+	toLocalClientGamePlayerFrameUpdate()
+	apply(ClientGamePlayerFrameUpdate)
+	apply(LocalClientGamePlayerFrameUpdate)
+
+ServerGamePlayer extends Entity implements GamePlayer:
+	# all methods from (Local)ClientGamePlayer
+	toLocalClientGamePlayerFrameUpdate()
+	toClientGamePlayerFrameUpdate()

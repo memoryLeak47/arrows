@@ -17,4 +17,4 @@ LobbyMiniMap:
 
 GameMiniMap:
 	apply(int[][])
-	applyPlayers(List<MinimizedGamePlayer>)
+	applyPlayers(List<ClientGamePlayer>)

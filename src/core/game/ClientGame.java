@@ -3,8 +3,8 @@ package core.game;
 import java.util.LinkedList;
 
 import entity.bullet.MinimizedBullet;
-import entity.player.MinimizedGamePlayer;
-import entity.player.ExtendedGamePlayerFrameUpdate;
+import network.game.player.ClientGamePlayer;
+import network.game.player.LocalClientGamePlayerFrameUpdate;
 import tilemap.LobbyTileMap;
 import misc.Debug;
 import network.lobby.LobbyPlayer;
@@ -12,9 +12,9 @@ import network.game.packets.GameFrameUpdatePacket;
 
 public class ClientGame extends Game
 {
-	private LinkedList<MinimizedGamePlayer> players;
+	private LinkedList<ClientGamePlayer> players;
 	private LinkedList<MinimizedBullet> bullets;
-	private ExtendedGamePlayerFrameUpdate localPlayerUpdate;
+	private LocalClientGamePlayerFrameUpdate localPlayerUpdate;
 
 	private final int localPlayerID;
 
@@ -23,10 +23,10 @@ public class ClientGame extends Game
 		super(lobbyMap);
 		this.localPlayerID = localPlayerID;
 
-		players = new LinkedList<MinimizedGamePlayer>();
+		players = new LinkedList<ClientGamePlayer>();
 		for (LobbyPlayer player : lobbyPlayers)
 		{
-			players.add(new MinimizedGamePlayer(player));
+			players.add(new ClientGamePlayer(player));
 		}
 	}
 
@@ -36,7 +36,7 @@ public class ClientGame extends Game
 		Debug.warn("ClientGame.update(): TODO");
 	}
 
-	@Override public LinkedList<MinimizedGamePlayer> getPlayers()
+	@Override public LinkedList<ClientGamePlayer> getPlayers()
 	{
 		Debug.warnIf(players == null, "ClientGame.getPlayers(): return null");
 		return players;
