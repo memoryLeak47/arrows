@@ -9,6 +9,7 @@ import entity.Entity;
 import entity.bullet.MinimizedBullet;
 import entity.cosmetic.Cosmetic;
 import network.game.player.ClientGamePlayer;
+import network.game.player.GamePlayer;
 import misc.Debug;
 import misc.game.kill.Kill;
 
@@ -33,7 +34,7 @@ public abstract class Game
 	}
 
 	// Returnt alle Player. Gebraucht für die MiniMap
-	public abstract LinkedList<? extends ClientGamePlayer> getPlayers();
+	public abstract LinkedList<GamePlayer> getUncastedPlayers();
 
 
 	// MiniMap Hintergrund

@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import entity.bullet.MinimizedBullet;
 import network.game.player.ClientGamePlayer;
+import network.game.player.GamePlayer;
 import network.game.player.LocalClientGamePlayerFrameUpdate;
 import tilemap.LobbyTileMap;
 import misc.Debug;
@@ -36,7 +37,18 @@ public class ClientGame extends Game
 		Debug.warn("ClientGame.update(): TODO");
 	}
 
-	@Override public LinkedList<ClientGamePlayer> getPlayers()
+	@Override public LinkedList<GamePlayer> getUncastedPlayers()
+	{
+		Debug.warnIf(players == null, "ClientGame.getUncastedPlayers(): return null");
+		LinkedList<GamePlayer> tmpPlayers = new LinkedList<GamePlayer>();
+		for (GamePlayer player : players)
+		{
+			tmpPlayers.add((GamePlayer) player);
+		}
+		return tmpPlayers;
+	}
+
+	public LinkedList<ClientGamePlayer> getPlayers()
 	{
 		Debug.warnIf(players == null, "ClientGame.getPlayers(): return null");
 		return players;

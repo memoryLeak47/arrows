@@ -15,12 +15,13 @@
 
 # effects-on-off
 
-Der ClientGamePlayer (externer Player des Clients) erhält die Effekte nur als ImageIDs. Falls der ImageID.index = -1 ist,
-wird der ImageID.imageFile (wie eine Animation) durchlaufen. Falls ImageID.index >= 0 ist, wird das jeweilige Bild konstant angezeigt.
-Die ImageIDs, die im ClientGamePlayer gerendert werden sollen, werden in einer Liste L gespeichert.
-Die ImageIDs von L werden jeden Frame auf die Figur des Players draufgerendert.
-Falls der Client ein EffectOnUpdatePacket E erhält und E.imageID nicht in L ist, wird E.imageID hinzugefügt.
-Falls der Client ein EffectOffUpdatePacket F erhält und F.imageID in L ist, wird F.imageID aus L gelöscht.
+Der ClientGamePlayer (externer Player des Clients) erhält die Effekte nur als EffectIDs.
+Die EffectIDs, deren Images auf den ClientGamePlayer gerendert werden sollen, werden in einer Liste L gespeichert.
+Die EffectIDs, von L werden jeden Frame (in Form von Images) auf die Figur des Players draufgerendert.
+
+der ClientGamePlayer hat eine Liste L von Effects.
+Falls der Client ein EffectOnUpdatePacket E erhält und <E.effectID>s Effekt nicht in L ist, wird <E.effectID>s Effekt hinzugefügt.
+Falls der Client ein EffectOffUpdatePacket F erhält und <F.effectID>s in L ist, wird <F.effectID>s aus L gelöscht.
 
 # effects-full
 

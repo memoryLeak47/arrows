@@ -4,19 +4,45 @@
 */
 package network.game.player;
 
-import java.net.InetAddress;
+import java.util.LinkedList;
 
 import network.lobby.LobbyPlayer;
+import misc.game.effect.Effect;
+import misc.game.PlayerStats;
 
 public class LocalClientGamePlayer extends ClientGamePlayer
 {
-	private InetAddress ip;
+	private LinkedList<Effect> effects = new LinkedList<Effect>();
+	private PlayerStats playerStats;
+	private short[] charges;
 
 	public LocalClientGamePlayer(LobbyPlayer lobbyPlayer)
 	{
 		super(lobbyPlayer);
-		// TODO
 	}
 
-	public InetAddress getIP() { return ip; }
+	public ClientGamePlayerFrameUpdate toClientGamePlayerFrameUpdate()
+	{
+		return new ClientGamePlayerFrameUpdate(getHealth(), getPosition(), getImageID());
+	}
+
+	public LocalClientGamePlayerFrameUpdate toLocalClientGamePlayerFrameUpdate()
+	{
+		return new LocalClientGamePlayerFrameUpdate(null /* TODO convert getEffects()*/, getPlayerStats(), getCharges());
+	}
+
+	public void apply(ClientGamePlayerFrameUpdate update)
+	{
+		
+	}	
+
+	public void apply(LocalClientGamePlayerFrameUpdate update)
+	{
+		
+	}
+
+	// getter
+	public LinkedList<Effect> getEffects() { return effects; }
+	public PlayerStats getPlayerStats() { return playerStats; }
+	public short[] getCharges() { return charges; }
 }
