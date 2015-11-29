@@ -1,1 +1,16 @@
-Entity:
+# entity
+
+Beschreibung:
+
+
+Sub-Entities:
+- LivingEntity
+	- Health
+	- HealthBar-Rendering
+
+- CollisionEntity
+	- 
+- GraphicalEntity
+- TransformEntity
+	- Position
+	- Size
