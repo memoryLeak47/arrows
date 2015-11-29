@@ -1,6 +1,8 @@
 /*
-	
+	Alle externen Player des Clients sind von der Klasse ClientGamePlayer.
+	Diese werden durch ClientGamePlayerFrameUpdate geupdated (apply-Funktion).
 */
+
 package network.game.player;
 
 import java.util.LinkedList;
@@ -17,6 +19,7 @@ import playerproperty.item.Item;
 
 public class ClientGamePlayer implements GamePlayer
 {
+	// TODO speichern, ob er am Leben ist!
 	private String name;
 	private int rank;
 	private Team team;
@@ -56,7 +59,6 @@ public class ClientGamePlayer implements GamePlayer
 	private void setImageID(ImageID id) { this.imageID = new ImageID(id); }
 
 	// getter
-
 	@Override public String getName() { return name; }
 	public int getRank() { return rank; }
 	@Override public Team getTeam() { return team; }

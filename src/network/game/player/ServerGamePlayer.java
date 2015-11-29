@@ -1,5 +1,5 @@
 /*
-	Wird nur auf dem Server verwendet.
+	Alle Spieler des Servers sind von diesem Typ. Kommt nicht im Client vor.
 */
 
 package network.game.player;

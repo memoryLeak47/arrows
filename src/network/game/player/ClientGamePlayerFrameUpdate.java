@@ -1,6 +1,6 @@
 /*
 	Wird vom Server zum Client in jedem Frame gesendet. 
-	Speichert allgemein bekannte Daten vom Client
+	Speichert allgemein bekannte Daten vom Client. Die Daten der externen Player
 */
 
 package network.game.player;

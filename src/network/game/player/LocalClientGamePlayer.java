@@ -1,12 +1,13 @@
 /*
-	Ist nur im Server vorhanden und dort in der Player Liste. Der Client Local Player ist NICHT von diesem Datentyp.
-	Speichert alle Daten über einen Spieler.
+	Nur der Client Local Player ist von diesem Datentyp.
 */
+
 package network.game.player;
 
 import java.util.LinkedList;
 
 import network.lobby.LobbyPlayer;
+import misc.Debug;
 import misc.game.effect.Effect;
 import misc.game.PlayerStats;
 
@@ -33,12 +34,12 @@ public class LocalClientGamePlayer extends ClientGamePlayer
 
 	public void apply(ClientGamePlayerFrameUpdate update)
 	{
-		
+		Debug.warn("LocalClientGamePlayer.apply(): TODO");
 	}	
 
 	public void apply(LocalClientGamePlayerFrameUpdate update)
 	{
-		
+		Debug.warn("LocalClientGamePlayer.apply(local): TODO");
 	}
 
 	// getter
