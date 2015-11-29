@@ -7,7 +7,8 @@ Datatypes:
 	getHealth(): int
 	getEffectsOnOff(): ImageID # if index=-1 -> run whole ImageFile-animation
 	getEffects(): (CompressedEffect[] in the packets, List<Effect> in the players)
-	getBodImage(): BodImage # not clear yet
+	getPosition(): Position
+	getImageID(): ImageID
 	getPlayerStats(): PlayerStats/int[]/ints # not clear yet
 	getCharges(): short[]
 	getIP(): InetAddress
@@ -23,12 +24,14 @@ MinimizedGamePlayer extends Entity:
 	getRank()
 	getHealth()
 	getEffectsOnOff()
-	getBodImage()
+	getPosition()
+	getImageID()
 	apply(MinimizedGamePlayerFrameUpdate)
 
 MinimizedGamePlayerFrameUpdate:
 	getHealth()
-	getBodImage()
+	getPosition()
+	getImageID()
 
 ExtendedGamePlayerFrameUpdate:
 	getEffects() (accurat)
