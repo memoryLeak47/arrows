@@ -3,6 +3,7 @@
 	Speichert allgemein bekannte Daten vom Client
 */
 
-package entity.player;
+package network.game.player;
 
-public class MinimizedGamePlayerFrameUpdate {}
+public class ClientGamePlayerFrameUpdate implements java.io.Serializable
+{}

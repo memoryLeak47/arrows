@@ -4,8 +4,8 @@ import java.util.LinkedList;
 
 import entity.bullet.ExtendedBullet;
 import tilemap.LobbyTileMap;
-import entity.player.ExtendedGamePlayer;
-import entity.player.ExtendedGamePlayerFrameUpdate;
+import network.game.player.LocalClientGamePlayer;
+import network.game.player.LocalClientGamePlayerFrameUpdate;
 import misc.Debug;
 import network.lobby.LobbyPlayer;
 import network.game.packets.EventPacket;
@@ -13,22 +13,22 @@ import network.game.packets.GameFrameUpdatePacket;
 
 public class ServerGame extends Game
 {
-	private LinkedList<ExtendedGamePlayer> players;
+	private LinkedList<LocalClientGamePlayer> players;
 	private LinkedList<ExtendedBullet> bullets;
 
 	public ServerGame(LobbyTileMap lobbyMap, LinkedList<LobbyPlayer> lobbyPlayers)
 	{
 		super(lobbyMap);
-		players = new LinkedList<ExtendedGamePlayer>();
+		players = new LinkedList<LocalClientGamePlayer>();
 		for (LobbyPlayer player : lobbyPlayers)
 		{
-			players.add(new ExtendedGamePlayer(player));
+			players.add(new LocalClientGamePlayer(player));
 		}
 	}
 
-	private ExtendedGamePlayerFrameUpdate getExtendedGamePlayerFrameUpdateByID(int id)
+	private LocalClientGamePlayerFrameUpdate getLocalClientGamePlayerFrameUpdateByID(int id)
 	{
-		Debug.warn("ServerGame.getExtendedGamePlayerFrameUpdateByID(): return null TODO");
+		Debug.warn("ServerGame.getLocalClientGamePlayerFrameUpdateByID(): return null TODO");
 		return null;
 		// TODO
 	}
@@ -50,7 +50,7 @@ public class ServerGame extends Game
 		Debug.warnIf(bullets == null, "ServerGame.getBullets() return null");
 		return bullets;
 	}
-	@Override public LinkedList<ExtendedGamePlayer> getPlayers()
+	@Override public LinkedList<LocalClientGamePlayer> getPlayers()
 	{
 		Debug.warnIf(players == null, "ServerGame.getPlayers() return null");
 		return players;

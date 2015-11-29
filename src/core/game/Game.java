@@ -8,7 +8,7 @@ import tilemap.GameTileMap;
 import entity.Entity;
 import entity.bullet.MinimizedBullet;
 import entity.cosmetic.Cosmetic;
-import entity.player.MinimizedGamePlayer;
+import network.game.player.ClientGamePlayer;
 import misc.Debug;
 import misc.game.kill.Kill;
 
@@ -33,7 +33,7 @@ public abstract class Game
 	}
 
 	// Returnt alle Player. Gebraucht für die MiniMap
-	public abstract LinkedList<? extends MinimizedGamePlayer> getPlayers();
+	public abstract LinkedList<? extends ClientGamePlayer> getPlayers();
 
 
 	// MiniMap Hintergrund
