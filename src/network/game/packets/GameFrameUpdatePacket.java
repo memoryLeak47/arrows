@@ -12,5 +12,5 @@ public class GameFrameUpdatePacket
 	public LinkedList<ClientGamePlayerFrameUpdate> players;
 	public LinkedList<MinimizedBullet> bullets;
 	public LinkedList<EventUpdatePacket> eventUpdatePackets;
-	public LocalClientGamePlayerFrameUpdate localLocalClientGamePlayerFrameUpdate;
+	public LocalClientGamePlayerFrameUpdate localClientGamePlayerFrameUpdate;
 }

@@ -25,6 +25,6 @@ Falls der Client ein EffectOffUpdatePacket F erhält und <F.effectID>s in L ist,
 
 # effects-full
 
-Die Effekte der LocalClientGamePlayer (localPlayer / serverPlayer) werden als MinimizedEffect(ID, byte[] as properties) gesendet.
+Die Effekte der LocalClientGamePlayer/ServerGamePlayer werden als MinimizedEffect(ID, byte[] as properties) gesendet.
 Der Client wandelt diesen MinimizedEffect wieder in einen Effect um.
 Sowohl Client als auch Server verfügen über eine Liste von Effekten.
