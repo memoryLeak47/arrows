@@ -32,14 +32,8 @@ public class ServerGame extends Game
 
 	private LocalClientGamePlayerFrameUpdate getLocalClientGamePlayerFrameUpdateByID(int id)
 	{
-		LinkedList<MinimizedEffect> miniEffects = new LinkedList<MinimizedEffect>();
-		for (Effect e : getPlayers().get(id).getEffects())
-		{
-			miniEffects.add(e.toMinimizedEffect());
-		}
-
 		return new LocalClientGamePlayerFrameUpdate(
-			miniEffects,
+			Effect.toMinimizedEffects(getPlayers().get(id).getEffects()),
 			getPlayers().get(id).getPlayerStats(),
 			getPlayers().get(id).getCharges());
 	}

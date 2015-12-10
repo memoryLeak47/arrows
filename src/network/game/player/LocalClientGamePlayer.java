@@ -29,7 +29,7 @@ public class LocalClientGamePlayer extends ClientGamePlayer
 
 	public LocalClientGamePlayerFrameUpdate toLocalClientGamePlayerFrameUpdate()
 	{
-		return new LocalClientGamePlayerFrameUpdate(null /* TODO convert getEffects()*/, getPlayerStats(), getCharges());
+		return new LocalClientGamePlayerFrameUpdate(Effect.toMinimizedEffects(getEffects()) , getPlayerStats(), getCharges());
 	}
 
 	public void apply(ClientGamePlayerFrameUpdate update)
