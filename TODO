@@ -3,4 +3,4 @@
 echo "start game in fullscreen
 disconnect button in lobby-menu"
 
-cd src; findWord TODO
+cd src; findword TODO

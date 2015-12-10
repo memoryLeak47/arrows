@@ -14,3 +14,5 @@ Sub-Entities:
 - TransformEntity
 	- Position
 	- Size
+
+interface EntityProperty
