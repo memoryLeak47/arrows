@@ -18,4 +18,5 @@ public interface GamePlayer
 	public Position getPosition();
 	public ImageID getImageID();
 	public LinkedList<Integer> getEffectIDs(); // gibt die EffectIDs zurück, die für das Rendern gebraucht werden
+	// TODO maybe MinimizedEffect???
 }

@@ -54,7 +54,7 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 
 	public LocalClientGamePlayerFrameUpdate toLocalClientGamePlayerFrameUpdate()
 	{
-		return new LocalClientGamePlayerFrameUpdate(null /* TODO convert getEffects()*/ , getPlayerStats(), getCharges());
+		return new LocalClientGamePlayerFrameUpdate(Effect.toMinimizedEffects(getEffects()) , getPlayerStats(), getCharges());
 	}
 
 	public ClientGamePlayerFrameUpdate toClientGamePlayerFrameUpdate()
@@ -67,7 +67,7 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 	@Override public String getName() { return name; }
 	public int getRank() { return rank; }
 
-	public short[] getCharges() { Debug.warn("ServerGamePlayer.getCharges(): TODO"); return null; }
+	public short[] getCharges() { return charges; }
 	@Override public LinkedList<Integer> getEffectIDs() { Debug.warn("ServerGamePlayer.getEffectIDs(): TODO"); return null; }
 	public PlayerStats getPlayerStats() { return playerStats; }
 
