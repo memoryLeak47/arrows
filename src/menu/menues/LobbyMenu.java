@@ -108,11 +108,9 @@ public abstract class LobbyMenu extends NetworkingMenu
 		{
 			case AVATAR_PHASE:
 			{
-				ImageFile.loadFromTo(ImageFile.ARCHER_ICON, ImageFile.ARCHER_ICON);
 				teamListPanel.disableTeamButtons();
 				break;	
 			}
-			// TODO load others
 		}
 		unlockAll();
 	}
