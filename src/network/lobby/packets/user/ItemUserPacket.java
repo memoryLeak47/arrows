@@ -1,9 +1,10 @@
 package network.lobby.packets.user;
 
-import playerproperty.item.Item;
-import playerproperty.PlayerProperty;
+import misc.Debug;
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.PlayerPropertyUserPacket;
+import playerproperty.item.Item;
+import playerproperty.PlayerProperty;
 
 public class ItemUserPacket extends UserPacket implements PlayerPropertyUserPacket
 {
@@ -25,7 +26,7 @@ public class ItemUserPacket extends UserPacket implements PlayerPropertyUserPack
 
 	public void assign(ItemUserPacket itemPacket)
 	{
-		// TODO fehlerabfragen
+		Debug.warnIf(itemPacket == null, "ItemUserPacket.assign(null)");
 		itemIDs = itemPacket.itemIDs;
 	}
 

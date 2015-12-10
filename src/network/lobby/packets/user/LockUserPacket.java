@@ -1,5 +1,6 @@
 package network.lobby.packets.user;
 
+import misc.Debug;
 import network.lobby.packets.UserPacket;
 
 public class LockUserPacket extends UserPacket
@@ -13,7 +14,7 @@ public class LockUserPacket extends UserPacket
 
 	public void assign(LockUserPacket lockPacket)
 	{
-		// TODO fehlerabfragen
+		Debug.warnIf(lockPacket == null, "LockUserPacket.assign(null)");
 		locked = lockPacket.locked;
 	}
 

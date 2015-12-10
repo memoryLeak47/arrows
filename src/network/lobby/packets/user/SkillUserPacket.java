@@ -1,10 +1,10 @@
 package network.lobby.packets.user;
 
-import playerproperty.skill.Skill;
-import playerproperty.PlayerProperty;
 import misc.Debug;
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.PlayerPropertyUserPacket;
+import playerproperty.skill.Skill;
+import playerproperty.PlayerProperty;
 
 public class SkillUserPacket extends UserPacket implements PlayerPropertyUserPacket
 {
@@ -26,7 +26,7 @@ public class SkillUserPacket extends UserPacket implements PlayerPropertyUserPac
 
 	public void assign(SkillUserPacket skillPacket)
 	{
-		// TODO fehlerabfragen
+		Debug.warnIf(skillPacket == null, "SkillUserPacket.assign(null)");
 		skillIDs = skillPacket.skillIDs;
 	}
 

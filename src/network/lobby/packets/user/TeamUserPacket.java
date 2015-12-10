@@ -1,5 +1,6 @@
 package network.lobby.packets.user;
 
+import misc.Debug;
 import misc.game.Team;
 import network.lobby.packets.UserPacket;
 
@@ -14,7 +15,7 @@ public class TeamUserPacket extends UserPacket
 
 	public void assign(TeamUserPacket teamPacket)
 	{
-		// TODO fehlerabfragen
+		Debug.warnIf(teamPacket == null, "TeamUserPacket.assign(null)");
 		teamID = teamPacket.teamID;
 	}
 

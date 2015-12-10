@@ -22,7 +22,7 @@ public class AvatarUserPacket extends UserPacket implements PlayerPropertyUserPa
 
 	public void assign(AvatarUserPacket avatarPacket)
 	{
-		// TODO fehlerabfragen
+		Debug.warnIf(avatarPacket == null, "AvatarUserPacket.assign(null)");
 		avatarID = avatarPacket.avatarID;
 	}
 
