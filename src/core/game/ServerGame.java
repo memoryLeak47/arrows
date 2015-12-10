@@ -10,6 +10,8 @@ import network.game.player.LocalClientGamePlayer;
 import network.game.player.LocalClientGamePlayerFrameUpdate;
 import misc.Debug;
 import misc.math.Position;
+import misc.game.effect.Effect;
+import misc.game.effect.MinimizedEffect;
 import network.lobby.LobbyPlayer;
 import network.game.packets.EventPacket;
 import network.game.packets.GameFrameUpdatePacket;
@@ -30,9 +32,16 @@ public class ServerGame extends Game
 
 	private LocalClientGamePlayerFrameUpdate getLocalClientGamePlayerFrameUpdateByID(int id)
 	{
-		Debug.warn("ServerGame.getLocalClientGamePlayerFrameUpdateByID(): return null TODO");
-		return null;
-		// TODO
+		LinkedList<MinimizedEffect> miniEffects = new LinkedList<MinimizedEffect>();
+		for (Effect e : getPlayers().get(id).getEffects())
+		{
+			miniEffects.add(e.toMinimizedEffect());
+		}
+
+		return new LocalClientGamePlayerFrameUpdate(
+			miniEffects,
+			getPlayers().get(id).getPlayerStats(),
+			getPlayers().get(id).getCharges());
 	}
 
 	public void handleEvent(EventPacket event, int id)
