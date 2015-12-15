@@ -1,26 +1,41 @@
 # entity
 
+
+Entity:
+- render() -> LivingEntity.render(), EffectEntity.render()
+
 Sub-Entities:
 - LivingEntity
-	- Health
-	- HealthBar-Rendering
+	- getHealth()
+	- private animation
+		-> getImageID()
+	- getPlayerStats()
+	- getKD()
+	- getPlayerProperties()
+	- getName()
+	- getRank()
+	- getTeam()
+	- getHealth()
 
 - PhysicsEntity
+	- Mass
 	- CollisionDetection
 	- Position
 	- Size
-- GraphicalEntity
 - EffectEntity
 	- What effects are possible
 	- List<Effect>
+	- getEffectsOnOff()
 
 Examples:
-- Stonetile (NoLivingEntity, SolidPhysicsEntity, StaticGraphicalEntity, ImmuneEffectEntity)
-- Watertile (NoLivingEntity, NeutralPhysicsEntity, StaticGraphicalEntity, WaterEffectEntity)
-- Breakable Tile (BreakableTileLivingEntity, SolidPhysicsEntity (collidable -> damage), DynamicGraphicalEntity, ImmuneEffectEntity)
-- ServerGamePlayer (PlayerLivingEntity, DynamicPhysicsEntity, DynamicGraphicalEntity, PlayerEffectEntity)
-- Arrow (NoLivingEntity, DynamicPhysicsEntity, Dynamic/Static-GraphicalEntity, BulletEffectEntity)
-- Hitbox (NoLivingEntity, Static/Dynamic-PhysicsEntity, NoGraphicalEntity, ImmuneEffectEntity)
-- Particle (NoLivingEntity, NeutralPhysicsEntity, Static/Dynamic-GraphicalEntity, ImmuneEffectEntity)
-
-interface EntityProperty
+- Stonetile (NoLivingEntity, SolidPhysicsEntity, ImmuneEffectEntity)
+- Watertile (NoLivingEntity, NeutralPhysicsEntity, WaterEffectEntity)
+- Breakable Tile (BreakableTileLivingEntity, SolidPhysicsEntity (collidable -> damage), ImmuneEffectEntity)
+- ServerGamePlayer (PlayerLivingEntity, DynamicPhysicsEntity, CreatureEffectEntity)
+- ServerGamePlayer (FireMage) (PlayerLivingEntity, DynamicPhysicsEntity, CreatureEffectEntity/FireEffectEntity)
+- Arrow (NoLivingEntity, DynamicPhysicsEntity, WoodEffectEntity)
+- Hitbox (NoLivingEntity, Static/Dynamic-PhysicsEntity, ImmuneEffectEntity)
+- Particle (NoLivingEntity, NeutralPhysicsEntity, ImmuneEffectEntity)
+- IceShard (NoLivingEntity, DynamicPhysicsEntity, IceEffectEntity)
+- WaterSplash (NoLivingEntity, DynamicPhysicsEntity, WaterEffectEntity)
+- ExplodingSnowball (ActOnDieLivingEntity, DynamicPhysicsEntity, IceEffectEntity)
