@@ -2,9 +2,29 @@ package misc.game.effect;
 
 import java.util.LinkedList;
 
-public abstract class Effect
+import misc.Debug;
+import misc.game.effect.effects.*;
+
+public abstract class Effect implements Cloneable
 {
+	private static Effect[] staticEffects;
+
+	static
+	{
+		staticEffects = new Effect[]
+		{
+			new BurnEffect()
+			// add effects here
+		};
+
+		for (int i = 0; i < staticEffects.length; i++)
+			staticEffects[i].id = i;
+	}
+
 	private int id;
+	private short[] properties;
+
+	protected Effect() {}
 
 	public MinimizedEffect toMinimizedEffect()
 	{
@@ -26,5 +46,33 @@ public abstract class Effect
 		return miniEffects;
 	}
 
-	public abstract short[] getProperties();
+	protected void setProperties(short[] properties)
+	{
+		this.properties = new short[properties.length];
+		for (int i = 0; i < properties.length; i++)
+		{
+			this.properties[i] = properties[i];
+		}
+	}
+
+	// needed for ClientGamePlayer/LocalClientGamePlayer to uncompress the MinimizedEffect
+	public static Effect getEffectByMinimizedEffect(MinimizedEffect effect)
+	{
+		Debug.warnIf(effect == null, "Effect.getEffectByMinimizedEffect(null)");
+		Effect tmp = null;
+		try
+		{
+			tmp = (Effect) staticEffects[effect.getEffectID()].clone();
+		} catch (Exception e) { Debug.error("Effect.getEffectByMinimizedEffect: can't clone effect with id " + effect.getEffectID()); }
+		tmp.setProperties(effect.getProperties());
+		return tmp;
+	}
+
+	// needed for ClientGamePlayer, who has to handle EffectsOnOff by the ID
+	public static Effect getEffectByID(int id)
+	{
+		return staticEffects[id];
+	}
+
+	public short[] getProperties() { return properties; }
 }
