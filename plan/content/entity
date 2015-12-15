@@ -1,11 +1,10 @@
 # entity
 
-
 Entity:
-- render() -> LivingEntity.render(), EffectEntity.render()
+- render() -> LivingEntityPart.render(), EffectEntityPart.render()
 
-Sub-Entities:
-- LivingEntity
+EntityPart:
+- LivingEntityPart
 	- getHealth()
 	- private animation
 		-> getImageID()
@@ -17,25 +16,25 @@ Sub-Entities:
 	- getTeam()
 	- getHealth()
 
-- PhysicsEntity
+- PhysicsEntityPart
 	- Mass
 	- CollisionDetection
 	- Position
 	- Size
-- EffectEntity
+- EffectEntityPart
 	- What effects are possible
 	- List<Effect>
 	- getEffectsOnOff()
 
 Examples:
-- Stonetile (NoLivingEntity, SolidPhysicsEntity, ImmuneEffectEntity)
-- Watertile (NoLivingEntity, NeutralPhysicsEntity, WaterEffectEntity)
-- Breakable Tile (BreakableTileLivingEntity, SolidPhysicsEntity (collidable -> damage), ImmuneEffectEntity)
-- ServerGamePlayer (PlayerLivingEntity, DynamicPhysicsEntity, CreatureEffectEntity)
-- ServerGamePlayer (FireMage) (PlayerLivingEntity, DynamicPhysicsEntity, CreatureEffectEntity/FireEffectEntity)
-- Arrow (NoLivingEntity, DynamicPhysicsEntity, WoodEffectEntity)
-- Hitbox (NoLivingEntity, Static/Dynamic-PhysicsEntity, ImmuneEffectEntity)
-- Particle (NoLivingEntity, NeutralPhysicsEntity, ImmuneEffectEntity)
-- IceShard (NoLivingEntity, DynamicPhysicsEntity, IceEffectEntity)
-- WaterSplash (NoLivingEntity, DynamicPhysicsEntity, WaterEffectEntity)
-- ExplodingSnowball (ActOnDieLivingEntity, DynamicPhysicsEntity, IceEffectEntity)
+- Stonetile (NoLivingEntityPart, SolidPhysicsEntityPart, ImmuneEffectEntityPart)
+- Watertile (NoLivingEntityPart, NeutralPhysicsEntityPart, WaterEffectEntityPart)
+- Breakable Tile (BreakableTileLivingEntityPart, SolidPhysicsEntityPart (collidable -> damage), ImmuneEffectEntityPart)
+- ServerGamePlayer (PlayerLivingEntityPart, DynamicPhysicsEntityPart, CreatureEffectEntityPart)
+- ServerGamePlayer (FireMage) (PlayerLivingEntityPart, DynamicPhysicsEntityPart, CreatureEffectEntityPart/FireEffectEntityPart)
+- Arrow (NoLivingEntityPart, DynamicPhysicsEntityPart, WoodEffectEntityPart)
+- Hitbox (NoLivingEntityPart, Static/Dynamic-PhysicsEntityPart, ImmuneEffectEntityPart)
+- Particle (NoLivingEntityPart, NeutralPhysicsEntityPart, ImmuneEffectEntityPart)
+- IceShard (NoLivingEntityPart, DynamicPhysicsEntityPart, IceEffectEntityPart)
+- WaterSplash (NoLivingEntityPart, DynamicPhysicsEntityPart, WaterEffectEntityPart)
+- ExplodingSnowball (ActOnDieLivingEntityPart, DynamicPhysicsEntityPart, IceEffectEntityPart)
