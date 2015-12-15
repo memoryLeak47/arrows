@@ -8,11 +8,10 @@ Sub-Entities:
 	- Health
 	- HealthBar-Rendering
 
-- CollisionEntity
-	- 
-- GraphicalEntity
-- TransformEntity
+- PhysicsEntity
+	- CollisionDetection
 	- Position
 	- Size
+- GraphicalEntity
 
 interface EntityProperty
