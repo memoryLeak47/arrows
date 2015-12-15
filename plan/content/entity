@@ -1,8 +1,5 @@
 # entity
 
-Beschreibung:
-
-
 Sub-Entities:
 - LivingEntity
 	- Health
@@ -13,5 +10,17 @@ Sub-Entities:
 	- Position
 	- Size
 - GraphicalEntity
+- EffectEntity
+	- What effects are possible
+	- List<Effect>
+
+Examples:
+- Stonetile (NoLivingEntity, SolidPhysicsEntity, StaticGraphicalEntity, ImmuneEffectEntity)
+- Watertile (NoLivingEntity, NeutralPhysicsEntity, StaticGraphicalEntity, WaterEffectEntity)
+- Breakable Tile (BreakableTileLivingEntity, SolidPhysicsEntity (collidable -> damage), DynamicGraphicalEntity, ImmuneEffectEntity)
+- ServerGamePlayer (PlayerLivingEntity, DynamicPhysicsEntity, DynamicGraphicalEntity, PlayerEffectEntity)
+- Arrow (NoLivingEntity, DynamicPhysicsEntity, Dynamic/Static-GraphicalEntity, BulletEffectEntity)
+- Hitbox (NoLivingEntity, Static/Dynamic-PhysicsEntity, NoGraphicalEntity, ImmuneEffectEntity)
+- Particle (NoLivingEntity, NeutralPhysicsEntity, Static/Dynamic-GraphicalEntity, ImmuneEffectEntity)
 
 interface EntityProperty
