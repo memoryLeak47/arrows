@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.LinkedList;
 
+import playerproperty.PlayerProperty;
 import core.Main;
 import misc.Debug;
 import static misc.Serializer.*;
@@ -14,7 +15,7 @@ public final class Account implements Serializable
 
 	private String name, password;
 	private int rank, budget;
-	// private LinkedList<ASI> bought = new LinkedList<ASI>(); // TODO
+	// private LinkedList<PlayerPropertyID> bought = new LinkedList<PlayerPropertyID>();
 
 	// public
 	public Account(String name, String password)

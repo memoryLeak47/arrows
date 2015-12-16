@@ -68,7 +68,7 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 	public int getRank() { return rank; }
 
 	public short[] getCharges() { return charges; }
-	@Override public LinkedList<Integer> getEffectIDs() { Debug.warn("ServerGamePlayer.getEffectIDs(): TODO"); return null; }
+	@Override public LinkedList<Integer> getEffectIDs() { return Effect.toEffectIDs(getEffects()); }
 	public PlayerStats getPlayerStats() { return playerStats; }
 
 	public Avatar getAvatar() { return avatar; }

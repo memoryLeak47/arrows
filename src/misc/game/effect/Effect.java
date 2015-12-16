@@ -46,6 +46,16 @@ public abstract class Effect implements Cloneable
 		return miniEffects;
 	}
 
+	public static LinkedList<Integer> toEffectIDs(LinkedList<Effect> effects)
+	{
+		LinkedList<Integer> miniEffects = new LinkedList<Integer>();
+		for (Effect e : effects)
+		{
+			miniEffects.add(e.getID());
+		}
+		return miniEffects;
+	}
+
 	protected void setProperties(short[] properties)
 	{
 		this.properties = new short[properties.length];

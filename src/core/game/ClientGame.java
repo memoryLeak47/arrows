@@ -33,8 +33,7 @@ public class ClientGame extends Game
 
 	public void apply(GameFrameUpdatePacket updatePacket)
 	{
-		// TODO
-		Debug.warn("ClientGame.update(): TODO");
+		Debug.warn("ClientGame.update(): TODO"); // TODO
 	}
 
 	@Override public LinkedList<GamePlayer> getUncastedPlayers()
