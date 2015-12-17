@@ -2,7 +2,7 @@ package entity.entities.cosmetic;
 
 import entity.Entity;
 
-public class Cosmetic extends Entity
+public abstract class Cosmetic extends Entity
 {
 
 }

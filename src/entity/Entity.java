@@ -2,7 +2,7 @@ package entity;
 
 import entity.entityparts.EffectEntityPart;
 import entity.entityparts.LivingEntityPart;
-import entity.entityparts.PhysicEntityPart;
+import entity.entityparts.PhysicsEntityPart;
 
 import misc.Debug;
 import misc.math.Rect;
@@ -12,13 +12,13 @@ import misc.math.Position;
 public abstract class Entity
 {
 	private LivingEntityPart livingEntityPart;
-	private PhysicEntityPart physicEntityPart;
+	private PhysicsEntityPart physicsEntityPart;
 	private EffectEntityPart effectEntityPart;
 
 	public Entity()
 	{
 		livingEntityPart = createLivingEntityPart();
-		physicEntityPart = createPhysicEntityPart();
+		physicsEntityPart = createPhysicsEntityPart();
 		effectEntityPart = createEffectEntityPart();
 	}
 
@@ -28,23 +28,9 @@ public abstract class Entity
 	}
 
 	// Die 'create-Funktionen' werden in den Unterklassen überschrieben, um der Entity mitzuteilen, welche Entities benutzt werden
-	protected LivingEntityPart createLivingEntityPart()
-	{
-		Debug.warn("Entity.createLivingEntity: Is not Overriden");
-		return null;
-	}
-
-	protected PhysicEntityPart createPhysicEntityPart()
-	{
-		Debug.warn("Entity.createPhysicEntity: Is not Overriden");
-		return null;
-	}
-
-	protected EffectEntityPart createEffectEntityPart()
-	{
-		Debug.warn("Entity.createEffectEntity: Is not Overriden");
-		return null;
-	}
+	protected abstract LivingEntityPart createLivingEntityPart();
+	protected abstract PhysicsEntityPart createPhysicsEntityPart();
+	protected abstract EffectEntityPart createEffectEntityPart();
 
 	// Getter
 	public int getHealth()
@@ -69,19 +55,19 @@ public abstract class Entity
 
 	public Position getPosition()
 	{
-		if (getPhysicEntityPart() != null)
+		if (getPhysicsEntityPart() != null)
 		{
-			return getPhysicEntityPart().getPosition();
+			return getPhysicsEntityPart().getPosition();
 		}
-		Debug.warn("Entity.getPosition(): getPhysicEntityPart() == null");
+		Debug.warn("Entity.getPosition(): getPhysicsEntityPart() == null");
 		return new Position(0,0);
 	}
 
 	// Subentity getter
-	public PhysicEntityPart getPhysicEntityPart()
+	public PhysicsEntityPart getPhysicsEntityPart()
 	{
-		Debug.warnIf(physicEntityPart == null, "Entity.getPhysicEntityPart(): returns null");
-		return physicEntityPart;
+		Debug.warnIf(physicsEntityPart == null, "Entity.getPhysicsEntityPart(): returns null");
+		return physicsEntityPart;
 	}
 
 	public EffectEntityPart getEffectEntityPart()

@@ -2,9 +2,12 @@ package entity.tile;
 
 import java.awt.Color;
 
-import misc.game.Team;
 import entity.Entity;
+import entity.entityparts.EffectEntityPart;
+import entity.entityparts.LivingEntityPart;
+import entity.entityparts.PhysicsEntityPart;
 import entity.tile.tiles.*;
+import misc.game.Team;
 import misc.Debug;
 
 public abstract class Tile extends Entity
@@ -41,6 +44,24 @@ public abstract class Tile extends Entity
 			return new SpawnTeamTile(Team.TEAM4);
 
 		Debug.warn("Tile.getByColorID(" + colorID + "): returns null");
+		return null;
+	}
+
+	@Override public PhysicsEntityPart createPhysicsEntityPart()
+	{
+		Debug.warn("Tile.createPhysicsEntityPart(): TODO");
+		return null;
+	}
+
+	@Override public LivingEntityPart createLivingEntityPart()
+	{
+		Debug.warn("Tile.createLivingEntityPart(): TODO");
+		return null;
+	}
+
+	@Override public EffectEntityPart createEffectEntityPart()
+	{
+		Debug.warn("Tile.createEffectEntityPart(): TODO");
 		return null;
 	}
 }

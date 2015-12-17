@@ -8,6 +8,9 @@ import java.net.InetAddress;
 import java.util.LinkedList;
 
 import entity.Entity;
+import entity.entityparts.EffectEntityPart;
+import entity.entityparts.LivingEntityPart;
+import entity.entityparts.PhysicsEntityPart;
 import graphics.ImageID;
 import misc.Debug;
 import misc.game.effect.Effect;
@@ -60,6 +63,25 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 	public ClientGamePlayerFrameUpdate toClientGamePlayerFrameUpdate()
 	{
 		return new ClientGamePlayerFrameUpdate(getHealth(), getPosition(), getImageID());
+	}
+
+	// Entity-creater
+	@Override public PhysicsEntityPart createPhysicsEntityPart()
+	{
+		Debug.warn("ServerGamePlayer.createPhysicsEntityPart(): TODO");
+		return null;
+	}
+
+	@Override public LivingEntityPart createLivingEntityPart()
+	{
+		Debug.warn("ServerGamePlayer.createLivingEntityPart(): TODO");
+		return null;
+	}
+
+	@Override public EffectEntityPart createEffectEntityPart()
+	{
+		Debug.warn("ServerGamePlayer.createEffectEntityPart(): TODO");
+		return null;
 	}
 
 	// getter
