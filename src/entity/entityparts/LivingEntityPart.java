@@ -5,7 +5,7 @@ import entity.Entity;
 import entity.EntityPart;
 import misc.Debug;
 
-public class LivingEntityPart extends EntityPart
+public abstract class LivingEntityPart extends EntityPart
 {
 	private int health;
 

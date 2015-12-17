@@ -6,9 +6,8 @@ import entity.entityparts.LivingEntityPart;
 import entity.entityparts.PhysicsEntityPart;
 import misc.Debug;
 
-public class ExtendedBullet extends Entity
+public abstract class ExtendedBullet extends Entity
 {
-
 	@Override public PhysicsEntityPart createPhysicsEntityPart()
 	{
 		Debug.warn("ExtendedBullet.createPhysicsEntityPart(): TODO");

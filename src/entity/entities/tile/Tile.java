@@ -21,11 +21,10 @@ public abstract class Tile extends Entity
 	public static final int SPAWN_TEAM3_COLORID = Team.TEAM3.getColorID();
 	public static final int SPAWN_TEAM4_COLORID = Team.TEAM4.getColorID();
 
-	public boolean isCollidable() { return true; } 
-		// Collision between player and tile
 	public boolean isStatic() { return true; }
 		// needed for static rendering.
 		// should return false if tile may move or change image
+
 	public static Tile getByColorID(int colorID)
 	{
 		if (colorID == STONE_COLORID)

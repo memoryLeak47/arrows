@@ -2,11 +2,11 @@ package entity;
 
 import entity.Entity;
 
-public class EntityPart
+public abstract class EntityPart
 {
 	private Entity parent;
 
-	public EntityPart(Entity parent)
+	protected EntityPart(Entity parent)
 	{
 		this.parent = parent;
 	}

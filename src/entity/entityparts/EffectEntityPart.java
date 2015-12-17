@@ -4,7 +4,7 @@ import entity.Entity;
 import entity.EntityPart;
 import misc.Debug;
 
-public class EffectEntityPart extends EntityPart
+public abstract class EffectEntityPart extends EntityPart
 {
 	public EffectEntityPart(Entity parent)
 	{

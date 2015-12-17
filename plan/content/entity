@@ -16,7 +16,7 @@ EntityPart:
 	- getTeam()
 	- getHealth()
 
-- PhysicalEntityPart
+- PhysicsEntityPart
 	- Mass
 	- CollisionDetection
 	- Position
@@ -39,5 +39,5 @@ Examples:
 - WaterSplash (NoLivingEntityPart, DynamicPhysicsEntityPart, WaterEffectEntityPart)
 - ExplodingSnowball (ActOnDieLivingEntityPart, DynamicPhysicsEntityPart, IceEffectEntityPart)
 
-There are create{Living,Physical,Effect}EntityPart()-functions in every Entity-(sub)class,
+There are create{Living,Physics,Effect}EntityPart()-functions in every Entity-(sub)class,
 they return the EntityParts to set in the Entity constructor.
