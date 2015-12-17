@@ -6,8 +6,8 @@ import java.awt.image.BufferedImage;
 import tilemap.LobbyTileMap;
 import tilemap.GameTileMap;
 import entity.Entity;
-import entity.bullet.MinimizedBullet;
-import entity.cosmetic.Cosmetic;
+import entity.entities.bullet.MinimizedBullet;
+import entity.entities.cosmetic.Cosmetic;
 import network.game.player.ClientGamePlayer;
 import network.game.player.GamePlayer;
 import misc.Debug;
@@ -24,7 +24,7 @@ public abstract class Game
 		this.tileMap = new GameTileMap(lobbyTileMap);
 	}
 
-	abstract LinkedList<? extends MinimizedBullet> getBullets();
+	abstract LinkedList<MinimizedBullet> getBullets();
 
 	// Returnt alle Entities außer Tiles (Player, Bullets, Cosmetics)
 	public LinkedList<Entity> getDynamicEntities()

@@ -1,4 +1,4 @@
-package entity.cosmetic;
+package entity.entities.cosmetic;
 
 import entity.Entity;
 

@@ -2,7 +2,8 @@ package core.game;
 
 import java.util.LinkedList;
 
-import entity.bullet.ExtendedBullet;
+import entity.entities.bullet.ExtendedBullet;
+import entity.entities.bullet.MinimizedBullet;
 import tilemap.LobbyTileMap;
 import network.game.player.GamePlayer;
 import network.game.player.ServerGamePlayer;
@@ -50,10 +51,11 @@ public class ServerGame extends Game
 
 	// Getter
 	
-	@Override LinkedList<ExtendedBullet> getBullets()
+	// Muss die "ExtendedBullets" in "MinimizedBullets" ändern
+	@Override LinkedList<MinimizedBullet> getBullets()
 	{
-		Debug.warnIf(bullets == null, "ServerGame.getBullets() return null");
-		return bullets;
+		Debug.warn("ServerGame.getBullets(): TODO)");
+		return null;
 	}
 
 	@Override public LinkedList<GamePlayer> getUncastedPlayers()

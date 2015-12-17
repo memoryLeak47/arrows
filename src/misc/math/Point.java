@@ -4,6 +4,11 @@ public class Point
 {
 	private int x, y;
 
+	public Point()
+	{
+		this(0, 0);
+	}
+
 	public Point(int x, int y)
 	{
 		this.x = x;

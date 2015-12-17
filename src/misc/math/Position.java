@@ -4,6 +4,11 @@ import misc.math.Point;
 
 public class Position extends Point
 {
+	public Position()
+	{
+		super();
+	}
+
 	public Position(int x, int y)
 	{
 		super(x, y);

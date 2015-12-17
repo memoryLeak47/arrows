@@ -2,7 +2,7 @@ package core.game;
 
 import java.util.LinkedList;
 
-import entity.bullet.MinimizedBullet;
+import entity.entities.bullet.MinimizedBullet;
 import network.game.player.ClientGamePlayer;
 import network.game.player.GamePlayer;
 import network.game.player.LocalClientGamePlayerFrameUpdate;
