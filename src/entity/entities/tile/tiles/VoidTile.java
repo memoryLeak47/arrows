@@ -8,6 +8,4 @@ public class VoidTile extends Tile
 	{
 		
 	}
-
-	@Override public boolean isCollidable() { return false; }
 }
