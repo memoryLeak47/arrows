@@ -11,7 +11,9 @@ import entity.Entity;
 import entity.entitypart.EffectEntityPart;
 import entity.entitypart.LivingEntityPart;
 import entity.entitypart.PhysicsEntityPart;
+import entity.entitypart.entityparts.living.PlayerLivingEntityPart;
 import entity.entitypart.entityparts.physics.DynamicPhysicsEntityPart;
+import entity.partproperty.partproperties.living.MortalLivingEntityPartProperty;
 import graphics.ImageID;
 import misc.Debug;
 import misc.game.effect.Effect;
@@ -74,8 +76,7 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 
 	@Override public LivingEntityPart createLivingEntityPart()
 	{
-		Debug.warn("ServerGamePlayer.createLivingEntityPart(): TODO");
-		return null;
+		return new PlayerLivingEntityPart(this);
 	}
 
 	@Override public EffectEntityPart createEffectEntityPart()
@@ -112,8 +113,8 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 	// may be done by Entity
 	public LinkedList<Effect> getEffects() { return getEffectEntityPart().getEffects(); }
 	@Override public Team getTeam() { return team; }
-	@Override public Position getPosition() { Debug.warn("ServerGamePlayer.getPosition(): TODO"); return null; }
-	@Override public int getHealth() { Debug.warn("ServerGamePlayer.getHealth(): TODO"); return 0; }
+	@Override public Position getPosition() { return getPhysicsEntityPart().getPosition(); }
+	@Override public int getHealth() { return ((MortalLivingEntityPartProperty)getLivingEntityPart()).getHealth(); }
 	@Override public ImageID getImageID() { Debug.warn("ServerGamePlayer.getImageID(): TODO"); return null; }
 
 	/*
