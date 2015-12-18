@@ -32,17 +32,6 @@ public abstract class Entity
 	protected abstract PhysicsEntityPart createPhysicsEntityPart();
 	protected abstract EffectEntityPart createEffectEntityPart();
 
-	// Getter
-	public int getHealth()
-	{
-		if (getLivingEntityPart() != null)
-		{
-			return getLivingEntityPart().getHealth();
-		}
-		Debug.warn("Entity.getHealth(): getLivingEntityPart() == null");
-		return 0;
-	}
-
 	public ImageID getImageID()
 	{
 		if (getLivingEntityPart() != null)
