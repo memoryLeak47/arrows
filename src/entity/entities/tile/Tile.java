@@ -6,6 +6,7 @@ import entity.Entity;
 import entity.entitypart.EffectEntityPart;
 import entity.entitypart.LivingEntityPart;
 import entity.entitypart.PhysicsEntityPart;
+import entity.entitypart.entityparts.effect.ImmuneEffectEntityPart;
 import entity.entities.tile.tiles.*;
 import misc.game.Team;
 import misc.Debug;
@@ -60,7 +61,6 @@ public abstract class Tile extends Entity
 
 	@Override public EffectEntityPart createEffectEntityPart()
 	{
-		Debug.warn("Tile.createEffectEntityPart(): TODO");
-		return null;
+		return new ImmuneEffectEntityPart(this);
 	}
 }
