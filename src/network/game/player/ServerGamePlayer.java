@@ -11,6 +11,7 @@ import entity.Entity;
 import entity.entitypart.EffectEntityPart;
 import entity.entitypart.LivingEntityPart;
 import entity.entitypart.PhysicsEntityPart;
+import entity.entitypart.entityparts.physics.DynamicPhysicsEntityPart;
 import graphics.ImageID;
 import misc.Debug;
 import misc.game.effect.Effect;
@@ -38,7 +39,6 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 	private Skill[] skills;
 	private Item[] items;
 
-	private LinkedList<Effect> effects = new LinkedList<Effect>();
 	private PlayerStats playerStats;
 	private short[] charges;
 
@@ -52,7 +52,6 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 		this.team = lobbyPlayer.getTeam();
 		this.skills = lobbyPlayer.getSkills();
 		this.items = lobbyPlayer.getItems();
-		//position TODO by entity
 	}
 
 	public LocalClientGamePlayerFrameUpdate toLocalClientGamePlayerFrameUpdate()
@@ -68,8 +67,7 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 	// Entity-creater
 	@Override public PhysicsEntityPart createPhysicsEntityPart()
 	{
-		Debug.warn("ServerGamePlayer.createPhysicsEntityPart(): TODO");
-		return null;
+		return new DynamicPhysicsEntityPart(this, calcMass());
 	}
 
 	@Override public LivingEntityPart createLivingEntityPart()
@@ -82,6 +80,16 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 	{
 		Debug.warn("ServerGamePlayer.createEffectEntityPart(): TODO");
 		return null;
+	}
+
+	private int calcMass()
+	{
+		int mass = getAvatar().getMassStat();
+		for (int i = 0; i < getItems().length; i++)
+		{
+			mass += getItems()[i].getMassStat();
+		}
+		return mass;
 	}
 
 	// getter
@@ -100,7 +108,7 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 	public KDCounter getKDCounter() { return kdCounter; }
 
 	// may be done by Entity
-	public LinkedList<Effect> getEffects() { return effects; }
+	public LinkedList<Effect> getEffects() { return getEffectEntityPart().getEffects(); }
 	@Override public Team getTeam() { return team; }
 	@Override public Position getPosition() { Debug.warn("ServerGamePlayer.getPosition(): TODO"); return null; }
 	@Override public int getHealth() { Debug.warn("ServerGamePlayer.getHealth(): TODO"); return 0; }

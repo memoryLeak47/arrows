@@ -33,4 +33,6 @@ public abstract class EffectEntityPart extends EntityPart
 			true // BurnEffect
 		};
 	}
+
+	public LinkedList<Effect> getEffects() { return effects; }
 }
