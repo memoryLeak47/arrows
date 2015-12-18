@@ -1,5 +1,6 @@
 package entity.entityparts;
 
+import graphics.Animation;
 import graphics.ImageID;
 import entity.Entity;
 import entity.EntityPart;
