@@ -74,7 +74,7 @@ public class Debug
 		}
 	}
 	public static void note(String string)
-	{
+{
 		colorLog(NOTE_COLOR, "NOTE: " + string);
 	}
 
@@ -132,14 +132,20 @@ public class Debug
 	// warn
 	public static void warnIf(boolean b, String s, Tags tag)
 	{
-		if (b)
-			warn(s, tag);
+		if (b && tag.isActive())
+		{
+			colorLog(WARN_COLOR, "WARN: " + s);
+			colorLog(WARN_COLOR, "\t" + new Throwable().getStackTrace()[2]);
+		}
 	}
 
 	public static void warnIf(boolean b, String s)
 	{
 		if (b)
-			warn(s);
+		{
+			colorLog(WARN_COLOR, "WARN: " + s);
+			colorLog(WARN_COLOR, "\t" + new Throwable().getStackTrace()[2]);
+		}
 	}
 
 	public static void warn(String string, Tags tag)
@@ -149,6 +155,7 @@ public class Debug
 			warn(string);
 		}
 	}
+
 	public static void warn(String string)
 	{
 		colorLog(WARN_COLOR, "WARN: " + string);
