@@ -1,6 +1,6 @@
 package tilemap;
 
-import entity.tile.Tile;
+import entity.entities.tile.Tile;
 
 public class GameTileMap
 {

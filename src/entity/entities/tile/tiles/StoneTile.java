@@ -1,6 +1,6 @@
-package entity.tile.tiles;
+package entity.entities.tile.tiles;
 
-import entity.tile.Tile;
+import entity.entities.tile.Tile;
 import entity.entityparts.EffectEntityPart;
 import entity.entityparts.LivingEntityPart;
 import entity.entityparts.PhysicsEntityPart;

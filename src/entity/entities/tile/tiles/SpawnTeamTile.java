@@ -1,7 +1,7 @@
-package entity.tile.tiles;
+package entity.entities.tile.tiles;
 
 import misc.game.Team;
-import entity.tile.Tile;
+import entity.entities.tile.Tile;
 
 public class SpawnTeamTile extends Tile
 {

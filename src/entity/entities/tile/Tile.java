@@ -1,4 +1,4 @@
-package entity.tile;
+package entity.entities.tile;
 
 import java.awt.Color;
 
@@ -6,7 +6,7 @@ import entity.Entity;
 import entity.entityparts.EffectEntityPart;
 import entity.entityparts.LivingEntityPart;
 import entity.entityparts.PhysicsEntityPart;
-import entity.tile.tiles.*;
+import entity.entities.tile.tiles.*;
 import misc.game.Team;
 import misc.Debug;
 
