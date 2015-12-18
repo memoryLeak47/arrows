@@ -11,7 +11,7 @@ public abstract class LivingEntityPart extends EntityPart
 	private Animation animation;
 	private int health;
 
-	public LivingEntityPart(Entity parent, int health)
+	public LivingEntityPart(Entity parent)
 	{
 		super(parent);
 		this.health = health;

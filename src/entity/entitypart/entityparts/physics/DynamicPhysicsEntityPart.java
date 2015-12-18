@@ -7,9 +7,13 @@ public class DynamicPhysicsEntityPart extends PhysicsEntityPart
 {
 	private int mass;
 
-	public DynamicPhysicsEntityPart(Entity parent, int mass)
+	public DynamicPhysicsEntityPart(Entity parent)
 	{
 		super(parent);
+	}
+
+	public void init(int mass)
+	{
 		this.mass = mass;
 	}
 	

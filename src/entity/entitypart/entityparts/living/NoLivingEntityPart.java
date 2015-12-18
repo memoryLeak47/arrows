@@ -7,6 +7,6 @@ public class NoLivingEntityPart extends LivingEntityPart
 {
 	public NoLivingEntityPart(Entity parent)
 	{
-		super(parent, 0);
+		super(parent);
 	}
 }

@@ -53,6 +53,7 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 		this.skills = lobbyPlayer.getSkills();
 		this.items = lobbyPlayer.getItems();
 		this.avatar = lobbyPlayer.getAvatar();
+		((DynamicPhysicsEntityPart) getPhysicsEntityPart()).init(calcMass());
 	}
 
 	public LocalClientGamePlayerFrameUpdate toLocalClientGamePlayerFrameUpdate()
@@ -68,7 +69,7 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 	// Entity-creater
 	@Override public PhysicsEntityPart createPhysicsEntityPart()
 	{
-		return new DynamicPhysicsEntityPart(this, calcMass());
+		return new DynamicPhysicsEntityPart(this);
 	}
 
 	@Override public LivingEntityPart createLivingEntityPart()
