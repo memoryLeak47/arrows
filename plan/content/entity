@@ -39,5 +39,12 @@ Examples:
 - WaterSplash (NoLivingEntityPart, DynamicPhysicsEntityPart, WaterEffectEntityPart)
 - ExplodingSnowball (ActOnDieLivingEntityPart, DynamicPhysicsEntityPart, IceEffectEntityPart)
 
+
+EntityParts are the 3 units a Entity is made of (LivingEntityPart, PhysicsEntityPart, EffectEntityPart)
+
 There are create{Living,Physics,Effect}EntityPart()-functions in every Entity-(sub)class,
 they return the EntityParts to set in the Entity constructor.
+
+EntityPart-subclasses can implement EnityPartProperties to achieve new functionalities.
+e.g. 	every LivingEntityPart that can die, has to implement MortalLivingEntityPart to have access to the die()-function.
+	if health is <= 0, the entity checks if it is a MortalLivingEntityPart. and if it is: it executes die().jj
