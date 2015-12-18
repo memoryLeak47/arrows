@@ -8,9 +8,9 @@ import java.net.InetAddress;
 import java.util.LinkedList;
 
 import entity.Entity;
-import entity.entityparts.EffectEntityPart;
-import entity.entityparts.LivingEntityPart;
-import entity.entityparts.PhysicsEntityPart;
+import entity.entitypart.EffectEntityPart;
+import entity.entitypart.LivingEntityPart;
+import entity.entitypart.PhysicsEntityPart;
 import graphics.ImageID;
 import misc.Debug;
 import misc.game.effect.Effect;

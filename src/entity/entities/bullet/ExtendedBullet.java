@@ -1,9 +1,9 @@
 package entity.entities.bullet;
 
 import entity.Entity;
-import entity.entityparts.EffectEntityPart;
-import entity.entityparts.LivingEntityPart;
-import entity.entityparts.PhysicsEntityPart;
+import entity.entitypart.EffectEntityPart;
+import entity.entitypart.LivingEntityPart;
+import entity.entitypart.PhysicsEntityPart;
 import misc.Debug;
 
 public abstract class ExtendedBullet extends Entity

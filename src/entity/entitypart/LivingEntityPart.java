@@ -1,4 +1,4 @@
-package entity.entityparts;
+package entity.entitypart;
 
 import graphics.Animation;
 import graphics.ImageID;

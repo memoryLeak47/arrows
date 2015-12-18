@@ -3,9 +3,9 @@ package entity.entities.tile;
 import java.awt.Color;
 
 import entity.Entity;
-import entity.entityparts.EffectEntityPart;
-import entity.entityparts.LivingEntityPart;
-import entity.entityparts.PhysicsEntityPart;
+import entity.entitypart.EffectEntityPart;
+import entity.entitypart.LivingEntityPart;
+import entity.entitypart.PhysicsEntityPart;
 import entity.entities.tile.tiles.*;
 import misc.game.Team;
 import misc.Debug;
