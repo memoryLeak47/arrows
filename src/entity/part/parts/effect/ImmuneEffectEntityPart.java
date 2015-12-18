@@ -1,7 +1,7 @@
-package entity.entitypart.entityparts.effect;
+package entity.part.parts.effect;
 
 import entity.Entity;
-import entity.entitypart.EffectEntityPart;
+import entity.part.EffectEntityPart;
 
 public class ImmuneEffectEntityPart extends EffectEntityPart
 {

@@ -8,12 +8,12 @@ import java.net.InetAddress;
 import java.util.LinkedList;
 
 import entity.Entity;
-import entity.entitypart.EffectEntityPart;
-import entity.entitypart.LivingEntityPart;
-import entity.entitypart.PhysicsEntityPart;
-import entity.entitypart.entityparts.living.PlayerLivingEntityPart;
-import entity.entitypart.entityparts.physics.DynamicPhysicsEntityPart;
-import entity.partproperty.partproperties.living.MortalLivingEntityPartProperty;
+import entity.part.EffectEntityPart;
+import entity.part.LivingEntityPart;
+import entity.part.PhysicsEntityPart;
+import entity.part.parts.living.PlayerLivingEntityPart;
+import entity.part.parts.physics.DynamicPhysicsEntityPart;
+import entity.part.property.properties.living.MortalLivingEntityPartProperty;
 import graphics.ImageID;
 import misc.Debug;
 import misc.game.effect.Effect;

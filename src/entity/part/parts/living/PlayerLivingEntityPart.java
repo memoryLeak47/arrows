@@ -1,8 +1,8 @@
-package entity.entitypart.entityparts.living;
+package entity.part.parts.living;
 
 import entity.Entity;
-import entity.entitypart.LivingEntityPart;
-import entity.partproperty.partproperties.living.MortalLivingEntityPartProperty;
+import entity.part.LivingEntityPart;
+import entity.part.property.properties.living.MortalLivingEntityPartProperty;
 
 public class PlayerLivingEntityPart extends LivingEntityPart implements MortalLivingEntityPartProperty
 {

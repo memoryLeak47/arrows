@@ -1,8 +1,8 @@
 package entity;
 
-import entity.entitypart.EffectEntityPart;
-import entity.entitypart.LivingEntityPart;
-import entity.entitypart.PhysicsEntityPart;
+import entity.part.EffectEntityPart;
+import entity.part.LivingEntityPart;
+import entity.part.PhysicsEntityPart;
 
 import misc.Debug;
 import misc.math.Rect;

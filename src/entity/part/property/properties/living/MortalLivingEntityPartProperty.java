@@ -1,6 +1,6 @@
-package entity.partproperty.partproperties.living;
+package entity.part.property.properties.living;
 
-import entity.partproperty.LivingEntityPartProperty;
+import entity.part.property.LivingEntityPartProperty;
 
 public interface MortalLivingEntityPartProperty extends LivingEntityPartProperty
 {

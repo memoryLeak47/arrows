@@ -1,4 +1,4 @@
-package entity.entitypart;
+package entity.part;
 
 import entity.Entity;
 import entity.EntityPart;
@@ -8,8 +8,8 @@ import misc.math.Size;
 
 public abstract class PhysicsEntityPart extends EntityPart
 {
-	private Position position;
-	private Size size;
+	private Position position; // TODO maybe put into EntityPartProperty
+	private Size size; // TODO maybe put into EntityPartProperty
 
 	public PhysicsEntityPart(Entity parent)
 	{
@@ -19,15 +19,13 @@ public abstract class PhysicsEntityPart extends EntityPart
 	}
 
 	// Getter
-	public abstract int getMass();
-
-	public Position getPosition()
+	public Position getPosition() // TODO maybe put into EntityPartProperty
 	{
 		Debug.warnIf(position == null, "PhysicsEntityPart.getPosition(): returns null");
 		return position;
 	}
 
-	public Size getSize()
+	public Size getSize() // TODO maybe put into EntityPartProperty
 	{
 		Debug.warnIf(size == null, "PhysicsEntityPart.getSize(): returns null");
 		return size;

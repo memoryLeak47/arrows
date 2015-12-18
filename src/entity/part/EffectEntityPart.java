@@ -1,4 +1,4 @@
-package entity.entitypart;
+package entity.part;
 
 import java.util.LinkedList;
 

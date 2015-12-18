@@ -1,4 +1,4 @@
-package entity.partproperty;
+package entity.part.property;
 
 import entity.EntityPartProperty;
 

@@ -1,7 +1,7 @@
-package entity.entitypart.entityparts.living;
+package entity.part.parts.living;
 
 import entity.Entity;
-import entity.entitypart.LivingEntityPart;
+import entity.part.LivingEntityPart;
 
 public class NoLivingEntityPart extends LivingEntityPart
 {
