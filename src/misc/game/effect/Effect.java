@@ -8,6 +8,7 @@ import misc.game.effect.effects.*;
 public abstract class Effect implements Cloneable
 {
 	private static Effect[] staticEffects;
+	private static boolean initPhase = true;
 
 	static
 	{
@@ -19,12 +20,19 @@ public abstract class Effect implements Cloneable
 
 		for (int i = 0; i < staticEffects.length; i++)
 			staticEffects[i].id = i;
+		initPhase = false;
 	}
 
 	private int id;
 	private short[] properties;
 
-	protected Effect() {}
+	protected Effect()
+	{
+		if (!initPhase)
+		{
+			Debug.warn("invalid creation of an Effect, create it with getEffectByMinimizedEffect(new MinimizedEffect(<id>, <stats>))");
+		}
+	}
 
 	public MinimizedEffect toMinimizedEffect()
 	{
