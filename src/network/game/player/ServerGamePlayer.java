@@ -52,6 +52,7 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 		this.team = lobbyPlayer.getTeam();
 		this.skills = lobbyPlayer.getSkills();
 		this.items = lobbyPlayer.getItems();
+		this.avatar = lobbyPlayer.getAvatar();
 	}
 
 	public LocalClientGamePlayerFrameUpdate toLocalClientGamePlayerFrameUpdate()
