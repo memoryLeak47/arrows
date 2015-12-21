@@ -14,6 +14,7 @@ import entity.part.PhysicsEntityPart;
 import entity.part.parts.living.PlayerLivingEntityPart;
 import entity.part.parts.physics.DynamicPhysicsEntityPart;
 import entity.part.property.properties.living.MortalLivingEntityPartProperty;
+import entity.part.property.properties.living.GraphicalLivingEntityPartProperty;
 import graphics.ImageID;
 import misc.Debug;
 import misc.game.effect.Effect;
@@ -114,8 +115,8 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 	public LinkedList<Effect> getEffects() { return getEffectEntityPart().getEffects(); }
 	@Override public Team getTeam() { return team; }
 	@Override public Position getPosition() { return getPhysicsEntityPart().getPosition(); }
-	@Override public int getHealth() { return ((MortalLivingEntityPartProperty)getLivingEntityPart()).getHealth(); }
-	@Override public ImageID getImageID() { Debug.warn("ServerGamePlayer.getImageID(): TODO"); return null; }
+	@Override public int getHealth() { return ((MortalLivingEntityPartProperty) getLivingEntityPart()).getHealth(); }
+	@Override public ImageID getImageID() { return ((GraphicalLivingEntityPartProperty) getLivingEntityPart()).getImageID(); }
 
 	/*
 		getHealth, getPosition, getImageID, getEffects, sind schon von Entity definiert und müssen nicht nochmal geschrieben werden
