@@ -8,24 +8,28 @@ import misc.math.Size;
 
 public abstract class PhysicsEntityPart extends EntityPart
 {
-	private Position position; // TODO maybe put into EntityPartProperty
-	private Size size; // TODO maybe put into EntityPartProperty
+	private Position position;
+	private Size size;
 
 	public PhysicsEntityPart(Entity parent)
 	{
 		super(parent);
-		this.position = new Position();
-		this.size = new Size();
+	}
+
+	public void init(Position pos, Size size)
+	{
+		this.position = new Position(pos);
+		this.size = new Size(size);
 	}
 
 	// Getter
-	public Position getPosition() // TODO maybe put into EntityPartProperty
+	public Position getPosition()
 	{
 		Debug.warnIf(position == null, "PhysicsEntityPart.getPosition(): returns null");
 		return position;
 	}
 
-	public Size getSize() // TODO maybe put into EntityPartProperty
+	public Size getSize()
 	{
 		Debug.warnIf(size == null, "PhysicsEntityPart.getSize(): returns null");
 		return size;

@@ -4,14 +4,15 @@ import entity.Entity;
 import entity.part.EffectEntityPart;
 import entity.part.LivingEntityPart;
 import entity.part.PhysicsEntityPart;
+import entity.part.parts.physics.DynamicPhysicsEntityPart;
 import misc.Debug;
+import misc.math.Position;
 
 public abstract class ExtendedBullet extends Entity
 {
 	@Override public PhysicsEntityPart createPhysicsEntityPart()
 	{
-		Debug.warn("ExtendedBullet.createPhysicsEntityPart(): TODO");
-		return null;
+		return new DynamicPhysicsEntityPart(this);
 	}
 
 	@Override public LivingEntityPart createLivingEntityPart()
