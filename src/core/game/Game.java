@@ -50,4 +50,10 @@ public abstract class Game
 		Debug.warn("Game.getMapImage(): return null TODO");
 		return null;
 	}
+
+	protected GameTileMap getGameTileMap()
+	{
+		Debug.warnIf(tileMap == null, "Game.getGameTileMap(): returns null");
+		return tileMap;
+	}
 }

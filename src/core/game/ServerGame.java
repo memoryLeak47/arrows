@@ -27,7 +27,7 @@ public class ServerGame extends Game
 		super(lobbyMap);
 		for (LobbyPlayer player : lobbyPlayers)
 		{
-			players.add(new ServerGamePlayer(player, new Position(0, 0))); // TODO useful position
+			players.add(new ServerGamePlayer(player, getGameTileMap().getSpawnTilePositionByTeam(player.getTeam()).toPosition()));
 		}
 	}
 
