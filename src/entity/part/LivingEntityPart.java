@@ -17,7 +17,11 @@ public abstract class LivingEntityPart extends EntityPart
 
 	public ImageID getImageID() // TODO may be put in EntityPartProperty
 	{
-		Debug.warn("LivingEntityPart.getImageID(): TODO");
-		return null;
+		Debug.warnIf(animation == null, "LivingEntityPart.getImageID(): animation == null");
+		if (animation != null)
+		{
+			Debug.warnIf(animation.getImageID() == null, "LivingEntityPart.getImageID(): animation.getImageID() == null");
+			return animation.getImageID();
+		}
 	}
 }

@@ -16,6 +16,7 @@ import network.NetworkDevice;
 public class Main
 {
 	public static final int FRAME_INTERVAL = 40; // intervall in dem tick() und render() ausgeführt werden
+	public static final int TILESIZE = 50;
 
 	private static MenuList menuList;
 	private static NetworkDevice networkDevice;

@@ -11,6 +11,7 @@ LobbyTileMap:
 GameTileMap:
 	Tile[][] getTiles()
 	int[][] getInts()
+	getImage()
 
 LobbyMiniMap:
 	apply(int[][])
