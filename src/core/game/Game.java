@@ -3,6 +3,7 @@ package core.game;
 import java.util.LinkedList;
 import java.awt.image.BufferedImage;
 
+import core.Main;
 import entity.Entity;
 import entity.entities.bullet.MinimizedBullet;
 import entity.entities.cosmetic.Cosmetic;
@@ -24,6 +25,7 @@ public abstract class Game
 	public Game(LobbyTileMap lobbyTileMap)
 	{
 		this.tileMap = new GameTileMap(lobbyTileMap);
+		Main.setGame(this);
 	}
 
 	abstract LinkedList<MinimizedBullet> getBullets();

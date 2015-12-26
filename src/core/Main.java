@@ -5,6 +5,7 @@ import java.util.TimerTask;
 import java.util.LinkedList;
 import java.util.HashMap;
 
+import core.game.Game;
 import menu.Menu;
 import menu.MenuList;
 import menu.menues.LobbyMenu;
@@ -18,6 +19,7 @@ public class Main
 	public static final int FRAME_INTERVAL = 40; // intervall in dem tick() und render() ausgeführt werden
 	public static final int TILESIZE = 50;
 
+	private static Game game;
 	private static MenuList menuList;
 	private static NetworkDevice networkDevice;
 	private static Account account;
@@ -97,4 +99,12 @@ public class Main
 
 	// gebraucht in NetworkingMenu zum setzen der networkDevice.menu
 	public static NetworkDevice getNetworkDevice() { return networkDevice; }
+
+	public static void setGame(Game gameArg) { game = gameArg; }
+
+	public static Game getGame()
+	{
+		Debug.warnIf(game == null, "Main.getGame(): returns null");
+		return game;
+	}
 }

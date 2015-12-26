@@ -1,7 +1,11 @@
 package entity;
 
+import static core.Main.getGame;
+import static core.Main.TILESIZE;
+import core.Screen;
 import misc.Debug;
 import graphics.Animation;
+import graphics.ImageFile;
 import graphics.ImageID;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
@@ -25,8 +29,19 @@ public abstract class Entity
 
 	public void render()
 	{
-		Debug.warn("Entity.render(): TODO nudel");
+		if (inScreen())
+		{
+			int x, y;
+			x = (int) (TILESIZE*(getPosition().getX() - getGame().getCamera().getOffset().getX()));
+			y = (int) (TILESIZE*(getPosition().getY() - getGame().getCamera().getOffset().getY())); 
+			Screen.g().drawImage(ImageFile.getImageByImageID(getImageID()), x, y, null);
+		}
+	}
+
+	private boolean inScreen()
+	{
 		// TODO
+		return true;
 	}
 
 	protected ImageID getImageID()
