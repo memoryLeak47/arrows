@@ -3,33 +3,33 @@ package entity.part;
 import entity.Entity;
 import entity.EntityPart;
 import misc.Debug;
-import misc.math.Position;
-import misc.math.Size;
+import misc.math.game.GamePosition;
+import misc.math.game.GameSize;
 
 public abstract class PhysicsEntityPart extends EntityPart
 {
-	private Position position;
-	private Size size;
+	private GamePosition position;
+	private GameSize size;
 
 	public PhysicsEntityPart(Entity parent)
 	{
 		super(parent);
 	}
 
-	public void init(Position pos, Size size)
+	public void init(GamePosition pos, GameSize size)
 	{
-		this.position = new Position(pos);
-		this.size = new Size(size);
+		this.position = new GamePosition(pos);
+		this.size = new GameSize(size);
 	}
 
 	// Getter
-	public Position getPosition()
+	public GamePosition getPosition()
 	{
 		Debug.warnIf(position == null, "PhysicsEntityPart.getPosition(): returns null");
 		return position;
 	}
 
-	public Size getSize()
+	public GameSize getSize()
 	{
 		Debug.warnIf(size == null, "PhysicsEntityPart.getSize(): returns null");
 		return size;

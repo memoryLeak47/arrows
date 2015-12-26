@@ -1,51 +1,51 @@
-package misc.math;
+package misc.math.menu;
 
-public class Point
+public class MenuPoint
 {
 	private int x, y;
 
-	public Point()
+	public MenuPoint()
 	{
 		this(0, 0);
 	}
 
-	public Point(int x, int y)
+	public MenuPoint(int x, int y)
 	{
 		this.x = x;
 		this.y = y;
 	}
 
-	public Point(Point point)
+	public MenuPoint(MenuPoint point)
 	{
 		setX(point.getX());
 		setY(point.getY());
 	}
 
-	public boolean equals(Point point)
+	public boolean equals(MenuPoint point)
 	{
 		return (getX() == point.getX() && getY() == point.getY());
 	}
 
-	public void add(Point point)
+	public void add(MenuPoint point)
 	{
 		setX(getX() + point.getX());
 		setY(getY() + point.getY());
 	}
 
-	public void subtract(Point point)
+	public void subtract(MenuPoint point)
 	{
 		setX(getX() - point.getX());
 		setY(getY() - point.getY());
 	}
 
-	public Point plus(Point point)
+	public MenuPoint plus(MenuPoint point)
 	{
-		return new Point(getX() + point.getX(), getY() + point.getY());
+		return new MenuPoint(getX() + point.getX(), getY() + point.getY());
 	}
 
-	public Point minus(Point point)
+	public MenuPoint minus(MenuPoint point)
 	{
-		return new Point(getX() - point.getX(), getY() - point.getY());
+		return new MenuPoint(getX() - point.getX(), getY() - point.getY());
 	}
 
 	public int getX() { return x; }

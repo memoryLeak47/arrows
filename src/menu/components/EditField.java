@@ -5,19 +5,19 @@ import java.awt.Color;
 import core.Screen;
 import menu.MenuComponent;
 import menu.ComponentContainer;
-import misc.math.Rect;
+import misc.math.menu.MenuRect;
 
 public class EditField extends MenuComponent
 {
 	private String text;
 
-	public EditField(ComponentContainer parent, Rect rect, String text)
+	public EditField(ComponentContainer parent, MenuRect rect, String text)
 	{
 		super(parent, rect);
 		this.text = text; // set text
 	}
 
-	public EditField(ComponentContainer parent, Rect rect)
+	public EditField(ComponentContainer parent, MenuRect rect)
 	{
 		this(parent, rect, "");
 	}

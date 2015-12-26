@@ -4,11 +4,11 @@ import java.awt.Color;
 
 import core.Screen;
 import menu.ComponentContainer;
-import misc.math.Rect;
+import misc.math.menu.MenuRect;
 
 public class PasswordField extends EditField
 {
-	public PasswordField(ComponentContainer parent, Rect rect)
+	public PasswordField(ComponentContainer parent, MenuRect rect)
 	{
 		super(parent, rect);
 	}

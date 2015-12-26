@@ -11,7 +11,7 @@ import entity.Entity;
 import graphics.ImageID;
 import misc.game.Team;
 import misc.game.kill.KDCounter;
-import misc.math.Position;
+import misc.math.game.GamePosition;
 import network.lobby.LobbyPlayer;
 import playerproperty.avatar.Avatar;
 import playerproperty.skill.Skill;
@@ -31,7 +31,7 @@ public class ClientGamePlayer implements GamePlayer
 
 	private KDCounter kdCounter = new KDCounter();
 	private LinkedList<Integer> effectIDs = new LinkedList<Integer>();
-	private Position position;
+	private GamePosition position;
 	private int health;
 	private ImageID imageID;
 
@@ -55,7 +55,7 @@ public class ClientGamePlayer implements GamePlayer
 	// setter
 
 	private void setHealth(int health) { this.health = health; }
-	private void setPosition(Position pos) { this.position = new Position(pos); }
+	private void setPosition(GamePosition pos) { this.position = new GamePosition(pos); }
 	private void setImageID(ImageID id) { this.imageID = new ImageID(id); }
 
 	// getter
@@ -69,7 +69,7 @@ public class ClientGamePlayer implements GamePlayer
 
 	public KDCounter getKDCounter() { return kdCounter; }
 	@Override public LinkedList<Integer> getEffectIDs() { return effectIDs; }
-	public Position getPosition() { return position; }
+	public GamePosition getPosition() { return position; }
 	@Override public int getHealth() { return health; }
 	@Override public ImageID getImageID() { return imageID; }
 }

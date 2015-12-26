@@ -21,7 +21,7 @@ import misc.game.effect.Effect;
 import misc.game.kill.KDCounter;
 import misc.game.PlayerStats;
 import misc.game.Team;
-import misc.math.Position;
+import misc.math.game.GamePosition;
 import network.lobby.LobbyPlayer;
 import network.game.player.LocalClientGamePlayerFrameUpdate;
 import network.game.player.ClientGamePlayerFrameUpdate;
@@ -47,7 +47,7 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 
 	private KDCounter kdCounter = new KDCounter();
 
-	public ServerGamePlayer(LobbyPlayer lobbyPlayer, Position position)
+	public ServerGamePlayer(LobbyPlayer lobbyPlayer, GamePosition position)
 	{
 		this.ip = lobbyPlayer.getIP();
 		this.name = lobbyPlayer.getName();
@@ -114,7 +114,7 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 	// may be done by Entity
 	public LinkedList<Effect> getEffects() { return getEffectEntityPart().getEffects(); }
 	@Override public Team getTeam() { return team; }
-	@Override public Position getPosition() { return getPhysicsEntityPart().getPosition(); }
+	@Override public GamePosition getPosition() { return getPhysicsEntityPart().getPosition(); }
 	@Override public int getHealth() { return ((MortalLivingEntityPartProperty) getLivingEntityPart()).getHealth(); }
 	@Override public ImageID getImageID() { return ((GraphicalLivingEntityPartProperty) getLivingEntityPart()).getImageID(); }
 

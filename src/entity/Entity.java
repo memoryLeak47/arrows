@@ -5,9 +5,9 @@ import entity.part.LivingEntityPart;
 import entity.part.PhysicsEntityPart;
 
 import misc.Debug;
-import misc.math.Rect;
+import misc.math.menu.MenuRect;
 import graphics.ImageID;
-import misc.math.Position;
+import misc.math.game.GamePosition;
 
 public abstract class Entity
 {
@@ -42,14 +42,14 @@ public abstract class Entity
 		return null;
 	}
 
-	public Position getPosition()
+	public GamePosition getPosition()
 	{
 		if (getPhysicsEntityPart() != null)
 		{
 			return getPhysicsEntityPart().getPosition();
 		}
 		Debug.warn("Entity.getPosition(): getPhysicsEntityPart() == null");
-		return new Position(0,0);
+		return new GamePosition(0,0);
 	}
 
 	// Subentity getter

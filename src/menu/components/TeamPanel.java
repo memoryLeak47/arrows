@@ -9,7 +9,7 @@ import menu.components.Button;
 import menu.components.Panel;
 import menu.components.PlayerPanel;
 import misc.game.Team;
-import misc.math.Rect;
+import misc.math.menu.MenuRect;
 import network.lobby.LobbyPlayer;;
 
 public class TeamPanel extends Panel
@@ -17,7 +17,7 @@ public class TeamPanel extends Panel
 	private Team team;
 	private Button teamButton;
 
-	public TeamPanel(ComponentContainer parent, Rect rect, Team team)
+	public TeamPanel(ComponentContainer parent, MenuRect rect, Team team)
 	{
 		super(parent, rect);
 		this.team = team; // Jedes TeamPanel representiert ein Team
@@ -33,7 +33,7 @@ public class TeamPanel extends Panel
 			buttonWasEnabled = teamButton.isEnabled();
 
 		getComponents().clear();
-		getComponents().add(teamButton = new Button(this, new Rect(20, 20, 100, 30), "Team " + team.getName())
+		getComponents().add(teamButton = new Button(this, new MenuRect(20, 20, 100, 30), "Team " + team.getName())
 		{		
 			@Override public void onClick(int mouseButton)
 			{
@@ -54,7 +54,7 @@ public class TeamPanel extends Panel
 		{
 			if (player.getTeam().equals(team))
 			{
-				getComponents().add(new PlayerPanel(this, new Rect(getX() + 5 + i*65, 55, 60, 60), player));
+				getComponents().add(new PlayerPanel(this, new MenuRect(getX() + 5 + i*65, 55, 60, 60), player));
 				i++;
 			}
 		}

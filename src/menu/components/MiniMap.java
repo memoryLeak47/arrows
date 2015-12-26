@@ -8,13 +8,13 @@ import graphics.ImageFile;
 import menu.MenuComponent;
 import menu.ComponentContainer;
 import misc.Debug;
-import misc.math.Rect;
+import misc.math.menu.MenuRect;
 
 public class MiniMap extends MenuComponent
 {
 	private BufferedImage tileMapImage;
 
-	public MiniMap(ComponentContainer parent, Rect rect)
+	public MiniMap(ComponentContainer parent, MenuRect rect)
 	{
 		super(parent, rect);
 	}

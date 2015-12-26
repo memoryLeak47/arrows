@@ -6,14 +6,14 @@ import core.Screen;
 import menu.ComponentContainer;
 import menu.MenuComponent;
 import menu.Menu;
-import misc.math.Rect;
-import misc.math.Size;
+import misc.math.menu.MenuRect;
+import misc.math.menu.MenuSize;
 
 public class Panel extends ComponentContainer
 {
-	private static final Size padding = new Size(20, 20); // über "padding" wird der Abstand innerhalb des KomponentenContainers zu den Komponenten gespeichert. Wird in calcSize() benötigt
+	private static final MenuSize padding = new MenuSize(20, 20); // über "padding" wird der Abstand innerhalb des KomponentenContainers zu den Komponenten gespeichert. Wird in calcMenuSize() benötigt
 
-	public Panel(ComponentContainer parent, Rect rect)
+	public Panel(ComponentContainer parent, MenuRect rect)
 	{
 		super(parent, rect);
 	}
@@ -25,8 +25,8 @@ public class Panel extends ComponentContainer
 		Screen.g().drawRect(getOffset().getX(), getOffset().getY(), getWidth()-1, getHeight()-1); // zeichne blauen rand
 	}
 
-	// ändert die Size des Panels so, dass zwischen der Komponente links unten noch padding Platz ist
-	public void calcSize()
+	// ändert die MenuSize des Panels so, dass zwischen der Komponente links unten noch padding Platz ist
+	public void calcMenuSize()
 	{
 		int right = 0;
 		int bot = 0;

@@ -9,7 +9,7 @@ import graphics.ImageFile;
 import graphics.ImageID;
 import menu.components.Icon;
 import menu.ComponentContainer;
-import misc.math.Rect;
+import misc.math.menu.MenuRect;
 import misc.Debug;
 
 public class PlayerPropertyIcon extends Icon
@@ -18,7 +18,7 @@ public class PlayerPropertyIcon extends Icon
 	public static final int HEIGHT = 40;
 	private PlayerProperty playerProperty;
 
-	public PlayerPropertyIcon(ComponentContainer parent, Rect rect, PlayerProperty playerProperty)
+	public PlayerPropertyIcon(ComponentContainer parent, MenuRect rect, PlayerProperty playerProperty)
 	{
 		super(parent, rect);
 		this.playerProperty = playerProperty;

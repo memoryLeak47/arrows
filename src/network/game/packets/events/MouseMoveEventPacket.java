@@ -2,16 +2,16 @@ package network.game.packets.events;
 
 import java.awt.event.MouseEvent;
 import network.game.packets.EventPacket;
-import misc.math.Position;
+import misc.math.menu.MenuPosition;
 
 public final class MouseMoveEventPacket extends EventPacket
 {
-	private final Position position; // where the mouse moved to
+	private final MenuPosition position; // where the mouse moved to
 
 	public MouseMoveEventPacket(MouseEvent event)
 	{
-		position = new Position(event.getX(), event.getY());
+		position = new MenuPosition(event.getX(), event.getY());
 	}
 
-	public Position getMousePosition() { return position; }
+	public MenuPosition getMouseMenuPosition() { return position; }
 }

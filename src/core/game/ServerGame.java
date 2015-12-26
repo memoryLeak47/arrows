@@ -10,7 +10,7 @@ import network.game.player.ServerGamePlayer;
 import network.game.player.LocalClientGamePlayer;
 import network.game.player.LocalClientGamePlayerFrameUpdate;
 import misc.Debug;
-import misc.math.Position;
+import misc.math.menu.MenuPosition;
 import misc.game.effect.Effect;
 import misc.game.effect.MinimizedEffect;
 import network.lobby.LobbyPlayer;
@@ -27,7 +27,7 @@ public class ServerGame extends Game
 		super(lobbyMap);
 		for (LobbyPlayer player : lobbyPlayers)
 		{
-			players.add(new ServerGamePlayer(player, getGameTileMap().getSpawnTilePositionByTeam(player.getTeam()).toPosition()));
+			players.add(new ServerGamePlayer(player, getGameTileMap().getSpawnTilePositionByTeam(player.getTeam())));
 		}
 	}
 

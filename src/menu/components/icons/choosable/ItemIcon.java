@@ -8,7 +8,7 @@ import menu.menues.ChoosePlayerPropertyMenu;
 import playerproperty.item.Item;
 import graphics.ImageID;
 import graphics.ImageFile;
-import misc.math.Rect;
+import misc.math.menu.MenuRect;
 import network.lobby.LobbyPlayer;
 
 public class ItemIcon extends ChoosableIcon
@@ -16,7 +16,7 @@ public class ItemIcon extends ChoosableIcon
 	private LobbyPlayer player;
 	private int number;
 
-	public ItemIcon(ComponentContainer parent, Rect rect, LobbyPlayer player, int number)
+	public ItemIcon(ComponentContainer parent, MenuRect rect, LobbyPlayer player, int number)
 	{
 		super(parent, rect);
 		this.player = player;

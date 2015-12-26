@@ -3,18 +3,20 @@ package core.game;
 import java.util.LinkedList;
 import java.awt.image.BufferedImage;
 
-import tilemap.LobbyTileMap;
-import tilemap.GameTileMap;
 import entity.Entity;
 import entity.entities.bullet.MinimizedBullet;
 import entity.entities.cosmetic.Cosmetic;
+import misc.Debug;
+import misc.game.Camera;
+import misc.game.kill.Kill;
 import network.game.player.ClientGamePlayer;
 import network.game.player.GamePlayer;
-import misc.Debug;
-import misc.game.kill.Kill;
+import tilemap.GameTileMap;
+import tilemap.LobbyTileMap;
 
 public abstract class Game
 {
+	private Camera cam;
 	private GameTileMap tileMap;
 	private LinkedList<Cosmetic> cosmetics;
 	private LinkedList<Kill> kills;
@@ -56,4 +58,6 @@ public abstract class Game
 		Debug.warnIf(tileMap == null, "Game.getGameTileMap(): returns null");
 		return tileMap;
 	}
+
+	public Camera getCamera() { return cam; }
 }

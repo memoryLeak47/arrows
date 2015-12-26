@@ -13,7 +13,7 @@ import java.awt.Point;
 import core.Main;
 import misc.Debug;
 import misc.JFrameListener;
-import misc.math.*;
+import misc.math.menu.*;
 
 public class Screen extends Canvas
 {
@@ -62,17 +62,17 @@ public class Screen extends Canvas
 	}
 
 	// returt die cursor position oder null falls Maus außerhalb des fensters ist
-	public static Position getCursorPosition()
+	public static MenuPosition getCursorPosition()
 	{
 		Point position = get().getMousePosition();
 		if (position == null) // wenn die maus außerhalb des fensters ist
 		{
 			return null; // return null
 		} // falls sie im fenster ist
-		return new Position(position.x, position.y); // returne die maus-position
+		return new MenuPosition(position.x, position.y); // returne die maus-position
 	}
 
 	public static Graphics g() { return g; } // returnt die graphics, gebraucht zum rendern
 	public static Screen get() { return instance; } // returnt die singleton-instance
-	public static Size getScreenSize() { return new Size(WIDTH, HEIGHT); } // returnt die fenstergröße (= bildschirmgröße)
+	public static MenuSize getScreenSize() { return new MenuSize(WIDTH, HEIGHT); } // returnt die fenstergröße (= bildschirmgröße)
 }

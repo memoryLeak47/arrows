@@ -6,7 +6,7 @@ import entity.part.LivingEntityPart;
 import entity.part.PhysicsEntityPart;
 import entity.part.parts.physics.DynamicPhysicsEntityPart;
 import misc.Debug;
-import misc.math.Position;
+import misc.math.menu.MenuPosition;
 
 public abstract class ExtendedBullet extends Entity
 {

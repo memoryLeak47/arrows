@@ -13,15 +13,15 @@ import network.Packet;
 import network.game.packets.EventPacket;
 import network.game.packets.events.*;
 import misc.Debug;
-import misc.math.Position;
-import misc.math.Rect;
+import misc.math.menu.MenuPosition;
+import misc.math.menu.MenuRect;
 
 public abstract class Menu extends ComponentContainer
 {
 	private MenuComponent focusedComponent; // die fokusierte component
 
 	// erstellung eines menues mit angegebenem rect (position und größe)
-	public Menu(Rect rect)
+	public Menu(MenuRect rect)
 	{
 		super(null, rect);
 	}
@@ -29,7 +29,7 @@ public abstract class Menu extends ComponentContainer
 	// erstellung eines fullscreen-menues
 	public Menu()
 	{
-		super(null, new Rect(0,0,Screen.getScreenSize().getX(), Screen.getScreenSize().getY()));
+		super(null, new MenuRect(0,0,Screen.getScreenSize().getX(), Screen.getScreenSize().getY()));
 	}
 
 	// tickt alle components
@@ -59,7 +59,7 @@ public abstract class Menu extends ComponentContainer
 			MenuComponent hovered = getHoveredComponent(); // Verhinderung einer null-pointer-exception
 			if (hovered != null) // und es eine gehoverte MenuComponent gibt
 			{
-				hovered.onMouseMove(((MouseMoveEventPacket)event).getMousePosition()); // gebe das event an getHoveredComponent() weiter
+				hovered.onMouseMove(((MouseMoveEventPacket)event).getMouseMenuPosition()); // gebe das event an getHoveredComponent() weiter
 			}
 		}
 		else if (event instanceof MouseButtonPressEventPacket) // wenn die maus gedrückt wurde
@@ -106,8 +106,8 @@ public abstract class Menu extends ComponentContainer
 		return (getSize().equals(Screen.getScreenSize()));
 	}
 
-	// Position relativ zum Screen (bei Menu: Offset == Position)
-	@Override public Position getOffset() { return new Position(getPosition()); }
+	// MenuPosition relativ zum Screen (bei Menu: Offset == MenuPosition)
+	@Override public MenuPosition getOffset() { return new MenuPosition(getPosition()); }
 
 	// wird von ComponentContainer.getFocusedComponent() genutzt
 	@Override public final MenuComponent getFocusedComponent() { return focusedComponent; }

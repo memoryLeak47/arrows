@@ -17,7 +17,7 @@ import playerproperty.skill.Skill;
 import tilemap.LobbyTileMap;
 import menu.components.*;
 import misc.Debug;
-import misc.math.Rect;
+import misc.math.menu.MenuRect;
 import network.Packet;
 import network.lobby.LobbyPlayer;
 import network.lobby.packets.user.*;
@@ -32,10 +32,10 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 	public ServerLobbyMenu()
 	{
 		// Map Select - EditField
-		getComponents().add(mapSelectEditField = new EditField(this, new Rect(Screen.WIDTH-240, 250, 50, 20), "default"));
+		getComponents().add(mapSelectEditField = new EditField(this, new MenuRect(Screen.WIDTH-240, 250, 50, 20), "default"));
 
 		// Map Select - Button
-		getComponents().add(mapSelectButton = new Button(this, new Rect(Screen.WIDTH-180, 250, 50, 20), "Ok")
+		getComponents().add(mapSelectButton = new Button(this, new MenuRect(Screen.WIDTH-180, 250, 50, 20), "Ok")
 		{
 			@Override public void onClick(int mouseButton)
 			{

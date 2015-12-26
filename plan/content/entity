@@ -19,8 +19,8 @@ EntityPart:
 - PhysicsEntityPart
 	- Mass
 	- CollisionDetection
-	- Position
-	- Size
+	- MenuPosition
+	- MenuSize
 - EffectEntityPart
 	- What effects are possible
 	- List<Effect>

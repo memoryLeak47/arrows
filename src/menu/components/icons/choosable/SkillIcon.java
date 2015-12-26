@@ -9,7 +9,7 @@ import playerproperty.skill.Skill;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;
-import misc.math.Rect;
+import misc.math.menu.MenuRect;
 import network.lobby.LobbyPlayer;
 
 public class SkillIcon extends ChoosableIcon
@@ -17,7 +17,7 @@ public class SkillIcon extends ChoosableIcon
 	private LobbyPlayer player;
 	private int number;
 
-	public SkillIcon(ComponentContainer parent, Rect rect, LobbyPlayer player, int number)
+	public SkillIcon(ComponentContainer parent, MenuRect rect, LobbyPlayer player, int number)
 	{
 		super(parent, rect);
 		this.player = player;;

@@ -8,15 +8,15 @@ import javax.imageio.ImageIO;
 import core.Screen;
 import menu.Menu;
 import menu.ComponentContainer;
-import misc.math.Rect;
-import misc.math.Position;
+import misc.math.menu.MenuRect;
+import misc.math.menu.MenuPosition;
 
-public abstract class MenuComponent extends Rect
+public abstract class MenuComponent extends MenuRect
 {
 	private boolean enabled = true;
 	private ComponentContainer parent; // ComponentContainer wo this enthalten ist
 
-	public MenuComponent(ComponentContainer parent, Rect rect)
+	public MenuComponent(ComponentContainer parent, MenuRect rect)
 	{
 		super(rect);
 		this.parent = parent;
@@ -29,7 +29,7 @@ public abstract class MenuComponent extends Rect
 			return this == getParent().getHoveredComponent();
 		}
 		return false;
-		// return Screen.getCursorPosition().inRect(new Rect(getOffset(), getSize()));
+		// return Screen.getCursorMenuPosition().inMenuRect(new MenuRect(getOffset(), getSize()));
 	}
 
 	protected final boolean isFocused()
@@ -42,9 +42,9 @@ public abstract class MenuComponent extends Rect
 
 	// onEventFunctions: bei bedarf von den MenuComponent-unterklassen überschrieben
 	public void onClick(int mouseButton) {}
-	public void onMouseEnter(Position mousePos) {}
-	public void onMouseMove(Position mousePos) {}
-	public void onMouseExit(Position mousePos) {}	
+	public void onMouseEnter(MenuPosition mousePos) {}
+	public void onMouseMove(MenuPosition mousePos) {}
+	public void onMouseExit(MenuPosition mousePos) {}	
 	public void onKeyPress(char key) {}
 	public void onKeyRelease(char key) {}
 
@@ -55,8 +55,8 @@ public abstract class MenuComponent extends Rect
 
 	// Getter
 
-	// Position relativ zum Screen
-	public Position getOffset() { return (Position) getParent().getOffset().plus(getPosition()); }
+	// MenuPosition relativ zum Screen
+	public MenuPosition getOffset() { return (MenuPosition) getParent().getOffset().plus(getPosition()); }
 
 	// returnt den parent
 	protected ComponentContainer getParent() { return parent; }

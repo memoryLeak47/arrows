@@ -3,11 +3,11 @@ package menu.components;
 import menu.components.MiniMap;
 import menu.ComponentContainer;
 import tilemap.LobbyTileMap;
-import misc.math.Rect;
+import misc.math.menu.MenuRect;
 
 public class LobbyMiniMap extends MiniMap
 {
-	public LobbyMiniMap(ComponentContainer parent, Rect rect)
+	public LobbyMiniMap(ComponentContainer parent, MenuRect rect)
 	{
 		super(parent, rect);
 	}

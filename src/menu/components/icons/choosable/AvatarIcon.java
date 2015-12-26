@@ -10,14 +10,14 @@ import playerproperty.avatar.Avatar;
 import playerproperty.avatar.avatars.*;
 import graphics.ImageID;
 import graphics.ImageFile;
-import misc.math.Rect;
+import misc.math.menu.MenuRect;
 import network.lobby.LobbyPlayer;
 
 public class AvatarIcon extends ChoosableIcon
 {
 	private LobbyPlayer player;
 
-	public AvatarIcon(ComponentContainer parent, Rect rect, LobbyPlayer player)
+	public AvatarIcon(ComponentContainer parent, MenuRect rect, LobbyPlayer player)
 	{
 		super(parent, rect);
 		this.player = player;
