@@ -7,7 +7,22 @@ import entity.part.property.properties.living.GraphicalLivingEntityPartProperty;
 
 public class PlayerLivingEntityPart extends LivingEntityPart implements MortalLivingEntityPartProperty, GraphicalLivingEntityPartProperty
 {
-	int health;
+	private int health;
+
+	private String name;
+	private int rank;
+	private Team team;
+
+	// PlayerProperties
+	private Avatar avatar;
+	private Skill[] skills;
+	private Item[] items;
+
+	private PlayerStats playerStats;
+	private short[] charges;
+
+	private KDCounter kdCounter = new KDCounter();
+
 
 	public PlayerLivingEntityPart(Entity parent)
 	{

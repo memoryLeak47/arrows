@@ -33,20 +33,6 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 {
 	private InetAddress ip;
 
-	private String name;
-	private int rank;
-	private Team team;
-
-	// PlayerProperties
-	private Avatar avatar;
-	private Skill[] skills;
-	private Item[] items;
-
-	private PlayerStats playerStats;
-	private short[] charges;
-
-	private KDCounter kdCounter = new KDCounter();
-
 	public ServerGamePlayer(LobbyPlayer lobbyPlayer, GamePosition position)
 	{
 		this.ip = lobbyPlayer.getIP();
