@@ -36,12 +36,12 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 	public ServerGamePlayer(LobbyPlayer lobbyPlayer, GamePosition position)
 	{
 		this.ip = lobbyPlayer.getIP();
-		this.name = lobbyPlayer.getName();
-		this.rank = lobbyPlayer.getRank();
-		this.team = lobbyPlayer.getTeam();
-		this.skills = lobbyPlayer.getSkills();
-		this.items = lobbyPlayer.getItems();
-		this.avatar = lobbyPlayer.getAvatar();
+		((PlayerLivingEntityPart) getLivingEntityPart()).setName(lobbyPlayer.getName());
+		((PlayerLivingEntityPart) getLivingEntityPart()).setRank(lobbyPlayer.getRank());
+		((PlayerLivingEntityPart) getLivingEntityPart()).setTeam(lobbyPlayer.getTeam());
+		((PlayerLivingEntityPart) getLivingEntityPart()).setSkills(lobbyPlayer.getSkills());
+		((PlayerLivingEntityPart) getLivingEntityPart()).setItems(lobbyPlayer.getItems());
+		((PlayerLivingEntityPart) getLivingEntityPart()).setAvatar(lobbyPlayer.getAvatar());
 		((DynamicPhysicsEntityPart) getPhysicsEntityPart()).init(calcMass());
 	}
 
@@ -84,22 +84,22 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 
 	// getter
 	public InetAddress getIP() { return ip; }
-	@Override public String getName() { return name; }
-	public int getRank() { return rank; }
+	@Override public String getName() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getName(); }
+	public int getRank() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getRank(); }
 
-	public short[] getCharges() { return charges; }
+	public short[] getCharges() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getCharges(); }
 	@Override public LinkedList<Integer> getEffectIDs() { return Effect.toEffectIDs(getEffects()); }
-	public PlayerStats getPlayerStats() { return playerStats; }
+	public PlayerStats getPlayerStats() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getPlayerStats(); }
 
-	public Avatar getAvatar() { return avatar; }
-	public Skill[] getSkills() { return skills; }
-	public Item[] getItems() { return items; }
+	public Avatar getAvatar() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getAvatar(); }
+	public Skill[] getSkills() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getSkills(); }
+	public Item[] getItems() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getItems(); }
 
-	public KDCounter getKDCounter() { return kdCounter; }
+	public KDCounter getKDCounter() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getKdCounter(); }
 
 	// may be done by Entity
 	public LinkedList<Effect> getEffects() { return getEffectEntityPart().getEffects(); }
-	@Override public Team getTeam() { return team; }
+	@Override public Team getTeam() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getTeam(); }
 	@Override public GamePosition getPosition() { return getPhysicsEntityPart().getPosition(); }
 	@Override public int getHealth() { return ((MortalLivingEntityPartProperty) getLivingEntityPart()).getHealth(); }
 	@Override public ImageID getImageID() { return ((GraphicalLivingEntityPartProperty) getLivingEntityPart()).getImageID(); }
