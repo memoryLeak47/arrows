@@ -34,7 +34,7 @@ public class TeamListPanel extends Panel
 		for (int i = 0; i < getComponents().size(); i++) // für alle TeamPanels updaten + formatieren
 		{
 			((TeamPanel) getComponents().get(i)).update(getPlayers()); // updaten
-			((Panel) getComponents().get(i)).calcMenuSize();
+			((Panel) getComponents().get(i)).calcSize();
 			if (i != 0) // Das oberste Panel, wird nie nach unten gerückt, weil das ja logisch ist
 			{
 				getComponents().get(i).setPosition(20, getComponents().get(i-1).getBot() + 20);

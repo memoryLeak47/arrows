@@ -28,7 +28,7 @@ public abstract class ComponentContainer extends MenuComponent // abstract for n
 	}
 
 	// returnt cursor position relativ zu sich
-	public MenuPosition getCursorMenuPosition() 
+	public MenuPosition getCursorPosition() 
 	{ 
 		MenuPosition pos = Screen.getCursorPosition();
 		if (pos == null)
@@ -41,12 +41,12 @@ public abstract class ComponentContainer extends MenuComponent // abstract for n
 	// kalkuliert und setzt hoveredComponent
 	protected final MenuComponent getHoveredComponent()
 	{
-		MenuPosition cursor = Screen.getCursorPosition();
+		MenuPosition cursor = getCursorPosition();
 		if (cursor != null) // wenn der cursor im fenster ist
 		{
 			for (int i = getComponents().size()-1; i >= 0; i--) // für alle Components (als letzes gerendert liegt ganz oben -> von hinten nach vorne)
 			{
-				if (cursor.inMenuRect(getComponents().get(i))) // wenn die maus auf die Component zeigt
+				if (cursor.inRect(getComponents().get(i))) // wenn die maus auf die Component zeigt
 				{
 					// und diese Component ein ComponentContainer ist der selbst eine gehoverte Component hat
 					if (getComponents().get(i) instanceof ComponentContainer && ((ComponentContainer) getComponents().get(i)).getHoveredComponent() != null) // and you are a ComponentContainer

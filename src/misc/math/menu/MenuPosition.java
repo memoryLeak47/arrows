@@ -46,7 +46,7 @@ public class MenuPosition extends MenuPoint
 		return new MenuPosition(getX() - position.getX(), getY() - position.getY());
 	}
 
-	public boolean inMenuRect(MenuPosition pos, MenuSize size)
+	public boolean inRect(MenuPosition pos, MenuSize size)
 	{
 		return getX() >= pos.getX()
 			&& getX() <= pos.getX() + size.getX()
@@ -54,8 +54,8 @@ public class MenuPosition extends MenuPoint
 			&& getY() <= pos.getY() + size.getY();
 	}
 
-	public boolean inMenuRect(MenuRect rect)
+	public boolean inRect(MenuRect rect)
 	{
-		return inMenuRect(rect.getPosition(), rect.getSize());
+		return inRect(rect.getPosition(), rect.getSize());
 	}
 }

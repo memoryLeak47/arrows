@@ -59,7 +59,7 @@ public abstract class Menu extends ComponentContainer
 			MenuComponent hovered = getHoveredComponent(); // Verhinderung einer null-pointer-exception
 			if (hovered != null) // und es eine gehoverte MenuComponent gibt
 			{
-				hovered.onMouseMove(((MouseMoveEventPacket)event).getMouseMenuPosition()); // gebe das event an getHoveredComponent() weiter
+				hovered.onMouseMove(((MouseMoveEventPacket)event).getMousePosition()); // gebe das event an getHoveredComponent() weiter
 			}
 		}
 		else if (event instanceof MouseButtonPressEventPacket) // wenn die maus gedrückt wurde
@@ -106,7 +106,7 @@ public abstract class Menu extends ComponentContainer
 		return (getSize().equals(Screen.getScreenSize()));
 	}
 
-	// MenuPosition relativ zum Screen (bei Menu: Offset == MenuPosition)
+	// Position relativ zum Screen (bei Menu: Offset == Position)
 	@Override public MenuPosition getOffset() { return new MenuPosition(getPosition()); }
 
 	// wird von ComponentContainer.getFocusedComponent() genutzt

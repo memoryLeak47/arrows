@@ -29,7 +29,7 @@ public abstract class MenuComponent extends MenuRect
 			return this == getParent().getHoveredComponent();
 		}
 		return false;
-		// return Screen.getCursorMenuPosition().inMenuRect(new MenuRect(getOffset(), getSize()));
+		// return Screen.getCursorPosition().inRect(new MenuRect(getOffset(), getSize()));
 	}
 
 	protected final boolean isFocused()
@@ -55,7 +55,7 @@ public abstract class MenuComponent extends MenuRect
 
 	// Getter
 
-	// MenuPosition relativ zum Screen
+	// Position relativ zum Screen
 	public MenuPosition getOffset() { return (MenuPosition) getParent().getOffset().plus(getPosition()); }
 
 	// returnt den parent

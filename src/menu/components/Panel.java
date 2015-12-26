@@ -25,8 +25,8 @@ public class Panel extends ComponentContainer
 		Screen.g().drawRect(getOffset().getX(), getOffset().getY(), getWidth()-1, getHeight()-1); // zeichne blauen rand
 	}
 
-	// ändert die MenuSize des Panels so, dass zwischen der Komponente links unten noch padding Platz ist
-	public void calcMenuSize()
+	// ändert die Size des Panels so, dass zwischen der Komponente links unten noch padding Platz ist
+	public void calcSize()
 	{
 		int right = 0;
 		int bot = 0;
