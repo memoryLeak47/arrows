@@ -1,8 +1,9 @@
-package graphics;
+package graphics.animations;
 
 import java.util.LinkedList;
 
 import graphics.Animation;
+import graphics.ImageID;
 
 public class AnimationContainer implements Animation
 {
@@ -11,5 +12,10 @@ public class AnimationContainer implements Animation
 	public void render()
 	{
 		// TODO
+	}
+
+	public ImageID getImageID()
+	{
+		return null; // TODO
 	}
 }

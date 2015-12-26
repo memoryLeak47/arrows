@@ -1,4 +1,4 @@
-package graphics;
+package graphics.animations;
 
 import graphics.Animation;
 import graphics.ImageID;
@@ -10,5 +10,10 @@ public class StaticAnimation implements Animation
 	public void render()
 	{
 		// draw imageID
+	}
+
+	public ImageID getImageID()
+	{
+		return null; // TODO
 	}
 }

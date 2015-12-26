@@ -1,4 +1,4 @@
-package graphics;
+package graphics.animations;
 
 import java.util.LinkedList;
 
@@ -13,5 +13,10 @@ public class DynamicAnimation implements Animation
 	public void render()
 	{
 		// TODO
+	}
+
+	public ImageID getImageID()
+	{
+		return null; // TODO
 	}
 }	

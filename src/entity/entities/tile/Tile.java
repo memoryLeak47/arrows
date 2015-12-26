@@ -3,13 +3,8 @@ package entity.entities.tile;
 import java.awt.Color;
 
 import entity.Entity;
-import entity.part.EffectEntityPart;
-import entity.part.LivingEntityPart;
-import entity.part.PhysicsEntityPart;
-import entity.part.parts.effect.ImmuneEffectEntityPart;
-import entity.part.parts.living.NoLivingEntityPart;
-import entity.part.parts.physics.StaticPhysicsEntityPart;
 import entity.entities.tile.tiles.*;
+import graphics.ImageID;
 import misc.game.Team;
 import misc.Debug;
 
@@ -49,18 +44,5 @@ public abstract class Tile extends Entity
 		return null;
 	}
 
-	@Override public PhysicsEntityPart createPhysicsEntityPart()
-	{
-		return new StaticPhysicsEntityPart(this);
-	}
-
-	@Override public LivingEntityPart createLivingEntityPart()
-	{
-		return new NoLivingEntityPart(this);
-	}
-
-	@Override public EffectEntityPart createEffectEntityPart()
-	{
-		return new ImmuneEffectEntityPart(this);
-	}
+	public ImageID getImageID() { return null; } // TODO
 }

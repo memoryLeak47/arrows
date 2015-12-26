@@ -8,13 +8,7 @@ import java.net.InetAddress;
 import java.util.LinkedList;
 
 import entity.Entity;
-import entity.part.EffectEntityPart;
-import entity.part.LivingEntityPart;
-import entity.part.PhysicsEntityPart;
-import entity.part.parts.living.PlayerLivingEntityPart;
-import entity.part.parts.physics.DynamicPhysicsEntityPart;
-import entity.part.property.properties.living.MortalLivingEntityPartProperty;
-import entity.part.property.properties.living.GraphicalLivingEntityPartProperty;
+import graphics.Animation;
 import graphics.ImageID;
 import misc.Debug;
 import misc.game.effect.Effect;
@@ -33,16 +27,34 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 {
 	private InetAddress ip;
 
+	private String name;
+	private int rank;
+
+	private short[] charges;
+	private PlayerStats playerStats;
+
+	private Avatar avatar;
+	private Skill[] skills;
+	private Item[] items;
+
+	private KDCounter kdCounter = new KDCounter();
+
+	private Team team;
+	private int health;
+	private Animation animation;
+
 	public ServerGamePlayer(LobbyPlayer lobbyPlayer, GamePosition position)
 	{
 		this.ip = lobbyPlayer.getIP();
-		((PlayerLivingEntityPart) getLivingEntityPart()).setName(lobbyPlayer.getName());
-		((PlayerLivingEntityPart) getLivingEntityPart()).setRank(lobbyPlayer.getRank());
-		((PlayerLivingEntityPart) getLivingEntityPart()).setTeam(lobbyPlayer.getTeam());
-		((PlayerLivingEntityPart) getLivingEntityPart()).setSkills(lobbyPlayer.getSkills());
-		((PlayerLivingEntityPart) getLivingEntityPart()).setItems(lobbyPlayer.getItems());
-		((PlayerLivingEntityPart) getLivingEntityPart()).setAvatar(lobbyPlayer.getAvatar());
-		((DynamicPhysicsEntityPart) getPhysicsEntityPart()).init(calcMass());
+		
+		this.name = lobbyPlayer.getName();
+		this.rank = lobbyPlayer.getRank();
+		this.team = lobbyPlayer.getTeam();
+
+		this.avatar = lobbyPlayer.getAvatar();
+		this.skills = lobbyPlayer.getSkills();
+		this.items = lobbyPlayer.getItems();
+
 	}
 
 	public LocalClientGamePlayerFrameUpdate toLocalClientGamePlayerFrameUpdate()
@@ -53,23 +65,6 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 	public ClientGamePlayerFrameUpdate toClientGamePlayerFrameUpdate()
 	{
 		return new ClientGamePlayerFrameUpdate(getHealth(), getPosition(), getImageID());
-	}
-
-	// Entity-creater
-	@Override public PhysicsEntityPart createPhysicsEntityPart()
-	{
-		return new DynamicPhysicsEntityPart(this);
-	}
-
-	@Override public LivingEntityPart createLivingEntityPart()
-	{
-		return new PlayerLivingEntityPart(this);
-	}
-
-	@Override public EffectEntityPart createEffectEntityPart()
-	{
-		Debug.warn("ServerGamePlayer.createEffectEntityPart(): TODO");
-		return null;
 	}
 
 	private int calcMass()
@@ -84,25 +79,28 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 
 	// getter
 	public InetAddress getIP() { return ip; }
-	@Override public String getName() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getName(); }
-	public int getRank() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getRank(); }
 
-	public short[] getCharges() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getCharges(); }
+	@Override public String getName() { return name; }
+	public int getRank() { return rank; }
+
+	public LinkedList<Effect> getEffects()
+	{
+		return null; // TODO
+	}
+
+	public short[] getCharges() { return charges; }
 	@Override public LinkedList<Integer> getEffectIDs() { return Effect.toEffectIDs(getEffects()); }
-	public PlayerStats getPlayerStats() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getPlayerStats(); }
+	public PlayerStats getPlayerStats() { return playerStats; }
 
-	public Avatar getAvatar() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getAvatar(); }
-	public Skill[] getSkills() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getSkills(); }
-	public Item[] getItems() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getItems(); }
+	public Avatar getAvatar() { return avatar; }
+	public Skill[] getSkills() { return skills; }
+	public Item[] getItems() { return items; }
 
-	public KDCounter getKDCounter() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getKdCounter(); }
+	public KDCounter getKDCounter() { return kdCounter; }
 
-	// may be done by Entity
-	public LinkedList<Effect> getEffects() { return getEffectEntityPart().getEffects(); }
-	@Override public Team getTeam() { return ((PlayerLivingEntityPart) getLivingEntityPart()).getTeam(); }
-	@Override public GamePosition getPosition() { return getPhysicsEntityPart().getPosition(); }
-	@Override public int getHealth() { return ((MortalLivingEntityPartProperty) getLivingEntityPart()).getHealth(); }
-	@Override public ImageID getImageID() { return ((GraphicalLivingEntityPartProperty) getLivingEntityPart()).getImageID(); }
+	@Override public Team getTeam() { return team; }
+	@Override public int getHealth() { return health; }
+	@Override public ImageID getImageID() { return animation.getImageID(); }
 
 	/*
 		getHealth, getPosition, getImageID, getEffects, sind schon von Entity definiert und müssen nicht nochmal geschrieben werden

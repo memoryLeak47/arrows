@@ -1,50 +1,18 @@
-# entity
-
-Entity:
-- render() -> LivingEntityPart.render(), EffectEntityPart.render()
-
-EntityPart:
-- LivingEntityPart
-	- getHealth()
-	- private animation
-		-> getImageID()
-	- getPlayerStats()
-	- getKD()
-	- getPlayerProperties()
-	- getName()
-	- getRank()
-	- getTeam()
-	- getHealth()
-
-- PhysicsEntityPart
-	- Mass
-	- CollisionDetection
-	- MenuPosition
-	- MenuSize
-- EffectEntityPart
-	- What effects are possible
-	- List<Effect>
-	- getEffectsOnOff()
+Entity stellt alle onEvent-funktionen (z.B. onDamage()) und die möglichen Reaktions-funktionen auf die onEvent-Funktionen bereit.
+Nur falls die Reaktionsfunktionen einmalig sind (nur in einer Datei vorkommen), werden sie nicht in Entity definiert.
+Die Variablen(z.B. health) werden in den Unterklassen erstellt. Für diese müssen die Getter in der Unterklasse überschrieben werden.
+In den Reaktions-Funktionen werden diese Variablen nur über getter angesprochen.
+Die Unterklassen ordnen nur, durch überschreiben der onEvent-funktionen, den onEvent-funktionen ihre Reaktionen zu
+oder überschreiben die onEvent-funktionen selbst (nur falls Reaktion einmalig).
 
 Examples:
-- Stonetile (NoLivingEntityPart, SolidPhysicsEntityPart, ImmuneEffectEntityPart)
-- Watertile (NoLivingEntityPart, NeutralPhysicsEntityPart, WaterEffectEntityPart)
-- Breakable Tile (BreakableTileLivingEntityPart, SolidPhysicsEntityPart (collidable -> damage), ImmuneEffectEntityPart)
-- ServerGamePlayer (PlayerLivingEntityPart, DynamicPhysicsEntityPart, CreatureEffectEntityPart)
-- ServerGamePlayer (FireMage) (PlayerLivingEntityPart, DynamicPhysicsEntityPart, CreatureEffectEntityPart/FireEffectEntityPart)
-- Arrow (NoLivingEntityPart, DynamicPhysicsEntityPart, WoodEffectEntityPart)
-- Hitbox (NoLivingEntityPart, Static/Dynamic-PhysicsEntityPart, ImmuneEffectEntityPart)
-- Particle (NoLivingEntityPart, NeutralPhysicsEntityPart, ImmuneEffectEntityPart)
-- IceShard (NoLivingEntityPart, DynamicPhysicsEntityPart, IceEffectEntityPart)
-- WaterSplash (NoLivingEntityPart, DynamicPhysicsEntityPart, WaterEffectEntityPart)
-- ExplodingSnowball (ActOnDieLivingEntityPart, DynamicPhysicsEntityPart, IceEffectEntityPart)
-
-
-EntityParts are the 3 units a Entity is made of (LivingEntityPart, PhysicsEntityPart, EffectEntityPart)
-
-There are create{Living,Physics,Effect}EntityPart()-functions in every Entity-(sub)class,
-they return the EntityParts to set in the Entity constructor.
-
-EntityPart-subclasses can implement EnityPartProperties to achieve new functionalities.
-e.g. 	every LivingEntityPart that can die, has to implement MortalLivingEntityPart to have access to the die()-function.
-	if health is <= 0, the entity checks if it is a MortalLivingEntityPart. and if it is: it executes die().jj
+- StoneTile
+- WaterTile
+- BreakableTile
+- ServerGamePlayer
+- ServerGamePlayer
+- Arrow
+- Particle
+- IceShard
+- WaterSplash
+- ExplodingSnowball
