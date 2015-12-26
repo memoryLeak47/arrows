@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import entity.Entity;
 import entity.entities.tile.tiles.*;
+import graphics.ImageFile;
 import graphics.ImageID;
 import misc.game.Team;
 import misc.Debug;
@@ -44,5 +45,9 @@ public abstract class Tile extends Entity
 		return null;
 	}
 
-	public ImageID getImageID() { return null; } // TODO
+	public ImageID getImageID()
+	{
+		Debug.warn("Tile.getImageID() returns null");
+		return null; // TODO
+	}
 }

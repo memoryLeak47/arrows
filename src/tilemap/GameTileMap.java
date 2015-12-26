@@ -38,6 +38,7 @@ public class GameTileMap
 					spawnPositions.put(((SpawnTeamTile) tiles[x][y]).getTeam(), new GamePosition(x, y));
 			}
 		}
+		staticImage = new BufferedImage(tiles.length * TILESIZE, tiles[0].length * TILESIZE, BufferedImage.TYPE_INT_ARGB);
 		initStaticImage();
 	}
 
@@ -64,9 +65,12 @@ public class GameTileMap
 		{
 			for (int y = 0; y < tiles[0].length; y++)
 			{
+				Debug.warnIf(tiles[x][y] == null, "GameTileMap.initStaticImage(): tiles[" + x + "][" + y + "] == null");
+				Debug.warnIf(tiles[x][y].getImageID() == null, "GameTileMap.initStaticImage(): tiles[" + x + "][" + y + "].getImageID() == null");
 				g.drawImage(ImageFile.getImageByImageID(tiles[x][y].getImageID()), x * TILESIZE, y * TILESIZE, null);
 			}
 		}
+
 	}
 
 	public BufferedImage getStaticImage()
