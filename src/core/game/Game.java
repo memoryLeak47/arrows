@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 
 import core.Main;
 import entity.Entity;
+import entity.MinimizedEntity;
 import entity.entities.bullet.MinimizedBullet;
 import entity.entities.cosmetic.Cosmetic;
 import misc.Debug;
@@ -28,18 +29,18 @@ public abstract class Game
 		Main.setGame(this);
 	}
 
-	abstract LinkedList<MinimizedBullet> getBullets();
-
-	// Returnt alle Entities außer Tiles (Player, Bullets, Cosmetics)
-	public LinkedList<Entity> getDynamicEntities()
-	{
-		Debug.warn("Game.getDynamicEntities(): return null TODO");
-		return null;
-	}
+	// Getter
 
 	// Returnt alle Player. Gebraucht für die MiniMap
 	public abstract LinkedList<GamePlayer> getUncastedPlayers();
 
+	public abstract LinkedList<MinimizedEntity> getMinimizedEntities();
+
+	public LinkedList<Cosmetic> getCosmetics()
+	{
+		Debug.warnIf(cosmetics == null, "Game.getCosmetics(): cosmetics == null");
+		return cosmetics;
+	}
 
 	// MiniMap Hintergrund
 	public BufferedImage getPixelMapImage()

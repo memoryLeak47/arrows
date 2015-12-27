@@ -3,8 +3,10 @@ package core.game;
 import java.util.LinkedList;
 
 import entity.MinimizedEntity;
-import entity.entities.bullet.ExtendedBullet;
+import entity.entities.bullet.Bullet;
 import entity.entities.bullet.MinimizedBullet;
+import entity.entities.mob.Mob;
+import entity.entities.cosmetic.Cosmetic;
 import tilemap.LobbyTileMap;
 import misc.Debug;
 import misc.math.menu.MenuPosition;
@@ -21,7 +23,8 @@ import network.game.packets.GameFrameUpdatePacket;
 public class ServerGame extends Game
 {
 	private LinkedList<ServerGamePlayer> players = new LinkedList<ServerGamePlayer>();
-	private LinkedList<ExtendedBullet> bullets = new LinkedList<ExtendedBullet>();
+	private LinkedList<Mob> mobs = new LinkedList<Mob>();
+	private LinkedList<Bullet> bullets = new LinkedList<Bullet>();
 
 	public ServerGame(LobbyTileMap lobbyMap, LinkedList<LobbyPlayer> lobbyPlayers)
 	{
@@ -51,13 +54,6 @@ public class ServerGame extends Game
 	}
 
 	// Getter
-	
-	// Muss die "ExtendedBullets" in "MinimizedBullets" ändern
-	@Override LinkedList<MinimizedBullet> getBullets()
-	{
-		Debug.warn("ServerGame.getBullets(): TODO)");
-		return null;
-	}
 
 	@Override public LinkedList<GamePlayer> getUncastedPlayers()
 	{
@@ -72,8 +68,20 @@ public class ServerGame extends Game
 
 	public LinkedList<ServerGamePlayer> getPlayers()
 	{
-		Debug.warnIf(players == null, "ServertGame.getPlayers(): return null");
+		Debug.warnIf(players == null, "ServerGame.getPlayers(): return null");
 		return players;
+	}
+
+	public LinkedList<Mob> getMobs()
+	{
+		Debug.warnIf(mobs == null, "ServerGame.getMobs(): return null");
+		return mobs;
+	}
+
+	public LinkedList<Bullet> getBullets()
+	{
+		Debug.warnIf(bullets == null, "ServerGame.getMobs(): return null");
+		return bullets;
 	}
 
 	public GameFrameUpdatePacket getGameFrameUpdatePacketByID(int id)
@@ -82,9 +90,33 @@ public class ServerGame extends Game
 		return null;
 	}
 
-	public MinimizedEntity getMinimizedEntities()
+	public LinkedList<MinimizedEntity> getMinimizedEntities()
 	{
-		Debug.warn("ServerGame.getMinimizedEntities(): TODO");
-		return null;
+		LinkedList<MinimizedEntity> entityList = new LinkedList<MinimizedEntity>();
+
+		// all Player
+		for (ServerGamePlayer player : getPlayers())
+		{
+			entityList.add(player.toMinimizedEntity());
+		}
+
+		// all Mobs
+		for (Mob mob : getMobs())
+		{
+			entityList.add(mob.toMinimizedEntity());
+		}
+
+		// all bullets
+		for (Bullet bullet : getBullets())
+		{
+			entityList.add(bullet.toMinimizedEntity());
+		}
+
+		// all cosmetics
+		for (Cosmetic cosmetic : getCosmetics())
+		{
+			entityList.add(cosmetic.toMinimizedEntity());
+		}
+		return entityList;
 	}
 }

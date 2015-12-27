@@ -4,11 +4,12 @@ import java.util.LinkedList;
 
 import core.Main;
 import core.game.Game;
-import tilemap.LobbyTileMap;
+import entity.MinimizedEntity;
 import menu.NetworkingMenu;
 import misc.Debug;
 import network.lobby.LobbyPlayer;
 import network.Packet;
+import tilemap.LobbyTileMap;
 
 public abstract class GameInterface extends NetworkingMenu
 {
@@ -28,4 +29,12 @@ public abstract class GameInterface extends NetworkingMenu
 
 	protected Game getUncastedGame() { return game; }
 
+	@Override public void render()
+	{
+		Debug.warn("GameInterface.render(): Hier muss noch das Bild schwarz übermalt werden");
+		for (MinimizedEntity entity : getUncastedGame().getMinimizedEntities())
+		{
+			entity.render();
+		}
+	}
 }

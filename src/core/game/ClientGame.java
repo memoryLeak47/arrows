@@ -2,6 +2,7 @@ package core.game;
 
 import java.util.LinkedList;
 
+import entity.MinimizedEntity;
 import entity.entities.bullet.MinimizedBullet;
 import network.game.player.ClientGamePlayer;
 import network.game.player.GamePlayer;
@@ -36,6 +37,14 @@ public class ClientGame extends Game
 		Debug.warn("ClientGame.update(): TODO"); // TODO
 	}
 
+	@Override public LinkedList<MinimizedEntity> getMinimizedEntities()
+	{
+		Debug.warn("ClientGame.getMinimizedEntities(): TODO");
+		return null;
+	}
+
+	// Getter
+
 	@Override public LinkedList<GamePlayer> getUncastedPlayers()
 	{
 		Debug.warnIf(players == null, "ClientGame.getUncastedPlayers(): return null");
@@ -53,7 +62,7 @@ public class ClientGame extends Game
 		return players;
 	}
 
-	@Override LinkedList<MinimizedBullet> getBullets()
+	public LinkedList<MinimizedBullet> getBullets()
 	{
 		Debug.warnIf(bullets == null, "ClientGame.getBullets(): return null");
 		return bullets;

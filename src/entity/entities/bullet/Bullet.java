@@ -6,9 +6,9 @@ import misc.Debug;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 
-public abstract class ExtendedBullet extends Entity
+public abstract class Bullet extends Entity
 {
-	public ExtendedBullet(GamePosition position, GameSize size, Animation animation)
+	public Bullet(GamePosition position, GameSize size, Animation animation)
 	{
 		super(position, size, animation);
 	}
