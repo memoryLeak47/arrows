@@ -1,14 +1,15 @@
-package entity.entities.cosmetic;
+package entity.entities.mob;
 
 import entity.Entity;
 import graphics.Animation;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 
-public abstract class Cosmetic extends Entity
+public abstract class Mob extends Entity
 {
-	public Cosmetic(GamePosition position, GameSize size, Animation animation)
+	public Mob(GamePosition position, GameSize size, Animation animation)
 	{
 		super(position, size, animation);
 	}
+
 }

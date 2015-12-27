@@ -4,10 +4,14 @@ import java.awt.Color;
 
 import entity.Entity;
 import entity.entities.tile.tiles.*;
+import graphics.Animation;
 import graphics.ImageFile;
 import graphics.ImageID;
-import misc.game.Team;
 import misc.Debug;
+import misc.game.Team;
+import misc.math.game.GamePosition;
+import misc.math.game.GameSize;
+
 
 public abstract class Tile extends Entity
 {
@@ -20,34 +24,33 @@ public abstract class Tile extends Entity
 	public static final int SPAWN_TEAM3_COLORID = Team.TEAM3.getColorID();
 	public static final int SPAWN_TEAM4_COLORID = Team.TEAM4.getColorID();
 
+	public Tile(GamePosition position, GameSize size, Animation animation)
+	{
+		super(position, size, animation);
+	}
+
 	public boolean isStatic() { return true; }
 		// needed for static rendering.
 		// should return false if tile may move or change image
 
-	public static Tile getByColorID(int colorID)
+	public static Tile getByColorID(int colorID, float x, float y)
 	{
 		if (colorID == STONE_COLORID)
-			return new StoneTile();
+			return new StoneTile(new GamePosition(x, y));
 		if (colorID == VOID_COLORID)
-			return new VoidTile();
+			return new VoidTile(new GamePosition(x, y));
 		if (colorID == SPAWN_TEAM0_COLORID)
-			return new SpawnTeamTile(Team.TEAM0);
+			return new SpawnTeamTile(Team.TEAM0, new GamePosition(x, y));
 		if (colorID == SPAWN_TEAM1_COLORID)
-			return new SpawnTeamTile(Team.TEAM1);
+			return new SpawnTeamTile(Team.TEAM1, new GamePosition(x, y));
 		if (colorID == SPAWN_TEAM2_COLORID)
-			return new SpawnTeamTile(Team.TEAM2);
+			return new SpawnTeamTile(Team.TEAM2, new GamePosition(x, y));
 		if (colorID == SPAWN_TEAM3_COLORID)
-			return new SpawnTeamTile(Team.TEAM3);
+			return new SpawnTeamTile(Team.TEAM3, new GamePosition(x, y));
 		if (colorID == SPAWN_TEAM4_COLORID)
-			return new SpawnTeamTile(Team.TEAM4);
+			return new SpawnTeamTile(Team.TEAM4, new GamePosition(x, y));
 
 		Debug.warn("Tile.getByColorID(" + colorID + "): returns null");
 		return null;
-	}
-
-	public ImageID getImageID()
-	{
-		Debug.warn("Tile.getImageID() returns null");
-		return null; // TODO
 	}
 }

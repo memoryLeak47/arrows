@@ -7,8 +7,9 @@ package network.game.player;
 import java.net.InetAddress;
 import java.util.LinkedList;
 
-import entity.Entity;
+import entity.entities.mob.Mob;
 import graphics.Animation;
+import graphics.animations.AnimationContainer;
 import graphics.ImageID;
 import misc.Debug;
 import misc.game.effect.Effect;
@@ -16,6 +17,7 @@ import misc.game.kill.KDCounter;
 import misc.game.PlayerStats;
 import misc.game.Team;
 import misc.math.game.GamePosition;
+import misc.math.game.GameSize;
 import network.lobby.LobbyPlayer;
 import network.game.player.LocalClientGamePlayerFrameUpdate;
 import network.game.player.ClientGamePlayerFrameUpdate;
@@ -23,7 +25,7 @@ import playerproperty.avatar.Avatar;
 import playerproperty.skill.Skill;
 import playerproperty.item.Item;
 
-public class ServerGamePlayer extends Entity implements GamePlayer
+public class ServerGamePlayer extends Mob implements GamePlayer
 {
 	private InetAddress ip;
 
@@ -45,6 +47,7 @@ public class ServerGamePlayer extends Entity implements GamePlayer
 
 	public ServerGamePlayer(LobbyPlayer lobbyPlayer, GamePosition position)
 	{
+		super(position, new GameSize(50, 50), new AnimationContainer()); // TODO do real stuff
 		this.ip = lobbyPlayer.getIP();
 		
 		this.name = lobbyPlayer.getName();

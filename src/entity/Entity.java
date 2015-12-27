@@ -16,9 +16,11 @@ public abstract class Entity
 	private GameSize size;
 	private Animation animation;
 
-	public Entity()
+	public Entity(GamePosition position, GameSize size, Animation animation)
 	{
-
+		this.position = new GamePosition(position);
+		this.size = new GameSize(size);
+		this.animation = animation;
 	}
 
 	public GamePosition getPosition()
@@ -44,7 +46,7 @@ public abstract class Entity
 		return true;
 	}
 
-	protected ImageID getImageID()
+	public ImageID getImageID()
 	{
 		Debug.warnIf(getAnimation().getImageID() == null, "Entity.getImageID(): returns null");
 		return getAnimation().getImageID();
@@ -55,5 +57,4 @@ public abstract class Entity
 		Debug.warnIf(animation == null, "Entity.getAnimation(): returns null");
 		return animation;
 	}
-
 }

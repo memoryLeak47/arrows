@@ -2,10 +2,16 @@ package graphics.animations;
 
 import graphics.Animation;
 import graphics.ImageID;
+import misc.Debug;
 
 public class StaticAnimation implements Animation
 {
 	private ImageID imageID;
+
+	public StaticAnimation(ImageID imageID)
+	{
+		this.imageID = imageID;
+	}
 
 	public void render()
 	{
@@ -14,6 +20,7 @@ public class StaticAnimation implements Animation
 
 	public ImageID getImageID()
 	{
-		return null; // TODO
+		Debug.warnIf(imageID == null, "StaticAnimation.getImageID(): returns null");
+		return imageID;
 	}
 }

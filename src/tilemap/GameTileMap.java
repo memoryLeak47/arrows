@@ -26,7 +26,7 @@ public class GameTileMap
 		{
 			for (int y = 0; y < lobbyTileMap.getInts()[0].length; y++)
 			{
-				tiles[x][y] = Tile.getByColorID(lobbyTileMap.getInts()[x][y]);
+				tiles[x][y] = Tile.getByColorID(lobbyTileMap.getInts()[x][y], x, y);
 			}
 		}
 
