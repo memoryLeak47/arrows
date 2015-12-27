@@ -80,6 +80,11 @@ public class ServerGamePlayer extends Mob implements GamePlayer
 		return mass;
 	}
 
+	@Override public MinimizedGamePlayer toMinimizedEntity()
+	{
+		return new MinimizedGamePlayer(getImageID(), getPosition(), "Der coolste",100); // 100 = health; "der coolste" = name
+	}
+
 	// getter
 	public InetAddress getIP() { return ip; }
 

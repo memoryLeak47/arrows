@@ -3,10 +3,11 @@ package entity;
 import static core.Main.getGame;
 import static core.Main.TILESIZE;
 import core.Screen;
-import misc.Debug;
+import entity.MinimizedEntity;
 import graphics.Animation;
 import graphics.ImageFile;
 import graphics.ImageID;
+import misc.Debug;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 
@@ -46,6 +47,7 @@ public abstract class Entity
 		return true;
 	}
 
+	// Getter
 	public ImageID getImageID()
 	{
 		Debug.warnIf(getAnimation().getImageID() == null, "Entity.getImageID(): returns null");
@@ -57,4 +59,6 @@ public abstract class Entity
 		Debug.warnIf(animation == null, "Entity.getAnimation(): returns null");
 		return animation;
 	}
+
+	public abstract MinimizedEntity toMinimizedEntity();
 }

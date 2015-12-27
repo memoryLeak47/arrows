@@ -3,6 +3,7 @@ package entity.entities.tile;
 import java.awt.Color;
 
 import entity.Entity;
+import entity.MinimizedEntity;
 import entity.entities.tile.tiles.*;
 import graphics.Animation;
 import graphics.ImageFile;
@@ -32,6 +33,11 @@ public abstract class Tile extends Entity
 	public boolean isStatic() { return true; }
 		// needed for static rendering.
 		// should return false if tile may move or change image
+
+	@Override public MinimizedEntity toMinimizedEntity()
+	{
+		return new MinimizedTile(getImageID(), getPosition());
+	}
 
 	public static Tile getByColorID(int colorID, float x, float y)
 	{

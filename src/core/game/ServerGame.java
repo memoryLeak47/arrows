@@ -2,17 +2,18 @@ package core.game;
 
 import java.util.LinkedList;
 
+import entity.MinimizedEntity;
 import entity.entities.bullet.ExtendedBullet;
 import entity.entities.bullet.MinimizedBullet;
 import tilemap.LobbyTileMap;
-import network.game.player.GamePlayer;
-import network.game.player.ServerGamePlayer;
-import network.game.player.LocalClientGamePlayer;
-import network.game.player.LocalClientGamePlayerFrameUpdate;
 import misc.Debug;
 import misc.math.menu.MenuPosition;
 import misc.game.effect.Effect;
 import misc.game.effect.MinimizedEffect;
+import network.game.player.GamePlayer;
+import network.game.player.ServerGamePlayer;
+import network.game.player.LocalClientGamePlayer;
+import network.game.player.LocalClientGamePlayerFrameUpdate;
 import network.lobby.LobbyPlayer;
 import network.game.packets.EventPacket;
 import network.game.packets.GameFrameUpdatePacket;
@@ -78,6 +79,12 @@ public class ServerGame extends Game
 	public GameFrameUpdatePacket getGameFrameUpdatePacketByID(int id)
 	{
 		Debug.warn("ServerGame.getGameFrameUpdatePacketByID(): return null; TODO");		
+		return null;
+	}
+
+	public MinimizedEntity getMinimizedEntities()
+	{
+		Debug.warn("ServerGame.getMinimizedEntities(): TODO");
 		return null;
 	}
 }
