@@ -19,7 +19,7 @@ import misc.Debug;
 
 public enum ImageFile
 {
-	// Icons
+	// icons
 	VOID_ICON("icons/void.png"),
 
 	// avatars
@@ -29,7 +29,12 @@ public enum ImageFile
 	ARROWSHOT_ICON("icons/skills/arrow.png"),
 
 	// items
-	HEALTHRING_ICON("icons/items/healthring.png");
+	HEALTHRING_ICON("icons/items/healthring.png"),
+
+	// tiles
+	VOID_TILE("entities/tiles/voidtile.png"),
+	STONE_TILE("entities/tiles/stonetile.png"),
+	SPAWNTEAM_TILE("entities/tiles/spawnteamtile.png");
 
 	private int id;
 	private final File file;

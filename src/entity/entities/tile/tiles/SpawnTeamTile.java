@@ -2,6 +2,8 @@ package entity.entities.tile.tiles;
 
 import misc.game.Team;
 import entity.entities.tile.Tile;
+import graphics.ImageFile;
+import graphics.ImageID;
 
 public class SpawnTeamTile extends Tile
 {
@@ -17,4 +19,9 @@ public class SpawnTeamTile extends Tile
 
 	// Getter
 	public Team getTeam() { return team; }
+
+	@Override public ImageID getImageID()
+	{
+		return ImageFile.SPAWNTEAM_TILE.getImageID();
+	}
 }
