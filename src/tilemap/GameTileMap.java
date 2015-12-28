@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.util.TreeMap;
 
 import static core.Main.TILESIZE;
-import entity.entities.tile.Tile;
+import entity.entities.tile.ExtendedTile;
 import entity.entities.tile.tiles.SpawnTeamTile;
 import graphics.ImageFile;
 import misc.Debug;
@@ -14,19 +14,19 @@ import misc.math.game.GamePosition;
 
 public class GameTileMap
 {
-	private Tile[][] tiles;
+	private ExtendedTile[][] tiles;
 	private TreeMap<Team, GamePosition> spawnPositions = new TreeMap<Team, GamePosition>();
 	private BufferedImage staticImage;
 	
 	public GameTileMap(LobbyTileMap lobbyTileMap)
 	{
-		tiles = new Tile[lobbyTileMap.getInts().length][lobbyTileMap.getInts()[0].length];
+		tiles = new ExtendedTile[lobbyTileMap.getInts().length][lobbyTileMap.getInts()[0].length];
 
 		for (int x = 0; x < lobbyTileMap.getInts().length; x++)
 		{
 			for (int y = 0; y < lobbyTileMap.getInts()[0].length; y++)
 			{
-				tiles[x][y] = Tile.getByColorID(lobbyTileMap.getInts()[x][y], x, y);
+				tiles[x][y] = ExtendedTile.getByColorID(lobbyTileMap.getInts()[x][y], x, y);
 			}
 		}
 

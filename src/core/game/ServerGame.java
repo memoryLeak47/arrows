@@ -3,10 +3,10 @@ package core.game;
 import java.util.LinkedList;
 
 import entity.MinimizedEntity;
-import entity.entities.bullet.Bullet;
+import entity.entities.bullet.ExtendedBullet;
 import entity.entities.bullet.MinimizedBullet;
-import entity.entities.mob.Mob;
-import entity.entities.cosmetic.Cosmetic;
+import entity.entities.mob.ExtendedMob;
+import entity.entities.cosmetic.ExtendedCosmetic;
 import tilemap.LobbyTileMap;
 import misc.Debug;
 import misc.math.menu.MenuPosition;
@@ -23,8 +23,8 @@ import network.game.packets.GameFrameUpdatePacket;
 public class ServerGame extends Game
 {
 	private LinkedList<ServerGamePlayer> players = new LinkedList<ServerGamePlayer>();
-	private LinkedList<Mob> mobs = new LinkedList<Mob>();
-	private LinkedList<Bullet> bullets = new LinkedList<Bullet>();
+	private LinkedList<ExtendedMob> mobs = new LinkedList<ExtendedMob>();
+	private LinkedList<ExtendedBullet> bullets = new LinkedList<ExtendedBullet>();
 
 	public ServerGame(LobbyTileMap lobbyMap, LinkedList<LobbyPlayer> lobbyPlayers)
 	{
@@ -72,13 +72,13 @@ public class ServerGame extends Game
 		return players;
 	}
 
-	public LinkedList<Mob> getMobs()
+	public LinkedList<ExtendedMob> getMobs()
 	{
 		Debug.warnIf(mobs == null, "ServerGame.getMobs(): return null");
 		return mobs;
 	}
 
-	public LinkedList<Bullet> getBullets()
+	public LinkedList<ExtendedBullet> getBullets()
 	{
 		Debug.warnIf(bullets == null, "ServerGame.getMobs(): return null");
 		return bullets;
@@ -101,19 +101,19 @@ public class ServerGame extends Game
 		}
 
 		// all Mobs
-		for (Mob mob : getMobs())
+		for (ExtendedMob mob : getMobs())
 		{
 			entityList.add(mob.toMinimizedEntity());
 		}
 
 		// all bullets
-		for (Bullet bullet : getBullets())
+		for (ExtendedBullet bullet : getBullets())
 		{
 			entityList.add(bullet.toMinimizedEntity());
 		}
 
 		// all cosmetics
-		for (Cosmetic cosmetic : getCosmetics())
+		for (ExtendedCosmetic cosmetic : getCosmetics())
 		{
 			entityList.add(cosmetic.toMinimizedEntity());
 		}

@@ -7,7 +7,7 @@ import core.Main;
 import entity.Entity;
 import entity.MinimizedEntity;
 import entity.entities.bullet.MinimizedBullet;
-import entity.entities.cosmetic.Cosmetic;
+import entity.entities.cosmetic.ExtendedCosmetic;
 import misc.Debug;
 import misc.game.Camera;
 import misc.game.kill.Kill;
@@ -20,7 +20,7 @@ public abstract class Game
 {
 	private Camera cam = new Camera(getLocalPlayerID());
 	private GameTileMap tileMap;
-	private LinkedList<Cosmetic> cosmetics = new LinkedList<Cosmetic>();
+	private LinkedList<ExtendedCosmetic> cosmetics = new LinkedList<ExtendedCosmetic>();
 	private LinkedList<Kill> kills = new LinkedList<Kill>();
 
 	public Game(LobbyTileMap lobbyTileMap)
@@ -38,7 +38,7 @@ public abstract class Game
 
 	public abstract LinkedList<MinimizedEntity> getMinimizedEntities();
 
-	public LinkedList<Cosmetic> getCosmetics()
+	public LinkedList<ExtendedCosmetic> getCosmetics()
 	{
 		Debug.warnIf(cosmetics == null, "Game.getCosmetics(): cosmetics == null");
 		return cosmetics;

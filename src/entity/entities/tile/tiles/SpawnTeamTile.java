@@ -2,14 +2,14 @@ package entity.entities.tile.tiles;
 
 import static core.Main.TILESIZE;
 import misc.game.Team;
-import entity.entities.tile.Tile;
+import entity.entities.tile.ExtendedTile;
 import graphics.animations.StaticAnimation;
 import graphics.ImageFile;
 import graphics.ImageID;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 
-public class SpawnTeamTile extends Tile
+public class SpawnTeamTile extends ExtendedTile
 {
 	private Team team;
 

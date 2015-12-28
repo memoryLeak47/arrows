@@ -14,7 +14,7 @@ import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 
 
-public abstract class Tile extends Entity
+public abstract class ExtendedTile extends Entity
 {
 	public static final int STONE_COLORID = Integer.parseInt("000000", 16);
 	public static final int VOID_COLORID = Integer.parseInt("ffffff", 16);
@@ -25,7 +25,7 @@ public abstract class Tile extends Entity
 	public static final int SPAWN_TEAM3_COLORID = Team.TEAM3.getColorID();
 	public static final int SPAWN_TEAM4_COLORID = Team.TEAM4.getColorID();
 
-	public Tile(GamePosition position, GameSize size, Animation animation)
+	public ExtendedTile(GamePosition position, GameSize size, Animation animation)
 	{
 		super(position, size, animation);
 	}
@@ -39,7 +39,7 @@ public abstract class Tile extends Entity
 		return new MinimizedTile(getImageID(), getPosition());
 	}
 
-	public static Tile getByColorID(int colorID, float x, float y)
+	public static ExtendedTile getByColorID(int colorID, float x, float y)
 	{
 		if (colorID == STONE_COLORID)
 			return new StoneTile(new GamePosition(x, y));
@@ -56,7 +56,7 @@ public abstract class Tile extends Entity
 		if (colorID == SPAWN_TEAM4_COLORID)
 			return new SpawnTeamTile(Team.TEAM4, new GamePosition(x, y));
 
-		Debug.warn("Tile.getByColorID(" + colorID + "): returns null");
+		Debug.warn("ExtendedTile.getByColorID(" + colorID + "): returns null");
 		return null;
 	}
 }

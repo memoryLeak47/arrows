@@ -7,7 +7,7 @@ package network.game.player;
 import java.net.InetAddress;
 import java.util.LinkedList;
 
-import entity.entities.mob.Mob;
+import entity.entities.mob.ExtendedMob;
 import graphics.Animation;
 import graphics.animations.StaticAnimation;
 import graphics.ImageFile;
@@ -26,7 +26,7 @@ import playerproperty.avatar.Avatar;
 import playerproperty.skill.Skill;
 import playerproperty.item.Item;
 
-public class ServerGamePlayer extends Mob implements GamePlayer
+public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 {
 	private InetAddress ip;
 

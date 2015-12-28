@@ -1,14 +1,14 @@
 package entity.entities.tile.tiles;
 
 import static core.Main.TILESIZE;
-import entity.entities.tile.Tile;
+import entity.entities.tile.ExtendedTile;
 import graphics.ImageFile;
 import graphics.ImageID;
 import graphics.animations.StaticAnimation;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 
-public class VoidTile extends Tile
+public class VoidTile extends ExtendedTile
 {
 	public VoidTile(GamePosition position)
 	{
