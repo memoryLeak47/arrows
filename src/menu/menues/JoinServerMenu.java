@@ -6,7 +6,7 @@ import core.Main;
 import menu.Menu;
 import menu.components.*;
 import misc.Debug;
-import misc.math.menu.*;
+import misc.math.pixel.*;
 import network.lobby.packets.user.LoginUserPacket;
 
 public class JoinServerMenu extends Menu
@@ -15,10 +15,10 @@ public class JoinServerMenu extends Menu
 
 	public JoinServerMenu()
 	{
-		getComponents().add(new Label(this, new MenuRect(400, 10, 200, 40), "Join Server")); // add Label "Join Server"
-		getComponents().add(new BackButton(this, new MenuPosition(10, 500))); // add Button "back"
-		getComponents().add(ipField = new EditField(this, new MenuRect(300, 200, 100, 20), "192.168.178."));
-		getComponents().add(new Button(this, new MenuRect(420, 200, 100, 20), "Join Server")
+		getComponents().add(new Label(this, new PixelRect(400, 10, 200, 40), "Join Server")); // add Label "Join Server"
+		getComponents().add(new BackButton(this, new PixelPosition(10, 500))); // add Button "back"
+		getComponents().add(ipField = new EditField(this, new PixelRect(300, 200, 100, 20), "192.168.178."));
+		getComponents().add(new Button(this, new PixelRect(420, 200, 100, 20), "Join Server")
 		{
 			@Override public void onClick(int mouseButton)
 			{

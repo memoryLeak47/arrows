@@ -10,20 +10,20 @@ import menu.components.Panel;
 import menu.components.TeamPanel;
 import menu.menues.LobbyMenu;
 import misc.game.Team;
-import misc.math.menu.MenuRect;
+import misc.math.pixel.PixelRect;
 import network.lobby.LobbyPlayer;
 
 public class TeamListPanel extends Panel
 {
-	public TeamListPanel(ComponentContainer parent, MenuRect rect)
+	public TeamListPanel(ComponentContainer parent, PixelRect rect)
 	{
 		super(parent, rect);
 
-		getComponents().add(new TeamPanel(this, new MenuRect(20, 20, 140, 60), Team.TEAM0));
-		getComponents().add(new TeamPanel(this, new MenuRect(20, 120, 140, 60), Team.TEAM1));
-		getComponents().add(new TeamPanel(this, new MenuRect(20, 220, 140, 60), Team.TEAM2));
-		getComponents().add(new TeamPanel(this, new MenuRect(20, 320, 140, 60), Team.TEAM3));
-		getComponents().add(new TeamPanel(this, new MenuRect(20, 420, 140, 60), Team.TEAM4));
+		getComponents().add(new TeamPanel(this, new PixelRect(20, 20, 140, 60), Team.TEAM0));
+		getComponents().add(new TeamPanel(this, new PixelRect(20, 120, 140, 60), Team.TEAM1));
+		getComponents().add(new TeamPanel(this, new PixelRect(20, 220, 140, 60), Team.TEAM2));
+		getComponents().add(new TeamPanel(this, new PixelRect(20, 320, 140, 60), Team.TEAM3));
+		getComponents().add(new TeamPanel(this, new PixelRect(20, 420, 140, 60), Team.TEAM4));
 		update(); // erstellt die nötigen Player icons, etc...
 	}
 

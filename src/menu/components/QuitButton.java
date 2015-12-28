@@ -4,16 +4,16 @@ import core.Main;
 import core.Screen;
 import menu.ComponentContainer;
 import menu.components.Button;
-import misc.math.menu.*;
+import misc.math.pixel.*;
 
 public class QuitButton extends Button
 {
-	public QuitButton(ComponentContainer parent, MenuPosition position)
+	public QuitButton(ComponentContainer parent, PixelPosition position)
 	{
-		super(parent, new MenuRect(position, new MenuSize(100, 50)), "Quit");
+		super(parent, new PixelRect(position, new PixelSize(100, 50)), "Quit");
 	}
 
-	public QuitButton(ComponentContainer parent, MenuRect rect)
+	public QuitButton(ComponentContainer parent, PixelRect rect)
 	{
 		super(parent, rect, "Quit");
 	}

@@ -8,7 +8,7 @@ import menu.Menu;
 import menu.components.Button;
 import menu.components.icons.PlayerPropertyIcon;
 import menu.menues.LobbyMenu;
-import misc.math.menu.MenuRect;
+import misc.math.pixel.PixelRect;
 import misc.Debug;
 import playerproperty.PlayerProperty;
 import network.lobby.packets.PlayerPropertyUserPacket;
@@ -24,7 +24,7 @@ public class ChoosePlayerPropertyMenu extends Menu
 
 	public ChoosePlayerPropertyMenu(LobbyMenu lobbyMenu, PlayerPropertyUserPacket slotPacket, PlayerProperty[] chooseProperties)
 	{
-		super(new MenuRect(200, 0, Screen.WIDTH-200, Screen.HEIGHT));
+		super(new PixelRect(200, 0, Screen.WIDTH-200, Screen.HEIGHT));
 
 		this.lobbyMenu = lobbyMenu;
 
@@ -39,7 +39,7 @@ public class ChoosePlayerPropertyMenu extends Menu
 			PlayerPropertyIcon icon = new PlayerPropertyIcon
 			(
 				this,
-				new MenuRect(60 + i * (PlayerPropertyIcon.WIDTH + 15), 40, PlayerPropertyIcon.WIDTH, PlayerPropertyIcon.HEIGHT), slotPacket.getPlayerProperty()[i])
+				new PixelRect(60 + i * (PlayerPropertyIcon.WIDTH + 15), 40, PlayerPropertyIcon.WIDTH, PlayerPropertyIcon.HEIGHT), slotPacket.getPlayerProperty()[i])
 				{
 					@Override public void onClick(int mouseButton)
 					{
@@ -57,7 +57,7 @@ public class ChoosePlayerPropertyMenu extends Menu
 			PlayerPropertyIcon icon = new PlayerPropertyIcon
 			(
 				this,
-				new MenuRect(40 + i * (PlayerPropertyIcon.WIDTH + 5), 140, PlayerPropertyIcon.WIDTH, PlayerPropertyIcon.HEIGHT), chooseProperties[i])
+				new PixelRect(40 + i * (PlayerPropertyIcon.WIDTH + 5), 140, PlayerPropertyIcon.WIDTH, PlayerPropertyIcon.HEIGHT), chooseProperties[i])
 				{
 					@Override public void onClick(int mouseButton)
 					{
@@ -72,7 +72,7 @@ public class ChoosePlayerPropertyMenu extends Menu
 		}
 
 		// Ok Button
-		getComponents().add(new Button(this, new MenuRect(100, Screen.HEIGHT-100, 30, 60), "Ok")
+		getComponents().add(new Button(this, new PixelRect(100, Screen.HEIGHT-100, 30, 60), "Ok")
 		{
 			@Override public void onClick(int mouseButton)
 			{
@@ -97,7 +97,7 @@ public class ChoosePlayerPropertyMenu extends Menu
 		});
 
 		// Back Button
-		getComponents().add(new Button(this, new MenuRect(300, Screen.HEIGHT-100, 30, 60), "Back")
+		getComponents().add(new Button(this, new PixelRect(300, Screen.HEIGHT-100, 30, 60), "Back")
 		{
 			@Override public void onClick(int mouseButton)
 			{

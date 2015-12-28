@@ -3,16 +3,16 @@ package menu.components;
 import core.Main;
 import menu.ComponentContainer;
 import menu.components.Button;
-import misc.math.menu.*;
+import misc.math.pixel.*;
 
 public class BackButton extends Button
 {
-	public BackButton(ComponentContainer parent, MenuPosition position)
+	public BackButton(ComponentContainer parent, PixelPosition position)
 	{
-		super(parent, new MenuRect(position, new MenuSize(100, 50)), "Back"); // button constructor
+		super(parent, new PixelRect(position, new PixelSize(100, 50)), "Back"); // button constructor
 	}
 
-	public BackButton(ComponentContainer parent, MenuRect rect)
+	public BackButton(ComponentContainer parent, PixelRect rect)
 	{
 		super(parent, rect, "Back"); // button constructor
 	}

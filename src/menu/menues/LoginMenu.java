@@ -4,7 +4,7 @@ import core.Main;
 import menu.Menu;
 import menu.components.*;
 import misc.Account;
-import misc.math.menu.MenuRect;
+import misc.math.pixel.PixelRect;
 
 public class LoginMenu extends Menu
 {
@@ -12,10 +12,10 @@ public class LoginMenu extends Menu
 
 	public LoginMenu()
 	{
-		getComponents().add(new Label(this, new MenuRect(350, 20, 100, 20), "Login"));
-		getComponents().add(usernameField = new EditField(this, new MenuRect(350, 200, 100, 20)));
-		getComponents().add(passwordField = new PasswordField(this, new MenuRect(350, 230, 100, 20)));
-		getComponents().add(new Button(this, new MenuRect(350, 260, 40, 20), "Login")
+		getComponents().add(new Label(this, new PixelRect(350, 20, 100, 20), "Login"));
+		getComponents().add(usernameField = new EditField(this, new PixelRect(350, 200, 100, 20)));
+		getComponents().add(passwordField = new PasswordField(this, new PixelRect(350, 230, 100, 20)));
+		getComponents().add(new Button(this, new PixelRect(350, 260, 40, 20), "Login")
 		{
 			@Override public void onClick(int mouseButton)
 			{
@@ -31,7 +31,7 @@ public class LoginMenu extends Menu
 				}
 			}
 		});
-		getComponents().add(new Button(this, new MenuRect(410, 260, 40, 20), "Sign in")
+		getComponents().add(new Button(this, new PixelRect(410, 260, 40, 20), "Sign in")
 		{
 			@Override public void onClick(int mouseButton)
 			{
@@ -45,6 +45,6 @@ public class LoginMenu extends Menu
 				}
 			}
 		});
-		getComponents().add(new QuitButton(this, new MenuRect(20, 500, 100, 30)));
+		getComponents().add(new QuitButton(this, new PixelRect(20, 500, 100, 30)));
 	}
 }

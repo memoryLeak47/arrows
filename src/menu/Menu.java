@@ -13,15 +13,15 @@ import network.Packet;
 import network.game.packets.EventPacket;
 import network.game.packets.events.*;
 import misc.Debug;
-import misc.math.menu.MenuPosition;
-import misc.math.menu.MenuRect;
+import misc.math.pixel.PixelPosition;
+import misc.math.pixel.PixelRect;
 
 public abstract class Menu extends ComponentContainer
 {
 	private MenuComponent focusedComponent; // die fokusierte component
 
 	// erstellung eines menues mit angegebenem rect (position und größe)
-	public Menu(MenuRect rect)
+	public Menu(PixelRect rect)
 	{
 		super(null, rect);
 	}
@@ -29,7 +29,7 @@ public abstract class Menu extends ComponentContainer
 	// erstellung eines fullscreen-menues
 	public Menu()
 	{
-		super(null, new MenuRect(0,0,Screen.getScreenSize().getX(), Screen.getScreenSize().getY()));
+		super(null, new PixelRect(0,0,Screen.getScreenSize().getX(), Screen.getScreenSize().getY()));
 	}
 
 	// tickt alle components
@@ -107,7 +107,7 @@ public abstract class Menu extends ComponentContainer
 	}
 
 	// Position relativ zum Screen (bei Menu: Offset == Position)
-	@Override public MenuPosition getOffset() { return new MenuPosition(getPosition()); }
+	@Override public PixelPosition getOffset() { return new PixelPosition(getPosition()); }
 
 	// wird von ComponentContainer.getFocusedComponent() genutzt
 	@Override public final MenuComponent getFocusedComponent() { return focusedComponent; }

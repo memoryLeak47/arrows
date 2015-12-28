@@ -13,7 +13,7 @@ import core.Screen;
 import menu.ComponentContainer;
 import menu.components.icons.choosable.*;;
 import misc.Debug;
-import misc.math.menu.MenuRect;
+import misc.math.pixel.PixelRect;
 import network.lobby.LobbyPlayer;
 
 public class PlayerPanel extends ComponentContainer
@@ -22,24 +22,24 @@ public class PlayerPanel extends ComponentContainer
 
 	private LobbyPlayer player;
 
-	public PlayerPanel(ComponentContainer parent, MenuRect rect, LobbyPlayer player)
+	public PlayerPanel(ComponentContainer parent, PixelRect rect, LobbyPlayer player)
 	{
 		super(parent, rect);
 		this.player = player;
 
 		// AvatarIcon
-		getComponents().add(new AvatarIcon(this, new MenuRect(0,0,AVATAR_ICON_SIZE,AVATAR_ICON_SIZE), this.player));
+		getComponents().add(new AvatarIcon(this, new PixelRect(0,0,AVATAR_ICON_SIZE,AVATAR_ICON_SIZE), this.player));
 
 		// SkillIcons
-		getComponents().add(new SkillIcon(this, new MenuRect(0 ,45,SKILL_ICON_SIZE,SKILL_ICON_SIZE), this.player, 0));
-		getComponents().add(new SkillIcon(this, new MenuRect(15,45,SKILL_ICON_SIZE,SKILL_ICON_SIZE), this.player, 1));
-		getComponents().add(new SkillIcon(this, new MenuRect(30,45,SKILL_ICON_SIZE,SKILL_ICON_SIZE), this.player, 2));
-		getComponents().add(new SkillIcon(this, new MenuRect(45,45,SKILL_ICON_SIZE,SKILL_ICON_SIZE), this.player, 3));
+		getComponents().add(new SkillIcon(this, new PixelRect(0 ,45,SKILL_ICON_SIZE,SKILL_ICON_SIZE), this.player, 0));
+		getComponents().add(new SkillIcon(this, new PixelRect(15,45,SKILL_ICON_SIZE,SKILL_ICON_SIZE), this.player, 1));
+		getComponents().add(new SkillIcon(this, new PixelRect(30,45,SKILL_ICON_SIZE,SKILL_ICON_SIZE), this.player, 2));
+		getComponents().add(new SkillIcon(this, new PixelRect(45,45,SKILL_ICON_SIZE,SKILL_ICON_SIZE), this.player, 3));
 
 		// ItemIcons
-		getComponents().add(new ItemIcon(this, new MenuRect(45,0 ,ITEM_ICON_SIZE,ITEM_ICON_SIZE), this.player, 0));
-		getComponents().add(new ItemIcon(this, new MenuRect(45,15,ITEM_ICON_SIZE,ITEM_ICON_SIZE), this.player, 1));
-		getComponents().add(new ItemIcon(this, new MenuRect(45,30,ITEM_ICON_SIZE,ITEM_ICON_SIZE), this.player, 2));
+		getComponents().add(new ItemIcon(this, new PixelRect(45,0 ,ITEM_ICON_SIZE,ITEM_ICON_SIZE), this.player, 0));
+		getComponents().add(new ItemIcon(this, new PixelRect(45,15,ITEM_ICON_SIZE,ITEM_ICON_SIZE), this.player, 1));
+		getComponents().add(new ItemIcon(this, new PixelRect(45,30,ITEM_ICON_SIZE,ITEM_ICON_SIZE), this.player, 2));
 	}
 
 	@Override public void render()

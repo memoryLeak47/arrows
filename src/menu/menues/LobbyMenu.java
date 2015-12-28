@@ -14,7 +14,7 @@ import playerproperty.item.Item;
 import tilemap.LobbyTileMap;
 import graphics.ImageFile;
 import misc.Debug;
-import misc.math.menu.MenuRect;
+import misc.math.pixel.PixelRect;
 import network.lobby.LobbyPlayer;
 import network.lobby.packets.user.LockUserPacket;
 import network.Packet;
@@ -40,13 +40,13 @@ public abstract class LobbyMenu extends NetworkingMenu
 		players = new LinkedList<LobbyPlayer>();
 
 		// Top Label
-		getComponents().add(new Label(this, new MenuRect(300, 10, 150, 20), getHeadline()));
+		getComponents().add(new Label(this, new PixelRect(300, 10, 150, 20), getHeadline()));
 
-		teamListPanel = new TeamListPanel(this, new MenuRect(100, 100, 600, 600));
+		teamListPanel = new TeamListPanel(this, new PixelRect(100, 100, 600, 600));
 		getComponents().add(teamListPanel);
 
 		// lock Button
-		lockButton = new Button(this, new MenuRect(Screen.WIDTH - 250, 600, 200, 60), getLockButtonCaption())
+		lockButton = new Button(this, new PixelRect(Screen.WIDTH - 250, 600, 200, 60), getLockButtonCaption())
 		{
 			@Override public void onClick(int mouseButton)
 			{
@@ -56,9 +56,9 @@ public abstract class LobbyMenu extends NetworkingMenu
 		getComponents().add(lockButton);
 
 		// MiniMap
-		getComponents().add(miniMap = new LobbyMiniMap(this, new MenuRect(Screen.WIDTH-250, 100, 200, 140)));
+		getComponents().add(miniMap = new LobbyMiniMap(this, new PixelRect(Screen.WIDTH-250, 100, 200, 140)));
 
-		getComponents().add(new Button(this, new MenuRect(20, 500, 20, 20), "Disconnect")
+		getComponents().add(new Button(this, new PixelRect(20, 500, 20, 20), "Disconnect")
 		{
 			@Override public void onClick(int mouseButton)
 			{

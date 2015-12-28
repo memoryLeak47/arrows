@@ -9,7 +9,7 @@ import entity.entities.mob.ExtendedMob;
 import entity.entities.cosmetic.ExtendedCosmetic;
 import tilemap.LobbyTileMap;
 import misc.Debug;
-import misc.math.menu.MenuPosition;
+import misc.math.pixel.PixelPosition;
 import misc.game.effect.Effect;
 import misc.game.effect.MinimizedEffect;
 import network.game.player.GamePlayer;

@@ -8,12 +8,12 @@ import menu.MenuComponent;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;
-import misc.math.menu.MenuRect;
+import misc.math.pixel.PixelRect;
 
 public abstract class Icon extends MenuComponent
 {
 	// private, da Icon an sich nie instanziert wird
-	public Icon(ComponentContainer parent, MenuRect rect)
+	public Icon(ComponentContainer parent, PixelRect rect)
 	{
 		super(parent, rect);
 	}

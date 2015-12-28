@@ -13,13 +13,13 @@ import menu.components.Icon;
 import menu.components.PlayerPanel;
 import menu.ComponentContainer;
 import menu.menues.LobbyMenu;
-import misc.math.menu.MenuRect;
+import misc.math.pixel.PixelRect;
 import misc.Debug;
 import network.lobby.LobbyPlayer;
 
 public abstract class ChoosableIcon extends Icon
 {
-	public ChoosableIcon(ComponentContainer parent, MenuRect rect)
+	public ChoosableIcon(ComponentContainer parent, PixelRect rect)
 	{
 		super(parent, rect);
 	}

@@ -8,15 +8,15 @@ import javax.imageio.ImageIO;
 import core.Screen;
 import menu.Menu;
 import menu.ComponentContainer;
-import misc.math.menu.MenuRect;
-import misc.math.menu.MenuPosition;
+import misc.math.pixel.PixelRect;
+import misc.math.pixel.PixelPosition;
 
-public abstract class MenuComponent extends MenuRect
+public abstract class MenuComponent extends PixelRect
 {
 	private boolean enabled = true;
 	private ComponentContainer parent; // ComponentContainer wo this enthalten ist
 
-	public MenuComponent(ComponentContainer parent, MenuRect rect)
+	public MenuComponent(ComponentContainer parent, PixelRect rect)
 	{
 		super(rect);
 		this.parent = parent;
@@ -29,7 +29,7 @@ public abstract class MenuComponent extends MenuRect
 			return this == getParent().getHoveredComponent();
 		}
 		return false;
-		// return Screen.getCursorPosition().inRect(new MenuRect(getOffset(), getSize()));
+		// return Screen.getCursorPosition().inRect(new PixelRect(getOffset(), getSize()));
 	}
 
 	protected final boolean isFocused()
@@ -42,9 +42,9 @@ public abstract class MenuComponent extends MenuRect
 
 	// onEventFunctions: bei bedarf von den MenuComponent-unterklassen überschrieben
 	public void onClick(int mouseButton) {}
-	public void onMouseEnter(MenuPosition mousePos) {}
-	public void onMouseMove(MenuPosition mousePos) {}
-	public void onMouseExit(MenuPosition mousePos) {}	
+	public void onMouseEnter(PixelPosition mousePos) {}
+	public void onMouseMove(PixelPosition mousePos) {}
+	public void onMouseExit(PixelPosition mousePos) {}	
 	public void onKeyPress(char key) {}
 	public void onKeyRelease(char key) {}
 
@@ -56,7 +56,7 @@ public abstract class MenuComponent extends MenuRect
 	// Getter
 
 	// Position relativ zum Screen
-	public MenuPosition getOffset() { return (MenuPosition) getParent().getOffset().plus(getPosition()); }
+	public PixelPosition getOffset() { return (PixelPosition) getParent().getOffset().plus(getPosition()); }
 
 	// returnt den parent
 	protected ComponentContainer getParent() { return parent; }

@@ -5,13 +5,13 @@ import java.awt.Color;
 import core.Screen;
 import menu.MenuComponent;
 import menu.ComponentContainer;
-import misc.math.menu.MenuRect;
+import misc.math.pixel.PixelRect;
 
 public class Label extends MenuComponent
 {
 	private String caption;
 
-	public Label(ComponentContainer parent, MenuRect rect, String caption)
+	public Label(ComponentContainer parent, PixelRect rect, String caption)
 	{
 		super(parent, rect);
 		this.caption = caption;

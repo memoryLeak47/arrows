@@ -6,14 +6,14 @@ import core.Screen;
 import menu.MenuComponent;
 import menu.Menu;
 import misc.Debug;
-import misc.math.menu.MenuRect;
-import misc.math.menu.MenuPosition;
+import misc.math.pixel.PixelRect;
+import misc.math.pixel.PixelPosition;
 
 public abstract class ComponentContainer extends MenuComponent // abstract for not instanciating
 {
 	private LinkedList<MenuComponent> components; // list of components
 
-	public ComponentContainer(ComponentContainer parent, MenuRect rect)
+	public ComponentContainer(ComponentContainer parent, PixelRect rect)
 	{
 		super(parent, rect);
 		components = new LinkedList<MenuComponent>(); // create components
@@ -28,9 +28,9 @@ public abstract class ComponentContainer extends MenuComponent // abstract for n
 	}
 
 	// returnt cursor position relativ zu sich
-	public MenuPosition getCursorPosition() 
+	public PixelPosition getCursorPosition() 
 	{ 
-		MenuPosition pos = Screen.getCursorPosition();
+		PixelPosition pos = Screen.getCursorPosition();
 		if (pos == null)
 		{
 			return null;
@@ -41,7 +41,7 @@ public abstract class ComponentContainer extends MenuComponent // abstract for n
 	// kalkuliert und setzt hoveredComponent
 	protected final MenuComponent getHoveredComponent()
 	{
-		MenuPosition cursor = getCursorPosition();
+		PixelPosition cursor = getCursorPosition();
 		if (cursor != null) // wenn der cursor im fenster ist
 		{
 			for (int i = getComponents().size()-1; i >= 0; i--) // für alle Components (als letzes gerendert liegt ganz oben -> von hinten nach vorne)

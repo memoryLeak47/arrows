@@ -1,51 +1,51 @@
-package misc.math.menu;
+package misc.math.pixel;
 
-public class MenuPoint
+public class PixelPoint
 {
 	private int x, y;
 
-	public MenuPoint()
+	public PixelPoint()
 	{
 		this(0, 0);
 	}
 
-	public MenuPoint(int x, int y)
+	public PixelPoint(int x, int y)
 	{
 		this.x = x;
 		this.y = y;
 	}
 
-	public MenuPoint(MenuPoint point)
+	public PixelPoint(PixelPoint point)
 	{
 		setX(point.getX());
 		setY(point.getY());
 	}
 
-	public boolean equals(MenuPoint point)
+	public boolean equals(PixelPoint point)
 	{
 		return (getX() == point.getX() && getY() == point.getY());
 	}
 
-	public void add(MenuPoint point)
+	public void add(PixelPoint point)
 	{
 		setX(getX() + point.getX());
 		setY(getY() + point.getY());
 	}
 
-	public void subtract(MenuPoint point)
+	public void subtract(PixelPoint point)
 	{
 		setX(getX() - point.getX());
 		setY(getY() - point.getY());
 	}
 
-	public MenuPoint plus(MenuPoint point)
+	public PixelPoint plus(PixelPoint point)
 	{
-		return new MenuPoint(getX() + point.getX(), getY() + point.getY());
+		return new PixelPoint(getX() + point.getX(), getY() + point.getY());
 	}
 
-	public MenuPoint minus(MenuPoint point)
+	public PixelPoint minus(PixelPoint point)
 	{
-		return new MenuPoint(getX() - point.getX(), getY() - point.getY());
+		return new PixelPoint(getX() - point.getX(), getY() - point.getY());
 	}
 
 	public int getX() { return x; }

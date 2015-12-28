@@ -5,11 +5,11 @@ import java.awt.image.BufferedImage;
 import menu.Menu;
 import menu.MenuComponent;
 import menu.components.Panel;
-import misc.math.menu.MenuRect;
+import misc.math.pixel.PixelRect;
 
 public class ScrollPanel extends Panel
 {
-	public ScrollPanel(Menu menu, MenuRect rect)
+	public ScrollPanel(Menu menu, PixelRect rect)
 	{
 		super(menu, rect);
 	}

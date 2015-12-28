@@ -5,13 +5,13 @@ import java.awt.Color;
 import core.Screen;
 import menu.MenuComponent;
 import menu.ComponentContainer;
-import misc.math.menu.MenuRect;
+import misc.math.pixel.PixelRect;
 
 public class Button extends MenuComponent
 {
 	private String caption;
 	
-	public Button(ComponentContainer parent, MenuRect rect, String caption)
+	public Button(ComponentContainer parent, PixelRect rect, String caption)
 	{
 		super(parent, rect); // setup menu which contains this Button and the rect of the button
 		this.caption = caption; // set caption

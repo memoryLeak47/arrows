@@ -6,14 +6,14 @@ import core.Screen;
 import menu.ComponentContainer;
 import menu.MenuComponent;
 import menu.Menu;
-import misc.math.menu.MenuRect;
-import misc.math.menu.MenuSize;
+import misc.math.pixel.PixelRect;
+import misc.math.pixel.PixelSize;
 
 public class Panel extends ComponentContainer
 {
-	private static final MenuSize padding = new MenuSize(20, 20); // über "padding" wird der Abstand innerhalb des KomponentenContainers zu den Komponenten gespeichert. Wird in calcMenuSize() benötigt
+	private static final PixelSize padding = new PixelSize(20, 20); // über "padding" wird der Abstand innerhalb des KomponentenContainers zu den Komponenten gespeichert. Wird in calcSize() benötigt
 
-	public Panel(ComponentContainer parent, MenuRect rect)
+	public Panel(ComponentContainer parent, PixelRect rect)
 	{
 		super(parent, rect);
 	}
