@@ -27,6 +27,12 @@ public abstract class Entity
 		return position;
 	}
 
+	public GameSize getSize()
+	{
+		Debug.warnIf(size == null, "Entity.getSize(): returns null");
+		return size;
+	}
+
 	// Getter
 	public ImageID getImageID()
 	{

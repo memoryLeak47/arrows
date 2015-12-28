@@ -24,16 +24,18 @@ public class GamePosition extends GamePoint
 		return (getX() == position.getX() && getY() == position.getY());
 	}
 
-	public void add(GamePosition position)
+	public GamePosition add(GamePosition position)
 	{
 		setX(getX() + position.getX());
 		setY(getY() + position.getY());
+		return this;
 	}
 
-	public void subtract(GamePosition position)
+	public GamePosition subtract(GamePosition position)
 	{
 		setX(getX() - position.getX());
 		setY(getY() - position.getY());
+		return this;
 	}
 
 	public GamePosition plus(GamePosition position)

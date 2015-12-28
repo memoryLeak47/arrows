@@ -36,6 +36,8 @@ public abstract class Game
 	// Returnt alle Player. Gebraucht für die MiniMap
 	public abstract LinkedList<GamePlayer> getUncastedPlayers();
 
+	public GamePlayer getLocalPlayer() { return getUncastedPlayers().get(getLocalPlayerID()); }
+
 	public abstract LinkedList<MinimizedEntity> getMinimizedEntities();
 
 	public LinkedList<ExtendedCosmetic> getCosmetics()

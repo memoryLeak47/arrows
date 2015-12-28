@@ -7,6 +7,8 @@ package network.game.player;
 import java.net.InetAddress;
 import java.util.LinkedList;
 
+import static core.Main.PLAYERSIZE_X;
+import static core.Main.PLAYERSIZE_Y;
 import entity.entities.mob.ExtendedMob;
 import graphics.Animation;
 import graphics.animations.StaticAnimation;
@@ -49,7 +51,7 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	public ServerGamePlayer(LobbyPlayer lobbyPlayer, GamePosition position)
 	{
 		// for testing:
-		super(position, new GameSize(50, 50), new StaticAnimation(ImageFile.VOID_ICON.getImageID())); // TODO do real stuff
+		super(position, new GameSize(PLAYERSIZE_X, PLAYERSIZE_Y), new StaticAnimation(ImageFile.VOID_ICON.getImageID())); // TODO do real stuff
 		this.ip = lobbyPlayer.getIP();
 		
 		this.name = lobbyPlayer.getName();
