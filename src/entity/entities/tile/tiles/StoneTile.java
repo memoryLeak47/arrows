@@ -13,6 +13,6 @@ public class StoneTile extends ExtendedTile
 {
 	public StoneTile(GamePosition position)
 	{
-		super(position, new GameSize(TILESIZE, TILESIZE), new StaticAnimation(ImageFile.STONE_TILE.getImageID()));
+		super(position, new StaticAnimation(ImageFile.STONE_TILE.getImageID()));
 	}
 }

@@ -11,13 +11,11 @@ import misc.math.game.GameSize;
 public abstract class Entity
 {
 	private GamePosition position;
-	private GameSize size;
 	private Animation animation;
 
-	public Entity(GamePosition position, GameSize size, Animation animation)
+	public Entity(GamePosition position, Animation animation)
 	{
 		this.position = new GamePosition(position);
-		this.size = new GameSize(size);
 		this.animation = animation;
 	}
 
@@ -29,8 +27,8 @@ public abstract class Entity
 
 	public GameSize getSize()
 	{
-		Debug.warnIf(size == null, "Entity.getSize(): returns null");
-		return size;
+		Debug.warnIf(getImageID() == null, "Entity.getSize(): getImageID is null");
+		return new GameSize(getImageID());
 	}
 
 	// Getter

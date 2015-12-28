@@ -25,9 +25,9 @@ public abstract class ExtendedTile extends Entity
 	public static final int SPAWN_TEAM3_COLORID = Team.TEAM3.getColorID();
 	public static final int SPAWN_TEAM4_COLORID = Team.TEAM4.getColorID();
 
-	public ExtendedTile(GamePosition position, GameSize size, Animation animation)
+	public ExtendedTile(GamePosition position, Animation animation)
 	{
-		super(position, size, animation);
+		super(position, animation);
 	}
 
 	public boolean isStatic() { return true; }

@@ -14,9 +14,9 @@ public class GamePosition extends GamePoint
 		super(x, y);
 	}
 
-	public GamePosition(GamePoint pofloat)
+	public GamePosition(GamePoint point)
 	{
-		this(pofloat.getX(), pofloat.getY());
+		this(point.getX(), point.getY());
 	}
 
 	public boolean equals(GamePosition position)

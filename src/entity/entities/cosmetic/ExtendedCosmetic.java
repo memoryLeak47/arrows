@@ -7,8 +7,8 @@ import misc.math.game.GameSize;
 
 public abstract class ExtendedCosmetic extends Entity
 {
-	public ExtendedCosmetic(GamePosition position, GameSize size, Animation animation)
+	public ExtendedCosmetic(GamePosition position, Animation animation)
 	{
-		super(position, size, animation);
+		super(position, animation);
 	}
 }

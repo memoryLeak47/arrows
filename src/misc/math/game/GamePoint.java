@@ -15,37 +15,42 @@ public class GamePoint
 		this.y = y;
 	}
 
-	public GamePoint(GamePoint pofloat)
+	public GamePoint(GamePoint point)
 	{
-		setX(pofloat.getX());
-		setY(pofloat.getY());
+		setX(point.getX());
+		setY(point.getY());
 	}
 
-	public boolean equals(GamePoint pofloat)
+	public boolean equals(GamePoint point)
 	{
-		return (getX() == pofloat.getX() && getY() == pofloat.getY());
+		return (getX() == point.getX() && getY() == point.getY());
 	}
 
-	public void add(GamePoint pofloat)
+	public void add(GamePoint point)
 	{
-		setX(getX() + pofloat.getX());
-		setY(getY() + pofloat.getY());
+		setX(getX() + point.getX());
+		setY(getY() + point.getY());
 	}
 
-	public void subtract(GamePoint pofloat)
+	public void subtract(GamePoint point)
 	{
-		setX(getX() - pofloat.getX());
-		setY(getY() - pofloat.getY());
+		setX(getX() - point.getX());
+		setY(getY() - point.getY());
 	}
 
-	public GamePoint plus(GamePoint pofloat)
+	public GamePoint plus(GamePoint point)
 	{
-		return new GamePoint(getX() + pofloat.getX(), getY() + pofloat.getY());
+		return new GamePoint(getX() + point.getX(), getY() + point.getY());
 	}
 
-	public GamePoint minus(GamePoint pofloat)
+	public GamePoint minus(GamePoint point)
 	{
-		return new GamePoint(getX() - pofloat.getX(), getY() - pofloat.getY());
+		return new GamePoint(getX() - point.getX(), getY() - point.getY());
+	}
+
+	public GamePoint times(float f)
+	{
+		return new GamePoint(getX()*f, getY()*f);
 	}
 
 	public float getX() { return x; }

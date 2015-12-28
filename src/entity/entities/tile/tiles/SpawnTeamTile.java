@@ -15,7 +15,7 @@ public class SpawnTeamTile extends ExtendedTile
 
 	public SpawnTeamTile(Team team, GamePosition position)
 	{
-		super(position, new GameSize(TILESIZE, TILESIZE), new StaticAnimation(ImageFile.SPAWNTEAM_TILE.getImageID()));
+		super(position, new StaticAnimation(ImageFile.SPAWNTEAM_TILE.getImageID()));
 		setTeam(team);
 	}
 

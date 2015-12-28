@@ -8,8 +8,8 @@ import misc.math.game.GameSize;
 
 public abstract class ExtendedBullet extends Entity
 {
-	public ExtendedBullet(GamePosition position, GameSize size, Animation animation)
+	public ExtendedBullet(GamePosition position, Animation animation)
 	{
-		super(position, size, animation);
+		super(position, animation);
 	}
 }

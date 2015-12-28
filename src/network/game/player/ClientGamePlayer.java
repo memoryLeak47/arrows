@@ -7,10 +7,9 @@ package network.game.player;
 
 import java.util.LinkedList;
 
-import static core.Main.PLAYERSIZE_X;
-import static core.Main.PLAYERSIZE_Y;
 import entity.Entity;
 import graphics.ImageID;
+import misc.Debug;
 import misc.game.Team;
 import misc.game.kill.KDCounter;
 import misc.math.game.GamePosition;
@@ -73,7 +72,13 @@ public class ClientGamePlayer implements GamePlayer
 	public KDCounter getKDCounter() { return kdCounter; }
 	@Override public LinkedList<Integer> getEffectIDs() { return effectIDs; }
 	public GamePosition getPosition() { return position; }
-	public GameSize getSize() { return new GameSize(PLAYERSIZE_X, PLAYERSIZE_Y); }
+
+	public GameSize getSize()
+	{
+		Debug.warnIf(getImageID() == null, "Entity.getSize(): getImageID is null");
+		return new GameSize(getImageID());
+	}
+
 	@Override public int getHealth() { return health; }
 	@Override public ImageID getImageID() { return imageID; }
 }

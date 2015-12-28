@@ -20,8 +20,6 @@ public class Main
 	public static final int TILESIZE = 50;
 	public static final int INGAME_SCREENSIZE_X = 10;
 	public static final int INGAME_SCREENSIZE_Y = 10;
-	public static final int PLAYERSIZE_X = 1;
-	public static final int PLAYERSIZE_Y = 2;
 
 	private static Game game;
 	private static MenuList menuList;

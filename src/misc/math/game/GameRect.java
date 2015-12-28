@@ -26,12 +26,18 @@ public class GameRect
 		this(new GamePosition(x, y), new GameSize(w, h));
 	}
 
+	public GameRect(GamePoint p1, GamePoint p2)
+	{
+		position = new GamePosition(p1);
+		size = new GameSize(p1.minus(p2));
+	}
+
 	public GameRect()
 	{
 		this(new GamePosition(0,0), new GameSize(0,0));
 	}
 
-	public float distanceTo(GamePoint pofloat)
+	public float distanceTo(GamePoint point)
 	{
 		Debug.error("GameRect.distanceTo(GamePoint) not coded yet");
 		// TODO
@@ -80,9 +86,9 @@ public class GameRect
 		return (getGamePosition().equals(rect.getGamePosition()) && getGameSize().equals(rect.getGameSize()));
 	}
 
-	public void setGamePosition(GamePoint pofloat) { position = new GamePosition(pofloat); }
+	public void setGamePosition(GamePoint point) { position = new GamePosition(point); }
 	public void setGamePosition(float x, float y) { position = new GamePosition(x, y); }
-	public void setGameSize(GamePoint pofloat) { size = new GameSize(pofloat); }
+	public void setGameSize(GamePoint point) { size = new GameSize(point); }
 	public void setGameSize(float x, float y) { size = new GameSize(x, y); }
 	public void setLeft(float left) { getGamePosition().setX(left); }
 	public void setTop(float top) { getGamePosition().setX(top); }

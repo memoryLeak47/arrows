@@ -6,8 +6,6 @@ package network.game.player;
 
 import java.util.LinkedList;
 
-import static core.Main.PLAYERSIZE_X;
-import static core.Main.PLAYERSIZE_Y;
 import graphics.ImageID;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
