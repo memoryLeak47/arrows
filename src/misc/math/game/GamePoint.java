@@ -48,9 +48,15 @@ public class GamePoint
 		return new GamePoint(getX() - point.getX(), getY() - point.getY());
 	}
 
-	public GamePoint times(float f)
+	public GamePoint times(float s)
 	{
-		return new GamePoint(getX()*f, getY()*f);
+		return new GamePoint(s*getX(), s*getY());
+	}
+
+	public void scale(float s)
+	{
+		setX(getX() * s);
+		setY(getY() * s);
 	}
 
 	public float getX() { return x; }

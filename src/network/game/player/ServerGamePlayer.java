@@ -49,7 +49,7 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	public ServerGamePlayer(LobbyPlayer lobbyPlayer, GamePosition position)
 	{
 		// for testing:
-		super(position, new StaticAnimation(ImageFile.VOID_ICON.getImageID())); // TODO do real stuff
+		super(position, new StaticAnimation(ImageFile.PLAYER.getImageID())); // TODO do real stuff
 		this.ip = lobbyPlayer.getIP();
 		
 		this.name = lobbyPlayer.getName();

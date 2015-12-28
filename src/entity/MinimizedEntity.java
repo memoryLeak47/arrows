@@ -7,6 +7,7 @@ import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;
 import misc.math.game.GamePosition;
+import misc.math.game.GameSize;
 
 public abstract class MinimizedEntity
 {
@@ -31,6 +32,14 @@ public abstract class MinimizedEntity
 		return position;
 	}
 
+	public GameSize getSize()
+	{
+		Debug.warnIf(getImageID() == null, "MinimizedEntity.getSize(): getImageID is null");
+		GameSize gs = new GameSize(getImageID());
+		gs.scale(1.0f/TILESIZE);
+		return gs;
+	}
+
 	public void render()
 	{
 		if (inScreen())
@@ -38,6 +47,7 @@ public abstract class MinimizedEntity
 			int x, y;
 			x = (int) (TILESIZE*(getPosition().getX() - getGame().getCamera().getOffset().getX()));
 			y = (int) (TILESIZE*(getPosition().getY() - getGame().getCamera().getOffset().getY())); 
+			Debug.test("RenderPosition: (" + x/TILESIZE + "|" + y/TILESIZE + "), Offset: " + getGame().getCamera().getOffset() + ", Position: " + getPosition() + ", Size: " + getSize());
 			Screen.g().drawImage(ImageFile.getImageByImageID(getImageID()), x, y, null);
 		}
 	}

@@ -34,7 +34,10 @@ public enum ImageFile
 	// tiles
 	VOID_TILE("entities/tiles/voidtile.png"),
 	STONE_TILE("entities/tiles/stonetile.png"),
-	SPAWNTEAM_TILE("entities/tiles/spawnteamtile.png");
+	SPAWNTEAM_TILE("entities/tiles/spawnteamtile.png"),
+
+	// player
+	PLAYER("entities/player.png");
 
 	private int id;
 	private final File file;
