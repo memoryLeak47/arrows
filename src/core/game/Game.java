@@ -55,8 +55,8 @@ public abstract class Game
 
 	public BufferedImage getMapImage()
 	{
-		Debug.warn("Game.getMapImage(): return null TODO");
-		return null;
+		Debug.warnIf(getGameTileMap().getStaticImage() == null, "Game.getMapImage(): returns null");
+		return getGameTileMap().getStaticImage();
 	}
 
 	protected GameTileMap getGameTileMap()

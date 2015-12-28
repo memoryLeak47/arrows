@@ -3,6 +3,7 @@ package menu.menues;
 import java.util.LinkedList;
 
 import core.Main;
+import core.Screen;
 import core.game.Game;
 import entity.MinimizedEntity;
 import menu.NetworkingMenu;
@@ -32,6 +33,7 @@ public abstract class GameInterface extends NetworkingMenu
 	@Override public void render()
 	{
 		Debug.warn("GameInterface.render(): Hier muss noch das Bild schwarz übermalt werden");
+		Screen.g().drawImage(getUncastedGame().getMapImage(), 0, 0, null); // TODO fix position
 		for (MinimizedEntity entity : getUncastedGame().getMinimizedEntities())
 		{
 			entity.render();
