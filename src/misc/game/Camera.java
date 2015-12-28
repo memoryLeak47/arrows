@@ -1,9 +1,8 @@
 package misc.game;
 
-import static core.Main.INGAME_SCREENSIZE_X;
-import static core.Main.INGAME_SCREENSIZE_Y;
 import static core.Main.TILESIZE;
 import core.Main;
+import core.Screen;
 import entity.Entity;
 import misc.math.game.GamePoint;
 import misc.math.game.GamePosition;
@@ -29,12 +28,12 @@ public class Camera
 		GamePlayer gp = Main.getGame().getUncastedPlayers().get(localPlayerID);
 		return gp.getPosition() // player-pos
 			.plus(gp.getSize().times(0.5f)) // player-center
-			.minus(new GamePosition(INGAME_SCREENSIZE_X/2, INGAME_SCREENSIZE_Y/2)); // offset
+			.minus(new GamePosition(Screen.WIDTH/TILESIZE/2, Screen.HEIGHT/TILESIZE/2)); // offset
 	}
 
 	public GameRect getRect()
 	{
-		return new GameRect(getOffset(), new GameSize(INGAME_SCREENSIZE_X, INGAME_SCREENSIZE_Y));
+		return new GameRect(getOffset(), new GameSize(Screen.WIDTH/TILESIZE, Screen.HEIGHT/TILESIZE));
 	}
 
 	public PixelPosition gamePositionToScreenPosition(GamePosition position)
