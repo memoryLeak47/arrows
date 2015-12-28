@@ -2,6 +2,7 @@ package menu.menues;
 
 import java.util.LinkedList;
 
+import static core.Main.TILESIZE;
 import core.Main;
 import core.Screen;
 import core.game.Game;
@@ -33,7 +34,8 @@ public abstract class GameInterface extends NetworkingMenu
 	@Override public void render()
 	{
 		Debug.warn("GameInterface.render(): Hier muss noch das Bild schwarz übermalt werden");
-		Screen.g().drawImage(getUncastedGame().getMapImage(), (int) - getOffset().getX(), (int) - getOffset().getY(), null);
+		Debug.test("Map-Position: " + Main.getGame().getCamera().getOffset().times(-1.f));
+		Screen.g().drawImage(getUncastedGame().getMapImage(), (int) - (Main.getGame().getCamera().getOffset().getX() * TILESIZE), (int) - (Main.getGame().getCamera().getOffset().getY() * TILESIZE), null);
 		for (MinimizedEntity entity : getUncastedGame().getMinimizedEntities())
 		{
 			entity.render();
