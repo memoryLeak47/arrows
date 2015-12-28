@@ -117,6 +117,9 @@ public class ServerGame extends Game
 		{
 			entityList.add(cosmetic.toMinimizedEntity());
 		}
+
 		return entityList;
 	}
+
+	@Override protected int getLocalPlayerID() { return 0; }
 }

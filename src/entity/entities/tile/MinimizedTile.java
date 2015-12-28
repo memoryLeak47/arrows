@@ -11,9 +11,4 @@ public class MinimizedTile extends MinimizedEntity
 	{
 		super(imageID, position);
 	}
-
-	@Override public void render()
-	{
-		Debug.warn("MinimizedTile.render(): TODO");
-	}
 }

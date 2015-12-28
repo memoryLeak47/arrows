@@ -1,6 +1,10 @@
 package entity;
 
+import static core.Main.getGame;
+import static core.Main.TILESIZE;
+import core.Screen;
 import graphics.ImageID;
+import graphics.ImageFile;
 import misc.Debug;
 import misc.math.game.GamePosition;
 
@@ -27,5 +31,20 @@ public abstract class MinimizedEntity
 		return position;
 	}
 
-	public abstract void render();
+	public void render()
+	{
+		if (inScreen())
+		{
+			int x, y;
+			x = (int) (TILESIZE*(getPosition().getX() - getGame().getCamera().getOffset().getX()));
+			y = (int) (TILESIZE*(getPosition().getY() - getGame().getCamera().getOffset().getY())); 
+			Screen.g().drawImage(ImageFile.getImageByImageID(getImageID()), x, y, null);
+		}
+	}
+
+	private boolean inScreen()
+	{
+		// TODO
+		return true;
+	}
 }

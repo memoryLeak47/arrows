@@ -9,7 +9,8 @@ import java.util.LinkedList;
 
 import entity.entities.mob.Mob;
 import graphics.Animation;
-import graphics.animations.AnimationContainer;
+import graphics.animations.StaticAnimation;
+import graphics.ImageFile;
 import graphics.ImageID;
 import misc.Debug;
 import misc.game.effect.Effect;
@@ -47,7 +48,8 @@ public class ServerGamePlayer extends Mob implements GamePlayer
 
 	public ServerGamePlayer(LobbyPlayer lobbyPlayer, GamePosition position)
 	{
-		super(position, new GameSize(50, 50), new AnimationContainer()); // TODO do real stuff
+		// for testing:
+		super(position, new GameSize(50, 50), new StaticAnimation(ImageFile.VOID_ICON.getImageID())); // TODO do real stuff
 		this.ip = lobbyPlayer.getIP();
 		
 		this.name = lobbyPlayer.getName();
@@ -108,7 +110,6 @@ public class ServerGamePlayer extends Mob implements GamePlayer
 
 	@Override public Team getTeam() { return team; }
 	@Override public int getHealth() { return health; }
-	@Override public ImageID getImageID() { return animation.getImageID(); }
 
 	/*
 		getHealth, getPosition, getImageID, getEffects, sind schon von Entity definiert und müssen nicht nochmal geschrieben werden

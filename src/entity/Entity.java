@@ -1,8 +1,5 @@
 package entity;
 
-import static core.Main.getGame;
-import static core.Main.TILESIZE;
-import core.Screen;
 import entity.MinimizedEntity;
 import graphics.Animation;
 import graphics.ImageFile;
@@ -28,23 +25,6 @@ public abstract class Entity
 	{
 		Debug.warnIf(position == null, "Entity.getPosition(): returns null");
 		return position;
-	}
-
-	public void render()
-	{
-		if (inScreen())
-		{
-			int x, y;
-			x = (int) (TILESIZE*(getPosition().getX() - getGame().getCamera().getOffset().getX()));
-			y = (int) (TILESIZE*(getPosition().getY() - getGame().getCamera().getOffset().getY())); 
-			Screen.g().drawImage(ImageFile.getImageByImageID(getImageID()), x, y, null);
-		}
-	}
-
-	private boolean inScreen()
-	{
-		// TODO
-		return true;
 	}
 
 	// Getter

@@ -15,10 +15,5 @@ public class MinimizedMob extends MinimizedEntity
 		this.health = health;
 	}
 
-	@Override public void render()
-	{
-		Debug.warn("MinimizedMob.render(): TODO");
-	}
-
 	public int getHealth() { return health; }
 }

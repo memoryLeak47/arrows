@@ -18,10 +18,10 @@ import tilemap.LobbyTileMap;
 
 public abstract class Game
 {
-	private Camera cam;
+	private Camera cam = new Camera(getLocalPlayerID());
 	private GameTileMap tileMap;
-	private LinkedList<Cosmetic> cosmetics;
-	private LinkedList<Kill> kills;
+	private LinkedList<Cosmetic> cosmetics = new LinkedList<Cosmetic>();
+	private LinkedList<Kill> kills = new LinkedList<Kill>();
 
 	public Game(LobbyTileMap lobbyTileMap)
 	{
@@ -30,6 +30,8 @@ public abstract class Game
 	}
 
 	// Getter
+
+	protected abstract int getLocalPlayerID();
 
 	// Returnt alle Player. Gebraucht für die MiniMap
 	public abstract LinkedList<GamePlayer> getUncastedPlayers();
@@ -50,6 +52,7 @@ public abstract class Game
 	}
 
 	// returnt die GameTileMap als ein Bild, wie es im Spiel erscheint
+
 	public BufferedImage getMapImage()
 	{
 		Debug.warn("Game.getMapImage(): return null TODO");

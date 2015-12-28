@@ -16,9 +16,4 @@ public class MinimizedBullet extends MinimizedEntity
 	}
 
 	public float getRotation() { return rotation; }
-
-	@Override public void render()
-	{
-		Debug.warn("MinimizedBullet.render(): TODO");
-	}
 }

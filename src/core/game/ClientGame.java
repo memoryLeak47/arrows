@@ -67,4 +67,6 @@ public class ClientGame extends Game
 		Debug.warnIf(bullets == null, "ClientGame.getBullets(): return null");
 		return bullets;
 	}
+
+	@Override protected int getLocalPlayerID() { return localPlayerID; }
 }

@@ -1,6 +1,7 @@
 package network.game.player;
 
 import entity.MinimizedEntity;
+import graphics.ImageFile;
 import graphics.ImageID;
 import misc.Debug;
 import misc.math.game.GamePosition;
@@ -19,9 +20,4 @@ public class MinimizedGamePlayer extends MinimizedEntity
 
 	public String getName() { return name; }
 	public int getHealth() { return health; }
-
-	@Override public void render()
-	{
-		Debug.warn("MinimizedGamePlayer.render(): TODO");
-	}
 }

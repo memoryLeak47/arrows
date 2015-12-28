@@ -28,7 +28,7 @@ public class ServerGameInterface extends GameInterface
 
 	@Override public void render()
 	{
-		Debug.note("ServerGameInterface.render(): TODO");
+		super.render(); // TODO add more?
 	}
 
 	@Override public void onEvent(EventPacket packet)

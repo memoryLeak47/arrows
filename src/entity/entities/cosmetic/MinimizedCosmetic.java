@@ -16,9 +16,4 @@ public class MinimizedCosmetic extends MinimizedEntity
 	}
 
 	public float getRotation() { return rotation; }
-
-	@Override public void render()
-	{
-		Debug.warn("MinimizedCosmetic.render(): TODO");
-	}
 }
