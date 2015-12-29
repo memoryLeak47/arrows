@@ -78,4 +78,11 @@ public class GameTileMap
 		Debug.warnIf(staticImage == null, "GameTileMap.getStaticImage(): returns null");
 		return staticImage;
 	}
+
+	public static GameTileMap get()
+	{
+		Debug.warnIf(Main.getGame() == null, "GameTileMap.get(): Main.getGame() == null");
+		Debug.warnIf(Main.getGame().getGameTileMap() == null, "GameTileMap.get(): Main.getGame().getGameTileMap() == null");
+		return Main.getGame().getGameTileMap();
+	}
 }

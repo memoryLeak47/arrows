@@ -69,5 +69,11 @@ public abstract class Game
 		return tileMap;
 	}
 
+	public static Game get()
+	{
+		Debug.warnIf(Main.getGame() == null, "Game.get(): returns null");
+		return Main.getGame();
+	}
+
 	public Camera getCamera() { return cam; }
 }

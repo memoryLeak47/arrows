@@ -69,4 +69,11 @@ public class Camera
 
 		return new GameSize(size.getX()/TILESIZE, size.getY()/TILESIZE);
 	}
+
+	public static Camera get()
+	{
+		Debug.warnIf(Main.getGame() == null, "Camera.get(): Main.getGame() == null");
+		Debug.warnIf(Main.getGame().getCamera() == null, "Camera.get(): Main.getGame().getCamera() == null");
+		return Main.getGame().getCamera();
+	}
 }
