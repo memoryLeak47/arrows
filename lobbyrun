@@ -1,0 +1,74 @@
+#!/bin/bash
+
+req 'xdotool'
+req 'silent'
+req 'java-run'
+
+silent java-run
+sleep 1
+xdotool keydown Ctrl;
+xdotool keydown Shift;
+xdotool keydown Alt;
+xdotool keydown Down;
+xdotool keyup Down;
+xdotool keyup Alt;
+xdotool keyup Shift;
+xdotool keyup Ctrl;
+
+sleep 1.5
+xdotool mousemove 380 320 # login
+xdotool click 1
+sleep 0.2
+xdotool mousemove 370 160 # create server-menu
+xdotool click 1
+sleep 0.2
+xdotool mousemove 350 400 # create server
+xdotool click 1
+sleep 0.2
+xdotool mousemove 1200 310 # choose map
+xdotool click 1
+sleep 0.2
+xdotool mousemove 1200 680 # next phase
+xdotool click 1
+sleep 0.2
+xdotool mousemove 170 250 # choose avatar
+xdotool click 1
+sleep 0.2
+xdotool mousemove 262 200 # archer
+xdotool click 1
+sleep 0.2
+xdotool mousemove 313 738 # ok
+xdotool click 1
+sleep 0.2
+xdotool mousemove 1200 680 # next phase
+xdotool click 1
+sleep 0.2
+xdotool mousemove 171 278 # choose skills
+xdotool click 1
+sleep 0.2
+xdotool mousemove 262 200 # arrow
+xdotool click 1
+xdotool click 1
+xdotool click 1
+xdotool click 1
+sleep 0.2
+xdotool mousemove 313 738 # ok
+xdotool click 1
+sleep 0.2
+xdotool mousemove 1200 680 # next phase
+xdotool click 1
+sleep 0.2
+xdotool mousemove 195 249 # choose items
+xdotool click 1
+sleep 0.2
+xdotool mousemove 262 200 # health ring
+xdotool click 1
+xdotool click 1
+xdotool click 1
+sleep 0.2
+xdotool mousemove 313 738 # ok
+xdotool click 1
+sleep 0.2
+xdotool mousemove 1200 680 # next phase
+xdotool click 1
+sleep 0.2
