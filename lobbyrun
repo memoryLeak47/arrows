@@ -1,10 +1,9 @@
 #!/bin/bash
 
 req 'xdotool'
-req 'silent'
 req 'java-run'
 
-silent java-run
+java-run &
 sleep 1
 xdotool keydown Ctrl;
 xdotool keydown Shift;
