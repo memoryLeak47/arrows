@@ -3,10 +3,10 @@ package core.game;
 import java.util.LinkedList;
 
 import entity.MinimizedEntity;
-import entity.entities.bullet.ExtendedBullet;
-import entity.entities.bullet.MinimizedBullet;
-import entity.entities.mob.ExtendedMob;
-import entity.entities.cosmetic.ExtendedCosmetic;
+import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
+import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
+import entity.entities.dynamic.mob.ExtendedMob;
+import entity.entities.dynamic.spinnable.cosmetic.ExtendedCosmetic;
 import tilemap.LobbyTileMap;
 import misc.Debug;
 import misc.math.pixel.PixelPosition;

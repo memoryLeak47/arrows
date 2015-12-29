@@ -7,7 +7,7 @@ package network.game.player;
 import java.net.InetAddress;
 import java.util.LinkedList;
 
-import entity.entities.mob.ExtendedMob;
+import entity.entities.dynamic.mob.ExtendedMob;
 import graphics.Animation;
 import graphics.animations.StaticAnimation;
 import graphics.ImageFile;
