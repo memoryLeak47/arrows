@@ -59,6 +59,11 @@ public class GamePoint
 		setY(getY() * s);
 	}
 
+	public void divide(float s)
+	{
+		scale(1.f/s);
+	}
+
 	public float getX() { return x; }
 	public float getY() { return y; }
 	public String toString() { return "(" + getX() + "|" + getY() + ")"; }

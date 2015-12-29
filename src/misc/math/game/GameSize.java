@@ -1,6 +1,9 @@
 package misc.math.game;
 
+import core.Main;
 import misc.math.game.GamePoint;
+import misc.math.pixel.PixelSize;
+import misc.game.Camera;
 import graphics.ImageFile;
 import graphics.ImageID;
 
@@ -23,7 +26,6 @@ public class GameSize extends GamePoint
 
 	public GameSize(ImageID id)
 	{
-		setX(ImageFile.getImageByImageID(id).getWidth());
-		setY(ImageFile.getImageByImageID(id).getHeight());
+		this(Main.getGame().getCamera().pixelSizeToGameSize(new PixelSize(id)));
 	}
 }

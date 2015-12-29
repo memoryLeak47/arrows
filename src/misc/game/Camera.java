@@ -36,20 +36,37 @@ public class Camera
 		return new GameRect(getOffset(), new GameSize(Screen.WIDTH/TILESIZE, Screen.HEIGHT/TILESIZE));
 	}
 
-	public PixelPosition gamePositionToScreenPosition(GamePosition position)
+	public PixelPosition gamePositionToPixelPosition(GamePosition position)
 	{
-		Debug.warnIf(position == null, "Camera.gamePositionToScreenPosition(): position == null");
+		Debug.warnIf(position == null, "Camera.gamePositionToPixelPosition(): position == null");
 
 		position.subtract(getOffset());
 		position.scale(TILESIZE);
 		return new PixelPosition((int) position.getX(), (int) position.getY());
 	}
 
-	public PixelSize gameSizeToScreenSize(GameSize size)
+	public PixelSize gameSizeToPixelSize(GameSize size)
 	{
-		Debug.warnIf(size == null, "Camera.gameSizeToScreenSize(): size == null");
+		Debug.warnIf(size == null, "Camera.gameSizeToPixelSize(): size == null");
 
 		size.scale(TILESIZE);
 		return new PixelSize((int) size.getX(), (int) size.getY());
+	}
+
+	public GamePosition pixelPositionToGamePosition(PixelPosition position)
+	{
+		Debug.warnIf(position == null, "Camera.pixelPositionToGamePosition(): position == null");
+
+		GamePosition tmp = new GamePosition(position.getX(), position.getY());
+		tmp.divide(TILESIZE);
+		tmp.add(getOffset());
+		return tmp;
+	}
+
+	public GameSize pixelSizeToGameSize(PixelSize size)
+	{
+		Debug.warnIf(size == null, "Camera.pixelSizeToGameSize(): size == null");
+
+		return new GameSize(size.getX()/TILESIZE, size.getY()/TILESIZE);
 	}
 }

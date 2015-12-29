@@ -1,6 +1,7 @@
 package entity;
 
 import static core.Main.TILESIZE;
+import core.Main;
 import entity.MinimizedEntity;
 import graphics.Animation;
 import graphics.ImageFile;
@@ -8,6 +9,8 @@ import graphics.ImageID;
 import misc.Debug;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
+import misc.math.pixel.PixelSize;
+import misc.game.Camera;
 
 public abstract class Entity
 {
@@ -29,9 +32,7 @@ public abstract class Entity
 	public GameSize getSize()
 	{
 		Debug.warnIf(getImageID() == null, "Entity.getSize(): getImageID is null");
-		GameSize gs = new GameSize(getImageID());
-		gs.scale(1.0f/TILESIZE);
-		return gs;
+		return Main.getGame().getCamera().pixelSizeToGameSize(new PixelSize(getImageID()));
 	}
 
 	// Getter
