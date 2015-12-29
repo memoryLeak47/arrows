@@ -9,6 +9,7 @@ import core.game.Game;
 import entity.MinimizedEntity;
 import menu.NetworkingMenu;
 import misc.Debug;
+import misc.game.Camera;
 import network.lobby.LobbyPlayer;
 import network.Packet;
 import tilemap.LobbyTileMap;
@@ -47,8 +48,8 @@ public abstract class GameInterface extends NetworkingMenu
 	@Override public void render()
 	{
 		Debug.warn("GameInterface.render(): Hier muss noch das Bild schwarz übermalt werden");
-		Debug.test("Map-Position: " + Main.getGame().getCamera().getOffset().times(-1.f));
-		Screen.g().drawImage(getUncastedGame().getMapImage(), (int) - ((Main.getGame().getCamera().getOffset().getX() - 0.5f) * TILESIZE), (int) - ((Main.getGame().getCamera().getOffset().getY() - 0.5f) * TILESIZE), null);
+		Debug.test("Map-Position: " + Camera.get().getOffset().times(-1.f));
+		Screen.g().drawImage(getUncastedGame().getMapImage(), (int) - ((Camera.get().getOffset().getX() - 0.5f) * TILESIZE), (int) - ((Camera.get().getOffset().getY() - 0.5f) * TILESIZE), null);
 		for (MinimizedEntity entity : getUncastedGame().getMinimizedEntities())
 		{
 			entity.render();

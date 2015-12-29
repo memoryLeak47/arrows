@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.TreeMap;
 
 import static core.Main.TILESIZE;
+import core.game.Game;
 import entity.entities.tile.ExtendedTile;
 import entity.entities.tile.tiles.SpawnTeamTile;
 import graphics.ImageFile;
@@ -81,8 +82,8 @@ public class GameTileMap
 
 	public static GameTileMap get()
 	{
-		Debug.warnIf(Main.getGame() == null, "GameTileMap.get(): Main.getGame() == null");
-		Debug.warnIf(Main.getGame().getGameTileMap() == null, "GameTileMap.get(): Main.getGame().getGameTileMap() == null");
-		return Main.getGame().getGameTileMap();
+		Debug.warnIf(Game.get() == null, "GameTileMap.get(): Game.get() == null");
+		Debug.warnIf(GameTileMap.get() == null, "GameTileMap.get(): GameTileMap.get() == null");
+		return Game.get().getGameTileMap();
 	}
 }

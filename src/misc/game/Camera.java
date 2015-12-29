@@ -3,6 +3,7 @@ package misc.game;
 import static core.Main.TILESIZE;
 import core.Main;
 import core.Screen;
+import core.game.Game;
 import entity.Entity;
 import misc.math.game.GameVector;
 import misc.math.game.GamePosition;
@@ -25,7 +26,7 @@ public class Camera
 
 	public GameVector getOffset()
 	{
-		GamePlayer gp = Main.getGame().getUncastedPlayers().get(localPlayerID);
+		GamePlayer gp = Game.get().getUncastedPlayers().get(localPlayerID);
 		return gp.getPosition() // player-pos
 			.plus(gp.getSize().times(0.5f)) // player-center
 			.minus(new GamePosition(Screen.WIDTH/TILESIZE/2, Screen.HEIGHT/TILESIZE/2)); // offset
@@ -72,8 +73,8 @@ public class Camera
 
 	public static Camera get()
 	{
-		Debug.warnIf(Main.getGame() == null, "Camera.get(): Main.getGame() == null");
-		Debug.warnIf(Main.getGame().getCamera() == null, "Camera.get(): Main.getGame().getCamera() == null");
-		return Main.getGame().getCamera();
+		Debug.warnIf(Game.get() == null, "Camera.get(): Game.get() == null");
+		Debug.warnIf(Camera.get() == null, "Camera.get(): Camera.get() == null");
+		return Game.get().getCamera();
 	}
 }
