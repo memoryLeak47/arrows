@@ -3,12 +3,12 @@ package entity.entities;
 import static core.Main.DRAG;
 import entity.Entity;
 import graphics.Animation;
-import misc.math.game.GamePoint;
+import misc.math.game.GameVector;
 import misc.math.game.GamePosition;
 
 public abstract class DynamicEntity extends Entity
 {
-	private GamePoint velocity = new GamePoint();
+	private GameVector velocity = new GameVector();
 
 	public DynamicEntity(GamePosition position, Animation animation)
 	{
@@ -22,15 +22,15 @@ public abstract class DynamicEntity extends Entity
 		getVelocity().scale(DRAG);
 	}
 
-	protected void accelerate(GamePoint p)
+	protected void accelerate(GameVector p)
 	{
 		getVelocity().add(p);
 	}
 
 	protected void accelerate(float x, float y)
 	{
-		accelerate(new GamePoint(x, y));
+		accelerate(new GameVector(x, y));
 	}
 
-	public GamePoint getVelocity() { return velocity; }
+	public GameVector getVelocity() { return velocity; }
 }

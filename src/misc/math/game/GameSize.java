@@ -1,13 +1,13 @@
 package misc.math.game;
 
 import core.Main;
-import misc.math.game.GamePoint;
+import misc.math.game.GameVector;
 import misc.math.pixel.PixelSize;
 import misc.game.Camera;
 import graphics.ImageFile;
 import graphics.ImageID;
 
-public class GameSize extends GamePoint
+public class GameSize extends GameVector
 {
 	public GameSize()
 	{
@@ -19,7 +19,7 @@ public class GameSize extends GamePoint
 		super(x, y);
 	}
 
-	public GameSize(GamePoint point)
+	public GameSize(GameVector point)
 	{
 		this(point.getX(), point.getY());
 	}

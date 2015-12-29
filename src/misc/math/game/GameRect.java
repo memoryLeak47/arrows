@@ -1,7 +1,7 @@
 package misc.math.game;
 
 import misc.Debug;
-import misc.math.game.GamePoint;
+import misc.math.game.GameVector;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 
@@ -26,7 +26,7 @@ public class GameRect
 		this(new GamePosition(x, y), new GameSize(w, h));
 	}
 
-	public GameRect(GamePoint p1, GamePoint p2)
+	public GameRect(GameVector p1, GameVector p2)
 	{
 		position = new GamePosition(p1);
 		size = new GameSize(p1.minus(p2));
@@ -37,9 +37,9 @@ public class GameRect
 		this(new GamePosition(0,0), new GameSize(0,0));
 	}
 
-	public float distanceTo(GamePoint point)
+	public float distanceTo(GameVector point)
 	{
-		Debug.error("GameRect.distanceTo(GamePoint) not coded yet");
+		Debug.error("GameRect.distanceTo(GameVector) not coded yet");
 		// TODO
 		return 2;
 	}
@@ -86,9 +86,9 @@ public class GameRect
 		return (getGamePosition().equals(rect.getGamePosition()) && getGameSize().equals(rect.getGameSize()));
 	}
 
-	public void setGamePosition(GamePoint point) { position = new GamePosition(point); }
+	public void setGamePosition(GameVector point) { position = new GamePosition(point); }
 	public void setGamePosition(float x, float y) { position = new GamePosition(x, y); }
-	public void setGameSize(GamePoint point) { size = new GameSize(point); }
+	public void setGameSize(GameVector point) { size = new GameSize(point); }
 	public void setGameSize(float x, float y) { size = new GameSize(x, y); }
 	public void setLeft(float left) { getGamePosition().setX(left); }
 	public void setTop(float top) { getGamePosition().setX(top); }

@@ -1,56 +1,56 @@
 package misc.math.game;
 
-public class GamePoint
+public class GameVector
 {
 	private float x, y;
 
-	public GamePoint()
+	public GameVector()
 	{
 		this(0, 0);
 	}
 
-	public GamePoint(float x, float y)
+	public GameVector(float x, float y)
 	{
 		this.x = x;
 		this.y = y;
 	}
 
-	public GamePoint(GamePoint point)
+	public GameVector(GameVector point)
 	{
 		setX(point.getX());
 		setY(point.getY());
 	}
 
-	public boolean equals(GamePoint point)
+	public boolean equals(GameVector point)
 	{
 		return (getX() == point.getX() && getY() == point.getY());
 	}
 
-	public void add(GamePoint point)
+	public void add(GameVector point)
 	{
 		setX(getX() + point.getX());
 		setY(getY() + point.getY());
 	}
 
-	public void subtract(GamePoint point)
+	public void subtract(GameVector point)
 	{
 		setX(getX() - point.getX());
 		setY(getY() - point.getY());
 	}
 
-	public GamePoint plus(GamePoint point)
+	public GameVector plus(GameVector point)
 	{
-		return new GamePoint(getX() + point.getX(), getY() + point.getY());
+		return new GameVector(getX() + point.getX(), getY() + point.getY());
 	}
 
-	public GamePoint minus(GamePoint point)
+	public GameVector minus(GameVector point)
 	{
-		return new GamePoint(getX() - point.getX(), getY() - point.getY());
+		return new GameVector(getX() - point.getX(), getY() - point.getY());
 	}
 
-	public GamePoint times(float s)
+	public GameVector times(float s)
 	{
-		return new GamePoint(s*getX(), s*getY());
+		return new GameVector(s*getX(), s*getY());
 	}
 
 	public void addX(float a)

@@ -4,7 +4,7 @@ import static core.Main.TILESIZE;
 import core.Main;
 import core.Screen;
 import entity.Entity;
-import misc.math.game.GamePoint;
+import misc.math.game.GameVector;
 import misc.math.game.GamePosition;
 import misc.math.game.GameRect;
 import misc.math.game.GameSize;
@@ -23,7 +23,7 @@ public class Camera
 		this.localPlayerID = localPlayerID;
 	}
 
-	public GamePoint getOffset()
+	public GameVector getOffset()
 	{
 		GamePlayer gp = Main.getGame().getUncastedPlayers().get(localPlayerID);
 		return gp.getPosition() // player-pos

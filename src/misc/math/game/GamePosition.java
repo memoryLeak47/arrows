@@ -1,8 +1,8 @@
 package misc.math.game;
 
-import misc.math.game.GamePoint;
+import misc.math.game.GameVector;
 
-public class GamePosition extends GamePoint
+public class GamePosition extends GameVector
 {
 	public GamePosition()
 	{
@@ -14,7 +14,7 @@ public class GamePosition extends GamePoint
 		super(x, y);
 	}
 
-	public GamePosition(GamePoint point)
+	public GamePosition(GameVector point)
 	{
 		this(point.getX(), point.getY());
 	}
