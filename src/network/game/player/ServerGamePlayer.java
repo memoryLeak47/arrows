@@ -70,17 +70,17 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		Debug.test("ServerGamePlayer.tick()");
 		if (keyManager.isLeftPressed())
 		{
-			getPosition().addX(-0.1f);
+			accelerate(-0.1f, 0);
 		}
 		if (keyManager.isRightPressed())
 		{
-			getPosition().addX(0.1f);
+			accelerate(0.1f, 0);
 		}
 		if (keyManager.isJumpPressed())
 		{
-			getPosition().addY(-0.1f);
+			accelerate(0, -0.1f);
 		}
-		getPosition().addY(0.05f);
+		accelerate(0, 0.05f);
 	}
 
 	public void handleEvent(EventPacket eventPacket)
