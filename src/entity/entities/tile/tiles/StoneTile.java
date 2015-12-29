@@ -15,4 +15,6 @@ public class StoneTile extends ExtendedTile
 	{
 		super(position, new StaticAnimation(ImageFile.STONE_TILE.getImageID()));
 	}
+
+	@Override public boolean isObstacle() { return true; }
 }

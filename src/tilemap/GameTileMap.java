@@ -113,7 +113,8 @@ public class GameTileMap
 		for (int x = minX; x < maxX; x++)
 			for (int y = minY; y < maxY; y++)
 			{
-				colliders.add(tiles[x][y]);
+				if (tiles[x][y].isObstacle())
+					colliders.add(tiles[x][y]);
 			}
 		return colliders;
 	}

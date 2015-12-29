@@ -34,6 +34,8 @@ public abstract class ExtendedTile extends Entity
 		// needed for static rendering.
 		// should return false if tile may move or change image
 
+	public boolean isObstacle() { return false; }
+
 	@Override public MinimizedEntity toMinimizedEntity()
 	{
 		return new MinimizedTile(getImageID(), getPosition());
