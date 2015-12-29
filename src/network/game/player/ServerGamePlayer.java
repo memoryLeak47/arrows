@@ -64,6 +64,25 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		this.items = lobbyPlayer.getItems();
 	}
 
+	@Override public void tick()
+	{
+		super.tick();
+		Debug.test("ServerGamePlayer.tick()");
+		if (keyManager.isLeftPressed())
+		{
+			getPosition().addX(-0.1f);
+		}
+		if (keyManager.isRightPressed())
+		{
+			getPosition().addX(0.1f);
+		}
+		if (keyManager.isJumpPressed())
+		{
+			getPosition().addY(-0.1f);
+		}
+		getPosition().addY(0.05f);
+	}
+
 	public void handleEvent(EventPacket eventPacket)
 	{
 		Debug.warnIf(eventPacket == null, "ServerGamePlayer.handleEvent(): eventPacket == null");

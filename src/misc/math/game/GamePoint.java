@@ -53,6 +53,16 @@ public class GamePoint
 		return new GamePoint(s*getX(), s*getY());
 	}
 
+	public void addX(float a)
+	{
+		setX(getX() + a);
+	}
+
+	public void addY(float a)
+	{
+		setY(getY() + a);
+	}
+
 	public void scale(float s)
 	{
 		setX(getX() * s);

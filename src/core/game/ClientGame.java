@@ -32,6 +32,11 @@ public class ClientGame extends Game
 		}
 	}
 
+	@Override public void tick()
+	{
+		Debug.warn("ClientGame.tick(): TODO");
+	}
+
 	public void apply(GameFrameUpdatePacket updatePacket)
 	{
 		Debug.warn("ClientGame.update(): TODO"); // TODO

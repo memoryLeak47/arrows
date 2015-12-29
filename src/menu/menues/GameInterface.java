@@ -22,6 +22,19 @@ public abstract class GameInterface extends NetworkingMenu
 		setGame(game);
 	}
 
+	@Override public void tick()
+	{
+		super.tick();
+		if (getUncastedGame() != null)
+		{
+			getUncastedGame().tick();
+		}
+		else
+		{
+			Debug.warn("GameInterface.tick(): getUncastedGame() == null");
+		}
+	}
+
 	private void setGame(Game game)
 	{
 		if (game == null)

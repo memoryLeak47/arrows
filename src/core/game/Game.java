@@ -29,6 +29,8 @@ public abstract class Game
 		Main.setGame(this);
 	}
 
+	public abstract void tick();
+
 	// Getter
 
 	protected abstract int getLocalPlayerID();
