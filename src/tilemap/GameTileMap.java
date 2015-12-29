@@ -26,7 +26,7 @@ public class GameTileMap
 		{
 			for (int y = 0; y < lobbyTileMap.getInts()[0].length; y++)
 			{
-				tiles[x][y] = ExtendedTile.getByColorID(lobbyTileMap.getInts()[x][y], x, y);
+				tiles[x][y] = ExtendedTile.getByColorID(lobbyTileMap.getInts()[x][y], x+0.5f, y+0.5f);
 			}
 		}
 
@@ -49,7 +49,7 @@ public class GameTileMap
 			for (int y = 0; y < tiles[0].length; y++)
 			{
 				if (tiles[x][y] instanceof SpawnTeamTile && ((SpawnTeamTile) tiles[x][y]).getTeam() == team)
-					return new GamePosition(x, y);
+					return new GamePosition(x+0.5f, y+0.5f);
 			}
 		}
 		Debug.warn("GameTileMap.getSpawnTilePositionByTeam(): no SpawnTile found for team " + team);
