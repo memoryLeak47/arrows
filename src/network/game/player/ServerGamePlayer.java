@@ -7,6 +7,7 @@ package network.game.player;
 import java.net.InetAddress;
 import java.util.LinkedList;
 
+import entity.Entity;
 import entity.entities.dynamic.mob.ExtendedMob;
 import graphics.Animation;
 import graphics.animations.StaticAnimation;
@@ -68,7 +69,6 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	@Override public void tick()
 	{
 		super.tick();
-		Debug.test("ServerGamePlayer.tick()");
 		if (keyManager.isLeftPressed())
 		{
 			accelerate(-0.1f, 0);
@@ -82,6 +82,11 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 			accelerate(0, -0.1f);
 		}
 		accelerate(0, 0.05f);
+	}
+
+	public void onCollide(Entity e)
+	{
+		Debug.test("Ich kollidiere mit " + e.toString());
 	}
 
 	public void handleEvent(EventPacket eventPacket)
