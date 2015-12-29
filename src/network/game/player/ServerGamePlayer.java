@@ -15,11 +15,13 @@ import graphics.ImageID;
 import misc.Debug;
 import misc.game.effect.Effect;
 import misc.game.kill.KDCounter;
+import misc.game.KeyManager;
 import misc.game.PlayerStats;
 import misc.game.Team;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 import network.lobby.LobbyPlayer;
+import network.game.packets.EventPacket;
 import network.game.player.LocalClientGamePlayerFrameUpdate;
 import network.game.player.ClientGamePlayerFrameUpdate;
 import playerproperty.avatar.Avatar;
@@ -29,6 +31,7 @@ import playerproperty.item.Item;
 public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 {
 	private InetAddress ip;
+	private KeyManager keyManager = new KeyManager();
 
 	private String name;
 	private int rank;
@@ -59,7 +62,12 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		this.avatar = lobbyPlayer.getAvatar();
 		this.skills = lobbyPlayer.getSkills();
 		this.items = lobbyPlayer.getItems();
+	}
 
+	public void handleEvent(EventPacket eventPacket)
+	{
+		Debug.warnIf(eventPacket == null, "ServerGamePlayer.handleEvent(): eventPacket == null");
+		keyManager.handleEvent(eventPacket);
 	}
 
 	public LocalClientGamePlayerFrameUpdate toLocalClientGamePlayerFrameUpdate()
@@ -84,7 +92,7 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	@Override public MinimizedGamePlayer toMinimizedEntity()
 	{
-		return new MinimizedGamePlayer(getImageID(), getPosition(), "Der coolste",100); // 100 = health; "der coolste" = name
+		return new MinimizedGamePlayer(getImageID(), getPosition(), getName(), getHealth());
 	}
 
 	// getter

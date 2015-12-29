@@ -4,19 +4,21 @@ import java.util.LinkedList;
 
 import graphics.Animation;
 import graphics.ImageID;
+import misc.Debug;
 
 public class DynamicAnimation implements Animation
 {
 	private LinkedList<ImageID> imageIDs;
 	private int interval;
 
-	public void render()
+	@Override public void tick()
 	{
-		// TODO
+		Debug.warn("DynamicAnimation.tick(): TODO");
 	}
 
-	public ImageID getImageID()
+	@Override public ImageID getImageID()
 	{
+		Debug.warn("DynamicAnimation.getImageID(): TODO");
 		return null; // TODO
 	}
 }	

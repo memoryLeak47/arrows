@@ -13,12 +13,9 @@ public class StaticAnimation implements Animation
 		this.imageID = imageID;
 	}
 
-	public void render()
-	{
-		// draw imageID
-	}
+	@Override public void tick() {}
 
-	public ImageID getImageID()
+	@Override public ImageID getImageID()
 	{
 		Debug.warnIf(imageID == null, "StaticAnimation.getImageID(): returns null");
 		return imageID;

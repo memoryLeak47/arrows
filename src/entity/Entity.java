@@ -23,6 +23,13 @@ public abstract class Entity
 		this.animation = animation;
 	}
 
+	public void tick()
+	{
+		getAnimation().tick();
+	}
+
+	// Getter
+
 	public GamePosition getPosition()
 	{
 		Debug.warnIf(position == null, "Entity.getPosition(): returns null");
@@ -35,7 +42,6 @@ public abstract class Entity
 		return Main.getGame().getCamera().pixelSizeToGameSize(new PixelSize(getImageID()));
 	}
 
-	// Getter
 	public ImageID getImageID()
 	{
 		Debug.warnIf(getAnimation().getImageID() == null, "Entity.getImageID(): returns null");

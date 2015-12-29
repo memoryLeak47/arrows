@@ -2,6 +2,6 @@ package graphics;
 
 public interface Animation
 {
-	public void render();
+	public void tick();
 	public ImageID getImageID();
 }

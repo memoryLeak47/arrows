@@ -45,12 +45,31 @@ public class ServerGame extends Game
 
 	public void handleEvent(EventPacket event, int id)
 	{
-		Debug.warn("ServerGame.handleEvent(): TODO");		
+		Debug.warnIf(event == null, "ServerGame.handleEvent(): event == null");
+		Debug.warnIf(getPlayers().get(id) == null, "ServerGame.handleEvent(): no player with id; " + id);
+		getPlayers().get(id).handleEvent(event);
 	}
 
 	public void tick()
 	{
-		Debug.warn("ServerGame.tick(): TODO");		
+		// tick Entities
+		// GameTileMap wird noch nicht getickt TODO
+		for (ExtendedBullet bullet : getBullets())
+		{
+			bullet.tick();
+		}
+		for (ExtendedMob mob : getMobs())
+		{
+			mob.tick();
+		}
+		for (ServerGamePlayer player : getPlayers())
+		{
+			player.tick();
+		}
+		for (ExtendedCosmetic cosmetic : getCosmetics())
+		{
+			cosmetic.tick();
+		}
 	}
 
 	// Getter
