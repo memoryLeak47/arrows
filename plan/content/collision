@@ -1,0 +1,25 @@
+# collision
+
+
+a collides with b --> a.collideWith(b) is called
+
+      b || Tile | Player | Cosmetic | Bullet
+a       ||      |        |          |
+========++======+========+==========+=======
+        ||      |        |          |
+Tile    ||      |        |          |
+________++______+________+__________+_______
+        ||      |        |          |
+Player  ||   /  |        |          |
+        || \/   |        |          |
+________++______+________+__________+_______
+        ||      |        |          |
+Cosmetic||   /  |        |          |
+        || \/   |        |          |
+________++______+________+__________+_______
+        ||      |        |          |
+Bullet  ||   /  |    /   |          | 
+        || \/   |  \/    |          | 
+
+Dies ist einer Repräsentation der getCollidableEntities()-funktion dieser Klassen.
+Diese kann überschreiben werden.

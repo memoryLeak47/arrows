@@ -1,3 +1,5 @@
+# tilemaps
+
 Tile:
 	isStatic()
 	isCollidable()
