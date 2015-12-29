@@ -74,6 +74,11 @@ public class GameVector
 		scale(1.f/s);
 	}
 
+	public float getMagnitude()
+	{
+		return (float)Math.hypot(getX(), getY());
+	}
+
 	public float getX() { return x; }
 	public float getY() { return y; }
 	public String toString() { return "(" + getX() + "|" + getY() + ")"; }

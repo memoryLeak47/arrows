@@ -3,9 +3,11 @@ package tilemap;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
 import java.util.TreeMap;
+import java.util.LinkedList;
 
 import static core.Main.TILESIZE;
 import core.game.Game;
+import entity.Entity;
 import entity.entities.tile.ExtendedTile;
 import entity.entities.tile.tiles.SpawnTeamTile;
 import graphics.ImageFile;
@@ -72,6 +74,23 @@ public class GameTileMap
 			}
 		}
 
+	}
+
+	public LinkedList<ExtendedTile> getPossibleColliderTiles(Entity e)
+	{
+		LinkedList<ExtendedTile> colliders = new LinkedList<ExtendedTile>();
+		int minX, minY, maxX, maxY;
+		float r = e.getSize().getMagnitude() * 0.5f;
+		minX = (int) (e.getPosition().getX() - r);
+		maxX = (int) (e.getPosition().getX() + r);
+		minY = (int) (e.getPosition().getY() - r);
+		maxY = (int) (e.getPosition().getY() + r);
+		for (int x = minX; x < maxX; x++)
+			for (int y = minY; y < maxY; y++)
+			{
+				colliders.add(tiles[x][y]);
+			}
+		return colliders;
 	}
 
 	public BufferedImage getStaticImage()

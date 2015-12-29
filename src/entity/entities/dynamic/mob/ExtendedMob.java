@@ -11,4 +11,7 @@ public abstract class ExtendedMob extends DynamicEntity
 		super(position, animation);
 	}
 
+	@Override public boolean isCollidingBullets() { return false; }
+	@Override public boolean isCollidingPlayers() { return false; }
+	@Override public boolean isCollidingTiles() { return false; }
 }

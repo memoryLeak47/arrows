@@ -1,10 +1,18 @@
 package entity.entities;
 
+import java.util.LinkedList;
+
 import static core.Main.DRAG;
+import core.game.Game;
+import core.game.ServerGame;
 import entity.Entity;
+import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
+import entity.entities.tile.ExtendedTile;
 import graphics.Animation;
 import misc.math.game.GameVector;
 import misc.math.game.GamePosition;
+import network.game.player.ServerGamePlayer;
+import tilemap.GameTileMap;
 
 public abstract class DynamicEntity extends Entity
 {
@@ -45,14 +53,15 @@ public abstract class DynamicEntity extends Entity
 
 		if (isCollidingTiles())
 		{
-			for (ExtendedTile tile : GameTileMap.getPossibleColliders())
+			/*
+			for (ExtendedTile tile : GameTileMap.get().getPossibleColliderTiles(this))
 			{
 				possibleColliders.add(tile);
-			}
+			}*/
 		}
 		if (isCollidingPlayers())
 		{
-			for (ServerGamePlayer player : Game.get().getPlayers())
+			for (ServerGamePlayer player : ((ServerGame)Game.get()).getPlayers())
 			{
 				if (this != player)
 				{
@@ -62,7 +71,7 @@ public abstract class DynamicEntity extends Entity
 		}
 		if (isCollidingBullets())
 		{
-			for (ExtendedBullet bullet : Game.get().getBullets())
+			for (ExtendedBullet bullet : ((ServerGame)Game.get()).getBullets())
 			{
 				if (this != bullet)
 				{
