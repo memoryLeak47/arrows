@@ -54,7 +54,6 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	{
 		// for testing:
 		super(position, new StaticAnimation(ImageFile.PLAYER.getImageID())); // TODO do real stuff
-		Debug.test("PLAYERPOSITION: " + position);
 		this.ip = lobbyPlayer.getIP();
 		
 		this.name = lobbyPlayer.getName();
@@ -86,7 +85,6 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	public void onCollide(Entity e)
 	{
-		Debug.test("Ich kollidiere mit " + e.toString());
 	}
 
 	public void handleEvent(EventPacket eventPacket)

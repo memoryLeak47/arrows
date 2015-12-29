@@ -47,7 +47,6 @@ public abstract class DynamicEntity extends Entity
 
 	private void checkCollision()
 	{
-		Debug.test("checkCollision");
 		for (Entity entity : getPossibleColliders())
 		{
 			if (isColliding(entity))
@@ -59,7 +58,6 @@ public abstract class DynamicEntity extends Entity
 
 	protected boolean isColliding(Entity entity)
 	{
-		Debug.test("isColliding()");
 		if (entity instanceof SpinnableEntity)
 		{
 			Debug.warn("DynamicEntity.isColliding(): Collision with SpinnableEntity TODO");
