@@ -101,8 +101,8 @@ public class GameTileMap
 
 	public static GameTileMap get()
 	{
-		Debug.warnIf(Game.get() == null, "GameTileMap.get(): Game.get() == null");
-		Debug.warnIf(GameTileMap.get() == null, "GameTileMap.get(): GameTileMap.get() == null");
+		Debug.warnIf(Game.get() == null, "GameTileMap.get(): game == null");
+		Debug.warnIf(Game.get().getGameTileMap() == null, "GameTileMap.get(): gameTileMap == null");
 		return Game.get().getGameTileMap();
 	}
 }

@@ -71,7 +71,7 @@ public abstract class Game
 
 	public static Game get()
 	{
-		Debug.warnIf(Game.get() == null, "Game.get(): returns null");
+		Debug.warnIf(Main.getGame() == null, "Game.get(): returns null");
 		return Main.getGame();
 	}
 

@@ -73,8 +73,8 @@ public class Camera
 
 	public static Camera get()
 	{
-		Debug.warnIf(Game.get() == null, "Camera.get(): Game.get() == null");
-		Debug.warnIf(Camera.get() == null, "Camera.get(): Camera.get() == null");
+		Debug.warnIf(Game.get() == null, "Camera.get(): game == null");
+		Debug.warnIf(Game.get().getCamera() == null, "Camera.get(): camera == null");
 		return Game.get().getCamera();
 	}
 }
