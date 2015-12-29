@@ -26,6 +26,6 @@ public class GameSize extends GameVector
 
 	public GameSize(ImageID id)
 	{
-		this(Main.getGame().getCamera().pixelSizeToGameSize(new PixelSize(id)));
+		this(Camera.get().pixelSizeToGameSize(new PixelSize(id)));
 	}
 }

@@ -107,7 +107,7 @@ public class Main
 
 	public static Game getGame()
 	{
-		Debug.warnIf(game == null, "Main.getGame(): returns null");
+		Debug.warnIf(game == null, "Game.get(): returns null");
 		return game;
 	}
 }

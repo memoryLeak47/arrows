@@ -39,7 +39,7 @@ public abstract class Entity
 	public GameSize getSize()
 	{
 		Debug.warnIf(getImageID() == null, "Entity.getSize(): getImageID is null");
-		return Main.getGame().getCamera().pixelSizeToGameSize(new PixelSize(getImageID()));
+		return Camera.get().pixelSizeToGameSize(new PixelSize(getImageID()));
 	}
 
 	public ImageID getImageID()

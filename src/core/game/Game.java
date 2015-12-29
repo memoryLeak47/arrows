@@ -63,7 +63,7 @@ public abstract class Game
 		return getGameTileMap().getStaticImage();
 	}
 
-	protected GameTileMap getGameTileMap()
+	public GameTileMap getGameTileMap()
 	{
 		Debug.warnIf(tileMap == null, "Game.getGameTileMap(): returns null");
 		return tileMap;
@@ -71,7 +71,7 @@ public abstract class Game
 
 	public static Game get()
 	{
-		Debug.warnIf(Main.getGame() == null, "Game.get(): returns null");
+		Debug.warnIf(Game.get() == null, "Game.get(): returns null");
 		return Main.getGame();
 	}
 
