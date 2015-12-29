@@ -15,6 +15,9 @@ xdotool keyup Shift;
 xdotool keyup Ctrl;
 
 sleep 1.1
+xdotool mousemove 54 13 # not-fullscreen
+xdotool click 1
+sleep 0.2
 xdotool mousemove 380 320 # login
 xdotool click 1
 sleep 0.2
