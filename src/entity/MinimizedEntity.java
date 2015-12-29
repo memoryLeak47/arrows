@@ -47,7 +47,6 @@ public abstract class MinimizedEntity
 			int x, y;
 			x = (int) (TILESIZE*(getPosition().getX() - getSize().getX()/2 - getGame().getCamera().getOffset().getX()));
 			y = (int) (TILESIZE*(getPosition().getY() - getSize().getY()/2 - getGame().getCamera().getOffset().getY())); 
-			Debug.test("RenderPosition: (" + x/TILESIZE + "|" + y/TILESIZE + "), Offset: " + getGame().getCamera().getOffset() + ", Position: " + getPosition() + ", Size: " + getSize());
 			Screen.g().drawImage(ImageFile.getImageByImageID(getImageID()), x, y, null);
 		}
 	}

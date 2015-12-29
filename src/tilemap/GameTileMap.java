@@ -85,6 +85,31 @@ public class GameTileMap
 		maxX = (int) (e.getPosition().getX() + r);
 		minY = (int) (e.getPosition().getY() - r);
 		maxY = (int) (e.getPosition().getY() + r);
+
+		if (minX < 0)
+		{
+			minX = 0;
+			Debug.warn("GameTileMap.getPossibleColliderTiles(): Entity " + e + " seems to be out of Map");
+		}
+
+		if (minY < 0)
+		{
+			minY = 0;
+			Debug.warn("GameTileMap.getPossibleColliderTiles(): Entity " + e + " seems to be out of Map");
+		}
+
+		if (maxX > tiles.length)
+		{
+			maxX = tiles.length;
+			Debug.warn("GameTileMap.getPossibleColliderTiles(): Entity " + e + " seems to be out of Map");
+		}
+
+		if (maxY > tiles[0].length)
+		{
+			maxY = tiles[0].length;
+			Debug.warn("GameTileMap.getPossibleColliderTiles(): Entity " + e + " seems to be out of Map");
+		}
+
 		for (int x = minX; x < maxX; x++)
 			for (int y = minY; y < maxY; y++)
 			{

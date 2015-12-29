@@ -54,5 +54,10 @@ public abstract class Entity
 		return animation;
 	}
 
+	public float getLeft() { return getPosition().getX() - getSize().getX() * 0.5f; }
+	public float getRight() { return getPosition().getX() + getSize().getX() * 0.5f; }
+	public float getTop() { return getPosition().getY() - getSize().getY() * 0.5f; }
+	public float getBot() { return getPosition().getY() + getSize().getY() * 0.5f; }
+
 	public abstract MinimizedEntity toMinimizedEntity();
 }
