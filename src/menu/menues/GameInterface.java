@@ -47,8 +47,6 @@ public abstract class GameInterface extends NetworkingMenu
 
 	@Override public void render()
 	{
-		Debug.warn("GameInterface.render(): Hier muss noch das Bild schwarz übermalt werden");
-		Debug.test("Map-Position: " + Camera.get().getOffset().times(-1.f));
 		Screen.g().drawImage(getUncastedGame().getMapImage(), (int) - ((Camera.get().getOffset().getX() - 0.5f) * TILESIZE), (int) - ((Camera.get().getOffset().getY() - 0.5f) * TILESIZE), null);
 		for (MinimizedEntity entity : getUncastedGame().getMinimizedEntities())
 		{
