@@ -1,4 +1,4 @@
-package entity.entities.mob;
+package entity.entities.dynamic.mob;
 
 import entity.MinimizedEntity;
 import graphics.ImageID;

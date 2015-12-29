@@ -1,12 +1,12 @@
-package entity.entities.bullet;
+package entity.entities.dynamic.spinnable.bullet;
 
-import entity.Entity;
+import entity.entities.dynamic.SpinnableEntity;
 import graphics.Animation;
 import misc.Debug;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 
-public abstract class ExtendedBullet extends Entity
+public abstract class ExtendedBullet extends SpinnableEntity
 {
 	public ExtendedBullet(GamePosition position, Animation animation)
 	{

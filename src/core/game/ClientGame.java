@@ -3,7 +3,7 @@ package core.game;
 import java.util.LinkedList;
 
 import entity.MinimizedEntity;
-import entity.entities.bullet.MinimizedBullet;
+import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
 import network.game.player.ClientGamePlayer;
 import network.game.player.GamePlayer;
 import network.game.player.LocalClientGamePlayerFrameUpdate;

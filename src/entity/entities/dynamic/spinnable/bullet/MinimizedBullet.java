@@ -1,15 +1,15 @@
-package entity.entities.cosmetic;
+package entity.entities.dynamic.spinnable.bullet;
 
 import entity.MinimizedEntity;
 import graphics.ImageID;
 import misc.Debug;
 import misc.math.game.GamePosition;
 
-public class MinimizedCosmetic extends MinimizedEntity
+public class MinimizedBullet extends MinimizedEntity
 {
 	private float rotation;
 
-	public MinimizedCosmetic(ImageID imageID, GamePosition position, float rotation) // Für rotation wird wahrscheinlich noch ein eigener Datentyp eingeführt werden
+	public MinimizedBullet(ImageID imageID, GamePosition position, float rotation /*Effects*/)
 	{
 		super(imageID, position);
 		this.rotation = rotation;
