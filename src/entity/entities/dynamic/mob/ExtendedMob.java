@@ -1,6 +1,7 @@
 package entity.entities.dynamic.mob;
 
 import static core.Main.GRAVITY;
+import static core.Main.STANDART_JUMPPOWER;
 import entity.Entity;
 import entity.entities.DynamicEntity;
 import graphics.Animation;
@@ -32,7 +33,7 @@ public abstract class ExtendedMob extends DynamicEntity
 		}
 	}
 
-	public float getJumpPower() { return 0.6f; }
+	public float getJumpPower() { return STANDART_JUMPPOWER; }
 
 	protected final void jump()
 	{

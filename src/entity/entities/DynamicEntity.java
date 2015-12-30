@@ -2,7 +2,8 @@ package entity.entities;
 
 import java.util.LinkedList;
 
-import static core.Main.DRAG;
+import static core.Main.DRAG_X;
+import static core.Main.DRAG_Y;
 import core.game.Game;
 import core.game.ServerGame;
 import entity.Entity;
@@ -34,7 +35,8 @@ public abstract class DynamicEntity extends Entity
 		super.tick();
 		oldVelocity = new GameVector(velocity);
 		getPosition().add(getVelocity());
-		getVelocity().scale(DRAG);
+		getVelocity().scaleX(DRAG_X);
+		getVelocity().scaleY(DRAG_Y);
 		touchesBot = touchesTop = touchesLeft = touchesRight = false;
 		checkCollision();
 		// if (oldVelocity.minus(getVelocity()).getMagnitude() > DAMAGE_BORDER) { onDamage(...); }

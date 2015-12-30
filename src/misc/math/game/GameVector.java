@@ -81,6 +81,16 @@ public class GameVector
 		setY(getY() * s);
 	}
 
+	public void scaleX(float s)
+	{
+		setX(getX() * s);
+	}
+
+	public void scaleY(float s)
+	{
+		setY(getY() * s);
+	}
+
 	public void divide(float s)
 	{
 		scale(1.f/s);

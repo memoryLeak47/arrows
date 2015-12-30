@@ -17,11 +17,12 @@ import network.NetworkDevice;
 public class Main
 {
 	public static final int FRAME_INTERVAL = 40; // intervall in dem tick() und render() ausgeführt werden
+
 	public static final int TILESIZE = 50;
-	public static final int INGAME_SCREENSIZE_X = 10;
-	public static final int INGAME_SCREENSIZE_Y = 10;
-	public static final float DRAG = 0.6f;
-	public static final float GRAVITY = 0.1f;
+	public static final float DRAG_X = 0.75f;
+	public static final float DRAG_Y = 0.95f;
+	public static final float GRAVITY = 0.04f;
+	public static final float STANDART_JUMPPOWER = 0.7f;
 
 	private static Game game;
 	private static MenuList menuList;
