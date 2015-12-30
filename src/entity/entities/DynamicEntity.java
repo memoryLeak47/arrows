@@ -11,6 +11,7 @@ import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
 import entity.entities.tile.ExtendedTile;
 import graphics.Animation;
 import misc.Debug;
+import misc.math.game.CollisionDetector;
 import misc.math.game.GameVector;
 import misc.math.game.GamePosition;
 import network.game.player.ServerGamePlayer;
@@ -33,7 +34,13 @@ public abstract class DynamicEntity extends Entity
 		getVelocity().scale(DRAG);
 	}
 
-	protected void onCollide(Entity e) {}
+	// applyTileCollision makes you not glitch into the Tiles; it's how a player collides with Tiles
+	protected void applyTileCollision(ExtendedTile t)
+	{
+		
+	}
+
+	protected void onCollide(Entity e) { }
 
 	protected void accelerate(GameVector p)
 	{
@@ -58,22 +65,7 @@ public abstract class DynamicEntity extends Entity
 
 	protected boolean isColliding(Entity entity)
 	{
-		if (entity instanceof SpinnableEntity)
-		{
-			Debug.warn("DynamicEntity.isColliding(): Collision with SpinnableEntity TODO");
-			return false;
-		}
-		else
-		{
-			if ((this.getRight() > entity.getLeft()) && (entity.getRight() > this.getLeft()))
-			{
-				if ((this.getTop() < entity.getBot()) && (this.getBot() > entity.getTop()))
-				{
-					return true;
-				}
-			}
-		}
-		return false;
+		return CollisionDetector.areCollidingDynamic(this, entity);
 	}
 
 	// abstract

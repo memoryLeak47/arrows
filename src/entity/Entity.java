@@ -30,6 +30,8 @@ public abstract class Entity
 
 	// Getter
 
+	public boolean isCircular() { return false; }
+
 	public GamePosition getPosition()
 	{
 		Debug.warnIf(position == null, "Entity.getPosition(): returns null");
