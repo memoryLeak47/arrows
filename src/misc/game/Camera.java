@@ -28,7 +28,6 @@ public class Camera
 	{
 		GamePlayer gp = Game.get().getUncastedPlayers().get(localPlayerID);
 		return gp.getPosition() // player-pos
-			.plus(gp.getSize().times(0.5f)) // player-center
 			.minus(new GamePosition(Screen.WIDTH/TILESIZE/2, Screen.HEIGHT/TILESIZE/2)); // offset
 	}
 
