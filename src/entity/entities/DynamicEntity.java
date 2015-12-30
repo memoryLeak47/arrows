@@ -45,34 +45,64 @@ public abstract class DynamicEntity extends Entity
 	// applyTileCollision makes you not glitch into the Tiles; it's how a player collides with Tiles
 	protected final void applyTileCollision(ExtendedTile t)
 	{
+		boolean bottouch = false, lefttouch = false, righttouch = false, toptouch = false;
+
 		// Oben/Unten
 		if (CollisionDetector.collideTileBot(this, t))
 		{
+			bottouch = true;
 			touchesBot = true;
-			getPosition().addY(t.getTop() - getBot());
-			getVelocity().setY(0);
+			//getPosition().addY(t.getTop() - getBot());
+			//getVelocity().setY(0);
 		}
 
 		if (CollisionDetector.collideTileTop(this, t))
 		{
+			toptouch = true;
 			touchesTop = true;
-			getPosition().addY(t.getBot() - getTop());
-			getVelocity().setY(0);
+			//getPosition().addY(t.getBot() - getTop());
+			//getVelocity().setY(0);
 		}
 
 		// Rechts/Links
 		if (CollisionDetector.collideTileRight(this, t))
 		{
+			righttouch = true;
 			touchesRight = true;
-			getPosition().addX(t.getLeft() - getRight());
-			getVelocity().setX(0);
+			//getPosition().addX(t.getLeft() - getRight());
+			//getVelocity().setX(0);
 		}
 
 		if (CollisionDetector.collideTileLeft(this, t))
 		{
+			lefttouch = true;
 			touchesLeft = true;
-			getPosition().addX(t.getRight() - getLeft());
-			getVelocity().setX(0);
+			//getPosition().addX(t.getRight() - getLeft());
+			//getVelocity().setX(0);
+		}
+
+		if (toptouch)
+		{
+			getPosition().addY(t.getBot() - getTop());
+			getVelocity().setY(0);
+		}
+		else if (bottouch)
+		{
+			getPosition().addY(t.getTop() - getBot());
+			getVelocity().setY(0);
+		}
+		else
+		{
+			if (lefttouch)
+			{
+				getPosition().addX(t.getRight() - getLeft());
+				getVelocity().setX(0);
+			}
+			else if (righttouch)
+			{
+				getPosition().addX(t.getLeft() - getRight());
+				getVelocity().setX(0);
+			}
 		}
 	}
 
