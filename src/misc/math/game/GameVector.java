@@ -21,6 +21,18 @@ public class GameVector
 		setY(point.getY());
 	}
 
+	public void set(GameVector point)
+	{
+		setX(point.getX());
+		setY(point.getY());
+	}
+
+	public void set(float x, float y)
+	{
+		setX(x);
+		setY(y);
+	}
+
 	public boolean equals(GameVector point)
 	{
 		return (getX() == point.getX() && getY() == point.getY());

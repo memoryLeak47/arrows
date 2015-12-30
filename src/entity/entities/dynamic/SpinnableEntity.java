@@ -16,10 +16,6 @@ public abstract class SpinnableEntity extends DynamicEntity
 		super(position, animation);
 	}
 
-	@Override protected void applyTileCollision(ExtendedTile t)
-	{
-		// TODO
-	}
 	@Override protected final boolean isColliding(Entity entity)
 	{
 		return CollisionDetector.areCollidingSpinnable(this, entity);

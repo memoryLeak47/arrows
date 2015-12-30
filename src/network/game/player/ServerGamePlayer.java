@@ -68,7 +68,6 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	@Override public void tick()
 	{
 		super.tick();
-		Debug.test("playerpos: " + getPosition());
 		if (keyManager.isLeftPressed())
 		{
 			accelerate(-0.1f, 0);

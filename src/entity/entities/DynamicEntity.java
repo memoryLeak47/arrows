@@ -20,6 +20,7 @@ import tilemap.GameTileMap;
 public abstract class DynamicEntity extends Entity
 {
 	private GameVector velocity = new GameVector();
+	private GameVector oldVelocity = new GameVector();
 
 	public DynamicEntity(GamePosition position, Animation animation)
 	{
@@ -29,15 +30,39 @@ public abstract class DynamicEntity extends Entity
 	@Override public void tick()
 	{
 		super.tick();
-		checkCollision();
+		oldVelocity = new GameVector(velocity);
 		getPosition().add(getVelocity());
 		getVelocity().scale(DRAG);
+		checkCollision();
+		// if (oldVelocity.minus(getVelocity()).getMagnitude() > DAMAGE_BORDER) { onDamage(...); }
 	}
 
 	// applyTileCollision makes you not glitch into the Tiles; it's how a player collides with Tiles
-	protected void applyTileCollision(ExtendedTile t)
+	protected final void applyTileCollision(ExtendedTile t)
 	{
+		// Oben/Unten
+		if (CollisionDetector.collideTileBot(this, t))
+		{
+			getPosition().addY(t.getTop() - getBot());
+			getVelocity().setY(0);
+		}
+		else if (CollisionDetector.collideTileTop(this, t))
+		{
+			getPosition().addY(t.getBot() - getTop());
+			getVelocity().setY(0);
+		}
 
+		// Rechts/Links
+		if (CollisionDetector.collideTileRight(this, t))
+		{
+			getPosition().addX(t.getLeft() - getRight());
+			getVelocity().setX(0);
+		}
+		else if (CollisionDetector.collideTileLeft(this, t))
+		{
+			getPosition().addX(t.getRight() - getLeft());
+			getVelocity().setX(0);
+		}
 	}
 
 	protected void onCollide(Entity e) { }
@@ -111,5 +136,6 @@ public abstract class DynamicEntity extends Entity
 	}
 
 	public GameVector getVelocity() { return velocity; }
+	public GameVector getOldVelocity() { return oldVelocity; }
 
 }
