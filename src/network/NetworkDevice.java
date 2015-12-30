@@ -24,6 +24,8 @@ public class NetworkDevice
 
 	public void send(Packet packet, InetAddress ip) // send packet to ip
 	{
+		Debug.warnIf(packet == null, "NetworkDevice.send(): packet is null");
+		Debug.warnIf(ip == null, "NetworkDevice.send(): ip is null");
 		byte[] data = objectToByteArray(packet); // serialize packet -> data
 		DatagramPacket datagramPacket = new DatagramPacket(data, data.length, ip, PORT); // create datagramPacket
 		try

@@ -256,7 +256,7 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 		super.nextPhase();
 		if (getPhase() == GAME_PHASE)
 		{
-			Main.getMenues().add(new ClientGameInterface(getLobbyTileMap(), getPlayers(), playerToID(getLocalPlayer(), getPlayers())));
+			Main.getMenues().add(new ClientGameInterface(getLobbyTileMap(), getPlayers(), playerToID(getLocalPlayer(), getPlayers()), serverIP));
 		}
 	}
 

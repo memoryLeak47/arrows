@@ -15,10 +15,11 @@ public class ClientGameInterface extends GameInterface
 {
 	private InetAddress serverIP;
 
-	public ClientGameInterface(LobbyTileMap map, LinkedList<LobbyPlayer> lobbyPlayers, int localPlayerID)
+	public ClientGameInterface(LobbyTileMap map, LinkedList<LobbyPlayer> lobbyPlayers, int localPlayerID, InetAddress serverIP)
 	{
 		super(new ClientGame(map, lobbyPlayers, localPlayerID));
-		serverIP = lobbyPlayers.get(0).getIP();
+		Debug.warnIf(serverIP == null, "ClientGameInterface.<init>(): serverIP is null");
+		this.serverIP = serverIP;
 	}
 
 	private ClientGame getGame() { return (ClientGame) getUncastedGame(); }
