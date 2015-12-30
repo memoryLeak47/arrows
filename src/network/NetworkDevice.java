@@ -29,20 +29,28 @@ public class NetworkDevice
 		try
 		{
 			socket.send(datagramPacket); // send
-		} catch (Exception e) { Debug.error("Failed to send data"); }
-		Debug.note("sent " + packet, Debug.Tags.NETWORK);
+		} catch (Exception e)
+		{
+			Debug.error("NetworkDevice.send(): Failed to send " + datagramPacket + " to IP " + ip.getHostName());
+		}
+
+		Debug.note("sent " + packet + " to IP " + ip.getHostName(), Debug.Tags.NETWORK);
 	}
 
 	public void receive() // called by Main.run() permanently, receives packets and gives them to menu.handlePacket(...)
 	{
 		byte[] data = new byte[Packet.MAX_SIZE]; // create byte[] data
 		DatagramPacket datagramPacket = new DatagramPacket(data, data.length); // create DatagramPacket
+		
 		try
 		{
 			socket.receive(datagramPacket); // receive packet
-		} catch (Exception e) { Debug.error("Failed to receive data"); }
+		} catch (Exception e)
+		{
+			Debug.error("NetworkDevice.receive(): Failed to receive packet from IP " + datagramPacket.getAddress().getHostName());
+		}
 
-		Debug.note("rcvd " + (Packet) byteArrayToObject(data), Debug.Tags.NETWORK);
+		Debug.note("rcvd " + (Packet) byteArrayToObject(data) + " from IP " + datagramPacket.getAddress().getHostName(), Debug.Tags.NETWORK);
 
 		if (menu != null) // if there is a target menu
 		{
