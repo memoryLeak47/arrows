@@ -52,16 +52,12 @@ public abstract class DynamicEntity extends Entity
 		{
 			bottouch = true;
 			touchesBot = true;
-			//getPosition().addY(t.getTop() - getBot());
-			//getVelocity().setY(0);
 		}
 
 		if (CollisionDetector.collideTileTop(this, t))
 		{
 			toptouch = true;
 			touchesTop = true;
-			//getPosition().addY(t.getBot() - getTop());
-			//getVelocity().setY(0);
 		}
 
 		// Rechts/Links
@@ -69,40 +65,110 @@ public abstract class DynamicEntity extends Entity
 		{
 			righttouch = true;
 			touchesRight = true;
-			//getPosition().addX(t.getLeft() - getRight());
-			//getVelocity().setX(0);
 		}
 
 		if (CollisionDetector.collideTileLeft(this, t))
 		{
 			lefttouch = true;
 			touchesLeft = true;
-			//getPosition().addX(t.getRight() - getLeft());
-			//getVelocity().setX(0);
 		}
 
-		if (toptouch)
+		float xd, yd;
+		xd = Math.abs(t.getPosition().getX() - this.getPosition().getX());
+		yd = Math.abs(t.getPosition().getY() - this.getBot());
+
+		if (bottouch)
 		{
-			getPosition().addY(t.getBot() - getTop());
-			getVelocity().setY(0);
-		}
-		else if (bottouch)
-		{
-			getPosition().addY(t.getTop() - getBot());
-			getVelocity().setY(0);
-		}
-		else
-		{
-			if (lefttouch)
+			if (righttouch)
 			{
-				getPosition().addX(t.getRight() - getLeft());
-				getVelocity().setX(0);
+				if (xd > yd)
+				{
+					// righttouch
+					getPosition().addX(t.getLeft() - getRight());
+					getVelocity().setX(0);
+					touchesBot = false;
+				}
+				else
+				{
+					// bottouch
+					getPosition().addY(t.getTop() - getBot());
+					getVelocity().setY(0);
+				}
 			}
-			else if (righttouch)
+			else if (lefttouch)
 			{
-				getPosition().addX(t.getLeft() - getRight());
-				getVelocity().setX(0);
+				if (xd > yd)
+				{
+					// lefttouch
+					getPosition().addX(t.getRight() - getLeft());
+					getVelocity().setX(0);
+					touchesBot = false;
+				}
+				else
+				{
+					// bottouch
+					getPosition().addY(t.getTop() - getBot());
+					getVelocity().setY(0);
+				}
 			}
+			else
+			{
+				// bottouch
+				getPosition().addY(t.getTop() - getBot());
+				getVelocity().setY(0);
+			}
+		}
+		else if (toptouch)
+		{
+			yd = Math.abs(t.getPosition().getY() - this.getTop());
+			if (righttouch)
+			{
+				if (xd > yd)
+				{
+					// righttouch
+					getPosition().addX(t.getLeft() - getRight());
+					getVelocity().setX(0);
+				}
+				else
+				{
+					// toptouch
+					getPosition().addY(t.getBot() - getTop());
+					getVelocity().setY(0);
+				}
+			}
+			else if (lefttouch)
+			{
+				if (xd > yd)
+				{
+					// lefttouch
+					getPosition().addX(t.getRight() - getLeft());
+					getVelocity().setX(0);
+				}
+				else
+				{
+					// toptouch
+					getPosition().addY(t.getBot() - getTop());
+					getVelocity().setY(0);
+				}
+			}
+			else
+			{
+				// toptouch
+				getPosition().addY(t.getBot() - getTop());
+				getVelocity().setY(0);
+			}
+		}
+		else if (righttouch)
+		{
+			// righttouch
+			getPosition().addX(t.getLeft() - getRight());
+			getVelocity().setX(0);
+		}
+		else if (lefttouch)
+		{
+			// lefttouch
+			getPosition().addX(t.getRight() - getLeft());
+			getVelocity().setX(0);
 		}
 	}
 
