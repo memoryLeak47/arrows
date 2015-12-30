@@ -384,6 +384,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		for (int i = 0; i < getUpdatedPlayers().size(); i++)
 		{
 			getPlayers().get(i).assign(getUpdatedPlayers().get(i));
+			Debug.warnIf(getPlayers().get(i).getIP() == null, "ServerLobbyMenu.updatePlayers(): getPlayers().get(" + i + ").getIP() == null");
 		}
 
 		Debug.note("ServerLobbyMenu.updatePlayers(): now getPlayers().size() = " + getPlayers().size());
