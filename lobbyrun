@@ -3,8 +3,10 @@
 req 'xdotool'
 req 'java-run'
 
+sleepiness=0.1
+
 java-run &
-sleep 1
+sleep 0.7
 xdotool keydown Ctrl;
 xdotool keydown Shift;
 xdotool keydown Alt;
@@ -14,63 +16,63 @@ xdotool keyup Alt;
 xdotool keyup Shift;
 xdotool keyup Ctrl;
 
-sleep 1.1
-xdotool mousemove 54 13 # not-fullscreen
+xdotool mousemove 54 33 # fullscreen
+sleep 0.3
 xdotool click 1
-sleep 0.2
-xdotool mousemove 380 320 # login
+sleep $sleepiness
+xdotool mousemove 380 300 # login
 xdotool click 1
-sleep 0.2
-xdotool mousemove 370 160 # create server-menu
+sleep $sleepiness
+xdotool mousemove 370 140 # create server-menu
 xdotool click 1
-sleep 0.2
-xdotool mousemove 350 400 # create server
+sleep $sleepiness
+xdotool mousemove 350 380 # create server
 xdotool click 1
-sleep 0.2
-xdotool mousemove 1200 310 # choose map
+sleep $sleepiness
+xdotool mousemove 1200 290 # choose map
 xdotool click 1
-sleep 0.2
-xdotool mousemove 1200 680 # next phase
+sleep $sleepiness
+xdotool mousemove 1200 660 # next phase
 xdotool click 1
-sleep 0.2
-xdotool mousemove 170 250 # choose avatar
+sleep $sleepiness
+xdotool mousemove 170 230 # choose avatar
 xdotool click 1
-sleep 0.2
-xdotool mousemove 262 200 # archer
+sleep $sleepiness
+xdotool mousemove 262 180 # archer
 xdotool click 1
-sleep 0.2
-xdotool mousemove 313 738 # ok
+sleep $sleepiness
+xdotool mousemove 313 718 # ok
 xdotool click 1
-sleep 0.2
-xdotool mousemove 1200 680 # next phase
+sleep $sleepiness
+xdotool mousemove 1200 660 # next phase
 xdotool click 1
-sleep 0.2
-xdotool mousemove 171 278 # choose skills
+sleep $sleepiness
+xdotool mousemove 171 258 # choose skills
 xdotool click 1
-sleep 0.2
-xdotool mousemove 262 200 # arrow
-xdotool click 1
-xdotool click 1
-xdotool click 1
-xdotool click 1
-sleep 0.2
-xdotool mousemove 313 738 # ok
-xdotool click 1
-sleep 0.2
-xdotool mousemove 1200 680 # next phase
-xdotool click 1
-sleep 0.2
-xdotool mousemove 195 249 # choose items
-xdotool click 1
-sleep 0.2
-xdotool mousemove 262 200 # health ring
+sleep $sleepiness
+xdotool mousemove 262 180 # arrow
 xdotool click 1
 xdotool click 1
 xdotool click 1
-sleep 0.2
-xdotool mousemove 313 738 # ok
 xdotool click 1
-sleep 0.2
-xdotool mousemove 1200 680 # next phase
+sleep $sleepiness
+xdotool mousemove 313 718 # ok
 xdotool click 1
-sleep 0.2
+sleep $sleepiness
+xdotool mousemove 1200 660 # next phase
+xdotool click 1
+sleep $sleepiness
+xdotool mousemove 195 229 # choose items
+xdotool click 1
+sleep $sleepiness
+xdotool mousemove 262 180 # health ring
+xdotool click 1
+xdotool click 1
+xdotool click 1
+sleep $sleepiness
+xdotool mousemove 313 718 # ok
+xdotool click 1
+sleep $sleepiness
+xdotool mousemove 1200 660 # next phase
+xdotool click 1
+sleep $sleepiness
