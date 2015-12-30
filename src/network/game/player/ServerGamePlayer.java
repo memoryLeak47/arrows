@@ -78,9 +78,8 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		}
 		if (keyManager.isJumpPressed())
 		{
-			accelerate(0, -0.1f);
+			jump();
 		}
-		accelerate(0, 0.05f);
 	}
 
 	public void onCollide(Entity e)

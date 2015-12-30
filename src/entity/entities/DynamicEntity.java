@@ -22,6 +22,8 @@ public abstract class DynamicEntity extends Entity
 	private GameVector velocity = new GameVector();
 	private GameVector oldVelocity = new GameVector();
 
+	private boolean touchesBot = false, touchesTop = false, touchesLeft = false, touchesRight = false;
+
 	public DynamicEntity(GamePosition position, Animation animation)
 	{
 		super(position, animation);
@@ -33,6 +35,7 @@ public abstract class DynamicEntity extends Entity
 		oldVelocity = new GameVector(velocity);
 		getPosition().add(getVelocity());
 		getVelocity().scale(DRAG);
+		touchesBot = touchesTop = touchesLeft = touchesRight = false;
 		checkCollision();
 		// if (oldVelocity.minus(getVelocity()).getMagnitude() > DAMAGE_BORDER) { onDamage(...); }
 	}
@@ -43,11 +46,14 @@ public abstract class DynamicEntity extends Entity
 		// Oben/Unten
 		if (CollisionDetector.collideTileBot(this, t))
 		{
+			touchesBot = true;
 			getPosition().addY(t.getTop() - getBot());
 			getVelocity().setY(0);
 		}
-		else if (CollisionDetector.collideTileTop(this, t))
+
+		if (CollisionDetector.collideTileTop(this, t))
 		{
+			touchesTop = true;
 			getPosition().addY(t.getBot() - getTop());
 			getVelocity().setY(0);
 		}
@@ -55,11 +61,14 @@ public abstract class DynamicEntity extends Entity
 		// Rechts/Links
 		if (CollisionDetector.collideTileRight(this, t))
 		{
+			touchesRight = true;
 			getPosition().addX(t.getLeft() - getRight());
 			getVelocity().setX(0);
 		}
-		else if (CollisionDetector.collideTileLeft(this, t))
+
+		if (CollisionDetector.collideTileLeft(this, t))
 		{
+			touchesLeft = true;
 			getPosition().addX(t.getRight() - getLeft());
 			getVelocity().setX(0);
 		}
@@ -137,5 +146,7 @@ public abstract class DynamicEntity extends Entity
 
 	public GameVector getVelocity() { return velocity; }
 	public GameVector getOldVelocity() { return oldVelocity; }
+
+	protected boolean touchesBot() { return touchesBot; }
 
 }

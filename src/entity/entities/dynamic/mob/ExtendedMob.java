@@ -1,5 +1,6 @@
 package entity.entities.dynamic.mob;
 
+import static core.Main.GRAVITY;
 import entity.Entity;
 import entity.entities.DynamicEntity;
 import graphics.Animation;
@@ -13,6 +14,12 @@ public abstract class ExtendedMob extends DynamicEntity
 		super(position, animation);
 	}
 
+	@Override public void tick()
+	{
+		super.tick();
+		accelerate(0, GRAVITY);
+	}
+
 	@Override public boolean isCollidingBullets() { return false; }
 	@Override public boolean isCollidingPlayers() { return false; }
 	@Override public boolean isCollidingTiles() { return true; }
@@ -23,5 +30,16 @@ public abstract class ExtendedMob extends DynamicEntity
 		{
 			applyTileCollision((ExtendedTile) e);
 		}
+	}
+
+	public float getJumpPower() { return 0.6f; }
+
+	protected final void jump()
+	{
+		if (touchesBot())
+		{
+			accelerate(0, -getJumpPower());
+		}
+		
 	}
 }

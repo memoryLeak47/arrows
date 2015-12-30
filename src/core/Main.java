@@ -21,6 +21,7 @@ public class Main
 	public static final int INGAME_SCREENSIZE_X = 10;
 	public static final int INGAME_SCREENSIZE_Y = 10;
 	public static final float DRAG = 0.6f;
+	public static final float GRAVITY = 0.1f;
 
 	private static Game game;
 	private static MenuList menuList;
