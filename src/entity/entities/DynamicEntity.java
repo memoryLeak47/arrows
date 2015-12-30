@@ -35,8 +35,8 @@ public abstract class DynamicEntity extends Entity
 		super.tick();
 		oldVelocity = new GameVector(velocity);
 		getPosition().add(getVelocity());
-		getVelocity().scaleX(DRAG_X);
-		getVelocity().scaleY(DRAG_Y);
+		getVelocity().scaleX(1/DRAG_X);
+		getVelocity().scaleY(1/DRAG_Y);
 		touchesBot = touchesTop = touchesLeft = touchesRight = false;
 		checkCollision();
 		// if (oldVelocity.minus(getVelocity()).getMagnitude() > DAMAGE_BORDER) { onDamage(...); }

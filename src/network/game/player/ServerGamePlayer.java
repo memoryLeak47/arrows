@@ -7,6 +7,7 @@ package network.game.player;
 import java.net.InetAddress;
 import java.util.LinkedList;
 
+import static core.Main.STANDART_ACCELERATION;
 import entity.Entity;
 import entity.entities.dynamic.mob.ExtendedMob;
 import graphics.Animation;
@@ -70,11 +71,11 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		super.tick();
 		if (keyManager.isLeftPressed())
 		{
-			accelerate(-0.1f, 0);
+			accelerate(-STANDART_ACCELERATION, 0);
 		}
 		if (keyManager.isRightPressed())
 		{
-			accelerate(0.1f, 0);
+			accelerate(STANDART_ACCELERATION, 0);
 		}
 		if (keyManager.isJumpPressed())
 		{
