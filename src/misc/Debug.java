@@ -35,7 +35,7 @@ public class Debug
 
 	public static enum Tags
 	{
-		KEYMANAGER_EVENTS(false),
+		KEYMANAGER_EVENTS(true),
 		NETWORK(true),
 		LOBBYMENUINFO(true),
 		EXTENDED_WARNINGS(false);
