@@ -3,6 +3,7 @@ package menu.menues;
 import java.net.InetAddress;
 import java.util.LinkedList;
 
+import core.Main;
 import core.game.ClientGame;
 import tilemap.LobbyTileMap;
 import misc.Debug;
@@ -12,9 +13,12 @@ import network.lobby.LobbyPlayer;
 
 public class ClientGameInterface extends GameInterface
 {
+	private InetAddress serverIP;
+
 	public ClientGameInterface(LobbyTileMap map, LinkedList<LobbyPlayer> lobbyPlayers, int localPlayerID)
 	{
 		super(new ClientGame(map, lobbyPlayers, localPlayerID));
+		serverIP = lobbyPlayers.get(0).getIP();
 	}
 
 	private ClientGame getGame() { return (ClientGame) getUncastedGame(); }
@@ -26,14 +30,12 @@ public class ClientGameInterface extends GameInterface
 
 	@Override public void render()
 	{
-		Debug.warn("CGI.render(): TODO");
+		super.render();
 	}
 
 	@Override public void onEvent(EventPacket packet)
 	{
 		super.onEvent(packet);
-		Debug.warn("CGI.onEvent(): TODO");
+		Main.getNetworkDevice().send(packet, serverIP);
 	}
-
-	
 }
