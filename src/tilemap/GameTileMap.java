@@ -14,6 +14,7 @@ import graphics.ImageFile;
 import misc.Debug;
 import misc.game.Team;
 import misc.math.game.GamePosition;
+import misc.math.pixel.PixelPosition;
 
 public class GameTileMap
 {
@@ -117,6 +118,16 @@ public class GameTileMap
 					colliders.add(tiles[x][y]);
 			}
 		return colliders;
+	}
+
+	public boolean isObstacleAt(int x, int y)
+	{
+		return isValidGridPosition(x, y) && (tiles[x][y]).isObstacle();
+	}
+
+	public boolean isValidGridPosition(int x, int y)
+	{
+		return (x >= 0) && (x < tiles.length) && (y >= 0) && (y < tiles[0].length);
 	}
 
 	public BufferedImage getStaticImage()

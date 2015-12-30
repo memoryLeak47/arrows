@@ -5,12 +5,10 @@ import entity.entities.dynamic.SpinnableEntity;
 import entity.entities.DynamicEntity;
 import entity.entities.tile.ExtendedTile;
 import misc.Debug;
+import tilemap.GameTileMap;
 
 public final class CollisionDetector
 {
-	private static final float POSITION_VALENCE = 0.25f; // 0.15f
-	private static final float SPEED_VALENCE = 0.002f; // 0.002f
-
 	private CollisionDetector() {}
 
 	public static boolean areCollidingDynamic(Entity e1, Entity e2)
@@ -142,36 +140,32 @@ public final class CollisionDetector
 	public static boolean collideTileRight(DynamicEntity e, ExtendedTile t) // Kollidiere ich mit dem Tile rechts von mir
 	{
 		//     Wenn ich mich nach rechts bewege & wenn ich mich links vom Tile befinde
-		return (e.getOldVelocity().getX() > -SPEED_VALENCE) 
+		return (e.getOldVelocity().getX() > 0) 
 			&& (e.getPosition().getX() < t.getPosition().getX())
-			&& (t.getBot() - POSITION_VALENCE > e.getTop())
-			&& (t.getTop() + POSITION_VALENCE < e.getBot());
+			&& ! GameTileMap.get().isObstacleAt(t.getGridPosition().getX()-1, t.getGridPosition().getY());
 	}
 
 	public static boolean collideTileLeft(DynamicEntity e, ExtendedTile t) // Kollidiere ich mit dem Tile links von mir
 	{
 		//     Wenn ich mich nach links bewege & wenn ich mich rechts vom Tile befinde
-		return (e.getOldVelocity().getX() < SPEED_VALENCE) // Wenn ich mich nach links bewege
+		return (e.getOldVelocity().getX() < 0) // Wenn ich mich nach links bewege
 			&& (e.getPosition().getX() > t.getPosition().getX()) // wenn ich mich rechts vom Tile befinde
-			&& (t.getBot() - POSITION_VALENCE > e.getTop())
-			&& (t.getTop() + POSITION_VALENCE < e.getBot());
+			&& ! GameTileMap.get().isObstacleAt(t.getGridPosition().getX()+1, t.getGridPosition().getY());
 	}
 
 	public static boolean collideTileTop(DynamicEntity e, ExtendedTile t) // Kollidiere ich mit dem Tile oben von mir
 	{
 		//     Wenn ich mich nach oben bewege & wenn ich mich unten vom Tile befinde
-		return (e.getOldVelocity().getY() < SPEED_VALENCE) // Wenn ich mich nach oben bewege
+		return (e.getOldVelocity().getY() < 0) // Wenn ich mich nach oben bewege
 			&& (e.getPosition().getY() > t.getPosition().getY()) // wenn ich mich unten vom Tile befinde
-			&& (t.getRight() - POSITION_VALENCE > e.getLeft())
-			&& (t.getLeft() + POSITION_VALENCE < e.getRight());
+			&& ! GameTileMap.get().isObstacleAt(t.getGridPosition().getX(), t.getGridPosition().getY()+1);
 	}
 
 	public static boolean collideTileBot(DynamicEntity e, ExtendedTile t) // Kollidiere ich mit dem Tile unten von mir
 	{
 		//     Wenn ich mich nach unten bewege & wenn ich mich oben vom Tile befinde
-		return (e.getOldVelocity().getY() > -SPEED_VALENCE)
+		return (e.getOldVelocity().getY() > 0)
 			&& (e.getPosition().getY() < t.getPosition().getY())
-			&& (t.getRight() - POSITION_VALENCE > e.getLeft())
-			&& (t.getLeft() + POSITION_VALENCE < e.getRight());
+			&& ! GameTileMap.get().isObstacleAt(t.getGridPosition().getX(), t.getGridPosition().getY()-1);
 	}
 }

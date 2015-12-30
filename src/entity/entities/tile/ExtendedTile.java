@@ -12,6 +12,7 @@ import misc.Debug;
 import misc.game.Team;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
+import misc.math.pixel.PixelPosition;
 
 
 public abstract class ExtendedTile extends Entity
@@ -60,6 +61,11 @@ public abstract class ExtendedTile extends Entity
 
 		Debug.warn("ExtendedTile.getByColorID(" + colorID + "): returns null");
 		return null;
+	}
+
+	public PixelPosition getGridPosition()
+	{
+		return new PixelPosition((int) getPosition().getX(), (int) getPosition().getY());
 	}
 
 	@Override public GameSize getSize() { return new GameSize(1, 1); }
