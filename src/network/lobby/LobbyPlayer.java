@@ -57,7 +57,9 @@ public class LobbyPlayer implements Serializable
 
 	public void assign(LobbyPlayer lobbyPlayer)
 	{
-		this.ip = lobbyPlayer.ip;
+		Debug.warnIf(lobbyPlayer == null, "LobbyPlayer.assign(): lobbyPlayer == null");
+		Debug.warnIf(lobbyPlayer.getIP() == null, "LobbyPlayer.assign(): lobbyPlayer.getIP() == null");
+		this.ip = lobbyPlayer.getIP();
 		loginPacket.assign(lobbyPlayer.loginPacket);
 		lockPacket.assign(lobbyPlayer.lockPacket);
 		avatarPacket.assign(lobbyPlayer.avatarPacket);
@@ -156,8 +158,7 @@ public class LobbyPlayer implements Serializable
 	
 	public InetAddress getIP()
 	{
-		if (ip == null)
-			Debug.warn("LobbyPlayer.getIP(): ip == null");
+		Debug.warnIf(ip == null, "LobbyPlayer.getIP(): ip == null");
 		return ip;
 	}
 	public String getName() { return loginPacket.getName(); }
