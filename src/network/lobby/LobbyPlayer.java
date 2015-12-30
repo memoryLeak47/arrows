@@ -34,6 +34,8 @@ public class LobbyPlayer implements Serializable
 	public LobbyPlayer(LoginUserPacket loginPacket, InetAddress ip)
 	{
 		this();
+		Debug.warnIf(ip == null, "LobbyPlayer.<init>(LoginUserPacket, InetAddress): ip == null");
+
 		this.loginPacket = loginPacket;
 		this.ip = ip;
 	}
@@ -46,6 +48,7 @@ public class LobbyPlayer implements Serializable
 
 	public LobbyPlayer(LobbyPlayer lobbyPlayer)
 	{
+		Debug.warnIf(ip == null, "LobbyPlayer.<init>(LobbyPlayer): ip == null");
 		this.ip = lobbyPlayer.ip;
 		loginPacket = new LoginUserPacket(lobbyPlayer.loginPacket);
 		lockPacket = new LockUserPacket(lobbyPlayer.lockPacket);
