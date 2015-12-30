@@ -75,7 +75,7 @@ public class ClientGamePlayer implements GamePlayer
 
 	public GameSize getSize()
 	{
-		Debug.warnIf(getImageID() == null, "Entity.getSize(): getImageID is null");
+		Debug.warnIf(getImageID() == null, "ClientGamePlayer.getSize(): getImageID is null");
 		return new GameSize(getImageID());
 	}
 
