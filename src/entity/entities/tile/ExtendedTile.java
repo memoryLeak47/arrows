@@ -61,4 +61,6 @@ public abstract class ExtendedTile extends Entity
 		Debug.warn("ExtendedTile.getByColorID(" + colorID + "): returns null");
 		return null;
 	}
+
+	@Override public GameSize getSize() { return new GameSize(1, 1); }
 }

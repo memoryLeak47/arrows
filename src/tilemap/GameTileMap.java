@@ -70,7 +70,7 @@ public class GameTileMap
 			{
 				Debug.warnIf(tiles[x][y] == null, "GameTileMap.initStaticImage(): tiles[" + x + "][" + y + "] == null");
 				Debug.warnIf(tiles[x][y].getImageID() == null, "GameTileMap.initStaticImage(): tiles[" + x + "][" + y + "].getImageID() == null");
-				g.drawImage(ImageFile.getImageByImageID(tiles[x][y].getImageID()), x * TILESIZE, y * TILESIZE, null);
+				g.drawImage(ImageFile.getImageByImageID(tiles[x][y].getImageID()), x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE, null);
 			}
 		}
 
@@ -98,15 +98,15 @@ public class GameTileMap
 			Debug.warn("GameTileMap.getPossibleColliderTiles(): Entity " + e + " seems to be out of Map");
 		}
 
-		if (maxX > tiles.length)
+		if (maxX >= tiles.length)
 		{
-			maxX = tiles.length;
+			maxX = tiles.length-1;
 			Debug.warn("GameTileMap.getPossibleColliderTiles(): Entity " + e + " seems to be out of Map");
 		}
 
-		if (maxY > tiles[0].length)
+		if (maxY >= tiles[0].length)
 		{
-			maxY = tiles[0].length;
+			maxY = tiles[0].length-1;
 			Debug.warn("GameTileMap.getPossibleColliderTiles(): Entity " + e + " seems to be out of Map");
 		}
 

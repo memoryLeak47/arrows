@@ -81,6 +81,7 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		{
 			jump();
 		}
+
 	}
 
 	public void onCollide(Entity e)

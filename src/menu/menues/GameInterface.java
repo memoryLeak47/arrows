@@ -10,6 +10,8 @@ import entity.MinimizedEntity;
 import menu.NetworkingMenu;
 import misc.Debug;
 import misc.game.Camera;
+import misc.math.game.GamePosition;
+import misc.math.pixel.PixelPosition;
 import network.lobby.LobbyPlayer;
 import network.Packet;
 import tilemap.LobbyTileMap;
@@ -47,7 +49,8 @@ public abstract class GameInterface extends NetworkingMenu
 
 	@Override public void render()
 	{
-		Screen.g().drawImage(getUncastedGame().getMapImage(), (int) - ((Camera.get().getOffset().getX() - 0.5f) * TILESIZE), (int) - ((Camera.get().getOffset().getY() - 0.5f) * TILESIZE), null);
+		PixelPosition position = Camera.get().gamePositionToPixelPosition(new GamePosition(0,0));
+		Screen.g().drawImage(getUncastedGame().getMapImage(), position.getX(), position.getY(), null);
 		for (MinimizedEntity entity : getUncastedGame().getMinimizedEntities())
 		{
 			entity.render();

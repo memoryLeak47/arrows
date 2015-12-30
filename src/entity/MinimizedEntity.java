@@ -6,8 +6,11 @@ import core.Screen;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;
+import misc.game.Camera;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
+import misc.math.pixel.PixelPosition;
+import misc.math.pixel.PixelSize;
 
 public abstract class MinimizedEntity
 {
@@ -35,19 +38,15 @@ public abstract class MinimizedEntity
 	public GameSize getSize()
 	{
 		Debug.warnIf(getImageID() == null, "MinimizedEntity.getSize(): getImageID is null");
-		GameSize gs = new GameSize(getImageID());
-		gs.scale(1.0f/TILESIZE);
-		return gs;
+		return new GameSize(getImageID());
 	}
 
 	public void render()
 	{
 		if (inScreen())
 		{
-			int x, y;
-			x = (int) (TILESIZE*(getPosition().getX() - getSize().getX()/2 - getGame().getCamera().getOffset().getX()));
-			y = (int) (TILESIZE*(getPosition().getY() - getSize().getY()/2 - getGame().getCamera().getOffset().getY())); 
-			Screen.g().drawImage(ImageFile.getImageByImageID(getImageID()), x, y, null);
+			PixelPosition position = Camera.get().gamePositionToPixelPosition(new GamePosition(getPosition().minus(getSize().times(0.5f))));
+			Screen.g().drawImage(ImageFile.getImageByImageID(getImageID()), position.getX(), position.getY(), null);
 		}
 	}
 

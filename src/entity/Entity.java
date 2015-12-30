@@ -1,6 +1,5 @@
 package entity;
 
-import static core.Main.TILESIZE;
 import core.Main;
 import entity.MinimizedEntity;
 import graphics.Animation;
