@@ -43,7 +43,7 @@ public class ServerGameInterface extends GameInterface
 
 	private int ipToID(InetAddress ip)
 	{
-		for (int i = 0; i < getGame().getPlayers().size(); i++)
+		for (int i = 1; i < getGame().getPlayers().size(); i++)
 		{
 			if (getGame().getPlayers().get(i).getIP().equals(ip))
 				return i;
