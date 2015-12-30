@@ -37,7 +37,7 @@ public abstract class DynamicEntity extends Entity
 	// applyTileCollision makes you not glitch into the Tiles; it's how a player collides with Tiles
 	protected void applyTileCollision(ExtendedTile t)
 	{
-		
+
 	}
 
 	protected void onCollide(Entity e) { }

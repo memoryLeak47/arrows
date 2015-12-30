@@ -80,11 +80,11 @@ public class GameTileMap
 	{
 		LinkedList<ExtendedTile> colliders = new LinkedList<ExtendedTile>();
 		int minX, minY, maxX, maxY;
-		float r = e.getSize().getMagnitude() * 0.5f;
-		minX = (int) (e.getPosition().getX() - r);
-		maxX = (int) (e.getPosition().getX() + r);
-		minY = (int) (e.getPosition().getY() - r);
-		maxY = (int) (e.getPosition().getY() + r);
+		//float r = e.getSize().getMagnitude() * 0.5f;
+		minX = (int) (e.getLeft());
+		maxX = (int) (e.getRight());
+		minY = (int) (e.getTop());
+		maxY = (int) (e.getBot());
 
 		if (minX < 0)
 		{
@@ -110,8 +110,8 @@ public class GameTileMap
 			Debug.warn("GameTileMap.getPossibleColliderTiles(): Entity " + e + " seems to be out of Map");
 		}
 
-		for (int x = minX; x < maxX; x++)
-			for (int y = minY; y < maxY; y++)
+		for (int x = minX; x <= maxX; x++)
+			for (int y = minY; y <= maxY; y++)
 			{
 				if (tiles[x][y].isObstacle())
 					colliders.add(tiles[x][y]);
