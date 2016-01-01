@@ -57,7 +57,7 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		super(position, new StaticAnimation(ImageFile.PLAYER.getImageID())); // TODO do real stuff
 
 		Debug.warnIf(lobbyPlayer == null, "ServerGamePlayer.<init>(): lobbyPlayer == null");
-		Debug.warnIf(lobbyPlayer.getIP() == null, "ServerGamePlayer.<init>(): lobbyPlayer.getIP() == null");
+		Debug.warnIf(lobbyPlayer.getIP() == null, "ServerGamePlayer.<init>(): lobbyPlayer.getIP() == null", Debug.Tags.EXTENDED_WARNINGS);
 
 		this.ip = lobbyPlayer.getIP();
 

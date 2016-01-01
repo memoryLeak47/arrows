@@ -34,7 +34,7 @@ public class LobbyPlayer implements Serializable
 	public LobbyPlayer(LoginUserPacket loginPacket, InetAddress ip)
 	{
 		this();
-		Debug.warnIf(ip == null, "LobbyPlayer.<init>(LoginUserPacket, InetAddress): ip == null");
+		Debug.warnIf(ip == null, "LobbyPlayer.<init>(LoginUserPacket, InetAddress): ip == null", Debug.Tags.EXTENDED_WARNINGS);
 
 		this.loginPacket = loginPacket;
 		this.ip = ip;
@@ -48,7 +48,7 @@ public class LobbyPlayer implements Serializable
 
 	public LobbyPlayer(LobbyPlayer lobbyPlayer)
 	{
-		Debug.warnIf(ip == null, "LobbyPlayer.<init>(LobbyPlayer): ip == null");
+		Debug.warnIf(ip == null, "LobbyPlayer.<init>(LobbyPlayer): ip == null", Debug.Tags.EXTENDED_WARNINGS);
 		this.ip = lobbyPlayer.ip;
 		loginPacket = new LoginUserPacket(lobbyPlayer.loginPacket);
 		lockPacket = new LockUserPacket(lobbyPlayer.lockPacket);
@@ -61,7 +61,7 @@ public class LobbyPlayer implements Serializable
 	public void assign(LobbyPlayer lobbyPlayer)
 	{
 		Debug.warnIf(lobbyPlayer == null, "LobbyPlayer.assign(): lobbyPlayer == null");
-		Debug.warnIf(lobbyPlayer.getIP() == null, "LobbyPlayer.assign(): lobbyPlayer.getIP() == null");
+		Debug.warnIf(lobbyPlayer.getIP() == null, "LobbyPlayer.assign(): lobbyPlayer.getIP() == null", Debug.Tags.EXTENDED_WARNINGS);
 		this.ip = lobbyPlayer.getIP();
 		loginPacket.assign(lobbyPlayer.loginPacket);
 		lockPacket.assign(lobbyPlayer.lockPacket);
@@ -161,7 +161,7 @@ public class LobbyPlayer implements Serializable
 	
 	public InetAddress getIP()
 	{
-		Debug.warnIf(ip == null, "LobbyPlayer.getIP(): ip == null");
+		Debug.warnIf(ip == null, "LobbyPlayer.getIP(): ip == null", Debug.Tags.EXTENDED_WARNINGS);
 		return ip;
 	}
 	public String getName() { return loginPacket.getName(); }
