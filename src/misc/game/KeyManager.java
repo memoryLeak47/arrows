@@ -81,7 +81,7 @@ public class KeyManager
 					skills[3] = RELEASED;
 					break;
 				default:
-					Debug.warn("KeyManager.handleEvent(): Unknown KeyRelease = " + c);
+					Debug.warn("KeyManager.handleEvent(): Unknown KeyRelease = " + c, Debug.Tags.EXTENDED_WARNINGS);
 					break;
 			}
 		}
