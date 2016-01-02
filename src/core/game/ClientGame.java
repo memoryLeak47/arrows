@@ -24,6 +24,7 @@ public class ClientGame extends Game
 	{
 		super(lobbyMap);
 		this.localPlayerID = localPlayerID;
+		initCamera();
 
 		players = new LinkedList<ClientGamePlayer>();
 		for (LobbyPlayer player : lobbyPlayers)
@@ -32,10 +33,7 @@ public class ClientGame extends Game
 		}
 	}
 
-	@Override public void tick()
-	{
-		Debug.warn("ClientGame.tick(): TODO");
-	}
+	@Override public void tick() { }
 
 	public void apply(GameFrameUpdatePacket updatePacket)
 	{

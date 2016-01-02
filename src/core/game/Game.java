@@ -18,7 +18,7 @@ import tilemap.LobbyTileMap;
 
 public abstract class Game
 {
-	private Camera cam = new Camera(getLocalPlayerID());
+	private Camera cam;
 	private GameTileMap tileMap;
 	private LinkedList<ExtendedCosmetic> cosmetics = new LinkedList<ExtendedCosmetic>();
 	private LinkedList<Kill> kills = new LinkedList<Kill>();
@@ -29,10 +29,14 @@ public abstract class Game
 		Main.setGame(this);
 	}
 
+	protected void initCamera()
+	{
+		cam = new Camera(getLocalPlayerID());
+	}
+
 	public abstract void tick();
 
-	// Getter
-
+	// getter
 	protected abstract int getLocalPlayerID();
 
 	// Returnt alle Player. Gebraucht für die MiniMap

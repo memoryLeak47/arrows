@@ -29,6 +29,7 @@ public class ServerGame extends Game
 	public ServerGame(LobbyTileMap lobbyMap, LinkedList<LobbyPlayer> lobbyPlayers)
 	{
 		super(lobbyMap);
+		initCamera();
 		for (LobbyPlayer player : lobbyPlayers)
 		{
 			players.add(new ServerGamePlayer(player, getGameTileMap().getSpawnTilePositionByTeam(player.getTeam())));

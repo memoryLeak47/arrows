@@ -56,7 +56,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 					}
 					if (getMiniMap() == null)
 					{
-						Debug.error("ServerLobbyMenu: mapSelectButton.onClick(): getMiniMap == null");
+						Debug.warn("ServerLobbyMenu: mapSelectButton.onClick(): getMiniMap == null");
 						return;
 					}
 
@@ -91,7 +91,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		if (packet instanceof LockUserPacket)
 		{
 			if (ipToPlayer(ip, getPlayers()) == null)
-				Debug.error("ServerLobbyMenu.handlePacket(LockUserPacket): no player with that IP");
+				Debug.warn("ServerLobbyMenu.handlePacket(LockUserPacket): no player with that IP");
 			ipToPlayer(ip, getPlayers()).applyUserPacket((UserPacket) packet);
 			ipToPlayer(ip, getUpdatedPlayers()).applyUserPacket((UserPacket) packet);
 			redirectUserPacket((UserPacket) packet, ip); // das erhaltene packet wird an alle clients weitergegeben
@@ -99,7 +99,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 		else if (packet instanceof DisconnectUserPacket)
 		{
 			if (ipToPlayer(ip, getPlayers()) == null)
-				Debug.error("ServerLobbyMenu.handlePacket(DisconnectUserPacket): no player with that IP");
+				Debug.warn("ServerLobbyMenu.handlePacket(DisconnectUserPacket): no player with that IP");
 			redirectUserPacket((UserPacket) packet, ip); // das erhaltene packet wird an alle clients weitergegeben, (leider auch dem der disconnected ist)
 			getPlayers().remove(ipToID(ip, getPlayers()));
 			getUpdatedPlayers().remove(ipToID(ip, getUpdatedPlayers()));
@@ -114,7 +114,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 					if (packet instanceof TeamUserPacket) // und das packet ein TeamUserPacket ist
 					{
 						if (ipToPlayer(ip, getPlayers()) == null)
-							Debug.error("ServerLobbyMenu.handlePacket(TeamUserPacket): no player with that IP");
+							Debug.warn("ServerLobbyMenu.handlePacket(TeamUserPacket): no player with that IP");
 
 						if (ipToPlayer(ip, getPlayers()).isLocked())
 						{
@@ -131,7 +131,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 					{
 						if (ipIn(ip, getPlayers())) // und er schon einer der spieler ist
 						{
-							Debug.error("server already got player with ip " + ip.getHostName()); // error
+							Debug.warn("server already got player with ip " + ip.getHostName()); // error
 						}
 						else // falls der spieler wirklich neu ist
 						{
@@ -156,7 +156,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 					if (packet instanceof AvatarUserPacket) // und das packet ein AvatarUserPacket ist
 					{
 						if (ipToPlayer(ip, getPlayers()) == null)
-							Debug.error("ServerLobbyMenu.handlePacket(AvatarUserPacket): no player with that IP");
+							Debug.warn("ServerLobbyMenu.handlePacket(AvatarUserPacket): no player with that IP");
 
 						if (inMyTeam(ipToPlayer(ip, getUpdatedPlayers())))
 						{
@@ -174,7 +174,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 					if (packet instanceof SkillUserPacket) // und das packet ein SkillUserPacket ist
 					{
 						if (ipToPlayer(ip, getPlayers()) == null)
-							Debug.error("ServerLobbyMenu.handlePacket(SkillUserPacket): no player with that IP");
+							Debug.warn("ServerLobbyMenu.handlePacket(SkillUserPacket): no player with that IP");
 
 						if (inMyTeam(ipToPlayer(ip, getPlayers())))
 						{
@@ -192,7 +192,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 					if (packet instanceof ItemUserPacket) // und das packet ein ItemUserPacket ist
 					{
 						if (ipToPlayer(ip, getPlayers()) == null)
-							Debug.error("ServerLobbyMenu.handlePacket(ItemUserPacket): no player with that IP");
+							Debug.warn("ServerLobbyMenu.handlePacket(ItemUserPacket): no player with that IP");
 
 						if (inMyTeam(ipToPlayer(ip, getPlayers())))
 						{
@@ -228,7 +228,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 				sendToTeam(new UserPacketWithID(getLocalPlayer().getItemPacket(), 0), getLocalPlayer().getTeam());
 				break;
 			default:
-				Debug.error("ServerLobbyMenu.sendPlayerPropertyUpdate(): wrong phase: " + getPhase());
+				Debug.warn("ServerLobbyMenu.sendPlayerPropertyUpdate(): wrong phase: " + getPhase());
 		}
 	}
 
@@ -364,7 +364,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 	private LinkedList<LobbyPlayer> getUpdatedPlayers()
 	{
 		if (updatedPlayers == null)
-			Debug.error("ServerLobbyMenu.getUpdatedPlayers(): updatedPlayers = null");
+			Debug.warn("ServerLobbyMenu.getUpdatedPlayers(): updatedPlayers = null");
 		if (updatedPlayers.size() < 1)
 			Debug.warn("ServerLobbyMenu.getUpdatedPlayers(): updatedPlayers.size() = " + updatedPlayers.size(), Debug.Tags.EXTENDED_WARNINGS);
 		return updatedPlayers;
