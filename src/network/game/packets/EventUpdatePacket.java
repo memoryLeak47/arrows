@@ -1,5 +1,8 @@
 package network.game.packets;
 
-public class EventUpdatePacket
+import network.Packet;
+
+public class EventUpdatePacket extends Packet
 {
+
 }

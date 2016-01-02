@@ -1,6 +1,6 @@
 package graphics;
 
-public final class ImageID
+public final class ImageID implements java.io.Serializable
 {
 	public final int id, index;
 
