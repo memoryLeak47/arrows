@@ -19,7 +19,10 @@ public class NetworkDevice
 		try
 		{
 			socket = new DatagramSocket(PORT); // create socket
-		} catch (Exception e) { Debug.error("can't create socket"); }
+		} catch (Exception e)
+		{
+			Debug.error("can't create socket");
+		}
 	}
 
 	public void send(Packet packet, InetAddress ip) // send packet to ip

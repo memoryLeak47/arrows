@@ -63,7 +63,10 @@ public class Debug
 		{
 			PrintWriter pw = new PrintWriter(STANDARD_LOGFILE);
 			pw.close();	
-		} catch (Exception e) { error("failed to init Debug"); }
+		} catch (Exception e)
+		{
+			error("failed to init Debug");
+		}
 	}
 
 	// note
@@ -220,6 +223,9 @@ public class Debug
 			out.newLine();
 	 
 			out.close();
-		} catch (Exception e) { error("failed to write Log to file " + STANDARD_LOGFILE); }
+		} catch (Exception e)
+		{
+			error("failed to write Log to file " + STANDARD_LOGFILE);
+		}
 	}
 }

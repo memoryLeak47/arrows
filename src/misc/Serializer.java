@@ -18,7 +18,10 @@ public final class Serializer
 			out.writeObject(object);
 			out.close();
 			return bos.toByteArray();
-		} catch (Exception e) { Debug.error("Can't serialize object"); }
+		} catch (Exception e)
+		{
+			Debug.error("Can't serialize object");
+		}
 		return null;
 	}
 
@@ -27,7 +30,10 @@ public final class Serializer
 		try (ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(bytes)))
 		{
 			return in.readObject();
-		} catch (Exception e) { Debug.error("Can't deserialize bytes"); }
+		} catch (Exception e)
+		{
+			Debug.error("Can't deserialize bytes");
+		}
 		return null;
 	}
 
@@ -38,7 +44,10 @@ public final class Serializer
 			FileOutputStream fout = new FileOutputStream(file);
 			ObjectOutputStream oos = new ObjectOutputStream(fout);
 			oos.writeObject(object);
-		} catch (Exception e) { Debug.error("can't write object to file"); }
+		} catch (Exception e)
+		{
+			Debug.error("can't write object to file");
+		}
 	}
 
 	public static Object fileToObject(File file)
@@ -48,7 +57,10 @@ public final class Serializer
 			FileInputStream fis = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			return ois.readObject();
-		} catch (Exception e) { Debug.error("can't read object from file"); }
+		} catch (Exception e)
+		{
+			Debug.error("can't read object from file");
+		}
 		return null;
 	}
 }

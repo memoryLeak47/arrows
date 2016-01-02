@@ -81,7 +81,10 @@ public abstract class Effect implements Cloneable
 		try
 		{
 			tmp = (Effect) staticEffects[effect.getEffectID()].clone();
-		} catch (Exception e) { Debug.error("Effect.getEffectByMinimizedEffect: can't clone effect with id " + effect.getEffectID()); }
+		} catch (Exception e)
+		{
+			Debug.error("Effect.getEffectByMinimizedEffect: can't clone effect with id " + effect.getEffectID());
+		}
 		tmp.setProperties(effect.getProperties());
 		return tmp;
 	}

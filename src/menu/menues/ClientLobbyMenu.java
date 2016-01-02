@@ -24,7 +24,10 @@ public class ClientLobbyMenu extends LobbyMenu // menu of client when in lobby
 		try
 		{
 			this.serverIP = InetAddress.getByName(serverIPString); // Speichert die Internet-Adresse vom Server; Wird von JoinServerMenu übergeben
-		} catch (Exception e) { Debug.warn("ClientLobbyMenu not a valid ip address: " + serverIPString); }
+		} catch (Exception e)
+		{
+			Debug.warn("ClientLobbyMenu not a valid ip address: " + serverIPString);
+		}
 	}
 
 	// Wird ausgeführt von Main.networkDevice.receive()

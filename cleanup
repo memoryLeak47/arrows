@@ -5,6 +5,9 @@
 
 if [ "$1" == "-f" ]; then
 	grep "Debug.test" -r --with-filename -n ./src/* --color=always
+elif [ "$1" == "-a" ]; then
+	rm src/misc/Debug.java
+	sed "/Debug/d" -i $(find -name "*.java")
 else
 	sed "/Debug.test/d" -i $(find -name "*.java")
 fi

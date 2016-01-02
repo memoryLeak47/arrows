@@ -26,7 +26,10 @@ public class JoinServerMenu extends Menu
 				{
 					Main.getNetworkDevice().send(new LoginUserPacket(Main.getName(), Main.getRank()), InetAddress.getByName(ipField.getText()));
 					Main.getMenues().add(new ClientLobbyMenu(ipField.getText()));
-				} catch (Exception e) { Debug.note("JoinServerMenu: not a valid ip-address in editfield"); }
+				} catch (Exception e)
+				{
+					Debug.note("JoinServerMenu: not a valid ip-address in editfield");
+				}
 			}
 		});
 	}
