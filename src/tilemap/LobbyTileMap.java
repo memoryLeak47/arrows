@@ -45,8 +45,7 @@ public class LobbyTileMap
 			return null;
 		}
 
-		if (image == null)
-			Debug.warn("LobbyTileMap.getByFile(): returns null");
+		Debug.warnIf(image == null, "LobbyTileMap.getByFile(): returns null");
 
 		return getByBufferedImage(image);
 	}
