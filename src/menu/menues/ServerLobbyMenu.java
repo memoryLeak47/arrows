@@ -70,10 +70,8 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 			}
 		});
 
-		if (Main.getName() == null)
-			Debug.warn("ServerLobbyMenu.<init>(): Main.getName() == null");
-		if (getPlayers() == null)
-			Debug.warn("ServerLobbyMenu.<init>(): getPlayers() == null");
+		Debug.warnIf(Main.getName() == null, "ServerLobbyMenu.<init>(): Main.getName() == null");
+		Debug.warnIf(getPlayers() == null, "ServerLobbyMenu.<init>(): getPlayers() == null");
 
 		updatedPlayers = new LinkedList<LobbyPlayer>();
 		getPlayers().add(new LobbyPlayer(new LoginUserPacket(Main.getName(), Main.getRank()))); // server fügt eigenen lobby-player hinzu
@@ -83,23 +81,19 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	@Override public void handlePacket(Packet packet, InetAddress ip)
 	{
-		if (packet == null)
-			Debug.warn("ServerLobbyMenu.handlePacket(null, ip)");
-		if (ip == null)
-			Debug.warn("ServerLobbyMenu.handlePacket(packet, null)");
+		Debug.warnIf(packet == null, "ServerLobbyMenu.handlePacket(null, ip)");
+		Debug.warnIf(ip == null, "ServerLobbyMenu.handlePacket(packet, null)");
 
 		if (packet instanceof LockUserPacket)
 		{
-			if (ipToPlayer(ip, getPlayers()) == null)
-				Debug.warn("ServerLobbyMenu.handlePacket(LockUserPacket): no player with that IP");
+			Debug.warnIf(ipToPlayer(ip, getPlayers()) == null, "ServerLobbyMenu.handlePacket(LockUserPacket): no player with that IP");
 			ipToPlayer(ip, getPlayers()).applyUserPacket((UserPacket) packet);
 			ipToPlayer(ip, getUpdatedPlayers()).applyUserPacket((UserPacket) packet);
 			redirectUserPacket((UserPacket) packet, ip); // das erhaltene packet wird an alle clients weitergegeben
 		}
 		else if (packet instanceof DisconnectUserPacket)
 		{
-			if (ipToPlayer(ip, getPlayers()) == null)
-				Debug.warn("ServerLobbyMenu.handlePacket(DisconnectUserPacket): no player with that IP");
+			Debug.warnIf(ipToPlayer(ip, getPlayers()) == null, "ServerLobbyMenu.handlePacket(DisconnectUserPacket): no player with that IP");
 			redirectUserPacket((UserPacket) packet, ip); // das erhaltene packet wird an alle clients weitergegeben, (leider auch dem der disconnected ist)
 			getPlayers().remove(ipToID(ip, getPlayers()));
 			getUpdatedPlayers().remove(ipToID(ip, getUpdatedPlayers()));
@@ -113,8 +107,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 				case TEAM_PHASE: // falls wir in der team/map phase sind
 					if (packet instanceof TeamUserPacket) // und das packet ein TeamUserPacket ist
 					{
-						if (ipToPlayer(ip, getPlayers()) == null)
-							Debug.warn("ServerLobbyMenu.handlePacket(TeamUserPacket): no player with that IP");
+						Debug.warnIf(ipToPlayer(ip, getPlayers()) == null, "ServerLobbyMenu.handlePacket(TeamUserPacket): no player with that IP");
 
 						if (ipToPlayer(ip, getPlayers()).isLocked())
 						{
@@ -155,8 +148,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 				case AVATAR_PHASE: // falls wir in der avatar phase sind
 					if (packet instanceof AvatarUserPacket) // und das packet ein AvatarUserPacket ist
 					{
-						if (ipToPlayer(ip, getPlayers()) == null)
-							Debug.warn("ServerLobbyMenu.handlePacket(AvatarUserPacket): no player with that IP");
+						Debug.warnIf(ipToPlayer(ip, getPlayers()) == null, "ServerLobbyMenu.handlePacket(AvatarUserPacket): no player with that IP");
 
 						if (inMyTeam(ipToPlayer(ip, getUpdatedPlayers())))
 						{
@@ -173,8 +165,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 				case SKILL_PHASE:
 					if (packet instanceof SkillUserPacket) // und das packet ein SkillUserPacket ist
 					{
-						if (ipToPlayer(ip, getPlayers()) == null)
-							Debug.warn("ServerLobbyMenu.handlePacket(SkillUserPacket): no player with that IP");
+						Debug.warnIf(ipToPlayer(ip, getPlayers()) == null, "ServerLobbyMenu.handlePacket(SkillUserPacket): no player with that IP");
 
 						if (inMyTeam(ipToPlayer(ip, getPlayers())))
 						{
@@ -191,8 +182,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 				case ITEM_PHASE:
 					if (packet instanceof ItemUserPacket) // und das packet ein ItemUserPacket ist
 					{
-						if (ipToPlayer(ip, getPlayers()) == null)
-							Debug.warn("ServerLobbyMenu.handlePacket(ItemUserPacket): no player with that IP");
+						Debug.warnIf(ipToPlayer(ip, getPlayers()) == null, "ServerLobbyMenu.handlePacket(ItemUserPacket): no player with that IP");
 
 						if (inMyTeam(ipToPlayer(ip, getPlayers())))
 						{
