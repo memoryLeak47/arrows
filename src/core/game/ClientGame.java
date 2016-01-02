@@ -39,7 +39,10 @@ public class ClientGame extends Game
 
 	public void apply(GameFrameUpdatePacket updatePacket)
 	{
-		Debug.warn("ClientGame.apply(): TODO"); // TODO
+		for (int id = 0; id < getPlayers().size(); id++)
+		{
+			getPlayers().get(id).apply(updatePacket.getPlayerUpdates().get(id));
+		}
 	}
 
 	@Override public LinkedList<MinimizedEntity> getMinimizedEntities()

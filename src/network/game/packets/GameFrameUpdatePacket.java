@@ -22,4 +22,9 @@ public class GameFrameUpdatePacket extends Packet
 		this.eventUpdatePackets = eventUpdatePackets;
 		this.localClientGamePlayerFrameUpdate = localClientGamePlayerFrameUpdate;
 	}
+
+	public LinkedList<ClientGamePlayerFrameUpdate> getPlayerUpdates() { return players; }
+	public LinkedList<MinimizedBullet> getBullets() { return bullets; }
+	public LinkedList<EventUpdatePacket> getEventUpdatePackets() { return eventUpdatePackets; }
+	public LocalClientGamePlayerFrameUpdate getLocalClientGamePlayerFrameUpdate() { return localClientGamePlayerFrameUpdate; }
 }
