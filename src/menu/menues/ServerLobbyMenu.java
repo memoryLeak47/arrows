@@ -294,8 +294,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	private boolean allPlayersLocked()
 	{
-		if (getPlayers().size() < 1)
-			Debug.warn("ServerLobbyMenu(): getPlayers().size() = " + getPlayers().size());
+		Debug.warnIf(getPlayers().size() < 1, "ServerLobbyMenu(): getPlayers().size() = " + getPlayers().size());
 
 		boolean enable = true;
 		for (int i = 1; i < getPlayers().size(); i++) // i = 1 -> für alle Client-Spieler
@@ -310,10 +309,8 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	private void teamPressedWithID(int id, Team team)
 	{
-		if (id < 0 || id > getUpdatedPlayers().size())
-			Debug.warn("ServerLobbyMenu.teamPressedWithID(): id (" + id + ") is out of range");
-		if (team == null)
-			Debug.warn("ServerLobbyMenu.teamPressedWithID(): team == null");
+		Debug.warnIf(id < 0 || id > getUpdatedPlayers().size(), "ServerLobbyMenu.teamPressedWithID(): id (" + id + ") is out of range");
+		Debug.warnIf(team == null, "ServerLobbyMenu.teamPressedWithID(): team == null");
 		TeamUserPacket packet;
 		sendToAllClients(new UserPacketWithID(packet = new TeamUserPacket(team), id));
 		getLocalPlayer().applyUserPacket(packet);
@@ -328,15 +325,13 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 	private void redirectUserPacket(UserPacket packet, InetAddress ip)
 	{
 		int id = ipToID(ip, getUpdatedPlayers());
-		if (id < 0 || id > getUpdatedPlayers().size())
-			Debug.warn("ServerLobbyMenu.redirectUserPacket(): id (" + id + ") is out of range");
+		Debug.warnIf(id < 0 || id > getUpdatedPlayers().size(), "ServerLobbyMenu.redirectUserPacket(): id (" + id + ") is out of range");
 		sendToAllClients(new UserPacketWithID(packet, id));
 	}
 
 	private void sendToAllClients(Packet packet)
 	{
-		if (getPlayers().size() < 1)
-			Debug.warn("ServerLobbyMenu.sendToAllClients(): getPlayers().size() = " + getPlayers().size());
+		Debug.warnIf(getPlayers().size() < 1, "ServerLobbyMenu.sendToAllClients(): getPlayers().size() = " + getPlayers().size());
 		for (int i = 1; i < getPlayers().size(); i++) // für all client-spieler
 		{
 			send(packet, getPlayers().get(i).getIP()); // erhalte das packet!
@@ -345,8 +340,7 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	private void sendToTeam(Packet packet, Team team)
 	{
-		if (team == null)
-			Debug.warn("ServerLobbyMenu(): team == null");
+		Debug.warnIf(team == null, "ServerLobbyMenu(): team == null");
 		if (team.equals(Team.TEAM0))
 		{
 			return;
@@ -363,10 +357,8 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	private LinkedList<LobbyPlayer> getUpdatedPlayers()
 	{
-		if (updatedPlayers == null)
-			Debug.warn("ServerLobbyMenu.getUpdatedPlayers(): updatedPlayers = null");
-		if (updatedPlayers.size() < 1)
-			Debug.warn("ServerLobbyMenu.getUpdatedPlayers(): updatedPlayers.size() = " + updatedPlayers.size(), Debug.Tags.EXTENDED_WARNINGS);
+		Debug.warnIf(updatedPlayers == null, "ServerLobbyMenu.getUpdatedPlayers(): updatedPlayers = null");
+		Debug.warnIf(updatedPlayers.size() < 1, "ServerLobbyMenu.getUpdatedPlayers(): updatedPlayers.size() = " + updatedPlayers.size(), Debug.Tags.EXTENDED_WARNINGS);
 		return updatedPlayers;
 	}
 
@@ -378,15 +370,13 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 	// Setzt die "Players" auf den Stand von updated Players
 	private void updatePlayers()
 	{
-		if (getUpdatedPlayers().size() < 1)
-			Debug.warn("ServerLobbyMenu.updatePlayers(): getUpdatedPlayers().size() = " + getUpdatedPlayers().size());
+		Debug.warnIf(getUpdatedPlayers().size() < 1, "ServerLobbyMenu.updatePlayers(): getUpdatedPlayers().size() = " + getUpdatedPlayers().size());
 
 		for (int i = 0; i < getUpdatedPlayers().size(); i++)
 		{
 			getPlayers().get(i).assign(getUpdatedPlayers().get(i));
 			Debug.warnIf((getPlayers().get(i).getIP() == null) && (i != 0), "ServerLobbyMenu.updatePlayers(): getPlayers().get(" + i + ").getIP() == null");
 		}
-
 		Debug.note("ServerLobbyMenu.updatePlayers(): now getPlayers().size() = " + getPlayers().size());
 	}
 
@@ -394,10 +384,8 @@ public class ServerLobbyMenu extends LobbyMenu // lobby-menu für den server
 
 	@Override public LobbyPlayer getLocalPlayer()
 	{
-		if (getPlayers().size() < 1)
-			Debug.warn("ServerLobbyMenu.getLocalPlayer(): getPlayers().size() = " + getPlayers().size());
-		if (getPlayers().get(0) == null)
-			Debug.warn("ServerLobbyMenu.getLocalPlayer(): returns null");
+		Debug.warnIf(getPlayers().size() < 1, "ServerLobbyMenu.getLocalPlayer(): getPlayers().size() = " + getPlayers().size());
+		Debug.warnIf(getPlayers().get(0) == null, "ServerLobbyMenu.getLocalPlayer(): returns null");
 		return getPlayers().get(0);
 	}
 
