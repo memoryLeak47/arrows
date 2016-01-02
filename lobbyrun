@@ -3,7 +3,7 @@
 req 'xdotool'
 req 'java-run'
 
-sleepiness=0.1
+sleepiness=0.15
 screenSize=$(xdotool getdisplaygeometry)
 screenSizeX=${screenSize% *}
 screenSizeY=${screenSize#* }
