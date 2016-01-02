@@ -40,8 +40,7 @@ public abstract class GameInterface extends NetworkingMenu
 
 	private void setGame(Game game)
 	{
-		if (game == null)
-			Debug.warn("GameInterface.setGame(null)");
+		Debug.warnIf(game == null, "GameInterface.setGame(null)");
 		this.game = game;
 	}
 
