@@ -1,6 +1,6 @@
 package misc.math.game;
 
-public class GameVector
+public class GameVector implements java.io.Serializable
 {
 	private float x, y;
 

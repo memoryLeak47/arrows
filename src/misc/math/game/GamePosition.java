@@ -2,7 +2,7 @@ package misc.math.game;
 
 import misc.math.game.GameVector;
 
-public class GamePosition extends GameVector implements java.io.Serializable
+public class GamePosition extends GameVector
 {
 	public GamePosition()
 	{
