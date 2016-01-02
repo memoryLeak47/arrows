@@ -33,10 +33,10 @@ public abstract class DynamicEntity extends Entity
 	@Override public void tick()
 	{
 		super.tick();
-		oldVelocity = new GameVector(velocity);
-		getPosition().add(getVelocity());
 		getVelocity().scaleX(1/DRAG_X);
 		getVelocity().scaleY(1/DRAG_Y);
+		oldVelocity = new GameVector(velocity);
+		getPosition().add(getVelocity());
 		touchesBot = touchesTop = touchesLeft = touchesRight = false;
 		checkCollision();
 		// if (oldVelocity.minus(getVelocity()).getMagnitude() > DAMAGE_BORDER) { onDamage(...); }
@@ -45,70 +45,69 @@ public abstract class DynamicEntity extends Entity
 	// applyTileCollision makes you not glitch into the Tiles; it's how a player collides with Tiles
 	protected final void applyTileCollision(ExtendedTile t)
 	{
-		boolean bottouch = false, lefttouch = false, righttouch = false, toptouch = false;
+		boolean bottouch = CollisionDetector.collideTileBot(this, t);
+		boolean toptouch = CollisionDetector.collideTileTop(this, t);
+		boolean righttouch = CollisionDetector.collideTileRight(this, t);
+		boolean lefttouch = CollisionDetector.collideTileLeft(this, t);
 
-		// Oben/Unten
-		if (CollisionDetector.collideTileBot(this, t))
+		float tx = 0, ty = 0;
+
+		if (righttouch)
 		{
-			bottouch = true;
-			touchesBot = true;
+			tx = (this.getRight() - t.getLeft()) / this.getOldVelocity().getX();
+			Debug.warnIf(tx < 0, "DynamicEntity.applyTileCollision(): tx < 0, shold be tx > 0 (righttouch)");
+		}
+		else if (lefttouch)
+		{
+			tx = (t.getRight() - this.getLeft()) / -this.getOldVelocity().getX();
+			Debug.warnIf(tx < 0, "DynamicEntity.applyTileCollision(): tx < 0, shold be tx > 0 (lefttouch)");
 		}
 
-		if (CollisionDetector.collideTileTop(this, t))
+		if (bottouch)
 		{
-			toptouch = true;
-			touchesTop = true;
+			ty = (this.getBot() - t.getTop()) / this.getOldVelocity().getY();
+			Debug.warnIf(ty < 0, "DynamicEntity.applyTileCollision(): ty < 0, shold be ty > 0 (bottouch)");
 		}
-
-		// Rechts/Links
-		if (CollisionDetector.collideTileRight(this, t))
+		else if (toptouch)
 		{
-			righttouch = true;
-			touchesRight = true;
+			ty = (t.getBot() - this.getTop()) / this.getOldVelocity().getY();
+			Debug.warnIf(tx < 0, "DynamicEntity.applyTileCollision(): ty < 0, shold be ty > 0 (toptouch)");
 		}
-
-		if (CollisionDetector.collideTileLeft(this, t))
-		{
-			lefttouch = true;
-			touchesLeft = true;
-		}
-
-		float xd, yd;
-		xd = Math.abs(t.getPosition().getX() - this.getPosition().getX());
-		yd = Math.abs(t.getPosition().getY() - this.getBot());
 
 		if (bottouch)
 		{
 			if (righttouch)
 			{
-				if (xd > yd)
+				if (tx < ty)
 				{
 					// righttouch
 					getPosition().addX(t.getLeft() - getRight());
 					getVelocity().setX(0);
-					touchesBot = false;
+					touchesRight = true;
 				}
 				else
 				{
 					// bottouch
 					getPosition().addY(t.getTop() - getBot());
 					getVelocity().setY(0);
+					touchesBot = true;
 				}
 			}
 			else if (lefttouch)
 			{
-				if (xd > yd)
+				if (tx < ty)
 				{
 					// lefttouch
 					getPosition().addX(t.getRight() - getLeft());
 					getVelocity().setX(0);
-					touchesBot = false;
+					touchesLeft = true;
 				}
 				else
 				{
 					// bottouch
 					getPosition().addY(t.getTop() - getBot());
 					getVelocity().setY(0);
+					touchesBot = true;
 				}
 			}
 			else
@@ -116,39 +115,43 @@ public abstract class DynamicEntity extends Entity
 				// bottouch
 				getPosition().addY(t.getTop() - getBot());
 				getVelocity().setY(0);
+				touchesBot = true;
 			}
 		}
 		else if (toptouch)
 		{
-			yd = Math.abs(t.getPosition().getY() - this.getTop());
 			if (righttouch)
 			{
-				if (xd > yd)
+				if (tx < ty)
 				{
 					// righttouch
 					getPosition().addX(t.getLeft() - getRight());
 					getVelocity().setX(0);
+					touchesRight = true;
 				}
 				else
 				{
 					// toptouch
 					getPosition().addY(t.getBot() - getTop());
 					getVelocity().setY(0);
+					touchesTop = true;
 				}
 			}
 			else if (lefttouch)
 			{
-				if (xd > yd)
+				if (tx < ty)
 				{
 					// lefttouch
 					getPosition().addX(t.getRight() - getLeft());
 					getVelocity().setX(0);
+					touchesLeft = true;
 				}
 				else
 				{
 					// toptouch
 					getPosition().addY(t.getBot() - getTop());
 					getVelocity().setY(0);
+					touchesTop = true;
 				}
 			}
 			else
@@ -156,6 +159,7 @@ public abstract class DynamicEntity extends Entity
 				// toptouch
 				getPosition().addY(t.getBot() - getTop());
 				getVelocity().setY(0);
+				touchesTop = true;
 			}
 		}
 		else if (righttouch)
@@ -163,12 +167,14 @@ public abstract class DynamicEntity extends Entity
 			// righttouch
 			getPosition().addX(t.getLeft() - getRight());
 			getVelocity().setX(0);
+			touchesRight = true;
 		}
 		else if (lefttouch)
 		{
 			// lefttouch
 			getPosition().addX(t.getRight() - getLeft());
 			getVelocity().setX(0);
+			touchesLeft = true;
 		}
 	}
 
