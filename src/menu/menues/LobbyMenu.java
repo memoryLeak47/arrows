@@ -78,10 +78,8 @@ public abstract class LobbyMenu extends NetworkingMenu
 	public int getPhase() { return phase; }
 	public LinkedList<LobbyPlayer> getPlayers()
 	{
-		if (players == null)
-			Debug.warn("LobbyMenu.getPlayers() returns null");
-		if (players.size() < 1)
-			Debug.warn("LobbyMenu.getPlayers(): size() = " + players.size(), Debug.Tags.EXTENDED_WARNINGS);
+		Debug.warnIf(players == null, "LobbyMenu.getPlayers() returns null");
+		Debug.warnIf(players.size() < 1, "LobbyMenu.getPlayers(): size() = " + players.size(), Debug.Tags.EXTENDED_WARNINGS);
 		return players;
 	} // public damit TeamListPanel darauf zugreifen kann
 
@@ -96,8 +94,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 
 	protected void setPlayers(LinkedList<LobbyPlayer> players) 
 	{ 
-		if (players == null)
-			Debug.warn("LobbyMenu.setPlayers(null)");
+		Debug.warnIf(players == null, "LobbyMenu.setPlayers(null)");
 		this.players = players; 
 	}
 
@@ -137,8 +134,7 @@ public abstract class LobbyMenu extends NetworkingMenu
 
 	protected boolean inMyTeam(LobbyPlayer player)
 	{
-		if (player == null)
-			Debug.warn("LobbyMenu.player == null");
+		Debug.warnIf(players == null, "LobbyMenu.player == null");
 
 		if (player.getTeam().equals(Team.TEAM0) || getLocalPlayer().getTeam().equals(Team.TEAM0))
 		{
@@ -149,17 +145,13 @@ public abstract class LobbyMenu extends NetworkingMenu
 
 	protected int ipToID(InetAddress ip, LinkedList<LobbyPlayer> players)
 	{
-		if (ip == null)
-			Debug.warn("LobbyMenu.ipToID(null, ...)");
-		if (players == null)
-			Debug.error("LobbyMenu.ipToID(): players == null");
-		if (players.size() < 2)
-			Debug.warn("LobbyMenu.ipToID(..., players): players.size = " + players.size());
+		Debug.warnIf(ip == null, "LobbyMenu.ipToID(null, ...)");
+		Debug.warnIf(players == null, "LobbyMenu.ipToID(): players == null");
+		Debug.warnIf(players.size() < 2, "LobbyMenu.ipToID(..., players): players.size = " + players.size());
 
 		for (int i = 1; i < players.size(); i++) // für alle clients
 		{
-			if (players.get(i).getIP() == null)
-				Debug.error("LobbyMenu.ipToID(): players.get(" + i + ").getIP() == null");
+			Debug.warnIf(players.get(i).getIP() == null, "LobbyMenu.ipToID(): players.get(" + i + ").getIP() == null");
 			if (players.get(i).getIP().equals(ip)) // wenn eure ip die ip ist
 			{
 				return i; // returne deine ID
@@ -171,12 +163,10 @@ public abstract class LobbyMenu extends NetworkingMenu
 
 	protected LobbyPlayer ipToPlayer(InetAddress ip, LinkedList<LobbyPlayer> players)
 	{
-		if (ip == null)
-			Debug.warn("LobbyMenu.ipToPlayer(null, ...)");
+		Debug.warnIf(ip == null, "LobbyMenu.ipToPlayer(null, ...)");
 
 		int id = ipToID(ip, players);
-		if (id < 0 || id > players.size())
-			Debug.error("LobbyMenu.ipToPlayer(" + ip.getHostName() + ", ...): id (" + id + ") out of range");
+		Debug.warnIf(id < 0 || id > players.size(), "LobbyMenu.ipToPlayer(" + ip.getHostName() + ", ...): id (" + id + ") out of range");
 		return players.get(ipToID(ip, players));
 	}
 
@@ -207,25 +197,19 @@ public abstract class LobbyMenu extends NetworkingMenu
 
 	protected LobbyTileMap getLobbyTileMap()
 	{
-		if (lobbyTileMap == null)
-		{
-			Debug.warn("LobbyMenu.getLobbyTileMap(): lobbyTileMap == null");
-		}
+		Debug.warnIf(lobbyTileMap == null, "LobbyMenu.getLobbyTileMap(): lobbyTileMap == null");
 		return lobbyTileMap;
 	}
 
 	protected void setLobbyTileMap(LobbyTileMap map)
 	{
-		if (map == null)
-			Debug.warn("LobbyMenu.setLobbyTileMap(null)");
-
+		Debug.warnIf(map == null, "LobbyMenu.setLobbyTileMap(null)");
 		this.lobbyTileMap = map;
 	}
 
 	protected LobbyMiniMap getMiniMap()
 	{
-		if (miniMap == null)
-			Debug.warn("LobbyMenu.getMiniMap(): returns null");
+		Debug.warnIf(miniMap == null, "LobbyMenu.getMiniMap(): returns null");
 		return miniMap;
 	}
 

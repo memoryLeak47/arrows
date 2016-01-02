@@ -26,7 +26,9 @@ public class ServerGameInterface extends GameInterface
 		if (packet instanceof EventPacket)
 			getGame().handleEvent((EventPacket) packet, ipToID(ip));
 		else
+		{
 			Debug.warn("ServerGameInterface.handlePacket(): wrong packet: " + packet);
+		}
 	}
 
 	@Override public void render()
