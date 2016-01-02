@@ -10,6 +10,7 @@ import misc.Debug;
 import network.Packet;
 import network.game.packets.EventPacket;
 import network.game.packets.GameFrameUpdatePacket;
+import network.game.player.ClientGamePlayerFrameUpdate;
 import network.game.player.LocalClientGamePlayerFrameUpdate;
 import network.lobby.LobbyPlayer;
 
@@ -70,6 +71,12 @@ public class ServerGameInterface extends GameInterface
 
 	private GameFrameUpdatePacket getGameFrameUpdatePacketByID(int id)
 	{
-		return new GameFrameUpdatePacket(null, null, null, getGame().getPlayers().get(id).toLocalClientGamePlayerFrameUpdate());
+		LinkedList<ClientGamePlayerFrameUpdate> updates = new LinkedList<ClientGamePlayerFrameUpdate>();
+		for (int i = 0; i < getGame().getPlayers().size(); i++)
+		{
+			updates.add(getGame().getPlayers().get(i).toClientGamePlayerFrameUpdate());
+		}
+		return new GameFrameUpdatePacket(updates, null, null, getGame().getPlayers().get(id).toLocalClientGamePlayerFrameUpdate());
 	}
+
 }
