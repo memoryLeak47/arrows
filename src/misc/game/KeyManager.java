@@ -49,7 +49,7 @@ public class KeyManager
 					skills[3] = PRESSED;
 					break;
 				default:
-					Debug.warn("KeyManager.handleEvent(): Unknown KeyPress = " + c);
+					Debug.warn("KeyManager.handleEvent(): Unknown KeyPress = " + c, Debug.Tags.EXTENDED_WARNINGS);
 					break;
 			}
 		}
