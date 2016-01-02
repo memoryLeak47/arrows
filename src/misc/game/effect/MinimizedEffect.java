@@ -1,6 +1,6 @@
 package misc.game.effect;
 
-public class MinimizedEffect
+public class MinimizedEffect implements java.io.Serializable
 {
 	private int effectID;
 	private short[] properties;

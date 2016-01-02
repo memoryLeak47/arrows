@@ -2,7 +2,7 @@ package misc.game;
 
 import misc.Debug;
 
-public class PlayerStats
+public class PlayerStats implements java.io.Serializable
 {
 	// TODO fill
 
