@@ -38,7 +38,7 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	private String name;
 	private int rank;
 
-	private short[] charges;
+	private short[] charges = new short[4];
 	private PlayerStats playerStats;
 
 	private Avatar avatar;
@@ -132,7 +132,8 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	public LinkedList<Effect> getEffects()
 	{
-		return null; // TODO
+		Debug.warn("ServerGamePlayer.getEffects(): TODO");
+		return new LinkedList<Effect>();
 	}
 
 	public short[] getCharges() { return charges; }

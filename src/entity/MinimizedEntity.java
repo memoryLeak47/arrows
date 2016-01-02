@@ -12,7 +12,7 @@ import misc.math.game.GameSize;
 import misc.math.pixel.PixelPosition;
 import misc.math.pixel.PixelSize;
 
-public abstract class MinimizedEntity
+public abstract class MinimizedEntity implements java.io.Serializable
 {
 	private ImageID imageID;
 	private GamePosition position;
