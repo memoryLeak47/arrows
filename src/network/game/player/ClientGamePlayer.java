@@ -8,7 +8,9 @@ package network.game.player;
 import java.util.LinkedList;
 
 import entity.Entity;
+import entity.MinimizedEntity;
 import graphics.ImageID;
+import graphics.ImageFile;
 import misc.Debug;
 import misc.game.Team;
 import misc.game.kill.KDCounter;
@@ -19,7 +21,7 @@ import playerproperty.avatar.Avatar;
 import playerproperty.skill.Skill;
 import playerproperty.item.Item;
 
-public class ClientGamePlayer implements GamePlayer
+public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 {
 	// TODO speichern, ob er am Leben ist!
 	private String name;
@@ -33,12 +35,11 @@ public class ClientGamePlayer implements GamePlayer
 
 	private KDCounter kdCounter = new KDCounter();
 	private LinkedList<Integer> effectIDs = new LinkedList<Integer>();
-	private GamePosition position;
 	private int health;
-	private ImageID imageID;
 
 	public ClientGamePlayer(LobbyPlayer player)
 	{
+		super(ImageFile.VOID_ICON.getImageID(), new GamePosition());
 		name = player.getName();
 		rank = player.getRank();
 		avatar = player.getAvatar();
@@ -49,16 +50,10 @@ public class ClientGamePlayer implements GamePlayer
 
 	public void apply(ClientGamePlayerFrameUpdate update)
 	{
-		setHealth(update.getHealth());
+		health = update.getHealth();
 		setPosition(update.getPosition());
 		setImageID(update.getImageID());
 	}
-
-	// setter
-
-	private void setHealth(int health) { this.health = health; }
-	private void setPosition(GamePosition pos) { this.position = new GamePosition(pos); }
-	private void setImageID(ImageID id) { this.imageID = new ImageID(id); }
 
 	// getter
 	@Override public String getName() { return name; }
@@ -71,14 +66,6 @@ public class ClientGamePlayer implements GamePlayer
 
 	public KDCounter getKDCounter() { return kdCounter; }
 	@Override public LinkedList<Integer> getEffectIDs() { return effectIDs; }
-	public GamePosition getPosition() { return position; }
-
-	public GameSize getSize()
-	{
-		Debug.warnIf(getImageID() == null, "ClientGamePlayer.getSize(): getImageID is null");
-		return new GameSize(getImageID());
-	}
 
 	@Override public int getHealth() { return health; }
-	@Override public ImageID getImageID() { return imageID; }
 }

@@ -23,6 +23,29 @@ public abstract class MinimizedEntity implements java.io.Serializable
 		this.position = position;
 	}
 
+	public void render()
+	{
+		if (inScreen())
+		{
+			PixelPosition position = Camera.get().gamePositionToPixelPosition(new GamePosition(getPosition().minus(getSize().times(0.5f))));
+			Screen.g().drawImage(ImageFile.getImageByImageID(getImageID()), position.getX(), position.getY(), null);
+		}
+	}
+
+	// setter
+	public void setImageID(ImageID imageID)
+	{
+		Debug.warnIf(imageID == null, "MinimizedEntity.setImageID(): imageID == null");
+		this.imageID = imageID;
+	}
+
+	public void setPosition(GamePosition position)
+	{
+		Debug.warnIf(position == null, "MinimizedEntity.setPosition(): position == null");
+		this.position = position;
+	}
+
+	// getter
 	public ImageID getImageID()
 	{
 		Debug.warnIf(imageID == null, "MinimizedEntity.getImageID(): imageID == null");
@@ -39,15 +62,6 @@ public abstract class MinimizedEntity implements java.io.Serializable
 	{
 		Debug.warnIf(getImageID() == null, "MinimizedEntity.getSize(): getImageID is null");
 		return new GameSize(getImageID());
-	}
-
-	public void render()
-	{
-		if (inScreen())
-		{
-			PixelPosition position = Camera.get().gamePositionToPixelPosition(new GamePosition(getPosition().minus(getSize().times(0.5f))));
-			Screen.g().drawImage(ImageFile.getImageByImageID(getImageID()), position.getX(), position.getY(), null);
-		}
 	}
 
 	private boolean inScreen()

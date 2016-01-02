@@ -44,12 +44,15 @@ public class ClientGame extends Game
 
 	@Override public LinkedList<MinimizedEntity> getMinimizedEntities()
 	{
-		Debug.warn("ClientGame.getMinimizedEntities(): TODO");
-		return null;
+		LinkedList<MinimizedEntity> entities = new LinkedList<MinimizedEntity>();
+		for (ClientGamePlayer player : getPlayers())
+		{
+			entities.add(player);
+		}
+		return entities;
 	}
 
 	// Getter
-
 	@Override public LinkedList<GamePlayer> getUncastedPlayers()
 	{
 		Debug.warnIf(players == null, "ClientGame.getUncastedPlayers(): return null");
