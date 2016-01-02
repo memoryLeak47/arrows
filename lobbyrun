@@ -4,6 +4,9 @@ req 'xdotool'
 req 'java-run'
 
 sleepiness=0.1
+screenSize=$(xdotool getdisplaygeometry)
+screenSizeX=${screenSize% *}
+screenSizeY=${screenSize#* }
 
 java-run &
 sleep 0.7
@@ -29,10 +32,11 @@ sleep $sleepiness
 xdotool mousemove 350 380 # create server
 xdotool click 1
 sleep $sleepiness
-xdotool mousemove 1200 290 # choose map
+xdotool mousemove $(($screenSizeX-170)) 290 # choose map
 xdotool click 1
 sleep $sleepiness
-xdotool mousemove 1200 660 # next phase
+sleep $sleepiness # for big maps
+xdotool mousemove $(($screenSizeX-100)) 660 # next phase
 xdotool click 1
 sleep $sleepiness
 xdotool mousemove 170 230 # choose avatar
@@ -44,7 +48,7 @@ sleep $sleepiness
 xdotool mousemove 313 718 # ok
 xdotool click 1
 sleep $sleepiness
-xdotool mousemove 1200 660 # next phase
+xdotool mousemove $(($screenSizeX-100)) 660 # next phase
 xdotool click 1
 sleep $sleepiness
 xdotool mousemove 171 258 # choose skills
@@ -59,7 +63,7 @@ sleep $sleepiness
 xdotool mousemove 313 718 # ok
 xdotool click 1
 sleep $sleepiness
-xdotool mousemove 1200 660 # next phase
+xdotool mousemove $(($screenSizeX-100)) 660 # next phase
 xdotool click 1
 sleep $sleepiness
 xdotool mousemove 195 229 # choose items
@@ -73,6 +77,5 @@ sleep $sleepiness
 xdotool mousemove 313 718 # ok
 xdotool click 1
 sleep $sleepiness
-xdotool mousemove 1200 660 # next phase
+xdotool mousemove $(($screenSizeX-100)) 660 # next phase
 xdotool click 1
-sleep $sleepiness
