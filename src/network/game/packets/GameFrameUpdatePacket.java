@@ -5,12 +5,21 @@ import java.util.LinkedList;
 import network.game.player.ClientGamePlayerFrameUpdate;
 import network.game.player.LocalClientGamePlayerFrameUpdate;
 import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
+import network.Packet;
 import network.game.packets.EventUpdatePacket;
 
-public class GameFrameUpdatePacket
+public class GameFrameUpdatePacket extends Packet
 {
-	public LinkedList<ClientGamePlayerFrameUpdate> players;
-	public LinkedList<MinimizedBullet> bullets;
-	public LinkedList<EventUpdatePacket> eventUpdatePackets;
-	public LocalClientGamePlayerFrameUpdate localClientGamePlayerFrameUpdate;
+	private LinkedList<ClientGamePlayerFrameUpdate> players;
+	private LinkedList<MinimizedBullet> bullets;
+	private LinkedList<EventUpdatePacket> eventUpdatePackets;
+	private LocalClientGamePlayerFrameUpdate localClientGamePlayerFrameUpdate;
+
+	public GameFrameUpdatePacket(LinkedList<ClientGamePlayerFrameUpdate> players, LinkedList<MinimizedBullet> bullets, LinkedList<EventUpdatePacket> eventUpdatePackets, LocalClientGamePlayerFrameUpdate localClientGamePlayerFrameUpdate)
+	{
+		this.players = players;
+		this.bullets = bullets;
+		this.eventUpdatePackets = eventUpdatePackets;
+		this.localClientGamePlayerFrameUpdate = localClientGamePlayerFrameUpdate;
+	}
 }

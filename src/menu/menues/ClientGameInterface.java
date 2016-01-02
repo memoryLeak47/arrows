@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 import core.Main;
 import core.game.ClientGame;
+import network.game.packets.GameFrameUpdatePacket;
 import tilemap.LobbyTileMap;
 import misc.Debug;
 import network.Packet;
@@ -26,7 +27,14 @@ public class ClientGameInterface extends GameInterface
 
 	@Override public void handlePacket(Packet packet, InetAddress ip)
 	{
-		Debug.warn("CGI.handlePacket(): TODO");
+		if (packet instanceof GameFrameUpdatePacket)
+		{
+			getGame().apply((GameFrameUpdatePacket) packet);
+		}
+		else
+		{
+			Debug.warn("ClientGameInterface.handlePacket(): Unknown Packet: " + packet.toString());
+		}
 	}
 
 	@Override public void render()

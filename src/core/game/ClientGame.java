@@ -39,7 +39,7 @@ public class ClientGame extends Game
 
 	public void apply(GameFrameUpdatePacket updatePacket)
 	{
-		Debug.warn("ClientGame.update(): TODO"); // TODO
+		Debug.warn("ClientGame.apply(): TODO"); // TODO
 	}
 
 	@Override public LinkedList<MinimizedEntity> getMinimizedEntities()

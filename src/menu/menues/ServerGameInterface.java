@@ -9,6 +9,8 @@ import menu.menues.GameInterface;
 import misc.Debug;
 import network.Packet;
 import network.game.packets.EventPacket;
+import network.game.packets.GameFrameUpdatePacket;
+import network.game.player.LocalClientGamePlayerFrameUpdate;
 import network.lobby.LobbyPlayer;
 
 public class ServerGameInterface extends GameInterface
@@ -31,6 +33,12 @@ public class ServerGameInterface extends GameInterface
 		super.render(); // TODO add more?
 	}
 
+	@Override public void tick()
+	{
+		super.tick();
+		sendGameFrameUpdatePackets();
+	}
+
 	@Override public void onEvent(EventPacket packet)
 	{
 		super.onEvent(packet);
@@ -51,8 +59,17 @@ public class ServerGameInterface extends GameInterface
 		Debug.warn("ServerGameInterface.ipToID: no player with that ip");
 		return -1;
 	}
-	
-	
 
+	private void sendGameFrameUpdatePackets()
+	{
+		for (int i = 1; i < getGame().getPlayers().size(); i++) // für all client-spieler
+		{
+			send(getGameFrameUpdatePacketByID(i), getGame().getPlayers().get(i).getIP());
+		}
+	}
 
+	private GameFrameUpdatePacket getGameFrameUpdatePacketByID(int id)
+	{
+		return new GameFrameUpdatePacket(null, null, null, getGame().getPlayers().get(id).toLocalClientGamePlayerFrameUpdate());
+	}
 }
