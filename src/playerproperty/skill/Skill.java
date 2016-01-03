@@ -29,16 +29,8 @@ public abstract class Skill extends PlayerProperty
 	}
 
 	public void tick() { }
-
-	public void onKeyPressed()
-	{
-		Debug.test("Skill.onKeyPressed(): Man stelle sich vor ein Pfeil fliegt los");
-	}
-
-	public void onKeyReleased()
-	{
-		Debug.test("Skill.onKeyReleased()");
-	}
+	public void onKeyPressed() { }
+	public void onKeyReleased() { }
 
 	// getter
 	public static Skill getByID(byte id)
@@ -47,7 +39,7 @@ public abstract class Skill extends PlayerProperty
 		{
 			return skills[id];
 		}
-		Debug.warn("Skill.getByID(): skill not found");
+		Debug.warn("Skill.getByID(" + id + "): skill not found");
 		return null;
 	}
 
