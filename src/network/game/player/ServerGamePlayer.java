@@ -33,7 +33,7 @@ import playerproperty.item.Item;
 public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 {
 	private InetAddress ip;
-	private KeyManager keyManager = new KeyManager();
+	private KeyManager keyManager = new KeyManager(this);
 
 	private String name;
 	private int rank;
@@ -72,6 +72,15 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	@Override public void tick()
 	{
 		super.tick();
+		for (byte i = 0; i < Skill.SKILLS_SIZE; i++)
+		{
+			getSkills()[i].tick();
+		}
+		applyKeys();
+	}
+
+	private void applyKeys()
+	{
 		if (keyManager.isLeftPressed())
 		{
 			accelerate(-STANDART_ACCELERATION, 0);
@@ -84,7 +93,16 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		{
 			jump();
 		}
+	}
 
+	public void skillPressed(int n)
+	{
+		getSkills()[n].onKeyPressed();
+	}
+
+	public void skillReleased(int n)
+	{
+		getSkills()[n].onKeyReleased();
 	}
 
 	public void onCollide(Entity e)

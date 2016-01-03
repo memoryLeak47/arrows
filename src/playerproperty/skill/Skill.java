@@ -28,7 +28,19 @@ public abstract class Skill extends PlayerProperty
 		}
 	}
 
-	// Getter
+	public void tick() { }
+
+	public void onKeyPressed()
+	{
+		Debug.test("Skill.onKeyPressed(): Man stelle sich vor ein Pfeil fliegt los");
+	}
+
+	public void onKeyReleased()
+	{
+		Debug.test("Skill.onKeyReleased()");
+	}
+
+	// getter
 	public static Skill getByID(byte id)
 	{
 		if (id >= 0 && id < skills.length)
