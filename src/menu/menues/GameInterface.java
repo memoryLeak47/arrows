@@ -1,5 +1,6 @@
 package menu.menues;
 
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 import static core.Main.TILESIZE;
@@ -12,6 +13,7 @@ import misc.Debug;
 import misc.game.Camera;
 import misc.math.game.GamePosition;
 import misc.math.pixel.PixelPosition;
+import misc.math.pixel.PixelSize;
 import network.lobby.LobbyPlayer;
 import network.Packet;
 import tilemap.LobbyTileMap;
@@ -48,8 +50,14 @@ public abstract class GameInterface extends NetworkingMenu
 
 	@Override public void render()
 	{
-		PixelPosition position = Camera.get().gamePositionToPixelPosition(new GamePosition(0,0));
-		Screen.g().drawImage(getUncastedGame().getMapImage(), position.getX(), position.getY(), null);
+		PixelPosition tmp = Camera.get().gamePositionToPixelPosition(new GamePosition());
+		PixelSize imageSize = new PixelSize(getUncastedGame().getMapImage().getWidth(), getUncastedGame().getMapImage().getHeight());
+		int x = -tmp.getX();
+		int y = -tmp.getY();
+		int w = imageSize.getX() - Math.max(0, x) - Math.max(0, imageSize.getX() - (x+Screen.WIDTH));
+		int h = imageSize.getY() - Math.max(0, y) - Math.max(0, imageSize.getY() - (y+Screen.HEIGHT));
+		BufferedImage subImage = getUncastedGame().getMapImage().getSubimage(Math.max(0, x), Math.max(0, y), w, h);
+		Screen.g().drawImage(subImage, Math.max(0, -x), Math.max(0, -y), w, h, null);
 		for (MinimizedEntity entity : getUncastedGame().getMinimizedEntities())
 		{
 			entity.render();
