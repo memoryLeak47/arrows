@@ -8,6 +8,7 @@ import misc.Debug;
 public abstract class Skill extends PlayerProperty
 {
 	public static final short FULL_CHARGE = 32767;
+	public static final byte SKILLS_SIZE = 4;
 
 	private short charge;
 
@@ -34,6 +35,7 @@ public abstract class Skill extends PlayerProperty
 		{
 			return skills[id];
 		}
+		Debug.warn("Skill.getByID(): skill not found");
 		return null;
 	}
 

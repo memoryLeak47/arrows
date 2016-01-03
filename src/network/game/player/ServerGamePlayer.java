@@ -38,7 +38,6 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	private String name;
 	private int rank;
 
-	private short[] charges = new short[4];
 	private PlayerStats playerStats;
 
 	private Avatar avatar;
@@ -136,7 +135,16 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		return new LinkedList<Effect>();
 	}
 
-	public short[] getCharges() { return charges; }
+	public short[] getCharges()
+	{
+		short[] s = new short[Skill.SKILLS_SIZE];
+		for (byte i = 0; i < Skill.SKILLS_SIZE; i++)
+		{
+			s[i] = getSkills()[i].getCharge();
+		}
+		return s;
+	}
+
 	@Override public LinkedList<Integer> getEffectIDs() { return Effect.toEffectIDs(getEffects()); }
 	public PlayerStats getPlayerStats() { return playerStats; }
 

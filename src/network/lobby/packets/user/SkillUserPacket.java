@@ -12,7 +12,7 @@ public class SkillUserPacket extends UserPacket implements PlayerPropertyUserPac
 
 	public SkillUserPacket(byte[] skillIDs)
 	{
-		this.skillIDs = new byte[4];
+		this.skillIDs = new byte[Skill.SKILLS_SIZE];
 		for (byte i = 0; i < skillIDs.length; i++)
 		{
 			this.skillIDs[i] = skillIDs[i];
@@ -43,8 +43,8 @@ public class SkillUserPacket extends UserPacket implements PlayerPropertyUserPac
 	// Getter
 	public Skill[] getSkills()
 	{
-		Skill[] skills = new Skill[4];
-		for (byte i = 0; i < 4; i++)
+		Skill[] skills = new Skill[Skill.SKILLS_SIZE];
+		for (byte i = 0; i < Skill.SKILLS_SIZE; i++)
 		{
 			skills[i] = Skill.getByID(skillIDs[i]);	
 		}
