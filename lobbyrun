@@ -3,7 +3,8 @@
 req 'xdotool'
 req 'java-run'
 
-sleepiness=0.15
+sleepiness=0.1
+mapsleepiness=0.7
 screenSize=$(xdotool getdisplaygeometry)
 screenSizeX=${screenSize% *}
 screenSizeY=${screenSize#* }
@@ -34,8 +35,7 @@ xdotool click 1
 sleep $sleepiness
 xdotool mousemove $(($screenSizeX-170)) 290 # choose map
 xdotool click 1
-sleep $sleepiness
-sleep $sleepiness # for big maps
+sleep $mapsleepiness # for big maps
 xdotool mousemove $(($screenSizeX-100)) 660 # next phase
 xdotool click 1
 sleep $sleepiness
