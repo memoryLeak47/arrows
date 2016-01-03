@@ -1,0 +1,8 @@
+# skills
+
+KeyManager.onEvent() gives events of interest (pressed/released) to the ServerGamePlayer.getSkills()
+
+There are 3 subclasses of Skill:
+	NormalSkill (called on Keypress)
+	ToggleSkill (on / off)
+	HoldSkill (active if key is pressed)
