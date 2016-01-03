@@ -1,6 +1,5 @@
 # collision
 
-
 a collides with b --> a.collideWith(b) is called
 
       b || Tile | Player | Cosmetic | Bullet

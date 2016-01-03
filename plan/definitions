@@ -1,4 +1,4 @@
-Definitions
+# definitions
 
 * Body = pos + size (+ rotation)
 * BodImage = Body + ImageID
