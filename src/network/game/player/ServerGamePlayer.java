@@ -153,9 +153,9 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		return new LinkedList<Effect>();
 	}
 
-	public short[] getCharges()
+	public float[] getCharges()
 	{
-		short[] s = new short[Skill.SKILLS_SIZE];
+		float[] s = new float[Skill.SKILLS_SIZE];
 		for (byte i = 0; i < Skill.SKILLS_SIZE; i++)
 		{
 			s[i] = getSkills()[i].getCharge();

@@ -1,10 +1,10 @@
-package playerproperty.skill.skills;
+package playerproperty.skill.skills.normal;
 
 import graphics.ImageFile;
 import graphics.ImageID;
-import playerproperty.skill.Skill;
+import playerproperty.skill.skills.NormalSkill;
 
-public class ArrowShot extends Skill
+public class ArrowShot extends NormalSkill
 {
 	@Override public ImageID getIconImageID() { return ImageFile.ARROWSHOT_ICON.getImageID(); }
 

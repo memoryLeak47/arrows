@@ -15,7 +15,7 @@ public class LocalClientGamePlayer extends ClientGamePlayer
 {
 	private LinkedList<Effect> effects = new LinkedList<Effect>();
 	private PlayerStats playerStats;
-	private short[] charges;
+	private float[] charges;
 
 	public LocalClientGamePlayer(LobbyPlayer lobbyPlayer)
 	{
@@ -45,5 +45,5 @@ public class LocalClientGamePlayer extends ClientGamePlayer
 	// getter
 	public LinkedList<Effect> getEffects() { return effects; }
 	public PlayerStats getPlayerStats() { return playerStats; }
-	public short[] getCharges() { return charges; }
+	public float[] getCharges() { return charges; }
 }

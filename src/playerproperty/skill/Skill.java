@@ -1,16 +1,18 @@
 package playerproperty.skill;
 
 import playerproperty.PlayerProperty;
-import playerproperty.skill.skills.*;
+import playerproperty.skill.skills.normal.*;
+//import playerproperty.skill.skills.hold.*;
+//import playerproperty.skill.skills.toggle.*;
 import graphics.ImageID;
 import misc.Debug;
 
 public abstract class Skill extends PlayerProperty
 {
-	public static final short FULL_CHARGE = 32767;
+	public static final float MAX_CHARGE = 100;
 	public static final byte SKILLS_SIZE = 4;
 
-	private short charge;
+	private float charge;
 
 	private byte id;
 	private static Skill[] skills;
@@ -43,7 +45,7 @@ public abstract class Skill extends PlayerProperty
 		return null;
 	}
 
-	public short getCharge() { return charge; }
+	public float getCharge() { return charge; }
 
 	@Override public final byte getID() { return id; }
 	public static Skill[] getAllSkills() { return skills; }

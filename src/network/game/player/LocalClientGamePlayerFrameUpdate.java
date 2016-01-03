@@ -13,13 +13,13 @@ public class LocalClientGamePlayerFrameUpdate implements java.io.Serializable
 {
 	private LinkedList<MinimizedEffect> effects = new LinkedList<MinimizedEffect>();
 	private PlayerStats playerStats;
-	private short[] charges;
+	private float[] charges;
 
-	public LocalClientGamePlayerFrameUpdate(LinkedList<MinimizedEffect> effects, PlayerStats playerStats, short[] charges)
+	public LocalClientGamePlayerFrameUpdate(LinkedList<MinimizedEffect> effects, PlayerStats playerStats, float[] charges)
 	{
 		this.effects = new LinkedList<MinimizedEffect>(effects);
 		this.playerStats = new PlayerStats(playerStats);
-		this.charges = new short[charges.length];
+		this.charges = new float[charges.length];
 		for (int i = 0; i < charges.length; i++)
 		{
 			this.charges[i] = charges[i];
@@ -28,5 +28,5 @@ public class LocalClientGamePlayerFrameUpdate implements java.io.Serializable
 
 	public LinkedList<MinimizedEffect> getMinimizedEffects() { return effects; }
 	public PlayerStats getPlayerStats() { return playerStats; }
-	public short[] getCharges() { return charges; }
+	public float[] getCharges() { return charges; }
 }
