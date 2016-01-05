@@ -130,6 +130,11 @@ public class GameTileMap
 		return (x >= 0) && (x < tiles.length) && (y >= 0) && (y < tiles[0].length);
 	}
 
+	public boolean isInMap(GamePosition position)
+	{
+		return (position.getX() >= 0) && (position.getY() >= 0) && (position.getX() < tiles.length+1) && (position.getY() < tiles[0].length+1);
+	}
+
 	public BufferedImage getStaticImage()
 	{
 		Debug.warnIf(staticImage == null, "GameTileMap.getStaticImage(): returns null");

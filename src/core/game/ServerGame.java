@@ -59,10 +59,20 @@ public class ServerGame extends Game
 		int i;
 		for (i=0; i < getBullets().size(); i++)
 		{
+			if (getBullets().get(i).hasToBeRemoved())
+			{
+				getBullets().remove(i);
+				continue;
+			}
 			getBullets().get(i).tick();
 		}
 		for (i=0; i < getMobs().size(); i++)
 		{
+			if (getMobs().get(i).hasToBeRemoved())
+			{
+				getMobs().remove(i);
+				continue;
+			}
 			getMobs().get(i).tick();
 		}
 		for (i=0; i < getPlayers().size(); i++)
@@ -71,6 +81,11 @@ public class ServerGame extends Game
 		}
 		for (i=0; i < getCosmetics().size(); i++)
 		{
+			if (getCosmetics().get(i).hasToBeRemoved())
+			{
+				getCosmetics().remove(i);
+				continue;
+			}
 			getCosmetics().get(i).tick();
 		}
 	}

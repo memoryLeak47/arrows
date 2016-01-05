@@ -59,6 +59,7 @@ public abstract class Entity
 	public float getRight() { return getPosition().getX() + getSize().getX() * 0.5f; }
 	public float getTop() { return getPosition().getY() - getSize().getY() * 0.5f; }
 	public float getBot() { return getPosition().getY() + getSize().getY() * 0.5f; }
+	public boolean hasToBeRemoved() { return false; }
 
 	public abstract MinimizedEntity toMinimizedEntity();
 }

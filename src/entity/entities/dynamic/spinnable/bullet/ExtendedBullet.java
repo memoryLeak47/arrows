@@ -8,6 +8,7 @@ import misc.Debug;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 import misc.math.game.GameVector;
+import tilemap.GameTileMap;
 
 public abstract class ExtendedBullet extends SpinnableEntity
 {
@@ -27,4 +28,5 @@ public abstract class ExtendedBullet extends SpinnableEntity
 	}
 
 	@Override protected GameVector getDefaultDrag() { return new GameVector(1.f, 1.f); }
+	@Override public boolean hasToBeRemoved() { return !GameTileMap.get().isInMap(getPosition()); }
 }

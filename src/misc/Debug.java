@@ -217,7 +217,7 @@ public class Debug
 			System.out.print(color);
 		}
 		log(string);
-		if (WRITE_TO_SCREENl)
+		if (WRITE_TO_SCREEN)
 		{
 			System.out.print(RESET); // resets color
 		}
