@@ -6,6 +6,8 @@ import java.text.DecimalFormat;
 
 public class Debug
 {
+	public static final boolean WRITE_TO_SCREEN = true, WRITE_TO_LOGFILE = true;
+
 	public static final String RESET = "\u001B[0m";
 
 	public static final String FBLACK = "\u001B[30m";
@@ -192,9 +194,15 @@ public class Debug
 
 	private static void log(String string) // prints log and adds it to logs
 	{
-		System.out.println(string); // prints log
+		if (WRITE_TO_SCREEN)
+		{
+			System.out.println(string); // prints log
+		}
 		addLog(string); // adds it to logs
-		writeLog(string);
+		if (WRITE_TO_LOGFILE)
+		{
+			writeLog(string);
+		}
 	}
 
 	private static void colorLog(String color, String string)
