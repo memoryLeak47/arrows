@@ -8,9 +8,9 @@ import misc.math.game.GameSize;
 
 public class MinimizedTile extends MinimizedEntity
 {
-	public MinimizedTile(ImageID imageID, GamePosition position)
+	public MinimizedTile(GamePosition position, ImageID imageID)
 	{
-		super(imageID, position);
+		super(position, imageID);
 	}
 
 	@Override public GameSize getSize() { return new GameSize(1, 1); }

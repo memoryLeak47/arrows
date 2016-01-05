@@ -39,7 +39,7 @@ public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 
 	public ClientGamePlayer(LobbyPlayer player)
 	{
-		super(ImageFile.VOID_ICON.getImageID(), new GamePosition());
+		super(new GamePosition(), ImageFile.VOID_ICON.getImageID());
 		name = player.getName();
 		rank = player.getRank();
 		avatar = player.getAvatar();

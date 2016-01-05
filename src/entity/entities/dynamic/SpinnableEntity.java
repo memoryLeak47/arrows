@@ -9,7 +9,7 @@ import misc.math.game.GamePosition;
 
 public abstract class SpinnableEntity extends DynamicEntity
 {
-	private int rotation;
+	private float rotation;
 
 	public SpinnableEntity(GamePosition position, Animation animation)
 	{
@@ -20,4 +20,6 @@ public abstract class SpinnableEntity extends DynamicEntity
 	{
 		return CollisionDetector.areCollidingSpinnable(this, entity);
 	}
+
+	protected float getRotation() { return rotation; }
 }

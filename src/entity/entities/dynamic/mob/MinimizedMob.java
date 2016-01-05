@@ -9,9 +9,9 @@ public class MinimizedMob extends MinimizedEntity
 {
 	private int health;
 
-	public MinimizedMob(ImageID imageID, GamePosition position, int health /*, Effects*/)
+	public MinimizedMob(GamePosition position, ImageID imageID, int health /*, Effects*/)
 	{
-		super(imageID, position);
+		super(position, imageID);
 		this.health = health;
 	}
 

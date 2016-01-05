@@ -9,9 +9,9 @@ public class MinimizedCosmetic extends MinimizedEntity
 {
 	private float rotation;
 
-	public MinimizedCosmetic(ImageID imageID, GamePosition position, float rotation) // Für rotation wird wahrscheinlich noch ein eigener Datentyp eingeführt werden
+	public MinimizedCosmetic(GamePosition position, ImageID imageID, float rotation) // Für rotation wird wahrscheinlich noch ein eigener Datentyp eingeführt werden
 	{
-		super(imageID, position);
+		super(position, imageID);
 		this.rotation = rotation;
 	}
 

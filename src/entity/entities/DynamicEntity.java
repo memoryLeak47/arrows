@@ -22,6 +22,7 @@ public abstract class DynamicEntity extends Entity
 {
 	private GameVector velocity = new GameVector();
 	private GameVector oldVelocity = new GameVector();
+	private int mass = 0;
 
 	private boolean touchesBot = false, touchesTop = false, touchesLeft = false, touchesRight = false;
 

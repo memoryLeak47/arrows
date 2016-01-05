@@ -138,7 +138,7 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	@Override public MinimizedGamePlayer toMinimizedEntity()
 	{
-		return new MinimizedGamePlayer(getImageID(), getPosition(), getName(), getHealth());
+		return new MinimizedGamePlayer(getPosition(), getImageID(), getName(), getHealth());
 	}
 
 	// getter

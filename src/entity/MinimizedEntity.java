@@ -17,10 +17,10 @@ public abstract class MinimizedEntity implements java.io.Serializable
 	private ImageID imageID;
 	private GamePosition position;
 
-	public MinimizedEntity(ImageID imageID, GamePosition position)
+	public MinimizedEntity(GamePosition position, ImageID imageID)
 	{
-		this.imageID = imageID;
 		this.position = position;
+		this.imageID = imageID;
 	}
 
 	public void render()

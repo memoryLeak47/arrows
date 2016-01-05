@@ -11,9 +11,9 @@ public class MinimizedGamePlayer extends MinimizedEntity
 	private int health;
 	private String name;
 
-	public MinimizedGamePlayer(ImageID imageID, GamePosition position, String name, int health /*, Effects TODO*/)
+	public MinimizedGamePlayer(GamePosition position, ImageID imageID, String name, int health /*, Effects TODO*/)
 	{
-		super(imageID, position);
+		super(position, imageID);
 		this.health = health;
 		this.name = name;
 	}

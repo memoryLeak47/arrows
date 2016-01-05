@@ -9,9 +9,9 @@ public class MinimizedBullet extends MinimizedEntity
 {
 	private float rotation;
 
-	public MinimizedBullet(ImageID imageID, GamePosition position, float rotation /*Effects*/)
+	public MinimizedBullet(GamePosition position, ImageID imageID, float rotation /*, Effects*/)
 	{
-		super(imageID, position);
+		super(position, imageID);
 		this.rotation = rotation;
 	}
 

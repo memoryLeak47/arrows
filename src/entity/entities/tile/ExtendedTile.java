@@ -39,7 +39,7 @@ public abstract class ExtendedTile extends Entity
 
 	@Override public MinimizedEntity toMinimizedEntity()
 	{
-		return new MinimizedTile(getImageID(), getPosition());
+		return new MinimizedTile(getPosition(), getImageID());
 	}
 
 	public static ExtendedTile getByColorID(int colorID, float x, float y)
