@@ -22,6 +22,8 @@ public abstract class DynamicEntity extends Entity
 {
 	private GameVector velocity = new GameVector();
 	private GameVector oldVelocity = new GameVector();
+	private GameVector drag;
+
 	private int mass = 0;
 
 	private boolean touchesBot = false, touchesTop = false, touchesLeft = false, touchesRight = false;
@@ -29,13 +31,14 @@ public abstract class DynamicEntity extends Entity
 	public DynamicEntity(GamePosition position, Animation animation)
 	{
 		super(position, animation);
+		setDrag(getDefaultDrag());
 	}
 
 	@Override public void tick()
 	{
 		super.tick();
-		getVelocity().scaleX(1/DRAG_X);
-		getVelocity().scaleY(1/DRAG_Y);
+		getVelocity().scaleX(1/getDrag().getX());
+		getVelocity().scaleY(1/getDrag().getY());
 		oldVelocity = new GameVector(velocity);
 		getPosition().add(getVelocity());
 		touchesBot = touchesTop = touchesLeft = touchesRight = false;
@@ -251,7 +254,21 @@ public abstract class DynamicEntity extends Entity
 
 	public GameVector getVelocity() { return velocity; }
 	public GameVector getOldVelocity() { return oldVelocity; }
+	protected GameVector getDrag() { return drag; }
+	protected GameVector getDefaultDrag() { return new GameVector(DRAG_X, DRAG_Y); }
 
 	protected boolean touchesBot() { return touchesBot; }
 
+	// setter
+	protected void setDrag(GameVector drag)
+	{
+		Debug.warnIf(drag == null, "DynamicEntity.setDrag(): drag == null");
+		this.drag = drag;
+	}
+
+	protected void setVelocity(GameVector velocity)
+	{
+		Debug.warnIf(velocity == null, "DynamicEntity.setVelocity(): velocity == null");
+		this.velocity = velocity;
+	}
 }

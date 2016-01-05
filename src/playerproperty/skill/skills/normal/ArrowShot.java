@@ -5,6 +5,7 @@ import graphics.ImageFile;
 import graphics.ImageID;
 import misc.Debug;
 import misc.math.game.GamePosition;
+import misc.math.game.GameVector;
 import playerproperty.skill.skills.NormalSkill;
 
 public class ArrowShot extends NormalSkill
@@ -15,6 +16,6 @@ public class ArrowShot extends NormalSkill
 
 	@Override protected void trigger()
 	{
-		addBullet(new Arrow(new GamePosition(getPlayer().getPosition())));
+		addBullet(new Arrow(new GamePosition(getPlayer().getPosition()), new GameVector(0.4f, 0.f)));
 	}
 }
