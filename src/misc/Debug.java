@@ -212,9 +212,15 @@ public class Debug
 
 	private static void colorLog(String color, String string)
 	{
-		System.out.print(color);
+		if (WRITE_TO_SCREEN)
+		{
+			System.out.print(color);
+		}
 		log(string);
-		System.out.print(RESET); // resets color
+		if (WRITE_TO_SCREENl)
+		{
+			System.out.print(RESET); // resets color
+		}
 	}
 
 	private static void addLog(String string) // adds log to loglist
