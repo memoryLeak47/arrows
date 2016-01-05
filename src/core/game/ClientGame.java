@@ -15,7 +15,7 @@ import network.game.packets.GameFrameUpdatePacket;
 public class ClientGame extends Game
 {
 	private LinkedList<ClientGamePlayer> players;
-	private LinkedList<MinimizedBullet> bullets;
+	private LinkedList<MinimizedBullet> bullets = new LinkedList<MinimizedBullet>();
 	private LocalClientGamePlayerFrameUpdate localPlayerUpdate;
 
 	private final int localPlayerID;
@@ -55,6 +55,10 @@ public class ClientGame extends Game
 		for (ClientGamePlayer player : getPlayers())
 		{
 			entities.add(player);
+		}
+		for (MinimizedBullet bullet : getBullets())
+		{
+			entities.add(bullet);
 		}
 		return entities;
 	}
