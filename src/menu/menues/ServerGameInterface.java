@@ -4,7 +4,8 @@ import java.net.InetAddress;
 import java.util.LinkedList;
 
 import core.game.ServerGame;
-import tilemap.LobbyTileMap;
+import entity.MinimizedEntity;
+import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
 import menu.menues.GameInterface;
 import misc.Debug;
 import network.Packet;
@@ -13,6 +14,7 @@ import network.game.packets.GameFrameUpdatePacket;
 import network.game.player.ClientGamePlayerFrameUpdate;
 import network.game.player.LocalClientGamePlayerFrameUpdate;
 import network.lobby.LobbyPlayer;
+import tilemap.LobbyTileMap;
 
 public class ServerGameInterface extends GameInterface
 {
@@ -71,6 +73,17 @@ public class ServerGameInterface extends GameInterface
 		}
 	}
 
+	private LinkedList<MinimizedBullet> getMinimizedBullets()
+	{
+		LinkedList<MinimizedBullet> tmp = new LinkedList<MinimizedBullet>();
+
+		for (int i = 0; i < getGame().getBullets().size(); i++)
+		{
+			tmp.add((MinimizedBullet) getGame().getBullets().get(i).toMinimizedEntity());
+		}
+		return tmp;
+	}
+
 	private GameFrameUpdatePacket getGameFrameUpdatePacketByID(int id)
 	{
 		LinkedList<ClientGamePlayerFrameUpdate> updates = new LinkedList<ClientGamePlayerFrameUpdate>();
@@ -78,7 +91,6 @@ public class ServerGameInterface extends GameInterface
 		{
 			updates.add(getGame().getPlayers().get(i).toClientGamePlayerFrameUpdate());
 		}
-		return new GameFrameUpdatePacket(updates, null, null, getGame().getPlayers().get(id).toLocalClientGamePlayerFrameUpdate());
+		return new GameFrameUpdatePacket(updates, getMinimizedBullets(), null, getGame().getPlayers().get(id).toLocalClientGamePlayerFrameUpdate());
 	}
-
 }

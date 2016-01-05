@@ -37,10 +37,16 @@ public class ClientGame extends Game
 
 	public void apply(GameFrameUpdatePacket updatePacket)
 	{
+		Debug.warnIf(updatePacket == null, "ClientGame.apply() updatePacket == null");
+		Debug.warnIf(updatePacket.getBullets() == null, "ClientGame.apply(): bullets == null");
+		Debug.warnIf(updatePacket.getLocalClientGamePlayerFrameUpdate() == null, "ClientGame.apply(): localClientGamePlayerFrameUpdate == null");
+
 		for (int id = 0; id < getPlayers().size(); id++)
 		{
 			getPlayers().get(id).apply(updatePacket.getPlayerUpdates().get(id));
 		}
+		bullets = updatePacket.getBullets();
+		localPlayerUpdate = updatePacket.getLocalClientGamePlayerFrameUpdate();
 	}
 
 	@Override public LinkedList<MinimizedEntity> getMinimizedEntities()

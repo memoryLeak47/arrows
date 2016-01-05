@@ -14,8 +14,8 @@ import misc.math.pixel.PixelSize;
 
 public abstract class MinimizedEntity implements java.io.Serializable
 {
-	private ImageID imageID;
 	private GamePosition position;
+	private ImageID imageID;
 
 	public MinimizedEntity(GamePosition position, ImageID imageID)
 	{
