@@ -4,6 +4,7 @@ import entity.entities.dynamic.spinnable.bullet.bullets.Arrow;
 import graphics.ImageFile;
 import graphics.ImageID;
 import misc.Debug;
+import misc.math.game.GamePosition;
 import playerproperty.skill.skills.NormalSkill;
 
 public class ArrowShot extends NormalSkill
@@ -14,5 +15,6 @@ public class ArrowShot extends NormalSkill
 
 	@Override protected void trigger()
 	{
+		addBullet(new Arrow(new GamePosition(getPlayer().getPosition())));
 	}
 }

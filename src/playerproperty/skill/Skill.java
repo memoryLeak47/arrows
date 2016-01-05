@@ -7,13 +7,16 @@ import misc.Debug;
 import playerproperty.PlayerProperty;
 import playerproperty.skill.skills.normal.*;
 import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
+import network.game.player.ServerGamePlayer;
 //import playerproperty.skill.skills.hold.*;
 //import playerproperty.skill.skills.toggle.*;
 
-public abstract class Skill extends PlayerProperty
+public abstract class Skill extends PlayerProperty implements Cloneable
 {
 	public static final float MAX_CHARGE = 100;
 	public static final byte SKILLS_SIZE = 4;
+
+	private ServerGamePlayer player;
 
 	private float charge;
 
@@ -64,6 +67,26 @@ public abstract class Skill extends PlayerProperty
 		return null;
 	}
 
+	public static Skill createByID(byte id, ServerGamePlayer player)
+	{
+		if (id >= 0 && id < skills.length)
+		{
+			try
+			{
+				Skill skill = (Skill) skills[id].clone();
+				skill.setPlayer(player);
+				return skill;
+			} catch (Exception e)
+			{
+				Debug.error("Skill.createByID(): can't clone Skill");
+			}
+		}
+		Debug.warn("Skill.createByID(" + id + "): skill not found");
+		return null;
+	}
+
+	protected ServerGamePlayer getPlayer() { return player; }
+
 	public float getCharge() { return charge; }
 
 	@Override public final byte getID() { return id; }
@@ -73,6 +96,12 @@ public abstract class Skill extends PlayerProperty
 	protected float getRecharge() { return 1.0f; }
 
 	// setter
+	private void setPlayer(ServerGamePlayer player)
+	{
+		Debug.warnIf(player == null, "Skill.setPlayer(): player == null");
+		this.player = player;
+	}
+
 	protected final void setCharge(float c)
 	{
 		if (c > MAX_CHARGE)
