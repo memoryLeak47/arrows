@@ -61,20 +61,9 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 	{
 		if (id >= 0 && id < skills.length)
 		{
-			return skills[id];
-		}
-		Debug.warn("Skill.getByID(" + id + "): skill not found");
-		return null;
-	}
-
-	public static Skill createByID(byte id, ServerGamePlayer player)
-	{
-		if (id >= 0 && id < skills.length)
-		{
 			try
 			{
 				Skill skill = (Skill) skills[id].clone();
-				skill.setPlayer(player);
 				return skill;
 			} catch (Exception e)
 			{
@@ -96,7 +85,7 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 	protected float getRecharge() { return 1.0f; }
 
 	// setter
-	private void setPlayer(ServerGamePlayer player)
+	public void setPlayer(ServerGamePlayer player)
 	{
 		Debug.warnIf(player == null, "Skill.setPlayer(): player == null");
 		this.player = player;

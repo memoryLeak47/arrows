@@ -67,6 +67,11 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		this.avatar = lobbyPlayer.getAvatar();
 		this.skills = lobbyPlayer.getSkills();
 		this.items = lobbyPlayer.getItems();
+
+		for (int i = 0; i < skills.length; i++)
+		{
+			skills[i].setPlayer(this);
+		}
 	}
 
 	@Override public void tick()
