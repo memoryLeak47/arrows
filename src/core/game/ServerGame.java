@@ -55,21 +55,23 @@ public class ServerGame extends Game
 	{
 		// tick Entities
 		// GameTileMap wird noch nicht getickt TODO
-		for (ExtendedBullet bullet : getBullets())
+
+		int i;
+		for (i=0; i < getBullets().size(); i++)
 		{
-			bullet.tick();
+			getBullets().get(i).tick();
 		}
-		for (ExtendedMob mob : getMobs())
+		for (i=0; i < getMobs().size(); i++)
 		{
-			mob.tick();
+			getMobs().get(i).tick();
 		}
-		for (ServerGamePlayer player : getPlayers())
+		for (i=0; i < getPlayers().size(); i++)
 		{
-			player.tick();
+			getPlayers().get(i).tick();
 		}
-		for (ExtendedCosmetic cosmetic : getCosmetics())
+		for (i=0; i < getCosmetics().size(); i++)
 		{
-			cosmetic.tick();
+			getCosmetics().get(i).tick();
 		}
 	}
 
