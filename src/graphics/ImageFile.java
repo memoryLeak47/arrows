@@ -36,6 +36,9 @@ public enum ImageFile
 	STONE_TILE("entities/tiles/stonetile.png"),
 	SPAWNTEAM_TILE("entities/tiles/spawnteamtile.png"),
 
+	// bullets
+	ARROW1("entities/bullets/arrow1.png"),
+
 	// player
 	PLAYER("entities/player.png");
 
