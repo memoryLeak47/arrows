@@ -9,4 +9,6 @@ public class ArrowShot extends NormalSkill
 	@Override public ImageID getIconImageID() { return ImageFile.ARROWSHOT_ICON.getImageID(); }
 
 	@Override public String getDescription() { return "shoots an arrow"; }
+
+	@Override protected void trigger() { }
 }

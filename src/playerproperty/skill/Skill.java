@@ -30,9 +30,19 @@ public abstract class Skill extends PlayerProperty
 		}
 	}
 
-	public void tick() { }
+	public void tick()
+	{
+		if (isRecharging())
+		{
+			setCharge(getCharge() + getRecharge());
+		}
+	}
+
 	public void onKeyPressed() { }
 	public void onKeyReleased() { }
+
+	protected abstract void onTrigger(); // Wird nach trigger ausgeführt (resetet charges)
+	protected abstract void trigger(); // wird aufgerufen, wenn der Skill eingesetzt wird
 
 	// getter
 	public static Skill getByID(byte id)
@@ -49,4 +59,24 @@ public abstract class Skill extends PlayerProperty
 
 	@Override public final byte getID() { return id; }
 	public static Skill[] getAllSkills() { return skills; }
+
+	protected abstract boolean isRecharging();
+	protected float getRecharge() { return 1.0f; }
+
+	// setter
+	protected final void setCharge(float c)
+	{
+		if (c > MAX_CHARGE)
+		{
+			charge = MAX_CHARGE;
+		}
+		else if (c < 0.0f)
+		{
+			charge = 0.0f;
+		}
+		else
+		{
+			charge = c;
+		}
+	}
 }
