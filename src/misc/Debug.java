@@ -6,7 +6,9 @@ import java.text.DecimalFormat;
 
 public class Debug
 {
-	public static final boolean WRITE_TO_SCREEN = true, WRITE_TO_LOGFILE = true;
+	private static boolean WRITE_TO_SCREEN = false, WRITE_TO_LOGFILE = false;
+	public static final String STANDARD_CONFIGFILE = ".debug";
+	public static final String STANDARD_LOGFILE = "log";
 
 	public static final String RESET = "\u001B[0m";
 
@@ -53,7 +55,6 @@ public class Debug
 	};
 
 	private static LinkedList<String> logs = new LinkedList<String>(); // liste der logs
-	private static final String STANDARD_LOGFILE = "log"; // standart-logfile
 	private static long lastTime = 0;
 
 	private Debug() {}
@@ -61,13 +62,17 @@ public class Debug
 	// public
 	public static void init()
 	{
-		try
+		loadConfigFile();
+		if (WRITE_TO_LOGFILE)
 		{
-			PrintWriter pw = new PrintWriter(STANDARD_LOGFILE);
-			pw.close();	
-		} catch (Exception e)
-		{
-			error("failed to init Debug");
+			try
+			{
+				PrintWriter pw = new PrintWriter(STANDARD_LOGFILE);
+				pw.close();
+			} catch (Exception e)
+			{
+				error("failed to init Debug");
+			}
 		}
 	}
 
@@ -217,19 +222,50 @@ public class Debug
 		logs.add(string);
 	}
 
+	private static void loadConfigFile()
+	{
+		BufferedReader br = null;
+		try
+		{
+			br = new BufferedReader(new FileReader(STANDARD_CONFIGFILE));
+			StringBuilder sb = new StringBuilder();
+			String line;
+			while ((line = br.readLine()) != null)
+			{
+				if (line.equals("logfile=on"))
+					WRITE_TO_LOGFILE = true;
+				if (line.equals("screen=on"))
+					WRITE_TO_SCREEN = true;
+			}
+		} catch (Exception e)
+		{
+			error("Debug.loadConfigFile(): error loading config-file");
+		}
+		finally
+		{
+			try
+			{
+				br.close();
+			} catch (Exception e)
+			{
+				error("Debug.loadConfigFile(): error while closing br");
+			}
+		}
+	}
+
 	private static void writeLog(String string)
 	{
 		try
 		{
 			File dir = new File(".");
 			String loc = dir.getCanonicalPath() + File.separator + STANDARD_LOGFILE;
-	 
+	
 			FileWriter fstream = new FileWriter(loc, true);
 			BufferedWriter out = new BufferedWriter(fstream);
-	 
+	
 			out.write(string);
 			out.newLine();
-	 
+	
 			out.close();
 		} catch (Exception e)
 		{

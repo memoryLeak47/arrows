@@ -2,3 +2,4 @@ bin
 log
 .accounts
 *.swp
+.debugconfig
