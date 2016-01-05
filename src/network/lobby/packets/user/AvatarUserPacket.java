@@ -36,7 +36,7 @@ public class AvatarUserPacket extends UserPacket implements PlayerPropertyUserPa
 		}
 	}
 
-	// Getter
+	// getter
 	public Avatar getAvatar() { return Avatar.getByID(avatarID); }
 	public byte getAvatarID() { return avatarID; }
 	@Override public PlayerProperty[] getPlayerProperty() { return new PlayerProperty[]{getAvatar()}; }

@@ -53,7 +53,7 @@ public class ClientGame extends Game
 		return entities;
 	}
 
-	// Getter
+	// getter
 	@Override public LinkedList<GamePlayer> getUncastedPlayers()
 	{
 		Debug.warnIf(players == null, "ClientGame.getUncastedPlayers(): return null");

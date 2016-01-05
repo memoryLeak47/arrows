@@ -2,7 +2,7 @@
 
 Entity stellt alle onEvent-funktionen (z.B. onDamage()) und die möglichen Reaktions-funktionen auf die onEvent-Funktionen bereit.
 Nur falls die Reaktionsfunktionen einmalig sind (nur in einer Datei vorkommen), werden sie nicht in Entity definiert.
-Die Variablen(z.B. health) werden in den Unterklassen erstellt. Für diese müssen die Getter in der Unterklasse überschrieben werden.
+Die Variablen(z.B. health) werden in den Unterklassen erstellt. Für diese müssen die getter in der Unterklasse überschrieben werden.
 In den Reaktions-Funktionen werden diese Variablen nur über getter angesprochen.
 Die Unterklassen ordnen nur, durch überschreiben der onEvent-funktionen, den onEvent-funktionen ihre Reaktionen zu
 oder überschreiben die onEvent-funktionen selbst (nur falls Reaktion einmalig).

@@ -40,7 +40,7 @@ public class SkillUserPacket extends UserPacket implements PlayerPropertyUserPac
 		}
 	}
 
-	// Getter
+	// getter
 	public Skill[] getSkills()
 	{
 		Skill[] skills = new Skill[Skill.SKILLS_SIZE];

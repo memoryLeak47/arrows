@@ -49,7 +49,7 @@ public abstract class ChoosableIcon extends Icon
 		return false;
 	}
 
-	// Getter
+	// getter
 	protected LobbyMenu getLobbyMenu() { return ((LobbyMenu) getParentMenu()); }
 	protected LobbyPlayer getPlayer() { return ((PlayerPanel) getParent()).getPlayer(); }
 

@@ -46,6 +46,6 @@ public abstract class NetworkingMenu extends Menu
 
 	public abstract void handlePacket(Packet packet, InetAddress ip); // networkDevice will call this when a packet was received
 
-	// Getter
+	// getter
 	protected LinkedList<PacketAndIP> getPackets() { return packets; }
 }

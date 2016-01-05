@@ -28,7 +28,7 @@ public class MiniMap extends MenuComponent
 		Screen.g().drawImage(getTileMapImage(), getOffset().getX(), getOffset().getY(), getWidth(), getHeight(), null);
 	}
 
-	// Getter
+	// getter
 	protected BufferedImage getTileMapImage()
 	{
 		// Falls kein Image vorhanden, VOID_ICON returnen

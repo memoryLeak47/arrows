@@ -108,7 +108,7 @@ public final class Account implements Serializable
 		return (getByName(name, accounts) == null);
 	}
 
-	// public Getter
+	// public getter
 	public String getName() { return name; }
 	public String getPassword() { return password; }
 	public int getRank() { return rank; }

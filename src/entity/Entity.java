@@ -27,7 +27,7 @@ public abstract class Entity
 		getAnimation().tick();
 	}
 
-	// Getter
+	// getter
 
 	public boolean isCircular() { return false; }
 

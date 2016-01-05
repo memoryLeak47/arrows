@@ -51,7 +51,7 @@ public class TeamListPanel extends Panel
 		}
 	}
 
-	// Getter
+	// getter
 	private LinkedList<LobbyPlayer> getPlayers()
 	{
 		return ((LobbyMenu) getParent()).getPlayers();

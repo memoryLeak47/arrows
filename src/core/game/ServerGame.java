@@ -73,7 +73,13 @@ public class ServerGame extends Game
 		}
 	}
 
-	// Getter
+	public void addBullet(ExtendedBullet bullet)
+	{
+		Debug.warnIf(bullet == null, "Game.addBullet(): bullet == null");
+		getBullets().add(bullet);
+	}
+
+	// getter
 
 	@Override public LinkedList<GamePlayer> getUncastedPlayers()
 	{

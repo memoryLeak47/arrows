@@ -29,7 +29,7 @@ public class PlayerPropertyIcon extends Icon
 	{
 		this.playerProperty = playerProperty;
 	}
-	// Getter
+	// getter
 	public PlayerProperty getPlayerProperty() { return playerProperty; }
 	@Override public ImageID getImageID()
 	{

@@ -115,7 +115,7 @@ public enum ImageFile
 	// Setter
 	private void setID(int id) { this.id = id; }
 
-	// Getter
+	// getter
 	public static BufferedImage getImageByImageID(ImageID id)
 	{
 		if (id == null)

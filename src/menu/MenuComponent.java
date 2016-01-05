@@ -53,7 +53,7 @@ public abstract class MenuComponent extends PixelRect
 	// Setter Funktionen
 	public void setEnabled(boolean enabled) { this.enabled = enabled; }
 
-	// Getter
+	// getter
 
 	// Position relativ zum Screen
 	public PixelPosition getOffset() { return (PixelPosition) getParent().getOffset().plus(getPosition()); }

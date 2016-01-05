@@ -1,11 +1,14 @@
 package playerproperty.skill;
 
-import playerproperty.PlayerProperty;
-import playerproperty.skill.skills.normal.*;
-//import playerproperty.skill.skills.hold.*;
-//import playerproperty.skill.skills.toggle.*;
+import core.game.Game;
+import core.game.ServerGame;
 import graphics.ImageID;
 import misc.Debug;
+import playerproperty.PlayerProperty;
+import playerproperty.skill.skills.normal.*;
+import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
+//import playerproperty.skill.skills.hold.*;
+//import playerproperty.skill.skills.toggle.*;
 
 public abstract class Skill extends PlayerProperty
 {
@@ -43,6 +46,12 @@ public abstract class Skill extends PlayerProperty
 
 	protected abstract void onTrigger(); // Wird nach trigger ausgeführt (resetet charges)
 	protected abstract void trigger(); // wird aufgerufen, wenn der Skill eingesetzt wird
+
+	protected final void addBullet(ExtendedBullet bullet)
+	{
+		Debug.warnIf(bullet == null, "Skill.addBullet(): bullet == null");
+		((ServerGame) Game.get()).addBullet(bullet);
+	}
 
 	// getter
 	public static Skill getByID(byte id)

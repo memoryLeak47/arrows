@@ -60,7 +60,6 @@ public abstract class Game
 	}
 
 	// returnt die GameTileMap als ein Bild, wie es im Spiel erscheint
-
 	public BufferedImage getMapImage()
 	{
 		Debug.warnIf(getGameTileMap().getStaticImage() == null, "Game.getMapImage(): returns null");

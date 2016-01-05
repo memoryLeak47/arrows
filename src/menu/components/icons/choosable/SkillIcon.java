@@ -32,7 +32,7 @@ public class SkillIcon extends ChoosableIcon
 		}
 	}
 
-	// Getter
+	// getter
 	@Override public int getChoosePhase() { return LobbyMenu.SKILL_PHASE; }
 	@Override public ImageID getImageID()
 	{

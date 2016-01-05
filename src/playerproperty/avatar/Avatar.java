@@ -34,7 +34,7 @@ public abstract class Avatar extends PlayerProperty
 	public abstract Damage getResistanceStat();
 	public abstract String getName();
 
-	// Getter
+	// getter
 	public static Avatar getByID(byte id)
 	{
 		if (id >= 0 && id < avatars.length)

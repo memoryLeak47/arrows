@@ -28,7 +28,7 @@ public abstract class Item extends PlayerProperty
 
 	public static Item[] getAllItems() { return items; }
 
-	// Getter
+	// getter
 	public static Item getByID(byte id)
 	{
 		if (id >= 0 && id < items.length)

@@ -22,6 +22,6 @@ public class SpawnTeamTile extends ExtendedTile
 	// Setter
 	public void setTeam(Team team) { this.team = team; }
 
-	// Getter
+	// getter
 	public Team getTeam() { return team; }
 }

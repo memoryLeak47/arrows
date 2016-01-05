@@ -15,7 +15,7 @@ public class PacketAndIP
 		this.ip = ip;
 	}
 
-	// Getter
+	// getter
 	public Packet getPacket() { return packet; }
 	public InetAddress getIP() { return ip; }
 }

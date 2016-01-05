@@ -39,7 +39,7 @@ public class ItemUserPacket extends UserPacket implements PlayerPropertyUserPack
 		}
 	}
 
-	// Getter
+	// getter
 	public Item[] getItems()
 	{
 		Item[] items = new Item[3];

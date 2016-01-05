@@ -31,7 +31,7 @@ public class ItemIcon extends ChoosableIcon
 		}
 	}
 
-	// Getter
+	// getter
 	@Override public int getChoosePhase() { return LobbyMenu.ITEM_PHASE; }
 	public Item getItem() { return player.getItemPacket().getItems()[number]; }
 	@Override public ImageID getImageID() 

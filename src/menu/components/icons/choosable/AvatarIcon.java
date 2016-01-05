@@ -33,7 +33,7 @@ public class AvatarIcon extends ChoosableIcon
 		}
 	}
 
-	// Getter
+	// getter
 	@Override public int getChoosePhase() { return LobbyMenu.AVATAR_PHASE; }
 	@Override public ImageID getImageID() 
 	{
