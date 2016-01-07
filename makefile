@@ -4,3 +4,5 @@ c:
 	@java-compile
 r:
 	@./lobbyrun
+cop:
+	cd src; completer op; cd ..
