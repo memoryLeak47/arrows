@@ -5,4 +5,4 @@ c:
 r:
 	@./lobbyrun
 cop:
-	cd src; completer op; cd ..
+	@cd src; completer op; cd ..
