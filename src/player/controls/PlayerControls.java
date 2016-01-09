@@ -59,7 +59,7 @@ public class PlayerControls
 	public void setRight(boolean b) { getControls()[RIGHT_ID] = b; }
 	public void setSkill(boolean b, byte i)
 	{
-		Debug.warnIf((i < 0) && (i >= Skill.SKILLS_SIZE), "PlayerControls.setSkills(): unvalid index = " + i);
+		Debug.warnIf((i < 0) && (i >= Skill.SKILLS_SIZE), "PlayerControls.setSkills(): invalid index = " + i);
 		getControls()[i] = b;
 	}
 }

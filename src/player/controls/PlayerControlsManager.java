@@ -101,7 +101,7 @@ public class PlayerControlsManager
 	{
 		ArrayList<Byte> controls = new ArrayList<Byte>();
 
-		for (byte i = 1; i < serverPlayerControls.getControls().length; i++)
+		for (byte i = 0; i < serverPlayerControls.getControls().length; i++)
 		{
 			if (serverPlayerControls.getControls()[i] && !myPlayerControls.getControls()[i]) // Wenn der Server denkt, die taste sei gedrückt, sie ist es aber nicht
 			{

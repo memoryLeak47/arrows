@@ -101,16 +101,6 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		}
 	}
 
-	public void skillPressed(int n)
-	{
-		getSkills()[n].onKeyPressed();
-	}
-
-	public void skillReleased(int n)
-	{
-		getSkills()[n].onKeyReleased();
-	}
-
 	public void onCollide(Entity e)
 	{
 		super.onCollide(e);
@@ -120,6 +110,23 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	{
 		Debug.warnIf(packet == null, "ServerGamePlayer.applyPlayerControlsUpdatePacket(): packet == null");
 		controls.applyPlayerControlsUpdatePacket(packet);
+		for (int i = 0; i < packet.controls.length; i++)
+		{
+			if (packet.controls[i] >= 100)
+			{
+				if ((packet.controls[i]-100) < Skill.SKILLS_SIZE)
+				{
+					getSkills()[packet.controls[i]-100].onKeyPressed();
+				}
+			}
+			else
+			{
+				if ((packet.controls[i]) < Skill.SKILLS_SIZE)
+				{
+					getSkills()[packet.controls[i]].onKeyReleased();
+				}
+			}
+		}
 	}
 
 	public LocalClientGamePlayerFrameUpdate toLocalClientGamePlayerFrameUpdate()
