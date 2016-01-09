@@ -1,11 +1,14 @@
 package player.property.avatar;
 
+import player.LobbyPlayer;
+import player.ServerGamePlayer;
 import player.property.PlayerProperty;
 import damage.Damage;
 import player.property.avatar.avatars.*;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;
+import misc.math.game.GamePosition;
 
 public abstract class Avatar extends PlayerProperty
 {
@@ -45,5 +48,8 @@ public abstract class Avatar extends PlayerProperty
 	}
 
 	public static Avatar[] getAllAvatars() { return avatars; }
+
+	public abstract ServerGamePlayer createServerGamePlayer(LobbyPlayer player, GamePosition pos);
+
 	@Override public final byte getID() { return id; }
 }

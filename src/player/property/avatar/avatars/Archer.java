@@ -1,9 +1,13 @@
 package player.property.avatar.avatars;
 
 import damage.Damage;
-import player.property.avatar.Avatar;
 import graphics.ImageID;
 import graphics.ImageFile;
+import misc.math.game.GamePosition;
+import player.LobbyPlayer;
+import player.ServerGamePlayer;
+import player.players.ArcherPlayer;
+import player.property.avatar.Avatar;
 
 public class Archer extends Avatar
 {
@@ -20,4 +24,9 @@ public class Archer extends Avatar
 	@Override public int getRegenerationStat() { return 1; }
 	@Override public int getMaxHealthStat() { return 1; }
 	@Override public int getMassStat() { return 1; }
+
+	@Override public ServerGamePlayer createServerGamePlayer(LobbyPlayer player, GamePosition position)
+	{
+		return new ArcherPlayer(player, position);
+	}
 }

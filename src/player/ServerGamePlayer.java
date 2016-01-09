@@ -30,7 +30,7 @@ import player.property.avatar.Avatar;
 import player.property.skill.Skill;
 import player.property.item.Item;
 
-public class ServerGamePlayer extends ExtendedMob implements GamePlayer
+public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 {
 	private InetAddress ip;
 	private KeyManager keyManager = new KeyManager(this);
@@ -50,7 +50,7 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	private int health;
 	private Animation animation;
 
-	public ServerGamePlayer(LobbyPlayer lobbyPlayer, GamePosition position)
+	protected ServerGamePlayer(LobbyPlayer lobbyPlayer, GamePosition position)
 	{
 		// for testing:
 		super(position, new StaticAnimation(ImageFile.PLAYER.getImageID())); // TODO do real stuff
