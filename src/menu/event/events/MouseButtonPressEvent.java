@@ -1,15 +1,15 @@
-package network.game.packets.events;
+package menu.event.events;
 
 import java.awt.event.MouseEvent;
 
 import misc.Debug;
-import network.game.packets.EventPacket;
+import menu.event.Event;
 
-public final class MouseButtonPressEventPacket extends EventPacket
+public final class MouseButtonPressEvent extends Event
 {
 	private int mouseButton;
 
-	public MouseButtonPressEventPacket(MouseEvent event)
+	public MouseButtonPressEvent(MouseEvent event)
 	{
 		if (event.getButton() == event.BUTTON1)
 		{
@@ -25,7 +25,7 @@ public final class MouseButtonPressEventPacket extends EventPacket
 		}
 		else
 		{
-			Debug.warn("MouseButtonPressEventPacket.<init> bad mouse button(" + event.getButton() + ")", Debug.Tags.EXTENDED_WARNINGS);
+			Debug.warn("MouseButtonPressEvent.<init> bad mouse button(" + event.getButton() + ")", Debug.Tags.EXTENDED_WARNINGS);
 		}
 	}
 

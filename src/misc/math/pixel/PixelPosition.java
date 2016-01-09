@@ -2,7 +2,7 @@ package misc.math.pixel;
 
 import misc.math.pixel.PixelPoint;
 
-public class PixelPosition extends PixelPoint implements java.io.Serializable // used in MouseMoveEventPacket
+public class PixelPosition extends PixelPoint implements java.io.Serializable // used in MouseMoveEvent
 {
 	public PixelPosition()
 	{

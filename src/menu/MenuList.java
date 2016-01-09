@@ -9,8 +9,8 @@ import java.awt.event.KeyEvent;
 
 import menu.Menu;
 import menu.menues.LoginMenu;
-import network.game.packets.EventPacket;
-import network.game.packets.events.*;
+import menu.event.Event;
+import menu.event.events.*;
 import core.Screen;
 import misc.Debug;
 
@@ -67,7 +67,7 @@ public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 	}
 
 	// gebe das event an das oberste menu weiter
-	void onEvent(EventPacket event)
+	void onEvent(Event event)
 	{
 		getTopmostMenu().onEvent(event);
 	}
@@ -82,27 +82,27 @@ public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 	// gebrauchte event-funktionen der listener -> gebe event weiter an onEvent(Event)
 	@Override public void mousePressed(MouseEvent event)
 	{
-		onEvent(new MouseButtonPressEventPacket(event));
+		onEvent(new MouseButtonPressEvent(event));
 	}
 
 	@Override public void mouseReleased(MouseEvent event)
 	{
-		onEvent(new MouseButtonReleaseEventPacket(event));
+		onEvent(new MouseButtonReleaseEvent(event));
 	}
 
 	@Override public void mouseMoved(MouseEvent event)
 	{
-		onEvent(new MouseMoveEventPacket(event));
+		onEvent(new MouseMoveEvent(event));
 	}
 
 	@Override public void keyPressed(KeyEvent event)
 	{
-		onEvent(new KeyPressEventPacket(event));
+		onEvent(new KeyPressEvent(event));
 	}
 
 	@Override public void keyReleased(KeyEvent event)
 	{
-		onEvent(new KeyReleaseEventPacket(event));
+		onEvent(new KeyReleaseEvent(event));
 	}
 
 	// returnt alle menues

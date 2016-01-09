@@ -17,7 +17,7 @@ import player.ServerGamePlayer;
 import player.LocalClientGamePlayer;
 import player.LocalClientGamePlayerFrameUpdate;
 import player.LobbyPlayer;
-import network.game.packets.EventPacket;
+import menu.event.Event;
 import network.game.packets.GameFrameUpdatePacket;
 
 public class ServerGame extends Game
@@ -44,7 +44,7 @@ public class ServerGame extends Game
 			getPlayers().get(id).getCharges());
 	}
 
-	public void handleEvent(EventPacket event, int id)
+	public void handleEvent(Event event, int id)
 	{
 		Debug.warnIf(event == null, "ServerGame.handleEvent(): event == null");
 		Debug.warnIf(getPlayers().get(id) == null, "ServerGame.handleEvent(): no player with id; " + id);

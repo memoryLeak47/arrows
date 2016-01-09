@@ -6,7 +6,7 @@ import menu.NetworkingMenu;
 import core.Main;
 import static misc.Serializer.*;
 import misc.Debug;
-import network.game.packets.EventPacket;
+import menu.event.Event;
 
 public class NetworkDevice
 {

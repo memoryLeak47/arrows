@@ -9,7 +9,7 @@ import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
 import menu.menues.GameInterface;
 import misc.Debug;
 import network.Packet;
-import network.game.packets.EventPacket;
+import menu.event.Event;
 import network.game.packets.GameFrameUpdatePacket;
 import player.ClientGamePlayerFrameUpdate;
 import player.LocalClientGamePlayerFrameUpdate;
@@ -25,12 +25,12 @@ public class ServerGameInterface extends GameInterface
 
 	@Override public void handlePacket(Packet packet, InetAddress ip)
 	{
-		if (packet instanceof EventPacket)
-			getGame().handleEvent((EventPacket) packet, ipToID(ip));
+		/* if (packet instanceof Event)
+			getGame().handleEvent((Event) packet, ipToID(ip));
 		else
 		{
 			Debug.warn("ServerGameInterface.handlePacket(): wrong packet: " + packet);
-		}
+		} */
 	}
 
 	@Override public void render()
@@ -44,7 +44,7 @@ public class ServerGameInterface extends GameInterface
 		sendGameFrameUpdatePackets();
 	}
 
-	@Override public void onEvent(EventPacket packet)
+	@Override public void onEvent(Event packet)
 	{
 		super.onEvent(packet);
 		getGame().handleEvent(packet, 0);

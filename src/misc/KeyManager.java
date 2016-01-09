@@ -3,8 +3,8 @@ package misc;
 import misc.Debug;
 import misc.math.pixel.PixelPosition;
 import player.ServerGamePlayer;
-import network.game.packets.EventPacket;
-import network.game.packets.events.*;
+import menu.event.Event;
+import menu.event.events.*;
 
 public class KeyManager
 {
@@ -22,11 +22,11 @@ public class KeyManager
 		this.player = player;
 	}
 
-	public void handleEvent(EventPacket eventPacket)
+	public void handleEvent(Event eventPacket)
 	{
-		if (eventPacket instanceof KeyPressEventPacket)
+		if (eventPacket instanceof KeyPressEvent)
 		{
-			char c = ((KeyPressEventPacket) eventPacket).getKeyChar();
+			char c = ((KeyPressEvent) eventPacket).getKeyChar();
 			Debug.note("KeyManager.handleEvent(): " + c + " pressed", Debug.Tags.KEYMANAGER_EVENTS);
 			switch (c)
 			{
@@ -60,9 +60,9 @@ public class KeyManager
 					break;
 			}
 		}
-		else if (eventPacket instanceof KeyReleaseEventPacket)
+		else if (eventPacket instanceof KeyReleaseEvent)
 		{
-			char c = ((KeyReleaseEventPacket) eventPacket).getKeyChar();
+			char c = ((KeyReleaseEvent) eventPacket).getKeyChar();
 			Debug.note("KeyManager.handleEvent(): " + c + " released", Debug.Tags.KEYMANAGER_EVENTS);
 			switch (c)
 			{
@@ -96,9 +96,9 @@ public class KeyManager
 					break;
 			}
 		}
-		else if (eventPacket instanceof MouseMoveEventPacket)
+		else if (eventPacket instanceof MouseMoveEvent)
 		{
-			mousePosition = ((MouseMoveEventPacket) eventPacket).getMousePosition();
+			mousePosition = ((MouseMoveEvent) eventPacket).getMousePosition();
 		}
 	}
 

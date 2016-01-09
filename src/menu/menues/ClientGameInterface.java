@@ -9,7 +9,7 @@ import network.game.packets.GameFrameUpdatePacket;
 import tilemap.LobbyTileMap;
 import misc.Debug;
 import network.Packet;
-import network.game.packets.EventPacket;
+import menu.event.Event;
 import player.LobbyPlayer;
 
 public class ClientGameInterface extends GameInterface
@@ -42,9 +42,9 @@ public class ClientGameInterface extends GameInterface
 		super.render();
 	}
 
-	@Override public void onEvent(EventPacket packet)
+	@Override public void onEvent(Event packet)
 	{
 		super.onEvent(packet);
-		Main.getNetworkDevice().send(packet, serverIP);
+		// Main.getNetworkDevice().send(packet, serverIP);
 	}
 }

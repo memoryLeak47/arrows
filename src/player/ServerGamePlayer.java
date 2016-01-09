@@ -23,7 +23,7 @@ import player.property.Team;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 import player.LobbyPlayer;
-import network.game.packets.EventPacket;
+import menu.event.Event;
 import player.LocalClientGamePlayerFrameUpdate;
 import player.ClientGamePlayerFrameUpdate;
 import player.property.avatar.Avatar;
@@ -115,7 +115,7 @@ public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		super.onCollide(e);
 	}
 
-	public void handleEvent(EventPacket eventPacket)
+	public void handleEvent(Event eventPacket)
 	{
 		Debug.warnIf(eventPacket == null, "ServerGamePlayer.handleEvent(): eventPacket == null");
 		keyManager.handleEvent(eventPacket);

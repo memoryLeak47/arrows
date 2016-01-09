@@ -1,15 +1,15 @@
-package network.game.packets.events;
+package menu.event.events;
 
 import java.awt.event.MouseEvent;
 
-import network.game.packets.EventPacket;
 import misc.Debug;
+import menu.event.Event;
 
-public final class MouseButtonReleaseEventPacket extends EventPacket
+public final class MouseButtonReleaseEvent extends Event
 {
 	private int mouseButton;
 
-	public MouseButtonReleaseEventPacket(MouseEvent event)
+	public MouseButtonReleaseEvent(MouseEvent event)
 	{
 		if (event.getButton() == event.BUTTON1)
 		{
@@ -25,7 +25,7 @@ public final class MouseButtonReleaseEventPacket extends EventPacket
 		}
 		else
 		{
-			Debug.warn("MouseButtonReleaseEventPacket.<init> bad mouse button(" + event.getButton() + ")", Debug.Tags.EXTENDED_WARNINGS);
+			Debug.warn("MouseButtonReleaseEvent.<init> bad mouse button(" + event.getButton() + ")", Debug.Tags.EXTENDED_WARNINGS);
 		}
 	}
 

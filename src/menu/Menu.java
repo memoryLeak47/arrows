@@ -10,8 +10,8 @@ import menu.MenuComponent;
 import menu.ComponentContainer;
 import menu.menues.PopupMenu;
 import network.Packet;
-import network.game.packets.EventPacket;
-import network.game.packets.events.*;
+import menu.event.Event;
+import menu.event.events.*;
 import misc.Debug;
 import misc.math.pixel.PixelPosition;
 import misc.math.pixel.PixelRect;
@@ -52,40 +52,40 @@ public abstract class Menu extends ComponentContainer
 	}
 
 	// bearbeitet die events vom menu
-	protected void onEvent(EventPacket event)
+	protected void onEvent(Event event)
 	{
-		if (event instanceof MouseMoveEventPacket) // wenn sich die maus bewegt hat
+		if (event instanceof MouseMoveEvent) // wenn sich die maus bewegt hat
 		{
 			MenuComponent hovered = getHoveredComponent(); // Verhinderung einer null-pointer-exception
 			if (hovered != null) // und es eine gehoverte MenuComponent gibt
 			{
-				hovered.onMouseMove(((MouseMoveEventPacket)event).getMousePosition()); // gebe das event an getHoveredComponent() weiter
+				hovered.onMouseMove(((MouseMoveEvent)event).getMousePosition()); // gebe das event an getHoveredComponent() weiter
 			}
 		}
-		else if (event instanceof MouseButtonPressEventPacket) // wenn die maus gedrückt wurde
+		else if (event instanceof MouseButtonPressEvent) // wenn die maus gedrückt wurde
 		{
 			focusedComponent = getHoveredComponent(); // lasse die fokusierte MenuComponent die gehoverte sein
 		}
-		else if (event instanceof MouseButtonReleaseEventPacket) // wenn die maus losgelassen wurde
+		else if (event instanceof MouseButtonReleaseEvent) // wenn die maus losgelassen wurde
 		{
 			MenuComponent hovered = getHoveredComponent();
 			if (hovered != null) // und es eine gehoverte MenuComponent gibt
 			{
-				hovered.onClick(((MouseButtonReleaseEventPacket) event).getMouseButton()); // gebe das event an getHoveredComponent() weiter
+				hovered.onClick(((MouseButtonReleaseEvent) event).getMouseButton()); // gebe das event an getHoveredComponent() weiter
 			}
 		}
-		else if (event instanceof KeyPressEventPacket) // wenn die tastatur gedrückt wurde
+		else if (event instanceof KeyPressEvent) // wenn die tastatur gedrückt wurde
 		{
 			if (getFocusedComponent() != null) // und es eine fokusierte MenuComponent gibt 
 			{
-				getFocusedComponent().onKeyPress(((KeyPressEventPacket) event).getKeyChar()); // gebe das event an getFocusedComponent() weiter
+				getFocusedComponent().onKeyPress(((KeyPressEvent) event).getKeyChar()); // gebe das event an getFocusedComponent() weiter
 			}
 		}
-		else if (event instanceof KeyReleaseEventPacket) // wenn die tastatur losgelassen wurde
+		else if (event instanceof KeyReleaseEvent) // wenn die tastatur losgelassen wurde
 		{
 			if (getFocusedComponent() != null) // und es eine fokusierte MenuCompoent gibt
 			{
-				getFocusedComponent().onKeyRelease(((KeyReleaseEventPacket) event).getKeyChar()); // gebe das event an getFocusedComponent() weiter
+				getFocusedComponent().onKeyRelease(((KeyReleaseEvent) event).getKeyChar()); // gebe das event an getFocusedComponent() weiter
 			}
 		}
 		else // falls das event ein anderes ist
