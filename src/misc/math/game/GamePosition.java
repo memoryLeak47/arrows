@@ -47,17 +47,4 @@ public class GamePosition extends GameVector
 	{
 		return new GamePosition(getX() - position.getX(), getY() - position.getY());
 	}
-
-	public boolean inGameRect(GamePosition pos, GameSize size)
-	{
-		return getX() >= pos.getX()
-			&& getX() <= pos.getX() + size.getX()
-			&& getY() >= pos.getY()
-			&& getY() <= pos.getY() + size.getY();
-	}
-
-	public boolean inGameRect(GameRect rect)
-	{
-		return inGameRect(rect.getGamePosition(), rect.getGameSize());
-	}
 }

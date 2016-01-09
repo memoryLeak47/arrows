@@ -26,14 +26,12 @@ public class Camera
 
 	public GameVector getOffset()
 	{
-		GamePlayer gp = Game.get().getUncastedPlayers().get(localPlayerID);
-		return gp.getPosition() // player-pos
-			.minus(new GamePosition(Screen.WIDTH/TILESIZE/2, Screen.HEIGHT/TILESIZE/2)); // offset
+		return getPosition().minus(new GamePosition(Screen.WIDTH/TILESIZE/2, Screen.HEIGHT/TILESIZE/2)); // offset
 	}
 
 	public GameRect getRect()
 	{
-		return new GameRect(getOffset(), new GameSize(Screen.WIDTH/TILESIZE, Screen.HEIGHT/TILESIZE));
+		return new GameRect(getPosition(), new GameSize(Screen.WIDTH/TILESIZE, Screen.HEIGHT/TILESIZE));
 	}
 
 	public PixelPosition gamePositionToPixelPosition(GamePosition position)
@@ -76,5 +74,10 @@ public class Camera
 		Debug.warnIf(Game.get() == null, "Camera.get(): game == null");
 		Debug.warnIf(Game.get().getCamera() == null, "Camera.get(): camera == null");
 		return Game.get().getCamera();
+	}
+
+	public GamePosition getPosition()
+	{
+		return Game.get().getUncastedPlayers().get(localPlayerID).getPosition();
 	}
 }
