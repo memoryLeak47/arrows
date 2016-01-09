@@ -19,7 +19,8 @@ public abstract class Avatar extends PlayerProperty
 	{
 		avatars = new Avatar[]
 		{
-			new Archer()
+			new Archer(),
+			new Rogue()
 		};
 
 		for (byte i = 0; i < avatars.length; i++)

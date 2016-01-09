@@ -24,6 +24,7 @@ public enum ImageFile
 
 	// avatars
 	ARCHER_ICON("icons/avatars/archer.png"),
+	ROGUE_ICON("icons/avatars/rogue.png"),
 
 	// skills
 	ARROWSHOT_ICON("icons/skills/arrow.png"),
