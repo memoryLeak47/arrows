@@ -20,7 +20,7 @@ public class SkillIcon extends ChoosableIcon
 	public SkillIcon(ComponentContainer parent, PixelRect rect, LobbyPlayer player, int number)
 	{
 		super(parent, rect);
-		this.player = player;;
+		this.player = player;
 		this.number = number;
 	}
 

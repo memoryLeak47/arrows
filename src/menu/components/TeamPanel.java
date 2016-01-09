@@ -10,7 +10,7 @@ import menu.components.Panel;
 import menu.components.PlayerPanel;
 import misc.game.Team;
 import misc.math.pixel.PixelRect;
-import network.lobby.LobbyPlayer;;
+import network.lobby.LobbyPlayer;
 
 public class TeamPanel extends Panel
 {

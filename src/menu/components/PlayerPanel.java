@@ -11,7 +11,7 @@ import java.awt.Color;
 
 import core.Screen;
 import menu.ComponentContainer;
-import menu.components.icons.choosable.*;;
+import menu.components.icons.choosable.*;
 import misc.Debug;
 import misc.math.pixel.PixelRect;
 import network.lobby.LobbyPlayer;
