@@ -44,13 +44,6 @@ public class ServerGame extends Game
 			getPlayers().get(id).getCharges());
 	}
 
-	public void handleEvent(Event event, int id)
-	{
-		Debug.warnIf(event == null, "ServerGame.handleEvent(): event == null");
-		Debug.warnIf(getPlayers().get(id) == null, "ServerGame.handleEvent(): no player with id; " + id);
-		getPlayers().get(id).handleEvent(event);
-	}
-
 	public void tick()
 	{
 		// tick Entities

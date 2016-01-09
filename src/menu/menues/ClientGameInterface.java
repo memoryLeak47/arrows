@@ -23,6 +23,12 @@ public class ClientGameInterface extends GameInterface
 		this.serverIP = serverIP;
 	}
 
+	@Override public void tick()
+	{
+		super.tick();
+		send(getPlayerControlsUpdatePacket(), serverIP);
+	}
+
 	private ClientGame getGame() { return (ClientGame) getUncastedGame(); }
 
 	@Override public void handlePacket(Packet packet, InetAddress ip)

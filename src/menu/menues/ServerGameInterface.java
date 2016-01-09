@@ -12,6 +12,7 @@ import network.Packet;
 import menu.event.Event;
 import network.game.packets.GameFrameUpdatePacket;
 import player.ClientGamePlayerFrameUpdate;
+import network.game.packets.PlayerControlsUpdatePacket;
 import player.LocalClientGamePlayerFrameUpdate;
 import player.LobbyPlayer;
 import tilemap.LobbyTileMap;
@@ -25,12 +26,14 @@ public class ServerGameInterface extends GameInterface
 
 	@Override public void handlePacket(Packet packet, InetAddress ip)
 	{
-		/* if (packet instanceof Event)
-			getGame().handleEvent((Event) packet, ipToID(ip));
+		if (packet instanceof PlayerControlsUpdatePacket)
+		{
+			getGame().getPlayers().get(ipToID(ip)).applyPlayerControlsUpdatePacket((PlayerControlsUpdatePacket) packet);
+		}
 		else
 		{
 			Debug.warn("ServerGameInterface.handlePacket(): wrong packet: " + packet);
-		} */
+		}
 	}
 
 	@Override public void render()
@@ -41,13 +44,8 @@ public class ServerGameInterface extends GameInterface
 	@Override public void tick()
 	{
 		super.tick();
+		getGame().getPlayers().get(0).applyPlayerControlsUpdatePacket(getPlayerControlsUpdatePacket());
 		sendGameFrameUpdatePackets();
-	}
-
-	@Override public void onEvent(Event packet)
-	{
-		super.onEvent(packet);
-		getGame().handleEvent(packet, 0);
 	}
 
 	// private

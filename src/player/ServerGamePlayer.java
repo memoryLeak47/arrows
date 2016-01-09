@@ -14,18 +14,19 @@ import graphics.Animation;
 import graphics.animations.StaticAnimation;
 import graphics.ImageFile;
 import graphics.ImageID;
-import misc.Debug;
 import effect.Effect;
 import damage.KDCounter;
-import misc.KeyManager;
 import player.PlayerStats;
 import player.property.Team;
+import misc.Debug;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
-import player.LobbyPlayer;
 import menu.event.Event;
-import player.LocalClientGamePlayerFrameUpdate;
+import network.game.packets.PlayerControlsUpdatePacket;
+import player.LobbyPlayer;
+import player.controls.PlayerControls;
 import player.ClientGamePlayerFrameUpdate;
+import player.LocalClientGamePlayerFrameUpdate;
 import player.property.avatar.Avatar;
 import player.property.skill.Skill;
 import player.property.item.Item;
@@ -33,7 +34,7 @@ import player.property.item.Item;
 public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 {
 	private InetAddress ip;
-	private KeyManager keyManager = new KeyManager(this);
+	private PlayerControls controls = new PlayerControls();
 
 	private String name;
 	private int rank;
@@ -86,15 +87,15 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	private void applyKeys()
 	{
-		if (keyManager.isLeftPressed())
+		if (controls.isLeft())
 		{
 			accelerate(-STANDART_ACCELERATION, 0);
 		}
-		if (keyManager.isRightPressed())
+		if (controls.isRight())
 		{
 			accelerate(STANDART_ACCELERATION, 0);
 		}
-		if (keyManager.isJumpPressed())
+		if (controls.isJump())
 		{
 			jump();
 		}
@@ -115,10 +116,10 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		super.onCollide(e);
 	}
 
-	public void handleEvent(Event eventPacket)
+	public void applyPlayerControlsUpdatePacket(PlayerControlsUpdatePacket packet)
 	{
-		Debug.warnIf(eventPacket == null, "ServerGamePlayer.handleEvent(): eventPacket == null");
-		keyManager.handleEvent(eventPacket);
+		Debug.warnIf(packet == null, "ServerGamePlayer.applyPlayerControlsUpdatePacket(): packet == null");
+		controls.applyPlayerControlsUpdatePacket(packet);
 	}
 
 	public LocalClientGamePlayerFrameUpdate toLocalClientGamePlayerFrameUpdate()

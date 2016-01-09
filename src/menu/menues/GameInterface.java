@@ -9,18 +9,22 @@ import core.Screen;
 import game.Game;
 import entity.MinimizedEntity;
 import menu.NetworkingMenu;
+import menu.event.Event;
 import misc.Debug;
 import misc.math.Camera;
 import misc.math.game.GamePosition;
 import misc.math.pixel.PixelPosition;
 import misc.math.pixel.PixelSize;
 import player.LobbyPlayer;
+import player.controls.PlayerControlsManager;
 import network.Packet;
+import network.game.packets.PlayerControlsUpdatePacket;
 import tilemap.LobbyTileMap;
 
 public abstract class GameInterface extends NetworkingMenu
 {
 	private Game game;
+	private PlayerControlsManager controlsManager = new PlayerControlsManager();
 
 	public GameInterface(Game game)
 	{
@@ -40,13 +44,21 @@ public abstract class GameInterface extends NetworkingMenu
 		}
 	}
 
+	protected PlayerControlsUpdatePacket getPlayerControlsUpdatePacket()
+	{
+		return controlsManager.getPacketAndApply();
+	}
+
+	@Override public void onEvent(Event event)
+	{
+		controlsManager.onEvent(event);
+	}
+
 	private void setGame(Game game)
 	{
 		Debug.warnIf(game == null, "GameInterface.setGame(null)");
 		this.game = game;
 	}
-
-	protected Game getUncastedGame() { return game; }
 
 	@Override public void render()
 	{
@@ -63,4 +75,7 @@ public abstract class GameInterface extends NetworkingMenu
 			entity.render();
 		}
 	}
+
+	protected Game getUncastedGame() { return game; }
+
 }

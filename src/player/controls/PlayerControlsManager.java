@@ -36,7 +36,7 @@ public class PlayerControlsManager
 	{
 		if (event instanceof KeyPressEvent)
 		{
-			switch(((KeyPressEvent) event).getKeyChar())
+			switch (((KeyPressEvent) event).getKeyChar())
 			{
 				case jumpKey:
 					myPlayerControls.setJump(true);

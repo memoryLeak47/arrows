@@ -19,7 +19,7 @@ ServerGame extends Game:
 		List<ServerGamePlayer> players;
 		LocalClientGamePlayerFrameUpdate getLocalClientGamePlayerFrameUpdateByID(id) # needed for getGameFrameUpdatePacket(id)
 
-	handleEvent(Event, id)
+	onEvent(Event, id)
 	tick() lässt das Spiel weiterlaufen
 	GameFrameUpdatePacket getGameFrameUpdatePacketByID(id) # id from LocalClientGamePlayerFrameUpdate of localPlayer
 
@@ -51,8 +51,8 @@ ClientGameInterface:
 
 ServerGameInterface:
 	-> render() // nutzt Game.getDynamicEntities()
-	handlePacket() // -> ServerGame.handleEvent(Event)
-	onEvent(Event) // -> ServerGame.handleEvent(Event)
+	handlePacket() // -> ServerGame.onEvent(Event)
+	onEvent(Event) // -> ServerGame.onEvent(Event)
 
 ________________________________________________________________________________________________________________________________________________________________________________________________
 								InGame Client-Server Data Exchange
