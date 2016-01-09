@@ -22,4 +22,20 @@ public abstract class SpinnableEntity extends DynamicEntity
 	}
 
 	protected float getRotation() { return rotation; }
+
+	/*
+	@Override public GamePosition getTop() { }
+	@Override public GamePosition getBot() { }
+	@Override public GamePosition getRight() { }
+	@Override public GamePosition getLeft() { }
+	*/
+
+	public GameRect getWrapper()
+	{
+		return new GameRect(
+			getPosition(),
+			new GameSize(
+				Math.abs(getPosition().getX() - getLeft()),
+				Math.abs(getPosition().getY() - getTop())));
+	}
 }
