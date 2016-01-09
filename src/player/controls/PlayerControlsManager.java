@@ -64,7 +64,7 @@ public class PlayerControlsManager
 					break;
 			}
 		}
-		else if (event instanceof KeyPressEvent)
+		else if (event instanceof KeyReleaseEvent)
 		{
 			switch(((KeyReleaseEvent) event).getKeyChar())
 			{
