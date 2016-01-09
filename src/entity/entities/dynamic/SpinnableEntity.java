@@ -6,6 +6,8 @@ import entity.entities.tile.ExtendedTile;
 import graphics.Animation;
 import misc.math.game.CollisionDetector;
 import misc.math.game.GamePosition;
+import misc.math.game.GameRect;
+import misc.math.game.GameSize;
 
 public abstract class SpinnableEntity extends DynamicEntity
 {
