@@ -3,7 +3,7 @@
 	Speichert allgemein bekannte Daten vom Client. Die Daten der externen Player
 */
 
-package network.game.player;
+package player;
 
 import misc.math.game.GamePosition;
 import graphics.ImageID;

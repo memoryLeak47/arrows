@@ -6,7 +6,7 @@ import core.Screen;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;
-import misc.game.Camera;
+import misc.math.Camera;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 import misc.math.pixel.PixelPosition;

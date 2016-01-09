@@ -6,15 +6,15 @@ import java.util.LinkedList;
 import static core.Main.TILESIZE;
 import core.Main;
 import core.Screen;
-import core.game.Game;
+import game.Game;
 import entity.MinimizedEntity;
 import menu.NetworkingMenu;
 import misc.Debug;
-import misc.game.Camera;
+import misc.math.Camera;
 import misc.math.game.GamePosition;
 import misc.math.pixel.PixelPosition;
 import misc.math.pixel.PixelSize;
-import network.lobby.LobbyPlayer;
+import player.LobbyPlayer;
 import network.Packet;
 import tilemap.LobbyTileMap;
 

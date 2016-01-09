@@ -1,6 +1,6 @@
-package playerproperty.skill.skills;
+package player.property.skill.skills;
 
-import playerproperty.skill.Skill;
+import player.property.skill.Skill;
 
 public abstract class NormalSkill extends Skill
 {

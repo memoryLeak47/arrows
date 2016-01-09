@@ -2,14 +2,14 @@
 	Stellt Funktionen zur Verfügung, die für das Rendern benutzt werden
 */
 
-package network.game.player;
+package player;
 
 import java.util.LinkedList;
 
 import graphics.ImageID;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
-import misc.game.Team;
+import player.property.Team;
 
 public interface GamePlayer
 {

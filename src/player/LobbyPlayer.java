@@ -1,12 +1,12 @@
-package network.lobby;
+package player;
 
 import java.io.Serializable;
 import java.net.InetAddress;
 
-import playerproperty.avatar.Avatar;
-import playerproperty.skill.Skill;
-import playerproperty.item.Item;
-import misc.game.Team;
+import player.property.avatar.Avatar;
+import player.property.skill.Skill;
+import player.property.item.Item;
+import player.property.Team;
 import misc.Debug;
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.user.*;

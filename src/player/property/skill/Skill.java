@@ -1,13 +1,13 @@
-package playerproperty.skill;
+package player.property.skill;
 
-import core.game.Game;
-import core.game.ServerGame;
+import game.Game;
+import game.ServerGame;
 import graphics.ImageID;
 import misc.Debug;
-import playerproperty.PlayerProperty;
-import playerproperty.skill.skills.normal.*;
+import player.property.PlayerProperty;
+import player.property.skill.skills.normal.*;
 import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
-import network.game.player.ServerGamePlayer;
+import player.ServerGamePlayer;
 //import playerproperty.skill.skills.hold.*;
 //import playerproperty.skill.skills.toggle.*;
 

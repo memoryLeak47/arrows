@@ -1,8 +1,8 @@
-package misc.game;
+package misc;
 
 import misc.Debug;
 import misc.math.pixel.PixelPosition;
-import network.game.player.ServerGamePlayer;
+import player.ServerGamePlayer;
 import network.game.packets.EventPacket;
 import network.game.packets.events.*;
 

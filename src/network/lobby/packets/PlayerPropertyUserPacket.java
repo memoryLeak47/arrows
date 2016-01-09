@@ -4,7 +4,7 @@
 
 package network.lobby.packets;
 
-import playerproperty.PlayerProperty;
+import player.property.PlayerProperty;
 
 public interface PlayerPropertyUserPacket
 {

@@ -15,7 +15,7 @@ import menu.ComponentContainer;
 import menu.menues.LobbyMenu;
 import misc.math.pixel.PixelRect;
 import misc.Debug;
-import network.lobby.LobbyPlayer;
+import player.LobbyPlayer;
 
 public abstract class ChoosableIcon extends Icon
 {

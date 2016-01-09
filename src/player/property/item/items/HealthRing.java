@@ -1,6 +1,6 @@
-package playerproperty.item.items;
+package player.property.item.items;
 
-import playerproperty.item.Item;
+import player.property.item.Item;
 import graphics.ImageFile;
 import graphics.ImageID;
 

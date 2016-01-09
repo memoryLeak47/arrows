@@ -1,9 +1,9 @@
-package misc.game.effect;
+package effect;
 
 import java.util.LinkedList;
 
 import misc.Debug;
-import misc.game.effect.effects.*;
+import effect.effects.*;
 
 public abstract class Effect implements Cloneable
 {

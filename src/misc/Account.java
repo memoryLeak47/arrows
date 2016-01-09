@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.LinkedList;
 
-import playerproperty.PlayerProperty;
+import player.property.PlayerProperty;
 import core.Main;
 import misc.Debug;
 import static misc.Serializer.*;

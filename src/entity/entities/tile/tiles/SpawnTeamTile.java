@@ -1,7 +1,7 @@
 package entity.entities.tile.tiles;
 
 import static core.Main.TILESIZE;
-import misc.game.Team;
+import player.property.Team;
 import entity.entities.tile.ExtendedTile;
 import graphics.animations.StaticAnimation;
 import graphics.ImageFile;

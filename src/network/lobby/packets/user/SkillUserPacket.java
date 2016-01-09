@@ -3,8 +3,8 @@ package network.lobby.packets.user;
 import misc.Debug;
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.PlayerPropertyUserPacket;
-import playerproperty.skill.Skill;
-import playerproperty.PlayerProperty;
+import player.property.skill.Skill;
+import player.property.PlayerProperty;
 
 public class SkillUserPacket extends UserPacket implements PlayerPropertyUserPacket
 {

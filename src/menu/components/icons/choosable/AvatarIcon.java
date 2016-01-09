@@ -6,12 +6,12 @@ import menu.ComponentContainer;
 import menu.menues.LobbyMenu;
 import menu.menues.ChoosePlayerPropertyMenu;
 import core.Main;
-import playerproperty.avatar.Avatar;
-import playerproperty.avatar.avatars.*;
+import player.property.avatar.Avatar;
+import player.property.avatar.avatars.*;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.math.pixel.PixelRect;
-import network.lobby.LobbyPlayer;
+import player.LobbyPlayer;
 
 public class AvatarIcon extends ChoosableIcon
 {

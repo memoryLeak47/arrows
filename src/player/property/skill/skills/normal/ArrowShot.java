@@ -1,4 +1,4 @@
-package playerproperty.skill.skills.normal;
+package player.property.skill.skills.normal;
 
 import entity.entities.dynamic.spinnable.bullet.bullets.Arrow;
 import graphics.ImageFile;
@@ -6,7 +6,7 @@ import graphics.ImageID;
 import misc.Debug;
 import misc.math.game.GamePosition;
 import misc.math.game.GameVector;
-import playerproperty.skill.skills.NormalSkill;
+import player.property.skill.skills.NormalSkill;
 
 public class ArrowShot extends NormalSkill
 {

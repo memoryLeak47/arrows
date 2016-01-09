@@ -2,7 +2,7 @@
 	Alle Spieler des Servers sind von diesem Typ. Kommt nicht im Client vor.
 */
 
-package network.game.player;
+package player;
 
 import java.net.InetAddress;
 import java.util.LinkedList;
@@ -15,20 +15,20 @@ import graphics.animations.StaticAnimation;
 import graphics.ImageFile;
 import graphics.ImageID;
 import misc.Debug;
-import misc.game.effect.Effect;
-import misc.game.kill.KDCounter;
-import misc.game.KeyManager;
-import misc.game.PlayerStats;
-import misc.game.Team;
+import effect.Effect;
+import damage.KDCounter;
+import misc.KeyManager;
+import player.PlayerStats;
+import player.property.Team;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
-import network.lobby.LobbyPlayer;
+import player.LobbyPlayer;
 import network.game.packets.EventPacket;
-import network.game.player.LocalClientGamePlayerFrameUpdate;
-import network.game.player.ClientGamePlayerFrameUpdate;
-import playerproperty.avatar.Avatar;
-import playerproperty.skill.Skill;
-import playerproperty.item.Item;
+import player.LocalClientGamePlayerFrameUpdate;
+import player.ClientGamePlayerFrameUpdate;
+import player.property.avatar.Avatar;
+import player.property.skill.Skill;
+import player.property.item.Item;
 
 public class ServerGamePlayer extends ExtendedMob implements GamePlayer
 {

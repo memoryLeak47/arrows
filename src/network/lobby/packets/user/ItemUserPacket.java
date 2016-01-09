@@ -3,8 +3,8 @@ package network.lobby.packets.user;
 import misc.Debug;
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.PlayerPropertyUserPacket;
-import playerproperty.item.Item;
-import playerproperty.PlayerProperty;
+import player.property.item.Item;
+import player.property.PlayerProperty;
 
 public class ItemUserPacket extends UserPacket implements PlayerPropertyUserPacket
 {

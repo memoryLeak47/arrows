@@ -1,4 +1,4 @@
-package misc.game;
+package player;
 
 import misc.Debug;
 

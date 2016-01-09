@@ -2,7 +2,7 @@
  * Avatar, Skill, Item
  */
 
-package playerproperty;
+package player.property;
 
 import graphics.ImageFile;
 import graphics.ImageID;

@@ -4,13 +4,13 @@ import java.net.InetAddress;
 import java.util.LinkedList;
 
 import core.Main;
-import core.game.ClientGame;
+import game.ClientGame;
 import network.game.packets.GameFrameUpdatePacket;
 import tilemap.LobbyTileMap;
 import misc.Debug;
 import network.Packet;
 import network.game.packets.EventPacket;
-import network.lobby.LobbyPlayer;
+import player.LobbyPlayer;
 
 public class ClientGameInterface extends GameInterface
 {

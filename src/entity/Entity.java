@@ -9,7 +9,7 @@ import misc.Debug;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 import misc.math.pixel.PixelSize;
-import misc.game.Camera;
+import misc.math.Camera;
 
 public abstract class Entity
 {

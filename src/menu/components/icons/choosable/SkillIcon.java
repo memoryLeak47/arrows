@@ -5,12 +5,12 @@ import menu.components.icons.ChoosableIcon;
 import menu.ComponentContainer;
 import menu.menues.LobbyMenu;
 import menu.menues.ChoosePlayerPropertyMenu;
-import playerproperty.skill.Skill;
+import player.property.skill.Skill;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;
 import misc.math.pixel.PixelRect;
-import network.lobby.LobbyPlayer;
+import player.LobbyPlayer;
 
 public class SkillIcon extends ChoosableIcon
 {

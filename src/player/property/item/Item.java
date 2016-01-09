@@ -1,7 +1,7 @@
-package playerproperty.item;
+package player.property.item;
 
-import playerproperty.PlayerProperty;
-import playerproperty.item.items.*;
+import player.property.PlayerProperty;
+import player.property.item.items.*;
 import graphics.ImageID;
 import misc.Debug;
 

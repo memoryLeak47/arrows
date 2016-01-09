@@ -8,9 +8,9 @@ import menu.ComponentContainer;
 import menu.components.Button;
 import menu.components.Panel;
 import menu.components.PlayerPanel;
-import misc.game.Team;
+import player.property.Team;
 import misc.math.pixel.PixelRect;
-import network.lobby.LobbyPlayer;
+import player.LobbyPlayer;
 
 public class TeamPanel extends Panel
 {

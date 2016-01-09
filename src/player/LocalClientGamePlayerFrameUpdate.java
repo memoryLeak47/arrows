@@ -2,12 +2,12 @@
 	Wird für Client-LocalPlayer vom Server zum Client geschickt und dort gespeichert.
 */
 
-package network.game.player;
+package player;
 
 import java.util.LinkedList;
 
-import misc.game.effect.MinimizedEffect;
-import misc.game.PlayerStats;
+import effect.MinimizedEffect;
+import player.PlayerStats;
 
 public class LocalClientGamePlayerFrameUpdate implements java.io.Serializable
 {

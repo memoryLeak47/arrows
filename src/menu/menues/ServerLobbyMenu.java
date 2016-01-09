@@ -10,16 +10,16 @@ import java.util.LinkedList;
 
 import core.Main;
 import core.Screen;
-import misc.game.Team;
-import playerproperty.avatar.Avatar;
-import playerproperty.item.Item;
-import playerproperty.skill.Skill;
+import player.property.Team;
+import player.property.avatar.Avatar;
+import player.property.item.Item;
+import player.property.skill.Skill;
 import tilemap.LobbyTileMap;
 import menu.components.*;
 import misc.Debug;
 import misc.math.pixel.PixelRect;
 import network.Packet;
-import network.lobby.LobbyPlayer;
+import player.LobbyPlayer;
 import network.lobby.packets.user.*;
 import network.lobby.packets.*;
 

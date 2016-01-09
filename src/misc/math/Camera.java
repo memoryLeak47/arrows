@@ -1,9 +1,9 @@
-package misc.game;
+package misc.math;
 
 import static core.Main.TILESIZE;
 import core.Main;
 import core.Screen;
-import core.game.Game;
+import game.Game;
 import entity.Entity;
 import misc.math.game.GameVector;
 import misc.math.game.GamePosition;
@@ -12,7 +12,7 @@ import misc.math.game.GameSize;
 import misc.math.pixel.PixelPosition;
 import misc.math.pixel.PixelSize;
 import misc.Debug;
-import network.game.player.GamePlayer;
+import player.GamePlayer;
 
 public class Camera
 {

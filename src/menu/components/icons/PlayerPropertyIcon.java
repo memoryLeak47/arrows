@@ -4,7 +4,7 @@
 
 package menu.components.icons;
 
-import playerproperty.PlayerProperty;
+import player.property.PlayerProperty;
 import graphics.ImageFile;
 import graphics.ImageID;
 import menu.components.Icon;

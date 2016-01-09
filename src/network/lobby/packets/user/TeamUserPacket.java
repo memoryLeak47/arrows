@@ -1,7 +1,7 @@
 package network.lobby.packets.user;
 
 import misc.Debug;
-import misc.game.Team;
+import player.property.Team;
 import network.lobby.packets.UserPacket;
 
 public class TeamUserPacket extends UserPacket

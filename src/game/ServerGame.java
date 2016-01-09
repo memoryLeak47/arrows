@@ -1,4 +1,4 @@
-package core.game;
+package game;
 
 import java.util.LinkedList;
 
@@ -10,13 +10,13 @@ import entity.entities.dynamic.spinnable.cosmetic.ExtendedCosmetic;
 import tilemap.LobbyTileMap;
 import misc.Debug;
 import misc.math.pixel.PixelPosition;
-import misc.game.effect.Effect;
-import misc.game.effect.MinimizedEffect;
-import network.game.player.GamePlayer;
-import network.game.player.ServerGamePlayer;
-import network.game.player.LocalClientGamePlayer;
-import network.game.player.LocalClientGamePlayerFrameUpdate;
-import network.lobby.LobbyPlayer;
+import effect.Effect;
+import effect.MinimizedEffect;
+import player.GamePlayer;
+import player.ServerGamePlayer;
+import player.LocalClientGamePlayer;
+import player.LocalClientGamePlayerFrameUpdate;
+import player.LobbyPlayer;
 import network.game.packets.EventPacket;
 import network.game.packets.GameFrameUpdatePacket;
 

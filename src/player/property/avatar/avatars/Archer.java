@@ -1,7 +1,7 @@
-package playerproperty.avatar.avatars;
+package player.property.avatar.avatars;
 
-import misc.game.Damage;
-import playerproperty.avatar.Avatar;
+import damage.Damage;
+import player.property.avatar.Avatar;
 import graphics.ImageID;
 import graphics.ImageFile;
 

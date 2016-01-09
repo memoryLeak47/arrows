@@ -1,4 +1,4 @@
-package misc.game.effect;
+package effect;
 
 public class MinimizedEffect implements java.io.Serializable
 {

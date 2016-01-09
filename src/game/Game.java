@@ -1,4 +1,4 @@
-package core.game;
+package game;
 
 import java.util.LinkedList;
 import java.awt.image.BufferedImage;
@@ -9,10 +9,10 @@ import entity.MinimizedEntity;
 import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
 import entity.entities.dynamic.spinnable.cosmetic.ExtendedCosmetic;
 import misc.Debug;
-import misc.game.Camera;
-import misc.game.kill.Kill;
-import network.game.player.ClientGamePlayer;
-import network.game.player.GamePlayer;
+import misc.math.Camera;
+import damage.Kill;
+import player.ClientGamePlayer;
+import player.GamePlayer;
 import tilemap.GameTileMap;
 import tilemap.LobbyTileMap;
 

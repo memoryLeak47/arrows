@@ -3,7 +3,7 @@ package menu.menues;
 import java.net.InetAddress;
 import java.util.LinkedList;
 
-import core.game.ServerGame;
+import game.ServerGame;
 import entity.MinimizedEntity;
 import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
 import menu.menues.GameInterface;
@@ -11,9 +11,9 @@ import misc.Debug;
 import network.Packet;
 import network.game.packets.EventPacket;
 import network.game.packets.GameFrameUpdatePacket;
-import network.game.player.ClientGamePlayerFrameUpdate;
-import network.game.player.LocalClientGamePlayerFrameUpdate;
-import network.lobby.LobbyPlayer;
+import player.ClientGamePlayerFrameUpdate;
+import player.LocalClientGamePlayerFrameUpdate;
+import player.LobbyPlayer;
 import tilemap.LobbyTileMap;
 
 public class ServerGameInterface extends GameInterface

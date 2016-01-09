@@ -1,15 +1,15 @@
-package core.game;
+package game;
 
 import java.util.LinkedList;
 
 import entity.MinimizedEntity;
 import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
-import network.game.player.ClientGamePlayer;
-import network.game.player.GamePlayer;
-import network.game.player.LocalClientGamePlayerFrameUpdate;
+import player.ClientGamePlayer;
+import player.GamePlayer;
+import player.LocalClientGamePlayerFrameUpdate;
 import tilemap.LobbyTileMap;
 import misc.Debug;
-import network.lobby.LobbyPlayer;
+import player.LobbyPlayer;
 import network.game.packets.GameFrameUpdatePacket;
 
 public class ClientGame extends Game

@@ -2,8 +2,8 @@ package network.game.packets;
 
 import java.util.LinkedList;
 
-import network.game.player.ClientGamePlayerFrameUpdate;
-import network.game.player.LocalClientGamePlayerFrameUpdate;
+import player.ClientGamePlayerFrameUpdate;
+import player.LocalClientGamePlayerFrameUpdate;
 import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
 import network.Packet;
 import network.game.packets.EventUpdatePacket;

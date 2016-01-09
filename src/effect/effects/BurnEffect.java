@@ -1,6 +1,6 @@
-package misc.game.effect.effects;
+package effect.effects;
 
-import misc.game.effect.Effect;
+import effect.Effect;
 
 public class BurnEffect extends Effect
 {

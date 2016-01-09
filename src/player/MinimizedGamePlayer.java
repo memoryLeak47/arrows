@@ -1,4 +1,4 @@
-package network.game.player;
+package player;
 
 import entity.MinimizedEntity;
 import graphics.ImageFile;

@@ -5,7 +5,7 @@ import java.util.TimerTask;
 import java.util.LinkedList;
 import java.util.HashMap;
 
-import core.game.Game;
+import game.Game;
 import menu.Menu;
 import menu.MenuList;
 import menu.menues.LobbyMenu;

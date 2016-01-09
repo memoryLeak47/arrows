@@ -5,11 +5,11 @@ import menu.components.icons.ChoosableIcon;
 import menu.ComponentContainer;
 import menu.menues.LobbyMenu;
 import menu.menues.ChoosePlayerPropertyMenu;
-import playerproperty.item.Item;
+import player.property.item.Item;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.math.pixel.PixelRect;
-import network.lobby.LobbyPlayer;
+import player.LobbyPlayer;
 
 public class ItemIcon extends ChoosableIcon
 {

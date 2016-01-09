@@ -2,14 +2,14 @@
 	Nur der Client Local Player ist von diesem Datentyp.
 */
 
-package network.game.player;
+package player;
 
 import java.util.LinkedList;
 
-import network.lobby.LobbyPlayer;
+import player.LobbyPlayer;
 import misc.Debug;
-import misc.game.effect.Effect;
-import misc.game.PlayerStats;
+import effect.Effect;
+import player.PlayerStats;
 
 public class LocalClientGamePlayer extends ClientGamePlayer
 {

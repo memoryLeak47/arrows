@@ -1,4 +1,4 @@
-package misc.game.kill;
+package damage;
 
 public class KDCounter
 {

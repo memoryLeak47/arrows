@@ -4,8 +4,8 @@ import java.util.LinkedList;
 
 import static core.Main.DRAG_X;
 import static core.Main.DRAG_Y;
-import core.game.Game;
-import core.game.ServerGame;
+import game.Game;
+import game.ServerGame;
 import entity.Entity;
 import entity.entities.dynamic.SpinnableEntity;
 import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
@@ -15,7 +15,7 @@ import misc.Debug;
 import misc.math.game.CollisionDetector;
 import misc.math.game.GameVector;
 import misc.math.game.GamePosition;
-import network.game.player.ServerGamePlayer;
+import player.ServerGamePlayer;
 import tilemap.GameTileMap;
 
 public abstract class DynamicEntity extends Entity

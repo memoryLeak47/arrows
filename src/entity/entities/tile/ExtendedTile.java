@@ -9,7 +9,7 @@ import graphics.Animation;
 import graphics.ImageFile;
 import graphics.ImageID;
 import misc.Debug;
-import misc.game.Team;
+import player.property.Team;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 import misc.math.pixel.PixelPosition;

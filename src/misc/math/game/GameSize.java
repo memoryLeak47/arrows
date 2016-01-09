@@ -3,7 +3,7 @@ package misc.math.game;
 import core.Main;
 import misc.math.game.GameVector;
 import misc.math.pixel.PixelSize;
-import misc.game.Camera;
+import misc.math.Camera;
 import graphics.ImageFile;
 import graphics.ImageID;
 

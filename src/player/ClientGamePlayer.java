@@ -3,7 +3,7 @@
 	Diese werden durch ClientGamePlayerFrameUpdate geupdated (apply-Funktion).
 */
 
-package network.game.player;
+package player;
 
 import java.util.LinkedList;
 
@@ -12,14 +12,14 @@ import entity.MinimizedEntity;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;
-import misc.game.Team;
-import misc.game.kill.KDCounter;
+import player.property.Team;
+import damage.KDCounter;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
-import network.lobby.LobbyPlayer;
-import playerproperty.avatar.Avatar;
-import playerproperty.skill.Skill;
-import playerproperty.item.Item;
+import player.LobbyPlayer;
+import player.property.avatar.Avatar;
+import player.property.skill.Skill;
+import player.property.item.Item;
 
 public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 {

@@ -1,8 +1,8 @@
-package playerproperty.avatar;
+package player.property.avatar;
 
-import playerproperty.PlayerProperty;
-import misc.game.Damage;
-import playerproperty.avatar.avatars.*;
+import player.property.PlayerProperty;
+import damage.Damage;
+import player.property.avatar.avatars.*;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;

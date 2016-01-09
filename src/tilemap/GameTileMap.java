@@ -6,13 +6,13 @@ import java.util.TreeMap;
 import java.util.LinkedList;
 
 import static core.Main.TILESIZE;
-import core.game.Game;
+import game.Game;
 import entity.Entity;
 import entity.entities.tile.ExtendedTile;
 import entity.entities.tile.tiles.SpawnTeamTile;
 import graphics.ImageFile;
 import misc.Debug;
-import misc.game.Team;
+import player.property.Team;
 import misc.math.game.GamePosition;
 import misc.math.pixel.PixelPosition;
 
