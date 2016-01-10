@@ -8,6 +8,7 @@ import java.net.InetAddress;
 import java.util.LinkedList;
 
 import static core.Main.STANDART_ACCELERATION;
+import damage.Damage;
 import entity.Entity;
 import entity.entities.dynamic.mob.ExtendedMob;
 import graphics.Animation;
@@ -48,7 +49,6 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	private KDCounter kdCounter = new KDCounter();
 
 	private Team team;
-	private int health;
 	private Animation animation;
 
 	protected ServerGamePlayer(LobbyPlayer lobbyPlayer, GamePosition position)
@@ -58,6 +58,9 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 		Debug.warnIf(lobbyPlayer == null, "ServerGamePlayer.<init>(): lobbyPlayer == null");
 		Debug.warnIf(lobbyPlayer.getIP() == null, "ServerGamePlayer.<init>(): lobbyPlayer.getIP() == null", Debug.Tags.EXTENDED_WARNINGS);
+		Debug.warnIf(lobbyPlayer.getAvatar() == null, "ServerGamePlayer.<init>(): lobbyPlayer.getAvatar() == null");
+		Debug.warnIf(lobbyPlayer.getSkills() == null, "ServerGamePlayer.<init>(): lobbyPlayer.getSkills() == null");
+		Debug.warnIf(lobbyPlayer.getItems() == null, "ServerGamePlayer.<init>(): lobbyPlayer.getItems() == null");
 
 		this.ip = lobbyPlayer.getIP();
 
@@ -73,6 +76,8 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		{
 			skills[i].setPlayer(this);
 		}
+
+		resetHealth();
 	}
 
 	@Override public void tick()
@@ -104,6 +109,14 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	public void onCollide(Entity e)
 	{
 		super.onCollide(e);
+	}
+
+	@Override public void onDamage(Damage damage)
+	{
+		Debug.test("ouch. ... health =  " + getHealth());
+		addHealth((int) ((float) -damage.getHit() / (float) getResistanceStat().getHit()));
+		addHealth((int) ((float) -damage.getCut() / (float) getResistanceStat().getCut()));
+		addHealth((int) ((float) -damage.getMagic() / (float) getResistanceStat().getMagic()));
 	}
 
 	public void applyPlayerControlsUpdatePacket(PlayerControlsUpdatePacket packet)
@@ -139,16 +152,6 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		return new ClientGamePlayerFrameUpdate(getHealth(), getPosition(), getImageID());
 	}
 
-	private int calcMass()
-	{
-		int mass = getAvatar().getMassStat();
-		for (int i = 0; i < getItems().length; i++)
-		{
-			mass += getItems()[i].getMassStat();
-		}
-		return mass;
-	}
-
 	@Override public MinimizedGamePlayer toMinimizedEntity()
 	{
 		return new MinimizedGamePlayer(getPosition(), getImageID(), getName(), getHealth());
@@ -166,6 +169,16 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		return new LinkedList<Effect>();
 	}
 
+	// for sub
+	public abstract int getMassStat();
+	public abstract int getMaxHealthStat();
+	public abstract int getRegenerationStat();
+	public abstract int getAccelerationStat();
+	public abstract Damage getDamageStat();
+	public abstract Damage getResistanceStat();
+	public abstract String getAvatarName();
+
+
 	public float[] getCharges()
 	{
 		float[] s = new float[Skill.SKILLS_SIZE];
@@ -176,17 +189,52 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		return s;
 	}
 
+	@Override public int getMaxHealth()
+	{
+		int health = getMaxHealthStat();
+		for (int i = 0; i < getItems().length; i++)
+		{
+			health += getItems()[i].getHealthStat();
+		}
+		return health;
+	}
+
+	public int getMass()
+	{
+		int mass = getMassStat();
+		for (int i = 0; i < getItems().length; i++)
+		{
+			mass += getItems()[i].getMassStat();
+		}
+		return mass;
+	}
+
+
+
 	@Override public LinkedList<Integer> getEffectIDs() { return Effect.toEffectIDs(getEffects()); }
 	public PlayerStats getPlayerStats() { return playerStats; }
 
-	public Avatar getAvatar() { return avatar; }
-	public Skill[] getSkills() { return skills; }
-	public Item[] getItems() { return items; }
+	public Avatar getAvatar()
+	{
+		Debug.warnIf(avatar == null, "ServerGamePlayer.getAvatar(): avatar == null");
+		return avatar;
+	}
+
+	public Skill[] getSkills()
+	{
+		Debug.warnIf(skills == null, "ServerGamePlayer.getSkills(): skills == null");
+		return skills;
+	}
+
+	public Item[] getItems()
+	{
+		Debug.warnIf(items == null, "ServerGamePlayer.getItems(): items == null");
+		return items;
+	}
 
 	public KDCounter getKDCounter() { return kdCounter; }
 
 	@Override public Team getTeam() { return team; }
-	@Override public int getHealth() { return health; }
 
 	/*
 		getHealth, getPosition, getImageID, getEffects, sind schon von Entity definiert und müssen nicht nochmal geschrieben werden

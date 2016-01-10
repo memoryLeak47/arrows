@@ -25,6 +25,7 @@ public abstract class Item extends PlayerProperty
 
 	// for sub
 	public abstract int getMassStat();
+	public abstract int getHealthStat();
 
 	public static Item[] getAllItems() { return items; }
 

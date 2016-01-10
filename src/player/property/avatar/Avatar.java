@@ -29,15 +29,6 @@ public abstract class Avatar extends PlayerProperty
 		}
 	}
 
-	// for sub
-	public abstract int getMassStat();
-	public abstract int getMaxHealthStat();
-	public abstract int getRegenerationStat();
-	public abstract int getAccelerationStat();
-	public abstract Damage getDamageStat();
-	public abstract Damage getResistanceStat();
-	public abstract String getName();
-
 	// getter
 	public static Avatar getByID(byte id)
 	{

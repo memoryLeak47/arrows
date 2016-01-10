@@ -1,6 +1,7 @@
 package entity;
 
 import core.Main;
+import damage.Damage;
 import entity.MinimizedEntity;
 import graphics.Animation;
 import graphics.ImageFile;
@@ -27,6 +28,8 @@ public abstract class Entity
 	{
 		getAnimation().tick();
 	}
+
+	public void onDamage(Damage damage) {}
 
 	// setter
 	protected void setPosition(GameVector position)

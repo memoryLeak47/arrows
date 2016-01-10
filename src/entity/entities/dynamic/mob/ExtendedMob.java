@@ -2,14 +2,18 @@ package entity.entities.dynamic.mob;
 
 import static core.Main.GRAVITY;
 import static core.Main.STANDART_JUMPPOWER;
+import damage.Damage;
 import entity.Entity;
 import entity.entities.DynamicEntity;
 import graphics.Animation;
+import misc.Debug;
 import misc.math.game.GamePosition;
 import entity.entities.tile.ExtendedTile;
 
 public abstract class ExtendedMob extends DynamicEntity
 {
+	private int health;
+
 	public ExtendedMob(GamePosition position, Animation animation)
 	{
 		super(position, animation);
@@ -19,6 +23,13 @@ public abstract class ExtendedMob extends DynamicEntity
 	{
 		super.tick();
 		accelerate(0, GRAVITY);
+	}
+
+	@Override public void onDamage(Damage damage)
+	{
+		health -= damage.getHit();
+		health -= damage.getCut();
+		health -= damage.getMagic();
 	}
 
 	@Override public boolean isCollidingBullets() { return false; }
@@ -43,4 +54,17 @@ public abstract class ExtendedMob extends DynamicEntity
 		}
 		
 	}
+
+	final protected void addHealth(int health)
+	{
+		this.health += health;
+	}
+
+	final protected void resetHealth()
+	{
+		health = getMaxHealth();
+	}
+
+	public int getHealth() { return health; }
+	public abstract int getMaxHealth();
 }

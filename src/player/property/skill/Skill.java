@@ -70,7 +70,7 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 				Debug.error("Skill.createByID(): can't clone Skill");
 			}
 		}
-		Debug.warn("Skill.createByID(" + id + "): skill not found");
+		Debug.warn("Skill.createByID(" + id + "): skill not found", Debug.Tags.EXTENDED_WARNINGS);
 		return null;
 	}
 
