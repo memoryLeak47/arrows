@@ -16,11 +16,12 @@ import misc.math.game.GamePosition;
 
 public class PlayerControlsUpdatePacket extends Packet
 {
-	public PlayerControlsUpdatePacket(byte[] controls)
-	{
-		this.controls = controls;
-	}
-
 	public byte[] controls;
 	public GamePosition mousePosition;
+
+	public PlayerControlsUpdatePacket(byte[] controls, GamePosition mousePosition)
+	{
+		this.controls = controls;
+		this.mousePosition = mousePosition;
+	}
 }

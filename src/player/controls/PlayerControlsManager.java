@@ -7,9 +7,11 @@ package player.controls;
 
 import java.util.ArrayList;
 
+import core.Screen;
 import menu.event.Event;
 import menu.event.events.*;
 import misc.Debug;
+import misc.math.Camera;
 import network.game.packets.PlayerControlsUpdatePacket;
 import player.controls.PlayerControls;
 
@@ -122,6 +124,6 @@ public class PlayerControlsManager
 			bytes[i] = controls.get(i);
 		}
 
-		return new PlayerControlsUpdatePacket(bytes);
+		return new PlayerControlsUpdatePacket(bytes, Camera.get().pixelPositionToGamePosition(Screen.getCursorPosition()));
 	}
 }
