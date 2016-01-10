@@ -101,6 +101,13 @@ public class GameVector implements java.io.Serializable
 		return (float)Math.hypot(getX(), getY());
 	}
 
+	public void rotate(float r)
+	{
+		float x = getX();
+		setX((float) (getX()*Math.cos(r) - getY()*Math.sin(r)));
+		setY((float) (x*Math.sin(r) + getY()*Math.cos(r)));
+	}
+
 	public float getX() { return x; }
 	public float getY() { return y; }
 	public String toString() { return "(" + getX() + "|" + getY() + ")"; }

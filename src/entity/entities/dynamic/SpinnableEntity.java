@@ -4,7 +4,7 @@ import entity.Entity;
 import entity.entities.DynamicEntity;
 import entity.entities.tile.ExtendedTile;
 import graphics.Animation;
-import misc.math.game.CollisionDetector;
+import misc.math.collision.CollisionDetector;
 import misc.math.game.GamePosition;
 import misc.math.game.GameRect;
 import misc.math.game.GameSize;

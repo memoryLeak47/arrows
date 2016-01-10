@@ -1,4 +1,4 @@
-package misc.math.game;
+package misc.math.collision;
 
 import entity.Entity;
 import entity.entities.dynamic.SpinnableEntity;
@@ -140,7 +140,7 @@ public final class CollisionDetector
 	public static boolean collideTileRight(DynamicEntity e, ExtendedTile t) // Kollidiere ich mit dem Tile rechts von mir
 	{
 		//     Wenn ich mich nach rechts bewege & wenn ich mich links vom Tile befinde
-		return (e.getOldVelocity().getX() > 0) 
+		return (e.getOldVelocity().getX() > 0)
 			&& (e.getPosition().getX() < t.getPosition().getX())
 			&& ! GameTileMap.get().isObstacleAt(t.getGridPosition().getX()-1, t.getGridPosition().getY());
 	}

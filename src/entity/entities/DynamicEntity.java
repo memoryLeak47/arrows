@@ -12,7 +12,7 @@ import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
 import entity.entities.tile.ExtendedTile;
 import graphics.Animation;
 import misc.Debug;
-import misc.math.game.CollisionDetector;
+import misc.math.collision.CollisionDetector;
 import misc.math.game.GameVector;
 import misc.math.game.GamePosition;
 import player.ServerGamePlayer;
