@@ -17,13 +17,8 @@ public class PlayerControls
 	public static final byte LEFT_ID = 5;
 	public static final byte RIGHT_ID = 6;
 
-	public boolean[] controls;
-	public GamePosition mousePosition;
-
-	public PlayerControls()
-	{
-		controls = new boolean[SIZE_OF_CONTROLS];
-	}
+	public boolean[] controls = new boolean[SIZE_OF_CONTROLS];
+	public GamePosition mousePosition = new GamePosition();
 
 	public void applyPlayerControlsUpdatePacket(PlayerControlsUpdatePacket packet)
 	{
