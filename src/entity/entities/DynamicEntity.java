@@ -272,4 +272,6 @@ public abstract class DynamicEntity extends Entity
 		Debug.warnIf(velocity == null, "DynamicEntity.setVelocity(): velocity == null");
 		this.velocity = velocity;
 	}
+
+	@Override public boolean isDynamic() { return true; }
 }

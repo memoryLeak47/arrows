@@ -6,6 +6,7 @@ import graphics.Animation;
 import graphics.ImageFile;
 import graphics.ImageID;
 import misc.Debug;
+import misc.math.game.GameVector;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 import misc.math.pixel.PixelSize;
@@ -25,6 +26,12 @@ public abstract class Entity
 	public void tick()
 	{
 		getAnimation().tick();
+	}
+
+	// setter
+	protected void setPosition(GameVector position)
+	{
+		this.position = new GamePosition(position);
 	}
 
 	// getter
@@ -62,4 +69,6 @@ public abstract class Entity
 	public boolean hasToBeRemoved() { return false; }
 
 	public abstract MinimizedEntity toMinimizedEntity();
+
+	public boolean isDynamic() { return false; }
 }
