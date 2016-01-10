@@ -254,6 +254,7 @@ public abstract class DynamicEntity extends Entity
 
 	public GameVector getVelocity() { return velocity; }
 	public GameVector getOldVelocity() { return oldVelocity; }
+	protected final void stop() { velocity = new GameVector(0, 0); }
 	protected GameVector getDrag() { return drag; }
 	protected GameVector getDefaultDrag() { return new GameVector(DRAG_X, DRAG_Y); }
 
