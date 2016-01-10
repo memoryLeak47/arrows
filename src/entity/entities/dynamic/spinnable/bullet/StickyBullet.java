@@ -1,5 +1,6 @@
 package entity.entities.dynamic.spinnable.bullet;
 
+import damage.Damage;
 import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
 import entity.Entity;
 import misc.math.game.GameVector;
@@ -22,6 +23,10 @@ public abstract class StickyBullet extends ExtendedBullet
 	{
 		target = e;
 		distanceToTarget = GameVector.getFromTo(getPosition(), e.getPosition());
+		if (!hasCollided)
+		{
+			e.onDamage(getDamage());
+		}
 		hasCollided = true;
 		stop();
 	}
@@ -50,4 +55,5 @@ public abstract class StickyBullet extends ExtendedBullet
 
 	protected int getInitialCounterValue() { return 20; }
 	@Override public boolean hasToBeRemoved() { return counter <= 0; }
+	protected Damage getDamage() { return new Damage(0,0,0); }
 }

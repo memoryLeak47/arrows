@@ -15,9 +15,5 @@ public class Arrow extends StickyBullet
 		super(position, new StaticAnimation(ImageFile.ARROW1.getImageID()), velocity);
 	}
 
-	@Override public void onCollide(Entity e)
-	{
-		super.onCollide(e);
-		e.onDamage(new Damage(1, 4, 0));
-	}
+	@Override protected Damage getDamage() { return new Damage(1,4,0); }
 }
