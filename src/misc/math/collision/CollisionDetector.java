@@ -4,6 +4,7 @@ import entity.Entity;
 import entity.entities.dynamic.SpinnableEntity;
 import entity.entities.DynamicEntity;
 import entity.entities.tile.ExtendedTile;
+import misc.math.game.GameRect;
 import misc.Debug;
 import tilemap.GameTileMap;
 
@@ -94,6 +95,18 @@ public final class CollisionDetector
 		}
 	}
 
+	private static boolean collidingNormal(GameRect r1, GameRect r2)
+	{
+		if ((r1.getRight() > r2.getLeft()) && (r2.getRight() > r1.getLeft()))
+		{
+			if ((r1.getTop() < r2.getBot()) && (r1.getBot() > r2.getTop()))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private static boolean collidingNormal(Entity e1, Entity e2)
 	{
 		if ((e1.getRight() > e2.getLeft()) && (e2.getRight() > e1.getLeft()))
@@ -126,7 +139,14 @@ public final class CollisionDetector
 
 	private static boolean collidingNormalWithSpinnable(Entity e1, SpinnableEntity e2)
 	{
-		Debug.warn("CollisionDetector.collidingNormalWithSpinnable(): TODO"); // TODO
+		/*
+		GameRect intersection; // from e1 and e2.getWrapper()
+		for (float x = intersection.getX(); x < intersection.getX() + intersection.getWidth(); x++)
+			for (float y = intersection.getY(); y < intersection.getY() + intersection.getHeight(); y++)
+				if (new GamePoint(x, y) in e1 and e2)
+					return true;
+		return false;
+		*/
 		return false;
 	}
 
