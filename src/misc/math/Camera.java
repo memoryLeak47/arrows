@@ -34,7 +34,7 @@ public class Camera
 		return new GameRect(getPosition(), new GameSize(Screen.WIDTH/TILESIZE, Screen.HEIGHT/TILESIZE));
 	}
 
-	public PixelPosition gamePositionToPixelPosition(GamePosition position)
+	public PixelPosition gamePositionToPixelPosition(GameVector position)
 	{
 		Debug.warnIf(position == null, "Camera.gamePositionToPixelPosition(): position == null");
 

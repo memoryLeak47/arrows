@@ -113,7 +113,6 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	@Override public void onDamage(Damage damage)
 	{
-		Debug.test("ouch. ... health =  " + getHealth());
 		addHealth((int) ((float) -damage.getHit() / (float) getResistanceStat().getHit()));
 		addHealth((int) ((float) -damage.getCut() / (float) getResistanceStat().getCut()));
 		addHealth((int) ((float) -damage.getMagic() / (float) getResistanceStat().getMagic()));
@@ -154,7 +153,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	@Override public MinimizedGamePlayer toMinimizedEntity()
 	{
-		return new MinimizedGamePlayer(getPosition(), getImageID(), getName(), getHealth());
+		return new MinimizedGamePlayer(getPosition(), getImageID(), getName(), getHealth(), getMaxHealth(), getTeam());
 	}
 
 	// getter
