@@ -108,6 +108,16 @@ public class GameVector implements java.io.Serializable
 		setY((float) (x*Math.sin(r) + getY()*Math.cos(r)));
 	}
 
+	public static GameVector getFromTo(GameVector vec1, GameVector vec2)
+	{
+		return new GameVector(vec2.getX() - vec1.getX(), vec2.getY() - vec1.getY());
+	}
+
+	public static GameVector getFromTo(float x1, float y1, float x2, float y2)
+	{
+		return new GameVector(x2 - x1, y2 - y1);
+	}
+
 	public float getX() { return x; }
 	public float getY() { return y; }
 	public String toString() { return "(" + getX() + "|" + getY() + ")"; }

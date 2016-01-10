@@ -1,15 +1,18 @@
 package misc.math.collision;
 
+import static core.Main.TILESIZE;
 import entity.Entity;
 import entity.entities.dynamic.SpinnableEntity;
 import entity.entities.DynamicEntity;
 import entity.entities.tile.ExtendedTile;
 import misc.math.game.GameRect;
+import misc.math.game.GameVector;
 import misc.Debug;
 import tilemap.GameTileMap;
 
 public final class CollisionDetector
 {
+	public static final float COLLISION_STEP = 1/TILESIZE;
 	private CollisionDetector() {}
 
 	public static boolean areCollidingDynamic(Entity e1, Entity e2)
@@ -139,14 +142,15 @@ public final class CollisionDetector
 
 	private static boolean collidingNormalWithSpinnable(Entity e1, SpinnableEntity e2)
 	{
-		/*
-		GameRect intersection; // from e1 and e2.getWrapper()
-		for (float x = intersection.getX(); x < intersection.getX() + intersection.getWidth(); x++)
-			for (float y = intersection.getY(); y < intersection.getY() + intersection.getHeight(); y++)
-				if (new GamePoint(x, y) in e1 and e2)
+		BorderRect rect1 = new BorderRect(e1.getPosition(), e1.getSize());
+		RotatedRect rect2 = new RotatedRect(e2.getPosition(), e2.getSize(), e2.getRotation());
+		BorderRect intersection = BorderRect.getIntersection(rect1, new BorderRect(e2.getWrapper()));
+		if (!intersection.isValid())
+			return false;
+		for (float x = intersection.getLeft(); x < intersection.getRight(); x+=COLLISION_STEP)
+			for (float y = intersection.getTop(); y < intersection.getBot(); y+=COLLISION_STEP)
+				if (rect1.contains(new GameVector(x, y)) && rect2.contains(new GameVector(x, y)))
 					return true;
-		return false;
-		*/
 		return false;
 	}
 

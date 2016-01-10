@@ -2,6 +2,7 @@ package misc.math.collision;
 
 import misc.Debug;
 import misc.math.game.GameVector;
+import misc.math.game.GameRect;
 
 public class BorderRect
 {
@@ -16,6 +17,15 @@ public class BorderRect
 		Debug.warnIf(!isValid(), "BorderRect.<init>(float, float, float, float): invalid BorderRect");
 	}
 
+	public BorderRect(GameRect rect)
+	{
+		left = rect.getLeft();
+		right = rect.getRight();
+		top = rect.getTop();
+		bot = rect.getBot();
+		Debug.warnIf(!isValid(), "BorderRect.<init>(BorderRect): invalid BorderRect");
+	}
+
 	public BorderRect(BorderRect rect)
 	{
 		left = rect.getLeft();
@@ -23,6 +33,15 @@ public class BorderRect
 		top = rect.getTop();
 		bot = rect.getBot();
 		Debug.warnIf(!isValid(), "BorderRect.<init>(BorderRect): invalid BorderRect");
+	}
+
+	public BorderRect(GameVector position, GameVector size)
+	{
+		left = position.getX() - size.getX()/2;
+		right = position.getX() + size.getX()/2;
+		top = position.getY() - size.getY()/2;
+		bot = position.getY() + size.getY()/2;
+		Debug.warnIf(!isValid(), "BorderRect.<init>(GameVector, GameVector): invalid BorderRect");
 	}
 
 	public boolean isValid()

@@ -23,7 +23,7 @@ public abstract class SpinnableEntity extends DynamicEntity
 		return CollisionDetector.areCollidingSpinnable(this, entity);
 	}
 
-	protected float getRotation() { return rotation; }
+	public float getRotation() { return rotation; }
 
 	/*
 	@Override public GamePosition getTop() { }
