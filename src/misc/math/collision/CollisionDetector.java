@@ -12,7 +12,7 @@ import tilemap.GameTileMap;
 
 public final class CollisionDetector
 {
-	public static final float COLLISION_STEP = 1/TILESIZE;
+	public static final float COLLISION_STEP = 1.f/TILESIZE;
 	private CollisionDetector() {}
 
 	public static boolean areCollidingDynamic(Entity e1, Entity e2)
@@ -150,7 +150,9 @@ public final class CollisionDetector
 		for (float x = intersection.getLeft(); x < intersection.getRight(); x+=COLLISION_STEP)
 			for (float y = intersection.getTop(); y < intersection.getBot(); y+=COLLISION_STEP)
 				if (rect1.contains(new GameVector(x, y)) && rect2.contains(new GameVector(x, y)))
+				{
 					return true;
+				}
 		return false;
 	}
 

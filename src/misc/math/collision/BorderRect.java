@@ -14,7 +14,7 @@ public class BorderRect
 		this.right = right;
 		this.top = top;
 		this.bot = bot;
-		Debug.warnIf(!isValid(), "BorderRect.<init>(float, float, float, float): invalid BorderRect");
+		// Debug.warnIf(!isValid(), "BorderRect.<init>(float, float, float, float): invalid BorderRect");
 	}
 
 	public BorderRect(GameRect rect)
@@ -23,7 +23,7 @@ public class BorderRect
 		right = rect.getRight();
 		top = rect.getTop();
 		bot = rect.getBot();
-		Debug.warnIf(!isValid(), "BorderRect.<init>(BorderRect): invalid BorderRect");
+		// Debug.warnIf(!isValid(), "BorderRect.<init>(BorderRect): invalid BorderRect");
 	}
 
 	public BorderRect(BorderRect rect)
@@ -32,7 +32,7 @@ public class BorderRect
 		right = rect.getRight();
 		top = rect.getTop();
 		bot = rect.getBot();
-		Debug.warnIf(!isValid(), "BorderRect.<init>(BorderRect): invalid BorderRect");
+		// Debug.warnIf(!isValid(), "BorderRect.<init>(BorderRect): invalid BorderRect");
 	}
 
 	public BorderRect(GameVector position, GameVector size)
@@ -41,7 +41,7 @@ public class BorderRect
 		right = position.getX() + size.getX()/2;
 		top = position.getY() - size.getY()/2;
 		bot = position.getY() + size.getY()/2;
-		Debug.warnIf(!isValid(), "BorderRect.<init>(GameVector, GameVector): invalid BorderRect");
+		// Debug.warnIf(!isValid(), "BorderRect.<init>(GameVector, GameVector): invalid BorderRect");
 	}
 
 	public boolean isValid()
