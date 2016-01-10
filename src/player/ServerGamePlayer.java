@@ -191,6 +191,8 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	@Override public int getMaxHealth()
 	{
 		int health = getMaxHealthStat();
+		if (getItems() == null)
+			return health;
 		for (int i = 0; i < getItems().length; i++)
 		{
 			health += getItems()[i].getHealthStat();
