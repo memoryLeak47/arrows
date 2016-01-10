@@ -7,6 +7,7 @@ package player;
 
 import java.util.LinkedList;
 
+import core.Screen;
 import entity.Entity;
 import entity.MinimizedEntity;
 import graphics.ImageID;
@@ -14,8 +15,10 @@ import graphics.ImageFile;
 import misc.Debug;
 import player.property.Team;
 import damage.KDCounter;
+import misc.math.Camera;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
+import misc.math.pixel.PixelPosition;
 import player.LobbyPlayer;
 import player.property.avatar.Avatar;
 import player.property.skill.Skill;
@@ -36,6 +39,7 @@ public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 	private KDCounter kdCounter = new KDCounter();
 	private LinkedList<Integer> effectIDs = new LinkedList<Integer>();
 	private int health;
+	private int maxHealth;
 
 	public ClientGamePlayer(LobbyPlayer player)
 	{
@@ -50,9 +54,21 @@ public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 
 	public void apply(ClientGamePlayerFrameUpdate update)
 	{
+		maxHealth = update.getMaxHealth();
 		health = update.getHealth();
 		setPosition(update.getPosition());
 		setImageID(update.getImageID());
+	}
+
+	@Override public void render()
+	{
+		super.render();
+		Screen.g().setColor(team.getColor());
+		GamePosition gamePos = new GamePosition(getPosition());
+		gamePos.addY(getSize().getY()/-2);
+		PixelPosition pos = Camera.get().gamePositionToPixelPosition(gamePos);
+		int length = (int) ((float) health / (float) maxHealth)*50;
+		Screen.g().fillRect((int) (pos.getX()-(float)length/2), pos.getY() - 20, length, 5);
 	}
 
 	// getter

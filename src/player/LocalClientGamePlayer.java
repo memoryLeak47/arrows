@@ -22,11 +22,6 @@ public class LocalClientGamePlayer extends ClientGamePlayer
 		super(lobbyPlayer);
 	}
 
-	public ClientGamePlayerFrameUpdate toClientGamePlayerFrameUpdate()
-	{
-		return new ClientGamePlayerFrameUpdate(getHealth(), getPosition(), getImageID());
-	}
-
 	public LocalClientGamePlayerFrameUpdate toLocalClientGamePlayerFrameUpdate()
 	{
 		return new LocalClientGamePlayerFrameUpdate(Effect.toMinimizedEffects(getEffects()) , getPlayerStats(), getCharges());

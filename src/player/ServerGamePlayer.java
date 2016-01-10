@@ -148,7 +148,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	public ClientGamePlayerFrameUpdate toClientGamePlayerFrameUpdate()
 	{
-		return new ClientGamePlayerFrameUpdate(getHealth(), getPosition(), getImageID());
+		return new ClientGamePlayerFrameUpdate(getHealth(), getMaxHealth(), getPosition(), getImageID());
 	}
 
 	@Override public MinimizedGamePlayer toMinimizedEntity()
