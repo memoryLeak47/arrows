@@ -1,7 +1,9 @@
 package entity.entities.dynamic;
 
 import entity.Entity;
+import entity.MinimizedEntity;
 import entity.entities.DynamicEntity;
+import entity.entities.dynamic.spinnable.MinimizedSpinnableEntity;
 import entity.entities.tile.ExtendedTile;
 import graphics.Animation;
 import misc.math.collision.CollisionDetector;
@@ -31,6 +33,11 @@ public abstract class SpinnableEntity extends DynamicEntity
 	@Override public GamePosition getRight() { }
 	@Override public GamePosition getLeft() { }
 	*/
+
+	@Override public MinimizedEntity toMinimizedEntity()
+	{
+		return new MinimizedSpinnableEntity(getPosition(), getImageID(), getRotation());
+	}
 
 	public GameRect getWrapper()
 	{

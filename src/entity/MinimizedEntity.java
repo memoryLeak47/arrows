@@ -64,7 +64,7 @@ public abstract class MinimizedEntity implements java.io.Serializable
 		return new GameSize(getImageID());
 	}
 
-	private boolean inScreen()
+	protected boolean inScreen()
 	{
 		// TODO
 		return true;

@@ -1,19 +1,14 @@
 package entity.entities.dynamic.spinnable.bullet;
 
-import entity.MinimizedEntity;
+import entity.entities.dynamic.spinnable.MinimizedSpinnableEntity;
 import graphics.ImageID;
 import misc.Debug;
 import misc.math.game.GamePosition;
 
-public class MinimizedBullet extends MinimizedEntity
+public class MinimizedBullet extends MinimizedSpinnableEntity
 {
-	private float rotation;
-
-	public MinimizedBullet(GamePosition position, ImageID imageID, float rotation /*, Effects*/)
+	public MinimizedBullet(GamePosition position, ImageID imageID, float rotation /*effects*/)
 	{
-		super(position, imageID);
-		this.rotation = rotation;
+		super(position, imageID, rotation);
 	}
-
-	public float getRotation() { return rotation; }
 }

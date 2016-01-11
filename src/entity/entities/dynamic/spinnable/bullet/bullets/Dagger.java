@@ -33,14 +33,13 @@ public class Dagger extends ExtendedBullet
 		e.onDamage(getDamage());
 		counter = 100; // --> he dies
 	}
-/*
+
 	@Override public float getRotation()
 	{
 		GameVector normal = new GameVector(1, 0);
-		float rot = (float)(Math.atan2(normal.getY(), normal.getX()) - Math.atan2(getVelocity().getY(), getVelocity().getX()));
+		float rot = (float)-(Math.atan2(normal.getY(), normal.getX()) - Math.atan2(getVelocity().getY(), getVelocity().getX()));
 		return rot;
 	}
-*/
 
 	@Override protected Damage getDamage() { return new Damage(0,6,0); }
 	@Override public boolean hasToBeRemoved() { return counter > 10; }
