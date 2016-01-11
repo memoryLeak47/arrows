@@ -16,6 +16,6 @@ public class SmokeCloudSkill extends NormalSkill
 
 	@Override protected void trigger()
 	{
-		addBullet(new SmokeCloud(new GamePosition(getPlayer().getMousePosition()), new GameVector(0.f, 0.f)));
+		addBullet(new SmokeCloud(getPlayer(), new GamePosition(getPlayer().getMousePosition()), new GameVector(0.f, 0.f)));
 	}
 }

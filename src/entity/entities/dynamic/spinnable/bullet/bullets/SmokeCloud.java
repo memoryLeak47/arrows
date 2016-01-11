@@ -7,14 +7,15 @@ import graphics.animations.StaticAnimation;
 import graphics.ImageFile;
 import misc.math.game.GamePosition;
 import misc.math.game.GameVector;
+import player.ServerGamePlayer;
 
 public class SmokeCloud extends ExtendedBullet
 {
 	private boolean alive = true;
 
-	public SmokeCloud(GamePosition position, GameVector velocity)
+	public SmokeCloud(ServerGamePlayer owner, GamePosition position, GameVector velocity)
 	{
-		super(position, new StaticAnimation(ImageFile.SMOKECLOUD.getImageID()), velocity);
+		super(owner, position, new StaticAnimation(ImageFile.SMOKECLOUD.getImageID()), velocity);
 	}
 
 	@Override public void onCollide(Entity e)

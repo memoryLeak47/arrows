@@ -7,12 +7,13 @@ import graphics.animations.StaticAnimation;
 import graphics.ImageFile;
 import misc.math.game.GamePosition;
 import misc.math.game.GameVector;
+import player.ServerGamePlayer;
 
 public class Arrow extends StickyBullet
 {
-	public Arrow(GamePosition position, GameVector velocity)
+	public Arrow(ServerGamePlayer owner, GamePosition position, GameVector velocity)
 	{
-		super(position, new StaticAnimation(ImageFile.ARROW1.getImageID()), velocity);
+		super(owner, position, new StaticAnimation(ImageFile.ARROW1.getImageID()), velocity);
 	}
 
 	@Override protected Damage getDamage() { return new Damage(1,4,0); }

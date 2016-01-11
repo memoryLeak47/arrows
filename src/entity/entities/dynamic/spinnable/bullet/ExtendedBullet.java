@@ -9,13 +9,17 @@ import misc.Debug;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 import misc.math.game.GameVector;
+import player.ServerGamePlayer;
 import tilemap.GameTileMap;
 
 public abstract class ExtendedBullet extends SpinnableEntity
 {
-	public ExtendedBullet(GamePosition position, Animation animation, GameVector velocity)
+	private ServerGamePlayer owner;
+
+	public ExtendedBullet(ServerGamePlayer owner, GamePosition position, Animation animation, GameVector velocity)
 	{
 		super(position, animation);
+		this.owner = owner;
 		setVelocity(new GameVector(velocity));
 	}
 
@@ -32,4 +36,6 @@ public abstract class ExtendedBullet extends SpinnableEntity
 
 	@Override protected GameVector getDefaultDrag() { return new GameVector(1.f, 1.f); }
 	@Override public boolean hasToBeRemoved() { return !GameTileMap.get().isInMap(getPosition()); }
+
+	public final ServerGamePlayer getOwner() { return owner; }
 }

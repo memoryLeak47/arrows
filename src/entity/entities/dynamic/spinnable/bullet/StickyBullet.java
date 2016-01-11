@@ -3,9 +3,10 @@ package entity.entities.dynamic.spinnable.bullet;
 import damage.Damage;
 import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
 import entity.Entity;
+import graphics.Animation;
 import misc.math.game.GameVector;
 import misc.math.game.GamePosition;
-import graphics.Animation;
+import player.ServerGamePlayer;
 
 public abstract class StickyBullet extends ExtendedBullet
 {
@@ -14,13 +15,17 @@ public abstract class StickyBullet extends ExtendedBullet
 	private int counter = getInitialCounterValue();
 	private boolean hasCollided = false;
 
-	public StickyBullet(GamePosition position, Animation animation, GameVector velocity)
+	public StickyBullet(ServerGamePlayer owner, GamePosition position, Animation animation, GameVector velocity)
 	{
-		super(position, animation, velocity);
+		super(owner, position, animation, velocity);
 	}
 
 	@Override public void onCollide(Entity e)
 	{
+		if (e == getOwner())
+		{
+			return;
+		}
 		target = e;
 		distanceToTarget = GameVector.getFromTo(getPosition(), e.getPosition());
 		if (!hasCollided)
