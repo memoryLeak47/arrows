@@ -22,7 +22,7 @@ public class MultiArrowShotSkill extends NormalSkill
 	}
 
 	@Override public ImageID getIconImageID() { return ImageFile.MULTIARROWSHOT_ICON.getImageID(); }
-	@Override public String getDescription() { return "shoots a big arrow"; }
+	@Override public String getDescription() { return "shoots " + NUMBER + " arrows"; }
 	@Override public float getRecharge() { return 0.3f; }
 
 	@Override public void tick()
