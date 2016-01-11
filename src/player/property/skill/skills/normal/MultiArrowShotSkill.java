@@ -10,8 +10,9 @@ import player.property.skill.skills.NormalSkill;
 
 public class MultiArrowShotSkill extends NormalSkill
 {
-	private static final int INTERVAL = 5;
+	private static final int INTERVAL = 3;
 	private static final int NUMBER = 4;
+	private static final float ARROWSPEED = 0.6f;
 	
 	private int counter;
 
@@ -27,10 +28,18 @@ public class MultiArrowShotSkill extends NormalSkill
 	@Override public void tick()
 	{
 		super.tick();
-		if (counter % INTERVAL == 0)
+		if ((counter % INTERVAL == 0) && (counter > 0))
 		{
-			addBullet(new Arrow(getPlayer(), getPlayer().getPosition(), getVelocityToMouse().times(0.6f)));
+			if (getPlayer().getVelocity().getX() > 0)
+			{
+				addBullet(new Arrow(getPlayer(), getPlayer().getPosition(), new GameVector(ARROWSPEED, 0.f)));
+			}
+			else
+			{
+				addBullet(new Arrow(getPlayer(), getPlayer().getPosition(), new GameVector(-ARROWSPEED, 0.f)));
+			}
 		}
+		counter--;
 	}
 
 	@Override protected void trigger()
