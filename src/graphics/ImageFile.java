@@ -29,6 +29,7 @@ public enum ImageFile
 	// skills
 	ARROWSHOT_ICON("icons/skills/arrow.png"),
 	SMOKECLOUD_ICON("icons/skills/smokecloud.png"),
+	SHADOWJUMP_ICON("icons/skills/shadowjump.png"),
 
 	// items
 	HEALTHRING_ICON("icons/items/healthring.png"),

@@ -1,0 +1,22 @@
+package player.property.skill.skills.normal;
+
+import entity.entities.dynamic.spinnable.bullet.bullets.Arrow;
+import graphics.ImageFile;
+import graphics.ImageID;
+import misc.Debug;
+import misc.math.game.GamePosition;
+import misc.math.game.GameVector;
+import player.property.skill.skills.NormalSkill;
+
+public class ShadowJumpSkill extends NormalSkill
+{
+	@Override public ImageID getIconImageID() { return ImageFile.SHADOWJUMP_ICON.getImageID(); }
+
+	@Override public String getDescription() { return "moves you"; }
+
+	@Override protected void trigger()
+	{
+		if (getPlayer().getPosition().minus(getPlayer().getMousePosition()).getMagnitude() < 5)
+			getPlayer().getPosition().set(getPlayer().getMousePosition());
+	}
+}
