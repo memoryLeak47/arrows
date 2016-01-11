@@ -33,4 +33,5 @@ public class ShadowJumpSkill extends NormalSkill
 	}
 
 	@Override protected void onTrigger() {} // charge will not be set to 0
+	@Override protected float getRecharge() { return 0.6f; }
 }

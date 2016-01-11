@@ -33,7 +33,8 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 		{
 			new ArrowShotSkill(Avatar.ARCHER_ID),
 			new SmokeCloudSkill(Avatar.ROGUE_ID),
-			new ShadowJumpSkill(Avatar.ROGUE_ID)
+			new ShadowJumpSkill(Avatar.ROGUE_ID),
+			new DaggerTossSkill(Avatar.ROGUE_ID)
 		};
 
 		for (byte i = 0; i < skills.length; i++)
