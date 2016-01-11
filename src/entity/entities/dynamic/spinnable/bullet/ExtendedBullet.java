@@ -1,6 +1,7 @@
 package entity.entities.dynamic.spinnable.bullet;
 
 import damage.Damage;
+import entity.Entity;
 import entity.MinimizedEntity;
 import entity.entities.dynamic.SpinnableEntity;
 import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
@@ -33,6 +34,21 @@ public abstract class ExtendedBullet extends SpinnableEntity
 	}
 
 	protected Damage getDamage() { return new Damage(0,0,0); }
+
+	protected final boolean shouldDamageEntity(Entity e)
+	{
+		return !(e instanceof ServerGamePlayer && ((ServerGamePlayer)e).getTeam().isTeamFriendly(getOwner().getTeam()));
+	}
+
+	protected final boolean damageOnlyEnemyEntity(Entity e)
+	{
+		if (shouldDamageEntity(e))
+		{
+			e.onDamage(getDamage());
+			return true;
+		}
+		return false;
+	}
 
 	@Override protected GameVector getDefaultDrag() { return new GameVector(1.f, 1.f); }
 	@Override public boolean hasToBeRemoved() { return !GameTileMap.get().isInMap(getPosition()); }

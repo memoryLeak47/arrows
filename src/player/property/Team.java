@@ -23,6 +23,13 @@ public enum Team
 		this.colorID = Integer.parseInt(colorString, 16);
 	}
 
+	public boolean isTeamFriendly(Team team)
+	{
+		if (this == TEAM0 || team == TEAM0)
+			return false;
+		return this == team;
+	}
+
 	public static Team getByID(int id)
 	{
 		for (Team team : Team.values())

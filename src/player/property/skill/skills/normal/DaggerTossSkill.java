@@ -18,9 +18,7 @@ public class DaggerTossSkill extends NormalSkill
 
 	@Override public void trigger()
 	{
-		GameVector vel = getPlayer().getMousePosition().minus(getPlayer().getPosition());
-		vel.divide(vel.getMagnitude());
-		addBullet(new Dagger(getPlayer(), getPlayer().getPosition(), vel.times(0.2f)));
+		addBullet(new Dagger(getPlayer(), getPlayer().getPosition(), getVelocityToMouse().times(0.2f)));
 	}
 
 	@Override protected float getRecharge() { return 0.8f; }

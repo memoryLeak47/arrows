@@ -33,6 +33,7 @@ public class MinimizedSpinnableEntity extends MinimizedEntity
 			Graphics2D g = (Graphics2D) Screen.g();
 			g.rotate(getRotation(), position.getX(), position.getY());
 			Screen.g().drawImage(ImageFile.getImageByImageID(getImageID()), position.getX(), position.getY(), null);
+			g.rotate(-getRotation(), position.getX(), position.getY());
 		}
 	}
 

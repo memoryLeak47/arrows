@@ -20,6 +20,6 @@ public class ArrowShotSkill extends NormalSkill
 
 	@Override protected void trigger()
 	{
-		addBullet(new Arrow(getPlayer(), new GamePosition(getPlayer().getPosition()), new GameVector(0.4f, 0.f)));
+		addBullet(new Arrow(getPlayer(), getPlayer().getPosition(), getVelocityToMouse().times(0.4f)));
 	}
 }

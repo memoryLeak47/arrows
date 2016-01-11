@@ -22,18 +22,17 @@ public abstract class StickyBullet extends ExtendedBullet
 
 	@Override public void onCollide(Entity e)
 	{
-		if (e == getOwner())
+		if (shouldDamageEntity(e))
 		{
-			return;
+			target = e;
+			distanceToTarget = GameVector.getFromTo(getPosition(), e.getPosition());
+			if (!hasCollided)
+			{
+				e.onDamage(getDamage());
+			}
+			hasCollided = true;
+			stop();
 		}
-		target = e;
-		distanceToTarget = GameVector.getFromTo(getPosition(), e.getPosition());
-		if (!hasCollided)
-		{
-			e.onDamage(getDamage());
-		}
-		hasCollided = true;
-		stop();
 	}
 
 	@Override public void tick()

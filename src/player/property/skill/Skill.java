@@ -2,15 +2,16 @@ package player.property.skill;
 
 import java.util.LinkedList;
 
+import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
 import game.Game;
 import game.ServerGame;
 import graphics.ImageID;
 import misc.Debug;
+import misc.math.game.GameVector;
+import player.ServerGamePlayer;
 import player.property.PlayerProperty;
 import player.property.avatar.Avatar;
 import player.property.skill.skills.normal.*;
-import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
-import player.ServerGamePlayer;
 //import playerproperty.skill.skills.hold.*;
 //import playerproperty.skill.skills.toggle.*;
 
@@ -131,6 +132,13 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 		{
 			charge = c;
 		}
+	}
+
+	public GameVector getVelocityToMouse()
+	{
+		GameVector vel = getPlayer().getMousePosition().minus(getPlayer().getPosition());
+		vel.divide(vel.getMagnitude());
+		return vel;
 	}
 
 	public byte getAvatarID() { return avatarID; }

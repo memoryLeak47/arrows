@@ -25,6 +25,19 @@ public abstract class SpinnableEntity extends DynamicEntity
 		return CollisionDetector.areCollidingSpinnable(this, entity);
 	}
 
+	protected final void updateRotationByVelocity()
+	{
+		if (getVelocity().getMagnitude() != 0)
+		{
+			setRotation((float)-(Math.atan2(0, 1) - Math.atan2(getVelocity().getY(), getVelocity().getX())));
+		}
+	}
+
+	private final void setRotation(float rotation)
+	{
+		this.rotation = rotation;
+	}
+
 	public float getRotation() { return rotation; }
 
 	/*

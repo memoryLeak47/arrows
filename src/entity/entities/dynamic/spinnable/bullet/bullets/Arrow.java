@@ -16,5 +16,11 @@ public class Arrow extends StickyBullet
 		super(owner, position, new StaticAnimation(ImageFile.ARROW1.getImageID()), velocity);
 	}
 
+	@Override public void tick()
+	{
+		super.tick();
+		updateRotationByVelocity();
+	}
+
 	@Override protected Damage getDamage() { return new Damage(1,4,0); }
 }
