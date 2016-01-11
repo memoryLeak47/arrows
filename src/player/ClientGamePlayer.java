@@ -67,7 +67,7 @@ public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 		GamePosition gamePos = new GamePosition(getPosition());
 		gamePos.addY(getSize().getY()/-2);
 		PixelPosition pos = Camera.get().gamePositionToPixelPosition(gamePos);
-		int length = (int) ((float) health / (float) maxHealth)*50;
+		int length = (int) (((float) health / (float) maxHealth)*50.f);
 		Screen.g().fillRect((int) (pos.getX()-(float)length/2), pos.getY() - 20, length, 5);
 	}
 
