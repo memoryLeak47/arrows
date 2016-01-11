@@ -151,7 +151,7 @@ public class GameTileMap
 		int maxY = (int)(e.getBot() + pos.getY() - e.getPosition().getY())+1;
 		for (int x = minX; x < maxX; x++)
 			for (int y = minY; y < maxY; y++)
-				if (isObstacleAt(x, y))
+				if (!isValidGridPosition(x, y) || isObstacleAt(x, y))
 					return false;
 		return true;
 	}
