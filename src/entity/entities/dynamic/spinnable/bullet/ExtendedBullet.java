@@ -37,6 +37,8 @@ public abstract class ExtendedBullet extends SpinnableEntity
 
 	protected final boolean shouldDamageEntity(Entity e)
 	{
+		if (e == getOwner())
+			return false;
 		return !(e instanceof ServerGamePlayer && ((ServerGamePlayer)e).getTeam().isTeamFriendly(getOwner().getTeam()));
 	}
 
