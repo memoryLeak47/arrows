@@ -28,6 +28,7 @@ public enum ImageFile
 
 	// skills
 	ARROWSHOT_ICON("icons/skills/arrow.png"),
+	SMOKECLOUD_ICON("icons/skills/smokecloud.png"),
 
 	// items
 	HEALTHRING_ICON("icons/items/healthring.png"),
@@ -39,6 +40,7 @@ public enum ImageFile
 
 	// bullets
 	ARROW1("entities/bullets/arrow1.png"),
+	SMOKECLOUD("entities/bullets/smokecloud.png"),
 
 	// player
 	PLAYER("entities/player.png");

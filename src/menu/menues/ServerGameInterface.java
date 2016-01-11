@@ -43,9 +43,11 @@ public class ServerGameInterface extends GameInterface
 
 	@Override public void tick()
 	{
-		getGame().getPlayers().get(0).applyPlayerControlsUpdatePacket(getPlayerControlsUpdatePacket());
+		if (!getGame().isIniting())
+			getGame().getPlayers().get(0).applyPlayerControlsUpdatePacket(getPlayerControlsUpdatePacket());
 		super.tick();
-		sendGameFrameUpdatePackets();
+		if (!getGame().isIniting())
+			sendGameFrameUpdatePackets();
 	}
 
 	// private

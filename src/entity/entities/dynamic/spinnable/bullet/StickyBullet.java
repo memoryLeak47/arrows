@@ -55,5 +55,4 @@ public abstract class StickyBullet extends ExtendedBullet
 
 	protected int getInitialCounterValue() { return 20; }
 	@Override public boolean hasToBeRemoved() { return counter <= 0; }
-	protected Damage getDamage() { return new Damage(0,0,0); }
 }

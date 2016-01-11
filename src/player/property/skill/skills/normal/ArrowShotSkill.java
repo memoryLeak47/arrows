@@ -8,7 +8,7 @@ import misc.math.game.GamePosition;
 import misc.math.game.GameVector;
 import player.property.skill.skills.NormalSkill;
 
-public class ArrowShot extends NormalSkill
+public class ArrowShotSkill extends NormalSkill
 {
 	@Override public ImageID getIconImageID() { return ImageFile.ARROWSHOT_ICON.getImageID(); }
 

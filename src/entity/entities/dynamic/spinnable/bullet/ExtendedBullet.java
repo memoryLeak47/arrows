@@ -1,5 +1,6 @@
 package entity.entities.dynamic.spinnable.bullet;
 
+import damage.Damage;
 import entity.MinimizedEntity;
 import entity.entities.dynamic.SpinnableEntity;
 import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
@@ -26,6 +27,8 @@ public abstract class ExtendedBullet extends SpinnableEntity
 	{
 		return new MinimizedBullet(getPosition(), getImageID(), getRotation()/*, effects*/);
 	}
+
+	protected Damage getDamage() { return new Damage(0,0,0); }
 
 	@Override protected GameVector getDefaultDrag() { return new GameVector(1.f, 1.f); }
 	@Override public boolean hasToBeRemoved() { return !GameTileMap.get().isInMap(getPosition()); }

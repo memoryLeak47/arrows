@@ -25,6 +25,7 @@ public class ServerGame extends Game
 	private LinkedList<ServerGamePlayer> players = new LinkedList<ServerGamePlayer>();
 	private LinkedList<ExtendedMob> mobs = new LinkedList<ExtendedMob>();
 	private LinkedList<ExtendedBullet> bullets = new LinkedList<ExtendedBullet>();
+	private boolean initing = true;
 
 	public ServerGame(LobbyTileMap lobbyMap, LinkedList<LobbyPlayer> lobbyPlayers)
 	{
@@ -34,6 +35,7 @@ public class ServerGame extends Game
 		{
 			players.add(player.getAvatar().createServerGamePlayer(player, getGameTileMap().getSpawnTilePositionByTeam(player.getTeam())));
 		}
+		initing = false;
 	}
 
 	private LocalClientGamePlayerFrameUpdate getLocalClientGamePlayerFrameUpdateByID(int id)
@@ -156,6 +158,8 @@ public class ServerGame extends Game
 
 		return entityList;
 	}
+
+	public boolean isIniting() { return initing; }
 
 	@Override protected int getLocalPlayerID() { return 0; }
 }

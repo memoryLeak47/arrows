@@ -27,7 +27,8 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 	{
 		skills = new Skill[]
 		{
-			new ArrowShot()
+			new ArrowShotSkill(),
+			new SmokeCloudSkill()
 		};
 
 		for (byte i = 0; i < skills.length; i++)

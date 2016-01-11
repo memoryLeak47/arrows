@@ -237,6 +237,8 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	@Override public Team getTeam() { return team; }
 
+	public GamePosition getMousePosition() { return new GamePosition(controls.mousePosition); }
+
 	/*
 		getHealth, getPosition, getImageID, getEffects, sind schon von Entity definiert und müssen nicht nochmal geschrieben werden
 	*/
