@@ -22,7 +22,7 @@ public class MultiArrowShotSkill extends NormalSkill
 	}
 
 	@Override public ImageID getIconImageID() { return ImageFile.MULTIARROWSHOT_ICON.getImageID(); }
-	@Override public String getDescription() { return "shoots a big arrow"; }
+	@Override public String getDescription() { return "shoots " + NUMBER + " arrows"; }
 	@Override public float getRecharge() { return 0.3f; }
 
 	@Override public void tick()
@@ -30,14 +30,7 @@ public class MultiArrowShotSkill extends NormalSkill
 		super.tick();
 		if ((counter % INTERVAL == 0) && (counter > 0))
 		{
-			if (getPlayer().getVelocity().getX() > 0)
-			{
-				addBullet(new Arrow(getPlayer(), getPlayer().getPosition(), new GameVector(ARROWSPEED, 0.f)));
-			}
-			else
-			{
-				addBullet(new Arrow(getPlayer(), getPlayer().getPosition(), new GameVector(-ARROWSPEED, 0.f)));
-			}
+			addBullet(new Arrow(getPlayer(), getPlayer().getPosition(), getVelocityToMouse().times(ARROWSPEED)));
 		}
 		counter--;
 	}
