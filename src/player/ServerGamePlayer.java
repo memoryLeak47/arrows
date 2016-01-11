@@ -51,10 +51,10 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	private Team team;
 	private Animation animation;
 
-	protected ServerGamePlayer(LobbyPlayer lobbyPlayer, GamePosition position)
+	protected ServerGamePlayer(LobbyPlayer lobbyPlayer, GamePosition position, Animation animation)
 	{
 		// for testing:
-		super(position, new StaticAnimation(ImageFile.PLAYER.getImageID())); // TODO do real stuff
+		super(position, animation); // TODO do real stuff
 
 		Debug.warnIf(lobbyPlayer == null, "ServerGamePlayer.<init>(): lobbyPlayer == null");
 		Debug.warnIf(lobbyPlayer.getIP() == null, "ServerGamePlayer.<init>(): lobbyPlayer.getIP() == null", Debug.Tags.EXTENDED_WARNINGS);

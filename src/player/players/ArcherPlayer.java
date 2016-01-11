@@ -1,6 +1,8 @@
 package player.players;
 
 import damage.Damage;
+import graphics.ImageFile;
+import graphics.animations.StaticAnimation;
 import player.LobbyPlayer;
 import player.ServerGamePlayer;
 import misc.math.game.GamePosition;
@@ -9,7 +11,7 @@ public class ArcherPlayer extends ServerGamePlayer
 {
 	public ArcherPlayer(LobbyPlayer player, GamePosition position)
 	{
-		super(player, position);
+		super(player, position, new StaticAnimation(ImageFile.ARCHER.getImageID()));
 	}
 
 	@Override public String getAvatarName() { return "Legolas ^^"; }

@@ -35,6 +35,12 @@ public enum ImageFile
 	// items
 	HEALTHRING_ICON("icons/items/healthring.png"),
 
+	// entities
+	// avatars
+	ARCHER("entities/avatars/archer.png"),
+	ROGUE("entities/avatars/rogue.png"),
+	
+
 	// tiles
 	VOID_TILE("entities/tiles/voidtile.png"),
 	STONE_TILE("entities/tiles/stonetile.png"),
