@@ -27,7 +27,8 @@ public enum ImageFile
 	ROGUE_ICON("icons/avatars/rogue.png"),
 
 	// skills
-	ARROWSHOT_ICON("icons/skills/arrow.png"),
+	ARROWSHOT_ICON("icons/skills/arrowshot.png"),
+	BIGARROWSHOT_ICON("icons/skills/bigarrowshot.png"),
 	SMOKECLOUD_ICON("icons/skills/smokecloud.png"),
 	SHADOWJUMP_ICON("icons/skills/shadowjump.png"),
 	DAGGERTOSS_ICON("icons/skills/daggertoss.png"),
@@ -47,7 +48,8 @@ public enum ImageFile
 	SPAWNTEAM_TILE("entities/tiles/spawnteamtile.png"),
 
 	// bullets
-	ARROW1("entities/bullets/arrow1.png"),
+	ARROW("entities/bullets/arrow.png"),
+	BIGARROW("entities/bullets/bigarrow.png"),
 	SMOKECLOUD("entities/bullets/smokecloud.png"),
 	DAGGER("entities/bullets/dagger.png"),
 

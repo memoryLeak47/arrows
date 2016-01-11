@@ -9,11 +9,11 @@ import misc.math.game.GamePosition;
 import misc.math.game.GameVector;
 import player.ServerGamePlayer;
 
-public class Arrow extends StickyBullet
+public class BigArrow extends StickyBullet
 {
-	public Arrow(ServerGamePlayer owner, GamePosition position, GameVector velocity)
+	public BigArrow(ServerGamePlayer owner, GamePosition position, GameVector velocity)
 	{
-		super(owner, position, new StaticAnimation(ImageFile.ARROW.getImageID()), velocity);
+		super(owner, position, new StaticAnimation(ImageFile.BIGARROW.getImageID()), velocity);
 	}
 
 	@Override public void tick()
@@ -22,5 +22,5 @@ public class Arrow extends StickyBullet
 		updateRotationByVelocity();
 	}
 
-	@Override protected Damage getDamage() { return new Damage(1,4,0); }
+	@Override protected Damage getDamage() { return new Damage(10,7,0); }
 }
