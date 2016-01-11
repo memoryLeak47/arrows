@@ -1,7 +1,8 @@
 package tilemap;
 
-import java.awt.image.BufferedImage;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.TreeMap;
 import java.util.LinkedList;
 
@@ -72,6 +73,13 @@ public class GameTileMap
 				Debug.warnIf(tiles[x][y] == null, "GameTileMap.initStaticImage(): tiles[" + x + "][" + y + "] == null");
 				Debug.warnIf(tiles[x][y].getImageID() == null, "GameTileMap.initStaticImage(): tiles[" + x + "][" + y + "].getImageID() == null");
 				g.drawImage(ImageFile.getImageByImageID(tiles[x][y].getImageID()), x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE, null);
+				if (tiles[x][y] instanceof SpawnTeamTile)
+				{
+					Color c = ((SpawnTeamTile)tiles[x][y]).getTeam().getColor();
+					c = new Color(c.getRed(), c.getGreen(), c.getBlue(), 50);
+					g.setColor(c);
+					g.fillRect(x*TILESIZE, y*TILESIZE, TILESIZE, TILESIZE);
+				}
 			}
 		}
 
