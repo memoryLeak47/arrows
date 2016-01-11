@@ -10,6 +10,11 @@ import player.property.skill.skills.NormalSkill;
 
 public class SmokeCloudSkill extends NormalSkill
 {
+	public SmokeCloudSkill(byte avatarID)
+	{
+		super(avatarID);
+	}
+
 	@Override public ImageID getIconImageID() { return ImageFile.SMOKECLOUD_ICON.getImageID(); }
 
 	@Override public String getDescription() { return "spawns a damage-cloud"; }

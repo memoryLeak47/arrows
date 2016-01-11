@@ -6,6 +6,11 @@ public abstract class ToggleSkill extends Skill
 {
 	private boolean active = false;
 
+	public ToggleSkill(byte avatarID)
+	{
+		super(avatarID);
+	}
+
 	@Override public void tick()
 	{
 		

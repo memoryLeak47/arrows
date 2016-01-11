@@ -15,6 +15,9 @@ public abstract class Avatar extends PlayerProperty
 	private byte id;
 	private static Avatar[] avatars;
 
+	public static final byte ARCHER_ID = 0;
+	public static final byte ROGUE_ID = 1;
+
 	static
 	{
 		avatars = new Avatar[]

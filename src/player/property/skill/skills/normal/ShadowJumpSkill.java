@@ -10,6 +10,11 @@ import player.property.skill.skills.NormalSkill;
 
 public class ShadowJumpSkill extends NormalSkill
 {
+	public ShadowJumpSkill(byte avatarID)
+	{
+		super(avatarID);
+	}
+
 	@Override public ImageID getIconImageID() { return ImageFile.SHADOWJUMP_ICON.getImageID(); }
 
 	@Override public String getDescription() { return "moves you"; }

@@ -4,6 +4,11 @@ import player.property.skill.Skill;
 
 public abstract class NormalSkill extends Skill
 {
+	public NormalSkill(byte avatarID)
+	{
+		super(avatarID);
+	}
+
 	@Override public void onKeyPressed()
 	{
 		if (getCharge() == MAX_CHARGE)

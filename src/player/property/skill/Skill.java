@@ -1,10 +1,13 @@
 package player.property.skill;
 
+import java.util.LinkedList;
+
 import game.Game;
 import game.ServerGame;
 import graphics.ImageID;
 import misc.Debug;
 import player.property.PlayerProperty;
+import player.property.avatar.Avatar;
 import player.property.skill.skills.normal.*;
 import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
 import player.ServerGamePlayer;
@@ -21,21 +24,27 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 	private float charge;
 
 	private byte id;
+	private byte avatarID;
 	private static Skill[] skills;
 
 	static
 	{
 		skills = new Skill[]
 		{
-			new ArrowShotSkill(),
-			new SmokeCloudSkill(),
-			new ShadowJumpSkill()
+			new ArrowShotSkill(Avatar.ARCHER_ID),
+			new SmokeCloudSkill(Avatar.ROGUE_ID),
+			new ShadowJumpSkill(Avatar.ROGUE_ID)
 		};
 
 		for (byte i = 0; i < skills.length; i++)
 		{
 			skills[i].id = i;
 		}
+	}
+
+	public Skill(byte avatarID)
+	{
+		this.avatarID = avatarID;
 	}
 
 	public void tick()
@@ -81,7 +90,21 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 	public float getCharge() { return charge; }
 
 	@Override public final byte getID() { return id; }
-	public static Skill[] getAllSkills() { return skills; }
+	public static Skill[] getAllSkillsByAvatarID(byte id)
+	{
+		LinkedList<Skill> tmp = new LinkedList<Skill>();
+		for (Skill skill : skills)
+		{
+			if (skill.getAvatarID() == id)
+				tmp.add(skill);
+		}
+		Skill[] results = new Skill[tmp.size()];
+		for (int i = 0; i < tmp.size(); i++)
+		{
+			results[i] = tmp.get(i);
+		}
+		return results;
+	}
 
 	protected abstract boolean isRecharging();
 	protected float getRecharge() { return 1.0f; }
@@ -108,4 +131,6 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 			charge = c;
 		}
 	}
+
+	public byte getAvatarID() { return avatarID; }
 }

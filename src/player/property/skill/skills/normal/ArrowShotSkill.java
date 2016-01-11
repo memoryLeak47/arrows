@@ -10,6 +10,11 @@ import player.property.skill.skills.NormalSkill;
 
 public class ArrowShotSkill extends NormalSkill
 {
+	public ArrowShotSkill(byte avatarID)
+	{
+		super(avatarID);
+	}
+
 	@Override public ImageID getIconImageID() { return ImageFile.ARROWSHOT_ICON.getImageID(); }
 
 	@Override public String getDescription() { return "shoots an arrow"; }

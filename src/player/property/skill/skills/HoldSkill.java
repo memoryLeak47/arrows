@@ -6,6 +6,11 @@ public abstract class HoldSkill extends Skill
 {
 	private boolean active = false;
 
+	public HoldSkill(byte avatarID)
+	{
+		super(avatarID);
+	}
+
 	public void tick()
 	{
 	}
