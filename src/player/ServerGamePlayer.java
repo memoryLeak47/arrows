@@ -113,9 +113,9 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	@Override public void onDamage(Damage damage)
 	{
-		addHealth((int) ((float) -damage.getHit() / (float) getResistanceStat().getHit()));
-		addHealth((int) ((float) -damage.getCut() / (float) getResistanceStat().getCut()));
-		addHealth((int) ((float) -damage.getMagic() / (float) getResistanceStat().getMagic()));
+		damage((int) ((float) damage.getHit() / (float) getResistanceStat().getHit()));
+		damage((int) ((float) damage.getCut() / (float) getResistanceStat().getCut()));
+		damage((int) ((float) damage.getMagic() / (float) getResistanceStat().getMagic()));
 	}
 
 	public void applyPlayerControlsUpdatePacket(PlayerControlsUpdatePacket packet)

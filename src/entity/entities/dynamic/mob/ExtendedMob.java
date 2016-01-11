@@ -55,8 +55,15 @@ public abstract class ExtendedMob extends DynamicEntity
 		
 	}
 
-	final protected void addHealth(int health)
+	final protected void damage(int damage)
 	{
+		Debug.warnIf(damage < 0, "ExtendedMob.damage(): damage is healing ... ");
+		this.health -= damage;
+	}
+
+	final protected void heal(int health)
+	{
+		Debug.warnIf(health < 0, "ExtendedMob.heal(): healing damages ... ");
 		this.health += health;
 	}
 
