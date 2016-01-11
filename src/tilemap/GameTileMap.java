@@ -135,6 +135,19 @@ public class GameTileMap
 		return (position.getX() >= 0) && (position.getY() >= 0) && (position.getX() < tiles.length+1) && (position.getY() < tiles[0].length+1);
 	}
 
+	public boolean couldGoHere(Entity e, GamePosition pos)
+	{
+		int minX = (int)(e.getLeft() + pos.getX() - e.getPosition().getX());
+		int maxX = (int)(e.getRight() + pos.getX() - e.getPosition().getX())+1;
+		int minY = (int)(e.getTop() + pos.getY() - e.getPosition().getY());
+		int maxY = (int)(e.getBot() + pos.getY() - e.getPosition().getY())+1;
+		for (int x = minX; x < maxX; x++)
+			for (int y = minY; y < maxY; y++)
+				if (isObstacleAt(x, y))
+					return false;
+		return true;
+	}
+
 	public BufferedImage getStaticImage()
 	{
 		Debug.warnIf(staticImage == null, "GameTileMap.getStaticImage(): returns null");

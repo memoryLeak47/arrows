@@ -267,6 +267,16 @@ public abstract class DynamicEntity extends Entity
 		this.drag = drag;
 	}
 
+	public void flash(GamePosition pos)
+	{
+		setPosition(pos);
+	}
+
+	public boolean isFlashPossible(GamePosition pos)
+	{
+		return !isCollidingTiles() || GameTileMap.get().couldGoHere(this, pos);
+	}
+
 	protected void setVelocity(GameVector velocity)
 	{
 		Debug.warnIf(velocity == null, "DynamicEntity.setVelocity(): velocity == null");
