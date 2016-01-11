@@ -122,12 +122,6 @@ public class ServerGame extends Game
 		return bullets;
 	}
 
-	public GameFrameUpdatePacket getGameFrameUpdatePacketByID(int id)
-	{
-		Debug.warn("ServerGame.getGameFrameUpdatePacketByID(): return null; TODO");		
-		return null;
-	}
-
 	public LinkedList<MinimizedEntity> getMinimizedEntities()
 	{
 		LinkedList<MinimizedEntity> entityList = new LinkedList<MinimizedEntity>();
