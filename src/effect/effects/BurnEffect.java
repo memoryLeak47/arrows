@@ -12,6 +12,11 @@ public class BurnEffect extends Effect
 		setProperties(new short[2]);
 	}
 
+	@Override public void tick()
+	{
+		getOwner().applyDamage(new Damage(2, 3, 4));
+	}
+
 	@Override public ImageID getImageID()
 	{
 		return ImageFile.BURN_EFFECT.getImageID();

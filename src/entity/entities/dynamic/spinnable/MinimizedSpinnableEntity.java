@@ -34,6 +34,7 @@ public class MinimizedSpinnableEntity extends MinimizedEntity
 			g.rotate(getRotation(), position.getX(), position.getY());
 			Screen.g().drawImage(ImageFile.getImageByImageID(getImageID()), position.getX(), position.getY(), null);
 			g.rotate(-getRotation(), position.getX(), position.getY());
+			renderEffects();
 		}
 	}
 

@@ -3,6 +3,7 @@ package effect;
 import java.util.LinkedList;
 
 import effect.effects.*;
+import entity.Entity;
 import graphics.ImageID;
 import misc.Debug;
 
@@ -31,6 +32,7 @@ public abstract class Effect implements Cloneable
 		initPhase = false;
 	}
 
+	private Entity owner;
 	private int id;
 	private short[] properties;
 
@@ -132,6 +134,30 @@ public abstract class Effect implements Cloneable
 		} catch (Exception e)
 		{
 			Debug.error("Effect.getEffectByID: can't clone effect with id " + id);
+		}
+		return null;
+	}
+
+	public void tick() {}
+
+	public final void setOwner(Entity e)
+	{
+		owner = e;
+	}
+
+	public final Entity getOwner()
+	{
+		return owner;
+	}
+
+	public Effect copy()
+	{
+		try
+		{
+			return (Effect) this.clone();
+		} catch (Exception e)
+		{
+			Debug.error("Effect.copy: can't clone effect " + this);
 		}
 		return null;
 	}

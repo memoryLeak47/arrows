@@ -1,5 +1,7 @@
 package entity;
 
+import java.awt.image.BufferedImage;
+
 import static core.Main.getGame;
 import static core.Main.TILESIZE;
 import core.Screen;
@@ -27,17 +29,25 @@ public abstract class MinimizedEntity implements java.io.Serializable
 		this.effectIDs = effectIDs;
 	}
 
+	protected void renderEffects()
+	{
+		for (Effect e : Effect.getEffectsByBools(getEffectIDs()))
+		{
+			PixelPosition pos = Camera.get().gamePositionToPixelPosition(getPosition());
+			BufferedImage image = ImageFile.getImageByImageID(e.getImageID());
+			Screen.g().drawImage(image,
+				(int)(pos.getX()-(float)(image.getWidth())/2.f),
+				(int)(pos.getY()-(float)(image.getHeight())/2.f), null);
+		}
+	}
+
 	public void render()
 	{
 		if (inScreen())
 		{
 			PixelPosition position = Camera.get().gamePositionToPixelPosition(new GamePosition(getPosition().minus(getSize().times(0.5f))));
 			Screen.g().drawImage(ImageFile.getImageByImageID(getImageID()), position.getX(), position.getY(), null);
-
-			for (Effect e : Effect.getEffectsByBools(getEffectIDs()))
-			{
-				
-			}
+			renderEffects();
 		}
 	}
 

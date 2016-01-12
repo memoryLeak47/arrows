@@ -31,6 +31,8 @@ public abstract class Entity
 	public void tick()
 	{
 		getAnimation().tick();
+		for (Effect e : getEffects())
+			e.tick();
 	}
 
 	public final void onDamage(Damage damage, LinkedList<Effect> e)
@@ -39,7 +41,7 @@ public abstract class Entity
 		applyEffects(new LinkedList<Effect>(e));
 	}
 
-	protected void applyDamage(Damage damage) {}
+	public void applyDamage(Damage damage) {}
 
 	// setter
 	protected void setPosition(GameVector position)
@@ -85,7 +87,9 @@ public abstract class Entity
 
 	public void applyEffect(Effect effect)
 	{
-		effects.add(effect);
+		Effect e = effect.copy();
+		effects.add(e);
+		e.setOwner(this);
 	}
 
 	public final void applyEffects(LinkedList<Effect> effects)

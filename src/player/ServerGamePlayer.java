@@ -111,7 +111,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		super.onCollide(e);
 	}
 
-	@Override protected void applyDamage(Damage damage)
+	@Override public void applyDamage(Damage damage)
 	{
 		damage((int) ((float) damage.getHit() / (float) getResistanceStat().getHit()));
 		damage((int) ((float) damage.getCut() / (float) getResistanceStat().getCut()));
