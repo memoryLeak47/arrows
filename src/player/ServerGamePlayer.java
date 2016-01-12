@@ -226,7 +226,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		return avatar;
 	}
 
-	public Skill[] getSkills()
+	@Override public Skill[] getSkills()
 	{
 		Debug.warnIf(skills == null, "ServerGamePlayer.getSkills(): skills == null");
 		return skills;

@@ -11,10 +11,11 @@ import misc.Debug;
 import network.Packet;
 import menu.event.Event;
 import network.game.packets.GameFrameUpdatePacket;
-import player.ClientGamePlayerFrameUpdate;
 import network.game.packets.PlayerControlsUpdatePacket;
+import player.ClientGamePlayerFrameUpdate;
 import player.LocalClientGamePlayerFrameUpdate;
 import player.LobbyPlayer;
+import player.ServerGamePlayer;
 import tilemap.LobbyTileMap;
 
 public class ServerGameInterface extends GameInterface
@@ -71,6 +72,11 @@ public class ServerGameInterface extends GameInterface
 		{
 			send(getGameFrameUpdatePacketByID(i), getGame().getPlayers().get(i).getIP());
 		}
+	}
+
+	@Override protected float[] getLocalPlayerCharges()
+	{
+		return ((ServerGamePlayer) getGame().getLocalPlayer()).getCharges();
 	}
 
 	private LinkedList<MinimizedBullet> getMinimizedBullets()

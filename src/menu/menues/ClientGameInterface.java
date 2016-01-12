@@ -29,6 +29,11 @@ public class ClientGameInterface extends GameInterface
 		send(getPlayerControlsUpdatePacket(), serverIP);
 	}
 
+	@Override protected float[] getLocalPlayerCharges()
+	{
+		return getGame().getLocalPlayerCharges();
+	}
+
 	private ClientGame getGame() { return (ClientGame) getUncastedGame(); }
 
 	@Override public void handlePacket(Packet packet, InetAddress ip)

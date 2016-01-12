@@ -77,7 +77,7 @@ public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 	@Override public Team getTeam() { return team; }
 
 	public Avatar getAvatar() { return avatar; }
-	public Skill[] getSkills() { return skills; }
+	@Override public Skill[] getSkills() { return skills; }
 	public Item[] getItems() { return items; }
 
 	public KDCounter getKDCounter() { return kdCounter; }

@@ -75,6 +75,11 @@ public class ClientGame extends Game
 		return tmpPlayers;
 	}
 
+	public float[] getLocalPlayerCharges()
+	{
+		return localPlayerUpdate.getCharges();
+	}
+
 	public LinkedList<ClientGamePlayer> getPlayers()
 	{
 		Debug.warnIf(players == null, "ClientGame.getPlayers(): return null");

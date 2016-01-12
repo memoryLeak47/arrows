@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import graphics.ImageID;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
+import player.property.skill.Skill;
 import player.property.Team;
 
 public interface GamePlayer
@@ -20,4 +21,5 @@ public interface GamePlayer
 	public GameSize getSize();
 	public ImageID getImageID();
 	public LinkedList<Integer> getEffectIDs(); // gibt die EffectIDs zurück, die für das Rendern gebraucht werden
+	public Skill[] getSkills();
 }
