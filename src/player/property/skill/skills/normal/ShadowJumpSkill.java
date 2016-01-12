@@ -21,14 +21,16 @@ public class ShadowJumpSkill extends NormalSkill
 
 	@Override protected void trigger()
 	{
-		if (getPlayer().getPosition().minus(getPlayer().getMousePosition()).getMagnitude() < 5)
+		GameVector vec = getPlayer().getMousePosition().minus(getPlayer().getPosition());
+		if (vec.getMagnitude() > 5)
 		{
-			GamePosition pos = getPlayer().getMousePosition();
-			if (getPlayer().isFlashPossible(pos))
-			{
-				getPlayer().flash(pos);
-				setCharge(0.0f);
-			}
+			vec.setMagnitude(5);
+		}
+		GamePosition pos = new GamePosition(vec.plus(getPlayer().getPosition()));
+		if (getPlayer().isFlashPossible(pos))
+		{
+			getPlayer().flash(pos);
+			setCharge(0.0f);
 		}
 	}
 
