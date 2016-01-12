@@ -210,6 +210,11 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		return mass;
 	}
 
+	public Damage getDamage()
+	{
+		return getDamageStat();
+	}
+
 
 
 	@Override public LinkedList<Integer> getEffectIDs() { return Effect.toEffectIDs(getEffects()); }

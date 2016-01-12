@@ -46,7 +46,11 @@ public abstract class ExtendedBullet extends SpinnableEntity
 	{
 		if (shouldDamageEntity(e))
 		{
-			e.onDamage(getDamage());
+			Damage d = new Damage(
+				getDamage().getHit() * getOwner().getDamage().getHit(),
+				getDamage().getCut() * getOwner().getDamage().getCut(),
+				getDamage().getMagic() * getOwner().getDamage().getMagic());
+			e.onDamage(d);
 			return true;
 		}
 		return false;
