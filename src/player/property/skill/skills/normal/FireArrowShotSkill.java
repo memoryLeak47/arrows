@@ -22,7 +22,7 @@ public class FireArrowShotSkill extends NormalSkill
 	@Override protected void trigger()
 	{
 		Arrow a = new Arrow(getPlayer(), getPlayer().getPosition(), getVelocityToMouse().times(0.4f));
-		a.applyEffect(Effect.getByID(Effect.BURN_EFFECT));
+		a.applyEffect(Effect.createByID(Effect.BURN_EFFECT));
 		addBullet(a);
 	}
 }

@@ -31,8 +31,18 @@ public abstract class Entity
 	public void tick()
 	{
 		getAnimation().tick();
-		for (Effect e : getEffects())
-			e.tick();
+		for (int i = 0; i < getEffects().size(); i++)
+		{
+			if (getEffects().get(i).hasToBeRemoved())
+			{
+				getEffects().remove(i);
+				i--;
+			}
+			else
+			{
+				getEffects().get(i).tick();
+			}
+		}
 	}
 
 	public final void onDamage(Damage damage, LinkedList<Effect> e)

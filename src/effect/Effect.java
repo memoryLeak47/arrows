@@ -82,7 +82,7 @@ public abstract class Effect implements Cloneable
 		{
 			if (bools[i])
 			{
-				list.add(getByID(i));
+				list.add(createByID(i));
 			}
 		}
 		return list;
@@ -121,11 +121,6 @@ public abstract class Effect implements Cloneable
 	public abstract ImageID getImageID();
 
 	// needed for ClientGamePlayer, who has to handle EffectsOnOff by the ID
-	public static Effect getByID(int id)
-	{
-		return staticEffects[id];
-	}
-
 	public static Effect createByID(int id)
 	{
 		try
@@ -152,15 +147,10 @@ public abstract class Effect implements Cloneable
 
 	public Effect copy()
 	{
-		try
-		{
-			return (Effect) this.clone();
-		} catch (Exception e)
-		{
-			Debug.error("Effect.copy: can't clone effect " + this);
-		}
-		return null;
+		return createByID(getID());
 	}
 
 	public short[] getProperties() { return properties; }
+
+	public boolean hasToBeRemoved() { return false; }
 }
