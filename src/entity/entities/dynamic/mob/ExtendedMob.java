@@ -25,7 +25,7 @@ public abstract class ExtendedMob extends DynamicEntity
 		accelerate(0, GRAVITY);
 	}
 
-	@Override public void onDamage(Damage damage)
+	@Override protected void applyDamage(Damage damage)
 	{
 		health -= damage.getHit();
 		health -= damage.getCut();

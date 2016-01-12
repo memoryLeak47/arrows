@@ -1,5 +1,6 @@
 package player.property.skill.skills.normal;
 
+import effect.Effect;
 import entity.entities.dynamic.spinnable.bullet.bullets.Arrow;
 import graphics.ImageFile;
 import graphics.ImageID;
@@ -20,8 +21,8 @@ public class FireArrowShotSkill extends NormalSkill
 
 	@Override protected void trigger()
 	{
-		Arrow a = new Arrow(getPlayer(), getPlayer().getPosition());
-		addBullet(a, getVelocityToMouse().times(0.4f));
+		Arrow a = new Arrow(getPlayer(), getPlayer().getPosition(), getVelocityToMouse().times(0.4f));
 		a.applyEffect(Effect.getByID(Effect.BURN_EFFECT));
+		addBullet(a);
 	}
 }

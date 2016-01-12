@@ -111,7 +111,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		super.onCollide(e);
 	}
 
-	@Override public void onDamage(Damage damage)
+	@Override protected void applyDamage(Damage damage)
 	{
 		damage((int) ((float) damage.getHit() / (float) getResistanceStat().getHit()));
 		damage((int) ((float) damage.getCut() / (float) getResistanceStat().getCut()));
@@ -161,12 +161,6 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	@Override public String getName() { return name; }
 	public int getRank() { return rank; }
-
-	public LinkedList<Effect> getEffects()
-	{
-		Debug.warn("ServerGamePlayer.getEffects(): TODO");
-		return new LinkedList<Effect>();
-	}
 
 	// for sub
 	public abstract int getMassStat();

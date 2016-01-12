@@ -50,7 +50,7 @@ public abstract class ExtendedBullet extends SpinnableEntity
 				getDamage().getHit() * getOwner().getDamage().getHit(),
 				getDamage().getCut() * getOwner().getDamage().getCut(),
 				getDamage().getMagic() * getOwner().getDamage().getMagic());
-			e.onDamage(d);
+			e.onDamage(d, getEffects());
 			return true;
 		}
 		return false;

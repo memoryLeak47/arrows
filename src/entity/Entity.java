@@ -33,7 +33,13 @@ public abstract class Entity
 		getAnimation().tick();
 	}
 
-	public void onDamage(Damage damage) {}
+	public final void onDamage(Damage damage, LinkedList<Effect> e)
+	{
+		applyDamage(damage);
+		applyEffects(new LinkedList<Effect>(e));
+	}
+
+	protected void applyDamage(Damage damage) {}
 
 	// setter
 	protected void setPosition(GameVector position)
@@ -80,6 +86,19 @@ public abstract class Entity
 	public void applyEffect(Effect effect)
 	{
 		effects.add(effect);
+	}
+
+	public final void applyEffects(LinkedList<Effect> effects)
+	{
+		for (Effect e : effects)
+		{
+			applyEffect(e);
+		}
+	}
+
+	public final LinkedList<Effect> getEffects()
+	{
+		return effects;
 	}
 
 	public boolean isDynamic() { return false; }

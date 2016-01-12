@@ -1,5 +1,7 @@
 package damage;
 
+import effect.Effect;
+
 public class Damage
 {
 	private int hit, cut, magic;

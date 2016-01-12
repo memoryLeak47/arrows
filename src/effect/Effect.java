@@ -92,7 +92,7 @@ public abstract class Effect implements Cloneable
 	}
 
 	// needed for ClientGamePlayer, who has to handle EffectsOnOff by the ID
-	public static Effect getEffectByID(int id)
+	public static Effect getByID(int id)
 	{
 		try
 		{

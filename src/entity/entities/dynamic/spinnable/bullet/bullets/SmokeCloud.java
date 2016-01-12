@@ -20,7 +20,7 @@ public class SmokeCloud extends ExtendedBullet
 
 	@Override public void onCollide(Entity e)
 	{
-		e.onDamage(getDamage());
+		e.onDamage(getDamage(), getEffects());
 		alive = false;
 	}
 
