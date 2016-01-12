@@ -20,7 +20,7 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 	public static final float MAX_CHARGE = 100;
 	public static final byte SKILLS_SIZE = 4;
 
-	private ServerGamePlayer player;
+	private ServerGamePlayer owner;
 
 	private float charge;
 
@@ -91,7 +91,7 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 		return null;
 	}
 
-	protected ServerGamePlayer getPlayer() { return player; }
+	protected ServerGamePlayer getOwner() { return owner; }
 
 	public float getCharge() { return charge; }
 
@@ -116,10 +116,10 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 	protected float getRecharge() { return 1.0f; }
 
 	// setter
-	public void setPlayer(ServerGamePlayer player)
+	public void setOwner(ServerGamePlayer owner)
 	{
-		Debug.warnIf(player == null, "Skill.setPlayer(): player == null");
-		this.player = player;
+		Debug.warnIf(owner == null, "Skill.setOwner(): owner == null");
+		this.owner = owner;
 	}
 
 	protected final void setCharge(float c)
@@ -140,7 +140,7 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 
 	public GameVector getVelocityToMouse()
 	{
-		GameVector vel = getPlayer().getMousePosition().minus(getPlayer().getPosition());
+		GameVector vel = getOwner().getMousePosition().minus(getOwner().getPosition());
 		vel.divide(vel.getMagnitude());
 		return vel;
 	}

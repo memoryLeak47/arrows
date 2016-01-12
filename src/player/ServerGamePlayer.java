@@ -74,7 +74,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 		for (int i = 0; i < skills.length; i++)
 		{
-			skills[i].setPlayer(this);
+			skills[i].setOwner(this);
 		}
 
 		resetHealth();

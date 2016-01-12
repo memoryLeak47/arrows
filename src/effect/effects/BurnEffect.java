@@ -24,7 +24,7 @@ public class BurnEffect extends Effect
 
 	@Override public void tick()
 	{
-		getOwner().applyDamage(new Damage(0, 0, maxDamage));
+		getTarget().applyDamage(new Damage(0, 0, maxDamage));
 		getProperties()[0]--;
 	}
 

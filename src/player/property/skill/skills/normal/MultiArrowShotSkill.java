@@ -30,7 +30,7 @@ public class MultiArrowShotSkill extends NormalSkill
 		super.tick();
 		if ((counter % INTERVAL == 0) && (counter > 0))
 		{
-			addBullet(new Arrow(getPlayer(), getPlayer().getPosition(), getVelocityToMouse().times(ARROWSPEED)));
+			addBullet(new Arrow(getOwner(), getOwner().getPosition(), getVelocityToMouse().times(ARROWSPEED)));
 		}
 		counter--;
 	}

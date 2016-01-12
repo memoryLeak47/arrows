@@ -98,7 +98,7 @@ public abstract class Entity
 	public void applyEffect(Effect effect)
 	{
 		Effect e = effect.copy();
-		e.setOwner(this);
+		e.setTarget(this);
 		effects.add(e);
 	}
 

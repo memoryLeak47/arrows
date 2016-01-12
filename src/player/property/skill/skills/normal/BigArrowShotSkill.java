@@ -21,6 +21,6 @@ public class BigArrowShotSkill extends NormalSkill
 
 	@Override protected void trigger()
 	{
-		addBullet(new BigArrow(getPlayer(), getPlayer().getPosition(), getVelocityToMouse().times(0.6f)));
+		addBullet(new BigArrow(getOwner(), getOwner().getPosition(), getVelocityToMouse().times(0.6f)));
 	}
 }

@@ -1,5 +1,6 @@
 package player.property.skill.skills.normal;
 
+import effect.effects.BurnEffect;
 import entity.entities.dynamic.spinnable.bullet.bullets.SmokeCloud;
 import graphics.ImageFile;
 import graphics.ImageID;
@@ -21,6 +22,6 @@ public class SmokeCloudSkill extends NormalSkill
 
 	@Override protected void trigger()
 	{
-		addBullet(new SmokeCloud(getPlayer(), new GamePosition(getPlayer().getMousePosition()), new GameVector(0.f, 0.f)));
+		addBullet(new SmokeCloud(getOwner(), new GamePosition(getOwner().getMousePosition()), new GameVector(0.f, 0.f)));
 	}
 }

@@ -26,7 +26,7 @@ public abstract class Effect implements Cloneable
 		EFFECTS_SIZE = effectCreators.length;
 	}
 
-	private Entity owner;
+	private Entity target;
 	private short[] properties;
 
 	public MinimizedEffect toMinimizedEffect()
@@ -106,14 +106,14 @@ public abstract class Effect implements Cloneable
 
 	public void tick() {}
 
-	public final void setOwner(Entity e)
+	public final void setTarget(Entity e)
 	{
-		owner = e;
+		target = e;
 	}
 
-	public final Entity getOwner()
+	public final Entity getTarget()
 	{
-		return owner;
+		return target;
 	}
 
 	public short[] getProperties() { return properties; }
