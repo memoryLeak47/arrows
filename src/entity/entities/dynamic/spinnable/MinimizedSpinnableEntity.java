@@ -30,10 +30,11 @@ public class MinimizedSpinnableEntity extends MinimizedEntity
 		if (inScreen())
 		{
 			PixelPosition position = Camera.get().gamePositionToPixelPosition(new GamePosition(getPosition().minus(getSize().times(0.5f))));
+			PixelPosition rotateposition = Camera.get().gamePositionToPixelPosition(new GamePosition(getPosition()));
 			Graphics2D g = (Graphics2D) Screen.g();
-			g.rotate(getRotation(), position.getX(), position.getY());
+			g.rotate(getRotation(), rotateposition.getX(), rotateposition.getY());
 			Screen.g().drawImage(ImageFile.getImageByImageID(getImageID()), position.getX(), position.getY(), null);
-			g.rotate(-getRotation(), position.getX(), position.getY());
+			g.rotate(-getRotation(), rotateposition.getX(), rotateposition.getY());
 			renderEffects();
 		}
 	}
