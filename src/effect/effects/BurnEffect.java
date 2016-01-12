@@ -1,5 +1,6 @@
 package effect.effects;
 
+import damage.Damage;
 import effect.Effect;
 import graphics.ImageFile;
 import graphics.ImageID;
