@@ -9,6 +9,7 @@ import player.GamePlayer;
 import player.LocalClientGamePlayerFrameUpdate;
 import tilemap.LobbyTileMap;
 import misc.Debug;
+import misc.math.Camera;
 import player.LobbyPlayer;
 import network.game.packets.GameFrameUpdatePacket;
 
