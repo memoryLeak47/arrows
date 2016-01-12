@@ -77,6 +77,8 @@ public class ClientGame extends Game
 
 	public float[] getLocalPlayerCharges()
 	{
+		if (localPlayerUpdate == null)
+			return new float[]{0, 0, 0, 0};
 		return localPlayerUpdate.getCharges();
 	}
 
