@@ -9,39 +9,30 @@ import misc.Debug;
 
 public abstract class Effect implements Cloneable
 {
-	public static int EFFECTS_SIZE;
+	public static final int EFFECTS_SIZE;
 
-	private static Effect[] staticEffects;
-	private static boolean initPhase = true;
+	private static EffectCreator[] effectCreators;
 
-	public static final int BURN_EFFECT = 0;
+	public static final int BURN_ID = 0;
 
 	static
 	{
-		staticEffects = new Effect[]
+		effectCreators = new EffectCreator[]
 		{
-			new BurnEffect()
+			new EffectCreator() { public Effect create() { return new BurnEffect(); }}
 			// add effects here
 		};
 
-		for (int i = 0; i < staticEffects.length; i++)
-			staticEffects[i].id = i;
-
-		EFFECTS_SIZE = staticEffects.length;
-
-		initPhase = false;
+		EFFECTS_SIZE = effectCreators.length;
 	}
 
 	private Entity owner;
 	private int id;
 	private short[] properties;
 
-	protected Effect()
+	public Effect(int id)
 	{
-		if (!initPhase)
-		{
-			Debug.warn("invalid creation of an Effect, create it with getEffectByMinimizedEffect(new MinimizedEffect(<id>, <stats>))");
-		}
+		this.id = id;
 	}
 
 	public MinimizedEffect toMinimizedEffect()
@@ -106,16 +97,9 @@ public abstract class Effect implements Cloneable
 	public static Effect getEffectByMinimizedEffect(MinimizedEffect effect)
 	{
 		Debug.warnIf(effect == null, "Effect.getEffectByMinimizedEffect(null)");
-		Effect tmp = null;
-		try
-		{
-			tmp = (Effect) staticEffects[effect.getEffectID()].clone();
-		} catch (Exception e)
-		{
-			Debug.error("Effect.getEffectByMinimizedEffect: can't clone effect with id " + effect.getEffectID());
-		}
-		tmp.setProperties(effect.getProperties());
-		return tmp;
+		Effect e = createByID(effect.getEffectID());
+		e.setProperties(effect.getProperties());
+		return e;
 	}
 
 	public abstract ImageID getImageID();
@@ -123,15 +107,11 @@ public abstract class Effect implements Cloneable
 	// needed for ClientGamePlayer, who has to handle EffectsOnOff by the ID
 	public static Effect createByID(int id)
 	{
-		try
-		{
-			return (Effect) staticEffects[id].clone();
-		} catch (Exception e)
-		{
-			Debug.error("Effect.getEffectByID: can't clone effect with id " + id);
-		}
-		return null;
+		return effectCreators[id].create();
 	}
+
+	public abstract Effect copy();
+	public boolean isSpreading() { return false; }
 
 	public void tick() {}
 
@@ -143,11 +123,6 @@ public abstract class Effect implements Cloneable
 	public final Entity getOwner()
 	{
 		return owner;
-	}
-
-	public Effect copy()
-	{
-		return createByID(getID());
 	}
 
 	public short[] getProperties() { return properties; }

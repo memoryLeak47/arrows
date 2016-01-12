@@ -98,8 +98,8 @@ public abstract class Entity
 	public void applyEffect(Effect effect)
 	{
 		Effect e = effect.copy();
-		effects.add(e);
 		e.setOwner(this);
+		effects.add(e);
 	}
 
 	public final void applyEffects(LinkedList<Effect> effects)
@@ -113,6 +113,19 @@ public abstract class Entity
 	public final LinkedList<Effect> getEffects()
 	{
 		return effects;
+	}
+
+	public final LinkedList<Effect> getSpreadingEffects()
+	{
+		LinkedList<Effect> tmp = new LinkedList<Effect>();
+		for (Effect e : getEffects())
+		{
+			if (e.isSpreading())
+			{
+				tmp.add(e);
+			}
+		}
+		return tmp;
 	}
 
 	public boolean isDynamic() { return false; }
