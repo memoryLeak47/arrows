@@ -45,6 +45,10 @@ public abstract class GameInterface extends NetworkingMenu
 		{
 			Debug.warn("GameInterface.tick(): getUncastedGame() == null");
 		}
+		if (controlsManager.isPlayerFocused())
+		{
+			Camera.get().centerPlayer();
+		}
 	}
 
 	protected PlayerControlsUpdatePacket getPlayerControlsUpdatePacket()

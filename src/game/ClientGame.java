@@ -31,6 +31,7 @@ public class ClientGame extends Game
 		{
 			players.add(new ClientGamePlayer(player));
 		}
+		Camera.get().centerPlayer();
 	}
 
 	@Override public void tick() { }

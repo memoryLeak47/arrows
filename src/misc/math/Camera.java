@@ -17,11 +17,17 @@ import player.GamePlayer;
 public class Camera
 {
 	// the middle of the camera
+	private GamePosition position;
 	private int localPlayerID;
 
 	public Camera(int localPlayerID)
 	{
 		this.localPlayerID = localPlayerID;
+	}
+
+	public void centerPlayer()
+	{
+		position = new GamePosition(Game.get().getUncastedPlayers().get(localPlayerID).getPosition());
 	}
 
 	public GameVector getOffset()
@@ -78,6 +84,6 @@ public class Camera
 
 	public GamePosition getPosition()
 	{
-		return Game.get().getUncastedPlayers().get(localPlayerID).getPosition();
+		return position;
 	}
 }

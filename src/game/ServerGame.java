@@ -9,6 +9,7 @@ import entity.entities.dynamic.mob.ExtendedMob;
 import entity.entities.dynamic.spinnable.cosmetic.ExtendedCosmetic;
 import tilemap.LobbyTileMap;
 import misc.Debug;
+import misc.math.Camera;
 import misc.math.pixel.PixelPosition;
 import effect.Effect;
 import effect.MinimizedEffect;
@@ -35,6 +36,7 @@ public class ServerGame extends Game
 		{
 			players.add(player.getAvatar().createServerGamePlayer(player, getGameTileMap().getSpawnTilePositionByTeam(player.getTeam())));
 		}
+		Camera.get().centerPlayer();
 		initing = false;
 	}
 
