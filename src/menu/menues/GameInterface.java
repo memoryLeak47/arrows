@@ -86,14 +86,18 @@ public abstract class GameInterface extends NetworkingMenu
 		int iconSizeX = ImageFile.getImageByImageID(skills[0].getIconImageID()).getWidth();
 		int iconSizeY = ImageFile.getImageByImageID(skills[0].getIconImageID()).getHeight()+1;
 
-		Screen.g().setColor(new Color(0, 0, 255, 100));
 		for (int i = 0; i < skills.length; i++)
 		{
 			int renderX = (iconSizeX+20)*(i+1);
 			int renderY = iconSizeY;
-			Screen.g().drawImage(
-				ImageFile.getImageByImageID(skills[i].getIconImageID()), renderX, renderY, null);
 			float fullness = getLocalPlayerCharges()[i]/Skill.MAX_CHARGE;
+
+			if (fullness == 1)
+				Screen.g().setColor(new Color(0, 255, 0, 100));
+			else
+				Screen.g().setColor(new Color(0, 0, 255, 100));
+
+			Screen.g().drawImage(ImageFile.getImageByImageID(skills[i].getIconImageID()), renderX, renderY, null);
 			Screen.g().fillRect(renderX, (int) (renderY+iconSizeY-fullness*iconSizeY), iconSizeX, (int) (iconSizeY*fullness));
 		}
 	}
