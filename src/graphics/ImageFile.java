@@ -30,6 +30,8 @@ public enum ImageFile
 	ARROWSHOT_ICON("icons/skills/arrowshot.png"),
 	MULTIARROWSHOT_ICON("icons/skills/multiarrowshot.png"),
 	BIGARROWSHOT_ICON("icons/skills/bigarrowshot.png"),
+	FIREARROWSHOT_ICON("icons/skills/firearrowshot.png"),
+
 	SMOKECLOUD_ICON("icons/skills/smokecloud.png"),
 	SHADOWJUMP_ICON("icons/skills/shadowjump.png"),
 	DAGGERTOSS_ICON("icons/skills/daggertoss.png"),

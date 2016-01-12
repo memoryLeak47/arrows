@@ -10,6 +10,8 @@ public abstract class Effect implements Cloneable
 	private static Effect[] staticEffects;
 	private static boolean initPhase = true;
 
+	public static final int BURN_EFFECT = 0;
+
 	static
 	{
 		staticEffects = new Effect[]
@@ -92,7 +94,14 @@ public abstract class Effect implements Cloneable
 	// needed for ClientGamePlayer, who has to handle EffectsOnOff by the ID
 	public static Effect getEffectByID(int id)
 	{
-		return staticEffects[id];
+		try
+		{
+			return (Effect) staticEffects[id].clone();
+		} catch (Exception e)
+		{
+			Debug.error("Effect.getEffectByID: can't clone effect with id " + id);
+		}
+		return null;
 	}
 
 	public short[] getProperties() { return properties; }

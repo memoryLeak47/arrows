@@ -1,7 +1,10 @@
 package entity;
 
+import java.util.LinkedList;
+
 import core.Main;
 import damage.Damage;
+import effect.Effect;
 import entity.MinimizedEntity;
 import graphics.Animation;
 import graphics.ImageFile;
@@ -15,6 +18,7 @@ import misc.math.Camera;
 
 public abstract class Entity
 {
+	private LinkedList<Effect> effects = new LinkedList<Effect>();
 	private GamePosition position;
 	private Animation animation;
 
@@ -72,6 +76,11 @@ public abstract class Entity
 	public boolean hasToBeRemoved() { return false; }
 
 	public abstract MinimizedEntity toMinimizedEntity();
+
+	public void applyEffect(Effect effect)
+	{
+		effects.add(effect);
+	}
 
 	public boolean isDynamic() { return false; }
 }
