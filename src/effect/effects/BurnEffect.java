@@ -10,19 +10,17 @@ public class BurnEffect extends Effect
 	private short maxDuration;
 	private short maxDamage;
 
-	public BurnEffect()
-	{
-		super(Effect.BURN_ID);
-	}
+	public BurnEffect() {}
 
 	public BurnEffect(short duration, short damage)
 	{
-		super(Effect.BURN_ID);
 		maxDuration = duration;
 		maxDamage = damage;
 		// 0: duration, 1: intensity
 		setProperties(new short[]{duration, damage});
 	}
+
+	@Override public int getID() { return Effect.BURN_ID; }
 
 	@Override public void tick()
 	{

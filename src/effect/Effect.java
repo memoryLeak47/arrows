@@ -27,23 +27,14 @@ public abstract class Effect implements Cloneable
 	}
 
 	private Entity owner;
-	private int id;
 	private short[] properties;
-
-	public Effect(int id)
-	{
-		this.id = id;
-	}
 
 	public MinimizedEffect toMinimizedEffect()
 	{
 		return new MinimizedEffect(getID(), getProperties());
 	}
 
-	public int getID()
-	{
-		return id;
-	}
+	public abstract int getID();
 
 	public static LinkedList<MinimizedEffect> toMinimizedEffects(LinkedList<Effect> effects)
 	{
