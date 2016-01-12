@@ -27,7 +27,7 @@ public class PlayerControlsManager
 	public static final char playerFocusLock = 'v';
 	public static final char playerFocus = 'c';
 
-	private boolean playerFocused = false;
+	private boolean playerFocused = true;
 
 	private PlayerControls serverPlayerControls; // speichert ab, auf welchem Stand der Server sein müsste
 	private PlayerControls myPlayerControls; // speichert die aktuellen Player-Controls ab

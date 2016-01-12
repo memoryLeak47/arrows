@@ -36,7 +36,6 @@ public class ServerGame extends Game
 		{
 			players.add(player.getAvatar().createServerGamePlayer(player, getGameTileMap().getSpawnTilePositionByTeam(player.getTeam())));
 		}
-		Camera.get().centerPlayer();
 		initing = false;
 	}
 
