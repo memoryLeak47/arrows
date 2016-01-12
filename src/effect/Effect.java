@@ -2,11 +2,14 @@ package effect;
 
 import java.util.LinkedList;
 
-import misc.Debug;
 import effect.effects.*;
+import graphics.ImageID;
+import misc.Debug;
 
 public abstract class Effect implements Cloneable
 {
+	public static int EFFECTS_SIZE;
+
 	private static Effect[] staticEffects;
 	private static boolean initPhase = true;
 
@@ -22,6 +25,9 @@ public abstract class Effect implements Cloneable
 
 		for (int i = 0; i < staticEffects.length; i++)
 			staticEffects[i].id = i;
+
+		EFFECTS_SIZE = staticEffects.length;
+
 		initPhase = false;
 	}
 
@@ -56,14 +62,33 @@ public abstract class Effect implements Cloneable
 		return miniEffects;
 	}
 
-	public static LinkedList<Integer> toEffectIDs(LinkedList<Effect> effects)
+	// schreibt die Effekte in eine boolean Array
+	public static boolean[] toEffectIDs(LinkedList<Effect> effects)
 	{
-		LinkedList<Integer> miniEffects = new LinkedList<Integer>();
+		boolean[] bools = new boolean[EFFECTS_SIZE];
 		for (Effect e : effects)
 		{
-			miniEffects.add(e.getID());
+			bools[e.getID()] = true;
 		}
-		return miniEffects;
+		return bools;
+	}
+
+	public static LinkedList<Effect> getEffectsByBools(boolean[] bools)
+	{
+		LinkedList<Effect> list = new LinkedList<Effect>();
+		for (int i = 0; i < bools.length; i++)
+		{
+			if (bools[i])
+			{
+				list.add(getByID(i));
+			}
+		}
+		return list;
+	}
+
+	public static MinimizedEffect getMinimizedEffectByID(int id)
+	{
+		return new MinimizedEffect(id, new short[0]);
 	}
 
 	protected void setProperties(short[] properties)
@@ -91,8 +116,15 @@ public abstract class Effect implements Cloneable
 		return tmp;
 	}
 
+	public abstract ImageID getImageID();
+
 	// needed for ClientGamePlayer, who has to handle EffectsOnOff by the ID
 	public static Effect getByID(int id)
+	{
+		return staticEffects[id];
+	}
+
+	public static Effect createByID(int id)
 	{
 		try
 		{

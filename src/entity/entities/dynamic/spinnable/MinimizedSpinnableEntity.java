@@ -19,9 +19,9 @@ public class MinimizedSpinnableEntity extends MinimizedEntity
 {
 	private float rotation;
 
-	public MinimizedSpinnableEntity(GamePosition position, ImageID imageID, float rotation)
+	public MinimizedSpinnableEntity(GamePosition position, ImageID imageID, float rotation, boolean[] effectIDs)
 	{
-		super(position, imageID);
+		super(position, imageID, effectIDs);
 		this.rotation = rotation;
 	}
 

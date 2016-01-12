@@ -56,8 +56,8 @@ public enum ImageFile
 	SMOKECLOUD("entities/bullets/smokecloud.png"),
 	DAGGER("entities/bullets/dagger.png"),
 
-	// player
-	PLAYER("entities/player.png");
+	// effects
+	BURN_EFFECT("effects/burn.png");
 
 	private int id;
 	private final File file;

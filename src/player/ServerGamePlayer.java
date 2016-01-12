@@ -153,7 +153,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	@Override public MinimizedGamePlayer toMinimizedEntity()
 	{
-		return new MinimizedGamePlayer(getPosition(), getImageID(), getName(), getHealth(), getMaxHealth(), getTeam());
+		return new MinimizedGamePlayer(getPosition(), getImageID(), getName(), getHealth(), getMaxHealth(), getTeam(), Effect.toEffectIDs(getEffects()));
 	}
 
 	// getter
@@ -211,7 +211,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 
 
-	@Override public LinkedList<Integer> getEffectIDs() { return Effect.toEffectIDs(getEffects()); }
+	@Override public boolean[] getEffectIDs() { return Effect.toEffectIDs(getEffects()); }
 	public PlayerStats getPlayerStats() { return playerStats; }
 
 	public Avatar getAvatar()
