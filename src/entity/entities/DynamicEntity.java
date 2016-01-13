@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import static core.Main.DRAG_X;
 import static core.Main.DRAG_Y;
+import static core.Main.GRAVITY;
 import game.Game;
 import game.ServerGame;
 import entity.Entity;
@@ -43,6 +44,8 @@ public abstract class DynamicEntity extends Entity
 		getPosition().add(getVelocity());
 		touchesBot = touchesTop = touchesLeft = touchesRight = false;
 		checkCollision();
+		if (!isFloating())
+			accelerate(0, GRAVITY);
 		// if (oldVelocity.minus(getVelocity()).getMagnitude() > DAMAGE_BORDER) { onDamage(...); }
 	}
 
@@ -283,5 +286,6 @@ public abstract class DynamicEntity extends Entity
 		this.velocity = velocity;
 	}
 
+	protected boolean isFloating() { return true; } // no gravity is applied
 	@Override public boolean isDynamic() { return true; }
 }

@@ -1,6 +1,7 @@
 package entity.entities.dynamic.spinnable.bullet.bullets;
 
 import damage.Damage;
+import effect.effects.StunEffect;
 import entity.Entity;
 import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
 import graphics.ImageFile;
@@ -29,6 +30,7 @@ public class Dagger extends ExtendedBullet
 	{
 		if (damageOnlyEnemyEntity(e))
 		{
+			e.applyEffect(new StunEffect((short) 20));
 			counter = 100; // --> he dies
 		}
 	}

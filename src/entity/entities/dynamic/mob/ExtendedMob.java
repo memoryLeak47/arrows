@@ -1,6 +1,5 @@
 package entity.entities.dynamic.mob;
 
-import static core.Main.GRAVITY;
 import static core.Main.STANDART_JUMPPOWER;
 import damage.Damage;
 import entity.Entity;
@@ -22,7 +21,6 @@ public abstract class ExtendedMob extends DynamicEntity
 	@Override public void tick()
 	{
 		super.tick();
-		accelerate(0, GRAVITY);
 	}
 
 	@Override public void applyDamage(Damage damage)
@@ -43,6 +41,8 @@ public abstract class ExtendedMob extends DynamicEntity
 			applyTileCollision((ExtendedTile) e);
 		}
 	}
+
+	@Override protected boolean isFloating() { return false; }
 
 	public float getJumpPower() { return STANDART_JUMPPOWER; }
 

@@ -14,12 +14,14 @@ public abstract class Effect implements Cloneable
 	private static EffectCreator[] effectCreators;
 
 	public static final int BURN_ID = 0;
+	public static final int STUN_ID = 1;
 
 	static
 	{
 		effectCreators = new EffectCreator[]
 		{
-			new EffectCreator() { public Effect create() { return new BurnEffect(); }}
+			new EffectCreator() { public Effect create() { return new BurnEffect(); }},
+			new EffectCreator() { public Effect create() { return new StunEffect(); }}
 			// add effects here
 		};
 

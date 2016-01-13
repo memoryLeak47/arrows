@@ -57,7 +57,8 @@ public enum ImageFile
 	DAGGER("entities/bullets/dagger.png"),
 
 	// effects
-	BURN_EFFECT("effects/burn.png");
+	BURN_EFFECT("effects/burn.png"),
+	STUN_EFFECT("effects/stung.png");
 
 	private int id;
 	private final File file;
