@@ -35,6 +35,6 @@ public class Dagger extends ExtendedBullet
 		}
 	}
 
-	@Override protected Damage getDamage() { return new Damage(0,6,0); }
+	@Override protected Damage getDamage() { return new Damage(2,12,0); }
 	@Override public boolean hasToBeRemoved() { return counter > 10; }
 }

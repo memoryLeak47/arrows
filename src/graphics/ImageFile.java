@@ -44,7 +44,6 @@ public enum ImageFile
 	ARCHER("entities/avatars/archer.png"),
 	ROGUE("entities/avatars/rogue.png"),
 	
-
 	// tiles
 	VOID_TILE("entities/tiles/voidtile.png"),
 	STONE_TILE("entities/tiles/stonetile.png"),
@@ -58,7 +57,7 @@ public enum ImageFile
 
 	// effects
 	BURN_EFFECT("effects/burn.png"),
-	STUN_EFFECT("effects/stung.png");
+	STUN_EFFECT("effects/stun.png");
 
 	private int id;
 	private final File file;
