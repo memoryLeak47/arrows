@@ -255,7 +255,7 @@ public class Debug
 					br.close();
 				} catch (Exception e)
 				{
-					error("Debug.loadConfigFile(): error while closing br");
+					System.out.println("Debug.loadConfigFile(): error while closing br");
 				}
 			}
 		}
