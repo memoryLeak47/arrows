@@ -14,17 +14,20 @@ public class ClientGamePlayerFrameUpdate implements java.io.Serializable
 	private float maxHealth;
 	private GamePosition position;
 	private ImageID imageID;
+	private boolean[] effectIDs;
 
-	public ClientGamePlayerFrameUpdate(float health, float maxHealth, GamePosition position, ImageID imageID)
+	public ClientGamePlayerFrameUpdate(float health, float maxHealth, GamePosition position, ImageID imageID, boolean[] effectIDs)
 	{
 		this.health = health;
 		this.maxHealth = maxHealth;
 		this.position = new GamePosition(position);
 		this.imageID = new ImageID(imageID);
+		this.effectIDs = effectIDs;
 	}
 
 	public float getHealth() { return health; }
 	public float getMaxHealth() { return maxHealth; }
 	public GamePosition getPosition() { return position; }
 	public ImageID getImageID() { return imageID; }
+	public boolean[] getEffectIDs() { return effectIDs; }
 }

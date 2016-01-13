@@ -58,6 +58,7 @@ public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 		health = update.getHealth();
 		setPosition(update.getPosition());
 		setImageID(update.getImageID());
+		setEffectIDs(update.getEffectIDs());
 	}
 
 	@Override public void render()
@@ -69,6 +70,7 @@ public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 		PixelPosition pos = Camera.get().gamePositionToPixelPosition(gamePos);
 		int length = (int) ((health / maxHealth)*50.f);
 		Screen.g().fillRect((int) (pos.getX()-(float)length/2), pos.getY() - 20, length, 5);
+		renderEffects();
 	}
 
 	// getter

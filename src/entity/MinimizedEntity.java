@@ -85,6 +85,15 @@ public abstract class MinimizedEntity implements java.io.Serializable
 
 	public boolean[] getEffectIDs() { return effectIDs; }
 
+	protected void setEffectIDs(boolean[] ids)
+	{
+		Debug.warnIf(ids.length != Effect.EFFECTS_SIZE, "MinimizedEntity.setEffectIDs(): ids.length != Effect.EFFECTS_SIZE: " + ids.length);
+		for (int i = 0; i < Effect.EFFECTS_SIZE; i++)
+		{
+			effectIDs[i] = ids[i];
+		}
+	}
+
 	protected boolean inScreen()
 	{
 		// TODO
