@@ -74,7 +74,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 		for (int i = 0; i < skills.length; i++)
 		{
-			skills[i].setPlayer(this);
+			skills[i].setOwner(this);
 		}
 
 		resetHealth();
@@ -111,7 +111,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		super.onCollide(e);
 	}
 
-	@Override public void onDamage(Damage damage)
+	@Override public void applyDamage(Damage damage)
 	{
 		damage((int) ((float) damage.getHit() / (float) getResistanceStat().getHit()));
 		damage((int) ((float) damage.getCut() / (float) getResistanceStat().getCut()));
@@ -153,7 +153,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	@Override public MinimizedGamePlayer toMinimizedEntity()
 	{
-		return new MinimizedGamePlayer(getPosition(), getImageID(), getName(), getHealth(), getMaxHealth(), getTeam());
+		return new MinimizedGamePlayer(getPosition(), getImageID(), getName(), getHealth(), getMaxHealth(), getTeam(), Effect.toEffectIDs(getEffects()));
 	}
 
 	// getter
@@ -162,16 +162,10 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	@Override public String getName() { return name; }
 	public int getRank() { return rank; }
 
-	public LinkedList<Effect> getEffects()
-	{
-		Debug.warn("ServerGamePlayer.getEffects(): TODO");
-		return new LinkedList<Effect>();
-	}
-
 	// for sub
 	public abstract int getMassStat();
-	public abstract int getMaxHealthStat();
-	public abstract int getRegenerationStat();
+	public abstract float getMaxHealthStat();
+	public abstract float getRegenerationStat();
 	public abstract int getAccelerationStat();
 	public abstract Damage getDamageStat();
 	public abstract Damage getResistanceStat();
@@ -188,9 +182,9 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		return s;
 	}
 
-	@Override public int getMaxHealth()
+	@Override public float getMaxHealth()
 	{
-		int health = getMaxHealthStat();
+		float health = getMaxHealthStat();
 		if (getItems() == null)
 			return health;
 		for (int i = 0; i < getItems().length; i++)
@@ -217,7 +211,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 
 
-	@Override public LinkedList<Integer> getEffectIDs() { return Effect.toEffectIDs(getEffects()); }
+	@Override public boolean[] getEffectIDs() { return Effect.toEffectIDs(getEffects()); }
 	public PlayerStats getPlayerStats() { return playerStats; }
 
 	public Avatar getAvatar()

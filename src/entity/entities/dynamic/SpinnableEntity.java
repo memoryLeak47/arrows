@@ -1,5 +1,6 @@
 package entity.entities.dynamic;
 
+import effect.Effect;
 import entity.Entity;
 import entity.MinimizedEntity;
 import entity.entities.DynamicEntity;
@@ -49,7 +50,7 @@ public abstract class SpinnableEntity extends DynamicEntity
 
 	@Override public MinimizedEntity toMinimizedEntity()
 	{
-		return new MinimizedSpinnableEntity(getPosition(), getImageID(), getRotation());
+		return new MinimizedSpinnableEntity(getPosition(), getImageID(), getRotation(), Effect.toEffectIDs(getEffects()));
 	}
 
 	public GameRect getWrapper()

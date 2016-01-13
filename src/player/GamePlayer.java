@@ -16,10 +16,10 @@ public interface GamePlayer
 {
 	public String getName();
 	public Team getTeam();
-	public int getHealth();
+	public float getHealth();
 	public GamePosition getPosition();
 	public GameSize getSize();
 	public ImageID getImageID();
-	public LinkedList<Integer> getEffectIDs(); // gibt die EffectIDs zurück, die für das Rendern gebraucht werden
+	public boolean[] getEffectIDs(); // gibt die EffectIDs zurück, die für das Rendern gebraucht werden
 	public Skill[] getSkills();
 }

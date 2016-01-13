@@ -10,12 +10,12 @@ import graphics.ImageID;
 
 public class ClientGamePlayerFrameUpdate implements java.io.Serializable
 {
-	private int health;
-	private int maxHealth;
+	private float health;
+	private float maxHealth;
 	private GamePosition position;
 	private ImageID imageID;
 
-	public ClientGamePlayerFrameUpdate(int health, int maxHealth, GamePosition position, ImageID imageID)
+	public ClientGamePlayerFrameUpdate(float health, float maxHealth, GamePosition position, ImageID imageID)
 	{
 		this.health = health;
 		this.maxHealth = maxHealth;
@@ -23,8 +23,8 @@ public class ClientGamePlayerFrameUpdate implements java.io.Serializable
 		this.imageID = new ImageID(imageID);
 	}
 
-	public int getHealth() { return health; }
-	public int getMaxHealth() { return maxHealth; }
+	public float getHealth() { return health; }
+	public float getMaxHealth() { return maxHealth; }
 	public GamePosition getPosition() { return position; }
 	public ImageID getImageID() { return imageID; }
 }

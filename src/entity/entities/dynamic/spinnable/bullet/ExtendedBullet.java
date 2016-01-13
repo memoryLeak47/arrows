@@ -1,6 +1,7 @@
 package entity.entities.dynamic.spinnable.bullet;
 
 import damage.Damage;
+import effect.Effect;
 import entity.Entity;
 import entity.MinimizedEntity;
 import entity.entities.dynamic.SpinnableEntity;
@@ -30,7 +31,7 @@ public abstract class ExtendedBullet extends SpinnableEntity
 
 	@Override public MinimizedEntity toMinimizedEntity()
 	{
-		return new MinimizedBullet(getPosition(), getImageID(), getRotation()/*, effects*/);
+		return new MinimizedBullet(getPosition(), getImageID(), getRotation(), Effect.toEffectIDs(getEffects()));
 	}
 
 	protected Damage getDamage() { return new Damage(0,0,0); }
@@ -50,7 +51,7 @@ public abstract class ExtendedBullet extends SpinnableEntity
 				getDamage().getHit() * getOwner().getDamage().getHit(),
 				getDamage().getCut() * getOwner().getDamage().getCut(),
 				getDamage().getMagic() * getOwner().getDamage().getMagic());
-			e.onDamage(d);
+			e.onDamage(d, getSpreadingEffects());
 			return true;
 		}
 		return false;

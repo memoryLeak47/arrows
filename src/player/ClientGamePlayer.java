@@ -8,6 +8,7 @@ package player;
 import java.util.LinkedList;
 
 import core.Screen;
+import effect.Effect;
 import entity.Entity;
 import entity.MinimizedEntity;
 import graphics.ImageID;
@@ -37,13 +38,12 @@ public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 	private Item[] items;
 
 	private KDCounter kdCounter = new KDCounter();
-	private LinkedList<Integer> effectIDs = new LinkedList<Integer>();
-	private int health;
-	private int maxHealth;
+	private float health;
+	private float maxHealth;
 
 	public ClientGamePlayer(LobbyPlayer player)
 	{
-		super(new GamePosition(), ImageFile.VOID_ICON.getImageID());
+		super(new GamePosition(), ImageFile.VOID_ICON.getImageID(), new boolean[Effect.EFFECTS_SIZE]);
 		name = player.getName();
 		rank = player.getRank();
 		avatar = player.getAvatar();
@@ -67,7 +67,7 @@ public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 		GamePosition gamePos = new GamePosition(getPosition());
 		gamePos.addY(getSize().getY()/-2);
 		PixelPosition pos = Camera.get().gamePositionToPixelPosition(gamePos);
-		int length = (int) (((float) health / (float) maxHealth)*50.f);
+		int length = (int) ((health / maxHealth)*50.f);
 		Screen.g().fillRect((int) (pos.getX()-(float)length/2), pos.getY() - 20, length, 5);
 	}
 
@@ -81,7 +81,6 @@ public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 	public Item[] getItems() { return items; }
 
 	public KDCounter getKDCounter() { return kdCounter; }
-	@Override public LinkedList<Integer> getEffectIDs() { return effectIDs; }
 
-	@Override public int getHealth() { return health; }
+	@Override public float getHealth() { return health; }
 }

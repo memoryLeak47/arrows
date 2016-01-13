@@ -1,7 +1,10 @@
 package entity;
 
+import java.util.LinkedList;
+
 import core.Main;
 import damage.Damage;
+import effect.Effect;
 import entity.MinimizedEntity;
 import graphics.Animation;
 import graphics.ImageFile;
@@ -15,6 +18,7 @@ import misc.math.Camera;
 
 public abstract class Entity
 {
+	private LinkedList<Effect> effects = new LinkedList<Effect>();
 	private GamePosition position;
 	private Animation animation;
 
@@ -27,9 +31,27 @@ public abstract class Entity
 	public void tick()
 	{
 		getAnimation().tick();
+		for (int i = 0; i < getEffects().size(); i++)
+		{
+			if (getEffects().get(i).hasToBeRemoved())
+			{
+				getEffects().remove(i);
+				i--;
+			}
+			else
+			{
+				getEffects().get(i).tick();
+			}
+		}
 	}
 
-	public void onDamage(Damage damage) {}
+	public final void onDamage(Damage damage, LinkedList<Effect> e)
+	{
+		applyDamage(damage);
+		applyEffects(new LinkedList<Effect>(e));
+	}
+
+	public void applyDamage(Damage damage) {}
 
 	// setter
 	protected void setPosition(GameVector position)
@@ -72,6 +94,39 @@ public abstract class Entity
 	public boolean hasToBeRemoved() { return false; }
 
 	public abstract MinimizedEntity toMinimizedEntity();
+
+	public void applyEffect(Effect effect)
+	{
+		Effect e = effect.copy();
+		e.setTarget(this);
+		effects.add(e);
+	}
+
+	public final void applyEffects(LinkedList<Effect> effects)
+	{
+		for (Effect e : effects)
+		{
+			applyEffect(e);
+		}
+	}
+
+	public final LinkedList<Effect> getEffects()
+	{
+		return effects;
+	}
+
+	public final LinkedList<Effect> getSpreadingEffects()
+	{
+		LinkedList<Effect> tmp = new LinkedList<Effect>();
+		for (Effect e : getEffects())
+		{
+			if (e.isSpreading())
+			{
+				tmp.add(e);
+			}
+		}
+		return tmp;
+	}
 
 	public boolean isDynamic() { return false; }
 }

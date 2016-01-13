@@ -8,6 +8,6 @@ public class HealthRing extends Item
 {
 	@Override public ImageID getIconImageID() { return ImageFile.HEALTHRING_ICON.getImageID(); }
 	@Override public int getMassStat() { return 0; }
-	@Override public int getHealthStat() { return 2; }
+	@Override public float getHealthStat() { return 2.f; }
 	@Override public String getDescription() { return "ring of  health... no idea"; }
 }

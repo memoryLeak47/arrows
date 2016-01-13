@@ -7,8 +7,8 @@ import misc.math.game.GamePosition;
 
 public class MinimizedCosmetic extends MinimizedSpinnableEntity
 {
-	public MinimizedCosmetic(GamePosition position, ImageID imageID, float rotation)
+	public MinimizedCosmetic(GamePosition position, ImageID imageID, float rotation, boolean[] effectIDs)
 	{
-		super(position, imageID, rotation);
+		super(position, imageID, rotation, effectIDs);
 	}
 }

@@ -1,8 +1,12 @@
 package entity;
 
+import java.awt.image.BufferedImage;
+
 import static core.Main.getGame;
 import static core.Main.TILESIZE;
 import core.Screen;
+import effect.Effect;
+import effect.MinimizedEffect;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;
@@ -16,11 +20,25 @@ public abstract class MinimizedEntity implements java.io.Serializable
 {
 	private GamePosition position;
 	private ImageID imageID;
+	private boolean[] effectIDs;
 
-	public MinimizedEntity(GamePosition position, ImageID imageID)
+	public MinimizedEntity(GamePosition position, ImageID imageID, boolean[] effectIDs)
 	{
 		this.position = position;
 		this.imageID = imageID;
+		this.effectIDs = effectIDs;
+	}
+
+	protected void renderEffects()
+	{
+		for (Effect e : Effect.getEffectsByBools(getEffectIDs()))
+		{
+			PixelPosition pos = Camera.get().gamePositionToPixelPosition(getPosition());
+			BufferedImage image = ImageFile.getImageByImageID(e.getImageID());
+			Screen.g().drawImage(image,
+				(int)(pos.getX()-(float)(image.getWidth())/2.f),
+				(int)(pos.getY()-(float)(image.getHeight())/2.f), null);
+		}
 	}
 
 	public void render()
@@ -29,6 +47,7 @@ public abstract class MinimizedEntity implements java.io.Serializable
 		{
 			PixelPosition position = Camera.get().gamePositionToPixelPosition(new GamePosition(getPosition().minus(getSize().times(0.5f))));
 			Screen.g().drawImage(ImageFile.getImageByImageID(getImageID()), position.getX(), position.getY(), null);
+			renderEffects();
 		}
 	}
 
@@ -63,6 +82,8 @@ public abstract class MinimizedEntity implements java.io.Serializable
 		Debug.warnIf(getImageID() == null, "MinimizedEntity.getSize(): getImageID is null");
 		return new GameSize(getImageID());
 	}
+
+	public boolean[] getEffectIDs() { return effectIDs; }
 
 	protected boolean inScreen()
 	{

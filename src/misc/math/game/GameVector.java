@@ -33,6 +33,13 @@ public class GameVector implements java.io.Serializable
 		setY(y);
 	}
 
+	public void setMagnitude(float m)
+	{
+		float mag = getMagnitude();
+		setX(getX()/mag*m);
+		setY(getY()/mag*m);
+	}
+
 	public boolean equals(GameVector point)
 	{
 		return (getX() == point.getX() && getY() == point.getY());

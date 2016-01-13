@@ -2,6 +2,7 @@ package entity.entities.tile;
 
 import java.awt.Color;
 
+import effect.Effect;
 import entity.Entity;
 import entity.MinimizedEntity;
 import entity.entities.tile.tiles.*;
@@ -41,6 +42,8 @@ public abstract class ExtendedTile extends Entity
 	{
 		return new MinimizedTile(getPosition(), getImageID());
 	}
+
+	@Override public void applyEffect(Effect e) {}
 
 	public static ExtendedTile getByColorID(int colorID, float x, float y)
 	{

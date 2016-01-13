@@ -1,5 +1,6 @@
 package entity.entities.dynamic.spinnable.cosmetic;
 
+import effect.Effect;
 import entity.entities.dynamic.SpinnableEntity;
 import graphics.Animation;
 import misc.math.game.GamePosition;
@@ -11,4 +12,6 @@ public abstract class ExtendedCosmetic extends SpinnableEntity
 	{
 		super(position, animation);
 	}
+
+	@Override public void applyEffect(Effect e) {}
 }

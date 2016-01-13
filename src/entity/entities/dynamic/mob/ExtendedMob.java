@@ -1,6 +1,5 @@
 package entity.entities.dynamic.mob;
 
-import static core.Main.GRAVITY;
 import static core.Main.STANDART_JUMPPOWER;
 import damage.Damage;
 import entity.Entity;
@@ -12,7 +11,7 @@ import entity.entities.tile.ExtendedTile;
 
 public abstract class ExtendedMob extends DynamicEntity
 {
-	private int health;
+	private float health;
 
 	public ExtendedMob(GamePosition position, Animation animation)
 	{
@@ -22,10 +21,9 @@ public abstract class ExtendedMob extends DynamicEntity
 	@Override public void tick()
 	{
 		super.tick();
-		accelerate(0, GRAVITY);
 	}
 
-	@Override public void onDamage(Damage damage)
+	@Override public void applyDamage(Damage damage)
 	{
 		health -= damage.getHit();
 		health -= damage.getCut();
@@ -44,6 +42,8 @@ public abstract class ExtendedMob extends DynamicEntity
 		}
 	}
 
+	@Override protected boolean isFloating() { return false; }
+
 	public float getJumpPower() { return STANDART_JUMPPOWER; }
 
 	protected final void jump()
@@ -55,13 +55,13 @@ public abstract class ExtendedMob extends DynamicEntity
 		
 	}
 
-	final protected void damage(int damage)
+	final protected void damage(float damage)
 	{
 		Debug.warnIf(damage < 0, "ExtendedMob.damage(): damage is healing ... ");
 		this.health -= damage;
 	}
 
-	final protected void heal(int health)
+	final protected void heal(float health)
 	{
 		Debug.warnIf(health < 0, "ExtendedMob.heal(): healing damages ... ");
 		this.health += health;
@@ -72,6 +72,6 @@ public abstract class ExtendedMob extends DynamicEntity
 		health = getMaxHealth();
 	}
 
-	public int getHealth() { return health; }
-	public abstract int getMaxHealth();
+	public float getHealth() { return health; }
+	public abstract float getMaxHealth();
 }

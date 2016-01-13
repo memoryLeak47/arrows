@@ -28,7 +28,7 @@ public abstract class StickyBullet extends ExtendedBullet
 			distanceToTarget = GameVector.getFromTo(getPosition(), e.getPosition());
 			if (!hasCollided)
 			{
-				e.onDamage(getDamage());
+				e.onDamage(getDamage(), getSpreadingEffects());
 			}
 			hasCollided = true;
 			stop();

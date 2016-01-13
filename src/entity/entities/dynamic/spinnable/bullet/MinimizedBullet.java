@@ -7,8 +7,8 @@ import misc.math.game.GamePosition;
 
 public class MinimizedBullet extends MinimizedSpinnableEntity
 {
-	public MinimizedBullet(GamePosition position, ImageID imageID, float rotation /*effects*/)
+	public MinimizedBullet(GamePosition position, ImageID imageID, float rotation, boolean[] effectIDs)
 	{
-		super(position, imageID, rotation);
+		super(position, imageID, rotation, effectIDs);
 	}
 }
