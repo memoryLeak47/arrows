@@ -229,31 +229,34 @@ public class Debug
 
 	private static void loadConfigFile()
 	{
-		BufferedReader br = null;
-		try
+		if (new File(STANDARD_CONFIGFILE).isFile())
 		{
-			br = new BufferedReader(new FileReader(STANDARD_CONFIGFILE));
-			StringBuilder sb = new StringBuilder();
-			String line;
-			while ((line = br.readLine()) != null)
-			{
-				if (line.equals("logfile=on"))
-					WRITE_TO_LOGFILE = true;
-				if (line.equals("screen=on"))
-					WRITE_TO_SCREEN = true;
-			}
-		} catch (Exception e)
-		{
-			error("Debug.loadConfigFile(): error loading config-file");
-		}
-		finally
-		{
+			BufferedReader br = null;
 			try
 			{
-				br.close();
+				br = new BufferedReader(new FileReader(STANDARD_CONFIGFILE));
+				StringBuilder sb = new StringBuilder();
+				String line;
+				while ((line = br.readLine()) != null)
+				{
+					if (line.equals("logfile=on"))
+						WRITE_TO_LOGFILE = true;
+					if (line.equals("screen=on"))
+						WRITE_TO_SCREEN = true;
+				}
 			} catch (Exception e)
 			{
-				error("Debug.loadConfigFile(): error while closing br");
+				System.out.println("Debug.loadConfigFile(): error loading config-file \"" + STANDARD_CONFIGFILE + "\"");
+			}
+			finally
+			{
+				try
+				{
+					br.close();
+				} catch (Exception e)
+				{
+					error("Debug.loadConfigFile(): error while closing br");
+				}
 			}
 		}
 	}
