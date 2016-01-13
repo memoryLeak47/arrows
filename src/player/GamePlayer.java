@@ -16,7 +16,7 @@ public interface GamePlayer
 {
 	public String getName();
 	public Team getTeam();
-	public int getHealth();
+	public float getHealth();
 	public GamePosition getPosition();
 	public GameSize getSize();
 	public ImageID getImageID();

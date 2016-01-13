@@ -12,7 +12,7 @@ import entity.entities.tile.ExtendedTile;
 
 public abstract class ExtendedMob extends DynamicEntity
 {
-	private int health;
+	private float health;
 
 	public ExtendedMob(GamePosition position, Animation animation)
 	{
@@ -55,13 +55,13 @@ public abstract class ExtendedMob extends DynamicEntity
 		
 	}
 
-	final protected void damage(int damage)
+	final protected void damage(float damage)
 	{
 		Debug.warnIf(damage < 0, "ExtendedMob.damage(): damage is healing ... ");
 		this.health -= damage;
 	}
 
-	final protected void heal(int health)
+	final protected void heal(float health)
 	{
 		Debug.warnIf(health < 0, "ExtendedMob.heal(): healing damages ... ");
 		this.health += health;
@@ -72,6 +72,6 @@ public abstract class ExtendedMob extends DynamicEntity
 		health = getMaxHealth();
 	}
 
-	public int getHealth() { return health; }
-	public abstract int getMaxHealth();
+	public float getHealth() { return health; }
+	public abstract float getMaxHealth();
 }

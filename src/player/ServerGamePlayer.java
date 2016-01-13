@@ -164,8 +164,8 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	// for sub
 	public abstract int getMassStat();
-	public abstract int getMaxHealthStat();
-	public abstract int getRegenerationStat();
+	public abstract float getMaxHealthStat();
+	public abstract float getRegenerationStat();
 	public abstract int getAccelerationStat();
 	public abstract Damage getDamageStat();
 	public abstract Damage getResistanceStat();
@@ -182,9 +182,9 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		return s;
 	}
 
-	@Override public int getMaxHealth()
+	@Override public float getMaxHealth()
 	{
-		int health = getMaxHealthStat();
+		float health = getMaxHealthStat();
 		if (getItems() == null)
 			return health;
 		for (int i = 0; i < getItems().length; i++)

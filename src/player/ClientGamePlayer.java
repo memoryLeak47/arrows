@@ -38,8 +38,8 @@ public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 	private Item[] items;
 
 	private KDCounter kdCounter = new KDCounter();
-	private int health;
-	private int maxHealth;
+	private float health;
+	private float maxHealth;
 
 	public ClientGamePlayer(LobbyPlayer player)
 	{
@@ -67,7 +67,7 @@ public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 		GamePosition gamePos = new GamePosition(getPosition());
 		gamePos.addY(getSize().getY()/-2);
 		PixelPosition pos = Camera.get().gamePositionToPixelPosition(gamePos);
-		int length = (int) (((float) health / (float) maxHealth)*50.f);
+		int length = (int) ((health / maxHealth)*50.f);
 		Screen.g().fillRect((int) (pos.getX()-(float)length/2), pos.getY() - 20, length, 5);
 	}
 
@@ -82,5 +82,5 @@ public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 
 	public KDCounter getKDCounter() { return kdCounter; }
 
-	@Override public int getHealth() { return health; }
+	@Override public float getHealth() { return health; }
 }

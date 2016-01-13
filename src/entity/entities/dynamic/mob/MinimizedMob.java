@@ -7,13 +7,13 @@ import misc.math.game.GamePosition;
 
 public class MinimizedMob extends MinimizedEntity
 {
-	private int health;
+	private float health;
 
-	public MinimizedMob(GamePosition position, ImageID imageID, int health, boolean[] effects)
+	public MinimizedMob(GamePosition position, ImageID imageID, float health, boolean[] effects)
 	{
 		super(position, imageID, effects);
 		this.health = health;
 	}
 
-	public int getHealth() { return health; }
+	public float getHealth() { return health; }
 }
