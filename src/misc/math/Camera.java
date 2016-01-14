@@ -5,6 +5,7 @@ import core.Main;
 import core.Screen;
 import game.Game;
 import entity.Entity;
+import misc.math.collision.BorderRect;
 import misc.math.game.GameVector;
 import misc.math.game.GamePosition;
 import misc.math.game.GameRect;
@@ -36,9 +37,9 @@ public class Camera
 		return getPosition().minus(new GamePosition(Screen.WIDTH/TILESIZE/2, Screen.HEIGHT/TILESIZE/2)); // offset
 	}
 
-	public GameRect getRect()
+	public BorderRect getRect()
 	{
-		return new GameRect(getPosition(), new GameSize(Screen.WIDTH/TILESIZE, Screen.HEIGHT/TILESIZE));
+		return new BorderRect(getPosition(), new GameSize(Screen.WIDTH/TILESIZE, Screen.HEIGHT/TILESIZE));
 	}
 
 	public PixelPosition gamePositionToPixelPosition(GameVector position)

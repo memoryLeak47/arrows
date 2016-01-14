@@ -10,6 +10,7 @@ import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;
 import misc.math.Camera;
+import misc.math.collision.BorderRect;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 import misc.math.pixel.PixelPosition;
@@ -37,6 +38,12 @@ public class MinimizedSpinnableEntity extends MinimizedEntity
 			g.rotate(-getRotation(), rotateposition.getX(), rotateposition.getY());
 			renderEffects();
 		}
+	}
+
+	@Override protected boolean inScreen()
+	{
+		Debug.warn("MinimizedSpinnableEntity.inScreen(): TODO");
+		return true;
 	}
 
 	public float getRotation() { return rotation; }

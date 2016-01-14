@@ -27,7 +27,6 @@ import player.property.item.Item;
 
 public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 {
-	// TODO speichern, ob er am Leben ist!
 	private String name;
 	private int rank;
 	private Team team;

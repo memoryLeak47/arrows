@@ -37,11 +37,6 @@ public class ServerGameInterface extends GameInterface
 		}
 	}
 
-	@Override public void render()
-	{
-		super.render(); // TODO add more?
-	}
-
 	@Override public void tick()
 	{
 		if (!getGame().isIniting())

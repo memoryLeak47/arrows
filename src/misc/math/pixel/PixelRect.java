@@ -31,13 +31,6 @@ public class PixelRect
 		this(new PixelPosition(0,0), new PixelSize(0,0));
 	}
 
-	public float distanceTo(PixelPoint point)
-	{
-		Debug.error("PixelRect.distanceTo(PixelPoint) not coded yet");
-		// TODO
-		return 2;
-	}
-
 	public void centerX(int width)
 	{
 		int left;

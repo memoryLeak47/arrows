@@ -11,6 +11,7 @@ import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;
 import misc.math.Camera;
+import misc.math.collision.BorderRect;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 import misc.math.pixel.PixelPosition;
@@ -96,7 +97,8 @@ public abstract class MinimizedEntity implements java.io.Serializable
 
 	protected boolean inScreen()
 	{
-		// TODO
-		return true;
+		if (BorderRect.getIntersection(Camera.get().getRect(), new BorderRect(getPosition(), getSize())).isValid())
+			return true;
+		return false;
 	}
 }

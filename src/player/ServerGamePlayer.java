@@ -54,7 +54,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	protected ServerGamePlayer(LobbyPlayer lobbyPlayer, GamePosition position, Animation animation)
 	{
 		// for testing:
-		super(position, animation); // TODO do real stuff
+		super(position, animation);
 
 		Debug.warnIf(lobbyPlayer == null, "ServerGamePlayer.<init>(): lobbyPlayer == null");
 		Debug.warnIf(lobbyPlayer.getIP() == null, "ServerGamePlayer.<init>(): lobbyPlayer.getIP() == null", Debug.Tags.EXTENDED_WARNINGS);

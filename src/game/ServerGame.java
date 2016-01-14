@@ -15,7 +15,6 @@ import effect.Effect;
 import effect.MinimizedEffect;
 import player.GamePlayer;
 import player.ServerGamePlayer;
-import player.LocalClientGamePlayer;
 import player.LocalClientGamePlayerFrameUpdate;
 import player.LobbyPlayer;
 import menu.event.Event;

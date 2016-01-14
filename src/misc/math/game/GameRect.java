@@ -37,13 +37,6 @@ public class GameRect
 		this(new GamePosition(0,0), new GameSize(0,0));
 	}
 
-	public float distanceTo(GameVector point)
-	{
-		Debug.error("GameRect.distanceTo(GameVector) not coded yet");
-		// TODO
-		return -1;
-	}
-
 	public boolean equals(GameRect rect)
 	{
 		return (getPosition().equals(rect.getPosition()) && getSize().equals(rect.getSize()));
