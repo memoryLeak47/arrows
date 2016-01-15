@@ -187,12 +187,12 @@ public abstract class DynamicEntity extends Entity
 
 	protected void onCollide(Entity e) { }
 
-	protected void accelerate(GameVector p)
+	public void accelerate(GameVector p)
 	{
 		getVelocity().add(p);
 	}
 
-	protected void accelerate(float x, float y)
+	public void accelerate(float x, float y)
 	{
 		accelerate(new GameVector(x, y));
 	}

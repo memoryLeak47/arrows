@@ -35,6 +35,7 @@ public enum ImageFile
 	SMOKECLOUD_ICON("icons/skills/smokecloud.png"),
 	SHADOWJUMP_ICON("icons/skills/shadowjump.png"),
 	DAGGERTOSS_ICON("icons/skills/daggertoss.png"),
+	DAGGERSTING_ICON("icons/skills/daggersting.png"),
 
 	// items
 	HEALTHRING_ICON("icons/items/healthring.png"),

@@ -2,11 +2,13 @@ package player.property.skill;
 
 import java.util.LinkedList;
 
+import damage.Damage;
 import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
 import game.Game;
 import game.ServerGame;
 import graphics.ImageID;
 import misc.Debug;
+import misc.math.game.GamePosition;
 import misc.math.game.GameVector;
 import player.ServerGamePlayer;
 import player.property.PlayerProperty;
@@ -39,7 +41,8 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 
 			new SmokeCloudSkill(Avatar.ROGUE_ID),
 			new ShadowJumpSkill(Avatar.ROGUE_ID),
-			new DaggerTossSkill(Avatar.ROGUE_ID)
+			new DaggerTossSkill(Avatar.ROGUE_ID),
+			new DaggerStingSkill(Avatar.ROGUE_ID)
 		};
 
 		for (byte i = 0; i < skills.length; i++)
@@ -136,6 +139,11 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 		{
 			charge = c;
 		}
+	}
+
+	protected final void damageCircle(Damage damage, GameVector position, float radius)
+	{
+		// TODO
 	}
 
 	public GameVector getVelocityToMouse()
