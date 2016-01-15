@@ -106,6 +106,14 @@ public class ChoosePlayerPropertyMenu extends Menu
 		});
 	}
 
+	@Override public void tick()
+	{
+		if (lobbyMenu != null)
+		{
+			lobbyMenu.tick();
+		}
+	}
+
 	public PlayerPropertyIcon getFirstVoidSlotIcon()
 	{
 		for (PlayerPropertyIcon icon : slotIcons)
