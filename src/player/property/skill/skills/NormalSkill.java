@@ -20,7 +20,7 @@ public abstract class NormalSkill extends Skill
 
 	@Override protected void onTrigger()
 	{
-		setCharge(0.0f);
+		resetCharge();
 	}
 
 	@Override protected boolean isRecharging() // Solange man nicht komplett aufgeladen ist, weiter aufladen

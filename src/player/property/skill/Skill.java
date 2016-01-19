@@ -76,9 +76,9 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 		((ServerGame) Game.get()).addBullet(bullet);
 	}
 
-	public void resetCharge()
+	public final void resetCharge()
 	{
-		charge = 0;
+		setCharge(0.0f);
 	}
 
 	// getter

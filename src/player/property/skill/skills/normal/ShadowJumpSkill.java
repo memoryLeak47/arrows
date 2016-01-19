@@ -30,7 +30,7 @@ public class ShadowJumpSkill extends NormalSkill
 		if (getOwner().isFlashPossible(pos))
 		{
 			getOwner().flash(pos);
-			setCharge(0.0f);
+			resetCharge();
 		}
 	}
 

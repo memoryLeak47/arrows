@@ -124,20 +124,24 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	{
 		Debug.warnIf(packet == null, "ServerGamePlayer.applyPlayerControlsUpdatePacket(): packet == null");
 		controls.applyPlayerControlsUpdatePacket(packet);
-		for (int i = 0; i < packet.controls.length; i++)
+
+		if (!hasEffectWithID(Effect.STUN_ID))
 		{
-			if (packet.controls[i] >= 100)
+			for (int i = 0; i < packet.controls.length; i++)
 			{
-				if ((packet.controls[i]-100) < Skill.SKILLS_SIZE)
+				if (packet.controls[i] >= 100)
 				{
-					getSkills()[packet.controls[i]-100].onKeyPressed();
+					if ((packet.controls[i]-100) < Skill.SKILLS_SIZE)
+					{
+						getSkills()[packet.controls[i]-100].onKeyPressed();
+					}
 				}
-			}
-			else
-			{
-				if ((packet.controls[i]) < Skill.SKILLS_SIZE)
+				else
 				{
-					getSkills()[packet.controls[i]].onKeyReleased();
+					if ((packet.controls[i]) < Skill.SKILLS_SIZE)
+					{
+						getSkills()[packet.controls[i]].onKeyReleased();
+					}
 				}
 			}
 		}
