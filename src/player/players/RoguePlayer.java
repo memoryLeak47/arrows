@@ -9,9 +9,9 @@ import misc.math.game.GamePosition;
 
 public class RoguePlayer extends ServerGamePlayer
 {
-	public RoguePlayer(LobbyPlayer player, GamePosition position)
+	public RoguePlayer(LobbyPlayer player)
 	{
-		super(player, position, new StaticAnimation(ImageFile.ROGUE.getImageID()));
+		super(player, new StaticAnimation(ImageFile.ROGUE.getImageID()));
 	}
 
 	@Override public String getAvatarName() { return "unknown..."; }

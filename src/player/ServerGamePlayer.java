@@ -31,6 +31,7 @@ import player.LocalClientGamePlayerFrameUpdate;
 import player.property.avatar.Avatar;
 import player.property.skill.Skill;
 import player.property.item.Item;
+import tilemap.GameTileMap;
 
 public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 {
@@ -51,10 +52,10 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	private Team team;
 	private Animation animation;
 
-	protected ServerGamePlayer(LobbyPlayer lobbyPlayer, GamePosition position, Animation animation)
+	protected ServerGamePlayer(LobbyPlayer lobbyPlayer, Animation animation)
 	{
 		// for testing:
-		super(position, animation);
+		super(new GamePosition(), animation);
 
 		Debug.warnIf(lobbyPlayer == null, "ServerGamePlayer.<init>(): lobbyPlayer == null");
 		Debug.warnIf(lobbyPlayer.getIP() == null, "ServerGamePlayer.<init>(): lobbyPlayer.getIP() == null", Debug.Tags.EXTENDED_WARNINGS);
@@ -77,7 +78,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 			skills[i].setOwner(this);
 		}
 
-		resetHealth();
+		spawn();
 	}
 
 	@Override public void tick()
@@ -116,6 +117,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		damage((int) ((float) damage.getHit() / (float) getResistanceStat().getHit()));
 		damage((int) ((float) damage.getCut() / (float) getResistanceStat().getCut()));
 		damage((int) ((float) damage.getMagic() / (float) getResistanceStat().getMagic()));
+		checkDeath();
 	}
 
 	public void applyPlayerControlsUpdatePacket(PlayerControlsUpdatePacket packet)
@@ -224,6 +226,30 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	{
 		Debug.warnIf(skills == null, "ServerGamePlayer.getSkills(): skills == null");
 		return skills;
+	}
+
+	private void checkDeath()
+	{
+		if (getHealth() <= 0)
+		{
+			spawn();
+		}
+	}
+
+	private void spawn()
+	{
+		resetHealth();
+		gotoSpawnPosition();
+	}
+
+	private GamePosition getSpawnPosition()
+	{
+		return GameTileMap.get().getSpawnTilePositionByTeam(getTeam());
+	}
+
+	private void gotoSpawnPosition()
+	{
+		getPosition().set(getSpawnPosition());
 	}
 
 	public Item[] getItems()

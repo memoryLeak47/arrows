@@ -18,8 +18,8 @@ public class Archer extends Avatar
 
 	@Override public String getDescription() { return "a funny fernkämpfer"; }
 
-	@Override public ServerGamePlayer createServerGamePlayer(LobbyPlayer player, GamePosition position)
+	@Override public ServerGamePlayer createServerGamePlayer(LobbyPlayer player)
 	{
-		return new ArcherPlayer(player, position);
+		return new ArcherPlayer(player);
 	}
 }

@@ -9,9 +9,9 @@ import misc.math.game.GamePosition;
 
 public class ArcherPlayer extends ServerGamePlayer
 {
-	public ArcherPlayer(LobbyPlayer player, GamePosition position)
+	public ArcherPlayer(LobbyPlayer player)
 	{
-		super(player, position, new StaticAnimation(ImageFile.ARCHER.getImageID()));
+		super(player, new StaticAnimation(ImageFile.ARCHER.getImageID()));
 	}
 
 	@Override public String getAvatarName() { return "Legolas ^^"; }

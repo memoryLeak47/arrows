@@ -18,8 +18,8 @@ public class Rogue extends Avatar
 
 	@Override public String getDescription() { return "the best."; }
 
-	@Override public ServerGamePlayer createServerGamePlayer(LobbyPlayer player, GamePosition position)
+	@Override public ServerGamePlayer createServerGamePlayer(LobbyPlayer player)
 	{
-		return new RoguePlayer(player, position);
+		return new RoguePlayer(player);
 	}
 }

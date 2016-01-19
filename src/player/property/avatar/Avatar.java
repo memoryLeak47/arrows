@@ -44,7 +44,7 @@ public abstract class Avatar extends PlayerProperty
 
 	public static Avatar[] getAllAvatars() { return avatars; }
 
-	public abstract ServerGamePlayer createServerGamePlayer(LobbyPlayer player, GamePosition pos);
+	public abstract ServerGamePlayer createServerGamePlayer(LobbyPlayer player);
 
 	@Override public final byte getID() { return id; }
 }

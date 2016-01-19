@@ -33,7 +33,7 @@ public class ServerGame extends Game
 		initCamera();
 		for (LobbyPlayer player : lobbyPlayers)
 		{
-			players.add(player.getAvatar().createServerGamePlayer(player, getGameTileMap().getSpawnTilePositionByTeam(player.getTeam())));
+			players.add(player.getAvatar().createServerGamePlayer(player));
 		}
 		initing = false;
 	}
