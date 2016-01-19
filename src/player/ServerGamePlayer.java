@@ -238,6 +238,12 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	public void die()
 	{
+		respawn();
+	}
+
+	private void respawn()
+	{
+		getEffects().clear();
 		spawn();
 	}
 
