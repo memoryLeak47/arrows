@@ -76,6 +76,11 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 		((ServerGame) Game.get()).addBullet(bullet);
 	}
 
+	public void resetCharge()
+	{
+		charge = 0;
+	}
+
 	// getter
 	public static Skill getByID(byte id)
 	{
@@ -133,7 +138,7 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 		}
 		else if (c < 0.0f)
 		{
-			charge = 0.0f;
+			resetCharge();
 		}
 		else
 		{

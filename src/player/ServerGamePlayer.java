@@ -211,8 +211,6 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		return getDamageStat();
 	}
 
-
-
 	@Override public boolean[] getEffectIDs() { return Effect.toEffectIDs(getEffects()); }
 	public PlayerStats getPlayerStats() { return playerStats; }
 
@@ -226,6 +224,14 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	{
 		Debug.warnIf(skills == null, "ServerGamePlayer.getSkills(): skills == null");
 		return skills;
+	}
+
+	private void resetCharges()
+	{
+		for (int i = 0; i < getSkills().length; i++)
+		{
+			getSkills()[i].resetCharge();
+		}
 	}
 
 	private void checkDeath()
@@ -244,6 +250,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	private void respawn()
 	{
 		getEffects().clear();
+		resetCharges();
 		spawn();
 	}
 
