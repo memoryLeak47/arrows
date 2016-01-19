@@ -232,8 +232,13 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 	{
 		if (getHealth() <= 0)
 		{
-			spawn();
+			die();
 		}
+	}
+
+	public void die()
+	{
+		spawn();
 	}
 
 	private void spawn()

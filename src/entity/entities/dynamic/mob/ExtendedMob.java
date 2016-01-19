@@ -18,6 +18,8 @@ public abstract class ExtendedMob extends DynamicEntity
 		super(position, animation);
 	}
 
+	public void die() {}
+
 	@Override public void tick()
 	{
 		super.tick();
