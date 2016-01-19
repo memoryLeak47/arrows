@@ -116,7 +116,7 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 	}
 
 	protected abstract boolean isRecharging();
-	protected float getRecharge() { return 1.0f; }
+	protected abstract float getRecharge();
 
 	// setter
 	public void setOwner(ServerGamePlayer owner)

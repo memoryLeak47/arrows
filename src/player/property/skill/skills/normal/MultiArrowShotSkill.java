@@ -10,7 +10,7 @@ import player.property.skill.skills.NormalSkill;
 
 public class MultiArrowShotSkill extends NormalSkill
 {
-	private static final int INTERVAL = 3;
+	private static final int INTERVAL = 2;
 	private static final int NUMBER = 4;
 	private static final float ARROWSPEED = 0.6f;
 	
@@ -23,7 +23,7 @@ public class MultiArrowShotSkill extends NormalSkill
 
 	@Override public ImageID getIconImageID() { return ImageFile.MULTIARROWSHOT_ICON.getImageID(); }
 	@Override public String getDescription() { return "shoots " + NUMBER + " arrows"; }
-	@Override public float getRecharge() { return 0.3f; }
+	@Override public float getRecharge() { return 0.4f; }
 
 	@Override public void tick()
 	{

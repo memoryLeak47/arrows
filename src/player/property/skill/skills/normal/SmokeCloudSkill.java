@@ -20,6 +20,8 @@ public class SmokeCloudSkill extends NormalSkill
 
 	@Override public String getDescription() { return "spawns a damage-cloud"; }
 
+	@Override public float getRecharge() { return 1.f; }
+
 	@Override protected void trigger()
 	{
 		addBullet(new SmokeCloud(getOwner(), new GamePosition(getOwner().getMousePosition()), new GameVector(0.f, 0.f)));

@@ -18,6 +18,8 @@ public class ArrowShotSkill extends NormalSkill
 	@Override public ImageID getIconImageID() { return ImageFile.ARROWSHOT_ICON.getImageID(); }
 	@Override public String getDescription() { return "shoots an arrow"; }
 
+	@Override public float getRecharge() { return 3.f; }
+
 	@Override protected void trigger()
 	{
 		addBullet(new Arrow(getOwner(), getOwner().getPosition(), getVelocityToMouse().times(0.4f)));

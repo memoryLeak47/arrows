@@ -22,5 +22,5 @@ public class Arrow extends StickyBullet
 		updateRotationByVelocity();
 	}
 
-	@Override protected Damage getDamage() { return new Damage(1,4,0); }
+	@Override protected Damage getDamage() { return new Damage(1,6,0); }
 }
