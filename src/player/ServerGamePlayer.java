@@ -263,6 +263,14 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		getPosition().set(getSpawnPosition());
 	}
 
+	@Override protected void updatePositionByVelocity()
+	{
+		if (!hasEffectWithID(Effect.STUN_ID))
+		{
+			super.updatePositionByVelocity();
+		}
+	}
+
 	public Item[] getItems()
 	{
 		Debug.warnIf(items == null, "ServerGamePlayer.getItems(): items == null");

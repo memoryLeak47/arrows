@@ -197,5 +197,13 @@ public abstract class Entity
 		return possibleColliders;
 	}
 
+	public boolean hasEffectWithID(int id)
+	{
+		for (Effect e : getEffects())
+			if (e.getID() == id)
+				return true;
+		return false;
+	}
+
 	public boolean isDynamic() { return false; }
 }

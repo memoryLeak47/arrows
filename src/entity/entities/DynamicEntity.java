@@ -38,11 +38,16 @@ public abstract class DynamicEntity extends Entity
 		getVelocity().scaleX(1/getDrag().getX());
 		getVelocity().scaleY(1/getDrag().getY());
 		oldVelocity = new GameVector(velocity);
-		getPosition().add(getVelocity());
+		updatePositionByVelocity();
 		if (!isFloating())
 			accelerate(0, GRAVITY);
 		// if (oldVelocity.minus(getVelocity()).getMagnitude() > DAMAGE_BORDER) { onDamage(...); }
 		super.tick();
+	}
+
+	protected void updatePositionByVelocity()
+	{
+		getPosition().add(getVelocity());
 	}
 
 	public void accelerate(GameVector p)
