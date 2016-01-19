@@ -20,6 +20,7 @@ public abstract class ExtendedTile extends Entity
 {
 	public static final int STONE_COLORID = Integer.parseInt("000000", 16);
 	public static final int VOID_COLORID = Integer.parseInt("ffffff", 16);
+	public static final int LAVA_COLORID = Integer.parseInt("ffbb00", 16);
 
 	public static final int SPAWN_TEAM0_COLORID = Team.TEAM0.getColorID();
 	public static final int SPAWN_TEAM1_COLORID = Team.TEAM1.getColorID();
@@ -38,6 +39,10 @@ public abstract class ExtendedTile extends Entity
 
 	public boolean isObstacle() { return false; }
 
+	public boolean isCollidingTiles() { return false; }
+	public boolean isCollidingBullets() { return false; }
+	public boolean isCollidingPlayers() { return false; }
+
 	@Override public MinimizedEntity toMinimizedEntity()
 	{
 		return new MinimizedTile(getPosition(), getImageID());
@@ -51,6 +56,8 @@ public abstract class ExtendedTile extends Entity
 			return new StoneTile(new GamePosition(x, y));
 		if (colorID == VOID_COLORID)
 			return new VoidTile(new GamePosition(x, y));
+		if (colorID == LAVA_COLORID)
+			return new LavaTile(new GamePosition(x, y));
 		if (colorID == SPAWN_TEAM0_COLORID)
 			return new SpawnTeamTile(Team.TEAM0, new GamePosition(x, y));
 		if (colorID == SPAWN_TEAM1_COLORID)

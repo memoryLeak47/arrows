@@ -19,6 +19,7 @@ import player.LocalClientGamePlayerFrameUpdate;
 import player.LobbyPlayer;
 import menu.event.Event;
 import network.game.packets.GameFrameUpdatePacket;
+import tilemap.GameTileMap;
 
 public class ServerGame extends Game
 {
@@ -49,7 +50,7 @@ public class ServerGame extends Game
 	public void tick()
 	{
 		// tick Entities
-		// GameTileMap wird noch nicht getickt TODO
+		GameTileMap.get().tick();
 
 		int i;
 		for (i=0; i < getBullets().size(); i++)

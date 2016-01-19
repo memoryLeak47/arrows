@@ -27,8 +27,6 @@ public abstract class DynamicEntity extends Entity
 
 	private int mass = 0;
 
-	private boolean touchesBot = false, touchesTop = false, touchesLeft = false, touchesRight = false;
-
 	public DynamicEntity(GamePosition position, Animation animation)
 	{
 		super(position, animation);
@@ -37,155 +35,15 @@ public abstract class DynamicEntity extends Entity
 
 	@Override public void tick()
 	{
-		super.tick();
 		getVelocity().scaleX(1/getDrag().getX());
 		getVelocity().scaleY(1/getDrag().getY());
 		oldVelocity = new GameVector(velocity);
 		getPosition().add(getVelocity());
-		touchesBot = touchesTop = touchesLeft = touchesRight = false;
-		checkCollision();
 		if (!isFloating())
 			accelerate(0, GRAVITY);
 		// if (oldVelocity.minus(getVelocity()).getMagnitude() > DAMAGE_BORDER) { onDamage(...); }
+		super.tick();
 	}
-
-	// applyTileCollision makes you not glitch into the Tiles; it's how a player collides with Tiles
-	protected final void applyTileCollision(ExtendedTile t)
-	{
-		boolean bottouch = CollisionDetector.collideTileBot(this, t);
-		boolean toptouch = CollisionDetector.collideTileTop(this, t);
-		boolean righttouch = CollisionDetector.collideTileRight(this, t);
-		boolean lefttouch = CollisionDetector.collideTileLeft(this, t);
-
-		float tx = 0, ty = 0;
-
-		if (righttouch)
-		{
-			tx = (this.getRight() - t.getLeft()) / this.getOldVelocity().getX();
-			Debug.warnIf(tx < 0, "DynamicEntity.applyTileCollision(): tx < 0, shold be tx > 0 (righttouch)");
-		}
-		else if (lefttouch)
-		{
-			tx = (t.getRight() - this.getLeft()) / -this.getOldVelocity().getX();
-			Debug.warnIf(tx < 0, "DynamicEntity.applyTileCollision(): tx < 0, shold be tx > 0 (lefttouch)");
-		}
-
-		if (bottouch)
-		{
-			ty = (this.getBot() - t.getTop()) / this.getOldVelocity().getY();
-			Debug.warnIf(ty < 0, "DynamicEntity.applyTileCollision(): ty < 0, shold be ty > 0 (bottouch)");
-		}
-		else if (toptouch)
-		{
-			ty = (t.getBot() - this.getTop()) / this.getOldVelocity().getY();
-			Debug.warnIf(tx < 0, "DynamicEntity.applyTileCollision(): ty < 0, shold be ty > 0 (toptouch)");
-		}
-
-		if (bottouch)
-		{
-			if (righttouch)
-			{
-				if (tx < ty)
-				{
-					// righttouch
-					getPosition().addX(t.getLeft() - getRight());
-					getVelocity().setX(0);
-					touchesRight = true;
-				}
-				else
-				{
-					// bottouch
-					getPosition().addY(t.getTop() - getBot());
-					getVelocity().setY(0);
-					touchesBot = true;
-				}
-			}
-			else if (lefttouch)
-			{
-				if (tx < ty)
-				{
-					// lefttouch
-					getPosition().addX(t.getRight() - getLeft());
-					getVelocity().setX(0);
-					touchesLeft = true;
-				}
-				else
-				{
-					// bottouch
-					getPosition().addY(t.getTop() - getBot());
-					getVelocity().setY(0);
-					touchesBot = true;
-				}
-			}
-			else
-			{
-				// bottouch
-				getPosition().addY(t.getTop() - getBot());
-				getVelocity().setY(0);
-				touchesBot = true;
-			}
-		}
-		else if (toptouch)
-		{
-			if (righttouch)
-			{
-				if (tx < ty)
-				{
-					// righttouch
-					getPosition().addX(t.getLeft() - getRight());
-					getVelocity().setX(0);
-					touchesRight = true;
-				}
-				else
-				{
-					// toptouch
-					getPosition().addY(t.getBot() - getTop());
-					getVelocity().setY(0);
-					touchesTop = true;
-				}
-			}
-			else if (lefttouch)
-			{
-				if (tx < ty)
-				{
-					// lefttouch
-					getPosition().addX(t.getRight() - getLeft());
-					getVelocity().setX(0);
-					touchesLeft = true;
-				}
-				else
-				{
-					// toptouch
-					getPosition().addY(t.getBot() - getTop());
-					getVelocity().setY(0);
-					touchesTop = true;
-				}
-			}
-			else
-			{
-				// toptouch
-				getPosition().addY(t.getBot() - getTop());
-				getVelocity().setY(0);
-				touchesTop = true;
-			}
-		}
-		else if (righttouch)
-		{
-			// righttouch
-			getPosition().addX(t.getLeft() - getRight());
-			getVelocity().setX(0);
-			touchesRight = true;
-		}
-		else if (lefttouch)
-		{
-			// lefttouch
-			getPosition().addX(t.getRight() - getLeft());
-			getVelocity().setX(0);
-			touchesLeft = true;
-		}
-	}
-
-	protected void onCollide(Entity e) { }
 
 	public void accelerate(GameVector p)
 	{
@@ -197,71 +55,11 @@ public abstract class DynamicEntity extends Entity
 		accelerate(new GameVector(x, y));
 	}
 
-	private void checkCollision()
-	{
-		for (Entity entity : getPossibleColliders())
-		{
-			if (isColliding(entity))
-			{
-				this.onCollide(entity);
-			}
-		}
-	}
-
-	protected boolean isColliding(Entity entity)
-	{
-		return CollisionDetector.areCollidingDynamic(this, entity);
-	}
-
-	// abstract
-
-	protected abstract boolean isCollidingTiles();
-	protected abstract boolean isCollidingPlayers();
-	protected abstract boolean isCollidingBullets();
-
-	// getter
-	// gibt nur die Tiles zurück, die in der Range sind (mit denen man kollidieren könnte)
-	protected final LinkedList<Entity> getPossibleColliders()
-	{
-		LinkedList<Entity> possibleColliders = new LinkedList<Entity>();
-
-		if (isCollidingTiles())
-		{
-			for (ExtendedTile tile : GameTileMap.get().getPossibleColliderTiles(this))
-			{
-				possibleColliders.add(tile);
-			}
-		}
-		if (isCollidingPlayers())
-		{
-			for (ServerGamePlayer player : ((ServerGame)Game.get()).getPlayers())
-			{
-				if (this != player)
-				{
-					possibleColliders.add(player);
-				}
-			}
-		}
-		if (isCollidingBullets())
-		{
-			for (ExtendedBullet bullet : ((ServerGame)Game.get()).getBullets())
-			{
-				if (this != bullet)
-				{
-					possibleColliders.add(bullet);
-				}
-			}
-		}
-		return possibleColliders;
-	}
-
 	public GameVector getVelocity() { return velocity; }
 	public GameVector getOldVelocity() { return oldVelocity; }
 	protected final void stop() { velocity = new GameVector(0, 0); }
 	protected GameVector getDrag() { return drag; }
 	protected GameVector getDefaultDrag() { return new GameVector(DRAG_X, DRAG_Y); }
-
-	protected boolean touchesBot() { return touchesBot; }
 
 	// setter
 	protected void setDrag(GameVector drag)

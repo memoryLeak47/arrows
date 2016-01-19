@@ -48,6 +48,7 @@ public enum ImageFile
 	// tiles
 	VOID_TILE("entities/tiles/voidtile.png"),
 	STONE_TILE("entities/tiles/stonetile.png"),
+	LAVA_TILE("entities/tiles/lavatile.png"),
 	SPAWNTEAM_TILE("entities/tiles/spawnteamtile.png"),
 
 	// bullets

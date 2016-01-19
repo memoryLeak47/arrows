@@ -162,6 +162,17 @@ public class GameTileMap
 		return staticImage;
 	}
 
+	public void tick()
+	{
+		for (int x = 0; x < tiles.length; x++)
+		{
+			for (int y = 0; y < tiles[0].length; y++)
+			{
+				tiles[x][y].tick();
+			}
+		}
+	}
+
 	public static GameTileMap get()
 	{
 		Debug.warnIf(Game.get() == null, "GameTileMap.get(): game == null");
