@@ -28,6 +28,7 @@ public abstract class Item extends PlayerProperty
 	// for sub
 	public abstract int getMassStat();
 	public float getHealthStat() { return 0; }
+	public float getRegenerationStat() { return 0; }
 	public Damage getDamageStat() { return new Damage(0, 0, 0); }
 
 	public static Item[] getAllItems() { return items; }

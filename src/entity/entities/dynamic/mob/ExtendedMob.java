@@ -25,7 +25,15 @@ public abstract class ExtendedMob extends DynamicEntity
 	@Override public void tick()
 	{
 		touchesBot = touchesTop = touchesLeft = touchesRight = false;
+		regenerate();
 		super.tick();
+	}
+
+	public float getRegeneration() { return 0.f; }
+
+	private void regenerate()
+	{
+		heal(getRegeneration());
 	}
 
 	@Override public void applyDamage(Damage damage)
@@ -205,7 +213,7 @@ public abstract class ExtendedMob extends DynamicEntity
 	final protected void heal(float health)
 	{
 		Debug.warnIf(health < 0, "ExtendedMob.heal(): healing damages ... ");
-		this.health += health;
+		this.health = Math.min(getHealth() + health, getMaxHealth());
 	}
 
 	final protected void resetHealth()

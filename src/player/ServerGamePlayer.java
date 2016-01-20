@@ -217,6 +217,16 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		return damage;
 	}
 
+	@Override public float getRegeneration()
+	{
+		float regen = getRegenerationStat();
+		for (int i = 0; i < getItems().length; i++)
+		{
+			regen += getItems()[i].getRegenerationStat();
+		}
+		return regen;
+	}
+
 	@Override public boolean[] getEffectIDs() { return Effect.toEffectIDs(getEffects()); }
 	public PlayerStats getPlayerStats() { return playerStats; }
 

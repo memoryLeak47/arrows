@@ -18,13 +18,15 @@ public class SmokeCloud extends ExtendedBullet
 		super(owner, position, new StaticAnimation(ImageFile.SMOKECLOUD.getImageID()), velocity);
 	}
 
+	@Override public boolean isCollidingPlayers() { return true; }
+
 	@Override public void onCollide(Entity e)
 	{
-		e.onDamage(getDamage(), getEffects());
+		e.applyDamage(getDamage());
 		alive = false;
 	}
 
-	@Override protected Damage getDamage() { return new Damage(0,0,2); }
+	@Override protected Damage getDamage() { return new Damage(0,0,40); }
 
 	@Override public boolean hasToBeRemoved() { return !alive; }
 	

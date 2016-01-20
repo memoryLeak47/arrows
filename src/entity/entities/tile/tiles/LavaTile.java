@@ -24,6 +24,6 @@ public class LavaTile extends ExtendedTile
 
 	@Override public void onCollide(Entity e)
 	{
-		e.applyEffect(new BurnEffect((short)20, (short)1));
+		e.applyEffect(new BurnEffect((short)20, (short)100));
 	}
 }

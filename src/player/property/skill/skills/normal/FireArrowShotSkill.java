@@ -19,12 +19,12 @@ public class FireArrowShotSkill extends NormalSkill
 
 	@Override public ImageID getIconImageID() { return ImageFile.FIREARROWSHOT_ICON.getImageID(); }
 	@Override public String getDescription() { return "shoots a burning arrow"; }
-	@Override public float getRecharge() { return 1.f; }
+	@Override public float getRecharge() { return 1.4f; }
 
 	@Override protected void trigger()
 	{
 		Arrow a = new Arrow(getOwner(), getOwner().getPosition(), getVelocityToMouse().times(0.4f));
-		a.applyEffect(new BurnEffect((short)10, (short)1));
+		a.applyEffect(new BurnEffect((short)10, (short)100));
 		addBullet(a);
 	}
 }

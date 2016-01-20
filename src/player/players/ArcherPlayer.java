@@ -18,7 +18,7 @@ public class ArcherPlayer extends ServerGamePlayer
 	@Override public Damage getDamageStat() { return new Damage(20, 22, 20); }
 	@Override public Damage getResistanceStat() { return new Damage(20, 20, 20); }
 	@Override public int getAccelerationStat() { return 1; }
-	@Override public float getRegenerationStat() { return 1.f; }
+	@Override public float getRegenerationStat() { return 0.02f; }
 	@Override public float getMaxHealthStat() { return 50.f; }
 	@Override public int getMassStat() { return 1; }
 
