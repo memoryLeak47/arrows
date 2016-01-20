@@ -12,6 +12,7 @@ import menu.event.Event;
 import menu.event.events.*;
 import misc.Debug;
 import misc.math.Camera;
+import misc.math.pixel.PixelPosition;
 import network.game.packets.PlayerControlsUpdatePacket;
 import player.controls.PlayerControls;
 
@@ -133,7 +134,12 @@ public class PlayerControlsManager
 			bytes[i] = controls.get(i);
 		}
 
-		return new PlayerControlsUpdatePacket(bytes, Camera.get().pixelPositionToGamePosition(Screen.getCursorPosition()));
+		PixelPosition cursorPosition = Screen.getCursorPosition();
+		if (cursorPosition.getX() == -1 && cursorPosition.getY() == -1) // wenn die maus außerhalb des bildes ist, kein maus-position update
+		{
+			return new PlayerControlsUpdatePacket(bytes, null);
+		}
+		return new PlayerControlsUpdatePacket(bytes, Camera.get().pixelPositionToGamePosition(cursorPosition));
 	}
 
 	public boolean isPlayerFocused() { return playerFocused; }

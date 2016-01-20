@@ -23,8 +23,11 @@ public class PlayerControls
 	public void applyPlayerControlsUpdatePacket(PlayerControlsUpdatePacket packet)
 	{
 		Debug.warnIf(packet == null, "PlayerControls.applyPlayerControlsUpdatePacket(): packet == null");
-		Debug.warnIf(packet.mousePosition == null, "PlayerControls.applyPlayerControlsUpdatePacket(): mousePosition == null");
-		this.mousePosition = packet.mousePosition;
+
+		if (packet.mousePosition != null) // wenn die maus im screen ist
+		{
+			this.mousePosition = packet.mousePosition;
+		}
 
 		byte[] b = packet.controls;
 		for (int i = 0; i < b.length; i++)

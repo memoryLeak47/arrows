@@ -19,7 +19,7 @@ public class PlayerControlsUpdatePacket extends Packet
 	public byte[] controls;
 	public GamePosition mousePosition;
 
-	public PlayerControlsUpdatePacket(byte[] controls, GamePosition mousePosition)
+	public PlayerControlsUpdatePacket(byte[] controls, GamePosition mousePosition) // mousePosition kann null sein!
 	{
 		this.controls = controls;
 		this.mousePosition = mousePosition;
