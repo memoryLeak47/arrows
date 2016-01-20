@@ -9,7 +9,7 @@ public abstract class NormalSkill extends Skill
 		super(avatarID);
 	}
 
-	@Override public void onKeyPressed()
+	@Override public void onActivate()
 	{
 		if (getCharge() == MAX_CHARGE)
 		{

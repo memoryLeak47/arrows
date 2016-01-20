@@ -197,7 +197,7 @@ public abstract class Entity
 		return possibleColliders;
 	}
 
-	public boolean hasEffectWithID(int id)
+	protected boolean hasEffectWithID(int id)
 	{
 		for (Effect e : getEffects())
 			if (e.getID() == id)

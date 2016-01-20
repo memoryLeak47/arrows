@@ -58,14 +58,35 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 
 	public void tick()
 	{
+		recharge();
+	}
+
+	private void recharge()
+	{
 		if (isRecharging())
 		{
 			setCharge(getCharge() + getRecharge());
 		}
 	}
 
-	public void onKeyPressed() { }
-	public void onKeyReleased() { }
+	public final void onKeyPressed()
+	{
+		if (getOwner().canUseSkills())
+		{
+			onActivate();
+		}
+	}
+
+	public final void onKeyReleased()
+	{
+		if (getOwner().canUseSkills())
+		{
+			onDeactivate();
+		}
+	}
+
+	protected void onActivate() {}
+	protected void onDeactivate() {}
 
 	protected abstract void onTrigger(); // Wird nach trigger ausgeführt (resetet charges)
 	protected abstract void trigger(); // wird aufgerufen, wenn der Skill eingesetzt wird

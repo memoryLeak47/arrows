@@ -13,6 +13,5 @@ public abstract class ToggleSkill extends Skill
 
 	@Override public void tick()
 	{
-		
 	}
 }

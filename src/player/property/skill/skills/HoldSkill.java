@@ -11,7 +11,7 @@ public abstract class HoldSkill extends Skill
 		super(avatarID);
 	}
 
-	public void tick()
+	@Override public void tick()
 	{
 	}
 

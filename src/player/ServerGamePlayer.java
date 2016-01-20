@@ -125,23 +125,20 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		Debug.warnIf(packet == null, "ServerGamePlayer.applyPlayerControlsUpdatePacket(): packet == null");
 		controls.applyPlayerControlsUpdatePacket(packet);
 
-		if (!hasEffectWithID(Effect.STUN_ID))
+		for (int i = 0; i < packet.controls.length; i++)
 		{
-			for (int i = 0; i < packet.controls.length; i++)
+			if (packet.controls[i] >= 100)
 			{
-				if (packet.controls[i] >= 100)
+				if ((packet.controls[i]-100) < Skill.SKILLS_SIZE)
 				{
-					if ((packet.controls[i]-100) < Skill.SKILLS_SIZE)
-					{
-						getSkills()[packet.controls[i]-100].onKeyPressed();
-					}
+					getSkills()[packet.controls[i]-100].onKeyPressed();
 				}
-				else
+			}
+			else
+			{
+				if ((packet.controls[i]) < Skill.SKILLS_SIZE)
 				{
-					if ((packet.controls[i]) < Skill.SKILLS_SIZE)
-					{
-						getSkills()[packet.controls[i]].onKeyReleased();
-					}
+					getSkills()[packet.controls[i]].onKeyReleased();
 				}
 			}
 		}
@@ -276,10 +273,20 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	@Override protected void updatePositionByVelocity()
 	{
-		if (!hasEffectWithID(Effect.STUN_ID))
+		if (canMove())
 		{
 			super.updatePositionByVelocity();
 		}
+	}
+
+	public boolean canMove()
+	{
+		return !hasEffectWithID(Effect.STUN_ID); // + hasEffectWithID(Effect.ROOT_ID)
+	}
+
+	public boolean canUseSkills()
+	{
+		return !hasEffectWithID(Effect.STUN_ID); // + hasEffectWithID(Effect.SILENCE_ID)
 	}
 
 	public Item[] getItems()
