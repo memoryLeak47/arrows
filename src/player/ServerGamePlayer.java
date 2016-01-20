@@ -209,7 +209,12 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	public Damage getDamage()
 	{
-		return getDamageStat();
+		Damage damage = getDamageStat();
+		for (int i = 0; i < getItems().length; i++)
+		{
+			damage.add(getItems()[i].getDamageStat());
+		}
+		return damage;
 	}
 
 	@Override public boolean[] getEffectIDs() { return Effect.toEffectIDs(getEffects()); }

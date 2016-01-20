@@ -1,5 +1,6 @@
 package player.property.item;
 
+import damage.Damage;
 import player.property.PlayerProperty;
 import player.property.item.items.*;
 import graphics.ImageID;
@@ -14,7 +15,8 @@ public abstract class Item extends PlayerProperty
 	{
 		items = new Item[]
 		{
-			new HealthRing()
+			new HealthRing(),
+			new DamageRing()
 		};
 
 		for (byte i = 0; i < items.length; i++)
@@ -25,7 +27,8 @@ public abstract class Item extends PlayerProperty
 
 	// for sub
 	public abstract int getMassStat();
-	public abstract float getHealthStat();
+	public float getHealthStat() { return 0; }
+	public Damage getDamageStat() { return new Damage(0, 0, 0); }
 
 	public static Item[] getAllItems() { return items; }
 

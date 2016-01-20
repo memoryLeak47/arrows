@@ -39,6 +39,7 @@ public enum ImageFile
 
 	// items
 	HEALTHRING_ICON("icons/items/healthring.png"),
+	DAMAGERING_ICON("icons/items/damagering.png"),
 
 	// entities
 	// avatars
