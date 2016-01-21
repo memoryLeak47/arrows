@@ -39,7 +39,7 @@ public class NetworkDevice
 			Debug.error("NetworkDevice.send(): Failed to send " + datagramPacket + " to IP " + ip.getHostName());
 		}
 
-		Debug.note("sent " + packet + " to IP " + ip.getHostName(), Debug.Tags.NETWORK);
+		Debug.note("sent " + packet + " to IP " + ip.getHostName() + "; size = " + data.length + " bytes", Debug.Tags.NETWORK);
 	}
 
 	public void receive() // called by Main.run() permanently, receives packets and gives them to menu.handlePacket(...)
@@ -55,7 +55,7 @@ public class NetworkDevice
 			Debug.error("NetworkDevice.receive(): Failed to receive packet from IP " + datagramPacket.getAddress().getHostName());
 		}
 
-		Debug.note("rcvd " + (Packet) byteArrayToObject(data) + " from IP " + datagramPacket.getAddress().getHostName(), Debug.Tags.NETWORK);
+		Debug.note("rcvd " + (Packet) byteArrayToObject(data) + " from IP " + datagramPacket.getAddress().getHostName() + "; size = " + data.length + " bytes", Debug.Tags.NETWORK);
 
 		if (menu != null) // if there is a target menu
 		{
