@@ -8,6 +8,7 @@ public class PlayerStats implements java.io.Serializable
 
 	public PlayerStats(PlayerStats stats)
 	{
-		Debug.warn("PlayerStats: copy-constructor: TODO");
 	}
+
+	public PlayerStats() {}
 }
