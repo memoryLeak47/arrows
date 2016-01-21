@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import java.awt.Dimension;
 import java.awt.Canvas;
 import java.awt.Graphics;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.BufferStrategy;
@@ -34,6 +36,7 @@ public class Screen extends Canvas
 	private Screen(String caption)
 	{
 		frame = new JFrame(caption); // erstellung des fensters
+		setFullscreen();
 		frame.add(this); // diese Screen instanz zum fenster hinzufügen
 		frame.setSize(WIDTH, HEIGHT); // größe des fensters auf die größe des bildschirms setzen
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // -> fenster schließt, wenn man auf das kreuz drückt
@@ -42,6 +45,25 @@ public class Screen extends Canvas
 		frame.setFocusable(true); // -> man kann das fenster focusen, listeners können nur funktionieren wenn das fenster gefocust ist
 		frame.addWindowListener(new JFrameListener()); // ein neuer JFrameListener wird dem fenster hinzugefügt -> wenn es schließt wird Main.quit() ausgeführt
 		requestFocusInWindow();  // das fenster wird fokusiert
+	}
+
+	private void setFullscreen()
+	{
+		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+		if (!gd.isFullScreenSupported())
+		{
+			Debug.note("Fullscreen not supported");
+			return;
+		}
+
+		try
+		{
+			gd.setFullScreenWindow(frame);
+		}
+		catch (Exception e)
+		{
+			Debug.error("Screen.<init>(): gd.setFullScreenWindow(frame)");
+		}
 	}
 
 	// called by Main.render() in a fixed rate
