@@ -56,6 +56,7 @@ public class Screen extends Canvas
 			return;
 		}
 
+		// frame.setUndecorated(true); // --> TODO needed for extended-mode fullscreen (doesnt work in linux)
 		try
 		{
 			gd.setFullScreenWindow(frame);
