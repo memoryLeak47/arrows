@@ -1,0 +1,133 @@
+# Compression
+
+Plan für Compressable:
+
+interface Compressable
+{
+	byte getCompressID();
+}
+
+public class Packet implements Compressable
+{
+	public static final int MAX_SIZE = 1000;
+}
+
+Beispiel:
+
+public class LobbyPlayersPacket extends Packet
+{
+	// ...
+	@Override public byte getCompressID() { return LOBBY_PLAYERS_PACKET_CID; }
+}
+
+Die CIDs (Compress ids) gehen von 1 bis sizeof(byte);
+die id 0 ist für die information, das eine array oder liste vorbei ist.
+Sagen wir, wir compressen nun ein LobbyPlayersPacket:
+—> new byte[] { LOBBY_PLAYERS_PACKET_CID, ... all die bytes eines compressten players, ..., ..., ..., 0 }
+
+die 0 ist hier wieder dafür da, zu erklären, dass die liste der spieler zuende sei.
+
+Angenommen wir haben klasse A:
+class A implements Compressable
+{
+	B b;
+	C[] cs;
+	D d;
+	@Override public byte getCompressID() { return A_CID; }
+} 
+
+und klassen B, C und D enthalten jeweils nur ein byte (wie z.B. die Klasse Team);
+A_CID=19;
+die compresste version von A mit b=1, cs={2,3,4} und d=5 wäre:
+new byte[]{19,1,2,3,4,0,5}
+
+Sagen wir, wir decompressen nun die eben erwähnte Instanz von A.
+Die decompressByCID-funktion setzt alle verwendeten bytes auf 0.
+Alle nullen die am anfang stehen werden zudem ignoriert.
+
+Compressable decompressByCID(byte cid, byte[] bytes)
+{
+	switch (cid)
+	{
+		case A_CID:
+			bytes[0] = 0; // beim decompressen von B wird die A_CID ignoriert
+			// bytes = {0,1,2,3,4,0,5} 
+			B b = (B) decompressByCID(B_CID, bytes);
+				// hier werden alle verwendeten stellen von bytes,
+				// also die die instanz B ausmachen auf 0 gesetzt.
+				// d.h. sie werden bei den weiteren Überprüfungen ignoriert.
+			// bytes = {0,0,2,3,4,0,5}
+			C[] cs = (C[]) decompressArrayByCID(C_CID, bytes); // das gleiche nur halt rekursiv ...
+			// bytes = {0,0,0,0,0,0,5}
+			D d = (D) decompressByCID(D_CID, bytes);
+			return new A(b, cs, d);
+		case B_CID:
+			return new B(bytes[1]);
+		case C_CID:
+			return new C(bytes[1]);
+		case D_CID:
+			return new D(bytes[1]);
+	}
+}
+
+Extra Funktionen die nach diesem Prinzip benötigt wären, wären:
+
+decompressArrayByCID(byte cid, byte[] bytes);
+decompressLinkedListByCID(byte cid, byte[] bytes);
+decompressArrayListByCID(byte cid, byte[] bytes);
+decompressFloat(byte[] bytes);
+decompressInt(byte[] bytes);
+decompressBoolean(byte[] bytes);
+decompressShort(byte[] bytes);
+
+Der compress-vorgang ist auch nicht schwerer:
+
+byte[] compress(A a) # oder byte[] A.compress()
+{
+	byte[] b_bytes = compress(a.b);
+	byte[] cs_bytes = compress(a.cs);
+	byte[] d_bytes = compress(a.d);
+	byte[] bytes = new byte[b_bytes.length + cs_bytes.length  + d_bytes.length];
+	for (int i = 0; i < b_bytes.length; i++) bytes[i]=b_bytes[i];
+	for (int i = 0; i < cs_bytes.length; i++) bytes[i+b_bytes.length] = cs_bytes[i];
+	for (int i = 0; i < d_bytes.length; i++) bytes[i+b_bytes.length+cs_bytes.length] = d_bytes[i];
+	return bytes;
+}
+
+Das was gesendet wird, braucht aber noch die CID am anfang der byte[],
+Hierfür ist die byte[] compressFull(A a) da:
+
+byte[] compressFull(A a) # oder byte[] A.compressFull()
+{
+	byte[] tmp = compress(a);
+	byte[] bytes = new byte[tmp.length+1];
+	for (int i =0; i < tmp.length; i++) bytes[i+1] = tmp[i];
+	bytes[0] = A_CID;
+	return bytes;
+}
+
+die compress und compressFull funktionen könnten auch Teil des interface Compressable sein.
+Wie man ein Objekt aber decompressed muss leider (glaube ich) in einer anderen Klasse passieren. ;(
+das problem ist nämlich folgendes:
+Sagen wir wir erhalten ein byte[] mit das mit der A_CID beginnt.
+wir wissen, okay das ist offenbar eine class A.
+Da man aber ne decompress funktion nur bei einer Instanz ausführen kann,
+könnte ich das byte[] nicht decompressen. außer ich zaubere mir iwie dirty ne A instanz.
+
+compressFull sollte final sein, deshalt sollte Compressable kein interface sein,
+sondern eine abstract class sein ..
+
+Die funktionen byte[] compress(<primitive-type> a),
+	byte[] compress(`LinkedList<Compressable>/ArrayList<Compressable>/Compressable[]>) und
+	byte[] compress(`LinkedList<<primitive-type>> ... ) auch
+
+weiteres problem: wir senden teilweise auch InetAddresses, die sind ja nicht Compressable.
+Naja wir könnten sie als new byte[]{192,168,178,32} z.B. senden.
+dann müsste man aber noch n bissl mehr umwandeln und kann das nicht in der Umzuwandelnden Klasse (in diesem Fall InetAddress) selbst machen.
+oder (nicht so gut), wir erstellen ne unterklasse von InetAddress die Compressable implementiert.
+
+package: misc.compress
+
+falls wir die Funktionen compress und decompress eh immer selber schreiben,
+können wir uns nach arrays / listen die am Ende stehen die 0 wegnehmen. 
+-> byte gespart :)
