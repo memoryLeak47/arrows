@@ -107,13 +107,16 @@ public class Debug
 	}
 
 	// test
-	public static void test(String string, Tags tag)
+	public static void testTrace(String string)
 	{
-		if (tag.isActive())
+		colorLog(TEST_COLOR, "TEST: " + string);
+		StackTraceElement[] trace = new Throwable().getStackTrace();
+		for (int i = 1; i < Math.min(trace.length, 20); i++)
 		{
-			test(string);
+			colorLog(TEST_COLOR, "\t" + trace[i]);
 		}
 	}
+
 	public static void test(String string)
 	{
 		colorLog(TEST_COLOR, "TEST: " + string);
