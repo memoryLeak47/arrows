@@ -37,14 +37,21 @@ public class Compressor
 
 	public static byte[] compress(Compressable c)
 	{	
-		byte[] b = c.compress();
-		byte[] bytes = new byte[b.length+1];
-		for (int i = 0; i < b.length; i++)
+		try
 		{
-			bytes[i+1] = b[i];
+			byte[] b = c.compress();
+			byte[] bytes = new byte[b.length+1];
+			for (int i = 0; i < b.length; i++)
+			{
+				bytes[i+1] = b[i];
+			}
+			bytes[0] = c.getCID();
+			return bytes;
+		} catch (Exception e)
+		{
+			Debug.warn("Compressor.compress(): Can't compress " + c);
 		}
-		bytes[0] = c.getCID();
-		return bytes;
+		return new byte[]{};
 	}
 
 	public static Compressable decompress(byte[] bytes)
@@ -130,8 +137,8 @@ public class Compressor
 
 	public static byte[] compressString(String s)
 	{
-		Debug.warn("Compressor.compressString(): TODO");	
-		return new byte[]{};
+		byte[] bytes = s.getBytes();
+		return concat(new byte[][]{compressInt(bytes.length), bytes});
 	}
 
 	public static byte[] compressFloatArray(float[] f)
