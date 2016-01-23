@@ -83,8 +83,9 @@ public class Debug
 			note(string);
 		}
 	}
+
 	public static void note(String string)
-{
+	{
 		colorLog(NOTE_COLOR, "NOTE: " + string);
 	}
 
@@ -96,6 +97,7 @@ public class Debug
 			once(string);
 		}
 	}
+
 	public static void once(String string)
 	{
 		if (!isLogged("ONCE: " + string))
@@ -116,6 +118,7 @@ public class Debug
 	{
 		colorLog(TEST_COLOR, "TEST: " + string);
 	}
+
 	// time
 	public static void time(String string, Tags tag)
 	{
@@ -144,8 +147,7 @@ public class Debug
 	{
 		if (b && tag.isActive())
 		{
-			colorLog(WARN_COLOR, "WARN: " + s);
-			colorLog(WARN_COLOR, "\t" + new Throwable().getStackTrace()[2]);
+			warn(s, new Throwable().getStackTrace()[1]);
 		}
 	}
 
@@ -153,8 +155,7 @@ public class Debug
 	{
 		if (b)
 		{
-			colorLog(WARN_COLOR, "WARN: " + s);
-			colorLog(WARN_COLOR, "\t" + new Throwable().getStackTrace()[2]);
+			warn(s, new Throwable().getStackTrace()[1]);
 		}
 	}
 
@@ -162,14 +163,19 @@ public class Debug
 	{
 		if (tag.isActive())
 		{
-			warn(string);
+			warn(string, new Throwable().getStackTrace()[1]);
 		}
 	}
 
 	public static void warn(String string)
 	{
+		warn(string, new Throwable().getStackTrace()[1]);
+	}
+
+	private static void warn(String string, StackTraceElement trace)
+	{
 		colorLog(WARN_COLOR, "WARN: " + string);
-		colorLog(WARN_COLOR, "\t" + new Throwable().getStackTrace()[2]);
+		colorLog(WARN_COLOR, "\t" + trace);
 	}
 
 	// error
@@ -177,48 +183,66 @@ public class Debug
 	{
 		if (tag.isActive())
 		{
-			error(string);
+			error(string, new Throwable().getStackTrace());
 		}
 	}
+
 	public static void error(String string) // quits (with exception) and gives error message
 	{
-		colorLog(ERROR_COLOR, "ERROR: " + string);
-		StackTraceElement[] trace = new Throwable().getStackTrace();
+		error(string, new Throwable().getStackTrace());
+	}
+
+	private static void error(String string, StackTraceElement[] trace)
+	{
+		colorLog(ERROR_COLOR, "ERROR: " + string, true);
 		for (int i = 1; i < trace.length; i++)
 		{
-			colorLog(ERROR_COLOR, "\t" + trace[i]);
+			colorLog(ERROR_COLOR, "\t" + trace[i], true);
 		}
 		System.exit(1);
 	}
+
+	// color
+	private static void colorLog(String color, String string)
+	{
+		colorLog(color, string, false);
+	}
+
+	private static void colorLog(String color, String string, boolean force)
+	{
+		if (WRITE_TO_SCREEN || force)
+		{
+			System.out.print(color);
+		}
+		log(string, force);
+		if (WRITE_TO_SCREEN || force)
+		{
+			System.out.print(RESET); // resets color
+		}
+	}
+
+	// kernel-deep
 
 	public static boolean isLogged(String string) // check if the string was a log
 	{
 		return logs.contains(string);
 	}
 
-	private static void log(String string) // prints log and adds it to logs
+	private static void log(String string)
 	{
-		if (WRITE_TO_SCREEN)
+		log(string, false);
+	}
+
+	private static void log(String string, boolean force)
+	{
+		if (WRITE_TO_SCREEN || force)
 		{
 			System.out.println(string); // prints log
 		}
 		addLog(string); // adds it to logs
-		if (WRITE_TO_LOGFILE)
+		if (WRITE_TO_LOGFILE || force)
 		{
 			writeLog(string);
-		}
-	}
-
-	private static void colorLog(String color, String string)
-	{
-		if (WRITE_TO_SCREEN)
-		{
-			System.out.print(color);
-		}
-		log(string);
-		if (WRITE_TO_SCREEN)
-		{
-			System.out.print(RESET); // resets color
 		}
 	}
 
@@ -267,13 +291,13 @@ public class Debug
 		{
 			File dir = new File(".");
 			String loc = dir.getCanonicalPath() + File.separator + STANDARD_LOGFILE;
-	
+
 			FileWriter fstream = new FileWriter(loc, true);
 			BufferedWriter out = new BufferedWriter(fstream);
-	
+
 			out.write(string);
 			out.newLine();
-	
+
 			out.close();
 		} catch (Exception e)
 		{
