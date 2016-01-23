@@ -220,7 +220,13 @@ public class Compressor
 		byte[] width = compressInt(ints.length);
 		byte[] height = compressInt(ints[0].length);
 
-		byte[] bytes = new byte[width.length + height.length];
+		byte[] bytes = new byte[8];
+
+		for (int i = 0; i < 4; i++)
+		{
+			bytes[i] = width[i];
+			bytes[i+4] = height[i];
+		}
 
 		for (int x = 0; x < ints.length; x++)
 			for (int y = 0; y < ints[0].length; y++)
