@@ -1,10 +1,12 @@
 package player.property;
 
 import java.awt.Color;
+import java.util.Arrays;
 
 import misc.Debug;
+import misc.compress.*;
 
-public enum Team
+public enum Team implements Compressable
 {
 	TEAM0(0, "None", "666666"),
 	TEAM1(1, "Red", "ff0000"),
@@ -42,6 +44,18 @@ public enum Team
 		Debug.error("team id " + id + " in Team.getByID");
 		return null;
 	}
+
+	@Override public byte getCID() { return Compressor.TEAM_CID; }
+	@Override public byte[] compress()
+	{
+		return new byte[]{(byte) Arrays.asList(Team.values()).indexOf(this)};
+	}
+
+	public static Team create(CompressableData cd)
+	{
+		return Team.values()[cd.getBytes()[0]];
+	}
+
 
 	public int getID() { return id; }
 	public String getName() { return name; }
