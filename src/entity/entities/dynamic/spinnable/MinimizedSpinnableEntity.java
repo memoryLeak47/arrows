@@ -9,6 +9,7 @@ import entity.MinimizedEntity;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;
+import misc.compress.Compressor;
 import misc.math.Camera;
 import misc.math.collision.BorderRect;
 import misc.math.game.GamePosition;
@@ -38,6 +39,15 @@ public class MinimizedSpinnableEntity extends MinimizedEntity
 			g.rotate(-getRotation(), rotateposition.getX(), rotateposition.getY());
 			renderEffects();
 		}
+	}
+
+	@Override public byte getCID() { return Compressor.MINIMIZED_SPINNABLE_ENTITY_CID; }
+	@Override public byte[] compress()
+	{
+		return Compressor.concat(new byte[][]{
+			super.compress(),
+			Compressor.compressFloat(getRotation())
+		});
 	}
 
 	@Override protected boolean inScreen()

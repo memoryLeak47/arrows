@@ -1,6 +1,7 @@
 package misc.math.game;
 
 import misc.compress.Compressable;
+import misc.compress.Compressor;
 
 public class GameVector implements Compressable
 {
@@ -33,6 +34,20 @@ public class GameVector implements Compressable
 	{
 		setX(x);
 		setY(y);
+	}
+
+	@Override public byte getCID() { return Compressor.GAME_VECTOR_CID; }
+	@Override public byte[] compress()
+	{
+		byte[] bytes = new byte[8];
+		byte[] x = Compressor.compressFloat(getX());
+		byte[] y = Compressor.compressFloat(getY());
+		for (int i = 0; i < 4; i++)
+		{
+			bytes[i] = x[i];
+			bytes[i+4] = y[i];
+		}
+		return bytes;
 	}
 
 	public void setMagnitude(float m)

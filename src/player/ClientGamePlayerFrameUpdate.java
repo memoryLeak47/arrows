@@ -7,6 +7,7 @@ package player;
 
 import graphics.ImageID;
 import misc.compress.Compressable;
+import misc.compress.Compressor;
 import misc.math.game.GamePosition;
 
 public class ClientGamePlayerFrameUpdate implements Compressable
@@ -31,4 +32,16 @@ public class ClientGamePlayerFrameUpdate implements Compressable
 	public GamePosition getPosition() { return position; }
 	public ImageID getImageID() { return imageID; }
 	public boolean[] getEffectIDs() { return effectIDs; }
+
+	@Override public byte getCID() { return Compressor.CLIENT_GAME_PLAYER_FRAME_UPDATE_CID; }
+	@Override public byte[] compress()
+	{
+		return Compressor.concat(new byte[][]{
+			Compressor.compressFloat(getHealth()),
+			Compressor.compressFloat(getMaxHealth()),
+			getPosition().compress(),
+			getImageID().compress(),
+			Compressor.compressBooleanArray(getEffectIDs())
+		});
+	}
 }

@@ -11,6 +11,7 @@ import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;
 import misc.compress.Compressable;
+import misc.compress.Compressor;
 import misc.math.Camera;
 import misc.math.collision.BorderRect;
 import misc.math.game.GamePosition;
@@ -101,5 +102,14 @@ public abstract class MinimizedEntity implements Compressable
 		if (BorderRect.getIntersection(Camera.get().getRect(), new BorderRect(getPosition(), getSize())).isValid())
 			return true;
 		return false;
+	}
+
+	@Override public byte[] compress()
+	{
+		return Compressor.concat(new byte[][]{
+			getPosition().compress(),
+			getImageID().compress(),
+			Compressor.compressBooleanArray(getEffectIDs())
+		});
 	}
 }

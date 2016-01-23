@@ -2,7 +2,4 @@ package network.game.packets;
 
 import network.Packet;
 
-public class EventUpdatePacket extends Packet
-{
-
-}
+public abstract class EventUpdatePacket extends Packet {}

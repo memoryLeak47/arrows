@@ -142,11 +142,11 @@ public enum ImageFile
 		{
 			Debug.error("ImageFile.getImageByImageID(null)");
 		}
-		if (ImageFile.getByID(id.id) == null)
+		if (ImageFile.getByID(id.getID()) == null)
 		{
-			Debug.error("ImageFile.getImageByImageID: ImageFile.getByID(" + id.id + ") returns null");
+			Debug.error("ImageFile.getImageByImageID: ImageFile.getByID(" + id.getID() + ") returns null");
 		}
-		return ImageFile.getByID(id.id).getImages()[id.index];
+		return ImageFile.getByID(id.getID()).getImages()[id.getIndex()];
 	}
 
 	public static ImageFile[] getFromTo(ImageFile if1, ImageFile if2)

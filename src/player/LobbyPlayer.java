@@ -8,6 +8,7 @@ import player.property.item.Item;
 import player.property.Team;
 import misc.Debug;
 import misc.compress.Compressable;
+import misc.compress.Compressor;
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.user.*;
 
@@ -56,6 +57,51 @@ public class LobbyPlayer implements Compressable
 		teamPacket = new TeamUserPacket(lobbyPlayer.teamPacket);
 		skillPacket = new SkillUserPacket(lobbyPlayer.skillPacket);
 		itemPacket = new ItemUserPacket(lobbyPlayer.itemPacket);
+	}
+
+	@Override public byte getCID() { return Compressor.LOBBY_PLAYER_CID; }
+	@Override public byte[] compress()
+	{
+		byte[] login = loginPacket.compress();
+		byte[] lock = lockPacket.compress();
+		byte[] avatar = avatarPacket.compress();
+		byte[] team = teamPacket.compress();
+		byte[] skill = skillPacket.compress();
+		byte[] item = itemPacket.compress();
+
+		byte[] bytes = new byte[login.length + lock.length + avatar.length + team.length + skill.length + item.length];
+
+		for (int i = 0; i < login.length; i++)
+		{
+			bytes[i] = login[i];
+		}
+
+		for (int i = 0; i < lock.length; i++)
+		{
+			bytes[i+login.length] = lock[i];
+		}
+
+		for (int i = 0; i < avatar.length; i++)
+		{
+			bytes[i + login.length + lock.length] = avatar[i];
+		}
+
+		for (int i = 0; i < team.length; i++)
+		{
+			bytes[i + login.length + lock.length + avatar.length] = team[i];
+		}
+
+		for (int i = 0; i < skill.length; i++)
+		{
+			bytes[i + login.length + lock.length + avatar.length + team.length] = skill[i];
+		}
+
+		for (int i = 0; i < item.length; i++)
+		{
+			bytes[i + login.length + lock.length + avatar.length + team.length + skill.length] = item[i];
+		}
+
+		return bytes;
 	}
 
 	public void assign(LobbyPlayer lobbyPlayer)

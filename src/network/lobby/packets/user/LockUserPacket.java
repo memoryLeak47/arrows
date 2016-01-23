@@ -1,5 +1,6 @@
 package network.lobby.packets.user;
 
+import misc.compress.Compressor;
 import misc.Debug;
 import network.lobby.packets.UserPacket;
 
@@ -26,5 +27,11 @@ public class LockUserPacket extends UserPacket
 	public boolean isLocked()
 	{
 		return locked;
+	}
+
+	@Override public byte getCID() { return Compressor.LOCK_USER_PACKET_CID; }
+	@Override public byte[] compress()
+	{
+		return Compressor.compressBoolean(locked);
 	}
 }
