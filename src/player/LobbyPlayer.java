@@ -7,8 +7,7 @@ import player.property.skill.Skill;
 import player.property.item.Item;
 import player.property.Team;
 import misc.Debug;
-import misc.compress.Compressable;
-import misc.compress.Compressor;
+import misc.compress.*;
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.user.*;
 
@@ -57,6 +56,16 @@ public class LobbyPlayer implements Compressable
 		teamPacket = new TeamUserPacket(lobbyPlayer.teamPacket);
 		skillPacket = new SkillUserPacket(lobbyPlayer.skillPacket);
 		itemPacket = new ItemUserPacket(lobbyPlayer.itemPacket);
+	}
+
+	public LobbyPlayer(CompressBuffer buffer)
+	{
+		loginPacket = (LoginUserPacket) buffer.cutByCID(Compressor.LOGIN_USER_PACKET_CID);
+		lockPacket = (LockUserPacket) buffer.cutByCID(Compressor.LOCK_USER_PACKET_CID);
+		avatarPacket = (AvatarUserPacket) buffer.cutByCID(Compressor.AVATAR_USER_PACKET_CID);
+		teamPacket = (TeamUserPacket) buffer.cutByCID(Compressor.TEAM_USER_PACKET_CID);
+		skillPacket = (SkillUserPacket) buffer.cutByCID(Compressor.SKILL_USER_PACKET_CID);
+		itemPacket = (ItemUserPacket) buffer.cutByCID(Compressor.ITEM_USER_PACKET_CID);
 	}
 
 	@Override public byte getCID() { return Compressor.LOBBY_PLAYER_CID; }

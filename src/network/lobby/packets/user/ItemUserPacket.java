@@ -1,7 +1,7 @@
 package network.lobby.packets.user;
 
 import misc.Debug;
-import misc.compress.Compressor;
+import misc.compress.*;
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.PlayerPropertyUserPacket;
 import player.property.item.Item;
@@ -54,6 +54,11 @@ public class ItemUserPacket extends UserPacket implements PlayerPropertyUserPack
 	public byte[] getItemIDs() { return itemIDs; }
 
 	@Override public PlayerProperty[] getPlayerProperty() { return getItems(); }
+
+	public ItemUserPacket(CompressBuffer buffer)
+	{
+		itemIDs = buffer.cutByteArray();
+	}
 
 	@Override public byte getCID() { return Compressor.ITEM_USER_PACKET_CID; }
 	@Override public byte[] compress()

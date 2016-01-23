@@ -3,7 +3,7 @@ package network.lobby.packets.user;
 import player.property.avatar.Avatar;
 import player.property.PlayerProperty;
 import misc.Debug;
-import misc.compress.Compressor;
+import misc.compress.*;
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.PlayerPropertyUserPacket;
 
@@ -41,6 +41,11 @@ public class AvatarUserPacket extends UserPacket implements PlayerPropertyUserPa
 	public Avatar getAvatar() { return Avatar.getByID(avatarID); }
 	public byte getAvatarID() { return avatarID; }
 	@Override public PlayerProperty[] getPlayerProperty() { return new PlayerProperty[]{getAvatar()}; }
+
+	public AvatarUserPacket(CompressBuffer buffer)
+	{
+		avatarID = buffer.cutByte();
+	}
 
 	@Override public byte getCID() { return Compressor.AVATAR_USER_PACKET_CID; }
 	@Override public byte[] compress()

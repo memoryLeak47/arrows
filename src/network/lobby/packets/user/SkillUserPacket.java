@@ -1,7 +1,7 @@
 package network.lobby.packets.user;
 
 import misc.Debug;
-import misc.compress.Compressor;
+import misc.compress.*;
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.PlayerPropertyUserPacket;
 import player.property.skill.Skill;
@@ -53,6 +53,11 @@ public class SkillUserPacket extends UserPacket implements PlayerPropertyUserPac
 	}
 
 	public byte[] getSkillIDs() { return skillIDs; }
+
+	public SkillUserPacket(CompressBuffer buffer)
+	{
+		skillIDs = buffer.cutByteArray();
+	}
 
 	@Override public byte getCID() { return Compressor.SKILL_USER_PACKET_CID; }
 	@Override public byte[] compress()

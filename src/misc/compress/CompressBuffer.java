@@ -1,9 +1,14 @@
 package misc.compress;
 
 import java.nio.ByteBuffer;
+import java.util.LinkedList;
 
 import graphics.ImageID;
+import network.lobby.packets.*;
+import network.lobby.packets.user.*;
 import misc.Debug;
+import player.*;
+import player.property.Team;
 
 public class CompressBuffer
 {
@@ -21,6 +26,24 @@ public class CompressBuffer
 		{
 			case Compressor.IMAGE_ID_CID:
 				return new ImageID(this);
+			case Compressor.TEAM_CID:
+				return Team.cut(this);
+			case Compressor.LOBBY_PLAYER_CID:
+				return new LobbyPlayer(this);
+			case Compressor.LOBBY_PLAYERS_PACKET_CID:
+				return new LobbyPlayersPacket(this);
+			case Compressor.LOGIN_USER_PACKET_CID:
+				return new LoginUserPacket(this);
+			case Compressor.LOCK_USER_PACKET_CID:
+				return new LockUserPacket(this);
+			case Compressor.AVATAR_USER_PACKET_CID:
+				return new AvatarUserPacket(this);
+			case Compressor.TEAM_USER_PACKET_CID:
+				return new TeamUserPacket(this);
+			case Compressor.SKILL_USER_PACKET_CID:
+				return new SkillUserPacket(this);
+			case Compressor.ITEM_USER_PACKET_CID:
+				return new ItemUserPacket(this);
 			default:
 				Debug.warn("no Compressable with cid " + cid);
 				return null;
@@ -67,6 +90,39 @@ public class CompressBuffer
 		// TODO
 		Debug.warn("CompressBuffer.cutString(): TODO");
 		return "";
+	}
+
+	public Object cutListByCID(byte cid)
+	{
+		int length = cutInt();
+		LinkedList<Compressable> list = new LinkedList<Compressable>();
+		for (int i = 0; i < length; i++)
+		{
+			list.add(cutByCID(cid));
+		}
+		return list;
+	}
+
+	public Compressable[] cutArrayByCID(byte cid)
+	{
+		int length = cutInt();
+		Compressable[] array = new Compressable[length];
+		for (int i = 0; i < length; i++)
+		{
+			array[i] = cutByCID(cid);
+		}
+		return array;
+	}
+
+	public byte[] cutByteArray()
+	{
+		int length = cutInt();
+		byte[] bytes = new byte[length];
+		for (int i = 0; i < length; i++)
+		{
+			bytes[i] = cutByte();
+		}
+		return bytes;
 	}
 
 	// private

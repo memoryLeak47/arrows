@@ -2,7 +2,7 @@ package network.lobby.packets.user;
 
 import misc.Debug;
 import player.property.Team;
-import misc.compress.Compressor;
+import misc.compress.*;
 import network.lobby.packets.UserPacket;
 
 public class TeamUserPacket extends UserPacket
@@ -24,6 +24,11 @@ public class TeamUserPacket extends UserPacket
 	public TeamUserPacket(TeamUserPacket packet)
 	{
 		teamID = packet.teamID;
+	}
+
+	public TeamUserPacket(CompressBuffer buffer)
+	{
+		teamID = buffer.cutInt();
 	}
 
 	@Override public byte getCID() { return Compressor.TEAM_USER_PACKET_CID; }

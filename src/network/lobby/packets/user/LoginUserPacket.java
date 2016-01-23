@@ -1,6 +1,6 @@
 package network.lobby.packets.user;
 
-import misc.compress.Compressor;
+import misc.compress.*;
 import network.lobby.packets.UserPacket;
 
 public class LoginUserPacket extends UserPacket
@@ -24,6 +24,12 @@ public class LoginUserPacket extends UserPacket
 	{
 		name = new String(packet.getName());
 		rank = packet.getRank();
+	}
+
+	public LoginUserPacket(CompressBuffer buffer)
+	{
+		name = buffer.cutString();
+		rank = buffer.cutInt();
 	}
 
 	@Override public byte getCID() { return Compressor.LOGIN_USER_PACKET_CID; }
