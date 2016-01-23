@@ -1,15 +1,15 @@
 package misc;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.LinkedList;
 
 import player.property.PlayerProperty;
 import core.Main;
 import misc.Debug;
-import misc.compress.Compressable;
 import static misc.Serializer.*;
 
-public final class Account implements Compressable
+public final class Account implements Serializable
 {
 	public static final String accounts_filename = ".accounts";
 
