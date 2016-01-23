@@ -44,6 +44,8 @@ public class CompressBuffer
 				return new SkillUserPacket(this);
 			case Compressor.ITEM_USER_PACKET_CID:
 				return new ItemUserPacket(this);
+			case Compressor.DISCONNECT_USER_PACKET_CID:
+				return new DisconnectUserPacket(this);
 			case Compressor.USER_PACKET_WITH_ID_CID:
 				return new UserPacketWithID(this);
 			default:
