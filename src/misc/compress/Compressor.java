@@ -80,7 +80,7 @@ public class Compressor
 		byte[] result = new byte[length];
 
 		for (int i = 0; i < bytes.length; i++)
-			for (int j = 0; i < bytes[i].length; i++)
+			for (int j = 0; j < bytes[i].length; j++)
 			{
 				result[c] = bytes[i][j];
 				c++;

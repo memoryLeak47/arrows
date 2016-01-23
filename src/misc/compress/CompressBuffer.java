@@ -87,9 +87,16 @@ public class CompressBuffer
 
 	public String cutString()
 	{
-		// TODO
-		Debug.warn("CompressBuffer.cutString(): TODO");
-		return "";
+		int length = cutInt(); // length in bytes
+		byte[] current = getCurrentBytes();
+		byte[] tmp = new byte[length];
+
+		for (int i = 0; i < length; i++)
+		{
+			tmp[i] = current[i];
+		}
+		index += length;
+		return new String(tmp);
 	}
 
 	public Object cutListByCID(byte cid)
