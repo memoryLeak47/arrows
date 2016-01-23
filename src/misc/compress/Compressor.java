@@ -29,7 +29,10 @@ public class Compressor
 		MINIMIZED_GAME_PLAYER_CID = 18,
 		MINIMIZED_SPINNABLE_ENTITY_CID = 19,
 		GAME_FRAME_UPDATE_PACKET_CID = 20,
-		IMAGE_ID_CID = 127;
+		LOBBY_PLAYERS_PACKET_CID = 21,
+		MAP_PACKET_CID = 22,
+		USER_PACKET_WITH_ID_CID = 23,
+		IMAGE_ID_CID = 24;
 
 	private Compressor() {}
 
@@ -238,5 +241,23 @@ public class Compressor
 			bytes[i] = ((Compressable) list.get(i)).compress();
 		}
 		return concat(bytes);
+	}
+
+	public static byte[] compressIntIntArray(int[][] ints) // only works if length is constant
+	{
+		byte[] width = compressInt(ints.length);
+		byte[] height = compressInt(ints[0].length);
+		int length = ints.length * ints[0].length;
+
+		byte[] bytes = new byte[width.length + height.length];
+
+		for (int x = 0; x < ints.length; x++)
+			for (int y = 0; y < ints[0].length; y++)
+			{
+				byte[] tmp = compressInt(ints[x][y]);
+				bytes = concat(new byte[][]{bytes, tmp});
+				
+			}
+		return bytes;
 	}
 }

@@ -90,7 +90,7 @@ public class Screen extends Canvas
 		Point position = get().getMousePosition();
 		if (position == null) // wenn die maus außerhalb des fensters ist
 		{
-			Debug.warn("Screen.getCursorPosition(): mouse out of screen or simply null");
+			Debug.warn("Screen.getCursorPosition(): mouse out of screen or simply null", Debug.Tags.EXTENDED_WARNINGS);
 			return new PixelPosition(-1, -1); // return default position
 		} // falls sie im fenster ist
 		return new PixelPosition(position.x, position.y); // returne die maus-position

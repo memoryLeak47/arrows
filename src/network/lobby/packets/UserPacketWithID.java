@@ -1,5 +1,6 @@
 package network.lobby.packets;
 
+import misc.compress.Compressor;
 import network.Packet;
 import network.lobby.packets.UserPacket;
 
@@ -18,4 +19,13 @@ public class UserPacketWithID extends Packet// sent from server to client to giv
 	public int getID() { return id; }
 
 	@Override public String toString() { return "UserPacketWithID (" + packet + ", " + id + ")"; }
+
+	@Override public byte getCID() { return Compressor.USER_PACKET_WITH_ID_CID; }
+	@Override public byte[] compress()
+	{
+		return Compressor.concat(new byte[][]{
+			getUserPacket().compress(),
+			Compressor.compressInt(getID())
+		});
+	}
 }
