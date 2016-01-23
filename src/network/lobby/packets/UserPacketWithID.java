@@ -1,5 +1,6 @@
 package network.lobby.packets;
 
+import misc.Debug;
 import misc.compress.*;
 import network.Packet;
 import network.lobby.packets.UserPacket;

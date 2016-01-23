@@ -202,10 +202,15 @@ public class Compressor
 
 	public static byte[] compressList(LinkedList list)
 	{
-		byte[][] bytes = new byte[list.size()][];
+		byte[] length = compressInt(list.size());
+
+		byte[][] bytes = new byte[list.size()+1][];
+
+		bytes[0] = length;
+
 		for (int i = 0; i < list.size(); i++)
 		{
-			bytes[i] = ((Compressable) list.get(i)).compress();
+			bytes[i+1] = ((Compressable) list.get(i)).compress();
 		}
 		return concat(bytes);
 	}
