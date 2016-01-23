@@ -44,6 +44,8 @@ public class CompressBuffer
 				return new SkillUserPacket(this);
 			case Compressor.ITEM_USER_PACKET_CID:
 				return new ItemUserPacket(this);
+			case Compressor.USER_PACKET_WITH_ID_CID:
+				return new UserPacketWithID(this);
 			default:
 				Debug.warn("no Compressable with cid " + cid);
 				return null;
@@ -99,7 +101,7 @@ public class CompressBuffer
 		return new String(tmp);
 	}
 
-	public Object cutListByCID(byte cid)
+	public LinkedList cutListByCID(byte cid)
 	{
 		int length = cutInt();
 		LinkedList<Compressable> list = new LinkedList<Compressable>();

@@ -17,6 +17,7 @@ public class LobbyPlayersPacket extends Packet // sent from server to client as 
 
 	public LinkedList<LobbyPlayer> getPlayers() { return players; }
 
+	@SuppressWarnings("unchecked")
 	public LobbyPlayersPacket(CompressBuffer buffer)
 	{
 		players = (LinkedList<LobbyPlayer>) buffer.cutListByCID(Compressor.LOBBY_PLAYER_CID);
