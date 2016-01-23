@@ -14,7 +14,10 @@ public class Compressor
 	{	
 		byte[] b = c.compress();
 		byte[] bytes = new byte[b.length+1];
-		for (int i = 0; i < b.length; i++) bytes[i+1] = b[i];
+		for (int i = 0; i < b.length; i++)
+		{
+			bytes[i+1] = b[i];
+		}
 		bytes[0] = c.getCID();
 		return bytes;
 	}
@@ -25,9 +28,9 @@ public class Compressor
 		switch (bytes[0])
 		{
 			case TEAM_CID:
-				return Team.create(cd);
+				return Team.decompress(cd);
 			default:
-				Debug.error("Compressor.decompress(): now object with id " + bytes[0]);
+				Debug.error("Compressor.decompress(): no object with id " + bytes[0]);
 				return null;
 		}
 	}

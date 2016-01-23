@@ -5,10 +5,11 @@
 
 package player;
 
-import misc.math.game.GamePosition;
 import graphics.ImageID;
+import misc.compress.Compressable;
+import misc.math.game.GamePosition;
 
-public class ClientGamePlayerFrameUpdate implements java.io.Serializable
+public class ClientGamePlayerFrameUpdate implements Compressable
 {
 	private float health;
 	private float maxHealth;

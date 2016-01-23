@@ -1,6 +1,8 @@
 package graphics;
 
-public final class ImageID implements java.io.Serializable
+import misc.compress.Compressable;
+
+public final class ImageID implements Compressable
 {
 	public final int id, index;
 

@@ -7,9 +7,10 @@ package player;
 import java.util.LinkedList;
 
 import effect.MinimizedEffect;
+import misc.compress.Compressable;
 import player.PlayerStats;
 
-public class LocalClientGamePlayerFrameUpdate implements java.io.Serializable
+public class LocalClientGamePlayerFrameUpdate implements Compressable
 {
 	private LinkedList<MinimizedEffect> effects = new LinkedList<MinimizedEffect>();
 	private PlayerStats playerStats;

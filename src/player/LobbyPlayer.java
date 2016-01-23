@@ -1,6 +1,5 @@
 package player;
 
-import java.io.Serializable;
 import java.net.InetAddress;
 
 import player.property.avatar.Avatar;
@@ -8,10 +7,11 @@ import player.property.skill.Skill;
 import player.property.item.Item;
 import player.property.Team;
 import misc.Debug;
+import misc.compress.Compressable;
 import network.lobby.packets.UserPacket;
 import network.lobby.packets.user.*;
 
-public class LobbyPlayer implements Serializable
+public class LobbyPlayer implements Compressable
 {
 	private InetAddress ip;
 

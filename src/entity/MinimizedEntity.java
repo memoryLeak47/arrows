@@ -10,6 +10,7 @@ import effect.MinimizedEffect;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;
+import misc.compress.Compressable;
 import misc.math.Camera;
 import misc.math.collision.BorderRect;
 import misc.math.game.GamePosition;
@@ -17,7 +18,7 @@ import misc.math.game.GameSize;
 import misc.math.pixel.PixelPosition;
 import misc.math.pixel.PixelSize;
 
-public abstract class MinimizedEntity implements java.io.Serializable
+public abstract class MinimizedEntity implements Compressable
 {
 	private GamePosition position;
 	private ImageID imageID;

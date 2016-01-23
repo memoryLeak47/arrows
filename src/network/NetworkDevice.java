@@ -2,11 +2,11 @@ package network;
 
 import java.net.*;
 
-import menu.NetworkingMenu;
 import core.Main;
-import static misc.Serializer.*;
 import misc.Debug;
+import menu.NetworkingMenu;
 import menu.event.Event;
+import misc.compress.Compressor;
 
 public class NetworkDevice
 {
@@ -29,7 +29,7 @@ public class NetworkDevice
 	{
 		Debug.warnIf(packet == null, "NetworkDevice.send(): packet is null");
 		Debug.warnIf(ip == null, "NetworkDevice.send(): ip is null");
-		byte[] data = objectToByteArray(packet); // serialize packet -> data
+		byte[] data = Compressor.compress(packet); // serialize packet -> data
 		DatagramPacket datagramPacket = new DatagramPacket(data, data.length, ip, PORT); // create datagramPacket
 		try
 		{
@@ -55,11 +55,12 @@ public class NetworkDevice
 			Debug.error("NetworkDevice.receive(): Failed to receive packet from IP " + datagramPacket.getAddress().getHostName());
 		}
 
-		Debug.note("rcvd " + (Packet) byteArrayToObject(data) + " from IP " + datagramPacket.getAddress().getHostName() + "; size = " + data.length + " bytes", Debug.Tags.NETWORK);
+		Packet packet = (Packet) Compressor.decompress(data);
+		Debug.note("rcvd " + packet + " from IP " + datagramPacket.getAddress().getHostName() + "; size = " + data.length + " bytes", Debug.Tags.NETWORK);
 
 		if (menu != null) // if there is a target menu
 		{
-			menu.receivePacket((Packet) byteArrayToObject(data), datagramPacket.getAddress()); // let it handle the packet
+			menu.receivePacket(packet, datagramPacket.getAddress()); // let it handle the packet
 		}
 	}
 

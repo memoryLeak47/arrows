@@ -1,6 +1,8 @@
 package effect;
 
-public class MinimizedEffect implements java.io.Serializable
+import misc.compress.Compressable;
+
+public class MinimizedEffect implements Compressable
 {
 	private int effectID;
 	private short[] properties;

@@ -51,7 +51,7 @@ public enum Team implements Compressable
 		return new byte[]{(byte) Arrays.asList(Team.values()).indexOf(this)};
 	}
 
-	public static Team create(CompressableData cd)
+	public static Team decompress(CompressableData cd)
 	{
 		return Team.values()[cd.getBytes()[0]];
 	}
