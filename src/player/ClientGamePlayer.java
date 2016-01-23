@@ -16,6 +16,7 @@ import graphics.ImageFile;
 import misc.Debug;
 import player.property.Team;
 import damage.KDCounter;
+import misc.compress.Compressor;
 import misc.math.Camera;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
@@ -84,4 +85,16 @@ public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 	public KDCounter getKDCounter() { return kdCounter; }
 
 	@Override public float getHealth() { return health; }
+
+	@Override public byte getCID()
+	{
+		Debug.warn("ClientGamePlayer.getCID(): should never be called, returning -1");
+		return -1;
+	}
+
+	@Override public byte[] compress()
+	{
+		Debug.warn("ClientGamePlayer.compress(): should never be called, returning null");
+		return null;
+	}
 }

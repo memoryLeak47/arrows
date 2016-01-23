@@ -45,7 +45,8 @@ public abstract class ExtendedTile extends Entity
 
 	@Override public MinimizedEntity toMinimizedEntity()
 	{
-		return new MinimizedTile(getPosition(), getImageID());
+		Debug.warn("ExtendedTile.toMinimizedEntity(): should never be called, returning null");
+		return null;
 	}
 
 	@Override public void applyEffect(Effect e) {}
