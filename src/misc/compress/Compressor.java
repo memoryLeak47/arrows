@@ -38,27 +38,41 @@ public class Compressor
 
 	public static byte[] compress(Compressable c)
 	{	
-		byte[] b = c.compress();
-		byte[] bytes = new byte[b.length+1];
-		for (int i = 0; i < b.length; i++)
+		try
 		{
-			bytes[i+1] = b[i];
+			byte[] b = c.compress();
+			byte[] bytes = new byte[b.length+1];
+			for (int i = 0; i < b.length; i++)
+			{
+				bytes[i+1] = b[i];
+			}
+			bytes[0] = c.getCID();
+			return bytes;
+		} catch (Exception e)
+		{
+			Debug.warn("Compressor.compress(): Can't compress " + c);
 		}
-		bytes[0] = c.getCID();
-		return bytes;
+		return new byte[]{};
 	}
 
 	public static Compressable decompress(byte[] bytes)
 	{
-		CompressableData cd = new CompressableData(cutCID(bytes));
-		switch (bytes[0])
+		try
 		{
-			case TEAM_CID:
-				return Team.decompress(cd);
-			default:
-				Debug.error("Compressor.decompress(): no object with id " + bytes[0]);
-				return null;
+			CompressableData cd = new CompressableData(cutCID(bytes));
+			switch (bytes[0])
+			{
+				case TEAM_CID:
+					return Team.decompress(cd);
+				default:
+					Debug.error("Compressor.decompress(): no object with id " + bytes[0]);
+					return null;
+			}
+		} catch (Exception e)
+		{
+			Debug.warn("Compressor.decompress(): Can't decompress");
 		}
+		return null;
 	}
 
 	private static byte[] cutCID(byte[] arg)
@@ -164,14 +178,14 @@ public class Compressor
 
 	public static byte[] compressString(String s)
 	{
-		Debug.warn("Compressor.compressString(): TODO");	
-		return new byte[]{};
+		byte[] bytes = s.getBytes();
+		return concat(new byte[][]{compressInt(bytes.length), bytes});
 	}
 
 	public static String decompressString(byte[] bytes)
 	{
-		Debug.warn("Compressor.decompressString(): TODO");	
-		return null;
+		Debug.warn("Compressor.decompressString: TODO totally wrong ... ");
+		return new String(bytes); // TODO fix
 	}
 
 	public static byte[] compressFloatArray(float[] f)
