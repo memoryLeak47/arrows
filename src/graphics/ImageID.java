@@ -1,7 +1,6 @@
 package graphics;
 
-import misc.compress.Compressable;
-import misc.compress.Compressor;
+import misc.compress.*;
 
 public final class ImageID implements Compressable
 {
@@ -12,10 +11,17 @@ public final class ImageID implements Compressable
 		this.id = imageID.id;
 		this.index = imageID.index;
 	}
+
 	public ImageID(int id, int index)
 	{
 		this.id = id;
 		this.index = index;
+	}
+
+	public ImageID(CompressBuffer buffer)
+	{
+		id = buffer.cutInt();
+		index = buffer.cutInt();
 	}
 
 	@Override public byte getCID() { return Compressor.IMAGE_ID_CID; }

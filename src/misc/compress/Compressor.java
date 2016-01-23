@@ -1,6 +1,5 @@
 package misc.compress;
 
-import java.nio.ByteBuffer;
 import java.util.LinkedList;
 
 import misc.Debug;
@@ -50,15 +49,8 @@ public class Compressor
 
 	public static Compressable decompress(byte[] bytes)
 	{
-		CompressableData cd = new CompressableData(cutCID(bytes));
-		switch (bytes[0])
-		{
-			case TEAM_CID:
-				return Team.decompress(cd);
-			default:
-				Debug.error("Compressor.decompress(): no object with id " + bytes[0]);
-				return null;
-		}
+		CompressBuffer buffer = new CompressBuffer(cutCID(bytes));
+		return buffer.cutByCID(bytes[0]);
 	}
 
 	private static byte[] cutCID(byte[] arg)
@@ -101,34 +93,14 @@ public class Compressor
 		return bytes;
 	}
 
-	public static float decompressFloat(byte[] bytes)
-	{
-		Debug.warnIf(bytes.length != 4, "Compressor.decompressFloat(): invalid length " + bytes.length);
-		return ByteBuffer.wrap(bytes).getFloat();
-	}
-
 	public static byte[] compressInt(int value)
 	{
 		return new byte[] {(byte) (value >>> 24), (byte) (value >>> 16), (byte) (value >>> 8), (byte) value };
 	}
 
-	public static int decompressInt(byte[] bytes)
-	{
-		// return bytes[0]*16777216 + bytes[1]*65536 + bytes[2]*256 + bytes[3];
-		Debug.warn("Compressor.decompressInt(): vlt erstmal prüfen vor verwendet");
-		return 0;
-	}
-
 	public static byte[] compressShort(short value)
 	{
 		return new byte[] {(byte) (value >>> 8), (byte) value };
-	}
-
-	public static short decompressShort(byte[] bytes)
-	{
-		// return bytes[0]*16777216 + bytes[1]*65536 + bytes[2]*256 + bytes[3];
-		Debug.warn("Compressor.decompressShort(): vlt erstmal prüfen vor verwendet");
-		return 0;
 	}
 
 	public static byte[] compressShortArray(short[] shorts)
@@ -156,22 +128,10 @@ public class Compressor
 		return b? new byte[]{1} : new byte[]{0};	
 	}
 
-	public static boolean decompressBoolean(byte[] bytes)
-	{
-		Debug.warnIf(bytes.length != 1, "Compressor.decompressBoolean(): invalid bytes.length = " + bytes.length);
-		return bytes[0] > 0;
-	}
-
 	public static byte[] compressString(String s)
 	{
 		Debug.warn("Compressor.compressString(): TODO");	
 		return new byte[]{};
-	}
-
-	public static String decompressString(byte[] bytes)
-	{
-		Debug.warn("Compressor.decompressString(): TODO");	
-		return null;
 	}
 
 	public static byte[] compressFloatArray(float[] f)
