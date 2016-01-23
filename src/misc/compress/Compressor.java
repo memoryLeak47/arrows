@@ -219,7 +219,6 @@ public class Compressor
 	{
 		byte[] width = compressInt(ints.length);
 		byte[] height = compressInt(ints[0].length);
-		int length = ints.length * ints[0].length;
 
 		byte[] bytes = new byte[width.length + height.length];
 
@@ -228,7 +227,6 @@ public class Compressor
 			{
 				byte[] tmp = compressInt(ints[x][y]);
 				bytes = concat(new byte[][]{bytes, tmp});
-				
 			}
 		return bytes;
 	}

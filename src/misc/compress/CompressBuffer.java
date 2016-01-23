@@ -48,6 +48,8 @@ public class CompressBuffer
 				return new DisconnectUserPacket(this);
 			case Compressor.USER_PACKET_WITH_ID_CID:
 				return new UserPacketWithID(this);
+			case Compressor.MAP_PACKET_CID:
+				return new MapPacket(this);
 			default:
 				Debug.warn("no Compressable with cid " + cid);
 				return null;
@@ -134,6 +136,21 @@ public class CompressBuffer
 			bytes[i] = cutByte();
 		}
 		return bytes;
+	}
+
+	public int[][] cutIntIntArray()
+	{
+		// ersten 8 Bytes sind die Breite und Höhe
+		int width = cutInt();
+		int height = cutInt();
+
+		int[][] map = new int[width][height];
+
+		for (int x = 0; x < width; x++)
+			for (int y = 0; y < height; y++)
+				map[x][y] = cutInt();
+
+		return map;
 	}
 
 	// private
