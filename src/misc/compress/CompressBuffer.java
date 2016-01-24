@@ -94,9 +94,9 @@ public class CompressBuffer
 
 	public short cutShort()
 	{
-		byte[] b = getCurrentBytes();
+		byte[] bytes = getCurrentBytes();
 		index += 2;
-		return (short) (b[0]*256 + b[1]);
+		return (short) (((bytes[0] & 0xFF) << 8) + (bytes[1] & 0xFF));
 	}
 
 	public int cutInt()
