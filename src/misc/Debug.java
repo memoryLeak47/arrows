@@ -280,7 +280,7 @@ public class Debug
 					if (line.startsWith("warnlen="))
 						WARN_LEN = Integer.parseInt(line.substring(8));
 					if (line.startsWith("errlen="))
-						ERR_LEN = Integer.parseInt(line.substring(6));
+						ERR_LEN = Integer.parseInt(line.substring(7));
 				}
 			} catch (Exception e)
 			{
