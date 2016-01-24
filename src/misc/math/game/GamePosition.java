@@ -1,6 +1,6 @@
 package misc.math.game;
 
-import misc.compress.Compressor;
+import misc.compress.*;
 import misc.math.game.GameVector;
 
 public class GamePosition extends GameVector
@@ -18,6 +18,11 @@ public class GamePosition extends GameVector
 	public GamePosition(GameVector point)
 	{
 		this(point.getX(), point.getY());
+	}
+
+	public GamePosition(CompressBuffer buffer)
+	{
+		super(buffer);
 	}
 
 	@Override public byte getCID() { return Compressor.GAME_POSITION_CID; }

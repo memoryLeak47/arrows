@@ -7,7 +7,7 @@ import entity.MinimizedEntity;
 import graphics.ImageFile;
 import graphics.ImageID;
 import misc.Debug;
-import misc.compress.Compressor;
+import misc.compress.*;
 import misc.math.Camera;
 import misc.math.game.GamePosition;
 import misc.math.game.GameVector;
@@ -44,6 +44,16 @@ public class MinimizedGamePlayer extends MinimizedEntity
 	public String getName() { return name; }
 	public float getHealth() { return health; }
 	public float getMaxHealth() { return maxHealth; }
+
+	@SuppressWarnings("unchecked")
+	public MinimizedGamePlayer(CompressBuffer buffer)
+	{
+		super(buffer);
+		health = buffer.cutFloat();
+		maxHealth = buffer.cutFloat();
+		name = buffer.cutString();
+		team = (Team) buffer.cutByCID(Compressor.TEAM_CID);
+	}
 
 	@Override public byte getCID() { return Compressor.MINIMIZED_GAME_PLAYER_CID; }
 	@Override public byte[] compress()

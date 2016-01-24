@@ -1,7 +1,6 @@
 package effect;
 
-import misc.compress.Compressable;
-import misc.compress.Compressor;
+import misc.compress.*;
 
 public class MinimizedEffect implements Compressable
 {
@@ -18,6 +17,13 @@ public class MinimizedEffect implements Compressable
 	public short[] getProperties() { return properties; }
 
 	// compressing
+
+	public MinimizedEffect(CompressBuffer buffer)
+	{
+		effectID = buffer.cutInt();
+		properties = buffer.cutShortArray();
+	}
+
 	@Override public byte getCID() { return Compressor.MINIMIZED_EFFECT_CID; }
 	@Override public byte[] compress()
 	{

@@ -3,12 +3,15 @@ package misc.compress;
 import java.nio.ByteBuffer;
 import java.util.LinkedList;
 
+import effect.MinimizedEffect;
 import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
+import entity.entities.dynamic.spinnable.MinimizedSpinnableEntity;
 import graphics.ImageID;
 import network.game.packets.*;
 import network.lobby.packets.*;
 import network.lobby.packets.user.*;
 import misc.Debug;
+import misc.math.game.*;
 import player.*;
 import player.property.Team;
 
@@ -26,10 +29,26 @@ public class CompressBuffer
 	{
 		switch (cid)
 		{
+			case Compressor.AVATAR_USER_PACKET_CID:
+				return new AvatarUserPacket(this);
+			case Compressor.CLIENT_GAME_PLAYER_FRAME_UPDATE_CID:
+				return new ClientGamePlayerFrameUpdate(this);
+			case Compressor.DISCONNECT_USER_PACKET_CID:
+				return new DisconnectUserPacket(this);
+			case Compressor.GAME_FRAME_UPDATE_PACKET_CID:
+				return new GameFrameUpdatePacket(this);
+			case Compressor.GAME_POSITION_CID:
+				return new GamePosition(this);
+			case Compressor.GAME_SIZE_CID:
+				return new GameSize(this);
+			case Compressor.GAME_VECTOR_CID:
+				return new GameVector(this);
 			case Compressor.IMAGE_ID_CID:
 				return new ImageID(this);
-			case Compressor.TEAM_CID:
-				return Team.cut(this);
+			case Compressor.ITEM_USER_PACKET_CID:
+				return new ItemUserPacket(this);
+			case Compressor.LOCAL_CLIENT_GAME_PLAYER_FRAME_UPDATE_CID:
+				return new LocalClientGamePlayerFrameUpdate(this);
 			case Compressor.LOBBY_PLAYER_CID:
 				return new LobbyPlayer(this);
 			case Compressor.LOBBY_PLAYERS_PACKET_CID:
@@ -38,30 +57,28 @@ public class CompressBuffer
 				return new LoginUserPacket(this);
 			case Compressor.LOCK_USER_PACKET_CID:
 				return new LockUserPacket(this);
-			case Compressor.AVATAR_USER_PACKET_CID:
-				return new AvatarUserPacket(this);
-			case Compressor.TEAM_USER_PACKET_CID:
-				return new TeamUserPacket(this);
-			case Compressor.SKILL_USER_PACKET_CID:
-				return new SkillUserPacket(this);
-			case Compressor.ITEM_USER_PACKET_CID:
-				return new ItemUserPacket(this);
-			case Compressor.DISCONNECT_USER_PACKET_CID:
-				return new DisconnectUserPacket(this);
-			case Compressor.USER_PACKET_WITH_ID_CID:
-				return new UserPacketWithID(this);
 			case Compressor.MAP_PACKET_CID:
 				return new MapPacket(this);
-			case Compressor.PLAYER_CONTROLS_UPDATE_PACKET_CID:
-				return new PlayerControlsUpdatePacket(this);
-			case Compressor.GAME_FRAME_UPDATE_PACKET_CID:
-				return new GameFrameUpdatePacket(this);
-			case Compressor.CLIENT_GAME_PLAYER_FRAME_UPDATE_CID:
-				return new ClientGamePlayerFrameUpdate(this);
 			case Compressor.MINIMIZED_BULLET_CID:
 				return new MinimizedBullet(this);
-			case Compressor.LOCAL_CLIENT_GAME_PLAYER_FRAME_UPDATE_CID:
-				return new LocalClientGamePlayerFrameUpdate(this);
+			case Compressor.MINIMIZED_EFFECT_CID:
+				return new MinimizedEffect(this);
+			case Compressor.MINIMIZED_GAME_PLAYER_CID:
+				return new MinimizedGamePlayer(this);
+			case Compressor.MINIMIZED_SPINNABLE_ENTITY_CID:
+				return new MinimizedSpinnableEntity(this);
+			case Compressor.PLAYER_CONTROLS_UPDATE_PACKET_CID:
+				return new PlayerControlsUpdatePacket(this);
+			case Compressor.PLAYER_STATS_CID:
+				return new PlayerStats(this);
+			case Compressor.SKILL_USER_PACKET_CID:
+				return new SkillUserPacket(this);
+			case Compressor.TEAM_CID:
+				return Team.cut(this);
+			case Compressor.TEAM_USER_PACKET_CID:
+				return new TeamUserPacket(this);
+			case Compressor.USER_PACKET_WITH_ID_CID:
+				return new UserPacketWithID(this);
 			default:
 				Debug.warn("no Compressable with cid " + cid);
 				return null;
@@ -160,6 +177,18 @@ public class CompressBuffer
 		}
 		return floats;
 	}
+
+	public short[] cutShortArray()
+	{
+		int length = cutInt();
+		short[] shorts = new short[length];
+		for (int i = 0; i < length; i++)
+		{
+			shorts[i] = cutShort();
+		}
+		return shorts;
+	}
+
 
 	public boolean[] cutBooleanArray()
 	{

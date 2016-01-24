@@ -1,7 +1,6 @@
 package misc.math.game;
 
-import misc.compress.Compressable;
-import misc.compress.Compressor;
+import misc.compress.*;
 
 public class GameVector implements Compressable
 {
@@ -34,6 +33,12 @@ public class GameVector implements Compressable
 	{
 		setX(x);
 		setY(y);
+	}
+
+	public GameVector(CompressBuffer buffer)
+	{
+		x = buffer.cutFloat();
+		y = buffer.cutFloat();
 	}
 
 	@Override public byte getCID() { return Compressor.GAME_VECTOR_CID; }

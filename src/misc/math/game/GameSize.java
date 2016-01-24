@@ -1,7 +1,7 @@
 package misc.math.game;
 
 import core.Main;
-import misc.compress.Compressor;
+import misc.compress.*;
 import misc.math.game.GameVector;
 import misc.math.pixel.PixelSize;
 import misc.math.Camera;
@@ -28,6 +28,11 @@ public class GameSize extends GameVector
 	public GameSize(ImageID id)
 	{
 		this(Camera.get().pixelSizeToGameSize(new PixelSize(id)));
+	}
+
+	public GameSize(CompressBuffer buffer)
+	{
+		super(buffer);
 	}
 
 	@Override public byte getCID() { return Compressor.GAME_SIZE_CID; }
