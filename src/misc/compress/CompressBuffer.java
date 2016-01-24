@@ -101,9 +101,12 @@ public class CompressBuffer
 
 	public int cutInt()
 	{
-		byte[] b = getCurrentBytes();
+		byte[] bytes = getCurrentBytes();
 		index += 4;
-		return b[0]*16777216 + b[1]*65536 + b[2]*256 + b[3]; // TODO correct?
+		return (bytes[0] << 24)
+		 + ((bytes[1] & 0xFF) << 16)
+		 + ((bytes[2] & 0xFF) << 8)
+		 + (bytes[3] & 0xFF);
 	}
 
 	public boolean cutBoolean()
