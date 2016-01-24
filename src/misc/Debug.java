@@ -6,9 +6,10 @@ import java.text.DecimalFormat;
 
 public class Debug
 {
-	private static boolean WRITE_TO_SCREEN = false, WRITE_TO_LOGFILE = false;
 	public static final String STANDARD_CONFIGFILE = ".debug";
 	public static final String STANDARD_LOGFILE = "log";
+	public static final int STANDART_WARN_LEN = 2;
+	public static final int STANDART_ERR_LEN = 20;
 
 	public static final String RESET = "\u001B[0m";
 
@@ -36,6 +37,9 @@ public class Debug
 	public static final String TEST_COLOR = FPURPLE;
 	public static final String WARN_COLOR = FRED;
 	public static final String ERROR_COLOR = FRED;
+
+	private static boolean WRITE_TO_SCREEN = false, WRITE_TO_LOGFILE = false;
+	private static int ERR_LEN = STANDART_ERR_LEN, WARN_LEN = STANDART_WARN_LEN;
 
 	public static enum Tags
 	{
@@ -150,7 +154,7 @@ public class Debug
 	{
 		if (b && tag.isActive())
 		{
-			warn(s, new Throwable().getStackTrace()[1]);
+			warn(s, new Throwable().getStackTrace());
 		}
 	}
 
@@ -158,7 +162,7 @@ public class Debug
 	{
 		if (b)
 		{
-			warn(s, new Throwable().getStackTrace()[1]);
+			warn(s, new Throwable().getStackTrace());
 		}
 	}
 
@@ -166,19 +170,22 @@ public class Debug
 	{
 		if (tag.isActive())
 		{
-			warn(string, new Throwable().getStackTrace()[1]);
+			warn(string, new Throwable().getStackTrace());
 		}
 	}
 
 	public static void warn(String string)
 	{
-		warn(string, new Throwable().getStackTrace()[1]);
+		warn(string, new Throwable().getStackTrace());
 	}
 
-	private static void warn(String string, StackTraceElement trace)
+	private static void warn(String string, StackTraceElement[] trace)
 	{
 		colorLog(WARN_COLOR, "WARN: " + string);
-		colorLog(WARN_COLOR, "\t" + trace);
+		for (int i = 1; i < Math.min(trace.length, WARN_LEN); i++)
+		{
+			colorLog(ERROR_COLOR, "\t" + trace[i]);
+		}
 	}
 
 	// error
@@ -198,7 +205,7 @@ public class Debug
 	private static void error(String string, StackTraceElement[] trace)
 	{
 		colorLog(ERROR_COLOR, "ERROR: " + string, true);
-		for (int i = 1; i < trace.length; i++)
+		for (int i = 1; i < Math.min(trace.length, ERR_LEN); i++)
 		{
 			colorLog(ERROR_COLOR, "\t" + trace[i], true);
 		}
@@ -270,6 +277,10 @@ public class Debug
 						WRITE_TO_LOGFILE = true;
 					if (line.equals("screen=on"))
 						WRITE_TO_SCREEN = true;
+					if (line.startsWith("warnlen="))
+						WARN_LEN = Integer.parseInt(line.substring(8));
+					if (line.startsWith("errlen="))
+						ERR_LEN = Integer.parseInt(line.substring(6));
 				}
 			} catch (Exception e)
 			{
