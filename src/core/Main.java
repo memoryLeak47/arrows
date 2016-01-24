@@ -12,6 +12,7 @@ import menu.MenuList;
 import menu.menues.LobbyMenu;
 import misc.Account;
 import misc.Debug;
+import static misc.Converter.*;
 import static misc.Serializer.*;
 import network.NetworkDevice;
 
