@@ -7,8 +7,7 @@ package player;
 import java.util.LinkedList;
 
 import effect.MinimizedEffect;
-import misc.compress.Compressable;
-import misc.compress.Compressor;
+import misc.compress.*;
 import player.PlayerStats;
 
 public class LocalClientGamePlayerFrameUpdate implements Compressable
@@ -31,6 +30,14 @@ public class LocalClientGamePlayerFrameUpdate implements Compressable
 	public LinkedList<MinimizedEffect> getMinimizedEffects() { return effects; }
 	public PlayerStats getPlayerStats() { return playerStats; }
 	public float[] getCharges() { return charges; }
+
+	@SuppressWarnings("unchecked")
+	public LocalClientGamePlayerFrameUpdate(CompressBuffer buffer)
+	{
+		effects = buffer.cutListByCID(Compressor.MINIMIZED_EFFECT_CID);
+		playerStats = (PlayerStats) buffer.cutByCID(Compressor.PLAYER_STATS_CID);
+		charges = buffer.cutFloatArray();
+	}
 
 	@Override public byte getCID() { return Compressor.LOCAL_CLIENT_GAME_PLAYER_FRAME_UPDATE_CID; }
 	@Override public byte[] compress()

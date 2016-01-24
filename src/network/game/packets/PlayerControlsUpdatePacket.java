@@ -12,7 +12,7 @@
 package network.game.packets;
 
 import network.Packet;
-import misc.compress.Compressor;
+import misc.compress.*;
 import misc.math.game.GamePosition;
 
 public class PlayerControlsUpdatePacket extends Packet
@@ -24,6 +24,12 @@ public class PlayerControlsUpdatePacket extends Packet
 	{
 		this.controls = controls;
 		this.mousePosition = mousePosition;
+	}
+
+	public PlayerControlsUpdatePacket(CompressBuffer buffer)
+	{
+		controls = buffer.cutByteArray();
+		mousePosition = (GamePosition) buffer.cutByCID(Compressor.GAME_POSITION_CID);
 	}
 
 	@Override public byte getCID() { return Compressor.PLAYER_CONTROLS_UPDATE_PACKET_CID; }

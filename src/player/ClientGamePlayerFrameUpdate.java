@@ -6,8 +6,7 @@
 package player;
 
 import graphics.ImageID;
-import misc.compress.Compressable;
-import misc.compress.Compressor;
+import misc.compress.*;
 import misc.math.game.GamePosition;
 
 public class ClientGamePlayerFrameUpdate implements Compressable
@@ -25,6 +24,16 @@ public class ClientGamePlayerFrameUpdate implements Compressable
 		this.position = new GamePosition(position);
 		this.imageID = new ImageID(imageID);
 		this.effectIDs = effectIDs;
+	}
+
+	@SuppressWarnings("unchecked")
+	public ClientGamePlayerFrameUpdate(CompressBuffer buffer)
+	{
+		health = buffer.cutFloat();
+		maxHealth = buffer.cutFloat();
+		position = (GamePosition) buffer.cutByCID(Compressor.GAME_POSITION_CID);
+		imageID = (ImageID) buffer.cutByCID(Compressor.IMAGE_ID_CID);
+		effectIDs = buffer.cutBooleanArray();
 	}
 
 	public float getHealth() { return health; }

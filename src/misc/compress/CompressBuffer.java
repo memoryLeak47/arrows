@@ -3,7 +3,9 @@ package misc.compress;
 import java.nio.ByteBuffer;
 import java.util.LinkedList;
 
+import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
 import graphics.ImageID;
+import network.game.packets.*;
 import network.lobby.packets.*;
 import network.lobby.packets.user.*;
 import misc.Debug;
@@ -50,6 +52,16 @@ public class CompressBuffer
 				return new UserPacketWithID(this);
 			case Compressor.MAP_PACKET_CID:
 				return new MapPacket(this);
+			case Compressor.PLAYER_CONTROLS_UPDATE_PACKET_CID:
+				return new PlayerControlsUpdatePacket(this);
+			case Compressor.GAME_FRAME_UPDATE_PACKET_CID:
+				return new GameFrameUpdatePacket(this);
+			case Compressor.CLIENT_GAME_PLAYER_FRAME_UPDATE_CID:
+				return new ClientGamePlayerFrameUpdate(this);
+			case Compressor.MINIMIZED_BULLET_CID:
+				return new MinimizedBullet(this);
+			case Compressor.LOCAL_CLIENT_GAME_PLAYER_FRAME_UPDATE_CID:
+				return new LocalClientGamePlayerFrameUpdate(this);
 			default:
 				Debug.warn("no Compressable with cid " + cid);
 				return null;
@@ -136,6 +148,28 @@ public class CompressBuffer
 			bytes[i] = cutByte();
 		}
 		return bytes;
+	}
+
+	public float[] cutFloatArray()
+	{
+		int length = cutInt();
+		float[] floats = new float[length];
+		for (int i = 0; i < length; i++)
+		{
+			floats[i] = cutFloat();
+		}
+		return floats;
+	}
+
+	public boolean[] cutBooleanArray()
+	{
+		int length = cutInt();
+		boolean[] bools = new boolean[length];
+		for (int i = 0; i < length; i++)
+		{
+			bools[i] = cutBoolean();
+		}
+		return bools;
 	}
 
 	public int[][] cutIntIntArray()

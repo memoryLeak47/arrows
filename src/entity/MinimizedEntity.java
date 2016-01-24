@@ -10,8 +10,7 @@ import effect.MinimizedEffect;
 import graphics.ImageID;
 import graphics.ImageFile;
 import misc.Debug;
-import misc.compress.Compressable;
-import misc.compress.Compressor;
+import misc.compress.*;
 import misc.math.Camera;
 import misc.math.collision.BorderRect;
 import misc.math.game.GamePosition;
@@ -102,6 +101,14 @@ public abstract class MinimizedEntity implements Compressable
 		if (BorderRect.getIntersection(Camera.get().getRect(), new BorderRect(getPosition(), getSize())).isValid())
 			return true;
 		return false;
+	}
+
+	@SuppressWarnings("unchecked")
+	public MinimizedEntity(CompressBuffer buffer)
+	{
+		position = (GamePosition) buffer.cutByCID(Compressor.GAME_POSITION_CID);
+		imageID = (ImageID) buffer.cutByCID(Compressor.IMAGE_ID_CID);
+		effectIDs = buffer.cutBooleanArray();
 	}
 
 	@Override public byte[] compress()
