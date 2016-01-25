@@ -36,7 +36,7 @@ public class PlayerPropertyIcon extends Icon
 		// Falls noch kein 
 		if (getPlayerProperty() == null)
 		{
-			Debug.once("PlayerPropertyIcon.getImageID(): getPlayerProperty() == null -> returning ImageFile.VOID_ICON.getImageID()");
+			Debug.warn("PlayerPropertyIcon.getImageID(): getPlayerProperty() == null -> returning ImageFile.VOID_ICON.getImageID()");
 			return ImageFile.VOID_ICON.getImageID();
 		}
 		return getPlayerProperty().getIconImageID();

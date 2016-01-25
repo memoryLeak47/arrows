@@ -57,7 +57,6 @@ public class Debug
 		public boolean isActive() { return active; }
 	};
 
-	private static LinkedList<String> logs = new LinkedList<String>(); // liste der logs
 	private static long lastTime = 0;
 
 	private Debug() {}
@@ -91,23 +90,6 @@ public class Debug
 	public static void note(String string)
 	{
 		colorLog(NOTE_COLOR, "NOTE: " + string);
-	}
-
-	// once
-	public static void once(String string, Tags tag)
-	{
-		if (tag.isActive())
-		{
-			once(string);
-		}
-	}
-
-	public static void once(String string)
-	{
-		if (!isLogged("ONCE: " + string))
-		{
-			colorLog(ONCE_COLOR, "ONCE: " + string);
-		}
 	}
 
 	// test
@@ -233,11 +215,6 @@ public class Debug
 
 	// kernel-deep
 
-	public static boolean isLogged(String string) // check if the string was a log
-	{
-		return logs.contains(string);
-	}
-
 	private static void log(String string)
 	{
 		log(string, false);
@@ -249,16 +226,10 @@ public class Debug
 		{
 			System.out.println(string); // prints log
 		}
-		addLog(string); // adds it to logs
 		if (WRITE_TO_LOGFILE || force)
 		{
 			writeLog(string);
 		}
-	}
-
-	private static void addLog(String string) // adds log to loglist
-	{
-		logs.add(string);
 	}
 
 	private static void loadConfigFile()
