@@ -35,11 +35,11 @@ public abstract class DynamicEntity extends Entity
 
 	@Override public void tick()
 	{
+		if (!isFloating())
+			accelerate(0, GRAVITY);
 		setVelocity(getVelocity().timesX(1/getDrag().getX()).timesY(1/getDrag().getY()));
 		oldVelocity = new GameVector(velocity);
 		updatePositionByVelocity();
-		if (!isFloating())
-			accelerate(0, GRAVITY);
 		// if (oldVelocity.minus(getVelocity()).getMagnitude() > DAMAGE_BORDER) { onDamage(...); }
 		super.tick();
 	}
