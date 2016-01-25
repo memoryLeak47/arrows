@@ -35,6 +35,6 @@ public class PlayerControlsUpdatePacket extends Packet
 	@Override public byte getCID() { return Compressor.PLAYER_CONTROLS_UPDATE_PACKET_CID; }
 	@Override public byte[] compress()
 	{
-		return Compressor.concat(new byte[][]{controls, mousePosition.compress()});
+		return Compressor.concat(new byte[][]{Compressor.compressByteArray(controls), mousePosition.compress()});
 	}
 }
