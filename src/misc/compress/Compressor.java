@@ -1,6 +1,7 @@
 package misc.compress;
 
 import java.util.LinkedList;
+import java.nio.ByteBuffer;
 
 import misc.Debug;
 import player.property.Team;
@@ -91,14 +92,7 @@ public class Compressor
 
 	public static byte[] compressFloat(float f)
 	{
-		int bits = Float.floatToIntBits(f);
-		byte[] bytes = new byte[4];
-		bytes[0] = (byte) (bits & 0xff);
-		bytes[1] = (byte) ((bits >> 8) & 0xff);
-		bytes[2] = (byte) ((bits >> 16) & 0xff);
-		bytes[3] = (byte) ((bits >> 24) & 0xff);
-
-		return bytes;
+		return ByteBuffer.allocate(4).putFloat(f).array();
 	}
 
 	public static byte[] compressInt(int value)
