@@ -38,6 +38,7 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 			new BigArrowShotSkill(Avatar.ARCHER_ID),
 			new MultiArrowShotSkill(Avatar.ARCHER_ID),
 			new FireArrowShotSkill(Avatar.ARCHER_ID),
+			new FrontArrowShotSkill(Avatar.ARCHER_ID),
 
 			new SmokeCloudSkill(Avatar.ROGUE_ID),
 			new ShadowJumpSkill(Avatar.ROGUE_ID),
