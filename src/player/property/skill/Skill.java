@@ -175,9 +175,7 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 
 	public GameVector getVelocityToMouse()
 	{
-		GameVector vel = getOwner().getMousePosition().minus(getOwner().getPosition());
-		vel.divide(vel.getMagnitude());
-		return vel;
+		return getOwner().getMousePosition().minus(getOwner().getPosition()).normalize();
 	}
 
 	public byte getAvatarID() { return avatarID; }

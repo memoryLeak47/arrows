@@ -90,7 +90,7 @@ public class GameVector implements Compressable
 
 	public float getMagnitude()
 	{
-		return (float)Math.hypot(getX(), getY());
+		return (float) Math.hypot(getX(), getY());
 	}
 
 	public GameVector withMagnitude(float mag)
