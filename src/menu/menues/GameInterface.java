@@ -69,19 +69,38 @@ public abstract class GameInterface extends NetworkingMenu
 
 	@Override public void render()
 	{
+		renderMap();
+		renderEntities();
+		renderSkills();
+	}
+
+	private final void renderMap()
+	{
 		PixelPosition tmp = Camera.get().gamePositionToPixelPosition(new GamePosition());
 		PixelSize imageSize = new PixelSize(getUncastedGame().getMapImage().getWidth(), getUncastedGame().getMapImage().getHeight());
 		int x = -tmp.getX();
 		int y = -tmp.getY();
 		int w = imageSize.getX() - Math.max(0, x) - Math.max(0, imageSize.getX() - (x+Screen.WIDTH));
 		int h = imageSize.getY() - Math.max(0, y) - Math.max(0, imageSize.getY() - (y+Screen.HEIGHT));
-		BufferedImage subImage = getUncastedGame().getMapImage().getSubimage(Math.max(0, x), Math.max(0, y), w, h);
-		Screen.g().drawImage(subImage, Math.max(0, -x), Math.max(0, -y), w, h, null);
+		int realX = Math.max(0, -x);
+		int realY = Math.max(0, -y);
+		if (w <= 0 || h <= 0 || realX < 0 || realY < 0 || realX+w > imageSize.getX() || realY+h > imageSize.getY())
+		{
+			Debug.warn("GameInterface.renderMap(): outside of raster x: " + realX + ", y: " + realY + ", w: " + w + ", h: " + h);
+		}
+		else
+		{
+			BufferedImage subImage = getUncastedGame().getMapImage().getSubimage(Math.max(0, x), Math.max(0, y), w, h);
+			Screen.g().drawImage(subImage, Math.max(0, -x), Math.max(0, -y), w, h, null);
+		}
+	}
+
+	private final void renderEntities()
+	{
 		for (MinimizedEntity entity : getUncastedGame().getMinimizedEntities())
 		{
 			entity.render();
 		}
-		renderSkills();
 	}
 
 	private final void renderSkills()
