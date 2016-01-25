@@ -212,7 +212,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 		Damage damage = getDamageStat();
 		for (int i = 0; i < getItems().length; i++)
 		{
-			damage.add(getItems()[i].getDamageStat());
+			damage = damage.plus(getItems()[i].getDamageStat());
 		}
 		return damage;
 	}

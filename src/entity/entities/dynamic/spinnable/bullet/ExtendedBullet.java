@@ -34,7 +34,9 @@ public abstract class ExtendedBullet extends SpinnableEntity
 		return new MinimizedBullet(getPosition(), getImageID(), getRotation(), Effect.toEffectIDs(getEffects()));
 	}
 
-	protected Damage getDamage() { return new Damage(0,0,0); }
+	protected Damage getDamageStat() { return new Damage(0,0,0); }
+
+	public final Damage getDamage() { return getDamageStat().times(getOwner().getDamage()); }
 
 	protected final boolean shouldDamageEntity(Entity e)
 	{

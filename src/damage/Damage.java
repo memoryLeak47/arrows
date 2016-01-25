@@ -13,11 +13,18 @@ public class Damage
 		this.magic = magic;
 	}
 
-	public void add(Damage damage)
+	public Damage times(Damage damage)
 	{
-		hit += damage.getHit();
-		cut += damage.getCut();
-		magic += damage.getMagic();
+		return new Damage(getHit() * damage.getHit(),
+				  getCut() * damage.getCut(),
+				  getMagic() * damage.getMagic());
+	}
+
+	public Damage plus(Damage damage)
+	{
+		return new Damage(getHit() + damage.getHit(),
+				  getCut() + damage.getCut(),
+				  getMagic() + damage.getMagic());
 	}
 
 	public float getHit() { return hit; }

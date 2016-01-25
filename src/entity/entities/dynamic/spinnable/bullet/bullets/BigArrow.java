@@ -22,5 +22,5 @@ public class BigArrow extends StickyBullet
 		updateRotationByVelocity();
 	}
 
-	@Override protected Damage getDamage() { return new Damage(10,7,0); }
+	@Override protected Damage getDamageStat() { return new Damage(10,7,0); }
 }
