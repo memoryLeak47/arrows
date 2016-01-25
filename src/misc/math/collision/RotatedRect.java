@@ -28,7 +28,7 @@ public class RotatedRect
 	public boolean contains(GameVector vec)
 	{
 		GameVector rotvec = GameVector.getFromTo(this.x, this.y, vec.getX(), vec.getY());
-		rotvec.rotate(-this.rotation);
+		rotvec = rotvec.rotate(-this.rotation);
 		return (Math.abs(rotvec.getX()) < this.w/2) && (Math.abs(rotvec.getY()) < this.h/2);
 	}
 }

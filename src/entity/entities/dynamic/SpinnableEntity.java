@@ -48,7 +48,7 @@ public abstract class SpinnableEntity extends DynamicEntity
 		GameVector vec = new GameVector(getSize().getMagnitude()/2.f, 0);
 
 		// Vektor von Mittepunkt in eine Ecke
-		vec.rotate(getRotation());
+		vec = vec.rotate(getRotation());
 
 		// Mittelpunkts y-Position - Betrag von Vektors y-Position --> höchste Stelle
 		return (-Math.abs(vec.getY())) + getPosition().getY();
@@ -57,21 +57,21 @@ public abstract class SpinnableEntity extends DynamicEntity
 	@Override public float getBot()
 	{
 		GameVector vec = new GameVector(getSize().getMagnitude()/2.f, 0);
-		vec.rotate(getRotation());
+		vec = vec.rotate(getRotation());
 		return Math.abs(vec.getY()) + getPosition().getY();
 	}
 
 	@Override public float getRight()
 	{
 		GameVector vec = new GameVector(getSize().getMagnitude()/2.f, 0);
-		vec.rotate(getRotation());
+		vec = vec.rotate(getRotation());
 		return Math.abs(vec.getX()) + getPosition().getX();
 	}
 
 	@Override public float getLeft()
 	{
 		GameVector vec = new GameVector(getSize().getMagnitude()/2.f, 0);
-		vec.rotate(getRotation());
+		vec = vec.rotate(getRotation());
 		return (-Math.abs(vec.getX())) + getPosition().getX();
 	}
 
