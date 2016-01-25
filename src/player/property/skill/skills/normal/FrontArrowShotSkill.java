@@ -23,13 +23,12 @@ public class FrontArrowShotSkill extends NormalSkill
 	@Override protected void trigger()
 	{
 		GameVector speed;
-		if (getOwner().getVelocity().getMagnitude() == 0)
+		if (getOwner().getVelocity().getX() < 0)
 		{
-			speed = new GameVector(0.5f, 0);
+			speed = new GameVector(-0.5f, 0);
 		} else
 		{
-			speed = new GameVector(getOwner().getVelocity());
-			speed = speed.times(2.f);
+			speed = new GameVector(0.5f, 0);
 		}
 		addBullet(new Arrow(getOwner(), getOwner().getPosition(), speed));
 	}
