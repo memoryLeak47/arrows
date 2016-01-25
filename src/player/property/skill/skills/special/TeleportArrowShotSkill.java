@@ -16,7 +16,7 @@ public class TeleportArrowShotSkill extends SpecialSkill
 	}
 
 	@Override public ImageID getIconImageID() { return ImageFile.TELEPORTARROWSHOT_ICON.getImageID(); }
-	@Override public float getRecharge() { return 1.f; }
+	@Override public float getRecharge() { return 0.3f; }
 	@Override public String getDescription() { return "shoots a teleport-arrow"; }
 
 	@Override public void onActivate()
@@ -37,6 +37,12 @@ public class TeleportArrowShotSkill extends SpecialSkill
 		}
 		else
 		{
+			if (arrow.hasToBeRemoved())
+			{
+				arrow = null;
+				trigger();
+				return;
+			}
 			if (getOwner().isFlashPossible(arrow.getPosition()))
 			{
 				getOwner().flash(arrow.getPosition());

@@ -19,7 +19,7 @@ public class DownArrowShotSkill extends NormalSkill
 	@Override public ImageID getIconImageID() { return ImageFile.DOWNARROWSHOT_ICON.getImageID(); }
 	@Override public String getDescription() { return "shoots an arrow in movement direction"; }
 
-	@Override public float getRecharge() { return 0.3f; }
+	@Override public float getRecharge() { return 1.f; }
 
 	@Override protected void trigger()
 	{
