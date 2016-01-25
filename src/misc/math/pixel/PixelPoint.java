@@ -26,13 +26,13 @@ public class PixelPoint
 		return (getX() == point.getX() && getY() == point.getY());
 	}
 
-	public void add(PixelPoint point)
+	protected void add(PixelPoint point)
 	{
 		setX(getX() + point.getX());
 		setY(getY() + point.getY());
 	}
 
-	public void subtract(PixelPoint point)
+	protected void subtract(PixelPoint point)
 	{
 		setX(getX() - point.getX());
 		setY(getY() - point.getY());
@@ -52,6 +52,6 @@ public class PixelPoint
 	public int getY() { return y; }
 	public String toString() { return "(" + getX() + "|" + getY() + ")"; }
 
-	public void setX(int x) { this.x = x; }
-	public void setY(int y) { this.y = y; }
+	protected void setX(int x) { this.x = x; }
+	protected void setY(int y) { this.y = y; }
 }

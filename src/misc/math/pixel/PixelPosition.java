@@ -24,13 +24,13 @@ public class PixelPosition extends PixelPoint // used in MouseMoveEvent
 		return (getX() == position.getX() && getY() == position.getY());
 	}
 
-	public void add(PixelPosition position)
+	protected void add(PixelPosition position)
 	{
 		setX(getX() + position.getX());
 		setY(getY() + position.getY());
 	}
 
-	public void subtract(PixelPosition position)
+	protected void subtract(PixelPosition position)
 	{
 		setX(getX() - position.getX());
 		setY(getY() - position.getY());
