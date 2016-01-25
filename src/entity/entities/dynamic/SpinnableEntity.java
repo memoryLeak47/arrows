@@ -44,35 +44,22 @@ public abstract class SpinnableEntity extends DynamicEntity
 
 	@Override public float getTop()
 	{
-		// Vektor nach rechts, mit halbem Durchmesser als Länge
-		GameVector vec = new GameVector(getSize().getMagnitude()/2.f, 0);
-
-		// Vektor von Mittepunkt in eine Ecke
-		vec = vec.rotate(getRotation());
-
-		// Mittelpunkts y-Position - Betrag von Vektors y-Position --> höchste Stelle
-		return (-Math.abs(vec.getY())) + getPosition().getY();
+		return getPosition().getY() - getSize().getMagnitude()/2.f; // too high
 	}
 
 	@Override public float getBot()
 	{
-		GameVector vec = new GameVector(getSize().getMagnitude()/2.f, 0);
-		vec = vec.rotate(getRotation());
-		return Math.abs(vec.getY()) + getPosition().getY();
+		return getPosition().getY() + getSize().getMagnitude()/2.f; // too low
 	}
 
 	@Override public float getRight()
 	{
-		GameVector vec = new GameVector(getSize().getMagnitude()/2.f, 0);
-		vec = vec.rotate(getRotation());
-		return Math.abs(vec.getX()) + getPosition().getX();
+		return getPosition().getX() + getSize().getMagnitude()/2.f; // too right
 	}
 
 	@Override public float getLeft()
 	{
-		GameVector vec = new GameVector(getSize().getMagnitude()/2.f, 0);
-		vec = vec.rotate(getRotation());
-		return (-Math.abs(vec.getX())) + getPosition().getX();
+		return getPosition().getX() - getSize().getMagnitude()/2.f; // too left
 	}
 
 	@Override public MinimizedEntity toMinimizedEntity()
