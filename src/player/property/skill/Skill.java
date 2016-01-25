@@ -14,6 +14,7 @@ import player.ServerGamePlayer;
 import player.property.PlayerProperty;
 import player.property.avatar.Avatar;
 import player.property.skill.skills.normal.*;
+import player.property.skill.skills.special.*;
 //import playerproperty.skill.skills.hold.*;
 //import playerproperty.skill.skills.toggle.*;
 
@@ -40,6 +41,7 @@ public abstract class Skill extends PlayerProperty implements Cloneable
 			new FireArrowShotSkill(Avatar.ARCHER_ID),
 			new FrontArrowShotSkill(Avatar.ARCHER_ID),
 			new DownArrowShotSkill(Avatar.ARCHER_ID),
+			new TeleportArrowShotSkill(Avatar.ARCHER_ID),
 
 			new SmokeCloudSkill(Avatar.ROGUE_ID),
 			new ShadowJumpSkill(Avatar.ROGUE_ID),

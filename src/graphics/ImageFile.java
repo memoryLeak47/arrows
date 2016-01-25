@@ -33,6 +33,7 @@ public enum ImageFile
 	FIREARROWSHOT_ICON("icons/skills/firearrowshot.png"),
 	FRONTARROWSHOT_ICON("icons/skills/frontarrowshot.png"),
 	DOWNARROWSHOT_ICON("icons/skills/downarrowshot.png"),
+	TELEPORTARROWSHOT_ICON("icons/skills/teleportarrowshot.png"),
 
 	SMOKECLOUD_ICON("icons/skills/smokecloud.png"),
 	SHADOWJUMP_ICON("icons/skills/shadowjump.png"),
@@ -58,6 +59,7 @@ public enum ImageFile
 	ARROW("entities/bullets/arrow.png"),
 	STUNNINGARROW("entities/bullets/stunningarrow.png"),
 	BIGARROW("entities/bullets/bigarrow.png"),
+	TELEPORTARROW("entities/bullets/teleportarrow.png"),
 	SMOKECLOUD("entities/bullets/smokecloud.png"),
 	DAGGER("entities/bullets/dagger.png"),
 
