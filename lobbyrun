@@ -20,7 +20,7 @@ itemID1=0
 itemID2=0
 itemID3=0
 
-icondiff=50
+icondiff=45
 
 while [ -n "$1" ]
 do
