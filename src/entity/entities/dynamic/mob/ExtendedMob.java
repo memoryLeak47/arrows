@@ -82,15 +82,15 @@ public abstract class ExtendedMob extends DynamicEntity
 				if (tx < ty)
 				{
 					// righttouch
-					getPosition().addX(t.getLeft() - getRight());
-					getVelocity().setX(0);
+					moveX(t.getLeft() - getRight());
+					stopX();
 					touchesRight = true;
 				}
 				else
 				{
 					// bottouch
-					getPosition().addY(t.getTop() - getBot());
-					getVelocity().setY(0);
+					moveY(t.getTop() - getBot());
+					stopY();
 					touchesBot = true;
 				}
 			}
@@ -99,23 +99,23 @@ public abstract class ExtendedMob extends DynamicEntity
 				if (tx < ty)
 				{
 					// lefttouch
-					getPosition().addX(t.getRight() - getLeft());
-					getVelocity().setX(0);
+					moveX(t.getRight() - getLeft());
+					stopX();
 					touchesLeft = true;
 				}
 				else
 				{
 					// bottouch
-					getPosition().addY(t.getTop() - getBot());
-					getVelocity().setY(0);
+					moveY(t.getTop() - getBot());
+					stopY();
 					touchesBot = true;
 				}
 			}
 			else
 			{
 				// bottouch
-				getPosition().addY(t.getTop() - getBot());
-				getVelocity().setY(0);
+				moveY(t.getTop() - getBot());
+				stopY();
 				touchesBot = true;
 			}
 		}
@@ -126,15 +126,15 @@ public abstract class ExtendedMob extends DynamicEntity
 				if (tx < ty)
 				{
 					// righttouch
-					getPosition().addX(t.getLeft() - getRight());
-					getVelocity().setX(0);
+					moveX(t.getLeft() - getRight());
+					stopX();
 					touchesRight = true;
 				}
 				else
 				{
 					// toptouch
-					getPosition().addY(t.getBot() - getTop());
-					getVelocity().setY(0);
+					moveY(t.getBot() - getTop());
+					stopY();
 					touchesTop = true;
 				}
 			}
@@ -143,38 +143,38 @@ public abstract class ExtendedMob extends DynamicEntity
 				if (tx < ty)
 				{
 					// lefttouch
-					getPosition().addX(t.getRight() - getLeft());
-					getVelocity().setX(0);
+					moveX(t.getRight() - getLeft());
+					stopX();
 					touchesLeft = true;
 				}
 				else
 				{
 					// toptouch
-					getPosition().addY(t.getBot() - getTop());
-					getVelocity().setY(0);
+					moveY(t.getBot() - getTop());
+					stopY();
 					touchesTop = true;
 				}
 			}
 			else
 			{
 				// toptouch
-				getPosition().addY(t.getBot() - getTop());
-				getVelocity().setY(0);
+				moveY(t.getBot() - getTop());
+				stopY();
 				touchesTop = true;
 			}
 		}
 		else if (righttouch)
 		{
 			// righttouch
-			getPosition().addX(t.getLeft() - getRight());
-			getVelocity().setX(0);
+			moveX(t.getLeft() - getRight());
+			stopX();
 			touchesRight = true;
 		}
 		else if (lefttouch)
 		{
 			// lefttouch
-			getPosition().addX(t.getRight() - getLeft());
-			getVelocity().setX(0);
+			moveX(t.getRight() - getLeft());
+			stopX();
 			touchesLeft = true;
 		}
 	}

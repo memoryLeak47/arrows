@@ -36,4 +36,44 @@ public class GameSize extends GameVector
 	}
 
 	@Override public byte getCID() { return Compressor.GAME_SIZE_CID; }
+
+	public GameSize timesX(float s)
+	{
+		return new GameSize(super.timesX(s));
+	}
+
+	public GameSize timesY(float s)
+	{
+		return new GameSize(super.timesY(s));
+	}
+
+	public GameSize plus(GameVector size)
+	{
+		return new GameSize(super.plus(size));
+	}
+
+	public GameSize plusX(float f)
+	{
+		return new GameSize(super.plusX(f));
+	}
+
+	public GameSize plusY(float f)
+	{
+		return new GameSize(super.plusY(f));
+	}
+
+	public GameSize minus(GameVector size)
+	{
+		return new GameSize(super.minus(size));
+	}
+
+	public GameSize times(float s)
+	{
+		return new GameSize(super.times(s));
+	}
+
+	public GameSize divide(float s)
+	{
+		return new GameSize(super.divide(s));
+	}
 }

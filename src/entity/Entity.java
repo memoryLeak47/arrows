@@ -197,6 +197,21 @@ public abstract class Entity
 		return possibleColliders;
 	}
 
+	protected final void move(GameVector v)
+	{
+		setPosition(getPosition().plus(v));
+	}
+
+	protected final void moveX(float f)
+	{
+		setPosition(getPosition().plusX(f));
+	}
+
+	protected final void moveY(float f)
+	{
+		setPosition(getPosition().plusY(f));
+	}
+
 	protected boolean hasEffectWithID(int id)
 	{
 		for (Effect e : getEffects())

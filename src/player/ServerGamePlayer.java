@@ -283,7 +283,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	private void gotoSpawnPosition()
 	{
-		getPosition().set(getSpawnPosition());
+		setPosition(getSpawnPosition());
 	}
 
 	@Override protected void updatePositionByVelocity()

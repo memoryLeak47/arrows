@@ -29,7 +29,7 @@ public class FrontArrowShotSkill extends NormalSkill
 		} else
 		{
 			speed = new GameVector(getOwner().getVelocity());
-			speed.scale(2.f);
+			speed = speed.times(2.f);
 		}
 		addBullet(new Arrow(getOwner(), getOwner().getPosition(), speed));
 	}

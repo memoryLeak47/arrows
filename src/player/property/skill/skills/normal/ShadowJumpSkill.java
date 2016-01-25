@@ -24,7 +24,7 @@ public class ShadowJumpSkill extends NormalSkill
 		GameVector vec = getOwner().getMousePosition().minus(getOwner().getPosition());
 		if (vec.getMagnitude() > 5)
 		{
-			vec.setMagnitude(5);
+			vec = vec.withMagnitude(5);
 		}
 		GamePosition pos = new GamePosition(vec.plus(getOwner().getPosition()));
 		if (getOwner().isFlashPossible(pos))

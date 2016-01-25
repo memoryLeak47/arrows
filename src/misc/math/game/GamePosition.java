@@ -27,32 +27,43 @@ public class GamePosition extends GameVector
 
 	@Override public byte getCID() { return Compressor.GAME_POSITION_CID; }
 
-	public boolean equals(GamePosition position)
+	public GamePosition timesX(float s)
 	{
-		return (getX() == position.getX() && getY() == position.getY());
+		return new GamePosition(super.timesX(s));
 	}
 
-	public GamePosition add(GamePosition position)
+	public GamePosition timesY(float s)
 	{
-		setX(getX() + position.getX());
-		setY(getY() + position.getY());
-		return this;
+		return new GamePosition(super.timesY(s));
 	}
 
-	public GamePosition subtract(GamePosition position)
+	public GamePosition plus(GameVector position)
 	{
-		setX(getX() - position.getX());
-		setY(getY() - position.getY());
-		return this;
+		return new GamePosition(super.plus(position));
 	}
 
-	public GamePosition plus(GamePosition position)
+	public GamePosition plusX(float f)
 	{
-		return new GamePosition(getX() + position.getX(), getY() + position.getY());
+		return new GamePosition(super.plusX(f));
 	}
 
-	public GamePosition minus(GamePosition position)
+	public GamePosition plusY(float f)
 	{
-		return new GamePosition(getX() - position.getX(), getY() - position.getY());
+		return new GamePosition(super.plusY(f));
+	}
+
+	public GamePosition minus(GameVector position)
+	{
+		return new GamePosition(super.minus(position));
+	}
+
+	public GamePosition times(float s)
+	{
+		return new GamePosition(super.times(s));
+	}
+
+	public GamePosition divide(float s)
+	{
+		return new GamePosition(super.divide(s));
 	}
 }

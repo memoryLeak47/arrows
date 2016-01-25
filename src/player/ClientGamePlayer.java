@@ -66,7 +66,7 @@ public class ClientGamePlayer extends MinimizedEntity implements GamePlayer
 		super.render();
 		Screen.g().setColor(team.getColor());
 		GamePosition gamePos = new GamePosition(getPosition());
-		gamePos.addY(getSize().getY()/-2);
+		gamePos = gamePos.plusY(getSize().getY()/-2);
 		PixelPosition pos = Camera.get().gamePositionToPixelPosition(gamePos);
 		int length = (int) ((health / maxHealth)*50.f);
 		Screen.g().fillRect((int) (pos.getX()-(float)length/2), pos.getY() - 20, length, 5);

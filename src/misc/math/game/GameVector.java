@@ -19,20 +19,8 @@ public class GameVector implements Compressable
 
 	public GameVector(GameVector point)
 	{
-		setX(point.getX());
-		setY(point.getY());
-	}
-
-	public void set(GameVector point)
-	{
-		setX(point.getX());
-		setY(point.getY());
-	}
-
-	public void set(float x, float y)
-	{
-		setX(x);
-		setY(y);
+		x = point.getX();
+		y = point.getY();
 	}
 
 	public GameVector(CompressBuffer buffer)
@@ -55,11 +43,14 @@ public class GameVector implements Compressable
 		return bytes;
 	}
 
-	public void setMagnitude(float m)
+	public GameVector timesX(float s)
 	{
-		float mag = getMagnitude();
-		setX(getX()/mag*m);
-		setY(getY()/mag*m);
+		return new GameVector(getX()*s, getY());
+	}
+
+	public GameVector timesY(float s)
+	{
+		return new GameVector(getX(), getY()*s);
 	}
 
 	public boolean equals(GameVector point)
@@ -67,21 +58,19 @@ public class GameVector implements Compressable
 		return (getX() == point.getX() && getY() == point.getY());
 	}
 
-	public void add(GameVector point)
-	{
-		setX(getX() + point.getX());
-		setY(getY() + point.getY());
-	}
-
-	public void subtract(GameVector point)
-	{
-		setX(getX() - point.getX());
-		setY(getY() - point.getY());
-	}
-
 	public GameVector plus(GameVector point)
 	{
 		return new GameVector(getX() + point.getX(), getY() + point.getY());
+	}
+
+	public GameVector plusX(float f)
+	{
+		return new GameVector(getX() + f, getY());
+	}
+
+	public GameVector plusY(float f)
+	{
+		return new GameVector(getX(), getY() + f);
 	}
 
 	public GameVector minus(GameVector point)
@@ -94,35 +83,9 @@ public class GameVector implements Compressable
 		return new GameVector(s*getX(), s*getY());
 	}
 
-	public void addX(float a)
+	public GameVector divide(float s)
 	{
-		setX(getX() + a);
-	}
-
-	public void addY(float a)
-	{
-		setY(getY() + a);
-	}
-
-	public void scale(float s)
-	{
-		setX(getX() * s);
-		setY(getY() * s);
-	}
-
-	public void scaleX(float s)
-	{
-		setX(getX() * s);
-	}
-
-	public void scaleY(float s)
-	{
-		setY(getY() * s);
-	}
-
-	public void divide(float s)
-	{
-		scale(1.f/s);
+		return new GameVector(getX()/s, getY()/s);
 	}
 
 	public float getMagnitude()
@@ -130,11 +93,22 @@ public class GameVector implements Compressable
 		return (float)Math.hypot(getX(), getY());
 	}
 
-	public void rotate(float r)
+	public GameVector withMagnitude(float mag)
 	{
-		float x = getX();
-		setX((float) (getX()*Math.cos(r) - getY()*Math.sin(r)));
-		setY((float) (x*Math.sin(r) + getY()*Math.cos(r)));
+		return normalize().times(mag);
+	}
+
+	public GameVector normalize()
+	{
+		float mag = getMagnitude();
+		return new GameVector(getX() / mag, getY() / mag);
+	}
+
+	public GameVector rotate(float r)
+	{
+		return new GameVector(
+			(float) (getX()*Math.cos(r) - getY()*Math.sin(r)),
+			(float) (getX()*Math.sin(r) + getY()*Math.cos(r)));
 	}
 
 	public static GameVector getFromTo(GameVector vec1, GameVector vec2)
@@ -150,7 +124,4 @@ public class GameVector implements Compressable
 	public float getX() { return x; }
 	public float getY() { return y; }
 	public String toString() { return "(" + getX() + "|" + getY() + ")"; }
-
-	public void setX(float x) { this.x = x; }
-	public void setY(float y) { this.y = y; }
 }

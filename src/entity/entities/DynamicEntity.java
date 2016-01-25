@@ -35,8 +35,7 @@ public abstract class DynamicEntity extends Entity
 
 	@Override public void tick()
 	{
-		getVelocity().scaleX(1/getDrag().getX());
-		getVelocity().scaleY(1/getDrag().getY());
+		setVelocity(getVelocity().timesX(1/getDrag().getX()).timesY(1/getDrag().getY()));
 		oldVelocity = new GameVector(velocity);
 		updatePositionByVelocity();
 		if (!isFloating())
@@ -47,12 +46,12 @@ public abstract class DynamicEntity extends Entity
 
 	protected void updatePositionByVelocity()
 	{
-		getPosition().add(getVelocity());
+		setPosition(getPosition().plus(getVelocity()));
 	}
 
 	public void accelerate(GameVector p)
 	{
-		getVelocity().add(p);
+		setVelocity(getVelocity().plus(p));
 	}
 
 	public void accelerate(float x, float y)
@@ -81,6 +80,26 @@ public abstract class DynamicEntity extends Entity
 	public boolean isFlashPossible(GamePosition pos)
 	{
 		return !isCollidingTiles() || GameTileMap.get().couldGoHere(this, pos);
+	}
+
+	protected void stopX()
+	{
+		setVelocity(0, getVelocity().getY());
+	}
+
+	protected void setPosition(float x, float y)
+	{
+		setPosition(new GamePosition(x, y));
+	}
+
+	protected void setVelocity(float x, float y)
+	{
+		setVelocity(new GameVector(x, y));
+	}
+
+	protected void stopY()
+	{
+		setVelocity(getVelocity().getX(), 0);
 	}
 
 	protected void setVelocity(GameVector velocity)

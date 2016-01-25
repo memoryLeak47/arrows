@@ -46,17 +46,14 @@ public class Camera
 	{
 		Debug.warnIf(position == null, "Camera.gamePositionToPixelPosition(): position == null");
 
-		GamePosition tmp = new GamePosition(position);
-		tmp.subtract(getOffset());
-		tmp.scale(TILESIZE);
+		GameVector tmp = new GameVector(position).minus(getOffset()).times(TILESIZE);
 		return new PixelPosition((int) tmp.getX(), (int) tmp.getY());
 	}
 
 	public PixelSize gameSizeToPixelSize(GameSize size)
 	{
 		Debug.warnIf(size == null, "Camera.gameSizeToPixelSize(): size == null");
-		GameSize tmp = new GameSize(size);
-		tmp.scale(TILESIZE);
+		GameSize tmp = new GameSize(size).times(TILESIZE);
 		return new PixelSize((int) tmp.getX(), (int) tmp.getY());
 	}
 
@@ -64,16 +61,13 @@ public class Camera
 	{
 		Debug.warnIf(position == null, "Camera.pixelPositionToGamePosition(): position == null");
 
-		GamePosition tmp = new GamePosition(position.getX(), position.getY());
-		tmp.divide(TILESIZE);
-		tmp.add(getOffset());
+		GamePosition tmp = new GamePosition(position.getX(), position.getY()).divide(TILESIZE).plus(getOffset());
 		return tmp;
 	}
 
 	public GameSize pixelSizeToGameSize(PixelSize size)
 	{
 		Debug.warnIf(size == null, "Camera.pixelSizeToGameSize(): size == null");
-
 		return new GameSize(((float) size.getX())/TILESIZE, ((float) size.getY())/TILESIZE);
 	}
 
