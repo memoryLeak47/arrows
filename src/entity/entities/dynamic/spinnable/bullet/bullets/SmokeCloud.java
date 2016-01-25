@@ -28,6 +28,6 @@ public class SmokeCloud extends ExtendedBullet
 
 	@Override protected Damage getDamageStat() { return new Damage(0,0,3); }
 
-	@Override public boolean hasToBeRemoved() { return !alive; }
+	@Override public boolean isDead() { return !alive; }
 	
 }

@@ -18,6 +18,7 @@ import misc.Debug;
 import misc.math.collision.CollisionDetector;
 import misc.math.game.GameVector;
 import misc.math.game.GamePosition;
+import misc.math.game.GameRect;
 import misc.math.game.GameSize;
 import misc.math.pixel.PixelSize;
 import misc.math.Camera;
@@ -102,7 +103,8 @@ public abstract class Entity
 	public float getRight() { return getPosition().getX() + getSize().getX() * 0.5f; }
 	public float getTop() { return getPosition().getY() - getSize().getY() * 0.5f; }
 	public float getBot() { return getPosition().getY() + getSize().getY() * 0.5f; }
-	public boolean hasToBeRemoved() { return false; }
+	public final boolean hasToBeRemoved() { return isOutOfMap() || isDead(); }
+	protected boolean isDead() { return false; }
 
 	public abstract MinimizedEntity toMinimizedEntity();
 
@@ -197,6 +199,11 @@ public abstract class Entity
 		return possibleColliders;
 	}
 
+	private boolean isOutOfMap()
+	{
+		return !GameTileMap.get().isInMap(getWrapper());
+	}
+
 	protected final void move(GameVector v)
 	{
 		setPosition(getPosition().plus(v));
@@ -218,6 +225,11 @@ public abstract class Entity
 			if (e.getID() == id)
 				return true;
 		return false;
+	}
+
+	public GameRect getWrapper()
+	{
+		return new GameRect(getPosition(), getSize());
 	}
 
 	public boolean isDynamic() { return false; }

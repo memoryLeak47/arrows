@@ -15,6 +15,7 @@ import graphics.ImageFile;
 import misc.Debug;
 import player.property.Team;
 import misc.math.game.GamePosition;
+import misc.math.game.GameRect;
 import misc.math.pixel.PixelPosition;
 
 public class GameTileMap
@@ -141,6 +142,12 @@ public class GameTileMap
 	public boolean isInMap(GamePosition position)
 	{
 		return (position.getX() >= 0) && (position.getY() >= 0) && (position.getX() < tiles.length+1) && (position.getY() < tiles[0].length+1);
+	}
+
+	public boolean isInMap(GameRect rect)
+	{
+		return isInMap(rect.getPosition().minus(rect.getSize().divide(2.f)))
+		    && isInMap(rect.getPosition().plus(rect.getSize().divide(2.f)));
 	}
 
 	public boolean couldGoHere(Entity e, GamePosition pos)

@@ -67,7 +67,7 @@ public abstract class SpinnableEntity extends DynamicEntity
 		return new MinimizedSpinnableEntity(getPosition(), getImageID(), getRotation(), Effect.toEffectIDs(getEffects()));
 	}
 
-	public GameRect getWrapper()
+	@Override public GameRect getWrapper()
 	{
 		return new GameRect(
 			getPosition(),

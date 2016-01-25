@@ -28,5 +28,5 @@ public class TeleportArrow extends ExtendedBullet
 		alive = false;
 	}
 
-	@Override public boolean hasToBeRemoved() { return !alive; }
+	@Override public boolean isDead() { return !alive; }
 }

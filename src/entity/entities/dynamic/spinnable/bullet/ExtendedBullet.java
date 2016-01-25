@@ -60,7 +60,6 @@ public abstract class ExtendedBullet extends SpinnableEntity
 	}
 
 	@Override protected GameVector getDefaultDrag() { return new GameVector(1.f, 1.f); }
-	@Override public boolean hasToBeRemoved() { return !GameTileMap.get().isInMap(getPosition()); }
 
 	public final ServerGamePlayer getOwner() { return owner; }
 }

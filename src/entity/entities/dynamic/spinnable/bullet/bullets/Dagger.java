@@ -36,5 +36,5 @@ public class Dagger extends ExtendedBullet
 	}
 
 	@Override protected Damage getDamageStat() { return new Damage(2,12,0); }
-	@Override public boolean hasToBeRemoved() { return counter > 10; }
+	@Override public boolean isDead() { return counter > 10; }
 }
