@@ -204,6 +204,11 @@ public abstract class ExtendedMob extends DynamicEntity
 		
 	}
 
+	public final void airJump()
+	{
+		accelerate(0, -getJumpPower());
+	}
+
 	final protected void damage(float damage)
 	{
 		Debug.warnIf(damage < 0, "ExtendedMob.damage(): damage is healing ... ");
