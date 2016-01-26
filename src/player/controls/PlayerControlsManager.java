@@ -134,12 +134,7 @@ public class PlayerControlsManager
 			bytes[i] = controls.get(i);
 		}
 
-		PixelPosition cursorPosition = Screen.getCursorPosition();
-		if (cursorPosition.getX() == -1 && cursorPosition.getY() == -1) // wenn die maus außerhalb des bildes ist, kein maus-position update
-		{
-			return new PlayerControlsUpdatePacket(bytes, null);
-		}
-		return new PlayerControlsUpdatePacket(bytes, Camera.get().pixelPositionToGamePosition(cursorPosition));
+		return new PlayerControlsUpdatePacket(bytes, Camera.get().pixelPositionToGamePosition(Screen.getCursorPosition()));
 	}
 
 	public boolean isPlayerFocused() { return playerFocused; }
