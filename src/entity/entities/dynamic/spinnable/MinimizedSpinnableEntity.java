@@ -58,8 +58,10 @@ public class MinimizedSpinnableEntity extends MinimizedEntity
 
 	@Override protected boolean inScreen()
 	{
-		Debug.warn("MinimizedSpinnableEntity.inScreen(): TODO");
-		return true;
+		float radius = (float) Math.sqrt(Math.pow(getSize().getX()/2.f, 2) + Math.pow(getSize().getY()/2.f, 2));
+		return BorderRect.getIntersection(Camera.get().getRect(), new BorderRect(getPosition(), new GameSize(radius*2.f, radius*2.f))).isValid();
+		//Debug.warn("MinimizedSpinnableEntity.inScreen(): TODO");
+		//return true;
 	}
 
 	public float getRotation() { return rotation; }

@@ -98,9 +98,7 @@ public abstract class MinimizedEntity implements Compressable
 
 	protected boolean inScreen()
 	{
-		if (BorderRect.getIntersection(Camera.get().getRect(), new BorderRect(getPosition(), getSize())).isValid())
-			return true;
-		return false;
+		return BorderRect.getIntersection(Camera.get().getRect(), new BorderRect(getPosition(), getSize())).isValid();
 	}
 
 	@SuppressWarnings("unchecked")
