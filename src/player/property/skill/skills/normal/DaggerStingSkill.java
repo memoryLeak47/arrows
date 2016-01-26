@@ -18,7 +18,7 @@ public class DaggerStingSkill extends NormalSkill
 
 	@Override public void trigger()
 	{
-		getOwner().accelerate(getVelocityToMouse());
+		getOwner().accelerateWithDragBalance(getVelocityToMouse());
 		damageCircle(new Damage(2, 12, 1), getOwner().getPosition().plus(getOwner().getVelocity()), 2);
 	}
 }

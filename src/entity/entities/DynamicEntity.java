@@ -59,6 +59,11 @@ public abstract class DynamicEntity extends Entity
 		accelerate(new GameVector(x, y));
 	}
 
+	public void accelerateWithDragBalance(GameVector v)
+	{
+		accelerate(v.timesX(DRAG_X).timesY(DRAG_Y*0.5f));
+	}
+
 	public GameVector getVelocity() { return velocity; }
 	public GameVector getOldVelocity() { return oldVelocity; }
 	protected final void stop() { velocity = new GameVector(0, 0); }
