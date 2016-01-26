@@ -70,7 +70,7 @@ public class PlayerControlsManager
 				case playerFocus:
 					playerFocused = true;
 				default:
-					Debug.warn("PlayerControlsManager.onEvent(): UnknownKeyPress = " + ((KeyPressEvent) event).getKeyChar());
+					Debug.warn("PlayerControlsManager.onEvent(): UnknownKeyPress = " + ((KeyPressEvent) event).getKeyChar(), Debug.Tags.EXTENDED_WARNINGS);
 					break;
 			}
 		}
@@ -102,7 +102,7 @@ public class PlayerControlsManager
 				case playerFocus:
 					playerFocused = false;
 				default:
-					Debug.warn("PlayerControlsManager.onEvent(): UnknownKeyRelease = " + ((KeyReleaseEvent) event).getKeyChar());
+					Debug.warn("PlayerControlsManager.onEvent(): UnknownKeyRelease = " + ((KeyReleaseEvent) event).getKeyChar(), Debug.Tags.EXTENDED_WARNINGS);
 					break;
 			}
 		}

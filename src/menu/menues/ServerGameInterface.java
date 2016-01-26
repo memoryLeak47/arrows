@@ -52,7 +52,8 @@ public class ServerGameInterface extends GameInterface
 		if (!getGame().isIniting())
 			sendGameFrameUpdatePackets();
 	}
-
+/*
+	HITBOXEN für Bullets
 	@Override public void render()
 	{
 		super.render();
@@ -68,7 +69,7 @@ public class ServerGameInterface extends GameInterface
 			Screen.g().drawRect(pixelpos.getX(), pixelpos.getY(), pixelposdown.getX() - pixelpos.getX(), pixelposdown.getY() - pixelpos.getY());
 		}
 	}
-
+*/
 	// private
 
 	private ServerGame getGame() { return (ServerGame) getUncastedGame(); }
