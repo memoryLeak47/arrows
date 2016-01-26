@@ -39,21 +39,24 @@ public class Compressor
 
 	public static byte[] compress(Compressable c)
 	{	
+		byte[] b;
+
 		try
 		{
-			byte[] b = c.compress();
-			byte[] bytes = new byte[b.length+1];
-			for (int i = 0; i < b.length; i++)
-			{
-				bytes[i+1] = b[i];
-			}
-			bytes[0] = c.getCID();
-			return bytes;
+			b = c.compress();
 		} catch (Exception e)
 		{
 			Debug.warn("Compressor.compress(): Can't compress " + c);
+			return new byte[]{};
 		}
-		return new byte[]{};
+
+		byte[] bytes = new byte[b.length+1];
+		for (int i = 0; i < b.length; i++)
+		{
+			bytes[i+1] = b[i];
+		}
+		bytes[0] = c.getCID();
+		return bytes;
 	}
 
 	public static Compressable decompress(byte[] bytes)
