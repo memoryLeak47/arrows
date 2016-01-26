@@ -43,8 +43,8 @@ public class Debug
 
 	public static enum Tags
 	{
-		NETWORK(true),
-		LOBBYMENUINFO(true),
+		NETWORK(false),
+		LOBBYMENUINFO(false),
 		EXTENDED_WARNINGS(false);
 
 		private boolean active;
