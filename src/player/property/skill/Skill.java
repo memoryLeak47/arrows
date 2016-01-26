@@ -3,7 +3,7 @@ package player.property.skill;
 import java.util.LinkedList;
 
 import damage.Damage;
-import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
+import bullet.ExtendedBullet;
 import game.Game;
 import game.ServerGame;
 import graphics.ImageID;

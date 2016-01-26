@@ -1,7 +1,7 @@
 package player.property.skill.skills.normal;
 
 import entity.Entity;
-import entity.entities.dynamic.spinnable.bullet.bullets.StunningArrow;
+import bullet.bullets.StunningArrow;
 import graphics.ImageFile;
 import graphics.ImageID;
 import misc.Debug;

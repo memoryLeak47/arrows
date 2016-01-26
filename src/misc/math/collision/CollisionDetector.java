@@ -4,11 +4,11 @@ import static core.Main.TILESIZE;
 import entity.Entity;
 import entity.entities.dynamic.SpinnableEntity;
 import entity.entities.DynamicEntity;
-import entity.entities.tile.ExtendedTile;
+import tile.ExtendedTile;
 import misc.math.game.GameRect;
 import misc.math.game.GameVector;
 import misc.Debug;
-import tilemap.GameTileMap;
+import tile.map.GameTileMap;
 
 public final class CollisionDetector
 {

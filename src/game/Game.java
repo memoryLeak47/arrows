@@ -6,15 +6,15 @@ import java.awt.image.BufferedImage;
 import core.Main;
 import entity.Entity;
 import entity.MinimizedEntity;
-import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
-import entity.entities.dynamic.spinnable.cosmetic.ExtendedCosmetic;
+import bullet.MinimizedBullet;
+import cosmetic.ExtendedCosmetic;
 import misc.Debug;
 import misc.math.Camera;
 import damage.Kill;
 import player.ClientGamePlayer;
 import player.GamePlayer;
-import tilemap.GameTileMap;
-import tilemap.LobbyTileMap;
+import tile.map.GameTileMap;
+import tile.map.LobbyTileMap;
 
 public abstract class Game
 {

@@ -1,8 +1,8 @@
-package entity.entities.tile.tiles;
+package tile.tiles;
 
 import static core.Main.TILESIZE;
 import player.property.Team;
-import entity.entities.tile.ExtendedTile;
+import tile.ExtendedTile;
 import graphics.animations.StaticAnimation;
 import graphics.ImageFile;
 import graphics.ImageID;

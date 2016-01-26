@@ -1,7 +1,7 @@
-package entity.entities.dynamic.spinnable.bullet;
+package bullet;
 
 import damage.Damage;
-import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
+import bullet.ExtendedBullet;
 import entity.Entity;
 import graphics.Animation;
 import misc.math.game.GameVector;

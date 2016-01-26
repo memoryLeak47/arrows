@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 import java.util.LinkedList;
 
 import effect.MinimizedEffect;
-import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
+import bullet.MinimizedBullet;
 import entity.entities.dynamic.spinnable.MinimizedSpinnableEntity;
 import graphics.ImageID;
 import network.game.packets.*;

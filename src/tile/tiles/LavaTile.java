@@ -1,10 +1,10 @@
-package entity.entities.tile.tiles;
+package tile.tiles;
 
 import static core.Main.TILESIZE;
 import effect.effects.BurnEffect;
 import entity.Entity;
-import entity.entities.dynamic.mob.ExtendedMob;
-import entity.entities.tile.ExtendedTile;
+import mob.ExtendedMob;
+import tile.ExtendedTile;
 import misc.Debug;
 import graphics.ImageFile;
 import graphics.ImageID;

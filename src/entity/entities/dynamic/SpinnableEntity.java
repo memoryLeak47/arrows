@@ -5,7 +5,7 @@ import entity.Entity;
 import entity.MinimizedEntity;
 import entity.entities.DynamicEntity;
 import entity.entities.dynamic.spinnable.MinimizedSpinnableEntity;
-import entity.entities.tile.ExtendedTile;
+import tile.ExtendedTile;
 import graphics.Animation;
 import misc.Debug;
 import misc.math.collision.CollisionDetector;

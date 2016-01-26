@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import core.Main;
 import game.ClientGame;
 import network.game.packets.GameFrameUpdatePacket;
-import tilemap.LobbyTileMap;
+import tile.map.LobbyTileMap;
 import misc.Debug;
 import network.Packet;
 import menu.event.Event;

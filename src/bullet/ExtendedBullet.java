@@ -1,18 +1,18 @@
-package entity.entities.dynamic.spinnable.bullet;
+package bullet;
 
 import damage.Damage;
 import effect.Effect;
 import entity.Entity;
 import entity.MinimizedEntity;
 import entity.entities.dynamic.SpinnableEntity;
-import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
+import bullet.MinimizedBullet;
 import graphics.Animation;
 import misc.Debug;
 import misc.math.game.GamePosition;
 import misc.math.game.GameSize;
 import misc.math.game.GameVector;
 import player.ServerGamePlayer;
-import tilemap.GameTileMap;
+import tile.map.GameTileMap;
 
 public abstract class ExtendedBullet extends SpinnableEntity
 {

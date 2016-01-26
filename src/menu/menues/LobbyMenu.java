@@ -11,7 +11,7 @@ import player.property.Team;
 import player.property.avatar.Avatar;
 import player.property.skill.Skill;
 import player.property.item.Item;
-import tilemap.LobbyTileMap;
+import tile.map.LobbyTileMap;
 import graphics.ImageFile;
 import misc.Debug;
 import misc.math.pixel.PixelRect;

@@ -1,11 +1,11 @@
-package entity.entities.tile;
+package tile;
 
 import java.awt.Color;
 
 import effect.Effect;
 import entity.Entity;
 import entity.MinimizedEntity;
-import entity.entities.tile.tiles.*;
+import tile.tiles.*;
 import graphics.Animation;
 import graphics.ImageFile;
 import graphics.ImageID;

@@ -1,4 +1,4 @@
-package entity.entities.dynamic.spinnable.cosmetic;
+package cosmetic;
 
 import entity.entities.dynamic.spinnable.MinimizedSpinnableEntity;
 import graphics.ImageID;

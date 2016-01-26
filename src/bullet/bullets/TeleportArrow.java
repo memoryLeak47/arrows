@@ -1,6 +1,6 @@
-package entity.entities.dynamic.spinnable.bullet.bullets;
+package bullet.bullets;
 
-import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
+import bullet.ExtendedBullet;
 import graphics.ImageFile;
 import graphics.animations.StaticAnimation;
 import misc.math.game.GamePosition;

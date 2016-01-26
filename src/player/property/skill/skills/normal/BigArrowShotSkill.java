@@ -1,6 +1,6 @@
 package player.property.skill.skills.normal;
 
-import entity.entities.dynamic.spinnable.bullet.bullets.BigArrow;
+import bullet.bullets.BigArrow;
 import graphics.ImageFile;
 import graphics.ImageID;
 import misc.Debug;

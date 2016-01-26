@@ -1,8 +1,8 @@
-package entity.entities.dynamic.spinnable.bullet.bullets;
+package bullet.bullets;
 
 import damage.Damage;
 import entity.Entity;
-import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
+import bullet.ExtendedBullet;
 import graphics.animations.StaticAnimation;
 import graphics.ImageFile;
 import misc.math.game.GamePosition;

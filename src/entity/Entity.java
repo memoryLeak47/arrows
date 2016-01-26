@@ -7,8 +7,8 @@ import damage.Damage;
 import effect.Effect;
 import entity.MinimizedEntity;
 import entity.entities.dynamic.SpinnableEntity;
-import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
-import entity.entities.tile.ExtendedTile;
+import bullet.ExtendedBullet;
+import tile.ExtendedTile;
 import game.Game;
 import game.ServerGame;
 import graphics.Animation;
@@ -23,7 +23,7 @@ import misc.math.game.GameSize;
 import misc.math.pixel.PixelSize;
 import misc.math.Camera;
 import player.ServerGamePlayer;
-import tilemap.GameTileMap;
+import tile.map.GameTileMap;
 
 public abstract class Entity
 {

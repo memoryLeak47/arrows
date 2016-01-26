@@ -1,4 +1,4 @@
-package entity.entities.dynamic.mob;
+package mob;
 
 import static core.Main.STANDART_JUMPPOWER;
 import damage.Damage;
@@ -8,7 +8,7 @@ import graphics.Animation;
 import misc.Debug;
 import misc.math.collision.CollisionDetector;
 import misc.math.game.GamePosition;
-import entity.entities.tile.ExtendedTile;
+import tile.ExtendedTile;
 
 public abstract class ExtendedMob extends DynamicEntity
 {

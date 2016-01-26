@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import static core.Main.STANDART_ACCELERATION;
 import damage.Damage;
 import entity.Entity;
-import entity.entities.dynamic.mob.ExtendedMob;
+import mob.ExtendedMob;
 import graphics.Animation;
 import graphics.animations.StaticAnimation;
 import graphics.ImageFile;
@@ -31,7 +31,7 @@ import player.LocalClientGamePlayerFrameUpdate;
 import player.property.avatar.Avatar;
 import player.property.skill.Skill;
 import player.property.item.Item;
-import tilemap.GameTileMap;
+import tile.map.GameTileMap;
 
 public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 {

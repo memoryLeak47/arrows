@@ -1,9 +1,9 @@
-package entity.entities.dynamic.spinnable.bullet.bullets;
+package bullet.bullets;
 
 import damage.Damage;
 import effect.effects.StunEffect;
 import entity.Entity;
-import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
+import bullet.ExtendedBullet;
 import graphics.ImageFile;
 import graphics.animations.StaticAnimation;
 import player.ServerGamePlayer;

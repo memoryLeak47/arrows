@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 import player.ClientGamePlayerFrameUpdate;
 import player.LocalClientGamePlayerFrameUpdate;
-import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
+import bullet.MinimizedBullet;
 import misc.compress.*;
 import network.Packet;
 import network.game.packets.EventUpdatePacket;

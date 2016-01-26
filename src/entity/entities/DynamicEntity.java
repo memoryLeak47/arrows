@@ -9,15 +9,15 @@ import game.Game;
 import game.ServerGame;
 import entity.Entity;
 import entity.entities.dynamic.SpinnableEntity;
-import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
-import entity.entities.tile.ExtendedTile;
+import bullet.ExtendedBullet;
+import tile.ExtendedTile;
 import graphics.Animation;
 import misc.Debug;
 import misc.math.collision.CollisionDetector;
 import misc.math.game.GameVector;
 import misc.math.game.GamePosition;
 import player.ServerGamePlayer;
-import tilemap.GameTileMap;
+import tile.map.GameTileMap;
 
 public abstract class DynamicEntity extends Entity
 {

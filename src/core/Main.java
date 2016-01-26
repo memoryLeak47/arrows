@@ -5,7 +5,7 @@ import java.util.TimerTask;
 import java.util.LinkedList;
 import java.util.HashMap;
 
-import effect.Effect; // --> Effects are set before anything bad happens
+import effect.Effect;
 import game.Game;
 import menu.Menu;
 import menu.MenuList;

@@ -1,4 +1,4 @@
-package entity.entities.dynamic.spinnable.cosmetic;
+package cosmetic;
 
 import effect.Effect;
 import entity.entities.dynamic.SpinnableEntity;

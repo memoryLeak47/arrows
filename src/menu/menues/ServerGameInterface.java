@@ -4,7 +4,7 @@ import java.net.InetAddress;
 import java.util.LinkedList;
 
 import java.awt.Color;
-import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
+import bullet.ExtendedBullet;
 import misc.math.pixel.PixelPosition;
 import misc.math.Camera;
 import misc.math.game.GamePosition;
@@ -12,7 +12,7 @@ import core.Screen;
 
 import game.ServerGame;
 import entity.MinimizedEntity;
-import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
+import bullet.MinimizedBullet;
 import menu.menues.GameInterface;
 import misc.Debug;
 import network.Packet;
@@ -23,7 +23,7 @@ import player.ClientGamePlayerFrameUpdate;
 import player.LocalClientGamePlayerFrameUpdate;
 import player.LobbyPlayer;
 import player.ServerGamePlayer;
-import tilemap.LobbyTileMap;
+import tile.map.LobbyTileMap;
 
 public class ServerGameInterface extends GameInterface
 {

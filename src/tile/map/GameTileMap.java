@@ -1,4 +1,4 @@
-package tilemap;
+package tile.map;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -9,8 +9,8 @@ import java.util.LinkedList;
 import static core.Main.TILESIZE;
 import game.Game;
 import entity.Entity;
-import entity.entities.tile.ExtendedTile;
-import entity.entities.tile.tiles.SpawnTeamTile;
+import tile.ExtendedTile;
+import tile.tiles.SpawnTeamTile;
 import graphics.ImageFile;
 import misc.Debug;
 import player.property.Team;

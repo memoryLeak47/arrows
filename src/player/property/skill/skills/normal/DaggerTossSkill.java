@@ -1,6 +1,6 @@
 package player.property.skill.skills.normal;
 
-import entity.entities.dynamic.spinnable.bullet.bullets.Dagger;
+import bullet.bullets.Dagger;
 import graphics.ImageID;
 import graphics.ImageFile;
 import player.property.skill.skills.NormalSkill;

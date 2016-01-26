@@ -3,11 +3,11 @@ package game;
 import java.util.LinkedList;
 
 import entity.MinimizedEntity;
-import entity.entities.dynamic.spinnable.bullet.ExtendedBullet;
-import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
-import entity.entities.dynamic.mob.ExtendedMob;
-import entity.entities.dynamic.spinnable.cosmetic.ExtendedCosmetic;
-import tilemap.LobbyTileMap;
+import bullet.ExtendedBullet;
+import bullet.MinimizedBullet;
+import mob.ExtendedMob;
+import cosmetic.ExtendedCosmetic;
+import tile.map.LobbyTileMap;
 import misc.Debug;
 import misc.math.Camera;
 import misc.math.pixel.PixelPosition;
@@ -19,7 +19,7 @@ import player.LocalClientGamePlayerFrameUpdate;
 import player.LobbyPlayer;
 import menu.event.Event;
 import network.game.packets.GameFrameUpdatePacket;
-import tilemap.GameTileMap;
+import tile.map.GameTileMap;
 
 public class ServerGame extends Game
 {

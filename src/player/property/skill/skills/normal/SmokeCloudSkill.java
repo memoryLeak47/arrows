@@ -1,7 +1,7 @@
 package player.property.skill.skills.normal;
 
 import effect.effects.BurnEffect;
-import entity.entities.dynamic.spinnable.bullet.bullets.SmokeCloud;
+import bullet.bullets.SmokeCloud;
 import graphics.ImageFile;
 import graphics.ImageID;
 import misc.Debug;

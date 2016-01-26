@@ -1,4 +1,4 @@
-package entity.entities.dynamic.spinnable.bullet;
+package bullet;
 
 import entity.entities.dynamic.spinnable.MinimizedSpinnableEntity;
 import graphics.ImageID;

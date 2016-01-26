@@ -2,7 +2,7 @@
  * speichert die map währed des LobbyMenues
  */
 
-package tilemap;
+package tile.map;
 
 import java.io.File;
 import java.awt.Color;

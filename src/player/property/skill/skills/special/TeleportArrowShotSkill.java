@@ -1,6 +1,6 @@
 package player.property.skill.skills.special;
 
-import entity.entities.dynamic.spinnable.bullet.bullets.TeleportArrow;
+import bullet.bullets.TeleportArrow;
 import graphics.ImageFile;
 import graphics.ImageID;
 import misc.Debug;

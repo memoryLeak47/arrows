@@ -1,7 +1,7 @@
-package entity.entities.tile.tiles;
+package tile.tiles;
 
 import static core.Main.TILESIZE;
-import entity.entities.tile.ExtendedTile;
+import tile.ExtendedTile;
 import graphics.ImageFile;
 import graphics.ImageID;
 import graphics.animations.StaticAnimation;

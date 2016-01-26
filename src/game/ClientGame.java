@@ -3,11 +3,11 @@ package game;
 import java.util.LinkedList;
 
 import entity.MinimizedEntity;
-import entity.entities.dynamic.spinnable.bullet.MinimizedBullet;
+import bullet.MinimizedBullet;
 import player.ClientGamePlayer;
 import player.GamePlayer;
 import player.LocalClientGamePlayerFrameUpdate;
-import tilemap.LobbyTileMap;
+import tile.map.LobbyTileMap;
 import misc.Debug;
 import misc.math.Camera;
 import player.LobbyPlayer;

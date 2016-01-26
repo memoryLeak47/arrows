@@ -22,7 +22,7 @@ import player.controls.PlayerControlsManager;
 import player.property.skill.Skill;
 import network.Packet;
 import network.game.packets.PlayerControlsUpdatePacket;
-import tilemap.LobbyTileMap;
+import tile.map.LobbyTileMap;
 
 public abstract class GameInterface extends NetworkingMenu
 {
