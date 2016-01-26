@@ -84,15 +84,13 @@ public abstract class GameInterface extends NetworkingMenu
 		int realY = Math.max(0, -y);
 		int w = Math.min(imageSize.getX() - Math.max(0, x) - Math.max(0, imageSize.getX() - (x+Screen.WIDTH)), realX+imageSize.getX());
 		int h = Math.min(imageSize.getY() - Math.max(0, y) - Math.max(0, imageSize.getY() - (y+Screen.HEIGHT)), realY+imageSize.getY());
-		if (w <= 0 || h <= 0 || realX < 0 || realY < 0 || realX+w > imageSize.getX() || realY+h > imageSize.getY())
+		/* if (w <= 0 || h <= 0 || realX < 0 || realY < 0 || realX+w > imageSize.getX() || realY+h > imageSize.getY())
 		{
 			Debug.warn("GameInterface.renderMap(): outside of raster x: " + realX + ", y: " + realY + ", w: " + w + ", h: " + h);
 		}
-		else
-		{
-			BufferedImage subImage = getUncastedGame().getMapImage().getSubimage(Math.max(0, x), Math.max(0, y), w, h);
-			Screen.g().drawImage(subImage, Math.max(0, -x), Math.max(0, -y), w, h, null);
-		}
+		*/
+		BufferedImage subImage = getUncastedGame().getMapImage().getSubimage(Math.max(0, x), Math.max(0, y), w, h);
+		Screen.g().drawImage(subImage, Math.max(0, -x), Math.max(0, -y), w, h, null);
 	}
 
 	private final void renderEntities()
