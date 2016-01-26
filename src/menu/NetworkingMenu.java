@@ -39,6 +39,7 @@ public abstract class NetworkingMenu extends Menu
 	{
 		for (int i = 0; i < getPackets().size(); i++)
 		{
+			Debug.warnIf(getPackets().get(i) == null, "NetworkingMenu.handleAllPackets(): getPackets().get(" + i + ") == null");
 			handlePacket(getPackets().get(i).getPacket(), getPackets().get(i).getIP());
 		}
 		getPackets().clear();
