@@ -22,10 +22,10 @@ public class Main
 	public static final int TILESIZE = 40;
 
 	public static final float DRAG_X = 1.9f;
-	public static final float DRAG_Y = 1.06f;
+	public static final float DRAG_Y = 1.02f;
 	public static final float GRAVITY = 0.04f;
-	public static final float STANDART_JUMPPOWER = 0.55f;
-	public static final float STANDART_ACCELERATION = 0.14f;
+	public static final float STANDART_JUMPPOWER = 0.6f;
+	public static final float STANDART_ACCELERATION = 0.18f;
 
 	private static Game game;
 	private static MenuList menuList;
