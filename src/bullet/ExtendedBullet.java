@@ -36,7 +36,7 @@ public abstract class ExtendedBullet extends SpinnableEntity
 
 	protected Damage getDamageStat() { return new Damage(0,0,0); }
 
-	public Damage getDamage() { return getDamageStat().times(getOwner().getDamage()); }
+	public final Damage getDamage() { return getDamageStat().times(getOwner().getDamage()); }
 
 	protected final boolean shouldDamageEntity(Entity e)
 	{

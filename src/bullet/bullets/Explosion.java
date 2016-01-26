@@ -40,5 +40,5 @@ public class Explosion extends ExtendedBullet
 
 	@Override public boolean isDead() { return duration <= 0; }
 
-	@Override public Damage getDamage() { return damage; }
+	@Override public Damage getDamageStat() { return damage; }
 }
