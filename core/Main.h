@@ -4,8 +4,6 @@
 #define MAX_TICK_COUNTER 2000
 #define MAX_RENDER_COUNTER 2000
 
-#include <unistd.h> // for fork
-
 #include "Screen.h"
 #include "../misc/Account.h"
 #include "../network/NetworkDevice.h"

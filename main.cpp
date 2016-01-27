@@ -2,7 +2,6 @@
 
 int main()
 {
-	Main* main = new Main();
-	delete main;
+	Main main;
 	return 0;
 }

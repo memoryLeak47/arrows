@@ -2,5 +2,5 @@
 
 void NetworkDevice::receive()
 {
-	
+//	socket.setBocking(false);
 }

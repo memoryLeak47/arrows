@@ -23,40 +23,31 @@ Main::~Main()
 
 void Main::run()
 {
-	if (fork() == 0)
+	sf::Clock clock;
+	int renderCounter = 0;
+	int tickCounter = 0;
+	while (running)
 	{
-		while (running)
-		{
-			networkDevice->receive();
-		}
-	}
-	else
-	{
-		sf::Clock clock;
-		int renderCounter = 0;
-		int tickCounter = 0;
-		while (running)
-		{
-			int tmp = clock.getElapsedTime().asMilliseconds();
-			renderCounter += tmp;
-			tickCounter += tmp;
+		int tmp = clock.getElapsedTime().asMilliseconds();
+		renderCounter += tmp;
+		tickCounter += tmp;
 
-			if (tickCounter > MAX_TICK_COUNTER)
-			{
-				tick();
-				tickCounter -= MAX_TICK_COUNTER;
-			}
-			if (renderCounter > MAX_RENDER_COUNTER)
-			{
-				render();
-				renderCounter -= MAX_RENDER_COUNTER;
-			}
+		if (tickCounter > MAX_TICK_COUNTER)
+		{
+			tick();
+			tickCounter -= MAX_TICK_COUNTER;
+		}
+		if (renderCounter > MAX_RENDER_COUNTER)
+		{
+			render();
+			renderCounter -= MAX_RENDER_COUNTER;
 		}
 	}
 }
 
 void Main::tick()
 {
+	networkDevice->receive();
 	Screen::tick();
 }
 
@@ -70,7 +61,7 @@ void Main::exit()
 	running = false;
 	delete menuList;
 	delete networkDevice;
-	delete game;
-	delete account; // really needed?
+	//delete game;
+	//delete account; // really needed?
 	Screen::uninit();
 }
