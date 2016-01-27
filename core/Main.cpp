@@ -10,11 +10,16 @@ Main::Main()
 
 void Main::run()
 {
-	// timer
-	// END timer
-
-	while (true)
+	if (fork() == 0)
 	{
-		networkDevice->receive();
+		while (true)
+		{
+			networkDevice->receive();
+		}
+	}
+	else
+	{
+		sf::Clock clock;
+		// TODO
 	}
 }

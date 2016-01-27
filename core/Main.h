@@ -1,6 +1,8 @@
 #ifndef __MAIN_CLASS__
 #define __MAIN_CLASS__
 
+#include <unistd.h> // for fork
+
 #include "Screen.h"
 #include "../misc/Account.h"
 #include "../network/NetworkDevice.h"
