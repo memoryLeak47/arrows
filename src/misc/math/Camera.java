@@ -37,23 +37,30 @@ public class Camera
 
 		if (!isPlayerFocused())
 		{
-			if (Screen.WIDTH - cursor.getX() < MOUSE_MOVE_BORDER_TOLERANCE)
+			// TODO remove when fullscreen works
+			if ((cursor.getX() == -1 && cursor.getY() == -1)) // if mouse out of screen
 			{
-				position = position.plusX(MOUSE_MOVE_BORDER_SPEED);
+				position = position.plusY(-MOUSE_MOVE_BORDER_SPEED); // mouse is probably at the top
 			}
-			else if (cursor.getX() < MOUSE_MOVE_BORDER_TOLERANCE)
+			else
 			{
-				position = position.plusX(-MOUSE_MOVE_BORDER_SPEED);
-			}
+				if (Screen.WIDTH - cursor.getX() < MOUSE_MOVE_BORDER_TOLERANCE)
+				{
+					position = position.plusX(MOUSE_MOVE_BORDER_SPEED);
+				}
+				else if (cursor.getX() < MOUSE_MOVE_BORDER_TOLERANCE)
+				{
+					position = position.plusX(-MOUSE_MOVE_BORDER_SPEED);
+				}
 
-			if (Screen.HEIGHT - cursor.getY() - 40/*TODO remove when fullscreen works */  < MOUSE_MOVE_BORDER_TOLERANCE)
-			{
-				position = position.plusY(MOUSE_MOVE_BORDER_SPEED);
-			}
-			else if (cursor.getY() < MOUSE_MOVE_BORDER_TOLERANCE
-				|| (cursor.getX() == -1 && cursor.getY() == -1)) // TODO remove when fullscreen works
-			{
-				position = position.plusY(-MOUSE_MOVE_BORDER_SPEED);
+				if (Screen.HEIGHT - cursor.getY() - 40 /*TODO remove when fullscreen works */  < MOUSE_MOVE_BORDER_TOLERANCE)
+				{
+					position = position.plusY(MOUSE_MOVE_BORDER_SPEED);
+				}
+				else if (cursor.getY() < MOUSE_MOVE_BORDER_TOLERANCE)
+				{
+					position = position.plusY(-MOUSE_MOVE_BORDER_SPEED);
+				}
 			}
 		}
 	}
