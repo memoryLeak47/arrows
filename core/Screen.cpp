@@ -9,5 +9,21 @@ void Screen::init()
 
 void Screen::uninit()
 {
+	window->close();
 	delete window;
+}
+
+void Screen::tick()
+{
+	static sf::Event event;
+	window->pollEvent(event);
+	if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	{
+		Main::exit();
+	}
+}
+
+void Screen::render()
+{
+	window->display();
 }

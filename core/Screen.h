@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "Main.h"
+
 class Screen
 {
 	private:
@@ -10,6 +12,8 @@ class Screen
 	public:
 		static void init();
 		static void uninit();
+		static void tick();
+		static void render();
 };
 
 

@@ -1,6 +1,9 @@
 #ifndef __MAIN_CLASS__
 #define __MAIN_CLASS__
 
+#define MAX_TICK_COUNTER 2000
+#define MAX_RENDER_COUNTER 2000
+
 #include <unistd.h> // for fork
 
 #include "Screen.h"
@@ -22,15 +25,19 @@ class Main
 		static const float STANDART_JUMPPOWER = 0.6f;
 		static const float STANDART_ACCELERATION = 0.18f;
 	private:
-		Game* game;
-		MenuList* menuList;
-		NetworkDevice* networkDevice;
-		Account* account;
+		static Game* game;
+		static MenuList* menuList;
+		static NetworkDevice* networkDevice;
+		static Account* account;
+		static bool running;
+		static void run();
+		static void tick();
+		static void render();
 	public:
 		Main();
 		~Main();
-		void run();
-		
+		static void exit();
 };
+
 
 #endif
