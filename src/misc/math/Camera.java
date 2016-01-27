@@ -20,10 +20,44 @@ public class Camera
 	// the middle of the camera
 	private GamePosition position = new GamePosition();
 	private int localPlayerID;
+	private boolean playerFocused = true;
 
 	public Camera(int localPlayerID)
 	{
 		this.localPlayerID = localPlayerID;
+	}
+
+	public void keyPressed(int keyID)
+	{
+		switch (keyID)
+		{
+			case 0:
+			{
+				break;
+			}
+			case 1:
+			{
+				playerFocused = true;
+				break;
+			}
+		}
+	}
+
+	public void keyReleased(int keyID)
+	{
+		switch (keyID)
+		{
+			case 0:
+			{
+				playerFocused = false;
+				centerPlayer();
+				break;
+			}
+			case 1:
+			{
+				break;
+			}
+		}
 	}
 
 	public void centerPlayer()
@@ -80,6 +114,13 @@ public class Camera
 
 	public GamePosition getPosition()
 	{
+		if (isPlayerFocused())
+			centerPlayer();
 		return position;
+	}
+
+	public boolean isPlayerFocused()
+	{
+		return playerFocused;
 	}
 }

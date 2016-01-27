@@ -25,10 +25,8 @@ public class PlayerControlsManager
 	public static final char skill1Key = 'e';
 	public static final char skill2Key = 's';
 	public static final char skill3Key = 'd';
-	public static final char playerFocusLock = 'v';
-	public static final char playerFocus = 'c';
-
-	private boolean playerFocused = true;
+	public static final char camKey0 = 'c';
+	public static final char camKey1 = 'v';
 
 	private PlayerControls serverPlayerControls; // speichert ab, auf welchem Stand der Server sein müsste
 	private PlayerControls myPlayerControls; // speichert die aktuellen Player-Controls ab
@@ -66,9 +64,10 @@ public class PlayerControlsManager
 				case skill3Key:
 					myPlayerControls.setSkill(true, (byte)3);
 					break;
-				case playerFocusLock:
-				case playerFocus:
-					playerFocused = true;
+				case camKey0:
+					Camera.get().keyPressed(0);
+				case camKey1:
+					Camera.get().keyPressed(1);
 				default:
 					Debug.warn("PlayerControlsManager.onEvent(): UnknownKeyPress = " + ((KeyPressEvent) event).getKeyChar(), Debug.Tags.EXTENDED_WARNINGS);
 					break;
@@ -99,8 +98,10 @@ public class PlayerControlsManager
 				case skill3Key:
 					myPlayerControls.setSkill(false, (byte)3);
 					break;
-				case playerFocus:
-					playerFocused = false;
+				case camKey0:
+					Camera.get().keyReleased(0);
+				case camKey1:
+					Camera.get().keyReleased(1);
 				default:
 					Debug.warn("PlayerControlsManager.onEvent(): UnknownKeyRelease = " + ((KeyReleaseEvent) event).getKeyChar(), Debug.Tags.EXTENDED_WARNINGS);
 					break;
@@ -136,6 +137,4 @@ public class PlayerControlsManager
 
 		return new PlayerControlsUpdatePacket(bytes, Camera.get().pixelPositionToGamePosition(Screen.getCursorPosition()));
 	}
-
-	public boolean isPlayerFocused() { return playerFocused; }
 }
