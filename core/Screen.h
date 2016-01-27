@@ -9,6 +9,7 @@ class Screen
 		static sf::RenderWindow *window;
 	public:
 		static void init();
+		static void uninit();
 };
 
 

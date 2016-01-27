@@ -8,6 +8,13 @@ Main::Main()
 	networkDevice = new NetworkDevice();
 }
 
+Main::~Main()
+{
+	delete menuList;
+	delete networkDevice;
+	Screen::uninit();
+}
+
 void Main::run()
 {
 	if (fork() == 0)

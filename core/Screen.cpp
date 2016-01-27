@@ -4,5 +4,10 @@ sf::RenderWindow* Screen::window;
 
 void Screen::init()
 {
-	Screen::window = new sf::RenderWindow(sf::VideoMode(800, 600), "Arrows");
+	window = new sf::RenderWindow(sf::VideoMode(800, 600), "Arrows");
+}
+
+void Screen::uninit()
+{
+	delete window;
 }

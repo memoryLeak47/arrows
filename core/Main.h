@@ -28,6 +28,7 @@ class Main
 		Account* account;
 	public:
 		Main();
+		~Main();
 		void run();
 		
 };
