@@ -17,6 +17,9 @@ import player.GamePlayer;
 
 public class Camera
 {
+	public static final int MOUSE_MOVE_BORDER_TOLERANCE = 4;
+	public static final int MOUSE_MOVE_BORDER_SPEED = 1;
+
 	// the middle of the camera
 	private GamePosition position = new GamePosition();
 	private int localPlayerID;
@@ -25,6 +28,34 @@ public class Camera
 	public Camera(int localPlayerID)
 	{
 		this.localPlayerID = localPlayerID;
+	}
+
+	public void tick()
+	{
+		PixelPosition cursor = Screen.getCursorPosition();
+		Debug.warnIf(cursor == null, "Camera.tick(): cursor is null");
+
+		if (!isPlayerFocused())
+		{
+			if (Screen.WIDTH - cursor.getX() < MOUSE_MOVE_BORDER_TOLERANCE)
+			{
+				position = position.plusX(MOUSE_MOVE_BORDER_SPEED);
+			}
+			else if (cursor.getX() < MOUSE_MOVE_BORDER_TOLERANCE)
+			{
+				position = position.plusX(-MOUSE_MOVE_BORDER_SPEED);
+			}
+
+			if (Screen.HEIGHT - cursor.getY() - 40/*TODO remove when fullscreen works */  < MOUSE_MOVE_BORDER_TOLERANCE)
+			{
+				position = position.plusY(MOUSE_MOVE_BORDER_SPEED);
+			}
+			else if (cursor.getY() < MOUSE_MOVE_BORDER_TOLERANCE
+				|| (cursor.getX() == -1 && cursor.getY() == -1)) // TODO remove when fullscreen works
+			{
+				position = position.plusY(-MOUSE_MOVE_BORDER_SPEED);
+			}
+		}
 	}
 
 	public void keyPressed(int keyID)

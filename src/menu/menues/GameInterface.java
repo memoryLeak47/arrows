@@ -45,6 +45,7 @@ public abstract class GameInterface extends NetworkingMenu
 		{
 			Debug.warn("GameInterface.tick(): getUncastedGame() == null");
 		}
+		Camera.get().tick();
 	}
 
 	protected PlayerControlsUpdatePacket getPlayerControlsUpdatePacket()
