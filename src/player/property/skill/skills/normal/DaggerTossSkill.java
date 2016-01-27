@@ -18,7 +18,7 @@ public class DaggerTossSkill extends NormalSkill
 
 	@Override public void trigger()
 	{
-		addBullet(new Dagger(getOwner(), getOwner().getPosition(), getVelocityToMouse().times(0.8f)));
+		addBullet(new Dagger(getOwner(), getOwner().getPosition(), getVelocityToMouse().times(0.7f)));
 	}
 
 	@Override protected float getRecharge() { return 0.8f; }

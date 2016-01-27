@@ -30,7 +30,7 @@ public class TeleportArrowShotSkill extends SpecialSkill
 		{
 			if (getCharge() == MAX_CHARGE)
 			{
-				arrow = new TeleportArrow(getOwner(), getOwner().getPosition(), getVelocityToMouse().times(0.3f));
+				arrow = new TeleportArrow(getOwner(), getOwner().getPosition(), getVelocityToMouse().times(0.6f));
 				addBullet(arrow);
 				resetCharge();
 			}
