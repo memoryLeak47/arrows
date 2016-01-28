@@ -7,6 +7,9 @@
 
 class ComponentContainer
 {
+	public:
+		std::vector<MenuComponent*> getComponents();
+		virtual void render();
 	private:
 		std::vector<MenuComponent*> components;
 };

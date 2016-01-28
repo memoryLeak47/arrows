@@ -3,7 +3,9 @@
 
 class MenuComponent
 {
-	
+	public:
+		virtual void tick();
+		virtual void render() = 0;
 };
 
 #endif
