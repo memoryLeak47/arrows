@@ -1,6 +1,6 @@
 #include "Debug.h"
 
-#include "../core/Main.h" // TODO put include to Debug.h -> awkward errors
+#include "../core/Main.h"
 
 void Debug::init()
 {

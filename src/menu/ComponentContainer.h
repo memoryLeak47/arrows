@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "../math/pixel/PixelRect.h"
+
 class MenuComponent;
 
 class ComponentContainer : public PixelRect
@@ -21,7 +22,6 @@ class ComponentContainer : public PixelRect
 		ComponentContainer* parent;
 };
 
-#include "../misc/Debug.h"
 #include "MenuComponent.h"
 
 #endif

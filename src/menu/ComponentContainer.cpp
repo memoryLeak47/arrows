@@ -1,5 +1,7 @@
 #include "ComponentContainer.h"
 
+#include "../misc/Debug.h"
+
 ComponentContainer::ComponentContainer(const PixelRect& rect) : PixelRect(rect)
 {
 	

@@ -24,7 +24,6 @@ class Screen
 		static void drawText(const std::string&, const PixelVector&, const sf::Color&);
 };
 
-#include "Main.h"
 #include "../math/pixel/PixelRect.h"
 #include "../math/pixel/PixelVector.h"
 #include "../graphics/ImageID.h"

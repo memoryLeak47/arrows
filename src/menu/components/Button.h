@@ -3,9 +3,9 @@
 
 #include <string>
 
-class PixelRect;
-
 #include "../MenuComponent.h"
+
+class PixelRect;
 
 class Button : public MenuComponent
 {
@@ -17,7 +17,5 @@ class Button : public MenuComponent
 };
 
 #include "../../math/pixel/PixelRect.h"
-#include "../../core/Screen.h"
-#include "../../misc/Debug.h"
 
 #endif

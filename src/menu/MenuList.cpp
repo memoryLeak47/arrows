@@ -1,5 +1,8 @@
 #include "MenuList.h"
 
+#include "../misc/Debug.h"
+#include "menues/LoginMenu.h"
+
 MenuList::MenuList()
 {
 	menues.push_back(new LoginMenu());

@@ -2,7 +2,8 @@
 #define __MENUCOMPONENT_CLASS__
 
 #include "../math/pixel/PixelRect.h"
-#include "ComponentContainer.h"
+
+class ComponentContainer;
 
 class MenuComponent : public PixelRect
 {
@@ -15,7 +16,6 @@ class MenuComponent : public PixelRect
 		ComponentContainer* parent;
 };
 
-#include "../misc/Debug.h"
-
+#include "ComponentContainer.h"
 
 #endif

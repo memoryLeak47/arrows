@@ -22,7 +22,5 @@ class MenuList
 };
 
 #include "Menu.h"
-#include "menues/LoginMenu.h"
-#include "../misc/Debug.h"
 
 #endif

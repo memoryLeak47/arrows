@@ -9,6 +9,4 @@ class LoginMenu : public Menu
 		LoginMenu();
 };
 
-#include "../components/Button.h"
-
 #endif

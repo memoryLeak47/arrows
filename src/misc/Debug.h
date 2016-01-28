@@ -1,5 +1,3 @@
-
-#pragma once
 #ifndef __DEBUG_CLASS__
 #define __DEBUG_CLASS__
 

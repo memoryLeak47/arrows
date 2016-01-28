@@ -1,5 +1,8 @@
 #include "Main.h"
 
+#include "../misc/Debug.h"
+#include "Screen.h"
+
 bool Main::running = true;
 MenuList* Main::menuList;
 NetworkDevice* Main::networkDevice;

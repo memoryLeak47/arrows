@@ -37,10 +37,8 @@ class Main
 };
 
 #include "../menu/MenuList.h"
-#include "Screen.h"
 #include "../misc/Account.h"
 #include "../network/NetworkDevice.h"
 #include "../game/Game.h"
-#include "../misc/Debug.h"
 
 #endif
