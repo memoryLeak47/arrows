@@ -17,4 +17,5 @@ class PixelRect
 		PixelVector getSize() const;
 };
 
+
 #endif

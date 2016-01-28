@@ -4,12 +4,10 @@
 #define MAX_TICK_COUNTER 2000
 #define MAX_RENDER_COUNTER 2000
 
-#include "Screen.h"
-#include "../misc/Account.h"
-#include "../network/NetworkDevice.h"
-#include "../game/Game.h"
-#include "../menu/MenuList.h"
-#include "../misc/Debug.h"
+class MenuList;
+class Game;
+class NetworkDevice;
+class Account;
 
 class Main
 {
@@ -38,5 +36,11 @@ class Main
 		static MenuList* getMenuList();
 };
 
+#include "../menu/MenuList.h"
+#include "Screen.h"
+#include "../misc/Account.h"
+#include "../network/NetworkDevice.h"
+#include "../game/Game.h"
+#include "../misc/Debug.h"
 
 #endif

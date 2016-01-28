@@ -3,19 +3,23 @@
 
 #include <vector>
 
-#include "MenuComponent.h"
 #include "../math/pixel/PixelRect.h"
+class MenuComponent;
 
 class ComponentContainer : public PixelRect
 {
 	public:
 		ComponentContainer(const PixelRect& rect);
 		ComponentContainer(const ComponentContainer& parent, const PixelRect& rect);
-		std::vector<MenuComponent*> getComponents();
-		virtual void render();
+		const std::vector<MenuComponent*>& getComponents() const;
+		virtual void render() const;
+	protected:
+		void addComponent(MenuComponent*);
 	private:
 		std::vector<MenuComponent*> components;
 		ComponentContainer* parent;
 };
+
+#include "MenuComponent.h"
 
 #endif

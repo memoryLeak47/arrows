@@ -10,12 +10,17 @@ ComponentContainer::ComponentContainer(const ComponentContainer& parent, const P
 	this->parent = (ComponentContainer*) &parent;
 }
 
-std::vector<MenuComponent*> ComponentContainer::getComponents()
+void ComponentContainer::addComponent(MenuComponent* c)
+{
+	components.push_back(c);
+}
+
+const std::vector<MenuComponent*>& ComponentContainer::getComponents() const
 {
 	return components;
 }
 
-void ComponentContainer::render()
+void ComponentContainer::render() const
 {
 	for (int i = 0; i < getComponents().size(); i++)
 	{

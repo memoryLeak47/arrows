@@ -4,9 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
-#include "Main.h"
-#include "../math/pixel/PixelRect.h"
-#include "../graphics/ImageID.h"
+class PixelRect;
+class ImageID;
 
 class Screen
 {
@@ -23,6 +22,8 @@ class Screen
 		static void drawText(const std::string&, const PixelRect&, const sf::Color&);
 };
 
-
+#include "Main.h"
+#include "../math/pixel/PixelRect.h"
+#include "../graphics/ImageID.h"
 
 #endif

@@ -4,9 +4,7 @@
 #include <vector>
 #include <SFML/Window.hpp>
 
-#include "Menu.h"
-#include "menues/LoginMenu.h"
-#include "../misc/Debug.h"
+class Menu;
 
 class MenuList
 {
@@ -21,5 +19,9 @@ class MenuList
 		Menu* getTopmostMenu();
 		int getTopmostFullscreenMenuIndex();
 };
+
+#include "Menu.h"
+#include "menues/LoginMenu.h"
+#include "../misc/Debug.h"
 
 #endif

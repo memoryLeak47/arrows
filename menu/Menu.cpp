@@ -18,4 +18,5 @@ void Menu::tick()
 void Menu::render()
 {
 	// fill screen black
+	ComponentContainer::render();
 }
