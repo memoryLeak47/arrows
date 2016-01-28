@@ -30,4 +30,20 @@ void Screen::tick()
 void Screen::display()
 {
 	window->display();
+	window->clear();
+}
+
+void Screen::drawRect(const PixelRect& rect, const sf::Color& color)
+{
+	
+}
+
+void Screen::drawImageID(const ImageID& id, const PixelRect& rect)
+{
+	
+}
+
+void Screen::drawText(const std::string& s, const PixelRect& rect, const sf::Color& color)
+{
+	
 }
