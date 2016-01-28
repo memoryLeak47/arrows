@@ -8,7 +8,7 @@ sf::Text Screen::text;
 
 void Screen::init()
 {
-	window = new sf::RenderWindow(sf::VideoMode(800, 600), "Arrows");
+	window = new sf::RenderWindow(sf::VideoMode(800, 600), "Arrows", sf::Style::Fullscreen);
 	static sf::Font font;
 	if (!font.loadFromFile("res/fonts/font.ttf"))
 	{
