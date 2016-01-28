@@ -6,7 +6,8 @@
 class Menu : public ComponentContainer
 {
 	public:
-		Menu(const PixelRect& rect);
+		Menu(const PixelRect& rect); // windowed menu
+		Menu(); // fullscreen window
 		virtual bool isFullscreen();
 		virtual void tick();
 		virtual void render();

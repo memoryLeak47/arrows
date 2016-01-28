@@ -9,8 +9,8 @@ class MenuComponent;
 class ComponentContainer : public PixelRect
 {
 	public:
-		ComponentContainer(const PixelRect& rect);
-		ComponentContainer(const ComponentContainer& parent, const PixelRect& rect);
+		ComponentContainer(const PixelRect& rect); // for menues ..
+		ComponentContainer(const ComponentContainer& parent, const PixelRect& rect); // for panels ...
 		const std::vector<MenuComponent*>& getComponents() const;
 		virtual void render() const;
 	protected:

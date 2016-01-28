@@ -1,6 +1,6 @@
 #include "Button.h"
 
-Button::Button()
+Button::Button(ComponentContainer* parent, const PixelRect& rect, const std::string& s) : MenuComponent(parent, rect), string(s)
 {
 }
 
