@@ -1,5 +1,5 @@
-#ifndef __BUTTON_CLASS__
-#define __BUTTON_CLASS__
+#ifndef __LABEL_CLASS__
+#define __LABEL_CLASS__
 
 #include <string>
 
@@ -7,13 +7,14 @@
 
 class PixelRect;
 
-class Button : public MenuComponent
+class Label : public MenuComponent
 {
 	public:
-		Button(ComponentContainer*, const PixelRect&, const std::string&);
+		Label(ComponentContainer*, const PixelRect&, const std::string&);
 		void render(); // override
 	private:
 		std::string caption;
+	
 };
 
 #include "../../math/pixel/PixelRect.h"

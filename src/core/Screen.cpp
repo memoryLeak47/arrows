@@ -44,7 +44,7 @@ void Screen::tick()
 void Screen::display()
 {
 	window->display();
-	window->clear();
+	window->clear(sf::Color(20, 20, 20));
 }
 
 void Screen::drawRect(const PixelRect& rect, const sf::Color& color)
