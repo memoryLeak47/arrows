@@ -21,6 +21,10 @@ void Screen::tick()
 	{
 		Main::exit();
 	}
+	else
+	{
+		Main::getMenuList()->onEvent(event);
+	}
 }
 
 void Screen::render()

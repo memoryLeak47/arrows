@@ -65,3 +65,8 @@ void Main::exit()
 	//delete account; // really needed?
 	Screen::uninit();
 }
+
+MenuList* Main::getMenuList()
+{
+	return menuList;
+}

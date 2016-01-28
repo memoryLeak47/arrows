@@ -35,6 +35,7 @@ class Main
 		Main();
 		~Main();
 		static void exit();
+		static MenuList* getMenuList();
 };
 
 
