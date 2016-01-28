@@ -32,6 +32,7 @@ class Main
 	public:
 		Main();
 		~Main();
+		static void setAccount(Account*);
 		static void exit();
 		static MenuList* getMenuList();
 };

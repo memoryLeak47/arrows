@@ -14,9 +14,10 @@ class MenuList
 		void onEvent(const sf::Event &event);
 		void tick();
 		void render();
+		void addMenu(Menu*);
 	private:
 		std::vector<Menu*> menues;
-		std::vector<Menu*> getMenues();
+		std::vector<Menu*> getMenues(); // TODO correct data type?
 		Menu* getTopmostMenu();
 		int getTopmostFullscreenMenuIndex();
 };

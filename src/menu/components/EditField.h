@@ -13,8 +13,9 @@ class EditField : public MenuComponent
 		EditField(ComponentContainer*, const PixelRect&, const std::string&);
 		EditField(ComponentContainer*, const PixelRect&);
 		void render(); // override
+		const std::string& getText() const;
 	private:
-		std::string caption;
+		std::string text;
 	
 };
 

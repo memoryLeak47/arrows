@@ -1,6 +1,8 @@
 #ifndef __MENU_CLASS__
 #define __MENU_CLASS__
 
+#include <string>
+
 #include "ComponentContainer.h"
 
 class Menu : public ComponentContainer
@@ -11,6 +13,8 @@ class Menu : public ComponentContainer
 		virtual bool isFullscreen();
 		virtual void tick();
 		virtual void render();
+	protected:
+		static void popup(const std::string&);
 };
 
 #endif

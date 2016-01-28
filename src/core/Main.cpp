@@ -71,6 +71,11 @@ void Main::exit()
 	Debug::note("Exiting...");
 }
 
+void Main::setAccount(Account* a)
+{
+	account = a;
+}
+
 MenuList* Main::getMenuList()
 {
 	return menuList;

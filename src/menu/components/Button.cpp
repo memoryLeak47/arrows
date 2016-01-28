@@ -8,6 +8,8 @@ Button::Button(ComponentContainer* parent, const PixelRect& rect, const std::str
 
 }
 
+void Button::onClick() {}
+
 void Button::render()
 {
 	Screen::drawRect(*this, sf::Color::Red);

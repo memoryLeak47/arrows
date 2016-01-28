@@ -8,6 +8,8 @@ class LoginMenu : public Menu
 {
 	public:
 		LoginMenu();
+		void login(); // called by the login button
+		void signin(); // called by the signin button
 	private:
 		EditField* usernameField;
 		EditField* passwordField;

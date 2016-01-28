@@ -32,6 +32,12 @@ void MenuList::render()
 	}
 }
 
+void MenuList::addMenu(Menu* menu)
+{
+	menues.push_back(menu);
+}
+
+
 std::vector<Menu*> MenuList::getMenues()
 {
 	return menues;

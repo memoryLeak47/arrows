@@ -12,6 +12,8 @@ class MenuComponent : public PixelRect
 		~MenuComponent();
 		virtual void tick();
 		virtual void render() = 0;
+	protected:
+		ComponentContainer* getParent();
 	private:
 		ComponentContainer* parent;
 };

@@ -1,5 +1,7 @@
 #include "Menu.h"
 
+#include "../misc/Debug.h"
+
 Menu::Menu(const PixelRect& rect) : ComponentContainer(rect)
 {
 	
@@ -23,4 +25,9 @@ void Menu::render()
 {
 	// fill screen black
 	ComponentContainer::render();
+}
+
+void Menu::popup(const std::string& msg)
+{
+	Debug::note("Popupwindow: " + msg);
 }

@@ -9,3 +9,8 @@ MenuComponent::~MenuComponent()
 {}
 
 void MenuComponent::tick() {}
+
+ComponentContainer* MenuComponent::getParent()
+{
+	return parent;
+}
