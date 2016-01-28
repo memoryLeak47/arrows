@@ -3,9 +3,9 @@
 
 #include <string>
 
-#include "../MenuComponent.h"
-
 class PixelRect;
+
+#include "../MenuComponent.h"
 
 class Button : public MenuComponent
 {
@@ -13,7 +13,7 @@ class Button : public MenuComponent
 		Button(ComponentContainer*, const PixelRect&, const std::string&);
 		virtual void render(); // override
 	private:
-		std::string string;
+		std::string caption;
 };
 
 #include "../../math/pixel/PixelRect.h"

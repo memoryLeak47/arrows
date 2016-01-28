@@ -1,5 +1,7 @@
 #include "Debug.h"
 
+#include "../core/Main.h" // TODO put include to Debug.h -> awkward errors
+
 void Debug::init()
 {
 
@@ -10,13 +12,18 @@ void Debug::note(const std::string& s)
 	std::cout << NOTE_COLOR << "NOTE: " << s << RESET_COLOR << std::endl;
 }
 
-void Debug::test(std::string s)
+void Debug::test(const std::string& s)
 {
 	std::cout << TEST_COLOR << "TEST: " << s << RESET_COLOR << std::endl;
 }
 
-void Debug::error(std::string s)
+void Debug::warn(const std::string& s)
+{
+	std::cout << WARN_COLOR << "WARN: " << s << RESET_COLOR << std::endl;
+}
+
+void Debug::error(const std::string& s)
 {
 	std::cout << ERROR_COLOR << "ERROR: " << s << RESET_COLOR << std::endl;
-	// exit
+	Main::exit();
 }

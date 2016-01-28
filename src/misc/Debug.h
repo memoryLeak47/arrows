@@ -1,13 +1,12 @@
-#include <string>
-#include <stdio.h>
-#include <iostream>
 
+#pragma once
 #ifndef __DEBUG_CLASS__
 #define __DEBUG_CLASS__
 
-#define TEST_COLOR FPURPLE
-#define ERROR_COLOR FRED
 #define NOTE_COLOR FYELLOW
+#define TEST_COLOR FPURPLE
+#define WARN_COLOR FRED
+#define ERROR_COLOR FRED
 
 #define RESET_COLOR "\u001B[0m"
 
@@ -29,13 +28,18 @@
 #define BCYAN "\u001B[46m"
 #define BWHITE "\u001B[47m"
 
+#include <string>
+#include <stdio.h>
+#include <iostream>
+
 class Debug
 {
 	public:
 		static void init();
-		static void note(const std::string& s);
-		static void test(std::string s);
-		static void error(std::string s);
+		static void note(const std::string&);
+		static void test(const std::string&);
+		static void warn(const std::string&);
+		static void error(const std::string&);
 };
 
 #endif

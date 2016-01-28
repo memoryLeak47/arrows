@@ -1,10 +1,21 @@
 #include "Screen.h"
 
 sf::RenderWindow* Screen::window;
+sf::Text Screen::text;
 
 void Screen::init()
 {
 	window = new sf::RenderWindow(sf::VideoMode(800, 600), "Arrows");
+	static sf::Font font;
+	if (!font.loadFromFile("res/fonts/font.ttf"))
+	{
+		Debug::warn("couldn't load font");
+	}
+	else
+	{
+		text.setFont(font);
+		text.setCharacterSize(15);
+	}
 }
 
 void Screen::uninit()
@@ -47,7 +58,10 @@ void Screen::drawImageID(const ImageID& id, const PixelRect& rect)
 	
 }
 
-void Screen::drawText(const std::string& s, const PixelRect& rect, const sf::Color& color)
+void Screen::drawText(const std::string& str, const PixelVector& position, const sf::Color& color)
 {
-	
+	text.setString(str);
+	text.setPosition(position.getX(), position.getY());
+	text.setColor(color);
+	window->draw(text);
 }
