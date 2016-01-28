@@ -1,5 +1,15 @@
 #include "ComponentContainer.h"
 
+ComponentContainer::ComponentContainer(const PixelRect& rect) : PixelRect(rect)
+{
+	
+}
+
+ComponentContainer::ComponentContainer(const ComponentContainer& parent, const PixelRect& rect) : PixelRect(rect)
+{
+	this->parent = parent;
+}
+
 std::vector<MenuComponent*> ComponentContainer::getComponents()
 {
 	return components;

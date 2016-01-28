@@ -8,7 +8,13 @@ class PixelRect
 	private:
 		PixelVector position;
 		PixelVector size;
-	
+	public:
+		PixelRect(float x, float y, float width, float height);
+		PixelRect(const PixelVector& position, const PixelVector& size);
+		PixelRect(const PixelRect& rect);
+
+		PixelVector getPosition() const;
+		PixelVector getSize() const;
 };
 
 #endif

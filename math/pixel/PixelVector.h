@@ -5,6 +5,8 @@
 
 class PixelVector : public Vector
 {
+	public:
+		PixelVector(float x, float y);
 };
 
 #endif

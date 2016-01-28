@@ -6,6 +6,8 @@ class Vector
 	private:
 		float x, y;
 	public:
+		Vector(const Vector&);
+		Vector(float, float);
 		float getX() const;
 		float getY() const;
 };

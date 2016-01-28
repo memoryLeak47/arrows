@@ -1,5 +1,10 @@
 #include "Menu.h"
 
+Menu::Menu(const PixelRect& rect) : ComponentContainer(rect)
+{
+	
+}
+
 bool Menu::isFullscreen() { return true; }
 
 void Menu::tick()
