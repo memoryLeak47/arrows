@@ -10,6 +10,7 @@ class MenuList
 {
 	public:
 		MenuList();
+		~MenuList();
 		void onEvent(const sf::Event &event);
 		void tick();
 		void render();

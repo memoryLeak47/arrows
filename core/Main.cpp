@@ -18,7 +18,11 @@ Main::Main()
 
 Main::~Main()
 {
-	exit();
+	delete menuList;
+	delete networkDevice;
+	delete game;
+	delete account; // really needed?
+	Screen::uninit();
 }
 
 void Main::run()
@@ -60,12 +64,8 @@ void Main::render()
 
 void Main::exit()
 {
-	running = false;
-	delete menuList;
-	delete networkDevice;
-	//delete game;
-	//delete account; // really needed?
-	Screen::uninit();
+	running = false; // in the next-frame -> destructor
+	Debug::note("Exiting...");
 }
 
 MenuList* Main::getMenuList()

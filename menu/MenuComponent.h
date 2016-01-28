@@ -8,11 +8,14 @@ class MenuComponent : public PixelRect
 {
 	public:
 		MenuComponent(ComponentContainer* parent, const PixelRect&);
+		~MenuComponent();
 		virtual void tick();
 		virtual void render() = 0;
 	private:
 		ComponentContainer* parent;
 };
+
+#include "../misc/Debug.h"
 
 
 #endif

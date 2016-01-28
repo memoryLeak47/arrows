@@ -11,6 +11,7 @@ class ComponentContainer : public PixelRect
 	public:
 		ComponentContainer(const PixelRect& rect); // for menues ..
 		ComponentContainer(const ComponentContainer& parent, const PixelRect& rect); // for panels ...
+		~ComponentContainer();
 		const std::vector<MenuComponent*>& getComponents() const;
 		virtual void render() const;
 	protected:
@@ -20,6 +21,7 @@ class ComponentContainer : public PixelRect
 		ComponentContainer* parent;
 };
 
+#include "../misc/Debug.h"
 #include "MenuComponent.h"
 
 #endif

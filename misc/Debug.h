@@ -7,6 +7,7 @@
 
 #define TEST_COLOR FPURPLE
 #define ERROR_COLOR FRED
+#define NOTE_COLOR FYELLOW
 
 #define RESET_COLOR "\u001B[0m"
 
@@ -32,6 +33,7 @@ class Debug
 {
 	public:
 		static void init();
+		static void note(const std::string& s);
 		static void test(std::string s);
 		static void error(std::string s);
 };

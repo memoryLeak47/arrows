@@ -5,6 +5,11 @@ MenuList::MenuList()
 	menues.push_back(new LoginMenu());
 }
 
+MenuList::~MenuList()
+{
+	menues.clear();
+}
+
 void MenuList::onEvent(const sf::Event &event)
 {
 	

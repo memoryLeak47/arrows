@@ -10,6 +10,11 @@ ComponentContainer::ComponentContainer(const ComponentContainer& parent, const P
 	this->parent = (ComponentContainer*) &parent;
 }
 
+ComponentContainer::~ComponentContainer()
+{
+	components.clear();
+}
+
 void ComponentContainer::addComponent(MenuComponent* c)
 {
 	components.push_back(c);
