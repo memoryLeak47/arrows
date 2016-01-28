@@ -49,11 +49,13 @@ void Main::tick()
 {
 	networkDevice->receive();
 	Screen::tick();
+	menuList->tick();
 }
 
 void Main::render()
 {
-	Screen::render();
+	menuList->render();
+	Screen::display();
 }
 
 void Main::exit()

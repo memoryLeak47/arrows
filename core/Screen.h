@@ -13,7 +13,7 @@ class Screen
 		static void init();
 		static void uninit();
 		static void tick();
-		static void render();
+		static void display();
 };
 
 

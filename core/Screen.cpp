@@ -27,7 +27,7 @@ void Screen::tick()
 	}
 }
 
-void Screen::render()
+void Screen::display()
 {
 	window->display();
 }

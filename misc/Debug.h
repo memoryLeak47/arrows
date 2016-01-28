@@ -6,6 +6,8 @@
 #define __DEBUG_CLASS__
 
 #define TEST_COLOR FPURPLE
+#define ERROR_COLOR FRED
+
 #define RESET_COLOR "\u001B[0m"
 
 #define FBLACK "\u001B[30m"
@@ -31,6 +33,7 @@ class Debug
 	public:
 		static void init();
 		static void test(std::string s);
+		static void error(std::string s);
 };
 
 #endif
