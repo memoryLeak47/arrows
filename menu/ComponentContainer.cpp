@@ -7,7 +7,7 @@ ComponentContainer::ComponentContainer(const PixelRect& rect) : PixelRect(rect)
 
 ComponentContainer::ComponentContainer(const ComponentContainer& parent, const PixelRect& rect) : PixelRect(rect)
 {
-	this->parent = parent;
+	this->parent = (ComponentContainer*) &parent;
 }
 
 std::vector<MenuComponent*> ComponentContainer::getComponents()
