@@ -5,7 +5,8 @@
 
 class CreateServerMenu : public Menu
 {
-	
+	public:
+		CreateServerMenu();
 };
 
 #endif
