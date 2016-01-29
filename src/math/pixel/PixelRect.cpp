@@ -9,12 +9,12 @@ PixelRect::PixelRect(const PixelRect& rect) : position(rect.getPosition()), size
 PixelRect::PixelRect(const PixelVector& position, const PixelVector& size) : position(position), size(size)
 {}
 
-PixelVector PixelRect::getPosition() const
+const PixelVector& PixelRect::getPosition() const
 {
 	return position;
 }
 
-PixelVector PixelRect::getSize() const
+const PixelVector& PixelRect::getSize() const
 {
 	return size;
 }

@@ -13,8 +13,8 @@ class PixelRect
 		PixelRect(const PixelVector& position, const PixelVector& size);
 		PixelRect(const PixelRect& rect);
 
-		PixelVector getPosition() const;
-		PixelVector getSize() const;
+		const PixelVector& getPosition() const;
+		const PixelVector& getSize() const;
 };
 
 

@@ -4,11 +4,7 @@
 #include "../core/Screen.h"
 #include "../math/pixel/PixelVector.h"
 
-ComponentContainer::ComponentContainer(const PixelRect& rect) : MenuComponent(NULL, rect)
-{
-}
-
-ComponentContainer::ComponentContainer(ComponentContainer* parent, const PixelRect& rect) : MenuComponent(parent, rect)
+ComponentContainer::ComponentContainer(const PixelRect& rect) : PixelRect(rect)
 {
 }
 
@@ -54,6 +50,7 @@ MenuComponent* ComponentContainer::getHoveredComponent() const
 	return NULL; // returne null
 }
 
+
 const std::vector<MenuComponent*>& ComponentContainer::getComponents() const
 {
 	return components;
@@ -65,4 +62,9 @@ void ComponentContainer::render() const
 	{
 		getComponents()[i]->render();
 	}
+}
+
+const PixelVector& ComponentContainer::getOffset() const
+{
+	return getPosition();	
 }

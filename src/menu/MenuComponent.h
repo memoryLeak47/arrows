@@ -9,8 +9,7 @@ class PixelPosition;
 class MenuComponent : public PixelRect
 {
 	public:
-		MenuComponent(const PixelRect&); // menues
-		MenuComponent(ComponentContainer* parent, const PixelRect&); // every-thing else
+		MenuComponent(ComponentContainer* parent, const PixelRect& rect);
 		~MenuComponent();
 		virtual void tick();
 		virtual void render() = 0;
@@ -20,8 +19,7 @@ class MenuComponent : public PixelRect
 		void onMouseExit(const PixelVector&);
 		void onKeyPress(char key);
 		void onKeyRelease(char key);
-		virtual const PixelVector& getOffset() const;
-
+		const PixelVector& getOffset() const;
 	protected:
 		ComponentContainer* getParent() const;
 	private:

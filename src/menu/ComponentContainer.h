@@ -3,18 +3,19 @@
 
 #include <vector>
 
-class PixelRect;
-#include "MenuComponent.h"
+#include "../math/pixel/PixelRect.h"
 
-class ComponentContainer : public MenuComponent
+class MenuComponent;
+
+class ComponentContainer : public PixelRect
 {
 	public:
-		ComponentContainer(const PixelRect& rect); // for menues ..
-		ComponentContainer(ComponentContainer* parent, const PixelRect& rect); // for panels ...
+		ComponentContainer(const PixelRect& rect);
 		~ComponentContainer();
 		const std::vector<MenuComponent*>& getComponents() const;
 		const PixelVector& getCursorPosition() const;
 		virtual void render() const;
+		const PixelVector& getOffset() const;
 	protected:
 		void addComponent(MenuComponent*);
 		MenuComponent* getHoveredComponent() const;
@@ -22,6 +23,6 @@ class ComponentContainer : public MenuComponent
 		std::vector<MenuComponent*> components;
 };
 
-#include "../math/pixel/PixelRect.h"
+#include "MenuComponent.h"
 
 #endif
