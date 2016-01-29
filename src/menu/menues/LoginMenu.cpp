@@ -6,14 +6,13 @@
 #include "../../core/Main.h"
 #include "../components/Button.h"
 #include "../components/Label.h"
-#include "../components/EditField.h"
 
 LoginMenu::LoginMenu() : Menu()
 {
 	addComponent(new Label(this, PixelRect(350, 20, 100, 20), "Login"));
 
 	addComponent(usernameField = new EditField(this, PixelRect(350, 200, 100, 20), "Username"));
-	addComponent(passwordField = new EditField(this, PixelRect(350, 230, 100, 20), "Password"));
+	addComponent(passwordField = new PasswordField(this, PixelRect(350, 230, 100, 20), "Password"));
 
 	class LoginButton : public Button
 	{

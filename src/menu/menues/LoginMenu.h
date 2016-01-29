@@ -3,6 +3,7 @@
 
 #include "../Menu.h"
 class EditField;
+class PasswordField;
 
 class LoginMenu : public Menu
 {
@@ -12,9 +13,10 @@ class LoginMenu : public Menu
 		void signin(); // called by the signin button
 	private:
 		EditField* usernameField;
-		EditField* passwordField;
+		PasswordField* passwordField;
 };
 
 #include "../components/EditField.h"
+#include "../components/PasswordField.h"
 
 #endif
