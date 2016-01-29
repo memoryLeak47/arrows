@@ -13,12 +13,12 @@ class MenuComponent : public PixelRect
 		~MenuComponent();
 		virtual void tick();
 		virtual void render() = 0;
-		void onClick(int mouseButton);
-		void onMouseEnter(const PixelVector&);
-		void onMouseMove(const PixelVector&);
-		void onMouseExit(const PixelVector&);
-		void onKeyPress(char key);
-		void onKeyRelease(char key);
+		virtual void onClick(int mouseButton);
+		virtual void onMouseEnter(const PixelVector&);
+		virtual void onMouseMove(const PixelVector&);
+		virtual void onMouseExit(const PixelVector&);
+		virtual void onKeyPress(char key);
+		virtual void onKeyRelease(char key);
 		const PixelVector& getOffset() const;
 		MenuComponent* getHoveredComponentRecursively() const; // overwritten by panels etcs..
 	protected:

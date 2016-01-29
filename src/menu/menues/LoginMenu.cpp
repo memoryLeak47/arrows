@@ -19,7 +19,7 @@ LoginMenu::LoginMenu() : Menu()
 	{
 		public:
 			LoginButton(LoginMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
-			void onClick()
+			void onClick(int mouseButton)
 			{
 				((LoginMenu*)getParent())->login();
 			}
@@ -29,7 +29,7 @@ LoginMenu::LoginMenu() : Menu()
 	{
 		public:
 			SigninButton(LoginMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
-			void onClick()
+			void onClick(int mouseButton)
 			{
 				((LoginMenu*)getParent())->signin();
 			}
@@ -39,7 +39,7 @@ LoginMenu::LoginMenu() : Menu()
 	{
 		public:
 			QuitButton(ComponentContainer* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
-			void onClick()
+			void onClick(int mouseButton)
 			{
 				Main::exit();
 			}
