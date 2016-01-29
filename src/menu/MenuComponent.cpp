@@ -19,8 +19,7 @@ void MenuComponent::onClick(int mouseButton) {}
 void MenuComponent::onMouseEnter(const PixelVector& mousePos) {}
 void MenuComponent::onMouseMove(const PixelVector& mousePos) {}
 void MenuComponent::onMouseExit(const PixelVector& mousePos) {}
-void MenuComponent::onKeyPress(char key) {}
-void MenuComponent::onKeyRelease(char key) {}
+void MenuComponent::onTextEntered(char key) {}
 
 const PixelVector& MenuComponent::getOffset() const
 {

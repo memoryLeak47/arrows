@@ -41,18 +41,15 @@ void Menu::onEvent(const sf::Event& event)
 			hovered->onClick(((const sf::Event::MouseButtonEvent&) event).button); // gebe das 
 		}
 	}
-	else if (event.type == sf::Event::KeyPressed) // wenn die tastatur gedrückt wurde
+	// IMPORTANT-NOTE: the game-intern key-events are handled by sf::Keyboard::isKeyPressed(sf::Keyboard::Key) !!!
+	else if (event.type == sf::Event::TextEntered) // wenn die tastatur gedrückt wurde
 	{
 		if (getFocusedComponent() != NULL) // und es eine fokusierte MenuComponent gibt 
 		{
-			getFocusedComponent()->onKeyPress(((const sf::Event::KeyEvent&) event).code); // gebe d
-		}
-	}
-	else if (event.type == sf::Event::KeyReleased) // wenn die tastatur losgelassen wurde
-	{
-		if (getFocusedComponent() != NULL) // und es eine fokusierte MenuComponent gibt
-		{
-			getFocusedComponent()->onKeyRelease(((const sf::Event::KeyEvent&) event).code); // ge
+			if (event.text.unicode < 128)
+			{
+				getFocusedComponent()->onTextEntered(static_cast<char>(event.text.unicode)); // gebe d
+			}
 		}
 	}
 	else // falls das event ein anderes ist

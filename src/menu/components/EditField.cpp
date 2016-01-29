@@ -13,6 +13,18 @@ EditField::EditField(ComponentContainer* parent, const PixelRect& rect) : MenuCo
 
 }
 
+void EditField::onTextEntered(char c)
+{
+	if (c == 8)
+	{
+		text = text.substr(0, text.length()-1);
+	}
+	else
+	{
+		text += c;
+	}
+}
+
 void EditField::render()
 {
 	Screen::drawRect(*this, sf::Color::Blue);
