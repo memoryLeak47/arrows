@@ -37,6 +37,10 @@ void MenuList::addMenu(Menu* menu)
 	menues.push_back(menu);
 }
 
+void MenuList::back()
+{
+	menues.pop_back();
+}
 
 std::vector<Menu*> MenuList::getMenues()
 {

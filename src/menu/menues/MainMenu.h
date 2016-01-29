@@ -5,7 +5,8 @@
 
 class MainMenu : public Menu
 {
-	
+	public:
+		MainMenu();
 };
 
 #endif

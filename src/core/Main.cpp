@@ -76,6 +76,12 @@ void Main::setAccount(Account* a)
 	account = a;
 }
 
+void Main::logout()
+{
+	delete account;
+	account = NULL;
+}
+
 MenuList* Main::getMenuList()
 {
 	return menuList;

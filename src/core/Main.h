@@ -36,6 +36,7 @@ class Main
 		Main();
 		~Main();
 		static void setAccount(Account*);
+		static void logout();
 		static void exit();
 		static MenuList* getMenuList();
 };

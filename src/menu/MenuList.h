@@ -15,6 +15,7 @@ class MenuList
 		void tick();
 		void render();
 		void addMenu(Menu*);
+		void back(); // removes menu
 	private:
 		std::vector<Menu*> menues;
 		std::vector<Menu*> getMenues(); // TODO correct data type?
