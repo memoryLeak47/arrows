@@ -11,6 +11,7 @@ Account* Account::get(const std::string& name, const std::string& pwd)
 {
 	std::vector<Account*> accounts = getAccounts();
 	Account* account = getByName(name, accounts);
+	accounts.clear();
 	if (account == NULL)
 	{
 		return NULL;
@@ -38,6 +39,7 @@ void Account::updateAccount(Account* account) // called when user quits arrows
 		}
 		accounts.push_back(account);
 		writeAccountsToFile(accounts);
+		accounts.clear();
 	}
 	else
 	{
@@ -54,8 +56,10 @@ bool Account::add(const std::string& name, const std::string& pwd)
 		Account* account = new Account(name, pwd);
 		accounts.push_back(account);
 		writeAccountsToFile(accounts);
+		accounts.clear();
 		return true;
 	}
+	accounts.clear();
 	return false;
 
 }
@@ -72,30 +76,61 @@ Account* Account::getByName(const std::string& name, const std::vector<Account*>
 	return NULL;
 }
 
-const std::vector<Account*>& Account::getAccounts()
+std::vector<Account*>& Account::getAccounts()
 {
+	std::vector<Account*> accounts;
 	std::ifstream filestream(ACCOUNTS_FILENAME);
+/*
 	if (!filestream.good())
 	{
+		Debug::warn((std::string)"Account.getAccounts(): can't open " + ACCOUNTS_FILENAME);
 		filestream.close();
-		const std::vector<Account*>& v = std::vector<Account*>();
-		return v;
+		return accounts;
 	}
-	filestream.close();
+*/
 
-	const std::vector<Account*>& accounts = std::vector<Account*>(); // = (std::vector<Account*>) Serializer::fileToObject(ACCOUNTS_FILENAME);
-	return accounts;
+	while (filestream.good())
+	{
+		std::string readname, readpwd;
+		std::getline(filestream, readname);
+		std::getline(filestream, readpwd);
+		Account* a = new Account(readname, readpwd);
+		accounts.push_back(a);
+	}
+
+	filestream.close();
+	static std::vector<Account*> ref = accounts;
+	return ref;
 }
 
 void Account::writeAccountsToFile(const std::vector<Account*>& accounts)
 {
-	// Serializer::objectToFile(accounts, new File(accounts_filename));
+	std::ofstream filestream(ACCOUNTS_FILENAME);
+	if (!filestream.good())
+	{
+		Debug::warn("Account::writeAccountsToFile(): bad filestream");
+		filestream.close();
+		return;
+	}
+	for (int i = 0; i < accounts.size(); i++)
+	{
+		filestream << accounts[i]->getName() << std::endl;
+		filestream << accounts[i]->getPassword() << std::endl;
+/*
+		std::string namestring = accounts[i]->getName() + "\n";
+		std::string pwdstring = accounts[i]->getPassword() + "\n";
+		filestream.write(namestring.c_str(), sizeof(namestring.c_str()));
+		filestream.write(pwdstring.c_str(), sizeof(pwdstring.c_str()));
+*/
+	}
+	filestream.close();
 }
 
 bool Account::isNameFree(const std::string& name, const std::vector<Account*>& accounts)
 {
 	return (getByName(name, accounts) == NULL);
 }
+
 
 // public getter
 const std::string& Account::getName() { return name; }

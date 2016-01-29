@@ -19,7 +19,7 @@ class Account
 		int getRank();
 	private:
 		static Account* getByName(const std::string&, const std::vector<Account*>&);
-		static const std::vector<Account*>& getAccounts();
+		static std::vector<Account*>& getAccounts();
 		static void writeAccountsToFile(const std::vector<Account*>&);
 		static bool isNameFree(const std::string&, const std::vector<Account*>&);
 
