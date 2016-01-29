@@ -1,5 +1,7 @@
 #include "PixelVector.h"
 
+#include <iostream>
+
 PixelVector::PixelVector(float x, float y)
 {
 	this->x = x;
@@ -9,9 +11,9 @@ PixelVector::PixelVector(float x, float y)
 bool PixelVector::inRect(const PixelRect& r) const
 {
 	return (getX() >= r.getPosition().getX()
-	     && getX() <= r.getPosition().getX() - r.getSize().getX()
+	     && getX() <= r.getPosition().getX() + r.getSize().getX()
 	     && getY() >= r.getPosition().getY()
-	     && getY() <= r.getPosition().getY() - r.getSize().getY());
+	     && getY() <= r.getPosition().getY() + r.getSize().getY());
 }
 
 int PixelVector::getX() const { return x; }
@@ -24,7 +26,7 @@ bool PixelVector::operator==(const PixelVector& vec) const
 
 bool PixelVector::operator!=(const PixelVector& vec) const
 {
-	return !(vec.getX() == getX() && vec.getY() == getY());
+	return vec.getX() != getX() || vec.getY() != getY();
 }
 
 const PixelVector& PixelVector::operator+(const PixelVector& vec) const

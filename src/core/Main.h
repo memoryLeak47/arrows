@@ -4,6 +4,9 @@
 #define MAX_TICK_COUNTER 2000
 #define MAX_RENDER_COUNTER 2000
 
+#define SCREEN_SIZE_X 800
+#define SCREEN_SIZE_Y 600
+
 class MenuList;
 class Game;
 class NetworkDevice;
