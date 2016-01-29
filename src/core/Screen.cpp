@@ -30,14 +30,16 @@ void Screen::uninit()
 void Screen::tick()
 {
 	static sf::Event event;
-	window->pollEvent(event);
-	if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	if (window->pollEvent(event))
 	{
-		Main::exit();
-	}
-	else
-	{
-		Main::getMenuList()->onEvent(event);
+		if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		{
+			Main::exit();
+		}
+		else
+		{
+			Main::getMenuList()->onEvent(event);
+		}
 	}
 }
 
@@ -45,6 +47,14 @@ void Screen::display()
 {
 	window->display();
 	window->clear(sf::Color(20, 20, 20));
+}
+
+const PixelVector& Screen::getCursorPosition()
+{
+	int x = sf::Mouse::getPosition().x;
+	int y = sf::Mouse::getPosition().y;
+	static PixelVector cur(x, y);
+	return cur;
 }
 
 void Screen::drawRect(const PixelRect& rect, const sf::Color& color)

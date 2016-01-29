@@ -6,7 +6,7 @@
 class PixelRect
 {
 	private:
-		PixelVector position;
+		PixelVector position; // left-top edge
 		PixelVector size;
 	public:
 		PixelRect(float x, float y, float width, float height);

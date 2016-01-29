@@ -10,6 +10,11 @@ class Vector
 		Vector(float, float);
 		float getX() const;
 		float getY() const;
+
+		bool operator==(const Vector&) const;
+		bool operator!=(const Vector&) const;
+		const Vector& operator+(const Vector&) const;
+		const Vector& operator-(const Vector&) const;
 };
 
 #endif

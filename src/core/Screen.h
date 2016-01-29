@@ -18,6 +18,7 @@ class Screen
 		static void uninit();
 		static void tick();
 		static void display();
+		static const PixelVector& getCursorPosition();
 
 		static void drawRect(const PixelRect&, const sf::Color&);
 		static void drawImageID(const ImageID&, const PixelRect&);

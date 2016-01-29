@@ -12,7 +12,6 @@ class Button : public MenuComponent
 	public:
 		Button(ComponentContainer*, const PixelRect&, const std::string&);
 		void render(); // override
-		virtual void onClick();
 	private:
 		std::string caption;
 };

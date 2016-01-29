@@ -15,7 +15,7 @@ MenuList::~MenuList()
 
 void MenuList::onEvent(const sf::Event &event)
 {
-	
+	getTopmostMenu()->onEvent(event);
 }
 
 void MenuList::tick()
