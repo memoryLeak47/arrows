@@ -5,6 +5,7 @@
 #include "../../misc/Debug.h"
 #include "../../core/Main.h"
 #include "../components/Button.h"
+#include "../components/QuitButton.h"
 #include "../components/Label.h"
 
 LoginMenu::LoginMenu() : Menu()
@@ -34,20 +35,10 @@ LoginMenu::LoginMenu() : Menu()
 			}
 	};
 
-	class QuitButton : public Button
-	{
-		public:
-			QuitButton(ComponentContainer* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
-			void onClick(int mouseButton)
-			{
-				Main::exit();
-			}
-	};
-
 	addComponent(new LoginButton(this, PixelRect(350, 260, 40, 20), "Log in"));
 	addComponent(new SigninButton(this, PixelRect(410, 260, 40, 20), "Sign in"));
 
-	addComponent(new QuitButton(this, PixelRect(20, 500, 100, 30), "Quit"));
+	addComponent(new QuitButton(this, PixelVector(20, 500)));
 
 
 }
