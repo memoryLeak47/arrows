@@ -27,3 +27,8 @@ const PixelVector& MenuComponent::getOffset() const
 	const PixelVector& tmp = getParent()->getOffset() + getPosition();
 	return tmp;
 }
+
+MenuComponent* MenuComponent::getHoveredComponentRecursively() const
+{
+	return (MenuComponent*) this;
+}

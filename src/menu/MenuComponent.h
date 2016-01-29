@@ -20,6 +20,7 @@ class MenuComponent : public PixelRect
 		void onKeyPress(char key);
 		void onKeyRelease(char key);
 		const PixelVector& getOffset() const;
+		MenuComponent* getHoveredComponentRecursively() const; // overwritten by panels etcs..
 	protected:
 		ComponentContainer* getParent() const;
 	private:
