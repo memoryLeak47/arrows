@@ -1,10 +1,10 @@
 #include "PixelVector.h"
 
-PixelVector::PixelVector(float x, float y) : Vector(x, y)
-{}
-
-PixelVector::PixelVector(const Vector& v) : Vector(v)
-{}
+PixelVector::PixelVector(float x, float y)
+{
+	this->x = x;
+	this->y = y;
+}
 
 bool PixelVector::inRect(const PixelRect& r) const
 {
@@ -14,14 +14,31 @@ bool PixelVector::inRect(const PixelRect& r) const
 	     && getY() <= r.getPosition().getY() - r.getSize().getY());
 }
 
-const PixelVector& PixelVector::operator+(const PixelVector& v) const
+int PixelVector::getX() const { return x; }
+int PixelVector::getY() const { return y; }
+
+bool PixelVector::operator==(const PixelVector& vec) const
 {
-	const PixelVector& pv(Vector::operator+(v));
-	return pv;
+	return vec.getX() == getX() && vec.getY() == getY();
 }
 
-const PixelVector& PixelVector::operator-(const PixelVector& v) const
+bool PixelVector::operator!=(const PixelVector& vec) const
 {
-	const PixelVector& pv(Vector::operator-(v));
-	return pv;
+	return !(vec.getX() == getX() && vec.getY() == getY());
+}
+
+const PixelVector& PixelVector::operator+(const PixelVector& vec) const
+{
+	float x = getX() + vec.getX();
+	float y = getY() + vec.getY();
+	const PixelVector& v = PixelVector(x, y);
+	return v;
+}
+
+const PixelVector& PixelVector::operator-(const PixelVector& vec) const
+{
+	float x = getX() - vec.getX();
+	float y = getY() - vec.getY();
+	const PixelVector& v = PixelVector(x, y);
+	return v;
 }
