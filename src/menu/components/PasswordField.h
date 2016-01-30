@@ -12,7 +12,7 @@ class PasswordField : public MenuComponent
 	public:
 		PasswordField(ComponentContainer*, const PixelRect&, const std::string&);
 		PasswordField(ComponentContainer*, const PixelRect&);
-		void render() override;
+		void render() const override;
 		void onTextEntered(char c) override;
 		const std::string& getText() const;
 	private:

@@ -19,6 +19,8 @@ class TeamListPanel;
 
 class LobbyMenu : public NetworkingMenu
 {
+	public:
+		LobbyMenu();
 	protected:
 		Button* lockButton; // Verweiß auf den NextStep/LockIn Button
 	private:

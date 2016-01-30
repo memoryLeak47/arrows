@@ -15,7 +15,7 @@ class ComponentContainer : public PixelRect
 		const std::vector<MenuComponent*>& getComponents() const;
 		const PixelVector& getCursorPosition() const;
 		virtual void render() const;
-		const PixelVector& getOffset() const;
+		virtual const PixelVector& getOffset() const;
 	protected:
 		void addComponent(MenuComponent*);
 		MenuComponent* getHoveredComponent() const;

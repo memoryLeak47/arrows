@@ -12,7 +12,7 @@ class EditField : public MenuComponent
 	public:
 		EditField(ComponentContainer*, const PixelRect&, const std::string&);
 		EditField(ComponentContainer*, const PixelRect&);
-		void render() override;
+		void render() const override;
 		void onTextEntered(char c) override;
 		const std::string& getText() const;
 	private:

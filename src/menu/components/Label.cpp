@@ -8,7 +8,7 @@ Label::Label(ComponentContainer* parent, const PixelRect& rect, const std::strin
 
 }
 
-void Label::render()
+void Label::render() const
 {
 	Screen::drawRect(*this, sf::Color::Green);
 	Screen::drawText(caption, getPosition(), sf::Color::Black);

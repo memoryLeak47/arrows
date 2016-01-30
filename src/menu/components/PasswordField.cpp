@@ -25,7 +25,7 @@ void PasswordField::onTextEntered(char c)
 	}
 }
 
-void PasswordField::render()
+void PasswordField::render() const
 {
 	Screen::drawRect(*this, sf::Color::Blue);
 	std::string renderedText = "";
