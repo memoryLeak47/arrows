@@ -37,7 +37,9 @@ class Debug
 		static void note(const std::string&);
 		static void test(const std::string&);
 		static void warn(const std::string&);
+		static void warnIf(bool, const std::string&);
 		static void error(const std::string&);
+		static void errorIf(bool, const std::string&);
 };
 
 #endif

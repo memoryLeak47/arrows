@@ -1,6 +1,8 @@
 #ifndef __NETWORKDEVICE_CLASS__
 #define __NETWORKDEVICE_CLASS__
 
+#define PORT 4242
+
 #include <SFML/Network.hpp>
 
 class Packet;
