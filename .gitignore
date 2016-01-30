@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-bin
-log
-.accounts
 *.swp
-.debug
-=======
-exe
-core
-.accounts
->>>>>>> cpp-arrows/master
+java/bin/
+java/log
+java/.accounts
+java/.debug
+cpp/exe
+cpp/.accounts
