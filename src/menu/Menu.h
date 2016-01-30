@@ -13,7 +13,7 @@ class Menu : public ComponentContainer
 		Menu(); // fullscreen window
 		virtual bool isFullscreen();
 		virtual void tick();
-		void render();
+		void render() const override;
 		void onEvent(const sf::Event&);
 	protected:
 		static void popup(const std::string&);

@@ -5,8 +5,6 @@ class PixelRect;
 
 class PixelVector
 {
-	private:
-		float x, y;
 	public:
 		PixelVector(float x, float y);
 
@@ -17,6 +15,8 @@ class PixelVector
 		const PixelVector& operator-(const PixelVector&) const;
 		bool operator==(const PixelVector&) const;
 		bool operator!=(const PixelVector&) const;
+	private:
+		float x, y;
 };
 
 #include "PixelRect.h"

@@ -12,9 +12,8 @@ class PasswordField : public MenuComponent
 	public:
 		PasswordField(ComponentContainer*, const PixelRect&, const std::string&);
 		PasswordField(ComponentContainer*, const PixelRect&);
-		void render(); // override
-		void onKeyPress(char c); // override
-		void onTextEntered(char c); // override
+		void render() override;
+		void onTextEntered(char c) override;
 		const std::string& getText() const;
 	private:
 		std::string text;

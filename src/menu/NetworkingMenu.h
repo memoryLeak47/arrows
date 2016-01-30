@@ -4,6 +4,7 @@
 #include <SFML/Network.hpp>
 
 #include "Menu.h"
+
 class Packet;
 class PacketAndIP;
 
@@ -11,7 +12,7 @@ class NetworkingMenu : public Menu
 {
 	public:
 		NetworkingMenu();
-		void tick();
+		void tick() override;
 		void receivePacket(Packet* p, const sf::IpAddress&);
 		virtual void handlePacket(Packet* p, const sf::IpAddress&) = 0;
 	protected:

@@ -6,8 +6,7 @@
 class ServerLobbyMenu : public LobbyMenu
 {
 	public:
-		void handlePacket(Packet*, const sf::IpAddress&);
-	
+		void handlePacket(Packet*, const sf::IpAddress&) override;
 };
 
 #endif

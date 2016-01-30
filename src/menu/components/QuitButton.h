@@ -7,7 +7,7 @@ class QuitButton : public Button
 {
 	public:
 		QuitButton(ComponentContainer*, const PixelVector&);
-		void onClick(int mouseButton);
+		void onClick(int mouseButton) override;
 };
 
 #endif

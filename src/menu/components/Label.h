@@ -11,7 +11,7 @@ class Label : public MenuComponent
 {
 	public:
 		Label(ComponentContainer*, const PixelRect&, const std::string&);
-		void render(); // override
+		void render() override;
 	private:
 		std::string caption;
 	

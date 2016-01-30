@@ -7,7 +7,7 @@ class BackButton : public Button
 {
 	public:
 		BackButton(ComponentContainer*, const PixelVector&);
-		void onClick(int mouseButton);
+		void onClick(int mouseButton) override;
 };
 
 #endif

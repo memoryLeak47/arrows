@@ -3,11 +3,11 @@
 
 class ImageID
 {	
+	public:
+		ImageID(int, int);
 	private:
 		int fileID;
 		int index;
-	public:
-		ImageID(int, int);
 };
 
 #endif

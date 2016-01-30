@@ -5,7 +5,7 @@
 
 Menu::Menu(const PixelRect& rect) : ComponentContainer(rect)
 {
-	
+
 }
 
 Menu::Menu() : ComponentContainer(PixelRect(0, 0, SCREEN_SIZE_X, SCREEN_SIZE_Y))
@@ -66,7 +66,7 @@ void Menu::tick()
 	}
 }
 
-void Menu::render()
+void Menu::render() const
 {
 	// fill screen black
 	ComponentContainer::render();

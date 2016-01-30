@@ -5,9 +5,6 @@
 
 class PixelRect
 {
-	private:
-		PixelVector position; // left-top edge
-		PixelVector size;
 	public:
 		PixelRect(float x, float y, float width, float height);
 		PixelRect(const PixelVector& position, const PixelVector& size);
@@ -15,6 +12,9 @@ class PixelRect
 
 		const PixelVector& getPosition() const;
 		const PixelVector& getSize() const;
+	private:
+		PixelVector position; // left-top edge
+		PixelVector size;
 };
 
 

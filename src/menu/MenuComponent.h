@@ -19,7 +19,7 @@ class MenuComponent : public PixelRect
 		virtual void onMouseExit(const PixelVector&);
 		virtual void onTextEntered(char key);
 		const PixelVector& getOffset() const;
-		MenuComponent* getHoveredComponentRecursively() const; // overwritten by panels etcs..
+		virtual MenuComponent* getHoveredComponentRecursively() const; // overwritten by panels etcs..
 	protected:
 		ComponentContainer* getParent() const;
 	private:

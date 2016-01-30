@@ -2,6 +2,7 @@
 #define __LOGINMENU_CLASS__
 
 #include "../Menu.h"
+
 class EditField;
 class PasswordField;
 
