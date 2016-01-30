@@ -7,15 +7,37 @@ void Debug::init()
 
 }
 
+// note
+
 void Debug::note(const std::string& s)
 {
 	std::cout << NOTE_COLOR << "NOTE: " << s << RESET_COLOR << std::endl;
 }
 
+void Debug::noteIf(bool b, const std::string& s)
+{
+	if (b)
+	{
+		note(s);
+	}
+}
+
+// test
+
 void Debug::test(const std::string& s)
 {
 	std::cout << TEST_COLOR << "TEST: " << s << RESET_COLOR << std::endl;
 }
+
+void Debug::testIf(bool b, const std::string& s)
+{
+	if (b)
+	{
+		test(s);
+	}
+}
+
+// warn
 
 void Debug::warn(const std::string& s)
 {
@@ -29,6 +51,8 @@ void Debug::warnIf(bool b, const std::string& s)
 		warn(s);
 	}
 }
+
+// error
 
 void Debug::error(const std::string& s)
 {

@@ -24,7 +24,7 @@ void NetworkDevice::send(Packet* packet, const sf::IpAddress& ip)
 	}
 	else
 	{
-		Debug::note("sent packet with string: " + string);
+		Debug::noteIf(TAG_NETWORK, "sent packet with string: " + string);
 	}
 
 	sfmlPacket.clear();
@@ -43,7 +43,7 @@ void NetworkDevice::receive()
 	std::string string;
 	sfmlPacket >> string;
 
-	Debug::note("received packet with string: " + string);
+	Debug::noteIf(TAG_NETWORK, "received packet with string: " + string);
 
 	Packet* packet = (Packet*) Compressable::decompress(string);
 

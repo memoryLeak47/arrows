@@ -1,6 +1,13 @@
 #ifndef __DEBUG_CLASS__
 #define __DEBUG_CLASS__
 
+// tags
+
+#define TAG_EVENT false
+#define TAG_NETWORK true
+
+// colors
+
 #define NOTE_COLOR FYELLOW
 #define TEST_COLOR FPURPLE
 #define WARN_COLOR FRED
@@ -26,6 +33,7 @@
 #define BCYAN "\u001B[46m"
 #define BWHITE "\u001B[47m"
 
+
 #include <string>
 #include <stdio.h>
 #include <iostream>
@@ -35,7 +43,9 @@ class Debug
 	public:
 		static void init();
 		static void note(const std::string&);
+		static void noteIf(bool, const std::string&);
 		static void test(const std::string&);
+		static void testIf(bool, const std::string&);
 		static void warn(const std::string&);
 		static void warnIf(bool, const std::string&);
 		static void error(const std::string&);
