@@ -28,6 +28,11 @@ Main::~Main()
 	Screen::uninit();
 }
 
+NetworkDevice* Main::getNetworkDevice()
+{
+	return networkDevice;
+}
+
 void Main::run()
 {
 	sf::Clock clock;

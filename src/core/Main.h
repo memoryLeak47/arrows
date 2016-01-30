@@ -35,6 +35,7 @@ class Main
 	public:
 		Main();
 		~Main();
+		static NetworkDevice* getNetworkDevice();
 		static void setAccount(Account*);
 		static void logout();
 		static void exit();
