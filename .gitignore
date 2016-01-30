@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 bin
 log
 .accounts
 *.swp
 .debug
+=======
+exe
+core
+.accounts
+>>>>>>> cpp-arrows/master
