@@ -15,6 +15,7 @@ class Menu : public ComponentContainer
 		virtual void tick();
 		void render() const override;
 		void onEvent(const sf::Event&);
+		virtual bool isNetworkingMenu() const;
 	protected:
 		static void popup(const std::string&);
 	private:

@@ -3,18 +3,20 @@
 
 #include <SFML/Network.hpp>
 
+class Packet;
 class NetworkingMenu;
 
 class NetworkDevice
 {
 	public:
+		NetworkDevice();
+		void send(Packet*, const sf::IpAddress& ip);
 		void receive();
-		void setNetworkingMenu(NetworkingMenu*);
 	private:
 		sf::UdpSocket socket;
-		NetworkingMenu* networkingMenu;
 };
 
+#include "Packet.h"
 #include "../menu/NetworkingMenu.h"
 
 #endif

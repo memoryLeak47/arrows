@@ -58,6 +58,8 @@ void Menu::onEvent(const sf::Event& event)
 	}
 }
 
+bool Menu::isNetworkingMenu() const { return false; }
+
 void Menu::tick()
 {
 	for (int i = 0; i < getComponents().size(); i++)

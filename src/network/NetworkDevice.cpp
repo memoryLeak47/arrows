@@ -1,11 +1,16 @@
 #include "NetworkDevice.h"
 
-void NetworkDevice::receive()
+NetworkDevice::NetworkDevice()
 {
 //	socket.setBocking(false);
 }
 
-void NetworkDevice::setNetworkingMenu(NetworkingMenu* menu)
+void NetworkDevice::send(Packet* packet, const sf::IpAddress& ip)
 {
-	networkingMenu = menu;
+
+}
+
+void NetworkDevice::receive()
+{
+
 }

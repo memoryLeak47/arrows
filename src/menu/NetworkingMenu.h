@@ -15,6 +15,7 @@ class NetworkingMenu : public Menu
 		void tick() override;
 		void receivePacket(Packet* p, const sf::IpAddress&);
 		virtual void handlePacket(Packet* p, const sf::IpAddress&) = 0;
+		virtual bool isNetworkingMenu() const override;
 	protected:
 		void send(Packet*, const sf::IpAddress&);
 	private:

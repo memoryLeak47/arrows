@@ -42,6 +42,18 @@ void MenuList::back()
 	menues.pop_back();
 }
 
+NetworkingMenu* MenuList::getNetworkingMenu()
+{
+	for (int i = getMenues().size()-1; i > 1 /* NOT login/main-menu */; i--)
+	{
+		if (getMenues()[i]->isNetworkingMenu())
+		{
+			return (NetworkingMenu*) getMenues()[i];
+		}
+	}
+	return NULL;
+}
+
 std::vector<Menu*> MenuList::getMenues()
 {
 	return menues;
