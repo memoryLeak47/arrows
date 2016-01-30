@@ -35,11 +35,20 @@ void NetworkDevice::receive()
 	sf::Packet sfmlPacket;
 	sf::IpAddress ip;
 	unsigned short port;
-	socket.receive(sfmlPacket, ip, port);
+	if (socket.receive(sfmlPacket, ip, port) != sf::Socket::Done)
+	{
+		return;
+	}
 
 	std::string string;
 	sfmlPacket >> string;
 
+	Debug::note("received packet with string: " + string);
+
 	Packet* packet = (Packet*) Compressable::decompress(string);
-	Main::getMenuList()->getNetworkingMenu()->receivePacket(packet, ip);
+
+	if (Main::getMenuList()->getNetworkingMenu() != NULL)
+	{
+		Main::getMenuList()->getNetworkingMenu()->receivePacket(packet, ip);
+	}
 }
