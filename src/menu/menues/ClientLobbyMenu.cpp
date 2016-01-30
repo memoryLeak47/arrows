@@ -9,3 +9,6 @@ void ClientLobbyMenu::handlePacket(Packet* p, const sf::IpAddress& ip)
 {
 	
 }
+
+void ClientLobbyMenu::lockPressed() {}
+void ClientLobbyMenu::disconnectPressed() {}

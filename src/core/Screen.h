@@ -19,6 +19,7 @@ class Screen
 
 		static void drawRect(const PixelRect&, const sf::Color&);
 		static void drawImageID(const ImageID&, const PixelRect&);
+		static void drawImage(const sf::Image&, const PixelRect&);
 		static void drawText(const std::string&, const PixelVector&, const sf::Color&);
 	private:
 		static sf::RenderWindow *window;

@@ -22,6 +22,9 @@ class LobbyMenu : public NetworkingMenu
 	public:
 		LobbyMenu();
 	protected:
+		virtual void lockPressed() = 0;
+		virtual void disconnectPressed() = 0;
+
 		Button* lockButton; // Verweiß auf den NextStep/LockIn Button
 	private:
 		int phase;

@@ -71,6 +71,11 @@ void Screen::drawImageID(const ImageID& id, const PixelRect& rect)
 	
 }
 
+void Screen::drawImage(const sf::Image& image, const PixelRect& rect)
+{
+
+}
+
 void Screen::drawText(const std::string& str, const PixelVector& position, const sf::Color& color)
 {
 	text.setString(str);

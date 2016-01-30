@@ -10,6 +10,8 @@ class ClientLobbyMenu : public LobbyMenu
 	public:
 		ClientLobbyMenu(const std::string&);
 		void handlePacket(Packet*, const sf::IpAddress&) override;
+		virtual void lockPressed() override;
+		virtual void disconnectPressed() override;
 };
 
 #endif
