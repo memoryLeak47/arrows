@@ -2,6 +2,7 @@
 #define __LOBBYMINIMAP_CLASS__
 
 #include "MiniMap.h"
+
 class LobbyMenu;
 
 class LobbyMiniMap : public MiniMap
