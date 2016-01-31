@@ -36,7 +36,7 @@ public abstract class DynamicEntity extends Entity
 
 	@Override public void tick()
 	{
-		if (!(isFloating() && canMove()))
+		if ((!isFloating()) && canMove())
 			accelerate(0, GRAVITY);
 		if (canMove())
 			setVelocity(getVelocity().timesX(1/getDrag().getX()).timesY(1/getDrag().getY()));
@@ -114,7 +114,7 @@ public abstract class DynamicEntity extends Entity
 
 	protected void stopX()
 	{
-		setVelocity(0, getVelocity().getX());
+		setVelocity(0, getVelocity().getY());
 	}
 
 	protected void stopY()
