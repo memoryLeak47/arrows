@@ -1,6 +1,6 @@
-#include "LobbyPlayer.h"
+#include "LobbyPlayer.hpp"
 
-#include "../misc/Debug.h"
+#include "../misc/Debug.hpp"
 
 sf::IpAddress LobbyPlayer::getIP() const
 {

@@ -1,4 +1,4 @@
-#include "ClientLobbyMenu.h"
+#include "ClientLobbyMenu.hpp"
 
 ClientLobbyMenu::ClientLobbyMenu(const std::string& ip)
 {

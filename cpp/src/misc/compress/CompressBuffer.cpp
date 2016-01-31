@@ -1,4 +1,4 @@
-#include "CompressBuffer.h"
+#include "CompressBuffer.hpp"
 
 CompressBuffer::CompressBuffer(const std::string& s)
 {

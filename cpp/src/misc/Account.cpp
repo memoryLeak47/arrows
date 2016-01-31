@@ -1,8 +1,8 @@
-#include "Account.h"
+#include "Account.hpp"
 
 #include <fstream>
 
-#include "Debug.h"
+#include "Debug.hpp"
 
 Account::Account(const std::string& name, const std::string& pwd) : name(name), password(pwd), rank(0)
 {}

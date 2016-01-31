@@ -1,7 +1,7 @@
-#include "Screen.h"
+#include "Screen.hpp"
 
-#include "../misc/Debug.h"
-#include "Main.h"
+#include "../misc/Debug.hpp"
+#include "Main.hpp"
 
 sf::RenderWindow* Screen::window;
 sf::Text Screen::text;

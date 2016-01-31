@@ -1,4 +1,4 @@
-#include "PacketAndIP.h"
+#include "PacketAndIP.hpp"
 
 PacketAndIP::PacketAndIP(Packet* packet, const sf::IpAddress& ip) : packet(packet), ip(ip)
 {}

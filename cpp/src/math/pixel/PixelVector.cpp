@@ -1,6 +1,6 @@
-#include "PixelVector.h"
+#include "PixelVector.hpp"
 
-#include "../../misc/Debug.h"
+#include "../../misc/Debug.hpp"
 #include <iostream>
 
 PixelVector::PixelVector(float x, float y)

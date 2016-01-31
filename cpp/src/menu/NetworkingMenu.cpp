@@ -1,6 +1,6 @@
-#include "NetworkingMenu.h"
+#include "NetworkingMenu.hpp"
 
-#include "../core/Main.h"
+#include "../core/Main.hpp"
 
 NetworkingMenu::NetworkingMenu()
 {}

@@ -1,6 +1,6 @@
-#include "Panel.h"
+#include "Panel.hpp"
 
-#include "../../core/Screen.h"
+#include "../../core/Screen.hpp"
 
 Panel::Panel(ComponentContainer* c, const PixelRect& r) : MenuComponent(c, r), ComponentContainer(r)
 {}

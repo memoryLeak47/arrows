@@ -1,7 +1,7 @@
-#include "MenuList.h"
+#include "MenuList.hpp"
 
-#include "../misc/Debug.h"
-#include "menues/LoginMenu.h"
+#include "../misc/Debug.hpp"
+#include "menues/LoginMenu.hpp"
 
 MenuList::MenuList()
 {

@@ -1,4 +1,4 @@
-#include "ImageID.h"
+#include "ImageID.hpp"
 
 ImageID::ImageID(int fileID, int index)
 {

@@ -1,7 +1,7 @@
-#include "Label.h"
+#include "Label.hpp"
 
-#include "../../misc/Debug.h"
-#include "../../core/Screen.h"
+#include "../../misc/Debug.hpp"
+#include "../../core/Screen.hpp"
 
 Label::Label(ComponentContainer* parent, const PixelRect& rect, const std::string& s) : MenuComponent(parent, rect), caption(s)
 {

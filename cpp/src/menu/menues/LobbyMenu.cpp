@@ -1,8 +1,8 @@
-#include "LobbyMenu.h"
+#include "LobbyMenu.hpp"
 
-#include "../components/Label.h"
-#include "../../core/Main.h"
-#include "../../misc/Debug.h"
+#include "../components/Label.hpp"
+#include "../../core/Main.hpp"
+#include "../../misc/Debug.hpp"
 
 LobbyMenu::LobbyMenu()
 {

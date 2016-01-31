@@ -1,12 +1,12 @@
-#include "MainMenu.h"
+#include "MainMenu.hpp"
 
-#include "../../core/Main.h"
-#include "../components/EditField.h"
-#include "../components/Button.h"
-#include "../components/QuitButton.h"
-#include "../components/Label.h"
-#include "CreateServerMenu.h"
-#include "JoinServerMenu.h"
+#include "../../core/Main.hpp"
+#include "../components/EditField.hpp"
+#include "../components/Button.hpp"
+#include "../components/QuitButton.hpp"
+#include "../components/Label.hpp"
+#include "CreateServerMenu.hpp"
+#include "JoinServerMenu.hpp"
 
 MainMenu::MainMenu()
 {

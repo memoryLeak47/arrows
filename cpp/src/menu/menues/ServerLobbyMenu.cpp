@@ -1,4 +1,4 @@
-#include "ServerLobbyMenu.h"
+#include "ServerLobbyMenu.hpp"
 
 void ServerLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
 {

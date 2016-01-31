@@ -1,7 +1,7 @@
-#include "Menu.h"
+#include "Menu.hpp"
 
-#include "../misc/Debug.h"
-#include "../core/Main.h"
+#include "../misc/Debug.hpp"
+#include "../core/Main.hpp"
 
 Menu::Menu(const PixelRect& rect) : ComponentContainer(rect)
 {

@@ -1,12 +1,12 @@
-#include "JoinServerMenu.h"
+#include "JoinServerMenu.hpp"
 
-#include "../../core/Main.h"
-#include "../components/Label.h"
-#include "../components/Button.h"
-#include "../components/BackButton.h"
-#include "../components/QuitButton.h"
-#include "../components/EditField.h"
-#include "ClientLobbyMenu.h"
+#include "../../core/Main.hpp"
+#include "../components/Label.hpp"
+#include "../components/Button.hpp"
+#include "../components/BackButton.hpp"
+#include "../components/QuitButton.hpp"
+#include "../components/EditField.hpp"
+#include "ClientLobbyMenu.hpp"
 
 JoinServerMenu::JoinServerMenu()
 {

@@ -1,8 +1,8 @@
-#include "ComponentContainer.h"
+#include "ComponentContainer.hpp"
 
-#include "../misc/Debug.h"
-#include "../core/Screen.h"
-#include "../math/pixel/PixelVector.h"
+#include "../misc/Debug.hpp"
+#include "../core/Screen.hpp"
+#include "../math/pixel/PixelVector.hpp"
 
 ComponentContainer::ComponentContainer(const PixelRect& rect) : rect(rect)
 {}

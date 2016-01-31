@@ -1,7 +1,7 @@
-#include "PasswordField.h"
+#include "PasswordField.hpp"
 
-#include "../../misc/Debug.h"
-#include "../../core/Screen.h"
+#include "../../misc/Debug.hpp"
+#include "../../core/Screen.hpp"
 
 PasswordField::PasswordField(ComponentContainer* parent, const PixelRect& rect, const std::string& s) : MenuComponent(parent, rect), text(s)
 {

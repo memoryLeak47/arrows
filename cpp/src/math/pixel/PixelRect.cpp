@@ -1,4 +1,4 @@
-#include "PixelRect.h"
+#include "PixelRect.hpp"
 
 PixelRect::PixelRect(float x, float y, float w, float h) : position(x, y), size(w, h)
 {}

@@ -1,8 +1,8 @@
-#include "NetworkDevice.h"
+#include "NetworkDevice.hpp"
 
-#include "Packet.h"
-#include "../core/Main.h"
-#include "../misc/Debug.h"
+#include "Packet.hpp"
+#include "../core/Main.hpp"
+#include "../misc/Debug.hpp"
 
 NetworkDevice::NetworkDevice()
 {

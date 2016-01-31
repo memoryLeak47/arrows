@@ -1,7 +1,7 @@
-#include "Main.h"
+#include "Main.hpp"
 
-#include "../misc/Debug.h"
-#include "Screen.h"
+#include "../misc/Debug.hpp"
+#include "Screen.hpp"
 
 bool Main::running = true;
 MenuList* Main::menuList;

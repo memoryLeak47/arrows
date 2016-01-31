@@ -1,0 +1,17 @@
+#ifndef __CLIENTLOBBYMENU_CLASS__
+#define __CLIENTLOBBYMENU_CLASS__
+
+#include <string>
+
+#include "LobbyMenu.hpp"
+
+class ClientLobbyMenu : public LobbyMenu
+{
+	public:
+		ClientLobbyMenu(const std::string&);
+		void handlePacket(Packet*, const sf::IpAddress&) override;
+		virtual void lockPressed() override;
+		virtual void disconnectPressed() override;
+};
+
+#endif

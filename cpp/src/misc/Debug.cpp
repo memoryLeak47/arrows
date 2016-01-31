@@ -1,6 +1,6 @@
-#include "Debug.h"
+#include "Debug.hpp"
 
-#include "../core/Main.h"
+#include "../core/Main.hpp"
 
 void Debug::init()
 {

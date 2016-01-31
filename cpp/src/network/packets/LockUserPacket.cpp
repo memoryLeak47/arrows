@@ -1,4 +1,4 @@
-#include "LockUserPacket.h"
+#include "LockUserPacket.hpp"
 
 LockUserPacket::LockUserPacket(bool locked) : locked(locked)
 {}
