@@ -17,7 +17,7 @@ public class BigArrowShotSkill extends NormalSkill
 
 	@Override public ImageID getIconImageID() { return ImageFile.BIGARROWSHOT_ICON.getImageID(); }
 	@Override public String getDescription() { return "shoots a big arrow"; }
-	@Override public float getRecharge() { return 0.3f; }
+	@Override public float getRecharge() { return 0.4f; }
 
 	@Override protected void trigger()
 	{

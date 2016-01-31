@@ -16,7 +16,7 @@ public class TeleportArrowShotSkill extends SpecialSkill
 	}
 
 	@Override public ImageID getIconImageID() { return ImageFile.TELEPORTARROWSHOT_ICON.getImageID(); }
-	@Override public float getRecharge() { return 0.3f; }
+	@Override public float getRecharge() { return 0.5f; }
 	@Override public String getDescription() { return "shoots a teleport-arrow"; }
 
 	@Override public void onActivate()
