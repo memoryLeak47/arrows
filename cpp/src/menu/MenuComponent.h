@@ -6,7 +6,7 @@
 class ComponentContainer;
 class PixelPosition;
 
-class MenuComponent : public PixelRect
+class MenuComponent
 {
 	public:
 		MenuComponent(ComponentContainer* parent, const PixelRect& rect);
@@ -18,11 +18,13 @@ class MenuComponent : public PixelRect
 		virtual void onMouseMove(const PixelVector&);
 		virtual void onMouseExit(const PixelVector&);
 		virtual void onTextEntered(char key);
-		virtual const PixelVector& getOffset() const;
+		virtual PixelVector getOffset() const;
 		virtual MenuComponent* getHoveredComponentRecursively() const; // overwritten by panels etcs..
+		PixelRect getRect() const;
 	protected:
 		ComponentContainer* getParent() const;
 	private:
+		PixelRect rect;
 		ComponentContainer* parent;
 };
 

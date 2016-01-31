@@ -1,14 +1,22 @@
 #include "Panel.h"
 
+#include "../../core/Screen.h"
+
 Panel::Panel(ComponentContainer* c, const PixelRect& r) : MenuComponent(c, r), ComponentContainer(r)
 {}
 
+MenuComponent* Panel::getHoveredComponentRecursively() const
+{
+	return ComponentContainer::getHoveredComponent();
+}
+
 void Panel::render() const
 {
+	Screen::drawRect(getRect(), sf::Color(255, 255, 255, 40));
 	ComponentContainer::render();
 }
 
-const PixelVector& Panel::getOffset() const
+PixelVector Panel::getOffset() const
 {
-	return getParent()->getOffset();
+	return getParent()->getOffset() + getRect().getPosition();
 }

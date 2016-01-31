@@ -32,6 +32,6 @@ LobbyMenu::LobbyMenu()
 				((LobbyMenu*)getParent())->disconnectPressed();
 			}
 	};
-	addComponent(new DisconnectButton(this, PixelRect(SCREEN_SIZE_X - 250, 600, 200, 60), "Disconnect"));
+	addComponent(new DisconnectButton(this, PixelRect(20, 500, 20, 20), "Disconnect"));
 
 }

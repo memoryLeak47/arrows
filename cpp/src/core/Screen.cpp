@@ -49,12 +49,11 @@ void Screen::display()
 	window->clear(sf::Color(20, 20, 20));
 }
 
-const PixelVector& Screen::getCursorPosition()
+PixelVector Screen::getCursorPosition()
 {
 	int x = sf::Mouse::getPosition().x;
 	int y = sf::Mouse::getPosition().y;
-	const PixelVector& cur = PixelVector(x, y);
-	return cur;
+	return PixelVector(x, y);
 }
 
 void Screen::drawRect(const PixelRect& rect, const sf::Color& color)
