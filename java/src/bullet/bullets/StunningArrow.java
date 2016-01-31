@@ -20,8 +20,10 @@ public class StunningArrow extends StickyBullet
 	@Override public void onCollide(Entity e)
 	{
 		super.onCollide(e);
-		e.applyEffect(new StunEffect((short) 20));
-
+		if (shouldDamageEntity(e))
+		{
+			e.applyEffect(new StunEffect((short) 20));
+		}
 	}
 
 	@Override public void tick()

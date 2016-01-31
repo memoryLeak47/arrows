@@ -1,6 +1,7 @@
 package effect.effects;
 
 import effect.Effect;
+import entity.entities.DynamicEntity;
 import graphics.ImageFile;
 import graphics.ImageID;
 
@@ -20,6 +21,10 @@ public class StunEffect extends Effect
 
 	@Override public void tick()
 	{
+		if (getTarget() instanceof DynamicEntity)
+		{
+			((DynamicEntity) getTarget()).stop();
+		}
 		getProperties()[0]--;
 	}
 

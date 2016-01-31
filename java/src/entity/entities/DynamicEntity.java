@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import static core.Main.DRAG_X;
 import static core.Main.DRAG_Y;
 import static core.Main.GRAVITY;
+import effect.Effect;
 import game.Game;
 import game.ServerGame;
 import entity.Entity;
@@ -35,9 +36,10 @@ public abstract class DynamicEntity extends Entity
 
 	@Override public void tick()
 	{
-		if (!isFloating())
+		if (!(isFloating() && canMove()))
 			accelerate(0, GRAVITY);
-		setVelocity(getVelocity().timesX(1/getDrag().getX()).timesY(1/getDrag().getY()));
+		if (canMove())
+			setVelocity(getVelocity().timesX(1/getDrag().getX()).timesY(1/getDrag().getY()));
 		oldVelocity = new GameVector(velocity);
 		updatePositionByVelocity();
 		// if (oldVelocity.minus(getVelocity()).getMagnitude() > DAMAGE_BORDER) { onDamage(...); }
@@ -46,27 +48,39 @@ public abstract class DynamicEntity extends Entity
 
 	protected void updatePositionByVelocity()
 	{
-		setPosition(getPosition().plus(getVelocity()));
+		if (canMove())
+		{
+			setPosition(getPosition().plus(getVelocity()));
+		}
 	}
 
 	public void accelerate(GameVector p)
 	{
-		setVelocity(getVelocity().plus(p));
+		if (canMove())
+		{
+			setVelocity(getVelocity().plus(p));
+		}
 	}
 
 	public void accelerate(float x, float y)
 	{
-		accelerate(new GameVector(x, y));
+		if (canMove())
+		{
+			accelerate(new GameVector(x, y));
+		}
 	}
 
 	public void accelerateWithDragBalance(GameVector v)
 	{
-		accelerate(v.timesX(DRAG_X).timesY(DRAG_Y*0.5f));
+		if (canMove())
+		{
+			accelerate(v.timesX(DRAG_X).timesY(DRAG_Y*0.5f));
+		}
 	}
 
 	public GameVector getVelocity() { return velocity; }
 	public GameVector getOldVelocity() { return oldVelocity; }
-	protected final void stop() { velocity = new GameVector(0, 0); }
+	public final void stop() { velocity = new GameVector(0, 0); }
 	protected GameVector getDrag() { return drag; }
 	protected GameVector getDefaultDrag() { return new GameVector(DRAG_X, DRAG_Y); }
 
@@ -84,12 +98,7 @@ public abstract class DynamicEntity extends Entity
 
 	public boolean isFlashPossible(GamePosition pos)
 	{
-		return !isCollidingTiles() || GameTileMap.get().couldGoHere(this, pos);
-	}
-
-	protected void stopX()
-	{
-		setVelocity(0, getVelocity().getY());
+		return canMove() && (!isCollidingTiles() || GameTileMap.get().couldGoHere(this, pos));
 	}
 
 	protected void setPosition(float x, float y)
@@ -100,12 +109,24 @@ public abstract class DynamicEntity extends Entity
 	protected void setVelocity(float x, float y)
 	{
 		setVelocity(new GameVector(x, y));
+
+	}
+
+	protected void stopX()
+	{
+		setVelocity(0, getVelocity().getX());
 	}
 
 	protected void stopY()
 	{
 		setVelocity(getVelocity().getX(), 0);
 	}
+
+	public boolean canMove()
+	{
+		return !hasEffectWithID(Effect.STUN_ID); // + hasEffectWithID(Effect.ROOT_ID)
+	}
+
 
 	protected void setVelocity(GameVector velocity)
 	{

@@ -288,15 +288,7 @@ public abstract class ServerGamePlayer extends ExtendedMob implements GamePlayer
 
 	@Override protected void updatePositionByVelocity()
 	{
-		if (canMove())
-		{
-			super.updatePositionByVelocity();
-		}
-	}
-
-	public boolean canMove()
-	{
-		return !hasEffectWithID(Effect.STUN_ID); // + hasEffectWithID(Effect.ROOT_ID)
+		super.updatePositionByVelocity();
 	}
 
 	public boolean canUseSkills()
