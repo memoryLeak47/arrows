@@ -3,7 +3,9 @@
 #include "../misc/Debug.hpp"
 
 MenuComponent::MenuComponent(ComponentContainer* parent, const PixelRect& rect) : rect(rect), parent(parent)
-{}
+{
+	enabled = true;
+}
 
 MenuComponent::~MenuComponent()
 {}
@@ -22,6 +24,10 @@ void MenuComponent::onMouseExit(const PixelVector& mousePos) {}
 void MenuComponent::onTextEntered(char key) {}
 
 PixelRect MenuComponent::getRect() const { return rect; }
+
+bool MenuComponent::isEnabled() const { return enabled; }
+
+void MenuComponent::setEnabled(bool b) { enabled = b; }
 
 PixelVector MenuComponent::getOffset() const
 {

@@ -16,3 +16,5 @@ void ClientLobbyMenu::disconnectPressed()
 {
 	Main::getMenuList()->back();
 }
+
+void ClientLobbyMenu::teamPressed(Team* team) {}

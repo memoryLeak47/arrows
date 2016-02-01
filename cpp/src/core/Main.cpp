@@ -2,6 +2,7 @@
 
 #include "../misc/Debug.hpp"
 #include "Screen.hpp"
+#include "../player/property/Team.hpp"
 
 bool Main::running = true;
 MenuList* Main::menuList;
@@ -26,6 +27,7 @@ Main::~Main()
 	delete game;
 	delete account; // really needed?
 	Screen::uninit();
+	Team::uninit();
 }
 
 NetworkDevice* Main::getNetworkDevice()

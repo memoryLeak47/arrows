@@ -3,7 +3,7 @@
 #include "../../misc/Debug.hpp"
 #include <iostream>
 
-PixelVector::PixelVector(float x, float y)
+PixelVector::PixelVector(int x, int y)
 {
 	this->x = x;
 	this->y = y;
@@ -30,18 +30,16 @@ bool PixelVector::operator!=(const PixelVector& vec) const
 	return vec.getX() != getX() || vec.getY() != getY();
 }
 
-const PixelVector& PixelVector::operator+(const PixelVector& vec) const
+PixelVector PixelVector::operator+(const PixelVector& vec) const
 {
-	float x = getX() + vec.getX();
-	float y = getY() + vec.getY();
-	const PixelVector& v = PixelVector(x, y);
-	return v;
+	int x = getX() + vec.getX();
+	int y = getY() + vec.getY();
+	return PixelVector(x, y);
 }
 
-const PixelVector& PixelVector::operator-(const PixelVector& vec) const
+PixelVector PixelVector::operator-(const PixelVector& vec) const
 {
-	float x = getX() - vec.getX();
-	float y = getY() - vec.getY();
-	const PixelVector& v = PixelVector(x, y);
-	return v;
+	int x = getX() - vec.getX();
+	int y = getY() - vec.getY();
+	return PixelVector(x, y);
 }

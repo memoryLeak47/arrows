@@ -6,17 +6,17 @@ class PixelRect;
 class PixelVector
 {
 	public:
-		PixelVector(float x, float y);
+		PixelVector(int x, int y);
 
 		bool inRect(const PixelRect&) const;
 		int getX() const;
 		int getY() const;
-		const PixelVector& operator+(const PixelVector&) const;
-		const PixelVector& operator-(const PixelVector&) const;
+		PixelVector operator+(const PixelVector&) const;
+		PixelVector operator-(const PixelVector&) const;
 		bool operator==(const PixelVector&) const;
 		bool operator!=(const PixelVector&) const;
 	private:
-		float x, y;
+		int x, y;
 };
 
 #include "PixelRect.hpp"

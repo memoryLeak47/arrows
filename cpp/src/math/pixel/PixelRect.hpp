@@ -6,12 +6,17 @@
 class PixelRect
 {
 	public:
-		PixelRect(float x, float y, float width, float height);
+		PixelRect(int x, int y, int width, int height);
 		PixelRect(const PixelVector& position, const PixelVector& size);
 		PixelRect(const PixelRect& rect);
 
-		const PixelVector& getPosition() const;
-		const PixelVector& getSize() const;
+		PixelVector getPosition() const;
+		PixelVector getSize() const;
+
+		int getLeft() const;
+		int getRight() const;
+		int getTop() const;
+		int getBot() const;
 	private:
 		PixelVector position; // left-top edge
 		PixelVector size;

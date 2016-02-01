@@ -43,6 +43,8 @@ MenuComponent* ComponentContainer::getHoveredComponent() const
 
 PixelRect ComponentContainer::getRect() const { return rect; }
 
+void ComponentContainer::setRect(const PixelRect& r) { rect = r; }
+
 std::vector<MenuComponent*> ComponentContainer::getComponents() const
 {
 	return components;

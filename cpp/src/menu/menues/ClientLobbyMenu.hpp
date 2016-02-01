@@ -12,6 +12,7 @@ class ClientLobbyMenu : public LobbyMenu
 		virtual LobbyPlayer* getLocalPlayer() const override;
 		virtual void lockPressed() override;
 		virtual void disconnectPressed() override;
+		virtual void teamPressed(Team*) override;
 };
 
 #endif

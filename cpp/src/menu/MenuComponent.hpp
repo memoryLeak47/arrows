@@ -21,11 +21,14 @@ class MenuComponent
 		virtual PixelVector getOffset() const;
 		virtual MenuComponent* getHoveredComponentRecursively() const; // overwritten by panels etcs..
 		PixelRect getRect() const;
+		bool isEnabled() const;
+		void setEnabled(bool);
 	protected:
 		ComponentContainer* getParent() const;
 	private:
 		PixelRect rect;
 		ComponentContainer* parent;
+		bool enabled;
 };
 
 #include "ComponentContainer.hpp"

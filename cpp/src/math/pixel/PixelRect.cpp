@@ -1,6 +1,6 @@
 #include "PixelRect.hpp"
 
-PixelRect::PixelRect(float x, float y, float w, float h) : position(x, y), size(w, h)
+PixelRect::PixelRect(int x, int y, int w, int h) : position(x, y), size(w, h)
 {}
 
 PixelRect::PixelRect(const PixelRect& rect) : position(rect.getPosition()), size(rect.getSize())
@@ -9,12 +9,32 @@ PixelRect::PixelRect(const PixelRect& rect) : position(rect.getPosition()), size
 PixelRect::PixelRect(const PixelVector& position, const PixelVector& size) : position(position), size(size)
 {}
 
-const PixelVector& PixelRect::getPosition() const
+PixelVector PixelRect::getPosition() const
 {
 	return position;
 }
 
-const PixelVector& PixelRect::getSize() const
+PixelVector PixelRect::getSize() const
 {
 	return size;
+}
+
+int PixelRect::getLeft() const
+{
+	return getPosition().getX();
+}
+
+int PixelRect::getRight() const
+{
+	return getPosition().getX() + getSize().getX();
+}
+
+int PixelRect::getTop() const
+{
+	return getPosition().getY();
+}
+
+int PixelRect::getBot() const
+{
+	return getPosition().getY() + getSize().getY();
 }

@@ -29,6 +29,11 @@ void ServerLobbyMenu::disconnectPressed()
 	Main::getMenuList()->back();
 }
 
+void ServerLobbyMenu::teamPressed(Team* team)
+{
+	
+}
+
 LobbyPlayer* ServerLobbyMenu::getLocalPlayer() const
 {
 	return getPlayers()[0];

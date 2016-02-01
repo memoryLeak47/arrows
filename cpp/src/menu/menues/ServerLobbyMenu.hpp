@@ -10,6 +10,7 @@ class ServerLobbyMenu : public LobbyMenu
 		virtual LobbyPlayer* getLocalPlayer() const override;
 		virtual void lockPressed() override;
 		virtual void disconnectPressed() override;
+		virtual void teamPressed(Team*) override;
 	protected:
 		virtual void handleLockUserPacket(LockUserPacket*, int) override;
 		virtual void handleDisconnectUserPacket(DisconnectUserPacket*, int) override;

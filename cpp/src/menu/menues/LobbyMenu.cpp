@@ -119,7 +119,7 @@ int LobbyMenu::ipToID(const sf::IpAddress& ip, const std::vector<LobbyPlayer*>& 
 
 void LobbyMenu::updatePlayerIcons() const
 {
-	// TODO
+	teamListPanel->update();
 }
 
 void LobbyMenu::handleLockUserPacket(LockUserPacket*, int)

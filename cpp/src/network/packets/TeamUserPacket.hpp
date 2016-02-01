@@ -3,10 +3,16 @@
 
 #include "UserPacket.hpp"
 
+class Team;
+
 class TeamUserPacket : public UserPacket
 {
+	public:
+		Team* getTeam() const;
 	private:
 		int teamID;
 };
+
+#include "../../player/property/Team.hpp"
 
 #endif
