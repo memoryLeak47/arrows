@@ -23,6 +23,11 @@ PixelVector Panel::getOffset() const
 	return getParent()->getOffset() + getRect().getPosition();
 }
 
+PixelRect Panel::getRect() const
+{
+	return PixelRect(getParent()->getOffset() + ComponentContainer::getRect().getPosition(), ComponentContainer::getRect().getSize());
+}
+
 void Panel::calcSize()
 {
 	int right = 0;

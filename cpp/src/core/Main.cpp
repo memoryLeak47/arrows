@@ -14,6 +14,7 @@ Main::Main()
 {
 	Debug::init();
 	Screen::init();
+	Team::init();
 	menuList = new MenuList();
 	networkDevice = new NetworkDevice();
 	running = true;

@@ -30,6 +30,7 @@ Team* Team::get(int id)
 
 int Team::getAmount()
 {
+	Debug::warnIf(teams.size() == 0, "Team::getAmount(): == 0");
 	return teams.size();
 }
 

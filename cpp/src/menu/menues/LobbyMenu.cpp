@@ -9,7 +9,6 @@ LobbyMenu::LobbyMenu()
 	phase = TEAM_PHASE;
 	
 	addComponent(new Label(this, PixelRect(300, 10, 150, 20), "Lobby"));
-	addComponent(teamListPanel = new TeamListPanel(this, PixelRect(100, 100, 600, 600)));
 
 	class LockButton : public Button
 	{
@@ -34,7 +33,7 @@ LobbyMenu::LobbyMenu()
 			}
 	};
 	addComponent(new DisconnectButton(this, PixelRect(20, 500, 20, 20), "Disconnect"));
-
+	addComponent(teamListPanel = new TeamListPanel(this, PixelRect(100, 100, 600, 600)));
 }
 
 int LobbyMenu::getPhase() const

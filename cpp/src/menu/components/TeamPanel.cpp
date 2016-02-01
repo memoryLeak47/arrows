@@ -1,17 +1,24 @@
 #include "TeamPanel.hpp"
 
 #include "PlayerPanel.hpp"
+#include "../../misc/Debug.hpp"
 
 TeamPanel::TeamPanel(TeamListPanel* c, const PixelRect& r, Team* team) : Panel(c, r), team(team)
-{}
+{
+	teamButton = NULL;
+}
 
 void TeamPanel::update(const std::vector<LobbyPlayer*>& players)
 {
 	bool buttonWasEnabled;
 	if (teamButton == NULL)
+	{
 		buttonWasEnabled = true;
+	}
 	else
+	{
 		buttonWasEnabled = teamButton->isEnabled();
+	}
 
 	getComponents().clear();
 	class TeamButton : public Button
@@ -21,7 +28,9 @@ void TeamPanel::update(const std::vector<LobbyPlayer*>& players)
 			void onClick(int mouseButton) override
 			{
 				if (isEnabled())
+				{
 					((TeamPanel*) getParent())->getLobbyMenu()->teamPressed(((TeamPanel*)getParent())->getTeam()); // Übergabe an LobbyMenu, dass wir Team wechseln
+				}
 			}
 	};
 	addComponent(teamButton = new TeamButton(this, PixelRect(20, 20, 100, 30), "Team " + team->getName()));

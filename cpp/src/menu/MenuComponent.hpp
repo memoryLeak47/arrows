@@ -18,7 +18,7 @@ class MenuComponent
 		virtual void onMouseMove(const PixelVector&);
 		virtual void onMouseExit(const PixelVector&);
 		virtual void onTextEntered(char key);
-		virtual PixelVector getOffset() const;
+		virtual PixelVector getOffset() const; // absolute position
 		virtual MenuComponent* getHoveredComponentRecursively() const; // overwritten by panels etcs..
 		PixelRect getRect() const;
 		bool isEnabled() const;

@@ -2,10 +2,10 @@
 
 #include "../misc/Debug.hpp"
 
-LobbyPlayer::LobbyPlayer(LoginUserPacket* login, const sf::IpAddress& ip) : loginPacket(login), ip(ip)
+LobbyPlayer::LobbyPlayer(LoginUserPacket* login, const sf::IpAddress& ip) : loginPacket(login), ip(ip), teamPacket(0)
 {}
 
-LobbyPlayer::LobbyPlayer(LoginUserPacket* login) : loginPacket(login)
+LobbyPlayer::LobbyPlayer(LoginUserPacket* login) : loginPacket(login), teamPacket(0)
 {}
 
 sf::IpAddress LobbyPlayer::getIP() const

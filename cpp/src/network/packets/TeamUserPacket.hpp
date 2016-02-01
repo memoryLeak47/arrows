@@ -8,6 +8,7 @@ class Team;
 class TeamUserPacket : public UserPacket
 {
 	public:
+		TeamUserPacket(int);
 		Team* getTeam() const;
 	private:
 		int teamID;

@@ -7,12 +7,11 @@
 class Panel : public MenuComponent, public ComponentContainer
 {
 	public:
-		using ComponentContainer::getRect;
-		using ComponentContainer::setRect;
 		Panel(ComponentContainer*, const PixelRect&);
 		MenuComponent* getHoveredComponentRecursively() const override;
 		virtual void render() const override;
 		virtual PixelVector getOffset() const override;
+		PixelRect getRect() const;
 		void calcSize();
 		virtual PixelVector getPadding() const;
 };
