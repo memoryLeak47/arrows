@@ -7,8 +7,11 @@
 class UserPacketWithID : public Packet
 {
 	public:
+		UserPacketWithID(UserPacket*, int);
 		int getID() const;
 		UserPacket* getPacket() const;
+		std::string toString() const override;
+		CID getCID() const override;
 	private:
 		int id;
 		UserPacket* packet;

@@ -1,13 +1,18 @@
 #include "ClientLobbyMenu.hpp"
 
+#include "../../core/Main.hpp"
+
 ClientLobbyMenu::ClientLobbyMenu(const std::string& ip)
 {
 }
 
-void ClientLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
+LobbyPlayer* ClientLobbyMenu::getLocalPlayer() const
 {
-	handlePacketByID(packet, 0);
+	return NULL; // TODO
 }
 
 void ClientLobbyMenu::lockPressed() {}
-void ClientLobbyMenu::disconnectPressed() {}
+void ClientLobbyMenu::disconnectPressed()
+{
+	Main::getMenuList()->back();
+}

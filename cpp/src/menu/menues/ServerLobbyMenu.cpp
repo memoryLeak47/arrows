@@ -1,9 +1,61 @@
 #include "ServerLobbyMenu.hpp"
 
-void ServerLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
+#include "../../core/Main.hpp"
+
+void ServerLobbyMenu::lockPressed()
 {
-	handlePacketByID(packet, ipToID(ip, getPlayers()));
+	LockUserPacket* l = new LockUserPacket(!getLocalPlayer()->getLockUserPacket()->isLocked());
+	packAndSendToAllClients(l, 0);
+	delete l;
 }
 
-void ServerLobbyMenu::lockPressed() {}
-void ServerLobbyMenu::disconnectPressed() {}
+void ServerLobbyMenu::disconnectPressed()
+{
+	DisconnectUserPacket* dis = new DisconnectUserPacket();
+	packAndSendToAllClients(dis, 0);
+	delete dis;
+	Main::getMenuList()->back();
+}
+
+LobbyPlayer* ServerLobbyMenu::getLocalPlayer() const
+{
+	return getPlayers()[0];
+}
+
+void ServerLobbyMenu::packAndSendToAllClients(UserPacket* p, int id) const
+{
+	for (int i = 0; i < getPlayers().size(); i++)
+	{
+		UserPacketWithID* packet = new UserPacketWithID(p, id);
+		send(packet, getPlayers()[i]->getIP());
+		delete packet;
+	}
+}
+
+void ServerLobbyMenu::handleLockUserPacket(LockUserPacket*, int)
+{
+}
+
+void ServerLobbyMenu::handleDisconnectUserPacket(DisconnectUserPacket*, int)
+{
+}
+
+void ServerLobbyMenu::handleTeamUserPacket(TeamUserPacket*, int)
+{
+}
+
+void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket*, int)
+{
+}
+
+void ServerLobbyMenu::handleAvatarUserPacket(AvatarUserPacket*, int)
+{
+}
+
+void ServerLobbyMenu::handleSkillUserPacket(SkillUserPacket*, int)
+{
+}
+
+void ServerLobbyMenu::handleItemUserPacket(ItemUserPacket*, int)
+{
+}

@@ -13,3 +13,13 @@ void* Compressable::decompress(const std::string& string)
 	void* object = buffer.cutByCID(buffer.cutChar());
 	return object;
 }
+
+std::string Compressable::compressBool(bool b)
+{
+	return b? "1" : "0";
+}
+
+std::string Compressable::compressInt(int i)
+{
+	return "__COMPRESS_INT_TODO__"; // TODO
+}

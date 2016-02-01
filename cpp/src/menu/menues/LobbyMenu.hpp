@@ -38,6 +38,7 @@ class LobbyMenu : public NetworkingMenu
 	protected:
 		int ipToID(const sf::IpAddress&, const std::vector<LobbyPlayer*>&) const;
 		void handlePacketByID(Packet*, int);
+		virtual LobbyPlayer* getLocalPlayer() const = 0;
 		virtual void lockPressed() = 0;
 		virtual void disconnectPressed() = 0;
 		// handle Packets

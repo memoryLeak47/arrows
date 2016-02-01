@@ -17,7 +17,7 @@ class NetworkingMenu : public Menu
 		virtual void handlePacket(Packet* p, const sf::IpAddress&) = 0;
 		virtual bool isNetworkingMenu() const override;
 	protected:
-		void send(Packet*, const sf::IpAddress&);
+		void send(Packet*, const sf::IpAddress&) const;
 	private:
 		void handleAllPackets();
 		std::vector<PacketAndIP*>& getPackets(); // protected ?

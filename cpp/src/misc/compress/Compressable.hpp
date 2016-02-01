@@ -38,6 +38,9 @@ class Compressable // represents Compressable.java and Compressor.java
 		virtual CID getCID() const = 0;
 		std::string compress() const; // CID + conversion to chars
 		static void* decompress(const std::string&); // creates CompressBuffer -> gets object
+	protected:
+		static std::string compressBool(bool);
+		static std::string compressInt(int);
 };
 
 #endif

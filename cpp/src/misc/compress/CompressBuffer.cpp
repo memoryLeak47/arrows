@@ -12,7 +12,14 @@ int CompressBuffer::cutInt()
 
 char CompressBuffer::cutChar()
 {
-	return 's';
+	std::string tmp = cut(1);
+	return tmp[0];
+}
+
+bool CompressBuffer::cutBool()
+{
+	std::string tmp = cut(1);
+	return tmp[0] == '1';
 }
 
 void* CompressBuffer::cutByCID(CID cid)
@@ -20,7 +27,9 @@ void* CompressBuffer::cutByCID(CID cid)
 	return (char*)0;
 }
 
-void CompressBuffer::cut(int amount)
+std::string CompressBuffer::cut(int amount)
 {
+	std::string ret = string.substr(0, amount);
 	string = string.substr(amount, string.size());
+	return ret;
 }

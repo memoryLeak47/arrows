@@ -4,6 +4,10 @@
 #include "UserPacket.hpp"
 
 class DisconnectUserPacket : public UserPacket
-{};
+{
+	public:
+		std::string toString() const;
+		CID getCID() const;
+};
 
 #endif

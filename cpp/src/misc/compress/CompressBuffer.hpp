@@ -11,9 +11,10 @@ class CompressBuffer
 		CompressBuffer(const std::string&);
 		int cutInt();
 		char cutChar();
+		bool cutBool();
 		void* cutByCID(CID);
 	private:
-		void cut(int amount); // removes <amount> chars from <chars>
+		std::string cut(int amount); // removes <amount> chars from <chars> and returns the removed part
 		std::string string;
 };
 

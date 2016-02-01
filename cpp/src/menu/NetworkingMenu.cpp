@@ -11,7 +11,7 @@ void NetworkingMenu::tick()
 	handleAllPackets();
 }
 
-void NetworkingMenu::send(Packet* packet, const sf::IpAddress& ip)
+void NetworkingMenu::send(Packet* packet, const sf::IpAddress& ip) const
 {
 	Main::getNetworkDevice()->send(packet, ip);
 }
