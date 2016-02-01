@@ -13,8 +13,9 @@ class Button : public MenuComponent
 		Button(ComponentContainer*, const PixelRect&, const std::string&);
 		void render() const override;
 		virtual void onClick(int mouseButton) = 0;
+		std::string getText() const;
 	private:
-		std::string caption;
+		std::string text;
 };
 
 #include "../../math/pixel/PixelRect.hpp"

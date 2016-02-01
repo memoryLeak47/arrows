@@ -13,16 +13,16 @@ class ComponentContainer
 		ComponentContainer(const PixelRect& rect);
 		~ComponentContainer();
 		std::vector<MenuComponent*> getComponents() const;
-		PixelVector getCursorPosition() const;
+		PixelVector getRelativeCursorPosition() const;
 		virtual void render() const;
-		virtual PixelVector getOffset() const;
-		PixelRect getRect() const;
+		PixelRect getAbsoluteRect() const;
+		PixelRect getRelativeRect() const;
 	protected:
-		void setRect(const PixelRect&);
+		void setRelativeRect(const PixelRect&);
 		void addComponent(MenuComponent*);
 		MenuComponent* getHoveredComponent() const;
 	private:
-		PixelRect rect;
+		PixelRect rect; // relative rect
 		std::vector<MenuComponent*> components;
 };
 

@@ -27,14 +27,14 @@ void PasswordField::onTextEntered(char c)
 
 void PasswordField::render() const
 {
-	Screen::drawRect(getRect(), sf::Color::Blue);
+	Screen::drawRect(getAbsoluteRect(), sf::Color::Blue);
 	std::string renderedText = "";
 	for (int i = 0; i < getText().length(); i++)
 	{
 		renderedText += "*";
 	}
 
-	Screen::drawText(renderedText, getRect().getPosition(), sf::Color::Black);
+	Screen::drawText(renderedText, getAbsoluteRect().getPosition(), sf::Color::Black);
 }
 
 const std::string& PasswordField::getText() const { return text; }

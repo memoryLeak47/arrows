@@ -27,8 +27,8 @@ void EditField::onTextEntered(char c)
 
 void EditField::render() const
 {
-	Screen::drawRect(getRect(), sf::Color::Blue);
-	Screen::drawText(text, getRect().getPosition(), sf::Color::Black);
+	Screen::drawRect(getAbsoluteRect(), sf::Color::Blue);
+	Screen::drawText(text, getAbsoluteRect().getPosition(), sf::Color::Black);
 }
 
 const std::string& EditField::getText() const { return text; }

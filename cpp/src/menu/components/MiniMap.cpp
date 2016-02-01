@@ -8,5 +8,5 @@ MiniMap::MiniMap(ComponentContainer* c, const PixelRect& r) : MenuComponent(c, r
 
 void MiniMap::render() const
 {
-	Screen::drawImage(tileMapImage, getRect());
+	Screen::drawImage(tileMapImage, getAbsoluteRect());
 }

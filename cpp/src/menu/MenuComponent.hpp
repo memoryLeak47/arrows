@@ -18,15 +18,15 @@ class MenuComponent
 		virtual void onMouseMove(const PixelVector&);
 		virtual void onMouseExit(const PixelVector&);
 		virtual void onTextEntered(char key);
-		virtual PixelVector getOffset() const; // absolute position
 		virtual MenuComponent* getHoveredComponentRecursively() const; // overwritten by panels etcs..
-		PixelRect getRect() const;
+		PixelRect getAbsoluteRect() const;
+		PixelRect getRelativeRect() const;
 		bool isEnabled() const;
 		void setEnabled(bool);
 	protected:
 		ComponentContainer* getParent() const;
 	private:
-		PixelRect rect;
+		PixelRect rect; // relative rect
 		ComponentContainer* parent;
 		bool enabled;
 };

@@ -17,20 +17,20 @@ void ComponentContainer::addComponent(MenuComponent* c)
 	components.push_back(c);
 }
 
-PixelVector ComponentContainer::getCursorPosition() const
+PixelVector ComponentContainer::getRelativeCursorPosition() const
 {
-	return Screen::getCursorPosition() - getOffset();
+	return Screen::getCursorPosition() - getRelativeRect().getPosition();
 }
 
 MenuComponent* ComponentContainer::getHoveredComponent() const
 {
-	PixelVector cursor = getCursorPosition();
+	PixelVector cursor = getRelativeCursorPosition();
 
 	if (cursor != PixelVector(-1, -1)) // wenn der cursor im fenster ist
 	{
 		for (int i = getComponents().size()-1; i >= 0; i--) // für alle Components (als letzes gerendert liegt ganz oben -> von hinten nach vorne)
 		{
-			if (cursor.inRect(getComponents()[i]->getRect())) // wenn die maus auf die Component zeigt
+			if (cursor.inRect(getComponents()[i]->getRelativeRect())) // wenn die maus auf die Component zeigt
 			{
 				// returne ihn (falls er ein ComponentContainer ist, seine hovered-component)
 				return getComponents()[i]->getHoveredComponentRecursively();
@@ -41,9 +41,10 @@ MenuComponent* ComponentContainer::getHoveredComponent() const
 	return NULL; // returne null
 }
 
-PixelRect ComponentContainer::getRect() const { return rect; }
+PixelRect ComponentContainer::getAbsoluteRect() const { return rect; }
+PixelRect ComponentContainer::getRelativeRect() const { return rect; }
 
-void ComponentContainer::setRect(const PixelRect& r) { rect = r; }
+void ComponentContainer::setRelativeRect(const PixelRect& r) { rect = r; }
 
 std::vector<MenuComponent*> ComponentContainer::getComponents() const
 {
@@ -56,9 +57,4 @@ void ComponentContainer::render() const
 	{
 		getComponents()[i]->render();
 	}
-}
-
-PixelVector ComponentContainer::getOffset() const
-{
-	return getRect().getPosition();
 }

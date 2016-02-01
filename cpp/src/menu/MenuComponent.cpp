@@ -23,16 +23,12 @@ void MenuComponent::onMouseMove(const PixelVector& mousePos) {}
 void MenuComponent::onMouseExit(const PixelVector& mousePos) {}
 void MenuComponent::onTextEntered(char key) {}
 
-PixelRect MenuComponent::getRect() const { return rect; }
+PixelRect MenuComponent::getAbsoluteRect() const { return PixelRect(getRelativeRect().getPosition() + getParent()->getAbsoluteRect().getPosition(), getRelativeRect().getSize()); }
+PixelRect MenuComponent::getRelativeRect() const { return rect; }
 
 bool MenuComponent::isEnabled() const { return enabled; }
 
 void MenuComponent::setEnabled(bool b) { enabled = b; }
-
-PixelVector MenuComponent::getOffset() const
-{
-	return getParent()->getOffset() + getRect().getPosition();
-}
 
 MenuComponent* MenuComponent::getHoveredComponentRecursively() const
 {
