@@ -7,6 +7,9 @@
 Panel::Panel(ComponentContainer* c, const PixelRect& r) : MenuComponent(c, r), ComponentContainer(r)
 {}
 
+PixelRect Panel::getAbsoluteRect() const { return MenuComponent::getAbsoluteRect(); }
+PixelRect Panel::getRelativeRect() const { return MenuComponent::getRelativeRect(); }
+
 MenuComponent* Panel::getHoveredComponentRecursively() const
 {
 	return ComponentContainer::getHoveredComponent();

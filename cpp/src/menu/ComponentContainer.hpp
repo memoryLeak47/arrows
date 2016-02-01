@@ -15,8 +15,8 @@ class ComponentContainer
 		std::vector<MenuComponent*> getComponents() const;
 		PixelVector getRelativeCursorPosition() const;
 		virtual void render() const;
-		PixelRect getAbsoluteRect() const;
-		PixelRect getRelativeRect() const;
+		virtual PixelRect getAbsoluteRect() const;
+		virtual PixelRect getRelativeRect() const;
 	protected:
 		void setRelativeRect(const PixelRect&);
 		void addComponent(MenuComponent*);

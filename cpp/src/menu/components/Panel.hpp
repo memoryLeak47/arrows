@@ -7,9 +7,9 @@
 class Panel : public MenuComponent, public ComponentContainer
 {
 	public:
-		using MenuComponent::getRelativeRect;
-		using MenuComponent::getAbsoluteRect;
 		Panel(ComponentContainer*, const PixelRect&);
+		virtual PixelRect getAbsoluteRect() const override;
+		virtual PixelRect getRelativeRect() const override;
 		MenuComponent* getHoveredComponentRecursively() const override;
 		virtual void render() const override;
 		void calcSize();

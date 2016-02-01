@@ -19,8 +19,8 @@ class MenuComponent
 		virtual void onMouseExit(const PixelVector&);
 		virtual void onTextEntered(char key);
 		virtual MenuComponent* getHoveredComponentRecursively() const; // overwritten by panels etcs..
-		PixelRect getAbsoluteRect() const;
-		PixelRect getRelativeRect() const;
+		virtual PixelRect getAbsoluteRect() const;
+		virtual PixelRect getRelativeRect() const;
 		bool isEnabled() const;
 		void setEnabled(bool);
 	protected:
