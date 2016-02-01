@@ -41,6 +41,7 @@ class Compressable // represents Compressable.java and Compressor.java
 	protected:
 		static std::string compressBool(bool);
 		static std::string compressInt(int);
+		static std::string compressString(const std::string&);
 };
 
 #endif

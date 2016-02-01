@@ -13,6 +13,8 @@ class ItemUserPacket;
 class LobbyPlayer
 {
 	public:
+		LobbyPlayer(LoginUserPacket*, const sf::IpAddress&);
+		LobbyPlayer(LoginUserPacket*);
 		sf::IpAddress getIP() const;
 		LockUserPacket* getLockUserPacket() const;
 		TeamUserPacket* getTeamUserPacket() const;

@@ -117,6 +117,11 @@ int LobbyMenu::ipToID(const sf::IpAddress& ip, const std::vector<LobbyPlayer*>& 
 	return -1;
 }
 
+void LobbyMenu::updatePlayerIcons() const
+{
+	// TODO
+}
+
 void LobbyMenu::handleLockUserPacket(LockUserPacket*, int)
 {
 	Debug::warn("LobbyMenu::handleLockUserPacket(): should not be called, maybe forgotten to overwrite");

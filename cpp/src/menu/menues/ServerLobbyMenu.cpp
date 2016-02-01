@@ -2,6 +2,18 @@
 
 #include "../../core/Main.hpp"
 
+ServerLobbyMenu::ServerLobbyMenu()
+{
+	createServerPlayer();
+}
+
+void ServerLobbyMenu::createServerPlayer()
+{
+	LobbyPlayer* me = new LobbyPlayer(new LoginUserPacket(Main::getAccount()->getName(), Main::getAccount()->getRank()));
+	updatedPlayers.push_back(me);
+	getPlayers().push_back(me);
+}
+
 void ServerLobbyMenu::lockPressed()
 {
 	LockUserPacket* l = new LockUserPacket(!getLocalPlayer()->getLockUserPacket()->isLocked());

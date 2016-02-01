@@ -23,3 +23,8 @@ std::string Compressable::compressInt(int i)
 {
 	return "__COMPRESS_INT_TODO__"; // TODO
 }
+
+std::string Compressable::compressString(const std::string& s)
+{
+	return compressInt(s.length()) + s;
+}

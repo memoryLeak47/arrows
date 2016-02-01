@@ -27,6 +27,7 @@ class Main
 		~Main();
 		static NetworkDevice* getNetworkDevice();
 		static void setAccount(Account*);
+		static Account* getAccount();
 		static void logout();
 		static void exit();
 		static MenuList* getMenuList();

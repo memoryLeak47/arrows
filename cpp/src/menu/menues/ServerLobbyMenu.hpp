@@ -6,6 +6,7 @@
 class ServerLobbyMenu : public LobbyMenu
 {
 	public:
+		ServerLobbyMenu();
 		virtual LobbyPlayer* getLocalPlayer() const override;
 		virtual void lockPressed() override;
 		virtual void disconnectPressed() override;
@@ -19,7 +20,10 @@ class ServerLobbyMenu : public LobbyMenu
 		virtual void handleItemUserPacket(ItemUserPacket*, int) override;
 	private:
 		// converts the UserPacket* into a UserPacketWithID(Packet*, id)* and sends it to all clients
+		void createServerPlayer();
 		void packAndSendToAllClients(UserPacket*, int id) const;
+
+		std::vector<LobbyPlayer*> updatedPlayers;
 };
 
 #endif

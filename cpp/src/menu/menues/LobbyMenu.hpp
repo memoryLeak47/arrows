@@ -41,6 +41,7 @@ class LobbyMenu : public NetworkingMenu
 		virtual LobbyPlayer* getLocalPlayer() const = 0;
 		virtual void lockPressed() = 0;
 		virtual void disconnectPressed() = 0;
+		void updatePlayerIcons() const;
 		// handle Packets
 		virtual void handleLockUserPacket(LockUserPacket*, int);
 		virtual void handleDisconnectUserPacket(DisconnectUserPacket*, int);

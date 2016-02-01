@@ -81,6 +81,12 @@ void Main::setAccount(Account* a)
 	account = a;
 }
 
+Account* Main::getAccount()
+{
+	Debug::warnIf(account == NULL, "Main::getAccount(): accounts == NULL");
+	return account;
+}
+
 void Main::logout()
 {
 	delete account;

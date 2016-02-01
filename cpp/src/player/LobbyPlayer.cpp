@@ -2,6 +2,12 @@
 
 #include "../misc/Debug.hpp"
 
+LobbyPlayer::LobbyPlayer(LoginUserPacket* login, const sf::IpAddress& ip) : loginPacket(login), ip(ip)
+{}
+
+LobbyPlayer::LobbyPlayer(LoginUserPacket* login) : loginPacket(login)
+{}
+
 sf::IpAddress LobbyPlayer::getIP() const
 {
 	Debug::warnIf(ip == NULL, "LobbyPlayer::getIP(): ip == NULL");
