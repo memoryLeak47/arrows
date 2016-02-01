@@ -35,7 +35,6 @@ class LobbyMenu : public NetworkingMenu
 		LobbyMenu();
 		int getPhase() const;
 		std::vector<LobbyPlayer*> getPlayers() const;
-		virtual void handlePacket(Packet*, const sf::IpAddress&) override;
 		virtual void lockPressed() = 0;
 		virtual void disconnectPressed() = 0;
 		virtual void teamPressed(Team*) = 0;

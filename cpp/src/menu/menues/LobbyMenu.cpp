@@ -1,5 +1,6 @@
 #include "LobbyMenu.hpp"
 
+#include "../../misc/compress/Compressable.hpp"
 #include "../components/Label.hpp"
 #include "../../core/Main.hpp"
 #include "../../misc/Debug.hpp"
@@ -46,54 +47,45 @@ std::vector<LobbyPlayer*> LobbyMenu::getPlayers() const
 	return players;
 }
 
-void LobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
-{
-	Debug::warnIf(packet == NULL, "LobbyMenu::handlePacket(): packet == NULL");
-	if (typeid(packet) == typeid(LockUserPacket))
-	{
-		handleLockUserPacket((LockUserPacket*) packet, ipToID(ip, getPlayers()));
-	}
-}
-
 void LobbyMenu::handlePacketByID(Packet* packet, int id)
 {
-	if (typeid(packet) == typeid(LockUserPacket))
+	if (packet->getCID() == LOCK_USER_PACKET_CID)
 	{
 		handleLockUserPacket((LockUserPacket*) packet, id);
 	}
-	else if (typeid(packet) == typeid(DisconnectUserPacket))
+	else if (packet->getCID() == DISCONNECT_USER_PACKET_CID)
 	{
 		handleDisconnectUserPacket((DisconnectUserPacket*) packet, id);
 	}
-	else if (typeid(packet) == typeid(TeamUserPacket))
+	else if (packet->getCID() == TEAM_USER_PACKET_CID)
 	{
 		handleTeamUserPacket((TeamUserPacket*) packet, id);
 	}
-	else if (typeid(packet) == typeid(LoginUserPacket))
+	else if (packet->getCID() == LOGIN_USER_PACKET_CID)
 	{
 		handleLoginUserPacket((LoginUserPacket*) packet, id);
 	}
-	else if (typeid(packet) == typeid(AvatarUserPacket))
+	else if (packet->getCID() == AVATAR_USER_PACKET_CID)
 	{
 		handleAvatarUserPacket((AvatarUserPacket*) packet, id);
 	}
-	else if (typeid(packet) == typeid(SkillUserPacket))
+	else if (packet->getCID() == SKILL_USER_PACKET_CID)
 	{
 		handleSkillUserPacket((SkillUserPacket*) packet, id);
 	}
-	else if (typeid(packet) == typeid(ItemUserPacket))
+	else if (packet->getCID() == ITEM_USER_PACKET_CID)
 	{
 		handleItemUserPacket((ItemUserPacket*) packet, id);
 	}
-	else if (typeid(packet) == typeid(MapPacket))
+	else if (packet->getCID() == MAP_PACKET_CID)
 	{
 		handleMapPacket((MapPacket*) packet, id);
 	}
-	else if (typeid(packet) == typeid(UserPacketWithID))
+	else if (packet->getCID() == USER_PACKET_WITH_ID_CID)
 	{
 		handlePacketByID(((UserPacketWithID*)packet)->getPacket(), ((UserPacketWithID*) packet)->getID());
 	}
-	else if (typeid(packet) == typeid(LobbyPlayersPacket))
+	else if (packet->getCID() == LOBBY_PLAYERS_PACKET_CID)
 	{
 		handleLobbyPlayersPacket((LobbyPlayersPacket*) packet, id);
 	}
