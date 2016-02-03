@@ -4,9 +4,6 @@
 #define MAX_TICK_COUNTER 2000
 #define MAX_RENDER_COUNTER 2000
 
-#define SCREEN_SIZE_X 1366
-#define SCREEN_SIZE_Y 768
-
 #define FRAME_INTERVAL 40
 #define TILESIZE 40
 #define DRAG_X 1.9f

@@ -1,14 +1,14 @@
 #include "Menu.hpp"
 
 #include "../misc/Debug.hpp"
-#include "../core/Main.hpp"
+#include "../core/Screen.hpp"
 
 Menu::Menu(const PixelRect& rect) : ComponentContainer(rect)
 {
 
 }
 
-Menu::Menu() : ComponentContainer(PixelRect(0, 0, SCREEN_SIZE_X, SCREEN_SIZE_Y))
+Menu::Menu() : ComponentContainer(PixelRect(0, 0, Screen::getSize().getX(), Screen::getSize().getY()))
 {
 }
 

@@ -2,7 +2,7 @@
 
 #include "../../misc/compress/Compressable.hpp"
 #include "../components/Label.hpp"
-#include "../../core/Main.hpp"
+#include "../../core/Screen.hpp"
 #include "../../misc/Debug.hpp"
 
 LobbyMenu::LobbyMenu()
@@ -20,9 +20,9 @@ LobbyMenu::LobbyMenu()
 				((LobbyMenu*)getParent())->lockPressed();
 			}
 	};
-	addComponent(lockButton = new LockButton(this, PixelRect(SCREEN_SIZE_X - 250, 600, 200, 60), "Lock"));
+	addComponent(lockButton = new LockButton(this, PixelRect(Screen::getSize().getX() - 250, 600, 200, 60), "Lock"));
 
-	addComponent(miniMap = new LobbyMiniMap(this, PixelRect(SCREEN_SIZE_X - 250, 100, 200, 140)));
+	addComponent(miniMap = new LobbyMiniMap(this, PixelRect(Screen::getSize().getX() - 250, 100, 200, 140)));
 
 	class DisconnectButton : public Button
 	{

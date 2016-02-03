@@ -8,7 +8,7 @@ sf::Text Screen::text;
 
 void Screen::init()
 {
-	window = new sf::RenderWindow(sf::VideoMode(SCREEN_SIZE_X, SCREEN_SIZE_Y), "Arrows", sf::Style::Fullscreen);
+	window = new sf::RenderWindow(sf::VideoMode::getDesktopMode(), "Arrows", sf::Style::Fullscreen);
 	static sf::Font font;
 	if (!font.loadFromFile("res/fonts/font.ttf"))
 	{
@@ -54,6 +54,11 @@ PixelVector Screen::getCursorPosition()
 	int x = sf::Mouse::getPosition().x;
 	int y = sf::Mouse::getPosition().y;
 	return PixelVector(x, y);
+}
+
+PixelVector Screen::getSize()
+{
+	return PixelVector(window->getSize().x, window->getSize().y);
 }
 
 void Screen::drawRect(const PixelRect& rect, const sf::Color& color)
