@@ -9,11 +9,11 @@ Icon::Icon(ComponentContainer* c, const PixelRect& r) : MenuComponent(c, r)
 void Icon::render() const
 {
 	/* // TODO
-	if (!getImageID().isValid())
+	if (!getTextureID() != 0)
 	{
 		Debug::error("Icon::render() tries to render null IconID");
 		return;
 	}
 	*/
-	Screen::drawImageID(getImageID(), getAbsoluteRect());
+	Screen::drawTextureID(getTextureID(), getAbsoluteRect());
 }

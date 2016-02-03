@@ -4,9 +4,10 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
+#include "../graphics/TextureManager.hpp" // for the TextureID typedef
+
 class PixelRect;
 class PixelVector;
-class ImageID;
 
 class Screen
 {
@@ -19,8 +20,8 @@ class Screen
 		static PixelVector getSize();
 
 		static void drawRect(const PixelRect&, const sf::Color&);
-		static void drawImageID(const ImageID&, const PixelRect&);
-		static void drawImage(const sf::Image&, const PixelRect&);
+		static void drawTextureID(const TextureID&, const PixelRect&);
+		static void drawTexture(const sf::Texture*, const PixelRect&);
 		static void drawText(const std::string&, const PixelVector&, const sf::Color&);
 	private:
 		static sf::RenderWindow *window;
@@ -29,6 +30,5 @@ class Screen
 
 #include "../math/pixel/PixelRect.hpp"
 #include "../math/pixel/PixelVector.hpp"
-#include "../graphics/ImageID.hpp"
 
 #endif

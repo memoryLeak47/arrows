@@ -70,16 +70,14 @@ void Screen::drawRect(const PixelRect& rect, const sf::Color& color)
 	window->draw(s);
 }
 
-void Screen::drawImageID(const ImageID& id, const PixelRect& rect)
+void Screen::drawTextureID(const TextureID& id, const PixelRect& rect)
 {
-	Debug::warn("Screen::drawImageID(): TODO");
+	drawTexture(TextureManager::getTexture(id), rect);
 }
 
-void Screen::drawImage(const sf::Image& image, const PixelRect& rect)
+void Screen::drawTexture(const sf::Texture* tex, const PixelRect& rect)
 {
-	sf::Texture tex;
-	tex.update(image);
-	sf::Sprite s(tex);
+	sf::Sprite s(*tex);
 	s.move(rect.getPosition().getX(), rect.getPosition().getY());
 	window->draw(s);
 }

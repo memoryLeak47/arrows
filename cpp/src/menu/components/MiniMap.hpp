@@ -11,8 +11,7 @@ class MiniMap : public MenuComponent
 		MiniMap(ComponentContainer*, const PixelRect&);
 		virtual void render() const override;
 	private:
-		sf::Image tileMapImage;
-	
+		sf::Texture tileMapTexture;
 };
 
 #endif
