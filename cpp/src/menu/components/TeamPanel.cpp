@@ -3,7 +3,7 @@
 #include "PlayerPanel.hpp"
 #include "../../misc/Debug.hpp"
 
-TeamPanel::TeamPanel(TeamListPanel* c, const PixelRect& r, Team* team) : Panel(c, r), team(team)
+TeamPanel::TeamPanel(LobbyMenu* m, TeamListPanel* c, const PixelRect& r, Team* team) : Panel(c, r), team(team), lobby(m)
 {
 	teamButton = NULL; // otherwise the program crashes
 }
@@ -22,7 +22,7 @@ void TeamPanel::update(const std::vector<LobbyPlayer*>& players)
 				Debug::test("hello, you pressed mr. " + getText());
 				if (isEnabled())
 				{
-					((TeamPanel*) getParent())->getLobbyMenu()->teamPressed(((TeamPanel*)getParent())->getTeam()); // Übergabe an LobbyMenu, dass wir Team wechseln
+					((TeamPanel*) getParent())->getLobbyMenu()->teamPressed(((TeamPanel*) getParent())->getTeam()); // Übergabe an LobbyMenu, dass wir Team wechseln
 				}
 			}
 	};
@@ -35,7 +35,7 @@ void TeamPanel::update(const std::vector<LobbyPlayer*>& players)
 	{
 		if (players[i]->getTeamUserPacket()->getTeam() == team)
 		{
-			addComponent(new PlayerPanel(this, PixelRect(getRelativeRect().getPosition().getX() + 5 + c*65, 55, 60, 60), players[i]));
+			addComponent(new PlayerPanel(players[i], getLobbyMenu(), this, PixelRect(getRelativeRect().getPosition().getX() + 5 + c*65, 55, 60, 60)));
 			c++;
 		}
 	}
@@ -43,7 +43,7 @@ void TeamPanel::update(const std::vector<LobbyPlayer*>& players)
 
 LobbyMenu* TeamPanel::getLobbyMenu() const
 {
-	return ((TeamListPanel*) getParent())->getLobbyMenu();
+	return lobby;
 }
 
 Team* TeamPanel::getTeam() const

@@ -11,6 +11,8 @@ class TeamListPanel : public Panel
 		TeamListPanel(LobbyMenu*, const PixelRect&);
 		void update();
 		LobbyMenu* getLobbyMenu() const;
+	private:
+		LobbyMenu* lobby;
 };
 
 #include "../menues/LobbyMenu.hpp"

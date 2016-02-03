@@ -38,10 +38,10 @@ class LobbyMenu : public NetworkingMenu
 		virtual void lockPressed() = 0;
 		virtual void disconnectPressed() = 0;
 		virtual void teamPressed(Team*) = 0;
+		virtual LobbyPlayer* getLocalPlayer() const = 0;
 	protected:
 		int ipToID(const sf::IpAddress&, const std::vector<LobbyPlayer*>&) const;
 		void handlePacketByID(Packet*, int);
-		virtual LobbyPlayer* getLocalPlayer() const = 0;
 		void updatePlayerIcons() const;
 		// handle Packets
 		virtual void handleLockUserPacket(LockUserPacket*, int);

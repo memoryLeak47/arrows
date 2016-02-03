@@ -14,11 +14,12 @@ class LobbyMenu;
 class TeamPanel : public Panel
 {
 	public:
-		TeamPanel(TeamListPanel*, const PixelRect&, Team*);
+		TeamPanel(LobbyMenu*, TeamListPanel*, const PixelRect&, Team*);
 		void update(const std::vector<LobbyPlayer*>&);
 		LobbyMenu* getLobbyMenu() const;
 		Team* getTeam() const;
 	private:
+		LobbyMenu* lobby;
 		Button* teamButton;
 		Team* team;
 };
