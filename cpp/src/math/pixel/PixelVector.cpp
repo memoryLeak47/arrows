@@ -43,3 +43,17 @@ PixelVector PixelVector::operator-(const PixelVector& vec) const
 	int y = getY() - vec.getY();
 	return PixelVector(x, y);
 }
+
+PixelVector PixelVector::operator*(const PixelVector& vec) const
+{
+	int x = getX() * vec.getX();
+	int y = getY() * vec.getY();
+	return PixelVector(x, y);
+}
+
+PixelVector PixelVector::operator/(const PixelVector& vec) const
+{
+	int x = getX() / vec.getX();
+	int y = getY() / vec.getY();
+	return PixelVector(x, y);
+}

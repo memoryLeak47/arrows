@@ -11,10 +11,12 @@ class PixelVector
 		bool inRect(const PixelRect&) const;
 		int getX() const;
 		int getY() const;
-		PixelVector operator+(const PixelVector&) const;
-		PixelVector operator-(const PixelVector&) const;
 		bool operator==(const PixelVector&) const;
 		bool operator!=(const PixelVector&) const;
+		PixelVector operator+(const PixelVector&) const;
+		PixelVector operator-(const PixelVector&) const;
+		PixelVector operator*(const PixelVector&) const;
+		PixelVector operator/(const PixelVector&) const;
 	private:
 		int x, y;
 };

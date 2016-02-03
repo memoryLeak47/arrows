@@ -79,6 +79,7 @@ void Screen::drawTexture(const sf::Texture* tex, const PixelRect& rect)
 {
 	sf::Sprite s(*tex);
 	s.move(rect.getPosition().getX(), rect.getPosition().getY());
+	s.setScale( ((float) rect.getSize().getX())/tex->getSize().x, ((float) rect.getSize().getY())/tex->getSize().y);
 	window->draw(s);
 }
 
