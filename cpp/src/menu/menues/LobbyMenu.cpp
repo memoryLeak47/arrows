@@ -37,14 +37,14 @@ LobbyMenu::LobbyMenu()
 	addComponent(teamListPanel = new TeamListPanel(this, PixelRect(100, 100, 600, 600)));
 }
 
-int LobbyMenu::getPhase() const
-{
-	return phase;
-}
-
 std::vector<LobbyPlayer*> LobbyMenu::getPlayers() const
 {
 	return players;
+}
+
+int LobbyMenu::getPhase() const
+{
+	return phase;
 }
 
 void LobbyMenu::handlePacketByID(Packet* packet, int id)
@@ -111,6 +111,17 @@ int LobbyMenu::ipToID(const sf::IpAddress& ip, const std::vector<LobbyPlayer*>& 
 void LobbyMenu::updatePlayerIcons() const
 {
 	teamListPanel->update();
+}
+
+LobbyPlayer* LobbyMenu::getPlayer(int id) const
+{
+	Debug::warnIf(id < 0 || id >= getPlayers().size(), "LobbyMenu::getPlayer(): id out of range");
+	return players[id];
+}
+
+void LobbyMenu::addPlayer(LobbyPlayer* p)
+{
+	players.push_back(p);
 }
 
 void LobbyMenu::handleLockUserPacket(LockUserPacket*, int)

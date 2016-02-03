@@ -1,5 +1,6 @@
 #include "PlayerPanel.hpp"
 
+#include "../../misc/Debug.hpp"
 #include "../../core/Screen.hpp"
 #include "AvatarIcon.hpp"
 #include "SkillIcon.hpp"

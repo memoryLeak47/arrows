@@ -6,6 +6,7 @@
 ServerLobbyMenu::ServerLobbyMenu()
 {
 	createServerPlayer();
+	updatePlayerIcons();
 }
 
 void ServerLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
@@ -16,8 +17,7 @@ void ServerLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
 void ServerLobbyMenu::createServerPlayer()
 {
 	LobbyPlayer* me = new LobbyPlayer(new LoginUserPacket(Main::getAccount()->getName(), Main::getAccount()->getRank()));
-	updatedPlayers.push_back(me);
-	getPlayers().push_back(me);
+	addPlayer(me);
 }
 
 void ServerLobbyMenu::lockPressed()
@@ -42,8 +42,8 @@ void ServerLobbyMenu::teamPressed(Team* team)
 
 LobbyPlayer* ServerLobbyMenu::getLocalPlayer() const
 {
-	Debug::warnIf(getPlayers().size() == 0, "ServerLobbyMenu::getLocalPlayer() getPlayers().size() == 0 -> is probably NULL");
-	return getPlayers()[0];
+	Debug::warnIf(getPlayers().size() == 0, "ServerLobbyMenu::getLocalPlayer(): getPlayers().size() == 0 -> is probably NULL");
+	return getPlayer(0);
 }
 
 void ServerLobbyMenu::packAndSendToAllClients(UserPacket* p, int id) const
@@ -51,7 +51,7 @@ void ServerLobbyMenu::packAndSendToAllClients(UserPacket* p, int id) const
 	for (int i = 1; i < getPlayers().size(); i++)
 	{
 		UserPacketWithID* packet = new UserPacketWithID(p, id);
-		send(packet, getPlayers()[i]->getIP());
+		send(packet, getPlayer(i)->getIP());
 		delete packet;
 	}
 }
@@ -82,4 +82,26 @@ void ServerLobbyMenu::handleSkillUserPacket(SkillUserPacket*, int)
 
 void ServerLobbyMenu::handleItemUserPacket(ItemUserPacket*, int)
 {
+}
+
+LobbyPlayer* ServerLobbyMenu::getUpdatedPlayer(int id) const
+{
+	Debug::warnIf(id < 0 || id >= getUpdatedPlayers().size(), "ServerLobbyMenu::getUpdatedPlayers(): size == 0");
+	return getUpdatedPlayers()[id];
+}
+
+std::vector<LobbyPlayer*> ServerLobbyMenu::getUpdatedPlayers() const
+{
+	return updatedPlayers;
+}
+
+void ServerLobbyMenu::addUpdatedPlayer(LobbyPlayer* p)
+{
+	updatedPlayers.push_back(p);
+}
+
+void ServerLobbyMenu::addPlayer(LobbyPlayer* p)
+{
+	LobbyMenu::addPlayer(p);
+	addUpdatedPlayer(p);
 }

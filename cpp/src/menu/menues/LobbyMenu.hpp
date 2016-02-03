@@ -33,8 +33,8 @@ class LobbyMenu : public NetworkingMenu
 {
 	public:
 		LobbyMenu();
-		int getPhase() const;
 		std::vector<LobbyPlayer*> getPlayers() const;
+		int getPhase() const;
 		virtual void lockPressed() = 0;
 		virtual void disconnectPressed() = 0;
 		virtual void teamPressed(Team*) = 0;
@@ -43,6 +43,8 @@ class LobbyMenu : public NetworkingMenu
 		int ipToID(const sf::IpAddress&, const std::vector<LobbyPlayer*>&) const;
 		void handlePacketByID(Packet*, int);
 		void updatePlayerIcons() const;
+		LobbyPlayer* getPlayer(int) const;
+		virtual void addPlayer(LobbyPlayer*);
 		// handle Packets
 		virtual void handleLockUserPacket(LockUserPacket*, int);
 		virtual void handleDisconnectUserPacket(DisconnectUserPacket*, int);

@@ -10,6 +10,8 @@ class TeamUserPacket : public UserPacket
 	public:
 		TeamUserPacket(int);
 		Team* getTeam() const;
+		std::string toString() const override;
+		CID getCID() const override;
 	private:
 		int teamID;
 };

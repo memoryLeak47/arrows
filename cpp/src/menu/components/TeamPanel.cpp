@@ -19,7 +19,6 @@ void TeamPanel::update(const std::vector<LobbyPlayer*>& players)
 			TeamButton(TeamPanel* c, const PixelRect& r, const std::string& h) : Button(c, r, h) {}
 			void onClick(int mouseButton) override
 			{
-				Debug::test("hello, you pressed mr. " + getText());
 				if (isEnabled())
 				{
 					((TeamPanel*) getParent())->getLobbyMenu()->teamPressed(((TeamPanel*) getParent())->getTeam()); // Übergabe an LobbyMenu, dass wir Team wechseln
