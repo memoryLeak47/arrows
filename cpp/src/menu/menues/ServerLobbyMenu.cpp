@@ -1,6 +1,7 @@
 #include "ServerLobbyMenu.hpp"
 
 #include "../../core/Main.hpp"
+#include "../../misc/Debug.hpp"
 
 ServerLobbyMenu::ServerLobbyMenu()
 {
@@ -41,12 +42,13 @@ void ServerLobbyMenu::teamPressed(Team* team)
 
 LobbyPlayer* ServerLobbyMenu::getLocalPlayer() const
 {
+	Debug::warnIf(getPlayers().size() == 0, "ServerLobbyMenu::getLocalPlayer() getPlayers().size() == 0 -> is probably NULL");
 	return getPlayers()[0];
 }
 
 void ServerLobbyMenu::packAndSendToAllClients(UserPacket* p, int id) const
 {
-	for (int i = 0; i < getPlayers().size(); i++)
+	for (int i = 1; i < getPlayers().size(); i++)
 	{
 		UserPacketWithID* packet = new UserPacketWithID(p, id);
 		send(packet, getPlayers()[i]->getIP());

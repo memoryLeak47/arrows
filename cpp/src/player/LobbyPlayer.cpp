@@ -2,11 +2,19 @@
 
 #include "../misc/Debug.hpp"
 
-LobbyPlayer::LobbyPlayer(LoginUserPacket* login, const sf::IpAddress& ip) : loginPacket(login), ip(ip), teamPacket(0)
-{}
+LobbyPlayer::LobbyPlayer(LoginUserPacket* login, const sf::IpAddress& ip)
+{
+	this->ip = ip;
+	lockPacket = new LockUserPacket(false);
+	// TODO teamPacket = new TeamUserPacket(0);
+	loginPacket = login;
+	// TODO create avatar/skill/item-userpacket
+}
 
 LobbyPlayer::LobbyPlayer(LoginUserPacket* login) : loginPacket(login), teamPacket(0)
-{}
+{
+	lockPacket = new LockUserPacket(false);
+}
 
 sf::IpAddress LobbyPlayer::getIP() const
 {
