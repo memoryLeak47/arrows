@@ -24,6 +24,7 @@ class MenuComponent
 		bool isEnabled() const;
 		void setEnabled(bool);
 	protected:
+		void setRelativeRect(const PixelRect&);
 		ComponentContainer* getParent() const;
 	private:
 		PixelRect rect; // relative rect

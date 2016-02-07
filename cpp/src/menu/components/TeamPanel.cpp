@@ -12,7 +12,7 @@ void TeamPanel::update(const std::vector<LobbyPlayer*>& players)
 {
 	bool buttonWasEnabled = (teamButton == NULL || teamButton->isEnabled());
 
-	getComponents().clear();
+	getComponents()->clear();
 	class TeamButton : public Button
 	{
 		public:

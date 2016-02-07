@@ -3,13 +3,22 @@
 #include "../misc/Debug.hpp"
 #include "../core/Screen.hpp"
 
-Menu::Menu(const PixelRect& rect) : ComponentContainer(rect)
+Menu::Menu(const PixelRect& rect)
+	: rect(rect)
 {
-
+	components = new std::vector<MenuComponent*>();
 }
 
-Menu::Menu() : ComponentContainer(PixelRect(0, 0, Screen::getSize().getX(), Screen::getSize().getY()))
+Menu::Menu()
+	: rect(PixelRect(0, 0, Screen::getSize().getX(), Screen::getSize().getY()))
 {
+	components = new std::vector<MenuComponent*>();
+}
+
+Menu::~Menu()
+{
+	getComponents()->clear();
+	delete components;
 }
 
 bool Menu::isFullscreen() { return true; }
@@ -62,9 +71,9 @@ bool Menu::isNetworkingMenu() const { return false; }
 
 void Menu::tick()
 {
-	for (int i = 0; i < getComponents().size(); i++)
+	for (int i = 0; i < getComponents()->size(); i++)
 	{
-		getComponents()[i]->tick();
+		(*getComponents())[i]->tick();
 	}
 }
 
@@ -84,3 +93,17 @@ MenuComponent* Menu::getFocusedComponent()
 	return focusedComponent;
 }
 
+PixelRect Menu::getAbsoluteRect() const
+{
+	return getRelativeRect();
+}
+
+PixelRect Menu::getRelativeRect() const
+{
+	return rect;
+}
+
+std::vector<MenuComponent*>* Menu::getComponents() const
+{
+	return components;
+}

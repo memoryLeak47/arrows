@@ -10,20 +10,16 @@ class MenuComponent;
 class ComponentContainer
 {
 	public:
-		ComponentContainer(const PixelRect& rect);
-		~ComponentContainer();
-		std::vector<MenuComponent*> getComponents() const;
+		ComponentContainer();
+		virtual ~ComponentContainer();
 		PixelVector getRelativeCursorPosition() const;
 		virtual void render() const;
-		virtual PixelRect getAbsoluteRect() const;
-		virtual PixelRect getRelativeRect() const;
+		virtual PixelRect getAbsoluteRect() const = 0;
+		virtual PixelRect getRelativeRect() const = 0;
+		virtual std::vector<MenuComponent*>* getComponents() const = 0;
 	protected:
-		void setRelativeRect(const PixelRect&);
 		void addComponent(MenuComponent*);
 		MenuComponent* getHoveredComponent() const;
-	private:
-		PixelRect rect; // relative rect
-		std::vector<MenuComponent*> components;
 };
 
 #include "MenuComponent.hpp"

@@ -12,7 +12,7 @@ TeamListPanel::TeamListPanel(LobbyMenu* c, const PixelRect& r) : Panel(c, r), lo
 void TeamListPanel::update()
 {
 	// Formatieren der TeamPanels (nach unten rutschen, falls das obere Panel zu weit nach unten reicht)
-	getComponents().clear();
+	getComponents()->clear();
 	for (int i = 0; i < Team::getAmount(); i++) // für alle TeamPanels updaten + formatieren
 	{
 		if (i == 0)
@@ -21,10 +21,10 @@ void TeamListPanel::update()
 		}
 		else
 		{
-			addComponent(new TeamPanel(getLobbyMenu(), this, PixelRect(20, getComponents()[i-1]->getRelativeRect().getBot() + 20, 140, 60), Team::get(i)));
+			addComponent(new TeamPanel(getLobbyMenu(), this, PixelRect(20, (*getComponents())[i-1]->getRelativeRect().getBot() + 20, 140, 60), Team::get(i)));
 		}
-		((TeamPanel*) getComponents()[i])->update(getLobbyMenu()->getPlayers()); // updaten
-		((Panel*) getComponents()[i])->calcSize();
+		((TeamPanel*) (*getComponents())[i])->update(getLobbyMenu()->getPlayers()); // updaten
+		((Panel*) (*getComponents())[i])->calcSize();
 	}
 }
 

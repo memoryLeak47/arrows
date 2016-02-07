@@ -12,10 +12,6 @@ MenuComponent::~MenuComponent()
 
 void MenuComponent::tick() {}
 
-ComponentContainer* MenuComponent::getParent() const
-{
-	return parent;
-}
 
 void MenuComponent::onClick(int mouseButton) {}
 void MenuComponent::onMouseEnter(const PixelVector& mousePos) {}
@@ -33,4 +29,14 @@ void MenuComponent::setEnabled(bool b) { enabled = b; }
 MenuComponent* MenuComponent::getHoveredComponentRecursively() const
 {
 	return (MenuComponent*) this;
+}
+
+void MenuComponent::setRelativeRect(const PixelRect& r)
+{
+	rect = r;
+}
+
+ComponentContainer* MenuComponent::getParent() const
+{
+	return parent;
 }

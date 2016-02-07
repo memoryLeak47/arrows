@@ -89,7 +89,7 @@ void Main::setAccount(Account* a)
 
 Account* Main::getAccount()
 {
-	Debug::warnIf(account == NULL, "Main::getAccount(): accounts == NULL");
+	Debug::warnIf(account == NULL, "Main::getAccount(): account == NULL");
 	return account;
 }
 
