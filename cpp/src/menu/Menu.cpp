@@ -2,6 +2,8 @@
 
 #include "../misc/Debug.hpp"
 #include "../core/Screen.hpp"
+#include "../core/Main.hpp"
+#include "menues/PopupMenu.hpp"
 
 Menu::Menu(const PixelRect& rect)
 	: rect(rect)
@@ -11,7 +13,7 @@ Menu::Menu()
 	: rect(PixelRect(0, 0, Screen::getSize().getX(), Screen::getSize().getY()))
 {}
 
-bool Menu::isFullscreen() { return true; }
+bool Menu::isFullscreen() { return getRelativeRect() == PixelRect(0, 0, Screen::getSize().getX(), Screen::getSize().getY()); }
 
 void Menu::onEvent(const sf::Event& event)
 {
@@ -73,9 +75,9 @@ void Menu::render() const
 	ComponentContainer::render();
 }
 
-void Menu::popup(const std::string& msg)
+void Menu::popup(const std::string& text)
 {
-	Debug::note("Popupwindow: " + msg);
+	Main::getMenuList()->addMenu(new PopupMenu(text));
 }
 
 MenuComponent* Menu::getFocusedComponent()

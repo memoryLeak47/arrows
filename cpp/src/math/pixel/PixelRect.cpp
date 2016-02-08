@@ -38,3 +38,8 @@ int PixelRect::getBot() const
 {
 	return getPosition().getY() + getSize().getY();
 }
+
+bool PixelRect::operator==(const PixelRect& rect)
+{
+	return rect.getPosition() == getPosition() && rect.getSize() == getSize();
+}

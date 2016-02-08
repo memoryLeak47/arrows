@@ -17,6 +17,8 @@ class PixelRect
 		int getRight() const;
 		int getTop() const;
 		int getBot() const;
+
+		bool operator==(const PixelRect&);
 	private:
 		PixelVector position; // left-top edge
 		PixelVector size;
