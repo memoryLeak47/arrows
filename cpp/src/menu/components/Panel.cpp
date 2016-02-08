@@ -35,10 +35,10 @@ void Panel::calcSize()
 	int height = 0;
 
 	// sucht die width/height indem alle Komponenten durchlaufen werden und die am weitesten rechts und unten gespeichert werden
-	for (int i = 0; i < getComponents()->size(); i++)
+	for (int i = 0; i < getComponents().size(); i++)
 	{
-		width = std::max(width, (*getComponents())[i]->getRelativeRect().getRight() + getPadding().getX());
-		height = std::max(height, (*getComponents())[i]->getRelativeRect().getBot() + getPadding().getY());
+		width = std::max(width, getComponents()[i]->getRelativeRect().getRight() + getPadding().getX());
+		height = std::max(height, getComponents()[i]->getRelativeRect().getBot() + getPadding().getY());
 	}
 
 	if (width != getRelativeRect().getSize().getX())

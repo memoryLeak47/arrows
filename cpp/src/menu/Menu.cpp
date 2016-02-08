@@ -61,9 +61,9 @@ bool Menu::isNetworkingMenu() const { return false; }
 
 void Menu::tick()
 {
-	for (int i = 0; i < getComponents()->size(); i++)
+	for (int i = 0; i < getComponents().size(); i++)
 	{
-		(*getComponents())[i]->tick();
+		getComponents()[i]->tick();
 	}
 }
 
