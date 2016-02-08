@@ -5,10 +5,20 @@
 #include "../math/pixel/PixelVector.hpp"
 
 ComponentContainer::ComponentContainer()
-{}
+{
+	components = new std::vector<MenuComponent*>();
+}
 
 ComponentContainer::~ComponentContainer()
-{}
+{
+	components->clear();
+	delete components;
+}
+
+std::vector<MenuComponent*>* ComponentContainer::getComponents() const
+{
+	return components;
+}
 
 void ComponentContainer::addComponent(MenuComponent* c)
 {

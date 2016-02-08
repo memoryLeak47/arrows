@@ -5,21 +5,11 @@
 
 Menu::Menu(const PixelRect& rect)
 	: rect(rect)
-{
-	components = new std::vector<MenuComponent*>();
-}
+{}
 
 Menu::Menu()
 	: rect(PixelRect(0, 0, Screen::getSize().getX(), Screen::getSize().getY()))
-{
-	components = new std::vector<MenuComponent*>();
-}
-
-Menu::~Menu()
-{
-	getComponents()->clear();
-	delete components;
-}
+{}
 
 bool Menu::isFullscreen() { return true; }
 
@@ -101,9 +91,4 @@ PixelRect Menu::getAbsoluteRect() const
 PixelRect Menu::getRelativeRect() const
 {
 	return rect;
-}
-
-std::vector<MenuComponent*>* Menu::getComponents() const
-{
-	return components;
 }

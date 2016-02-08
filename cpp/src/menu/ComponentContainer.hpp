@@ -16,10 +16,12 @@ class ComponentContainer
 		virtual void render() const;
 		virtual PixelRect getAbsoluteRect() const = 0;
 		virtual PixelRect getRelativeRect() const = 0;
-		virtual std::vector<MenuComponent*>* getComponents() const = 0;
+		std::vector<MenuComponent*>* getComponents() const;
 	protected:
 		void addComponent(MenuComponent*);
 		MenuComponent* getHoveredComponent() const;
+	private:
+		std::vector<MenuComponent*>* components;
 };
 
 #include "MenuComponent.hpp"

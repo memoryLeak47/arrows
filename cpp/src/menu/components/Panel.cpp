@@ -6,15 +6,7 @@
 
 Panel::Panel(ComponentContainer* c, const PixelRect& r)
 	: MenuComponent(c, r)
-{
-	components = new std::vector<MenuComponent*>();
-}
-
-Panel::~Panel()
-{
-	getComponents()->clear();
-	delete components;
-}
+{}
 
 PixelRect Panel::getAbsoluteRect() const
 {
@@ -69,8 +61,3 @@ void Panel::calcSize()
 }
 
 PixelVector Panel::getPadding() const { return PixelVector(20, 20); }
-
-std::vector<MenuComponent*>* Panel::getComponents() const
-{
-	return components;
-}
