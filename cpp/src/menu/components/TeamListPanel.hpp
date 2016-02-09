@@ -11,6 +11,7 @@ class TeamListPanel : public Panel
 		TeamListPanel(LobbyMenu*, const PixelRect&);
 		void update();
 		LobbyMenu* getLobbyMenu() const;
+		void disableTeamButtons();
 	private:
 		LobbyMenu* lobby;
 };

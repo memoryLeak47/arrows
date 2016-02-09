@@ -63,6 +63,7 @@ void ServerLobbyMenu::lockPressed()
 	LockUserPacket* l = new LockUserPacket(!getLocalPlayer()->getLockUserPacket()->isLocked());
 	packAndSendToAllClients(l, 0);
 	delete l;
+	nextPhase();
 }
 
 void ServerLobbyMenu::disconnectPressed()

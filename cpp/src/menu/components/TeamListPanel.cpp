@@ -32,3 +32,11 @@ LobbyMenu* TeamListPanel::getLobbyMenu() const
 {
 	return lobby;
 }
+
+void TeamListPanel::disableTeamButtons()
+{
+	for (int i = 0; i < getComponents().size(); i++)
+	{
+		dynamic_cast<TeamPanel*>(getComponents()[i])->disableTeamButton();
+	}
+}

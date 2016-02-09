@@ -138,6 +138,15 @@ void LobbyMenu::unlockAll()
 	}
 }
 
+void LobbyMenu::nextPhase()
+{
+	phase++;
+	if (phase == AVATAR_PHASE)
+	{
+		teamListPanel->disableTeamButtons();
+	}
+	unlockAll();
+}
 
 void LobbyMenu::handleLockUserPacket(LockUserPacket*, int)
 {

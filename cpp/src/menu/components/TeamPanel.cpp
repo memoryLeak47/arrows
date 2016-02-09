@@ -49,3 +49,8 @@ Team* TeamPanel::getTeam() const
 {
 	return team;
 }
+
+void TeamPanel::disableTeamButton()
+{
+	teamButton->setEnabled(false);
+}

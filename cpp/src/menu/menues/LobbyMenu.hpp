@@ -48,6 +48,7 @@ class LobbyMenu : public NetworkingMenu
 		virtual void addPlayer(LobbyPlayer*);
 		void updateMap(const std::vector<std::vector<int>>&);
         	void unlockAll();
+		void nextPhase();
 		// handle Packets
 		virtual void handleLockUserPacket(LockUserPacket*, int);
 		virtual void handleDisconnectUserPacket(DisconnectUserPacket*, int);

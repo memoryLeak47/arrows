@@ -18,6 +18,7 @@ class TeamPanel : public Panel
 		void update(const std::vector<LobbyPlayer*>&);
 		LobbyMenu* getLobbyMenu() const;
 		Team* getTeam() const;
+		void disableTeamButton();
 	private:
 		LobbyMenu* lobby;
 		Button* teamButton;
