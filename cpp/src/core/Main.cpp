@@ -3,6 +3,7 @@
 #include "../misc/Debug.hpp"
 #include "Screen.hpp"
 #include "../player/property/Team.hpp"
+#include "../player/property/item/Item.hpp"
 #include "../graphics/TextureManager.hpp"
 
 bool Main::running = true;
@@ -16,6 +17,7 @@ Main::Main()
 	Debug::init();
 	Screen::init();
 	Team::init();
+	Item::init();
 	TextureManager::init();
 	menuList = new MenuList();
 	networkDevice = new NetworkDevice();
@@ -31,6 +33,7 @@ Main::~Main()
 	delete account; // really needed?
 	Screen::uninit();
 	Team::uninit();
+	Item::uninit();
 	TextureManager::uninit();
 }
 

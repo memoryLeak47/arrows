@@ -17,3 +17,5 @@ void Icon::render() const
 	*/
 	Screen::drawTextureID(getTextureID(), getAbsoluteRect());
 }
+
+

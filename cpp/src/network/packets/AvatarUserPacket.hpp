@@ -1,9 +1,9 @@
 #ifndef __AVATARUSERPACKET_CLASS__
 #define __AVATARUSERPACKET_CLASS__
 
-#include "UserPacket.hpp"
+#include "PlayerPropertyUserPacket.hpp"
 
-class AvatarUserPacket : public UserPacket
+class AvatarUserPacket : public PlayerPropertyUserPacket
 {
 	private:
 		char avatarID;

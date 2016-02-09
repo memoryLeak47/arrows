@@ -1,9 +1,9 @@
 #ifndef __SKILLUSERPACKET_CLASS__
 #define __SKILLUSERPACKET_CLASS__
 
-#include "UserPacket.hpp"
+#include "PlayerPropertyUserPacket.hpp"
 
-class SkillUserPacket : public UserPacket
+class SkillUserPacket : public PlayerPropertyUserPacket
 {
 	private:
 		char skillIDs[4];
