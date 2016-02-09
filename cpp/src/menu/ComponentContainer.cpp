@@ -30,26 +30,21 @@ void ComponentContainer::clearComponents()
 
 PixelVector ComponentContainer::getRelativeCursorPosition() const
 {
-	return Screen::getCursorPosition() - getRelativeRect().getPosition();
+	return Screen::getCursorPosition() - getAbsoluteRect().getPosition();
 }
 
 MenuComponent* ComponentContainer::getHoveredComponent() const
 {
 	PixelVector cursor = getRelativeCursorPosition();
 
-	if (cursor != PixelVector(-1, -1)) // wenn der cursor im fenster ist
+	for (int i = getComponents().size()-1; i >= 0; i--) // für alle Components (als letzes gerendert liegt ganz oben -> von hinten nach vorne)
 	{
-		for (int i = getComponents().size()-1; i >= 0; i--) // für alle Components (als letzes gerendert liegt ganz oben -> von hinten nach vorne)
+		if (cursor.inRect(getComponents()[i]->getRelativeRect())) // wenn die maus auf die Component zeigt
 		{
-			if (cursor.inRect(getComponents()[i]->getRelativeRect())) // wenn die maus auf die Component zeigt
-			{
-				// returne ihn (falls er ein ComponentContainer ist, seine hovered-component)
-				return getComponents()[i]->getHoveredComponentRecursively();
-			}
-		} // wenn keine Component gefunden wurde
-	} // oder die maus außerhalb des fensters ist
-
-	return NULL; // returne null
+			// returne ihn (falls er ein ComponentContainer ist, seine hovered-component)
+			return getComponents()[i]->getHoveredComponentRecursively();
+		}
+	} // wenn keine Component gefunden wurde
 }
 
 void ComponentContainer::render() const

@@ -30,9 +30,6 @@ void Menu::onEvent(const sf::Event& event)
 	else if (event.type == sf::Event::MouseButtonPressed) // wenn die maus gedrückt wurde
 	{
 		focusedComponent = getHoveredComponent(); // lasse die fokusierte MenuComponent die gehov
-		if (getHoveredComponent() == NULL)
-		{
-		}
 	}
 	else if (event.type ==  sf::Event::MouseButtonReleased) // wenn die maus losgelassen wurde
 	{
