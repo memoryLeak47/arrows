@@ -1,12 +1,50 @@
 #include "ServerLobbyMenu.hpp"
 
 #include "../../core/Main.hpp"
+#include "../../core/Screen.hpp"
 #include "../../misc/Debug.hpp"
 
 ServerLobbyMenu::ServerLobbyMenu()
 {
+	addComponent(mapSelectEditField = new EditField(this, PixelRect(Screen::getSize().getX()-240, 250, 50, 20), "default"));
+
+	// Map Select - Button
+	class MapSelectButton : public Button
+	{
+		public:
+			MapSelectButton(ServerLobbyMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
+			void onClick(int mouseButton)
+			{
+				if (isEnabled())
+				{
+					dynamic_cast<ServerLobbyMenu*>(getParent())->mapSelected();
+				}
+			}
+	};
+	addComponent(mapSelectButton = new MapSelectButton(this, PixelRect(Screen::getSize().getX()-180, 250, 50, 20), "Ok"));
+
+
 	createServerPlayer();
 	updatePlayerIcons();
+}
+
+void ServerLobbyMenu::mapSelected()
+{
+	std::string path = "res/maps/" + mapSelectEditField->getText() + ".png";
+	std::vector<std::vector<int>> ints = LobbyTileMap::getIntsByFile(path);
+
+	if (ints.size() == 0)
+	{
+		popup("can't load '" + path + "'");
+		Debug::warn("ServerLobbyMenu::mapSelected(): ints.size() == 0");
+		return;
+	}
+
+	updateMap(ints);
+
+	// sendet neue Map zu allen Clients
+	// TODO sendToAllClients(new MapPacket(ints));
+	unlockAll();
 }
 
 void ServerLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)

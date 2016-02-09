@@ -12,9 +12,10 @@
 
 #include "../NetworkingMenu.hpp"
 
+#include "../../tile/map/LobbyTileMap.hpp"
+
 class Button;
 class Team;
-class LobbyTileMap;
 class LobbyMiniMap;
 class LobbyPlayer;
 class TeamListPanel;
@@ -45,6 +46,8 @@ class LobbyMenu : public NetworkingMenu
 		void updatePlayerIcons() const;
 		LobbyPlayer* getPlayer(int) const;
 		virtual void addPlayer(LobbyPlayer*);
+		void updateMap(const std::vector<std::vector<int>>&);
+        	void unlockAll();
 		// handle Packets
 		virtual void handleLockUserPacket(LockUserPacket*, int);
 		virtual void handleDisconnectUserPacket(DisconnectUserPacket*, int);
@@ -60,7 +63,7 @@ class LobbyMenu : public NetworkingMenu
 		Button* lockButton; // Verweiß auf den NextStep/LockIn Button
 	private:
 		int phase;
-		LobbyTileMap* lobbyTileMap;
+		LobbyTileMap tileMap;
 		LobbyMiniMap* miniMap;
 		std::vector<LobbyPlayer*> players; // Bluemi: protected -> private; added setter
 		TeamListPanel* teamListPanel; // Nicht zwingend nötig, nur einfacherer Zugriff, da nicht über index
@@ -68,7 +71,6 @@ class LobbyMenu : public NetworkingMenu
 
 #include "../components/Button.hpp"
 #include "../../player/property/Team.hpp"
-#include "../../tile/map/LobbyTileMap.hpp"
 #include "../components/LobbyMiniMap.hpp"
 #include "../../player/LobbyPlayer.hpp"
 #include "../components/TeamListPanel.hpp"

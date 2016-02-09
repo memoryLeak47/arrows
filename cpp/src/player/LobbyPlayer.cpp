@@ -53,3 +53,57 @@ ItemUserPacket* LobbyPlayer::getItemUserPacket() const
 {
 	return itemPacket;
 }
+
+void LobbyPlayer::applyLockUserPacket(LockUserPacket* packet)
+{
+	if (lockPacket != NULL)
+	{
+		delete lockPacket;
+	}
+	lockPacket = packet;
+}
+
+void LobbyPlayer::applyTeamUserPacket(TeamUserPacket* packet)
+{
+	if (teamPacket!= NULL)
+	{
+		delete teamPacket;
+	}
+	teamPacket = packet;
+}
+
+void LobbyPlayer::applyLoginUserPacket(LoginUserPacket* packet)
+{
+	if (loginPacket != NULL)
+	{
+		delete loginPacket;
+	}
+	loginPacket = packet;
+}
+
+void LobbyPlayer::applyAvatarUserPacket(AvatarUserPacket* packet)
+{
+	if (avatarPacket != NULL)
+	{
+		delete avatarPacket;
+	}
+	avatarPacket = packet;
+}
+
+void LobbyPlayer::applySkillUserPacket(SkillUserPacket* packet)
+{
+	if (skillPacket != NULL)
+	{
+		delete skillPacket;
+	}
+	skillPacket = packet;
+}
+
+void LobbyPlayer::applyItemUserPacket(ItemUserPacket* packet)
+{
+	if (itemPacket != NULL)
+	{
+		delete itemPacket;
+	}
+	itemPacket = packet;
+}

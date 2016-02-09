@@ -3,6 +3,9 @@
 
 #include "LobbyMenu.hpp"
 
+class EditField;
+class Button;
+
 class ServerLobbyMenu : public LobbyMenu
 {
 	public:
@@ -28,8 +31,14 @@ class ServerLobbyMenu : public LobbyMenu
 		virtual void addPlayer(LobbyPlayer*) override;
 		void createServerPlayer();
 		void packAndSendToAllClients(UserPacket*, int id) const;
+		void mapSelected();
 
+		EditField* mapSelectEditField;
+		Button* mapSelectButton;
 		std::vector<LobbyPlayer*> updatedPlayers;
 };
+
+#include "../components/EditField.hpp"
+#include "../components/Button.hpp"
 
 #endif

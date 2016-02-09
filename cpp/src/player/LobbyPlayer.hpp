@@ -23,6 +23,13 @@ class LobbyPlayer
 		SkillUserPacket* getSkillUserPacket() const;
 		ItemUserPacket* getItemUserPacket() const;
 
+		void applyLockUserPacket(LockUserPacket*);
+		void applyTeamUserPacket(TeamUserPacket*);
+		void applyLoginUserPacket(LoginUserPacket*);
+		void applyAvatarUserPacket(AvatarUserPacket*);
+		void applySkillUserPacket(SkillUserPacket*);
+		void applyItemUserPacket(ItemUserPacket*);
+
 	private:
 		LockUserPacket* lockPacket;
 		TeamUserPacket* teamPacket;

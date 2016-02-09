@@ -124,6 +124,21 @@ void LobbyMenu::addPlayer(LobbyPlayer* p)
 	players.push_back(p);
 }
 
+void LobbyMenu::updateMap(const std::vector<std::vector<int>>& ints)
+{
+	miniMap->updateMap(ints);
+	tileMap.updateMap(ints);
+}
+
+void LobbyMenu::unlockAll()
+{
+	for (int i = 0; i < getPlayers().size(); i++)
+	{
+		getPlayers()[i]->applyLockUserPacket(new LockUserPacket(false));
+	}
+}
+
+
 void LobbyMenu::handleLockUserPacket(LockUserPacket*, int)
 {
 	Debug::warn("LobbyMenu::handleLockUserPacket(): should not be called, maybe forgotten to overwrite");
