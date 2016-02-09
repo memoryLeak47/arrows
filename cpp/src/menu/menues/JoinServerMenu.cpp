@@ -18,7 +18,7 @@ JoinServerMenu::JoinServerMenu()
 	{
 		public:
 			JoinServerButton(JoinServerMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
-			void onClick(int mouseButton)
+			virtual void onPress() override
 			{
 				((JoinServerMenu*) getParent())->joinServer();
 			}

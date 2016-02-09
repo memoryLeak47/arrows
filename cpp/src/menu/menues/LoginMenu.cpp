@@ -19,7 +19,7 @@ LoginMenu::LoginMenu() : Menu()
 	{
 		public:
 			LoginButton(LoginMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
-			void onClick(int mouseButton)
+			virtual void onPress() override
 			{
 				((LoginMenu*)getParent())->login();
 			}
@@ -29,7 +29,7 @@ LoginMenu::LoginMenu() : Menu()
 	{
 		public:
 			SigninButton(LoginMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
-			void onClick(int mouseButton)
+			virtual void onPress() override
 			{
 				((LoginMenu*)getParent())->signin();
 			}

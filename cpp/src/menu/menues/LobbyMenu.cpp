@@ -15,7 +15,7 @@ LobbyMenu::LobbyMenu()
 	{
 		public:
 			LockButton(LobbyMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
-			void onClick(int mouseButton)
+			virtual void onPress() override
 			{
 				((LobbyMenu*)getParent())->lockPressed();
 			}
@@ -28,7 +28,7 @@ LobbyMenu::LobbyMenu()
 	{
 		public:
 			DisconnectButton(LobbyMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
-			void onClick(int mouseButton)
+			virtual void onPress() override
 			{
 				((LobbyMenu*)getParent())->disconnectPressed();
 			}

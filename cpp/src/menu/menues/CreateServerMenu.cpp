@@ -14,7 +14,7 @@ CreateServerMenu::CreateServerMenu()
 	{
 		public:
 			CreateServerButton(CreateServerMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
-			void onClick(int mouseButton) // on click
+			virtual void onPress() override
 			{
 				Main::getMenuList()->addMenu(new ServerLobbyMenu()); // add new ServerLobbyMenu
 			}

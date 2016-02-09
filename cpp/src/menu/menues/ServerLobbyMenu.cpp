@@ -13,7 +13,7 @@ ServerLobbyMenu::ServerLobbyMenu()
 	{
 		public:
 			MapSelectButton(ServerLobbyMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
-			void onClick(int mouseButton)
+			virtual void onPress() override
 			{
 				if (isEnabled())
 				{

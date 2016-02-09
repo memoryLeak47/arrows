@@ -17,7 +17,7 @@ void TeamPanel::update(const std::vector<LobbyPlayer*>& players)
 	{
 		public:
 			TeamButton(TeamPanel* c, const PixelRect& r, const std::string& h) : Button(c, r, h) {}
-			void onClick(int mouseButton) override
+			virtual void onPress() override
 			{
 				if (isEnabled())
 				{

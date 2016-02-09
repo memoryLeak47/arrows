@@ -17,7 +17,7 @@ MainMenu::MainMenu()
 	{
 		public:
 			CreateServerButton(MainMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
-			void onClick(int mouseButton)
+			virtual void onPress() override
 			{
 				Main::getMenuList()->addMenu(new CreateServerMenu());
 			}
@@ -28,7 +28,7 @@ MainMenu::MainMenu()
 	{
 		public:
 			JoinServerButton(MainMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
-			void onClick(int mouseButton)
+			virtual void onPress() override
 			{
 				Main::getMenuList()->addMenu(new JoinServerMenu());
 			}
@@ -40,7 +40,7 @@ MainMenu::MainMenu()
 	{
 		public:
 			LogoutButton(MainMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
-			void onClick(int mouseButton)
+			virtual void onPress() override
 			{
 				Main::logout();
 				Main::getMenuList()->back();

@@ -12,7 +12,20 @@ void Button::render() const
 	Screen::drawText(getText(), getAbsoluteRect().getPosition(), sf::Color::Black);
 }
 
+void Button::onClick(int mouseButton)
+{
+	if (isEnabled())
+	{
+		onPress();
+	}
+}
+
 std::string Button::getText() const
 {
 	return text;
+}
+
+void Button::setText(const std::string& newText)
+{
+	text = newText;
 }
