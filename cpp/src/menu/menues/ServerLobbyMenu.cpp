@@ -15,10 +15,7 @@ ServerLobbyMenu::ServerLobbyMenu()
 			MapSelectButton(ServerLobbyMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
 			virtual void onPress() override
 			{
-				if (isEnabled())
-				{
-					dynamic_cast<ServerLobbyMenu*>(getParent())->mapSelected();
-				}
+				dynamic_cast<ServerLobbyMenu*>(getParent())->mapSelected();
 			}
 	};
 	addComponent(mapSelectButton = new MapSelectButton(this, PixelRect(Screen::getSize().getX()-180, 250, 50, 20), "Ok"));
