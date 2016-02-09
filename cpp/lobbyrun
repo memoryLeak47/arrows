@@ -1,0 +1,135 @@
+#!/bin/bash
+
+req 'xdotool'
+
+sleepiness=0.1
+mapsleepiness=0.7
+screenSize=$(xdotool getdisplaygeometry)
+screenSizeX=${screenSize% *}
+screenSizeY=${screenSize#* }
+
+avatarID=0
+
+skillID1=0
+skillID2=0
+skillID3=0
+skillID4=0
+
+itemID1=0
+itemID2=0
+itemID3=0
+
+icondiff=45
+
+while [ -n "$1" ]
+do
+	if [ "$1" == "-s" ]; then
+		skillID1=$2
+		skillID2=$3
+		skillID3=$4
+		skillID4=$5
+		shift 5
+	elif [ "$1" == "-i" ]; then
+		itemID1=$2
+		itemID2=$3
+		itemID3=$4
+		shift 4
+	elif [ "$1" == "-a" ]; then
+		avatarID=$2
+		shift 2
+	else
+		echo "command $1 not known"
+		exit
+	fi
+
+done
+
+./exe &
+sleep 0.7
+
+xdotool mousemove 380 280 # login
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove 370 120 # create server-menu
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove 350 360 # create server
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove $(($screenSizeX-170)) 270 # choose map
+xdotool click 1
+
+sleep $mapsleepiness # for big maps
+xdotool mousemove $(($screenSizeX-100)) 640 # next phase
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove 170 210 # choose avatar
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove $((262+$avatarID*$icondiff)) 160 # archer
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove 313 700 # ok
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove $(($screenSizeX-100)) 640 # next phase
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove 171 238 # choose skills
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove $((262+$skillID1*$icondiff)) 160 # arrow
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove $((262+$skillID2*$icondiff)) 160 # arrow
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove $((262+$skillID3*$icondiff)) 160 # arrow
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove $((262+$skillID4*$icondiff)) 160 # arrow
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove 313 700 # ok
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove $(($screenSizeX-100)) 640 # next phase
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove 195 209 # choose items
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove $((262+$itemID1*$icondiff)) 160 # health ring
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove $((262+$itemID2*$icondiff)) 160 # health ring
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove $((262+$itemID3*$icondiff)) 160 # health ring
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove 313 700 # ok
+xdotool click 1
+
+sleep $sleepiness
+xdotool mousemove $(($screenSizeX-100)) 640 # next phase
+xdotool click 1
