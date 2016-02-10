@@ -1,11 +1,11 @@
-#include "ChoosableIcon.hpp"
+#include "PlayerPanelsIcon.hpp"
 
 #include "../../core/Screen.hpp"
 
-ChoosableIcon::ChoosableIcon(LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : Icon(c, r), player(p), lobby(m)
+PlayerPanelsIcon::PlayerPanelsIcon(LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : Icon(c, r), player(p), lobby(m)
 {}
 
-void ChoosableIcon::render() const
+void PlayerPanelsIcon::render() const
 {
 	Icon::render();
 	if (isChoosable())
@@ -15,19 +15,19 @@ void ChoosableIcon::render() const
 	}
 }
 
-bool ChoosableIcon::isChoosable() const
+bool PlayerPanelsIcon::isChoosable() const
 {
 	return getLobbyMenu()->getPhase() == getChoosePhase()
 	    && getLobbyMenu()->getLocalPlayer() == getPlayer()
 	    && !getPlayer()->getLockUserPacket()->isLocked();
 }
 
-LobbyMenu* ChoosableIcon::getLobbyMenu() const
+LobbyMenu* PlayerPanelsIcon::getLobbyMenu() const
 {
 	return lobby;
 }
 
-LobbyPlayer* ChoosableIcon::getPlayer() const
+LobbyPlayer* PlayerPanelsIcon::getPlayer() const
 {
 	return player;
 }

@@ -2,6 +2,14 @@
 
 #include "../../player/property/item/Item.hpp"
 
+ItemUserPacket::ItemUserPacket(const std::vector<char>& ids)
+{
+	setIDs(ids);
+}
+
+ItemUserPacket::ItemUserPacket()
+{}
+
 const std::vector<PlayerProperty*> ItemUserPacket::getPlayerProperties() const
 {
 	std::vector<PlayerProperty*> props;
@@ -9,13 +17,22 @@ const std::vector<PlayerProperty*> ItemUserPacket::getPlayerProperties() const
 	{
 		props.push_back(Item::get(itemIDs[i]));
 	}
-	return props;
+	const std::vector<PlayerProperty*> newprops(props);
+	return newprops;
 }
 
 void ItemUserPacket::setIDs(const std::vector<char>& ids)
 {
-	for (int i = 0; i < 3; i++)
-	{
-		itemIDs[i] = ids[i];
-	}
+	itemIDs = ids;
+}
+
+std::string ItemUserPacket::toString() const
+{
+	// TODO
+	return "";
+}
+
+CID ItemUserPacket::getCID() const
+{
+	return ITEM_USER_PACKET_CID;
 }

@@ -6,10 +6,14 @@
 class ItemUserPacket : public PlayerPropertyUserPacket
 {
 	public:
+		ItemUserPacket(const std::vector<char>&);
+		ItemUserPacket();
 		virtual const std::vector<PlayerProperty*> getPlayerProperties() const override;
 		virtual void setIDs(const std::vector<char>&) override;
+		virtual std::string toString() const override;
+		virtual CID getCID() const override;
 	private:
-		char itemIDs[3];
+		std::vector<char> itemIDs;
 };
 
 #endif

@@ -12,7 +12,6 @@ MenuComponent::~MenuComponent()
 
 void MenuComponent::tick() {}
 
-
 void MenuComponent::onClick(int mouseButton) {}
 void MenuComponent::onMouseEnter(const PixelVector& mousePos) {}
 void MenuComponent::onMouseMove(const PixelVector& mousePos) {}

@@ -1,5 +1,7 @@
 #include "Item.hpp"
 
+#include "../../../misc/Debug.hpp"
+
 std::vector<Item*> Item::items;
 
 void Item::init()
@@ -14,6 +16,7 @@ void Item::uninit()
 
 Item* Item::get(int id)
 {
+	Debug::warnIf(id < 0 || id >= getAmount(), "Item::get(): id out of range");
 	return items[id];
 }
 

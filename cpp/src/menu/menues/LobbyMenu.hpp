@@ -40,6 +40,7 @@ class LobbyMenu : public NetworkingMenu
 		virtual void disconnectPressed() = 0;
 		virtual void teamPressed(Team*) = 0;
 		virtual LobbyPlayer* getLocalPlayer() const = 0;
+		virtual void sendPlayerPropertyUpdate() {} // TODO
 	protected:
 		int ipToID(const sf::IpAddress&, const std::vector<LobbyPlayer*>&) const;
 		void handlePacketByID(Packet*, int);

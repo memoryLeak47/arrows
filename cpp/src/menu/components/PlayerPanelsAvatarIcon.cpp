@@ -1,16 +1,16 @@
-#include "AvatarIcon.hpp"
+#include "PlayerPanelsAvatarIcon.hpp"
 
 extern int VOID_ICON;
 
-AvatarIcon::AvatarIcon(LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : ChoosableIcon(p, m, c, r)
+PlayerPanelsAvatarIcon::PlayerPanelsAvatarIcon(LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : PlayerPanelsIcon(p, m, c, r)
 {}
 
-int AvatarIcon::getChoosePhase() const
+int PlayerPanelsAvatarIcon::getChoosePhase() const
 {
 	return AVATAR_PHASE;
 }
 
-TextureID AvatarIcon::getTextureID() const
+TextureID PlayerPanelsAvatarIcon::getTextureID() const
 {
 	/*
 	if ((getPlayer()->getAvatarPacket() == NULL) || (getPlayer()->getAvatarPacket()->getAvatar() == NULL))

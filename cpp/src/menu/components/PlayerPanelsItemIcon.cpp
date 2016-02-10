@@ -1,4 +1,4 @@
-#include "ItemIcon.hpp"
+#include "PlayerPanelsItemIcon.hpp"
 
 #include "../menues/ChoosePlayerPropertyMenu.hpp"
 #include "../../core/Main.hpp"
@@ -7,15 +7,15 @@
 
 extern int VOID_ICON;
 
-ItemIcon::ItemIcon(int n, LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : ChoosableIcon(p, m, c, r), number(n)
+PlayerPanelsItemIcon::PlayerPanelsItemIcon(int n, LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : PlayerPanelsIcon(p, m, c, r), number(n)
 {}
 
-int ItemIcon::getChoosePhase() const
+int PlayerPanelsItemIcon::getChoosePhase() const
 {
 	return ITEM_PHASE;
 }
 
-void ItemIcon::onClick(int mouseButton)
+void PlayerPanelsItemIcon::onClick(int mouseButton)
 {
 	if (isChoosable())
 	{
@@ -28,7 +28,7 @@ void ItemIcon::onClick(int mouseButton)
 	}
 }
 
-TextureID ItemIcon::getTextureID() const
+TextureID PlayerPanelsItemIcon::getTextureID() const
 {
 	// TODO
 	return VOID_ICON;

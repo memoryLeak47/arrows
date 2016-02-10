@@ -1,15 +1,15 @@
-#ifndef __CHOOSABLEICON_CLASS__
-#define __CHOOSABLEICON_CLASS__
+#ifndef __PLAYERPANELSICON_CLASS__
+#define __PLAYERPANELSICON_CLASS__
 
 #include "Icon.hpp"
 
 class LobbyPlayer;
 class LobbyMenu;
 
-class ChoosableIcon : public Icon
+class PlayerPanelsIcon : public Icon
 {
 	public:
-		ChoosableIcon(LobbyPlayer*, LobbyMenu*, ComponentContainer*, const PixelRect&);
+		PlayerPanelsIcon(LobbyPlayer*, LobbyMenu*, ComponentContainer*, const PixelRect&);
 		virtual void render() const override;
 		bool isChoosable() const;
 		virtual int getChoosePhase() const = 0;
