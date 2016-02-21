@@ -30,6 +30,10 @@ void PlayerPanelsItemIcon::onClick(int mouseButton)
 
 TextureID PlayerPanelsItemIcon::getTextureID() const
 {
-	// TODO
-	return VOID_ICON;
+	if ((getPlayer()->getItemUserPacket() == NULL) ||
+	    (getPlayer()->getItemUserPacket()->getPlayerProperties()[number] == NULL))
+	{
+		return VOID_ICON;
+	}
+	return getPlayer()->getItemUserPacket()->getPlayerProperties()[number]->getIconTextureID();
 }
