@@ -9,6 +9,7 @@ class PlayerPropertyIcon : public Icon
 {
 	public:
 		PlayerPropertyIcon(ComponentContainer*, const PixelRect&, PlayerProperty*);
+		PlayerPropertyIcon(ComponentContainer*, const PixelRect&);
 		static PixelVector getSize();
 		void setPlayerProperty(PlayerProperty*);
 		virtual TextureID getTextureID() const override;

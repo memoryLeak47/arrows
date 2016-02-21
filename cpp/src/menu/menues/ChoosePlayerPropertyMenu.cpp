@@ -8,7 +8,7 @@
 class SlotIcon : public PlayerPropertyIcon
 {
 	public:
-		SlotIcon(ChoosePlayerPropertyMenu* c, const PixelRect& r, PlayerProperty* p) : PlayerPropertyIcon(c, r, p) {}
+		SlotIcon(ChoosePlayerPropertyMenu* c, const PixelRect& r) : PlayerPropertyIcon(c, r) {}
 		virtual void onClick(int mouseButton) override
 		{
 			setPlayerProperty(NULL);
@@ -56,7 +56,7 @@ ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(LobbyMenu* lobbyMenu, PlayerP
 	// Slot Icons
 	for (int i = 0; i < slotPacket->getPlayerProperties().size(); i++)
 	{
-		PlayerPropertyIcon* icon = new SlotIcon(this, PixelRect(60 + i * (PlayerPropertyIcon::getSize().getX() + 15), 40, PlayerPropertyIcon::getSize().getX(), PlayerPropertyIcon::getSize().getY()), slotPacket->getPlayerProperties()[i]);
+		PlayerPropertyIcon* icon = new SlotIcon(this, PixelRect(60 + i * (PlayerPropertyIcon::getSize().getX() + 15), 40, PlayerPropertyIcon::getSize().getX(), PlayerPropertyIcon::getSize().getY()));
 		addComponent(icon);
 		slotIcons.push_back(icon);
 	}

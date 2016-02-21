@@ -9,7 +9,7 @@ ItemUserPacket::ItemUserPacket(const std::vector<char>& ids)
 }
 
 ItemUserPacket::ItemUserPacket()
-	: itemIDs({0, 0, 0})
+	: itemIDs({-1, -1, -1})
 {}
 
 const std::vector<PlayerProperty*> ItemUserPacket::getPlayerProperties() const
@@ -17,7 +17,14 @@ const std::vector<PlayerProperty*> ItemUserPacket::getPlayerProperties() const
 	std::vector<PlayerProperty*> props;
 	for (int i = 0; i < 3; i++)
 	{
-		props.push_back(Item::get(itemIDs[i]));
+		if (itemIDs[i] == -1)
+		{
+			props.push_back(NULL);
+		}
+		else
+		{
+			props.push_back(Item::get(itemIDs[i]));
+		}
 	}
 	return props;
 }
