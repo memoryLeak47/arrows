@@ -1,6 +1,7 @@
 #include "MiniMap.hpp"
 
-extern int VOID_ICON;
+#include "../../graphics/TextureManager.hpp"
+extern TextureID VOID_ICON;
 
 #include "../../core/Screen.hpp"
 #include "../../misc/Debug.hpp"

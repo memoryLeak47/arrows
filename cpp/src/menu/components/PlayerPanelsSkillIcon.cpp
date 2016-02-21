@@ -1,6 +1,6 @@
 #include "PlayerPanelsSkillIcon.hpp"
 
-extern int VOID_ICON;
+extern TextureID VOID_ICON;
 
 PlayerPanelsSkillIcon::PlayerPanelsSkillIcon(int n, LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : PlayerPanelsIcon(p, m, c, r), number(n)
 {}

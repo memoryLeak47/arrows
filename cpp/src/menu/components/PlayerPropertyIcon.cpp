@@ -1,6 +1,6 @@
 #include "PlayerPropertyIcon.hpp"
 
-extern int VOID_ICON;
+extern TextureID VOID_ICON;
 
 PlayerPropertyIcon::PlayerPropertyIcon(ComponentContainer* c, const PixelRect& r, PlayerProperty* p)
 	: Icon(c, r)

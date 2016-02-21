@@ -1,12 +1,18 @@
 #include "Item.hpp"
 
 #include "../../../misc/Debug.hpp"
+#include "items/HealthRing.hpp"
 
 std::vector<Item*> Item::items;
 
 void Item::init()
 {
-	// items.push_back(); ..
+	items.push_back(new HealthRing());
+
+	for (int i = 0; i < items.size(); i++)
+	{
+		items[i]->setID(i);
+	}
 }
 
 void Item::uninit()
@@ -28,4 +34,24 @@ int Item::getAmount()
 const std::vector<Item*> Item::getAllItems()
 {
 	return items;
+}
+
+void Item::setID(char id)
+{
+	this->id = id;
+}
+
+char Item::getID() const
+{
+	return id;
+}
+
+int Item::getMassStat() const
+{
+	return 0;
+}
+
+float Item::getHealthStat() const
+{
+	return 0;
 }

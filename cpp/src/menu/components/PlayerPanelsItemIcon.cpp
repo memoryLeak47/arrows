@@ -5,7 +5,7 @@
 #include "../../misc/Debug.hpp"
 #include "../../player/property/item/Item.hpp"
 
-extern int VOID_ICON;
+extern TextureID VOID_ICON;
 
 PlayerPanelsItemIcon::PlayerPanelsItemIcon(int n, LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : PlayerPanelsIcon(p, m, c, r), number(n)
 {}
