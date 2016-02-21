@@ -1,6 +1,6 @@
 #include "TextureManager.hpp"
 
-#define TEXTURE_AMOUNT 2
+const int TEXTURE_AMOUNT = 3;
 
 #include "../misc/Debug.hpp"
 #include "../misc/Converter.hpp"
@@ -10,12 +10,14 @@ int TextureManager::idCounter = 1;
 
 TextureID VOID_ICON;
 TextureID HEALTHRING_ICON;
+TextureID ARCHER_ICON;
 
 void TextureManager::init()
 {
 	textures = new sf::Texture*[TEXTURE_AMOUNT];
 	addImage(&VOID_ICON, "res/icons/void.png");
 	addImage(&HEALTHRING_ICON, "res/icons/items/healthring.png");
+	addImage(&ARCHER_ICON, "res/icons/avatars/archer.png");
 }
 
 void TextureManager::uninit()

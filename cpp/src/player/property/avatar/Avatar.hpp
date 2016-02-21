@@ -1,22 +1,22 @@
-#ifndef __ITEM_CLASS__
-#define __ITEM_CLASS__
+#ifndef __AVATAR_CLASS__
+#define __AVATAR_CLASS__
 
 #include "../PlayerProperty.hpp"
 
-class Item : public PlayerProperty
+class Avatar : public PlayerProperty
 {
 	public:
 		static void init();
 		static void uninit();
-		static Item* get(int);
+		static Avatar* get(int);
 		static int getAmount();
-		static const std::vector<Item*> getAllItems();
+		static const std::vector<Avatar*> getAllAvatars();
 		char getID() const override;
 		virtual int getMassStat() const;
 		virtual float getHealthStat() const;
 	private:
 		void setID(char);
-		static std::vector<Item*> items;
+		static std::vector<Avatar*> avatars;
 		char id;
 };
 

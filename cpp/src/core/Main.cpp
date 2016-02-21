@@ -3,6 +3,7 @@
 #include "../misc/Debug.hpp"
 #include "Screen.hpp"
 #include "../player/property/Team.hpp"
+#include "../player/property/avatar/Avatar.hpp"
 #include "../player/property/item/Item.hpp"
 #include "../graphics/TextureManager.hpp"
 
@@ -17,6 +18,7 @@ Main::Main()
 	Debug::init();
 	Screen::init();
 	Team::init();
+	Avatar::init();
 	Item::init();
 	TextureManager::init();
 	menuList = new MenuList();
@@ -33,6 +35,7 @@ Main::~Main()
 	delete account; // really needed?
 	Screen::uninit();
 	Team::uninit();
+	Avatar::uninit();
 	Item::uninit();
 	TextureManager::uninit();
 }
