@@ -1,5 +1,6 @@
 #include "Item.hpp"
 
+#include "../../../misc/Converter.hpp"
 #include "../../../misc/Debug.hpp"
 #include "items/HealthRing.hpp"
 
@@ -22,7 +23,7 @@ void Item::uninit()
 
 Item* Item::get(int id)
 {
-	Debug::warnIf(id < 0 || id >= getAmount(), "Item::get(): id out of range");
+	Debug::warnIf(id < 0 || id >= getAmount(), "Item::get(): id(" + Converter::intToString(id) + ") out of range");
 	return items[id];
 }
 

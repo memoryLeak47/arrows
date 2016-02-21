@@ -8,6 +8,7 @@ class Converter
 	public:
 		static int colorToInt(const sf::Color&);
 		static sf::Color intToColor(int);
+		static std::string intToString(int);
 };
 
 #endif

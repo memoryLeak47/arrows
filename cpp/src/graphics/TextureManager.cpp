@@ -1,8 +1,9 @@
 #include "TextureManager.hpp"
 
-#define TEXTURE_AMOUNT 1
+#define TEXTURE_AMOUNT 2
 
 #include "../misc/Debug.hpp"
+#include "../misc/Converter.hpp"
 
 sf::Texture** TextureManager::textures;
 int TextureManager::idCounter = 1;
@@ -24,7 +25,7 @@ void TextureManager::uninit()
 
 sf::Texture* TextureManager::getTexture(const TextureID& id)
 {
-	Debug::warnIf(id <= 0 || id > TEXTURE_AMOUNT, "TextureManager::getTexture(): id may be out of range");
+	Debug::warnIf(id <= 0 || id > TEXTURE_AMOUNT, "TextureManager::getTexture(): id(" + Converter::intToString(id) + ") may be out of range");
 	return textures[id];
 }
 
