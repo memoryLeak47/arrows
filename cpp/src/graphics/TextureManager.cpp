@@ -9,15 +9,23 @@ sf::Texture** TextureManager::textures;
 int TextureManager::idCounter = 1;
 
 TextureID VOID_ICON;
-TextureID HEALTHRING_ICON;
+
 TextureID ARCHER_ICON;
+
+TextureID ARROWSHOTSKILL_ICON;
+
+TextureID HEALTHRING_ICON;
 
 void TextureManager::init()
 {
 	textures = new sf::Texture*[TEXTURE_AMOUNT];
 	addImage(&VOID_ICON, "res/icons/void.png");
-	addImage(&HEALTHRING_ICON, "res/icons/items/healthring.png");
+
 	addImage(&ARCHER_ICON, "res/icons/avatars/archer.png");
+
+	addImage(&ARROWSHOTSKILL_ICON, "res/icons/skills/arrowshot.png");
+
+	addImage(&HEALTHRING_ICON, "res/icons/items/healthring.png");
 }
 
 void TextureManager::uninit()

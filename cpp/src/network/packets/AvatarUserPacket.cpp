@@ -41,3 +41,8 @@ CID AvatarUserPacket::getCID() const
 {
         return AVATAR_USER_PACKET_CID;
 }
+
+char AvatarUserPacket::getAvatarID() const
+{
+	return avatarID;
+}

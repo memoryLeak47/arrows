@@ -19,12 +19,13 @@ void PlayerPanelsItemIcon::onClick(int mouseButton)
 {
 	if (isChoosable())
 	{
-		std::vector<PlayerProperty*> props;
-		for (int i = 0; i < Item::getAmount(); i++)
+		const std::vector<Item*>& items = Item::getAllItems();
+		std::vector<PlayerProperty*> tmp;
+		for (int i = 0; i < items.size(); i++)
 		{
-			props.push_back(Item::get(i));
+			tmp.push_back(items[i]);
 		}
-		Main::getMenuList()->addMenu(new ChoosePlayerPropertyMenu(getLobbyMenu(), getLobbyMenu()->getLocalPlayer()->getItemUserPacket(), props));
+		Main::getMenuList()->addMenu(new ChoosePlayerPropertyMenu(getLobbyMenu(), getLobbyMenu()->getLocalPlayer()->getItemUserPacket(), tmp));
 	}
 }
 

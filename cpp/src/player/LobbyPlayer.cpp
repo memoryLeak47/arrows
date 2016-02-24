@@ -9,6 +9,7 @@ LobbyPlayer::LobbyPlayer(LoginUserPacket* login, const sf::IpAddress& ip)
 	teamPacket = new TeamUserPacket(0);
 	itemPacket = new ItemUserPacket();
 	avatarPacket = new AvatarUserPacket();
+	skillPacket = new SkillUserPacket();
 	loginPacket = login;
 	// TODO create avatar/skill/item-userpacket
 }
@@ -18,8 +19,9 @@ LobbyPlayer::LobbyPlayer(LoginUserPacket* login)
 	lockPacket = new LockUserPacket(false);
 	teamPacket = new TeamUserPacket(0);
 	itemPacket = new ItemUserPacket();
-	loginPacket = new LoginUserPacket(*login);
 	avatarPacket = new AvatarUserPacket();
+	skillPacket = new SkillUserPacket();
+	loginPacket = new LoginUserPacket(*login);
 }
 
 sf::IpAddress LobbyPlayer::getIP() const

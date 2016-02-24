@@ -12,6 +12,7 @@ class AvatarUserPacket : public PlayerPropertyUserPacket
 		virtual void setIDs(const std::vector<char>&) override;
 		virtual std::string toString() const override;
 		virtual CID getCID() const override;
+		char getAvatarID() const;
 	private:
 		char avatarID;
 

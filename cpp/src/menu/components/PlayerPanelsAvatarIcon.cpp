@@ -19,12 +19,13 @@ void PlayerPanelsAvatarIcon::onClick(int mouseButton)
 {
 	if (isChoosable())
 	{
-		std::vector<PlayerProperty*> props;
-		for (int i = 0; i < Avatar::getAmount(); i++)
+		const std::vector<Avatar*>& avatars = Avatar::getAllAvatars();
+		std::vector<PlayerProperty*> tmp;
+		for (int i = 0; i < avatars.size(); i++)
 		{
-			props.push_back(Avatar::get(i));
+			tmp.push_back(avatars[i]);
 		}
-		Main::getMenuList()->addMenu(new ChoosePlayerPropertyMenu(getLobbyMenu(), getLobbyMenu()->getLocalPlayer()->getAvatarUserPacket(), props));
+		Main::getMenuList()->addMenu(new ChoosePlayerPropertyMenu(getLobbyMenu(), getLobbyMenu()->getLocalPlayer()->getAvatarUserPacket(), tmp));
 	}
 }
 
