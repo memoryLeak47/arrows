@@ -4,6 +4,7 @@
 #include "Screen.hpp"
 #include "../player/property/Team.hpp"
 #include "../player/property/avatar/Avatar.hpp"
+#include "../player/property/skill/Skill.hpp"
 #include "../player/property/item/Item.hpp"
 #include "../graphics/TextureManager.hpp"
 
@@ -19,6 +20,7 @@ Main::Main()
 	Screen::init();
 	Team::init();
 	Avatar::init();
+	Skill::init();
 	Item::init();
 	TextureManager::init();
 	menuList = new MenuList();
@@ -36,6 +38,7 @@ Main::~Main()
 	Screen::uninit();
 	Team::uninit();
 	Avatar::uninit();
+	Skill::uninit();
 	Item::uninit();
 	TextureManager::uninit();
 }
