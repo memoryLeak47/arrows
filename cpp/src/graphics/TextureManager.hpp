@@ -1,6 +1,8 @@
 #ifndef __TEXTUREMANAGER_CLASS__
 #define __TEXTUREMANAGER_CLASS__
 
+#include <vector>
+
 #include <SFML/Graphics.hpp>
 
 typedef int TextureID;
@@ -13,7 +15,7 @@ class TextureManager
 		static sf::Texture* getTexture(const TextureID&);
 	private:
 		static void addImage(int*, const std::string&);
-		static sf::Texture** textures;
+		static std::vector<sf::Texture*> textures;
 		static int idCounter;
 };
 
