@@ -6,7 +6,7 @@ extern TextureID ARROWSHOTSKILL_ICON;
 
 char ArrowShotSkill::getID() const
 {
-
+	return ARROWSHOTSKILL_SID;
 }
 
 std::string ArrowShotSkill::getDescription() const
