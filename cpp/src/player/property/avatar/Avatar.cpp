@@ -6,12 +6,11 @@
 
 std::vector<Avatar*> Avatar::avatars;
 
-const int ARCHER_ID = 0; // skills can define class of owner with this id
+extern const int ARCHER_AID = 0; // skills can define class of owner with this id
 
 void Avatar::init()
 {
 	avatars.push_back(new Archer());
-	avatars.back()->setID(ARCHER_ID);
 }
 
 void Avatar::uninit()
@@ -33,16 +32,6 @@ int Avatar::getAmount()
 const std::vector<Avatar*> Avatar::getAllAvatars()
 {
 	return avatars;
-}
-
-void Avatar::setID(char id)
-{
-	this->id = id;
-}
-
-char Avatar::getID() const
-{
-	return id;
 }
 
 int Avatar::getMassStat() const

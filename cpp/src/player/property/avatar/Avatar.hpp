@@ -11,13 +11,10 @@ class Avatar : public PlayerProperty
 		static Avatar* get(int);
 		static int getAmount();
 		static const std::vector<Avatar*> getAllAvatars();
-		char getID() const override;
 		virtual int getMassStat() const;
 		virtual float getHealthStat() const;
 	private:
-		void setID(char);
 		static std::vector<Avatar*> avatars;
-		char id;
 };
 
 #endif

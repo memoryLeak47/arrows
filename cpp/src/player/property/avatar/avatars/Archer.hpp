@@ -9,6 +9,7 @@ class Archer : public Avatar
 {
 	public:
 		virtual TextureID getIconTextureID() const override;
+		char getID() const override;
 		std::string getDescription() const;
 };
 
