@@ -20,6 +20,7 @@ class Screen
 		static PixelVector getSize();
 
 		static void drawRect(const PixelRect&, const sf::Color&);
+		static void fillRect(const PixelRect&, const sf::Color&);
 		static void drawTextureID(const TextureID&, const PixelRect&);
 		static void drawTexture(const sf::Texture*, const PixelRect&);
 		static void drawText(const std::string&, const PixelVector&, const sf::Color&);

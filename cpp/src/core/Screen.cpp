@@ -66,6 +66,18 @@ void Screen::drawRect(const PixelRect& rect, const sf::Color& color)
 	sf::RectangleShape s;
 	s.setPosition(sf::Vector2f(rect.getPosition().getX(), rect.getPosition().getY()));
 	s.setSize(sf::Vector2f(rect.getSize().getX(), rect.getSize().getY()));
+
+	s.setFillColor(sf::Color::Transparent);
+	s.setOutlineColor(color);
+	s.setOutlineThickness(2);
+	window->draw(s);
+}
+
+void Screen::fillRect(const PixelRect& rect, const sf::Color& color)
+{
+	sf::RectangleShape s;
+	s.setPosition(sf::Vector2f(rect.getPosition().getX(), rect.getPosition().getY()));
+	s.setSize(sf::Vector2f(rect.getSize().getX(), rect.getSize().getY()));
 	s.setFillColor(color);
 	window->draw(s);
 }

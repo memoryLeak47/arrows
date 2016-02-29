@@ -25,7 +25,7 @@ MenuComponent* Panel::getHoveredComponentRecursively() const
 
 void Panel::render() const
 {
-	Screen::drawRect(getAbsoluteRect(), sf::Color(255, 255, 255, 40));
+	Screen::fillRect(getAbsoluteRect(), sf::Color(255, 255, 255, 40));
 	ComponentContainer::render();
 }
 

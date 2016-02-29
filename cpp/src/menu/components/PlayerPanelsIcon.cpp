@@ -11,7 +11,7 @@ void PlayerPanelsIcon::render() const
 	if (isChoosable())
 	{
 		// Hervorhebung. Zeichnet weißes durchsichtiges Viereck auf das Icon
-		Screen::drawRect(getAbsoluteRect(), sf::Color(255, 255, 255, 100));
+		Screen::fillRect(getAbsoluteRect(), sf::Color(255, 255, 255, 100));
 	}
 }
 

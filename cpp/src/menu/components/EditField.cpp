@@ -27,7 +27,7 @@ void EditField::onTextEntered(char c)
 
 void EditField::render() const
 {
-	Screen::drawRect(getAbsoluteRect(), sf::Color::Blue);
+	Screen::fillRect(getAbsoluteRect(), sf::Color::Blue);
 	Screen::drawText(text, getAbsoluteRect().getPosition(), sf::Color::Black);
 }
 

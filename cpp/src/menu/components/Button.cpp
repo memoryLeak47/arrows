@@ -8,7 +8,7 @@ Button::Button(ComponentContainer* parent, const PixelRect& rect, const std::str
 
 void Button::render() const
 {
-	Screen::drawRect(getAbsoluteRect(), sf::Color::Red);
+	Screen::fillRect(getAbsoluteRect(), sf::Color::Red);
 	Screen::drawText(getText(), getAbsoluteRect().getPosition(), sf::Color::Black);
 }
 
