@@ -28,6 +28,7 @@
 #define USER_PACKET_WITH_ID_CID ((CID)25)
 
 #include <string>
+#include <vector>
 
 typedef char CID;
 
@@ -42,6 +43,7 @@ class Compressable // represents Compressable.java and Compressor.java
 		static std::string compressBool(bool);
 		static std::string compressInt(int);
 		static std::string compressString(const std::string&);
+		static std::string compressMap(const std::vector<std::vector<int>>& map);
 };
 
 #endif
