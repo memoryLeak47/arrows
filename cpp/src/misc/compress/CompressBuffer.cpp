@@ -34,3 +34,22 @@ std::string CompressBuffer::cut(int amount)
 	string = string.substr(amount, string.size());
 	return ret;
 }
+
+std::vector<std::vector<int>> CompressBuffer::cutMap()
+{
+	int width = cutInt();
+	int height = cutInt();
+
+	std::vector<std::vector<int>> map;
+
+	for (int y = 0; y < height; y++)
+	{
+		map.push_back(std::vector<int>());
+		for (int x = 0; x < width; x++)
+		{
+			map.back().push_back(cutInt());
+		}
+	}
+
+	return map;
+}

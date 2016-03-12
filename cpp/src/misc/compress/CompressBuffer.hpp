@@ -2,6 +2,7 @@
 #define __COMPRESSBUFFER_CLASS__
 
 #include <string>
+#include <vector>
 
 typedef char CID;
 
@@ -13,6 +14,7 @@ class CompressBuffer
 		char cutChar();
 		bool cutBool();
 		void* cutByCID(CID);
+		std::vector<std::vector<int>> cutMap();
 	private:
 		std::string cut(int amount); // removes <amount> chars from <chars> and returns the removed part
 		std::string string;
