@@ -21,7 +21,12 @@ std::string Compressable::compressBool(bool b)
 
 std::string Compressable::compressInt(int i)
 {
-	return "__COMPRESS_INT_TODO__"; // TODO
+	std::string s;
+	s += (i >> 24);
+	s += ((i << 8) >> 24);
+	s += ((i << 16) >> 24);
+	s += ((i << 24) >> 24);
+	return s;
 }
 
 std::string Compressable::compressString(const std::string& s)

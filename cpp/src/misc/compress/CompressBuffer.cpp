@@ -7,7 +7,8 @@ CompressBuffer::CompressBuffer(const std::string& s)
 
 int CompressBuffer::cutInt()
 {
-	return 2;
+	std::string s = cut(4);
+	return (((unsigned char) s[0]) << 24) + (((unsigned char) s[1]) << 16) + (((unsigned char) s[2]) << 8) + (unsigned char)s[3];
 }
 
 char CompressBuffer::cutChar()
