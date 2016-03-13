@@ -16,7 +16,7 @@ void NetworkDevice::send(Packet* packet, const sf::IpAddress& ip)
 	Debug::warnIf(packet == NULL, "NetworkDevice::send(): packet is null");
 
 	sf::Packet sfmlPacket;
-	std::string string = packet->toString();
+	std::string string = packet->compress();
 	sfmlPacket << string;
 
 	if (socket.send(sfmlPacket, ip, PORT) != sf::Socket::Done) // send
