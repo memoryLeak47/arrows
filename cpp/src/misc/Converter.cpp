@@ -23,3 +23,13 @@ std::string Converter::intToString(int i)
 	s << i;
 	return s.str();
 }
+
+std::string Converter::charsToString(const std::string& arg)
+{
+	std::string res = "(";
+	for (int i = 0; i < arg.size(); i++)
+	{
+		res += intToString((int)arg[i]) + ((i != arg.size()-1)?", ":"");
+	}
+	return res + ")";
+}

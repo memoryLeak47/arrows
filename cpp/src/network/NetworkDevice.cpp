@@ -3,6 +3,7 @@
 #include "Packet.hpp"
 #include "../core/Main.hpp"
 #include "../misc/Debug.hpp"
+#include "../misc/Converter.hpp"
 
 NetworkDevice::NetworkDevice()
 {
@@ -24,7 +25,7 @@ void NetworkDevice::send(Packet* packet, const sf::IpAddress& ip)
 	}
 	else
 	{
-		Debug::noteIf(TAG_NETWORK, "sent packet with string: " + string);
+		Debug::noteIf(TAG_NETWORK, "sent packet with string: " + Converter::charsToString(string));
 	}
 
 	sfmlPacket.clear();
@@ -43,7 +44,7 @@ void NetworkDevice::receive()
 	std::string string;
 	sfmlPacket >> string;
 
-	Debug::noteIf(TAG_NETWORK, "received packet with string: " + string);
+	Debug::noteIf(TAG_NETWORK, "received packet with string: " + Converter::charsToString(string));
 
 	Packet* packet = (Packet*) Compressable::decompress(string);
 

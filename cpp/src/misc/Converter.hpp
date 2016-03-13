@@ -9,6 +9,7 @@ class Converter
 		static int colorToInt(const sf::Color&);
 		static sf::Color intToColor(int);
 		static std::string intToString(int);
+		static std::string charsToString(const std::string&);
 };
 
 #endif
