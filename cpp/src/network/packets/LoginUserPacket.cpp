@@ -20,7 +20,6 @@ CID LoginUserPacket::getCID() const
 std::string LoginUserPacket::getName() const
 {
 	return name;
-
 }
 
 int LoginUserPacket::getRank() const
