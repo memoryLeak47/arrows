@@ -40,3 +40,25 @@ void ClientLobbyMenu::sendToServer(Packet* p)
 {
 	send(p, serverIP);
 }
+
+void ClientLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, int id)
+{
+	LobbyPlayer* player = new LobbyPlayer(packet);
+	addPlayer(player);
+	if (localPlayer == NULL)
+	{
+		localPlayer = player;
+	}
+	unlockAll();
+	updatePlayerIcons();
+}
+
+void ClientLobbyMenu::handleLobbyPlayersPacket(LobbyPlayersPacket* packet, int id)
+{
+	std::vector<LobbyPlayer*> players(packet->getPlayers());
+	for (int i = 0; i < players.size(); i++)
+	{
+		addPlayer(players[i]);
+	}
+	updatePlayerIcons();
+}
