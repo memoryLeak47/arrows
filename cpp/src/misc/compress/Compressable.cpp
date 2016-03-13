@@ -1,6 +1,7 @@
 #include "Compressable.hpp"
 
 #include "CompressBuffer.hpp"
+#include "../Debug.hpp"
 
 std::string Compressable::compress() const
 {

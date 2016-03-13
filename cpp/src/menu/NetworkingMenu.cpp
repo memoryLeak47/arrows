@@ -29,4 +29,5 @@ void NetworkingMenu::handleAllPackets()
 	{
 		handlePacket(packets[i]->getPacket(), packets[i]->getIP());
 	}
+	packets.clear();
 }
