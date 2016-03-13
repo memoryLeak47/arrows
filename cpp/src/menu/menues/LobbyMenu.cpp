@@ -6,6 +6,7 @@
 #include "../../misc/Debug.hpp"
 
 LobbyMenu::LobbyMenu()
+	: tileMap()
 {
 	phase = TEAM_PHASE;
 	
@@ -37,9 +38,19 @@ LobbyMenu::LobbyMenu()
 	addComponent(teamListPanel = new TeamListPanel(this, PixelRect(100, 100, 600, 600)));
 }
 
+LobbyMenu::~LobbyMenu()
+{
+	delete tileMap;
+}
+
 std::vector<LobbyPlayer*> LobbyMenu::getPlayers() const
 {
 	return players;
+}
+
+LobbyTileMap* LobbyMenu::getLobbyTileMap() const
+{
+	return tileMap;
 }
 
 int LobbyMenu::getPhase() const
@@ -127,7 +138,7 @@ void LobbyMenu::addPlayer(LobbyPlayer* p)
 void LobbyMenu::updateMap(const std::vector<std::vector<int>>& ints)
 {
 	miniMap->updateMap(ints);
-	tileMap.updateMap(ints);
+	tileMap->updateMap(ints);
 }
 
 void LobbyMenu::unlockAll()

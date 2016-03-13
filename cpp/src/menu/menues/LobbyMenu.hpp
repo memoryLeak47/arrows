@@ -34,6 +34,7 @@ class LobbyMenu : public NetworkingMenu
 {
 	public:
 		LobbyMenu();
+		virtual ~LobbyMenu();
 		std::vector<LobbyPlayer*> getPlayers() const;
 		int getPhase() const;
 		virtual void lockPressed() = 0;
@@ -41,6 +42,7 @@ class LobbyMenu : public NetworkingMenu
 		virtual void teamPressed(Team*) = 0;
 		virtual LobbyPlayer* getLocalPlayer() const = 0;
 		virtual void sendPlayerPropertyUpdate() {} // TODO
+		LobbyTileMap* getLobbyTileMap() const;
 	protected:
 		int ipToID(const sf::IpAddress&, const std::vector<LobbyPlayer*>&) const;
 		void handlePacketByID(Packet*, int);
@@ -65,7 +67,7 @@ class LobbyMenu : public NetworkingMenu
 		Button* lockButton; // Verweiß auf den NextStep/LockIn Button
 	private:
 		int phase;
-		LobbyTileMap tileMap;
+		LobbyTileMap* tileMap;
 		LobbyMiniMap* miniMap;
 		std::vector<LobbyPlayer*> players; // Bluemi: protected -> private; added setter
 		TeamListPanel* teamListPanel; // Nicht zwingend nötig, nur einfacherer Zugriff, da nicht über index

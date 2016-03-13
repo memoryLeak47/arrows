@@ -92,20 +92,46 @@ void ServerLobbyMenu::packAndSendToAllClients(UserPacket* p, int id) const
 	}
 }
 
-void ServerLobbyMenu::handleLockUserPacket(LockUserPacket*, int)
+void ServerLobbyMenu::handleLockUserPacket(LockUserPacket* packet, int id)
 {
+	getPlayer(id)->applyLockUserPacket(packet);
+	packAndSendToAllClients(packet, id);
 }
 
-void ServerLobbyMenu::handleDisconnectUserPacket(DisconnectUserPacket*, int)
+void ServerLobbyMenu::handleDisconnectUserPacket(DisconnectUserPacket* packet, int id)
 {
+	getPlayers().erase(getPlayers().begin()+id);
+	packAndSendToAllClients(packet, id);
 }
 
-void ServerLobbyMenu::handleTeamUserPacket(TeamUserPacket*, int)
+void ServerLobbyMenu::handleTeamUserPacket(TeamUserPacket* packet, int id)
 {
+	getPlayer(id)->applyTeamUserPacket(packet);
+	packAndSendToAllClients(packet, id);
 }
 
-void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket*, int)
+void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, int id)
 {
+	if (id == -1) // Wenn es noch keinen Spieler mit dieser IP gibt
+	{
+		LobbyPlayer* player = new LobbyPlayer(packet);
+		Debug::noteIf(TAG_STATUS, "ServerLobbyMenu.handleLoginUserPacket(): Player \"" + player->getLoginUserPacket()->getName() + "\" joined the Game and is happy :)");
+		LobbyPlayersPacket* playersPacket = new LobbyPlayersPacket(getPlayers()); // 
+		send(playersPacket, getPlayer(id)->getIP()); // liste ohne den Neuen an den Neuen senden.
+		if (getLobbyTileMap() != NULL)
+		{
+			MapPacket* mapPacket = new MapPacket(getLobbyTileMap()->getInts());
+			send(mapPacket, getPlayer(id)->getIP()); // Die Map des neuen wird gesetzt
+			delete mapPacket;
+		}
+		addPlayer(player);
+		packAndSendToAllClients(packet, id); // das erhaltene packet wird an alle clients weitergegeben
+		updatePlayerIcons();
+	}
+	else
+	{
+		Debug::warn("ServerLobbyMenu.handleLoginUserPacket(): Spieler wollte ein zweites mal joinen");
+	}
 }
 
 void ServerLobbyMenu::handleAvatarUserPacket(AvatarUserPacket*, int)

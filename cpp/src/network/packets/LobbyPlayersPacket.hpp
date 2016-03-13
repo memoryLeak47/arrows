@@ -3,17 +3,22 @@
 
 #include "../Packet.hpp"
 
+class CompressBuffer;
 class LobbyPlayer;
 
 class LobbyPlayersPacket : public Packet
 {
 	public:
 		LobbyPlayersPacket(const std::vector<LobbyPlayer*>&);
+		LobbyPlayersPacket(CompressBuffer*);
 		std::vector<LobbyPlayer*> getPlayers() const;
+		virtual std::string toString() const override;
+		virtual CID getCID() const override;
 	private:
 		std::vector<LobbyPlayer*> players;
 };
 
+#include "../../misc/compress/CompressBuffer.hpp"
 #include "../../player/LobbyPlayer.hpp"
 
 #endif
