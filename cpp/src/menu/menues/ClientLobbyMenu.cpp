@@ -4,7 +4,11 @@
 #include "../../core/Main.hpp"
 
 ClientLobbyMenu::ClientLobbyMenu(const std::string& ip) : serverIP(ip)
-{}
+{
+	LoginUserPacket* p = new LoginUserPacket("ml47", 9001);
+	sendToServer(p);
+	delete p;
+}
 
 LobbyPlayer* ClientLobbyMenu::getLocalPlayer() const
 {
@@ -31,3 +35,8 @@ void ClientLobbyMenu::disconnectPressed()
 }
 
 void ClientLobbyMenu::teamPressed(Team* team) {}
+
+void ClientLobbyMenu::sendToServer(Packet* p)
+{
+	send(p, serverIP);
+}

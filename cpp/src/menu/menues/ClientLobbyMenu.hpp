@@ -14,6 +14,7 @@ class ClientLobbyMenu : public LobbyMenu
 		virtual void lockPressed() override;
 		virtual void disconnectPressed() override;
 		virtual void teamPressed(Team*) override;
+		void sendToServer(Packet*);
 	private:
 		sf::IpAddress serverIP;
 };
