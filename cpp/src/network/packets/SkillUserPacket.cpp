@@ -3,10 +3,14 @@
 #include "../../player/property/skill/Skill.hpp"
 #include "../../misc/Debug.hpp"
 
-SkillUserPacket::SkillUserPacket(const std::vector<char>& ids)
+SkillUserPacket::SkillUserPacket(const std::string& ids)
 {
 	setIDs(ids);
 }
+
+SkillUserPacket::SkillUserPacket(CompressBuffer* buffer)
+	: skillIDs(buffer->cut(4))
+{}
 
 SkillUserPacket::SkillUserPacket()
 	: skillIDs({-1, -1, -1, -1})
@@ -29,7 +33,7 @@ const std::vector<PlayerProperty*> SkillUserPacket::getPlayerProperties() const
 	return props;
 }
 
-void SkillUserPacket::setIDs(const std::vector<char>& ids)
+void SkillUserPacket::setIDs(const std::string& ids)
 {
 	skillIDs = ids;
 }

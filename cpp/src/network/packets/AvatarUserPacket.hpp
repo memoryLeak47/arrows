@@ -3,13 +3,16 @@
 
 #include "PlayerPropertyUserPacket.hpp"
 
+class CompressBuffer;
+
 class AvatarUserPacket : public PlayerPropertyUserPacket
 {
 	public:
 		AvatarUserPacket(char);
 		AvatarUserPacket();
+		AvatarUserPacket(CompressBuffer*);
 		virtual const std::vector<PlayerProperty*> getPlayerProperties() const override;
-		virtual void setIDs(const std::vector<char>&) override;
+		virtual void setIDs(const std::string&) override;
 		virtual std::string toString() const override;
 		virtual CID getCID() const override;
 		char getAvatarID() const;
@@ -17,5 +20,7 @@ class AvatarUserPacket : public PlayerPropertyUserPacket
 		char avatarID;
 
 };
+
+#include "../../misc/compress/CompressBuffer.hpp"
 
 #endif

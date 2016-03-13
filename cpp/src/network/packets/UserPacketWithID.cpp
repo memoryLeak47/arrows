@@ -3,6 +3,12 @@
 UserPacketWithID::UserPacketWithID(UserPacket* packet, int id) : packet(packet), id(id)
 {}
 
+UserPacketWithID::UserPacketWithID(CompressBuffer* buffer)
+{
+	packet = static_cast<UserPacket*>(buffer->cutByCID(buffer->cutChar()));
+	id = buffer->cutInt();
+}
+
 int UserPacketWithID::getID() const
 {
 	return id;

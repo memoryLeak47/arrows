@@ -3,17 +3,22 @@
 
 #include "PlayerPropertyUserPacket.hpp"
 
+class CompressBuffer;
+
 class SkillUserPacket : public PlayerPropertyUserPacket
 {
 	public:
-		SkillUserPacket(const std::vector<char>&);
+		SkillUserPacket(const std::string&);
+		SkillUserPacket(CompressBuffer*);
 		SkillUserPacket();
 		virtual const std::vector<PlayerProperty*> getPlayerProperties() const override;
-		virtual void setIDs(const std::vector<char>&) override;
+		virtual void setIDs(const std::string&) override;
 		virtual std::string toString() const override;
 		virtual CID getCID() const override;
 	private:
-		std::vector<char> skillIDs;
+		std::string skillIDs;
 };
+
+#include "../../misc/compress/CompressBuffer.hpp"
 
 #endif

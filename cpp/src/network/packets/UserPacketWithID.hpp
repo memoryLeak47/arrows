@@ -4,10 +4,13 @@
 #include "../Packet.hpp"
 #include "UserPacket.hpp"
 
+class CompressBuffer;
+
 class UserPacketWithID : public Packet
 {
 	public:
 		UserPacketWithID(UserPacket*, int);
+		UserPacketWithID(CompressBuffer*);
 		int getID() const;
 		UserPacket* getPacket() const;
 		std::string toString() const override;
@@ -16,5 +19,7 @@ class UserPacketWithID : public Packet
 		int id;
 		UserPacket* packet;
 };
+
+#include "../../misc/compress/CompressBuffer.hpp"
 
 #endif

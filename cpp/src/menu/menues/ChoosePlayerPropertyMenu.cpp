@@ -100,7 +100,7 @@ LobbyMenu* ChoosePlayerPropertyMenu::getLobbyMenu() const
 
 void ChoosePlayerPropertyMenu::okPressed()
 {
-	std::vector<char> ids;
+	std::string ids = "";
 	for (int i = 0; i < getSlotIcons().size(); i++)
 	{
 		if (getSlotIcons()[i]->getPlayerProperty() != NULL)

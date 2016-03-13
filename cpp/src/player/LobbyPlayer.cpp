@@ -24,10 +24,25 @@ LobbyPlayer::LobbyPlayer(LoginUserPacket* login)
 	loginPacket = new LoginUserPacket(*login);
 }
 
+LobbyPlayer::LobbyPlayer(CompressBuffer* buffer)
+{
+	lockPacket = static_cast<LockUserPacket*>(buffer->cutByCID(LOCK_USER_PACKET_CID));
+	teamPacket = static_cast<TeamUserPacket*>(buffer->cutByCID(TEAM_USER_PACKET_CID));
+	itemPacket = static_cast<ItemUserPacket*>(buffer->cutByCID(ITEM_USER_PACKET_CID));
+	avatarPacket = static_cast<AvatarUserPacket*>(buffer->cutByCID(AVATAR_USER_PACKET_CID));
+	skillPacket = static_cast<SkillUserPacket*>(buffer->cutByCID(SKILL_USER_PACKET_CID));
+	loginPacket = static_cast<LoginUserPacket*>(buffer->cutByCID(LOGIN_USER_PACKET_CID));
+}
+
 sf::IpAddress LobbyPlayer::getIP() const
 {
 	Debug::warnIf(ip == NULL, "LobbyPlayer::getIP(): ip == NULL");
 	return ip;
+}
+
+CID LobbyPlayer::getCID() const
+{
+	return LOBBY_PLAYER_CID;
 }
 
 LockUserPacket* LobbyPlayer::getLockUserPacket() const
@@ -112,4 +127,16 @@ void LobbyPlayer::applyItemUserPacket(ItemUserPacket* packet)
 		delete itemPacket;
 	}
 	itemPacket = packet;
+}
+
+std::string LobbyPlayer::toString() const
+{
+	std::string s;
+	s += getLockUserPacket()->toString();
+	s += getTeamUserPacket()->toString();
+	s += getLoginUserPacket()->toString();
+	s += getAvatarUserPacket()->toString();
+	s += getSkillUserPacket()->toString();
+	s += getItemUserPacket()->toString();
+	return s;
 }

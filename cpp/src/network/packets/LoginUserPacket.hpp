@@ -5,10 +5,13 @@
 
 #include "UserPacket.hpp"
 
+class CompressBuffer;
+
 class LoginUserPacket : public UserPacket
 {
 	public:
 		LoginUserPacket(const std::string&, int);
+		LoginUserPacket(CompressBuffer*);
 		std::string toString() const override;
 		CID getCID() const override;
 
@@ -18,5 +21,7 @@ class LoginUserPacket : public UserPacket
 		std::string name;
 		int rank;
 };
+
+#include "../../misc/compress/CompressBuffer.hpp"
 
 #endif

@@ -3,6 +3,10 @@
 LoginUserPacket::LoginUserPacket(const std::string& name, int rank) : name(name), rank(rank)
 {}
 
+LoginUserPacket::LoginUserPacket(CompressBuffer* buffer)
+	: name(buffer->cutString()), rank(buffer->cutInt())
+{}
+
 std::string LoginUserPacket::toString() const
 {
 	return compressString(getName()) + compressInt(getRank());

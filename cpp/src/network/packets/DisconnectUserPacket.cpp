@@ -1,5 +1,11 @@
 #include "DisconnectUserPacket.hpp"
 
+DisconnectUserPacket::DisconnectUserPacket()
+{}
+
+DisconnectUserPacket::DisconnectUserPacket(CompressBuffer* buffer)
+{}
+
 std::string DisconnectUserPacket::toString() const
 {
 	return "";

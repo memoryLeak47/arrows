@@ -14,6 +14,16 @@ void* Compressable::decompress(const std::string& string)
 	return object;
 }
 
+std::string Compressable::compressVector(const std::vector<Compressable*>& vec)
+{
+	std::string s = compressInt(vec.size());
+	for (int i = 0; i < vec.size(); i++)
+	{
+		s += vec[i]->toString();
+	}
+	return s;
+}
+
 std::string Compressable::compressBool(bool b)
 {
 	return b? "1" : "0";
@@ -26,6 +36,14 @@ std::string Compressable::compressInt(int i)
 	s += ((i << 8) >> 24);
 	s += ((i << 16) >> 24);
 	s += ((i << 24) >> 24);
+	return s;
+}
+
+std::string Compressable::compressShort(short i)
+{
+	std::string s;
+	s += (i >> 8);
+	s += ((i << 8) >> 8);
 	return s;
 }
 
