@@ -5,7 +5,7 @@
 
 ClientLobbyMenu::ClientLobbyMenu(const std::string& ip) : serverIP(ip)
 {
-	LoginUserPacket* p = new LoginUserPacket("ml47", 9001);
+	LoginUserPacket* p = new LoginUserPacket(Main::getName(), Main::getRank());
 	sendToServer(p);
 	delete p;
 }
@@ -23,7 +23,7 @@ void ClientLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
 	}
 	else
 	{
-		Debug::warn("got ip from strange ip...");
+		Debug::warn("got packet from strange ip...");
 	}
 }
 

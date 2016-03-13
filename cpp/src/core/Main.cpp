@@ -112,3 +112,13 @@ MenuList* Main::getMenuList()
 {
 	return menuList;
 }
+
+std::string Main::getName()
+{
+	return getAccount()->getName();
+}
+
+int Main::getRank()
+{
+	return getAccount()->getRank();
+}

@@ -12,6 +12,8 @@
 #define STANDART_JUMPPOWER 0.6f
 #define STANDART_ACCELERATION 0.18f
 
+#include <string>
+
 class MenuList;
 class Game;
 class NetworkDevice;
@@ -28,6 +30,8 @@ class Main
 		static void logout();
 		static void exit();
 		static MenuList* getMenuList();
+		static std::string getName();
+		static int getRank();
 	private:
 		static Game* game;
 		static MenuList* menuList;

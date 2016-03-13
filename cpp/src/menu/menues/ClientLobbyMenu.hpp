@@ -16,6 +16,7 @@ class ClientLobbyMenu : public LobbyMenu
 		virtual void teamPressed(Team*) override;
 		void sendToServer(Packet*);
 	private:
+		LobbyPlayer* localPlayer;
 		sf::IpAddress serverIP;
 };
 
