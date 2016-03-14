@@ -13,7 +13,7 @@ AvatarUserPacket::AvatarUserPacket()
 
 AvatarUserPacket::AvatarUserPacket(CompressBuffer* buffer)
 {
-	avatarID = buffer->cut(1);
+	avatarID = buffer->cut(1)[0];
 }
 
 const std::vector<PlayerProperty*> AvatarUserPacket::getPlayerProperties() const
