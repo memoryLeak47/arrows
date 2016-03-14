@@ -146,7 +146,7 @@ void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, const sf::I
 {
 	if (ipToID(ip, getPlayers()) == -1) // Wenn es noch keinen Spieler mit dieser IP gibt
 	{
-		LobbyPlayer* player = new LobbyPlayer(packet);
+		LobbyPlayer* player = new LobbyPlayer(packet, ip);
 		Debug::noteIf(TAG_STATUS, "ServerLobbyMenu.handleLoginUserPacket(): Player \"" + player->getLoginUserPacket()->getName() + "\" joined the Game and is happy :)");
 		LobbyPlayersPacket* playersPacket = new LobbyPlayersPacket(getPlayers()); // 
 		send(playersPacket, ip); // liste ohne den Neuen an den Neuen senden.
