@@ -86,7 +86,12 @@ void ClientLobbyMenu::disconnectPressed()
 	Main::getMenuList()->back();
 }
 
-void ClientLobbyMenu::teamPressed(Team* team) {}
+void ClientLobbyMenu::teamPressed(Team* team)
+{
+	TeamUserPacket* packet = new TeamUserPacket(team->getID());
+	sendToServer(packet);
+	delete packet;
+}
 
 void ClientLobbyMenu::sendToServer(Packet* p)
 {
@@ -125,9 +130,10 @@ void ClientLobbyMenu::handleDisconnectUserPacket(DisconnectUserPacket*, int)
 	Debug::warn("ClientLobbyMenu::handleDisconnectUserPacket(): should not be called, maybe forgotten to overwrite");
 }
 
-void ClientLobbyMenu::handleTeamUserPacket(TeamUserPacket*, int)
+void ClientLobbyMenu::handleTeamUserPacket(TeamUserPacket* packet, int id)
 {
-	Debug::warn("ClientLobbyMenu::handleTeamUserPacket(): should not be called, maybe forgotten to overwrite");
+	getPlayer(id)->applyTeamUserPacket(packet);
+	updatePlayerIcons();
 }
 
 void ClientLobbyMenu::handleAvatarUserPacket(AvatarUserPacket*, int)

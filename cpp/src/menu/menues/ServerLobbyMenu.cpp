@@ -143,6 +143,7 @@ void ServerLobbyMenu::handleTeamUserPacket(TeamUserPacket* packet, int id)
 {
 	getPlayer(id)->applyTeamUserPacket(packet);
 	packAndSendToAllClients(packet, id);
+	updatePlayerIcons();
 }
 
 void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, const sf::IpAddress& ip)
