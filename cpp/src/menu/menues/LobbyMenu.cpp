@@ -3,6 +3,7 @@
 #include "../../misc/compress/Compressable.hpp"
 #include "../components/Label.hpp"
 #include "../../core/Screen.hpp"
+#include "../../misc/Converter.hpp"
 #include "../../misc/Debug.hpp"
 
 LobbyMenu::LobbyMenu()

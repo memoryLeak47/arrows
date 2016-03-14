@@ -3,18 +3,18 @@
 #include "../misc/Debug.hpp"
 
 LobbyPlayer::LobbyPlayer(LoginUserPacket* login, const sf::IpAddress& ip)
+	: ip(ip)
 {
-	this->ip = ip;
 	lockPacket = new LockUserPacket(false);
 	teamPacket = new TeamUserPacket(0);
 	itemPacket = new ItemUserPacket();
 	avatarPacket = new AvatarUserPacket();
 	skillPacket = new SkillUserPacket();
 	loginPacket = login;
-	// TODO create avatar/skill/item-userpacket
 }
 
 LobbyPlayer::LobbyPlayer(LoginUserPacket* login)
+	: ip(sf::IpAddress::getLocalAddress())
 {
 	lockPacket = new LockUserPacket(false);
 	teamPacket = new TeamUserPacket(0);
@@ -25,6 +25,7 @@ LobbyPlayer::LobbyPlayer(LoginUserPacket* login)
 }
 
 LobbyPlayer::LobbyPlayer(CompressBuffer* buffer)
+	: ip(sf::IpAddress::getLocalAddress())
 {
 	lockPacket = static_cast<LockUserPacket*>(buffer->cutByCID(LOCK_USER_PACKET_CID));
 	teamPacket = static_cast<TeamUserPacket*>(buffer->cutByCID(TEAM_USER_PACKET_CID));
@@ -36,7 +37,6 @@ LobbyPlayer::LobbyPlayer(CompressBuffer* buffer)
 
 sf::IpAddress LobbyPlayer::getIP() const
 {
-	Debug::warnIf(ip == NULL, "LobbyPlayer::getIP(): ip == NULL");
 	return ip;
 }
 

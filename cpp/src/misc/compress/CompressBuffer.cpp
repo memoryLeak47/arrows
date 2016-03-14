@@ -1,5 +1,6 @@
 #include "CompressBuffer.hpp"
 
+#include "../Converter.hpp"
 #include "../Debug.hpp"
 
 #include "../../network/packets/AvatarUserPacket.hpp"
@@ -132,6 +133,7 @@ std::vector<void*> CompressBuffer::cutVectorByCID(CID cid)
 	{
 		vec.push_back(cutByCID(cid));
 	}
+	return vec;
 }
 
 std::string CompressBuffer::cut(int amount)
