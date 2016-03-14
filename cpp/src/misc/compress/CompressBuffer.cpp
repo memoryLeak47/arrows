@@ -115,8 +115,8 @@ void* CompressBuffer::cutByCID(CID cid)
 			return new SkillUserPacket(this);
 		//case TEAM_CID:
 		//	return Team.cut(this);
-		//case TEAM_USER_PACKET_CID:
-		//	return new TeamUserPacket(this);
+		case TEAM_USER_PACKET_CID:
+			return new TeamUserPacket(this);
 		case USER_PACKET_WITH_ID_CID:
 			return new UserPacketWithID(this);
 		default:
