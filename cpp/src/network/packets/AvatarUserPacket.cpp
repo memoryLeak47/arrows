@@ -13,7 +13,7 @@ AvatarUserPacket::AvatarUserPacket()
 
 AvatarUserPacket::AvatarUserPacket(CompressBuffer* buffer)
 {
-	avatarID = buffer->cutShort();
+	avatarID = buffer->cut(1);
 }
 
 const std::vector<PlayerProperty*> AvatarUserPacket::getPlayerProperties() const
@@ -37,7 +37,9 @@ void AvatarUserPacket::setIDs(const std::string& ids)
 
 std::string AvatarUserPacket::toString() const
 {
-	return compressShort(avatarID);
+	std::string s;
+	s += avatarID;
+	return s;
 }
 
 CID AvatarUserPacket::getCID() const

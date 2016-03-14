@@ -41,8 +41,12 @@ void SkillUserPacket::setIDs(const std::string& ids)
 std::string SkillUserPacket::toString() const
 {
 	// TODO
-	Debug::warn("SkillUserPacket::toString(): TODO");
-	return "";
+	std::string s;
+	for (int i = 0; i < 4; i++)
+	{
+		s += skillIDs[i];
+	}
+	return s;
 }
 
 CID SkillUserPacket::getCID() const

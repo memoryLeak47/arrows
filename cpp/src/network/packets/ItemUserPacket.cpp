@@ -40,10 +40,11 @@ void ItemUserPacket::setIDs(const std::string& ids)
 
 std::string ItemUserPacket::toString() const
 {
-	std::string s = "";
-	s += itemIDs[0];
-	s += itemIDs[1];
-	s += itemIDs[2];
+	std::string s;
+	for (int i = 0; i < 3; i++)
+	{
+		s += itemIDs[i];
+	}
 	return s;
 }
 
