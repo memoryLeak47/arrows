@@ -29,10 +29,10 @@ LobbyPlayer::LobbyPlayer(CompressBuffer* buffer)
 {
 	lockPacket = static_cast<LockUserPacket*>(buffer->cutByCID(LOCK_USER_PACKET_CID));
 	teamPacket = static_cast<TeamUserPacket*>(buffer->cutByCID(TEAM_USER_PACKET_CID));
-	itemPacket = static_cast<ItemUserPacket*>(buffer->cutByCID(ITEM_USER_PACKET_CID));
+	loginPacket = static_cast<LoginUserPacket*>(buffer->cutByCID(LOGIN_USER_PACKET_CID));
 	avatarPacket = static_cast<AvatarUserPacket*>(buffer->cutByCID(AVATAR_USER_PACKET_CID));
 	skillPacket = static_cast<SkillUserPacket*>(buffer->cutByCID(SKILL_USER_PACKET_CID));
-	loginPacket = static_cast<LoginUserPacket*>(buffer->cutByCID(LOGIN_USER_PACKET_CID));
+	itemPacket = static_cast<ItemUserPacket*>(buffer->cutByCID(ITEM_USER_PACKET_CID));
 }
 
 sf::IpAddress LobbyPlayer::getIP() const
