@@ -23,7 +23,7 @@ void ClientLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
 
 	if (ip == serverIP)
 	{
-		handlePacketByID(packet, ipToID(ip, getPlayers()));
+		handlePacketByID(packet, 0);
 	}
 	else
 	{
