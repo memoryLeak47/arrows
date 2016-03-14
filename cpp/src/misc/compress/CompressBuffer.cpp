@@ -120,7 +120,7 @@ void* CompressBuffer::cutByCID(CID cid)
 		case USER_PACKET_WITH_ID_CID:
 			return new UserPacketWithID(this);
 		default:
-			Debug::warn("no Compressable with cid " + (int)cid);
+			Debug::warn("no Compressable with cid " + Converter::intToString((int)cid));
 			return NULL;
 	}
 }
