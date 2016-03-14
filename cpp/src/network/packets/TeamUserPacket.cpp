@@ -1,6 +1,11 @@
 #include "TeamUserPacket.hpp"
 
-TeamUserPacket::TeamUserPacket(int id) : teamID(id)
+TeamUserPacket::TeamUserPacket(char id)
+	: teamID(id)
+{}
+
+TeamUserPacket::TeamUserPacket(CompressBuffer* buffer)
+	: teamID(buffer->cut(1)[0])
 {}
 
 Team* TeamUserPacket::getTeam() const
@@ -10,7 +15,9 @@ Team* TeamUserPacket::getTeam() const
 
 std::string TeamUserPacket::toString() const
 {
-	return compressInt(teamID);
+	std::string s;
+	s += teamID;
+	return s;
 }
 
 CID TeamUserPacket::getCID() const

@@ -3,6 +3,10 @@
 LockUserPacket::LockUserPacket(bool locked) : locked(locked)
 {}
 
+LockUserPacket::LockUserPacket(CompressBuffer* buffer)
+	: locked(buffer->cutBool())
+{}
+
 bool LockUserPacket::isLocked() const
 {
 	return locked;

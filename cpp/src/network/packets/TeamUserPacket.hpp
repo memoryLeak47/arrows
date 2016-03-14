@@ -4,18 +4,21 @@
 #include "UserPacket.hpp"
 
 class Team;
+class CompressBuffer;
 
 class TeamUserPacket : public UserPacket
 {
 	public:
-		TeamUserPacket(int);
+		TeamUserPacket(char);
+		TeamUserPacket(CompressBuffer*);
 		Team* getTeam() const;
 		std::string toString() const override;
 		CID getCID() const override;
 	private:
-		int teamID;
+		char teamID;
 };
 
 #include "../../player/property/Team.hpp"
+#include "../../misc/compress/CompressBuffer.hpp"
 
 #endif

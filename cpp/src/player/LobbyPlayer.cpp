@@ -6,7 +6,7 @@ LobbyPlayer::LobbyPlayer(LoginUserPacket* login, const sf::IpAddress& ip)
 	: ip(ip)
 {
 	lockPacket = new LockUserPacket(false);
-	teamPacket = new TeamUserPacket(0);
+	teamPacket = new TeamUserPacket((char)0);
 	itemPacket = new ItemUserPacket();
 	avatarPacket = new AvatarUserPacket();
 	skillPacket = new SkillUserPacket();
@@ -17,7 +17,7 @@ LobbyPlayer::LobbyPlayer(LoginUserPacket* login)
 	: ip(sf::IpAddress::getLocalAddress())
 {
 	lockPacket = new LockUserPacket(false);
-	teamPacket = new TeamUserPacket(0);
+	teamPacket = new TeamUserPacket((char)0);
 	itemPacket = new ItemUserPacket();
 	avatarPacket = new AvatarUserPacket();
 	skillPacket = new SkillUserPacket();

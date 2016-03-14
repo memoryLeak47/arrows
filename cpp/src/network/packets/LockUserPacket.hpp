@@ -5,10 +5,13 @@
 
 #include "UserPacket.hpp"
 
+class CompressBuffer;
+
 class LockUserPacket : public UserPacket
 {
 	public:
 		LockUserPacket(bool);
+		LockUserPacket(CompressBuffer*);
 		//compress TODO
 		bool isLocked() const;
 		std::string toString() const override;
@@ -16,5 +19,7 @@ class LockUserPacket : public UserPacket
 	private:
 		bool locked;
 };
+
+#include "../../misc/compress/CompressBuffer.hpp"
 
 #endif

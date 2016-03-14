@@ -18,7 +18,6 @@ class Team
 		char id;
 		std::string name;
 		int colorID;
-		
 };
 
 #endif
