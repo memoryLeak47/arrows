@@ -38,3 +38,8 @@ std::string Team::getName() const
 {
 	return name;
 }
+
+char Team::getID() const
+{
+	return id;
+}

@@ -13,6 +13,7 @@ class Team
 		static Team* get(int);
 		static int getAmount();
 		std::string getName() const;
+		char getID() const;
 	private:
 		static std::vector<Team*> teams;
 		char id;

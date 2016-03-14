@@ -105,7 +105,10 @@ void ServerLobbyMenu::disconnectPressed()
 
 void ServerLobbyMenu::teamPressed(Team* team)
 {
-	
+	TeamUserPacket* packet = new TeamUserPacket(team->getID());
+	getLocalPlayer()->applyTeamUserPacket(packet);
+	packAndSendToAllClients(packet, 0);
+	updatePlayerIcons();
 }
 
 LobbyPlayer* ServerLobbyMenu::getLocalPlayer() const
