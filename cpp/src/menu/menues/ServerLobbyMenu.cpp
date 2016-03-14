@@ -2,6 +2,7 @@
 
 #include "../../core/Main.hpp"
 #include "../../core/Screen.hpp"
+#include "../../misc/Converter.hpp"
 #include "../../misc/Debug.hpp"
 
 ServerLobbyMenu::ServerLobbyMenu()
@@ -46,7 +47,38 @@ void ServerLobbyMenu::mapSelected()
 
 void ServerLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
 {
-	handlePacketByID(packet, ipToID(ip, getPlayers()));
+	if (packet->getCID() == LOCK_USER_PACKET_CID)
+	{
+		handleLockUserPacket((LockUserPacket*) packet, ipToID(ip, getPlayers()));
+	}
+	else if (packet->getCID() == DISCONNECT_USER_PACKET_CID)
+	{
+		handleDisconnectUserPacket((DisconnectUserPacket*) packet, ipToID(ip, getPlayers()));
+	}
+	else if (packet->getCID() == TEAM_USER_PACKET_CID && getPhase() == TEAM_PHASE)
+	{
+		handleTeamUserPacket((TeamUserPacket*) packet, ipToID(ip, getPlayers()));
+	}
+	else if (packet->getCID() == LOGIN_USER_PACKET_CID && getPhase() == TEAM_PHASE)
+	{
+		handleLoginUserPacket((LoginUserPacket*) packet, ip);
+	}
+	else if (packet->getCID() == AVATAR_USER_PACKET_CID && getPhase() == AVATAR_PHASE)
+	{
+		handleAvatarUserPacket((AvatarUserPacket*) packet, ipToID(ip, getPlayers()));
+	}
+	else if (packet->getCID() == SKILL_USER_PACKET_CID && getPhase() == SKILL_PHASE)
+	{
+		handleSkillUserPacket((SkillUserPacket*) packet, ipToID(ip, getPlayers()));
+	}
+	else if (packet->getCID() == ITEM_USER_PACKET_CID && getPhase() == ITEM_PHASE)
+	{
+		handleItemUserPacket((ItemUserPacket*) packet, ipToID(ip, getPlayers()));
+	}
+	else
+	{
+		Debug::warn("ServerLobbyMenu::handlePacket(): awkward packet(" + Converter::intToString((int)packet->getCID()) + ") in awkward phase(" + Converter::intToString(getPhase()) + ")");
+	}
 }
 
 void ServerLobbyMenu::createServerPlayer()
@@ -110,22 +142,22 @@ void ServerLobbyMenu::handleTeamUserPacket(TeamUserPacket* packet, int id)
 	packAndSendToAllClients(packet, id);
 }
 
-void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, int id)
+void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, const sf::IpAddress& ip)
 {
-	if (id == -1) // Wenn es noch keinen Spieler mit dieser IP gibt
+	if (ipToID(ip, getPlayers()) == -1) // Wenn es noch keinen Spieler mit dieser IP gibt
 	{
 		LobbyPlayer* player = new LobbyPlayer(packet);
 		Debug::noteIf(TAG_STATUS, "ServerLobbyMenu.handleLoginUserPacket(): Player \"" + player->getLoginUserPacket()->getName() + "\" joined the Game and is happy :)");
 		LobbyPlayersPacket* playersPacket = new LobbyPlayersPacket(getPlayers()); // 
-		send(playersPacket, getPlayer(id)->getIP()); // liste ohne den Neuen an den Neuen senden.
+		send(playersPacket, ip); // liste ohne den Neuen an den Neuen senden.
 		if (getLobbyTileMap() != NULL)
 		{
 			MapPacket* mapPacket = new MapPacket(getLobbyTileMap()->getInts());
-			send(mapPacket, getPlayer(id)->getIP()); // Die Map des neuen wird gesetzt
+			send(mapPacket, ip); // Die Map des neuen wird gesetzt
 			delete mapPacket;
 		}
 		addPlayer(player);
-		packAndSendToAllClients(packet, id); // das erhaltene packet wird an alle clients weitergegeben
+		packAndSendToAllClients(packet, ipToID(ip, getPlayers())); // das erhaltene packet wird an alle clients weitergegeben
 		updatePlayerIcons();
 	}
 	else

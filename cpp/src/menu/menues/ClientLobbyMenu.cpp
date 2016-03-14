@@ -1,5 +1,6 @@
 #include "ClientLobbyMenu.hpp"
 
+#include "../../misc/Converter.hpp"
 #include "../../misc/Debug.hpp"
 #include "../../core/Main.hpp"
 
@@ -19,11 +20,59 @@ void ClientLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
 {
 	if (ip == serverIP)
 	{
-		handlePacketByID(packet, 0);
+		handlePacketByID(packet, ipToID(ip, getPlayers()));
 	}
 	else
 	{
-		Debug::warn("got packet from strange ip...");
+		Debug::warn("got packet from non-server player");
+	}
+}
+
+void ClientLobbyMenu::handlePacketByID(Packet* packet, int id)
+{
+	if (packet->getCID() == USER_PACKET_WITH_ID_CID)
+	{
+		handlePacketByID(((UserPacketWithID*) packet)->getPacket(), ((UserPacketWithID*) packet)->getID());
+	}
+	else if (packet->getCID() == LOCK_USER_PACKET_CID)
+	{
+		handleLockUserPacket((LockUserPacket*) packet, id);
+	}
+	else if (packet->getCID() == DISCONNECT_USER_PACKET_CID)
+	{
+		handleDisconnectUserPacket((DisconnectUserPacket*) packet, id);
+	}
+	else if (packet->getCID() == TEAM_USER_PACKET_CID && getPhase() == TEAM_PHASE)
+	{
+		handleTeamUserPacket((TeamUserPacket*) packet, id);
+	}
+	else if (packet->getCID() == LOGIN_USER_PACKET_CID && getPhase() == TEAM_PHASE)
+	{
+		handleLoginUserPacket((LoginUserPacket*) packet);
+	}
+	else if (packet->getCID() == AVATAR_USER_PACKET_CID && getPhase() == AVATAR_PHASE)
+	{
+		handleAvatarUserPacket((AvatarUserPacket*) packet, id);
+	}
+	else if (packet->getCID() == SKILL_USER_PACKET_CID && getPhase() == SKILL_PHASE)
+	{
+		handleSkillUserPacket((SkillUserPacket*) packet, id);
+	}
+	else if (packet->getCID() == ITEM_USER_PACKET_CID && getPhase() == ITEM_PHASE)
+	{
+		handleItemUserPacket((ItemUserPacket*) packet, id);
+	}
+	else if (packet->getCID() == MAP_PACKET_CID && getPhase() == TEAM_PHASE)
+	{
+		handleMapPacket((MapPacket*) packet);
+	}
+	else if (packet->getCID() == LOBBY_PLAYERS_PACKET_CID && getPhase() == TEAM_PHASE)
+	{
+		handleLobbyPlayersPacket((LobbyPlayersPacket*) packet);
+	}
+	else
+	{
+		Debug::warn("ClientLobbyMenu::handlePacket(): awkward packet(" + Converter::intToString((int)packet->getCID()) + ") in awkward phase(" + Converter::intToString(getPhase()) + ")");
 	}
 }
 
@@ -41,7 +90,7 @@ void ClientLobbyMenu::sendToServer(Packet* p)
 	send(p, serverIP);
 }
 
-void ClientLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, int id)
+void ClientLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet)
 {
 	LobbyPlayer* player = new LobbyPlayer(packet);
 	addPlayer(player);
@@ -53,7 +102,7 @@ void ClientLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, int id)
 	updatePlayerIcons();
 }
 
-void ClientLobbyMenu::handleLobbyPlayersPacket(LobbyPlayersPacket* packet, int id)
+void ClientLobbyMenu::handleLobbyPlayersPacket(LobbyPlayersPacket* packet)
 {
 	std::vector<LobbyPlayer*> players(packet->getPlayers());
 	for (int i = 0; i < players.size(); i++)
@@ -61,4 +110,39 @@ void ClientLobbyMenu::handleLobbyPlayersPacket(LobbyPlayersPacket* packet, int i
 		addPlayer(players[i]);
 	}
 	updatePlayerIcons();
+}
+
+void ClientLobbyMenu::handleLockUserPacket(LockUserPacket*, int)
+{
+	Debug::warn("ClientLobbyMenu::handleLockUserPacket(): should not be called, maybe forgotten to overwrite");
+}
+
+void ClientLobbyMenu::handleDisconnectUserPacket(DisconnectUserPacket*, int)
+{
+	Debug::warn("ClientLobbyMenu::handleDisconnectUserPacket(): should not be called, maybe forgotten to overwrite");
+}
+
+void ClientLobbyMenu::handleTeamUserPacket(TeamUserPacket*, int)
+{
+	Debug::warn("ClientLobbyMenu::handleTeamUserPacket(): should not be called, maybe forgotten to overwrite");
+}
+
+void ClientLobbyMenu::handleAvatarUserPacket(AvatarUserPacket*, int)
+{
+	Debug::warn("ClientLobbyMenu::handleAvatarUserPacket(): should not be called, maybe forgotten to overwrite");
+}
+
+void ClientLobbyMenu::handleSkillUserPacket(SkillUserPacket*, int)
+{
+	Debug::warn("ClientLobbyMenu::handleSkillUserPacket(): should not be called, maybe forgotten to overwrite");
+}
+
+void ClientLobbyMenu::handleItemUserPacket(ItemUserPacket*, int)
+{
+	Debug::warn("ClientLobbyMenu::handleItemUserPacket(): should not be called, maybe forgotten to overwrite");
+}
+
+void ClientLobbyMenu::handleMapPacket(MapPacket*)
+{
+	Debug::warn("ClientLobbyMenu::handleMapPacket(): should not be called, maybe forgotten to overwrite");
 }

@@ -1,6 +1,8 @@
 #ifndef __SERVERLOBBYMENU_CLASS__
 #define __SERVERLOBBYMENU_CLASS__
 
+#include <SFML/Network.hpp>
+
 #include "LobbyMenu.hpp"
 
 class EditField;
@@ -16,13 +18,13 @@ class ServerLobbyMenu : public LobbyMenu
 		virtual void disconnectPressed() override;
 		virtual void teamPressed(Team*) override;
 	protected:
-		virtual void handleLockUserPacket(LockUserPacket*, int) override;
-		virtual void handleDisconnectUserPacket(DisconnectUserPacket*, int) override;
-		virtual void handleTeamUserPacket(TeamUserPacket*, int) override;
-		virtual void handleLoginUserPacket(LoginUserPacket*, int) override;
-		virtual void handleAvatarUserPacket(AvatarUserPacket*, int) override;
-		virtual void handleSkillUserPacket(SkillUserPacket*, int) override;
-		virtual void handleItemUserPacket(ItemUserPacket*, int) override;
+		void handleLockUserPacket(LockUserPacket*, int);
+		void handleDisconnectUserPacket(DisconnectUserPacket*, int);
+		void handleTeamUserPacket(TeamUserPacket*, int);
+		void handleLoginUserPacket(LoginUserPacket*, const sf::IpAddress&);
+		void handleAvatarUserPacket(AvatarUserPacket*, int);
+		void handleSkillUserPacket(SkillUserPacket*, int);
+		void handleItemUserPacket(ItemUserPacket*, int);
 	private:
 		// converts the UserPacket* into a UserPacketWithID(Packet*, id)* and sends it to all clients
 		std::vector<LobbyPlayer*> getUpdatedPlayers() const;

@@ -7,8 +7,8 @@
 #define ITEM_PHASE 3
 #define GAME_PHASE 4
 
-#include <SFML/Network.hpp>
 #include <vector>
+#include <SFML/Network.hpp>
 
 #include "../NetworkingMenu.hpp"
 
@@ -45,25 +45,12 @@ class LobbyMenu : public NetworkingMenu
 		LobbyTileMap* getLobbyTileMap() const;
 	protected:
 		int ipToID(const sf::IpAddress&, const std::vector<LobbyPlayer*>&) const;
-		void handlePacketByID(Packet*, int);
 		void updatePlayerIcons() const;
 		LobbyPlayer* getPlayer(int) const;
 		virtual void addPlayer(LobbyPlayer*);
 		void updateMap(const std::vector<std::vector<int>>&);
         	void unlockAll();
 		void nextPhase();
-		// handle Packets
-		virtual void handleLockUserPacket(LockUserPacket*, int);
-		virtual void handleDisconnectUserPacket(DisconnectUserPacket*, int);
-		virtual void handleTeamUserPacket(TeamUserPacket*, int);
-		virtual void handleLoginUserPacket(LoginUserPacket*, int);
-		virtual void handleAvatarUserPacket(AvatarUserPacket*, int);
-		virtual void handleSkillUserPacket(SkillUserPacket*, int);
-		virtual void handleItemUserPacket(ItemUserPacket*, int);
-		virtual void handleMapPacket(MapPacket*, int);
-		virtual void handleUserPacketWithID(UserPacketWithID*, int);
-		virtual void handleLobbyPlayersPacket(LobbyPlayersPacket*, int);
-
 		Button* lockButton; // Verweiß auf den NextStep/LockIn Button
 	private:
 		int phase;
