@@ -13,11 +13,14 @@ ClientLobbyMenu::ClientLobbyMenu(const std::string& ip) : serverIP(ip)
 
 LobbyPlayer* ClientLobbyMenu::getLocalPlayer() const
 {
-	return NULL; // TODO
+	Debug::warnIf(localPlayer == NULL, "ClientLobbyMenu::getLocalPlayer(): localPlayer == NULL");
+	return localPlayer;
 }
 
 void ClientLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
 {
+	Debug::warnIf(packet == NULL, "ClientLobbyMenu::handlePacket(): packet == NULL");
+
 	if (ip == serverIP)
 	{
 		handlePacketByID(packet, ipToID(ip, getPlayers()));
