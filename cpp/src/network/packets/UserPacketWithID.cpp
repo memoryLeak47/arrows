@@ -23,7 +23,7 @@ std::string UserPacketWithID::toString() const
 {
 	std::string packetString = getPacket()->compress(); // yes with CID!
 	std::string idString = compressInt(getID());
-	return idString + packetString;
+	return packetString + idString;
 }
 
 CID UserPacketWithID::getCID() const
