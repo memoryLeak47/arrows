@@ -8,7 +8,14 @@ Button::Button(ComponentContainer* parent, const PixelRect& rect, const std::str
 
 void Button::render() const
 {
-	Screen::fillRect(getAbsoluteRect(), sf::Color::Red);
+	if (isEnabled())
+	{
+		Screen::fillRect(getAbsoluteRect(), sf::Color::Red);
+	}
+	else
+	{
+		Screen::fillRect(getAbsoluteRect(), sf::Color(120, 100, 100));
+	}
 	Screen::drawText(getText(), getAbsoluteRect().getPosition(), sf::Color::Black);
 }
 
