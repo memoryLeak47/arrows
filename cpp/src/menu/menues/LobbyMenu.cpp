@@ -7,8 +7,9 @@
 #include "../../misc/Debug.hpp"
 
 LobbyMenu::LobbyMenu()
-	: tileMap()
 {
+	tileMap = new LobbyTileMap();
+
 	phase = TEAM_PHASE;
 	
 	addComponent(new Label(this, PixelRect(300, 10, 150, 20), "Lobby"));
