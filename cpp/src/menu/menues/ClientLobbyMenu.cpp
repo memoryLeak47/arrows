@@ -128,9 +128,16 @@ void ClientLobbyMenu::handleLobbyPlayersPacket(LobbyPlayersPacket* packet)
 	updatePlayerIcons();
 }
 
-void ClientLobbyMenu::handleLockUserPacket(LockUserPacket*, int)
+void ClientLobbyMenu::handleLockUserPacket(LockUserPacket* packet, int id)
 {
-	Debug::warn("ClientLobbyMenu::handleLockUserPacket(): should not be called, maybe forgotten to overwrite");
+	if (id == 0)
+	{
+		nextPhase();
+	}
+	else
+	{
+		getPlayer(id)->applyLockUserPacket(packet);
+	}
 }
 
 void ClientLobbyMenu::handleDisconnectUserPacket(DisconnectUserPacket*, int)
