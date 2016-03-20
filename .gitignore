@@ -6,3 +6,4 @@ java/.debug
 cpp/exe
 cpp/.accounts
 cpp/*.o
+cpp/core

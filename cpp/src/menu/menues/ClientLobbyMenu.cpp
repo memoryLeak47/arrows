@@ -151,7 +151,8 @@ void ClientLobbyMenu::handleItemUserPacket(ItemUserPacket*, int)
 	Debug::warn("ClientLobbyMenu::handleItemUserPacket(): should not be called, maybe forgotten to overwrite");
 }
 
-void ClientLobbyMenu::handleMapPacket(MapPacket*)
+void ClientLobbyMenu::handleMapPacket(MapPacket* packet)
 {
-	Debug::warn("ClientLobbyMenu::handleMapPacket(): should not be called, maybe forgotten to overwrite");
+	updateMap(packet->getInts());
+	delete packet;
 }

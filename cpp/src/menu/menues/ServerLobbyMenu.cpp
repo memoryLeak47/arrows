@@ -4,6 +4,7 @@
 #include "../../core/Screen.hpp"
 #include "../../misc/Converter.hpp"
 #include "../../misc/Debug.hpp"
+//#include "../../network/packets/MapPacket.hpp"
 
 ServerLobbyMenu::ServerLobbyMenu()
 {
@@ -41,7 +42,10 @@ void ServerLobbyMenu::mapSelected()
 	updateMap(ints);
 
 	// sendet neue Map zu allen Clients
-	// TODO sendToAllClients(new MapPacket(ints));
+	MapPacket* mapPacket = new MapPacket(ints);
+	sendToAllClients(mapPacket);
+	delete mapPacket;
+
 	unlockAll();
 }
 
@@ -119,11 +123,19 @@ LobbyPlayer* ServerLobbyMenu::getLocalPlayer() const
 
 void ServerLobbyMenu::packAndSendToAllClients(UserPacket* p, int id) const
 {
+	UserPacketWithID* packet = new UserPacketWithID(p, id);
 	for (int i = 1; i < getPlayers().size(); i++)
 	{
-		UserPacketWithID* packet = new UserPacketWithID(p, id);
 		send(packet, getPlayer(i)->getIP());
-		delete packet;
+	}
+	delete packet;
+}
+
+void ServerLobbyMenu::sendToAllClients(Packet* packet) const
+{
+	for (int i = 1; i < getPlayers().size(); i++)
+	{
+		send(packet, getPlayer(i)->getIP());
 	}
 }
 

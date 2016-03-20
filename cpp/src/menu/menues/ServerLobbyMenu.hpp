@@ -33,6 +33,7 @@ class ServerLobbyMenu : public LobbyMenu
 		virtual void addPlayer(LobbyPlayer*) override;
 		void createServerPlayer();
 		void packAndSendToAllClients(UserPacket*, int id) const;
+		void sendToAllClients(Packet*) const;
 		void mapSelected();
 
 		EditField* mapSelectEditField;
