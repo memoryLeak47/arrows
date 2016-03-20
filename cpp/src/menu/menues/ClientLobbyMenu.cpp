@@ -6,6 +6,7 @@
 
 ClientLobbyMenu::ClientLobbyMenu(const std::string& ip) : serverIP(ip)
 {
+	localPlayer = NULL;
 	LoginUserPacket* p = new LoginUserPacket(Main::getName(), Main::getRank());
 	sendToServer(p);
 	delete p;
