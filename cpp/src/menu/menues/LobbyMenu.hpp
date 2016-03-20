@@ -44,6 +44,7 @@ class LobbyMenu : public NetworkingMenu
 		virtual void sendPlayerPropertyUpdate() {} // TODO
 		LobbyTileMap* getLobbyTileMap() const;
 	protected:
+		bool areAllClientsLocked() const;
 		int ipToID(const sf::IpAddress&, const std::vector<LobbyPlayer*>&) const;
 		void updatePlayerIcons() const;
 		LobbyPlayer* getPlayer(int) const;

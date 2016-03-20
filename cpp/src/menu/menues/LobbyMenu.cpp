@@ -55,6 +55,16 @@ LobbyTileMap* LobbyMenu::getLobbyTileMap() const
 	return tileMap;
 }
 
+bool LobbyMenu::areAllClientsLocked() const
+{
+	for (int i = 1; i < getPlayers().size(); i++)
+	{
+		if (!getPlayer(i)->getLockUserPacket()->isLocked())
+			return false;
+	}
+	return true;
+}
+
 int LobbyMenu::getPhase() const
 {
 	return phase;
