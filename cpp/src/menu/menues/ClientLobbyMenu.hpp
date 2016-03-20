@@ -27,6 +27,7 @@ class ClientLobbyMenu : public LobbyMenu
 		void handleSkillUserPacket(SkillUserPacket*, int);
 		void handleItemUserPacket(ItemUserPacket*, int);
 		void handleMapPacket(MapPacket*);
+		virtual void updateLockButton() const override;
 	private:
 		LobbyPlayer* localPlayer;
 		sf::IpAddress serverIP;

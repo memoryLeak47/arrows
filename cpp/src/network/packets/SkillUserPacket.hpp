@@ -11,6 +11,7 @@ class SkillUserPacket : public PlayerPropertyUserPacket
 		SkillUserPacket(const std::string&);
 		SkillUserPacket(CompressBuffer*);
 		SkillUserPacket();
+		bool isValid() const;
 		virtual const std::vector<PlayerProperty*> getPlayerProperties() const override;
 		virtual void setIDs(const std::string&) override;
 		virtual std::string toString() const override;

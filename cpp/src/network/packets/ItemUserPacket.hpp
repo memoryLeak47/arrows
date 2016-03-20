@@ -11,6 +11,7 @@ class ItemUserPacket : public PlayerPropertyUserPacket
 		ItemUserPacket(const std::string&);
 		ItemUserPacket(CompressBuffer*);
 		ItemUserPacket();
+		bool isValid() const;
 		virtual const std::vector<PlayerProperty*> getPlayerProperties() const override;
 		virtual void setIDs(const std::string&) override;
 		virtual std::string toString() const override;

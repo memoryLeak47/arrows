@@ -16,6 +16,11 @@ ItemUserPacket::ItemUserPacket()
 	: itemIDs({-1, -1, -1})
 {}
 
+bool ItemUserPacket::isValid() const
+{
+	return itemIDs[0] != -1 && itemIDs[1] != -1 && itemIDs[2] != 1;
+}
+
 const std::vector<PlayerProperty*> ItemUserPacket::getPlayerProperties() const
 {
 	std::vector<PlayerProperty*> props;

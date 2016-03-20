@@ -93,13 +93,10 @@ void ServerLobbyMenu::createServerPlayer()
 
 void ServerLobbyMenu::lockPressed()
 {
-	if (areAllClientsLocked())
-	{
-		LockUserPacket* l = new LockUserPacket(!getLocalPlayer()->getLockUserPacket()->isLocked());
-		packAndSendToAllClients(l, 0);
-		delete l;
-		nextPhase();
-	}
+	LockUserPacket* l = new LockUserPacket(!getLocalPlayer()->getLockUserPacket()->isLocked());
+	packAndSendToAllClients(l, 0);
+	delete l;
+	nextPhase();
 }
 
 void ServerLobbyMenu::disconnectPressed()
@@ -217,4 +214,23 @@ void ServerLobbyMenu::addPlayer(LobbyPlayer* p)
 {
 	LobbyMenu::addPlayer(p);
 	addUpdatedPlayer(p);
+}
+
+void ServerLobbyMenu::updateLockButton() const
+{
+	switch (getPhase())
+	{
+		case TEAM_PHASE:
+			lockButton->setEnabled(areAllClientsLocked() && getLobbyTileMap()->isValid());
+		break;
+		case AVATAR_PHASE:
+			lockButton->setEnabled(areAllClientsLocked() && getLocalPlayer()->getAvatarUserPacket()->isValid());
+		break;
+		case SKILL_PHASE:
+			lockButton->setEnabled(areAllClientsLocked() && getLocalPlayer()->getSkillUserPacket()->isValid());
+		break;
+		case ITEM_PHASE:
+			lockButton->setEnabled(areAllClientsLocked() && getLocalPlayer()->getItemUserPacket()->isValid());
+		break;
+	}
 }

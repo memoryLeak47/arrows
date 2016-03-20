@@ -163,3 +163,22 @@ void ClientLobbyMenu::handleMapPacket(MapPacket* packet)
 	updateMap(packet->getInts());
 	delete packet;
 }
+
+void ClientLobbyMenu::updateLockButton() const
+{
+	switch (getPhase())
+	{
+		case TEAM_PHASE:
+			lockButton->setEnabled(getLobbyTileMap()->isValid());
+		break;
+		case AVATAR_PHASE:
+			lockButton->setEnabled(getLocalPlayer()->getAvatarUserPacket()->isValid());
+		break;
+		case SKILL_PHASE:
+			lockButton->setEnabled(getLocalPlayer()->getSkillUserPacket()->isValid());
+		break;
+		case ITEM_PHASE:
+			lockButton->setEnabled(getLocalPlayer()->getItemUserPacket()->isValid());
+		break;
+	}
+}

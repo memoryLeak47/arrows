@@ -16,6 +16,11 @@ SkillUserPacket::SkillUserPacket()
 	: skillIDs({-1, -1, -1, -1})
 {}
 
+bool SkillUserPacket::isValid() const
+{
+	return skillIDs[0] != -1 && skillIDs[1] != -1 && skillIDs[2] != -1 && skillIDs[3] != -1;
+}
+
 const std::vector<PlayerProperty*> SkillUserPacket::getPlayerProperties() const
 {
 	std::vector<PlayerProperty*> props;

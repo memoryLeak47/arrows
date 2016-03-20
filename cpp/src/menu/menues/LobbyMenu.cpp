@@ -69,6 +69,12 @@ int LobbyMenu::getPhase() const
 {
 	return phase;
 }
+
+void LobbyMenu::tick()
+{
+	updateLockButton();
+}
+
 int LobbyMenu::ipToID(const sf::IpAddress& ip, const std::vector<LobbyPlayer*>& players) const
 {
 	for (int i = 0; i < players.size(); i++)

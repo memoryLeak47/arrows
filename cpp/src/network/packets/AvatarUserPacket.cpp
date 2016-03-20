@@ -16,6 +16,11 @@ AvatarUserPacket::AvatarUserPacket(CompressBuffer* buffer)
 	avatarID = buffer->cut(1)[0];
 }
 
+bool AvatarUserPacket::isValid() const
+{
+	return avatarID != -1;
+}
+
 const std::vector<PlayerProperty*> AvatarUserPacket::getPlayerProperties() const
 {
         std::vector<PlayerProperty*> props;

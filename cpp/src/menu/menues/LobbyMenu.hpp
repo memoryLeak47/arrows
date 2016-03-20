@@ -37,6 +37,7 @@ class LobbyMenu : public NetworkingMenu
 		virtual ~LobbyMenu();
 		std::vector<LobbyPlayer*> getPlayers() const;
 		int getPhase() const;
+		virtual void tick() override;
 		virtual void lockPressed() = 0;
 		virtual void disconnectPressed() = 0;
 		virtual void teamPressed(Team*) = 0;
@@ -49,6 +50,7 @@ class LobbyMenu : public NetworkingMenu
 		void updatePlayerIcons() const;
 		LobbyPlayer* getPlayer(int) const;
 		virtual void addPlayer(LobbyPlayer*);
+		virtual void updateLockButton() const = 0;
 		void updateMap(const std::vector<std::vector<int>>&);
         	void unlockAll();
 		void nextPhase();
