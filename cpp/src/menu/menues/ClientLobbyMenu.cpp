@@ -79,7 +79,12 @@ void ClientLobbyMenu::handlePacketByID(Packet* packet, int id)
 	}
 }
 
-void ClientLobbyMenu::lockPressed() {}
+void ClientLobbyMenu::lockPressed()
+{
+	LockUserPacket* packet = new LockUserPacket(!getLocalPlayer()->getLockUserPacket()->isLocked());
+	sendToServer(packet);
+	delete packet;
+}
 
 void ClientLobbyMenu::disconnectPressed()
 {
