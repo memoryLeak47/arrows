@@ -6,6 +6,7 @@
 #define TAG_EVENT false
 #define TAG_NETWORK true
 #define TAG_STATUS true
+#define TAG_COMPRESSION false
 
 // colors
 
