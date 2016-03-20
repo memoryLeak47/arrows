@@ -74,7 +74,7 @@ std::string Compressable::compressMap(const std::vector<std::vector<int>>& map)
 	{
 		for (int x = 0; x < width; x++)
 		{
-			s += compressInt(map[x][y]);
+			s += compressInt(map[y][x]);
 		}
 	}
 
