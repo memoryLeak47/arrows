@@ -72,6 +72,7 @@ int LobbyMenu::getPhase() const
 
 void LobbyMenu::tick()
 {
+	NetworkingMenu::tick();
 	updateLockButton();
 }
 
