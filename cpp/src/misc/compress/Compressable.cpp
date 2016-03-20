@@ -63,8 +63,8 @@ std::string Compressable::compressString(const std::string& s)
 
 std::string Compressable::compressMap(const std::vector<std::vector<int>>& map)
 {
-	int height = map[0].size();
-	int width = map.size();
+	int height = map.size();
+	int width = map[0].size();
 	std::string s = "";
 
 	s += compressInt(width);
