@@ -166,7 +166,7 @@ void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, const sf::I
 		Debug::noteIf(TAG_STATUS, "ServerLobbyMenu.handleLoginUserPacket(): Player \"" + player->getLoginUserPacket()->getName() + "\" joined the Game and is happy :)");
 		LobbyPlayersPacket* playersPacket = new LobbyPlayersPacket(getPlayers()); // 
 		send(playersPacket, ip); // liste ohne den Neuen an den Neuen senden.
-		if (getLobbyTileMap() != NULL)
+		if (getLobbyTileMap()->isValid())
 		{
 			MapPacket* mapPacket = new MapPacket(getLobbyTileMap()->getInts());
 			send(mapPacket, ip); // Die Map des neuen wird gesetzt

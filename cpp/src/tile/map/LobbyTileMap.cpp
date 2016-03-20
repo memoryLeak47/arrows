@@ -39,3 +39,8 @@ std::vector<std::vector<int>> LobbyTileMap::getInts() const
 {
 	return ints;
 }
+
+bool LobbyTileMap::isValid() const
+{
+	return getInts().size() > 0;
+}

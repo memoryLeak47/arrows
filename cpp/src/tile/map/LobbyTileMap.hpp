@@ -12,6 +12,7 @@ class LobbyTileMap
 		void updateMap(const std::vector<std::vector<int>>&);
 		static std::vector<std::vector<int>> getIntsByFile(const std::string&);
 		std::vector<std::vector<int>> getInts() const;
+		bool isValid() const;
 	private:
 		std::vector<std::vector<int>> ints;
 };
