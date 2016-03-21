@@ -182,16 +182,49 @@ void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, const sf::I
 	}
 }
 
-void ServerLobbyMenu::handleAvatarUserPacket(AvatarUserPacket*, int)
+void ServerLobbyMenu::handleAvatarUserPacket(AvatarUserPacket* packet, int id)
 {
+	Debug::warnIf(getPlayer(id) == NULL, "ServerLobbyMenu::handleAvatarUserPacket(): no Player with id " + Converter::intToString(id));
+
+	// Wenn Spieler sich im gleichen Team befindet, wie Server (ich)
+	if (getPlayer(id)->getTeamUserPacket()->getTeam()->isFriendlyTeam(getLocalPlayer()->getTeamUserPacket()->getTeam()))
+	{
+		getPlayer(id)->applyAvatarUserPacket(packet);
+	}
+
+	getUpdatedPlayer(id)->applyAvatarUserPacket(packet);
+
+	packAndSendToAllClients(packet, id);
 }
 
-void ServerLobbyMenu::handleSkillUserPacket(SkillUserPacket*, int)
+void ServerLobbyMenu::handleSkillUserPacket(SkillUserPacket* packet, int id)
 {
+	Debug::warnIf(getPlayer(id) == NULL, "ServerLobbyMenu::handleSkillUserPacket(): no Player with id " + Converter::intToString(id));
+
+	// Wenn Spieler sich im gleichen Team befindet, wie Server (ich)
+	if (getPlayer(id)->getTeamUserPacket()->getTeam()->isFriendlyTeam(getLocalPlayer()->getTeamUserPacket()->getTeam()))
+	{
+		getPlayer(id)->applySkillUserPacket(packet);
+	}
+
+	getUpdatedPlayer(id)->applySkillUserPacket(packet);
+
+	packAndSendToAllClients(packet, id);
 }
 
-void ServerLobbyMenu::handleItemUserPacket(ItemUserPacket*, int)
+void ServerLobbyMenu::handleItemUserPacket(ItemUserPacket* packet, int id)
 {
+	Debug::warnIf(getPlayer(id) == NULL, "ServerLobbyMenu::handleItemUserPacket(): no Player with id " + Converter::intToString(id));
+
+	// Wenn Spieler sich im gleichen Team befindet, wie Server (ich)
+	if (getPlayer(id)->getTeamUserPacket()->getTeam()->isFriendlyTeam(getLocalPlayer()->getTeamUserPacket()->getTeam()))
+	{
+		getPlayer(id)->applyItemUserPacket(packet);
+	}
+
+	getUpdatedPlayer(id)->applyItemUserPacket(packet);
+
+	packAndSendToAllClients(packet, id);
 }
 
 LobbyPlayer* ServerLobbyMenu::getUpdatedPlayer(int id) const

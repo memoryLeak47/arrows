@@ -43,3 +43,8 @@ char Team::getID() const
 {
 	return id;
 }
+
+bool Team::isFriendlyTeam(Team* team) const
+{
+	return (getID() != 0) && (getID() == team->getID());
+}
