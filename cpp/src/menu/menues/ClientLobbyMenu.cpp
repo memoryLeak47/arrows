@@ -142,7 +142,7 @@ void ClientLobbyMenu::handleLockUserPacket(LockUserPacket* packet, int id)
 
 void ClientLobbyMenu::handleDisconnectUserPacket(DisconnectUserPacket*, int)
 {
-	Debug::warn("ClientLobbyMenu::handleDisconnectUserPacket(): should not be called, maybe forgotten to overwrite");
+	Debug::warn("ClientLobbyMenu::handleDisconnectUserPacket(): TODO");
 }
 
 void ClientLobbyMenu::handleTeamUserPacket(TeamUserPacket* packet, int id)
@@ -151,19 +151,25 @@ void ClientLobbyMenu::handleTeamUserPacket(TeamUserPacket* packet, int id)
 	updatePlayerIcons();
 }
 
-void ClientLobbyMenu::handleAvatarUserPacket(AvatarUserPacket*, int)
+void ClientLobbyMenu::handleAvatarUserPacket(AvatarUserPacket* packet, int id)
 {
-	Debug::warn("ClientLobbyMenu::handleAvatarUserPacket(): should not be called, maybe forgotten to overwrite");
+	LobbyPlayer* player = getPlayer(id);
+	Debug::warnIf(player == NULL, "ClientLobbyMenu::handleAvatarUserPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
+	player->applyAvatarUserPacket(packet);
 }
 
-void ClientLobbyMenu::handleSkillUserPacket(SkillUserPacket*, int)
+void ClientLobbyMenu::handleSkillUserPacket(SkillUserPacket* packet, int id)
 {
-	Debug::warn("ClientLobbyMenu::handleSkillUserPacket(): should not be called, maybe forgotten to overwrite");
+	LobbyPlayer* player = getPlayer(id);
+	Debug::warnIf(player == NULL, "ClientLobbyMenu::handleSkillUserPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
+	player->applySkillUserPacket(packet);
 }
 
-void ClientLobbyMenu::handleItemUserPacket(ItemUserPacket*, int)
+void ClientLobbyMenu::handleItemUserPacket(ItemUserPacket* packet, int id)
 {
-	Debug::warn("ClientLobbyMenu::handleItemUserPacket(): should not be called, maybe forgotten to overwrite");
+	LobbyPlayer* player = getPlayer(id);
+	Debug::warnIf(player == NULL, "ClientLobbyMenu::handleItemUserPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
+	player->applyItemUserPacket(packet);
 }
 
 void ClientLobbyMenu::handleMapPacket(MapPacket* packet)
