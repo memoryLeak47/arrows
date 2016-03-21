@@ -27,7 +27,11 @@ void PlayerPanel::render() const
 	Panel::render();
 	if (getPlayer() != NULL && getPlayer()->getLockUserPacket()->isLocked())
 	{
-		Screen::drawRect(PixelRect(getAbsoluteRect().getPosition().getX()-2, getAbsoluteRect().getPosition().getY()-2, getRelativeRect().getSize().getX()+4, getRelativeRect().getSize().getY()), sf::Color::Yellow);
+		Screen::drawRect(PixelRect(getAbsoluteRect().getPosition().getX()-2, getAbsoluteRect().getPosition().getY()-2, getRelativeRect().getSize().getX()+4, getRelativeRect().getSize().getY()+4), sf::Color::Yellow);
+	}
+	if (getPlayer() == getLobbyMenu()->getLocalPlayer())
+	{
+		Screen::drawRect(PixelRect(getAbsoluteRect().getPosition().getX()-1, getAbsoluteRect().getPosition().getY()-1, getRelativeRect().getSize().getX()+2, getRelativeRect().getSize().getY()+2), sf::Color::Blue);
 	}
 	Screen::drawText(getPlayer()->getLoginUserPacket()->getName(), PixelVector(getAbsoluteRect().getPosition().getX(), getAbsoluteRect().getPosition().getY() + 72), sf::Color::White);
 	Screen::drawText("" + getPlayer()->getLoginUserPacket()->getRank(), PixelVector(getAbsoluteRect().getPosition().getX(), getAbsoluteRect().getPosition().getY() + 10), sf::Color::White);
