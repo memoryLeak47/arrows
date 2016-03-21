@@ -234,3 +234,13 @@ void ServerLobbyMenu::updateLockButton() const
 		break;
 	}
 }
+
+void ServerLobbyMenu::nextPhase()
+{
+	if (getPhase() == TEAM_PHASE)
+	{
+		mapSelectButton->setEnabled(false);
+		mapSelectEditField->setEnabled(false);
+	}
+	LobbyMenu::nextPhase();
+}

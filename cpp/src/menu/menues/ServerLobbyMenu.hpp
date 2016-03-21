@@ -26,6 +26,7 @@ class ServerLobbyMenu : public LobbyMenu
 		void handleSkillUserPacket(SkillUserPacket*, int);
 		void handleItemUserPacket(ItemUserPacket*, int);
 		virtual void updateLockButton() const override;
+		virtual void nextPhase() override;
 	private:
 		// converts the UserPacket* into a UserPacketWithID(Packet*, id)* and sends it to all clients
 		std::vector<LobbyPlayer*> getUpdatedPlayers() const;

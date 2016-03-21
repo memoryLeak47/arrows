@@ -53,7 +53,7 @@ class LobbyMenu : public NetworkingMenu
 		virtual void updateLockButton() const = 0;
 		void updateMap(const std::vector<std::vector<int>>&);
         	void unlockAll();
-		void nextPhase();
+		virtual void nextPhase();
 		Button* lockButton; // Verweiß auf den NextStep/LockIn Button
 	private:
 		int phase;
