@@ -81,7 +81,7 @@ void LobbyPlayer::applyLockUserPacket(LockUserPacket* packet)
 	{
 		delete lockPacket;
 	}
-	lockPacket = packet;
+	lockPacket = new LockUserPacket(*packet);
 }
 
 void LobbyPlayer::applyTeamUserPacket(TeamUserPacket* packet)
@@ -90,7 +90,7 @@ void LobbyPlayer::applyTeamUserPacket(TeamUserPacket* packet)
 	{
 		delete teamPacket;
 	}
-	teamPacket = packet;
+	teamPacket = new TeamUserPacket(*packet);
 }
 
 void LobbyPlayer::applyLoginUserPacket(LoginUserPacket* packet)
@@ -99,7 +99,7 @@ void LobbyPlayer::applyLoginUserPacket(LoginUserPacket* packet)
 	{
 		delete loginPacket;
 	}
-	loginPacket = packet;
+	loginPacket = new LoginUserPacket(*packet);
 }
 
 void LobbyPlayer::applyAvatarUserPacket(AvatarUserPacket* packet)
@@ -108,7 +108,7 @@ void LobbyPlayer::applyAvatarUserPacket(AvatarUserPacket* packet)
 	{
 		delete avatarPacket;
 	}
-	avatarPacket = packet;
+	avatarPacket = new AvatarUserPacket(*packet);
 }
 
 void LobbyPlayer::applySkillUserPacket(SkillUserPacket* packet)
@@ -117,7 +117,7 @@ void LobbyPlayer::applySkillUserPacket(SkillUserPacket* packet)
 	{
 		delete skillPacket;
 	}
-	skillPacket = packet;
+	skillPacket = new SkillUserPacket(*packet);
 }
 
 void LobbyPlayer::applyItemUserPacket(ItemUserPacket* packet)
@@ -126,7 +126,7 @@ void LobbyPlayer::applyItemUserPacket(ItemUserPacket* packet)
 	{
 		delete itemPacket;
 	}
-	itemPacket = packet;
+	itemPacket = new ItemUserPacket(*packet);
 }
 
 std::string LobbyPlayer::toString() const

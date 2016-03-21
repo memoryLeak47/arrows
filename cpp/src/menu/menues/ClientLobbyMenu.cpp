@@ -29,6 +29,7 @@ void ClientLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
 	else
 	{
 		Debug::warn("got packet from non-server player");
+		delete packet;
 	}
 }
 
@@ -76,8 +77,9 @@ void ClientLobbyMenu::handlePacketByID(Packet* packet, int id)
 	}
 	else
 	{
-		Debug::warn("ClientLobbyMenu::handlePacket(): awkward packet(" + Converter::intToString((int)packet->getCID()) + ") in awkward phase(" + Converter::intToString(getPhase()) + ")");
+		Debug::warn("ClientLobbyMenu::handlePacketByID(): awkward packet(" + Converter::intToString((int)packet->getCID()) + ") in awkward phase(" + Converter::intToString(getPhase()) + ")");
 	}
+	delete packet;
 }
 
 void ClientLobbyMenu::lockPressed()
@@ -91,6 +93,9 @@ void ClientLobbyMenu::lockPressed()
 
 void ClientLobbyMenu::disconnectPressed()
 {
+	DisconnectUserPacket* packet = new DisconnectUserPacket();
+	sendToServer(packet);
+	delete packet;
 	Main::getMenuList()->back();
 }
 
@@ -175,7 +180,6 @@ void ClientLobbyMenu::handleItemUserPacket(ItemUserPacket* packet, int id)
 void ClientLobbyMenu::handleMapPacket(MapPacket* packet)
 {
 	updateMap(packet->getInts());
-	delete packet;
 }
 
 void ClientLobbyMenu::updateLockButton() const

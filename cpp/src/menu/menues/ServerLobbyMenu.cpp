@@ -22,7 +22,6 @@ ServerLobbyMenu::ServerLobbyMenu()
 	};
 	addComponent(mapSelectButton = new MapSelectButton(this, PixelRect(Screen::getSize().getX()-180, 250, 50, 20), "Ok"));
 
-
 	createServerPlayer();
 	updatePlayerIcons();
 }
@@ -83,12 +82,15 @@ void ServerLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
 	{
 		Debug::warn("ServerLobbyMenu::handlePacket(): awkward packet(" + Converter::intToString((int)packet->getCID()) + ") in awkward phase(" + Converter::intToString(getPhase()) + ")");
 	}
+	delete packet;
 }
 
 void ServerLobbyMenu::createServerPlayer()
 {
-	LobbyPlayer* me = new LobbyPlayer(new LoginUserPacket(Main::getAccount()->getName(), Main::getAccount()->getRank()));
+	LoginUserPacket* packet = new LoginUserPacket(Main::getAccount()->getName(), Main::getAccount()->getRank());
+	LobbyPlayer* me = new LobbyPlayer(packet);
 	addPlayer(me);
+	delete packet;
 }
 
 void ServerLobbyMenu::lockPressed()
@@ -112,6 +114,7 @@ void ServerLobbyMenu::teamPressed(Team* team)
 	TeamUserPacket* packet = new TeamUserPacket(team->getID());
 	getLocalPlayer()->applyTeamUserPacket(packet);
 	packAndSendToAllClients(packet, 0);
+	delete packet;
 	updatePlayerIcons();
 }
 
