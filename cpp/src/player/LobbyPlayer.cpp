@@ -10,7 +10,7 @@ LobbyPlayer::LobbyPlayer(LoginUserPacket* login, const sf::IpAddress& ip)
 	itemPacket = new ItemUserPacket();
 	avatarPacket = new AvatarUserPacket();
 	skillPacket = new SkillUserPacket();
-	loginPacket = login;
+	loginPacket = new LoginUserPacket(*login);
 }
 
 LobbyPlayer::LobbyPlayer(LoginUserPacket* login)
