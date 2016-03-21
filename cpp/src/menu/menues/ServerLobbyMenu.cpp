@@ -90,6 +90,7 @@ void ServerLobbyMenu::createServerPlayer()
 	LoginUserPacket* packet = new LoginUserPacket(Main::getAccount()->getName(), Main::getAccount()->getRank());
 	LobbyPlayer* me = new LobbyPlayer(packet);
 	addPlayer(me);
+	delete me;
 	delete packet;
 }
 
@@ -176,6 +177,7 @@ void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, const sf::I
 			delete mapPacket;
 		}
 		addPlayer(player);
+		delete player;
 		packAndSendToAllClients(packet, ipToID(ip, getPlayers())); // das erhaltene packet wird an alle clients weitergegeben
 		updatePlayerIcons();
 	}
@@ -243,12 +245,12 @@ std::vector<LobbyPlayer*> ServerLobbyMenu::getUpdatedPlayers() const
 
 void ServerLobbyMenu::addUpdatedPlayer(LobbyPlayer* p)
 {
-	updatedPlayers.push_back(p);
+	updatedPlayers.push_back(new LobbyPlayer(*p));
 }
 
 void ServerLobbyMenu::addPlayer(LobbyPlayer* p)
 {
-	LobbyMenu::addPlayer(p);
+	LobbyMenu::addPlayer(new LobbyPlayer(*p));
 	addUpdatedPlayer(p);
 }
 
