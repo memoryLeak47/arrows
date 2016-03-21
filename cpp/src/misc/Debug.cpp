@@ -1,5 +1,6 @@
 #include "Debug.hpp"
 
+#include "Converter.hpp"
 #include "../core/Main.hpp"
 
 void Debug::init()
@@ -66,4 +67,11 @@ void Debug::errorIf(bool b, const std::string& s)
 	{
 		error(s);
 	}
+}
+
+void Debug::time(const std::string& s)
+{
+	static sf::Clock c;
+	int t = c.restart().asMicroseconds();
+	std::cout << TIME_COLOR << "TIME: " << Converter::intToString(t) << ": " << s << std::endl;
 }
