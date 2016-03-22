@@ -15,6 +15,8 @@ class CompressBuffer;
 class LobbyPlayer : public Compressable
 {
 	public:
+		LobbyPlayer(LobbyPlayer*);
+		LobbyPlayer(const LobbyPlayer&);
 		LobbyPlayer(LoginUserPacket*, const sf::IpAddress&);
 		LobbyPlayer(LoginUserPacket*);
 		LobbyPlayer(CompressBuffer*);

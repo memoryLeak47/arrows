@@ -3,6 +3,15 @@
 #include "../misc/Debug.hpp"
 #include "../core/Main.hpp"
 
+LobbyPlayer::LobbyPlayer(LobbyPlayer* player)
+	: ip(player->ip), lockPacket(player->lockPacket), teamPacket(player->teamPacket), itemPacket(player->itemPacket), avatarPacket(player->avatarPacket), skillPacket(player->skillPacket), loginPacket(player->loginPacket)
+{}
+
+LobbyPlayer::LobbyPlayer(const LobbyPlayer& player)
+{
+	Debug::error("DONT USE LobbyPlayer::LobbyPlayer(const LobbyPlayer&); USE THE POINTER STUFF");
+}
+
 LobbyPlayer::LobbyPlayer(LoginUserPacket* login, const sf::IpAddress& ip)
 	: ip(ip)
 {

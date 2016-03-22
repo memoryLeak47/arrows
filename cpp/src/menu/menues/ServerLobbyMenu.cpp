@@ -299,12 +299,12 @@ std::vector<LobbyPlayer*> ServerLobbyMenu::getUpdatedPlayers() const
 
 void ServerLobbyMenu::addUpdatedPlayer(LobbyPlayer* p)
 {
-	updatedPlayers.push_back(new LobbyPlayer(*p));
+	updatedPlayers.push_back(new LobbyPlayer(p));
 }
 
 void ServerLobbyMenu::addPlayer(LobbyPlayer* p)
 {
-	LobbyMenu::addPlayer(new LobbyPlayer(*p));
+	LobbyMenu::addPlayer(new LobbyPlayer(p));
 	addUpdatedPlayer(p);
 }
 
