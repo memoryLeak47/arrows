@@ -346,11 +346,22 @@ void ServerLobbyMenu::nextPhase()
 		mapSelectButton->setEnabled(false);
 		mapSelectEditField->setEnabled(false);
 	}
-	else if (getPhase() == AVATAR_PHASE || getPhase() == SKILL_PHASE || getPhase() == ITEM_PHASE)
+	LobbyMenu::nextPhase();
+	if (getPhase() == AVATAR_PHASE+1 || getPhase() == SKILL_PHASE+1 || getPhase() == ITEM_PHASE+1)
 	{
 		updatePlayers();
 	}
-	LobbyMenu::nextPhase();
+}
+
+void ServerLobbyMenu::unlockAll()
+{
+	LobbyMenu::unlockAll();
+	LockUserPacket* packet = new LockUserPacket(false);
+	for (int i = 0; i < getUpdatedPlayers().size(); i++)
+	{
+		getUpdatedPlayers()[i]->applyLockUserPacket(packet);
+	}
+	delete packet;
 }
 
 void ServerLobbyMenu::removePlayer(int id)

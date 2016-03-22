@@ -53,7 +53,7 @@ class LobbyMenu : public NetworkingMenu
 		virtual void addPlayer(LobbyPlayer*);
 		virtual void updateLockButton() const = 0;
 		void updateMap(const std::vector<std::vector<int>>&);
-        	void unlockAll();
+        	virtual void unlockAll();
 		virtual void nextPhase();
 		virtual void removePlayer(int);
 		void clearPlayers();
