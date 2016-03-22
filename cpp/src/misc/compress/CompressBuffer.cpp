@@ -141,8 +141,6 @@ std::vector<void*> CompressBuffer::cutVectorByCID(CID cid)
 
 std::string CompressBuffer::cut(int amount)
 {
-	Debug::warnIf(string.size() < amount-1, "CompressBuffer::cut(): string.size() < amount-1");
-	Debug::noteIf(TAG_COMPRESSION, "CompressBuffer::cut() string=" + Converter::charsToString(string) + "; amount=" + Converter::intToString(amount));
 	counter += amount;
 	return string.substr(counter-amount, amount);
 }
