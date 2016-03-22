@@ -20,6 +20,7 @@ class CompressBuffer
 		std::vector<void*> cutVectorByCID(CID);
 		std::string cut(int amount); // removes <amount> chars from <chars> and returns the removed part
 	private:
+		int counter;
 		std::string string;
 };
 

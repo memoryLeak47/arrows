@@ -14,6 +14,7 @@
 #include "../../player/LobbyPlayer.hpp"
 
 CompressBuffer::CompressBuffer(const std::string& s)
+	: counter(0)
 {
 	this->string = s;
 }
@@ -140,7 +141,6 @@ std::string CompressBuffer::cut(int amount)
 {
 	Debug::warnIf(string.size() < amount-1, "CompressBuffer::cut(): string.size() < amount-1");
 	Debug::noteIf(TAG_COMPRESSION, "CompressBuffer::cut() string=" + Converter::charsToString(string) + "; amount=" + Converter::intToString(amount));
-	std::string ret = string.substr(0, amount);
-	string = string.substr(amount, string.size()-1);
-	return ret;
+	counter += amount;
+	return string.substr(counter-amount, amount);
 }
