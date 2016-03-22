@@ -135,6 +135,20 @@ void ServerLobbyMenu::packAndSendToAllClients(UserPacket* p, int id) const
 	delete packet;
 }
 
+void ServerLobbyMenu::packAndSendToFriendsOf(UserPacket* packet, int id) const
+{
+	for (int i = 1; i < getPlayers().size(); i++)
+	{
+		if (getPlayer(id)->getTeamUserPacket()->getTeam()->isFriendlyTeam(getPlayer(i)->getTeamUserPacket()->getTeam()))
+		{
+			UserPacketWithID* upwid = new UserPacketWithID(packet, id);
+			send(upwid, getPlayer(i)->getIP());
+			delete upwid;
+		}
+	}
+}
+
+
 void ServerLobbyMenu::sendToAllClients(Packet* packet) const
 {
 	for (int i = 1; i < getPlayers().size(); i++)
@@ -248,6 +262,7 @@ void ServerLobbyMenu::playerPropertySelected(PlayerPropertyUserPacket* packet)
 		default:
 			Debug::warn("ServerLobbyMenu::playerPropertySelected(): awkward packet");
 	}
+	packAndSendToFriendsOf(packet, 0);
 }
 
 LobbyPlayer* ServerLobbyMenu::getUpdatedPlayer(int id) const
