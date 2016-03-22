@@ -139,6 +139,9 @@ void ServerLobbyMenu::packAndSendToFriendsOf(UserPacket* packet, int id) const
 {
 	for (int i = 1; i < getPlayers().size(); i++)
 	{
+		if (id == i) // Client verwaltet sich selbst
+			continue;
+
 		if (getPlayer(id)->getTeamUserPacket()->getTeam()->isFriendlyTeam(getPlayer(i)->getTeamUserPacket()->getTeam()))
 		{
 			UserPacketWithID* upwid = new UserPacketWithID(packet, id);

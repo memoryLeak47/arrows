@@ -203,6 +203,19 @@ void ClientLobbyMenu::updateLockButton() const
 
 void ClientLobbyMenu::playerPropertySelected(PlayerPropertyUserPacket* packet)
 {
-	Debug::warn("ClientLobbyMenu::playerPropertySelected(): TODO");
-	// TODO
+	switch (packet->getCID())
+	{
+		case AVATAR_USER_PACKET_CID:
+			getLocalPlayer()->applyAvatarUserPacket(dynamic_cast<AvatarUserPacket*>(packet));
+			break;
+		case SKILL_USER_PACKET_CID:
+			getLocalPlayer()->applySkillUserPacket(dynamic_cast<SkillUserPacket*>(packet));
+			break;
+		case ITEM_USER_PACKET_CID:
+			getLocalPlayer()->applyItemUserPacket(dynamic_cast<ItemUserPacket*>(packet));
+			break;
+		default:
+			Debug::warn("ClientLobbyMenu::playerPropertySelected(): awkward packet");
+	}
+	sendToServer(packet);
 }
