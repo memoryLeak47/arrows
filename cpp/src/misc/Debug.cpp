@@ -5,7 +5,7 @@
 
 void Debug::init()
 {
-
+	time("Init Debug time");
 }
 
 // note
@@ -72,6 +72,6 @@ void Debug::errorIf(bool b, const std::string& s)
 void Debug::time(const std::string& s)
 {
 	static sf::Clock c;
-	int t = c.restart().asMicroseconds();
+	int t = c.restart().asMilliseconds();
 	std::cout << TIME_COLOR << "TIME: " << Converter::intToString(t) << ": " << s << std::endl;
 }

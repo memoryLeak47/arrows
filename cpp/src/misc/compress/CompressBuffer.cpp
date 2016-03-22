@@ -55,6 +55,7 @@ std::vector<std::vector<int>> CompressBuffer::cutMap()
 
 	std::vector<std::vector<int>> map;
 
+	Debug::time("Start");
 	for (int y = 0; y < height; y++)
 	{
 		map.push_back(std::vector<int>());
@@ -63,6 +64,7 @@ std::vector<std::vector<int>> CompressBuffer::cutMap()
 			map.back().push_back(cutInt());
 		}
 	}
+	Debug::time("End");
 	return map;
 }
 
