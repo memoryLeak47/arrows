@@ -97,13 +97,9 @@ void ServerLobbyMenu::createServerPlayer()
 
 void ServerLobbyMenu::lockPressed()
 {
-	Debug::test("yo, lockPressed()");
 	LockUserPacket* l = new LockUserPacket(!getLocalPlayer()->getLockUserPacket()->isLocked());
-	Debug::test("yo, 1");
 	packAndSendToAllClients(l, 0);
-	Debug::test("yo, 2");
 	deleteAndNULL(l);
-	Debug::test("yo, going to next phase");
 	nextPhase();
 }
 
@@ -234,7 +230,6 @@ void ServerLobbyMenu::handleAvatarUserPacket(AvatarUserPacket* packet, int id)
 
 	packAndSendToFriendsOf(packet, id);
 	getUpdatedPlayer(id)->applyAvatarUserPacket(packet);
-	Debug::testIf(getUpdatedPlayer(id) == getPlayer(id), "WOW, SHIT TOO");
 }
 
 void ServerLobbyMenu::handleSkillUserPacket(SkillUserPacket* packet, int id)
@@ -346,7 +341,6 @@ void ServerLobbyMenu::updatePlayers()
 
 void ServerLobbyMenu::nextPhase()
 {
-	Debug::test("yo, nextPhase");
 	if (getPhase() == TEAM_PHASE)
 	{
 		mapSelectButton->setEnabled(false);
@@ -354,11 +348,8 @@ void ServerLobbyMenu::nextPhase()
 	}
 	else if (getPhase() == AVATAR_PHASE || getPhase() == SKILL_PHASE || getPhase() == ITEM_PHASE)
 	{
-		Debug::test("updatePlayers");
 		updatePlayers();
-		Debug::test("updatePlayers  - END");
 	}
-	Debug::test("yo, Lobby::nextPhase");
 	LobbyMenu::nextPhase();
 }
 
