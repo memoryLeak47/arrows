@@ -4,8 +4,15 @@
 #include "../core/Main.hpp"
 
 LobbyPlayer::LobbyPlayer(LobbyPlayer* player)
-	: ip(player->ip), lockPacket(player->lockPacket), teamPacket(player->teamPacket), itemPacket(player->itemPacket), avatarPacket(player->avatarPacket), skillPacket(player->skillPacket), loginPacket(player->loginPacket)
-{}
+	: ip(player->ip)
+{
+	lockPacket = new LockUserPacket(*player->lockPacket);
+	teamPacket = new TeamUserPacket(*player->teamPacket);
+	loginPacket = new LoginUserPacket(*player->loginPacket);
+	avatarPacket = new AvatarUserPacket(*player->avatarPacket);
+	skillPacket = new SkillUserPacket(*player->skillPacket);
+	itemPacket = new ItemUserPacket(*player->itemPacket);
+}
 
 LobbyPlayer::LobbyPlayer(const LobbyPlayer& player)
 {
