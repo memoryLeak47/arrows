@@ -4,9 +4,7 @@
 #include "../core/Main.hpp"
 
 void Debug::init()
-{
-	time("Init Debug time");
-}
+{}
 
 // note
 

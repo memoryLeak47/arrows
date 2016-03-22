@@ -8,9 +8,7 @@ MapPacket::MapPacket(const std::vector<std::vector<int>>& map)
 
 MapPacket::MapPacket(CompressBuffer* buffer)
 {
-	Debug::time("Pre");
 	map = buffer->cutMap();
-	Debug::time("Post");
 }
 
 std::vector<std::vector<int>> MapPacket::getInts() const
