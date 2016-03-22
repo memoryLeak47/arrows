@@ -225,8 +225,6 @@ void ServerLobbyMenu::handleAvatarUserPacket(AvatarUserPacket* packet, int id)
 
 	packAndSendToFriendsOf(packet, id);
 	getUpdatedPlayer(id)->applyAvatarUserPacket(packet);
-
-	packAndSendToAllClients(packet, id);
 }
 
 void ServerLobbyMenu::handleSkillUserPacket(SkillUserPacket* packet, int id)
@@ -241,8 +239,6 @@ void ServerLobbyMenu::handleSkillUserPacket(SkillUserPacket* packet, int id)
 
 	packAndSendToFriendsOf(packet, id);
 	getUpdatedPlayer(id)->applySkillUserPacket(packet);
-
-	packAndSendToAllClients(packet, id);
 }
 
 void ServerLobbyMenu::handleItemUserPacket(ItemUserPacket* packet, int id)
@@ -257,8 +253,6 @@ void ServerLobbyMenu::handleItemUserPacket(ItemUserPacket* packet, int id)
 
 	packAndSendToFriendsOf(packet, id);
 	getUpdatedPlayer(id)->applyItemUserPacket(packet);
-
-	packAndSendToAllClients(packet, id);
 }
 
 void ServerLobbyMenu::playerPropertySelected(PlayerPropertyUserPacket* packet)
