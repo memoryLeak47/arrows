@@ -321,12 +321,28 @@ void ServerLobbyMenu::updateLockButton() const
 	}
 }
 
+void ServerLobbyMenu::updatePlayers()
+{
+	clearPlayers(); // doesn't clear the updatedPlayers
+	for (int i = 0; i < getUpdatedPlayers().size(); i++)
+	{
+		addPlayer(getUpdatedPlayers()[i]);
+	}
+	LobbyPlayersPacket* p = new LobbyPlayersPacket(getUpdatedPlayers());
+	sendToAllClients(p);
+	delete p;
+}
+
 void ServerLobbyMenu::nextPhase()
 {
 	if (getPhase() == TEAM_PHASE)
 	{
 		mapSelectButton->setEnabled(false);
 		mapSelectEditField->setEnabled(false);
+	}
+	else if (getPhase() == AVATAR_PHASE || getPhase() == SKILL_PHASE || getPhase() == ITEM_PHASE)
+	{
+		updatePlayers();
 	}
 	LobbyMenu::nextPhase();
 }

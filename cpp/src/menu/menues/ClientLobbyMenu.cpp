@@ -4,9 +4,9 @@
 #include "../../misc/Debug.hpp"
 #include "../../core/Main.hpp"
 
-ClientLobbyMenu::ClientLobbyMenu(const std::string& ip) : serverIP(ip)
+ClientLobbyMenu::ClientLobbyMenu(const std::string& ip)
+	: serverIP(ip), localPlayerID(-1)
 {
-	localPlayer = NULL;
 	LoginUserPacket* p = new LoginUserPacket(Main::getName(), Main::getRank());
 	sendToServer(p);
 	delete p;
@@ -14,8 +14,7 @@ ClientLobbyMenu::ClientLobbyMenu(const std::string& ip) : serverIP(ip)
 
 LobbyPlayer* ClientLobbyMenu::getLocalPlayer() const
 {
-	Debug::warnIf(localPlayer == NULL, "ClientLobbyMenu::getLocalPlayer(): localPlayer == NULL");
-	return localPlayer;
+	return getPlayer(localPlayerID);
 }
 
 void ClientLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
@@ -115,9 +114,9 @@ void ClientLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet)
 {
 	LobbyPlayer* player = new LobbyPlayer(packet);
 	addPlayer(player);
-	if (localPlayer == NULL)
+	if (localPlayerID == -1)
 	{
-		localPlayer = player;
+		localPlayerID = getPlayers().size()-1;
 	}
 
 	unlockAll();
@@ -126,6 +125,7 @@ void ClientLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet)
 
 void ClientLobbyMenu::handleLobbyPlayersPacket(LobbyPlayersPacket* packet)
 {
+	clearPlayers();
 	std::vector<LobbyPlayer*> players(packet->getPlayers());
 	for (int i = 0; i < players.size(); i++)
 	{

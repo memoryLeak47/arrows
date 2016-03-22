@@ -30,7 +30,7 @@ class ClientLobbyMenu : public LobbyMenu
 		virtual void updateLockButton() const override;
 		virtual void playerPropertySelected(PlayerPropertyUserPacket*) override;
 	private:
-		LobbyPlayer* localPlayer;
+		int localPlayerID;
 		sf::IpAddress serverIP;
 };
 

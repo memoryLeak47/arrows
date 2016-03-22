@@ -133,3 +133,12 @@ void LobbyMenu::removePlayer(int id)
 {
 	players.erase(players.begin() + id);
 }
+
+void LobbyMenu::clearPlayers()
+{
+	for (int i = 0; i < players.size(); i++)
+	{
+		delete players[i];
+	}
+	players.clear();
+}

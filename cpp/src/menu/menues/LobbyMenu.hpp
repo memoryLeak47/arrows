@@ -56,6 +56,7 @@ class LobbyMenu : public NetworkingMenu
         	void unlockAll();
 		virtual void nextPhase();
 		virtual void removePlayer(int);
+		void clearPlayers();
 		Button* lockButton; // Verweiß auf den NextStep/LockIn Button
 	private:
 		int phase;
