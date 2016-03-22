@@ -25,7 +25,7 @@ void PlayerPanelsAvatarIcon::onClick(int mouseButton)
 		{
 			tmp.push_back(avatars[i]);
 		}
-		Main::getMenuList()->addMenu(new ChoosePlayerPropertyMenu(getLobbyMenu(), getLobbyMenu()->getLocalPlayer()->getAvatarUserPacket(), tmp));
+		Main::getMenuList()->addMenu(new ChoosePlayerPropertyMenu(getLobbyMenu(), new AvatarUserPacket(*getLobbyMenu()->getLocalPlayer()->getAvatarUserPacket()), tmp));
 	}
 }
 

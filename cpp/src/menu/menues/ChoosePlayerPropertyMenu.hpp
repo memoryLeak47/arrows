@@ -15,6 +15,7 @@ class ChoosePlayerPropertyMenu : public Menu
 {
 	public:
 		ChoosePlayerPropertyMenu(LobbyMenu*, PlayerPropertyUserPacket*, const std::vector<PlayerProperty*>&);
+		virtual ~ChoosePlayerPropertyMenu();
 		PlayerPropertyIcon* getFirstVoidSlotIcon() const;
 		std::vector<PlayerPropertyIcon*> getSlotIcons() const;
 		LobbyMenu* getLobbyMenu() const;

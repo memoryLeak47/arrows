@@ -25,6 +25,7 @@ class ServerLobbyMenu : public LobbyMenu
 		void handleAvatarUserPacket(AvatarUserPacket*, int);
 		void handleSkillUserPacket(SkillUserPacket*, int);
 		void handleItemUserPacket(ItemUserPacket*, int);
+		virtual void playerPropertySelected(PlayerPropertyUserPacket*) override;
 		virtual void updateLockButton() const override;
 		virtual void nextPhase() override;
 	private:

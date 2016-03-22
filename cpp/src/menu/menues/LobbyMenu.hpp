@@ -29,6 +29,7 @@ class ItemUserPacket;
 class MapPacket;
 class UserPacketWithID;
 class LobbyPlayersPacket;
+class PlayerPropertyUserPacket;
 
 class LobbyMenu : public NetworkingMenu
 {
@@ -42,7 +43,7 @@ class LobbyMenu : public NetworkingMenu
 		virtual void disconnectPressed() = 0;
 		virtual void teamPressed(Team*) = 0;
 		virtual LobbyPlayer* getLocalPlayer() const = 0;
-		virtual void sendPlayerPropertyUpdate() {} // TODO
+		virtual void playerPropertySelected(PlayerPropertyUserPacket*) = 0;
 		LobbyTileMap* getLobbyTileMap() const;
 	protected:
 		bool areAllClientsLocked() const;
@@ -78,5 +79,6 @@ class LobbyMenu : public NetworkingMenu
 #include "../../network/packets/MapPacket.hpp"
 #include "../../network/packets/UserPacketWithID.hpp"
 #include "../../network/packets/LobbyPlayersPacket.hpp"
+#include "../../network/packets/PlayerPropertyUserPacket.hpp"
 
 #endif

@@ -25,7 +25,7 @@ void PlayerPanelsItemIcon::onClick(int mouseButton)
 		{
 			tmp.push_back(items[i]);
 		}
-		Main::getMenuList()->addMenu(new ChoosePlayerPropertyMenu(getLobbyMenu(), getLobbyMenu()->getLocalPlayer()->getItemUserPacket(), tmp));
+		Main::getMenuList()->addMenu(new ChoosePlayerPropertyMenu(getLobbyMenu(), new ItemUserPacket(*getLobbyMenu()->getLocalPlayer()->getItemUserPacket()), tmp));
 	}
 }
 

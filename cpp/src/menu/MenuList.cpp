@@ -39,6 +39,7 @@ void MenuList::addMenu(Menu* menu)
 
 void MenuList::back()
 {
+	delete menues.back();
 	menues.pop_back();
 }
 

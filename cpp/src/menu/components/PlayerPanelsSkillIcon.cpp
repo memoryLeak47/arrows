@@ -25,7 +25,7 @@ void PlayerPanelsSkillIcon::onClick(int mouseButton)
 		{
 			tmp.push_back(skills[i]);
 		}
-		Main::getMenuList()->addMenu(new ChoosePlayerPropertyMenu(getLobbyMenu(), getLobbyMenu()->getLocalPlayer()->getSkillUserPacket(), tmp));
+		Main::getMenuList()->addMenu(new ChoosePlayerPropertyMenu(getLobbyMenu(), new SkillUserPacket(*getLobbyMenu()->getLocalPlayer()->getSkillUserPacket()), tmp));
 	}
 }
 

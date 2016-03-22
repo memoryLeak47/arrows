@@ -232,6 +232,24 @@ void ServerLobbyMenu::handleItemUserPacket(ItemUserPacket* packet, int id)
 	packAndSendToAllClients(packet, id);
 }
 
+void ServerLobbyMenu::playerPropertySelected(PlayerPropertyUserPacket* packet)
+{
+	switch (packet->getCID())
+	{
+		case AVATAR_USER_PACKET_CID:
+			getLocalPlayer()->applyAvatarUserPacket(dynamic_cast<AvatarUserPacket*>(packet));
+			break;
+		case SKILL_USER_PACKET_CID:
+			getLocalPlayer()->applySkillUserPacket(dynamic_cast<SkillUserPacket*>(packet));
+			break;
+		case ITEM_USER_PACKET_CID:
+			getLocalPlayer()->applyItemUserPacket(dynamic_cast<ItemUserPacket*>(packet));
+			break;
+		default:
+			Debug::warn("ServerLobbyMenu::playerPropertySelected(): awkward packet");
+	}
+}
+
 LobbyPlayer* ServerLobbyMenu::getUpdatedPlayer(int id) const
 {
 	Debug::warnIf(id < 0 || id >= getUpdatedPlayers().size(), "ServerLobbyMenu::getUpdatedPlayers(): size == 0");

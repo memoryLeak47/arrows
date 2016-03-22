@@ -200,3 +200,9 @@ void ClientLobbyMenu::updateLockButton() const
 		break;
 	}
 }
+
+void ClientLobbyMenu::playerPropertySelected(PlayerPropertyUserPacket* packet)
+{
+	Debug::warn("ClientLobbyMenu::playerPropertySelected(): TODO");
+	// TODO
+}

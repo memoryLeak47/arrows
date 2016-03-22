@@ -2,6 +2,7 @@
 
 #include "../../core/Screen.hpp"
 #include "../../core/Main.hpp"
+#include "../../misc/Converter.hpp"
 #include "../../misc/Debug.hpp"
 #include "../components/BackButton.hpp"
 
@@ -31,7 +32,6 @@ class OkButton : public Button
 		OkButton(ChoosePlayerPropertyMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
 		virtual void onPress() override
 		{
-			
 			dynamic_cast<ChoosePlayerPropertyMenu*>(getParent())->okPressed();
 		}
 	
@@ -40,18 +40,11 @@ class OkButton : public Button
 ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(LobbyMenu* lobbyMenu, PlayerPropertyUserPacket* packet, const std::vector<PlayerProperty*>& props)
 	: chooseProperties(props)
 {
-	if (lobbyMenu == NULL)
-	{
-		Debug::error("ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(): lobbyMenu == NULL");
-		return;
-	}
+	Debug::errorIf(lobbyMenu == NULL, "ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(): lobbyMenu == NULL");
+	Debug::errorIf(packet == NULL, "ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(): packet == NULL");
+
 	lobby = lobbyMenu;
-	if (packet == NULL)
-	{
-		Debug::error("ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(): packet == NULL");
-		return;
-	}
-	slotPacket = packet;
+	slotPacket = packet; // copy-constructor of packet already used when this constructor is called
 
 	// Slot Icons
 	for (int i = 0; i < slotPacket->getPlayerProperties().size(); i++)
@@ -73,6 +66,11 @@ ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(LobbyMenu* lobbyMenu, PlayerP
 
 	// Back Button
 	addComponent(new BackButton(this, PixelVector(300, Screen::getSize().getY()-100)));
+}
+
+ChoosePlayerPropertyMenu::~ChoosePlayerPropertyMenu()
+{
+	delete slotPacket;
 }
 
 PlayerPropertyIcon* ChoosePlayerPropertyMenu::getFirstVoidSlotIcon() const
@@ -114,8 +112,8 @@ void ChoosePlayerPropertyMenu::okPressed()
 		//slotPacket->getPlayerProperty()[i] = slotIcons.get(i).getPlayerProperty();
 	}
 	slotPacket->setIDs(ids);
+	getLobbyMenu()->playerPropertySelected(slotPacket); // weist das LobbyMenu darauf hin, dass die Packets neu versendet werden müssen
 	Main::getMenuList()->back();
-	getLobbyMenu()->sendPlayerPropertyUpdate(); // weist das LobbyMenu darauf hin, dass die Packets neu versendet werden müssen
 }
 
 void ChoosePlayerPropertyMenu::chooseIconPressed(PlayerProperty* prop)
