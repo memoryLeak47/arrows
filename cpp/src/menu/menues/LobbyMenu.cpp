@@ -128,3 +128,8 @@ void LobbyMenu::nextPhase()
 	}
 	unlockAll();
 }
+
+void LobbyMenu::removePlayer(int id)
+{
+	players.erase(players.begin() + id);
+}

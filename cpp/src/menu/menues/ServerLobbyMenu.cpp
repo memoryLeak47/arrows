@@ -116,6 +116,8 @@ void ServerLobbyMenu::teamPressed(Team* team)
 	getLocalPlayer()->applyTeamUserPacket(packet);
 	packAndSendToAllClients(packet, 0);
 	delete packet;
+
+	unlockAll();
 	updatePlayerIcons();
 }
 
@@ -168,14 +170,19 @@ void ServerLobbyMenu::handleLockUserPacket(LockUserPacket* packet, int id)
 
 void ServerLobbyMenu::handleDisconnectUserPacket(DisconnectUserPacket* packet, int id)
 {
-	getPlayers().erase(getPlayers().begin()+id);
+	removePlayer(id);
 	packAndSendToAllClients(packet, id);
+
+	unlockAll();
+	updatePlayerIcons();
 }
 
 void ServerLobbyMenu::handleTeamUserPacket(TeamUserPacket* packet, int id)
 {
 	getPlayer(id)->applyTeamUserPacket(packet);
 	packAndSendToAllClients(packet, id);
+
+	unlockAll();
 	updatePlayerIcons();
 }
 
@@ -196,6 +203,8 @@ void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, const sf::I
 		addPlayer(player);
 		delete player;
 		packAndSendToAllClients(packet, ipToID(ip, getPlayers())); // das erhaltene packet wird an alle clients weitergegeben
+
+		unlockAll();
 		updatePlayerIcons();
 	}
 	else
@@ -320,4 +329,10 @@ void ServerLobbyMenu::nextPhase()
 		mapSelectEditField->setEnabled(false);
 	}
 	LobbyMenu::nextPhase();
+}
+
+void ServerLobbyMenu::removePlayer(int id)
+{
+	LobbyMenu::removePlayer(id);
+	updatedPlayers.erase(updatedPlayers.begin() + id);
 }

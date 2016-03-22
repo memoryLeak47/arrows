@@ -119,6 +119,7 @@ void ClientLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet)
 	{
 		localPlayer = player;
 	}
+
 	unlockAll();
 	updatePlayerIcons();
 }
@@ -130,6 +131,7 @@ void ClientLobbyMenu::handleLobbyPlayersPacket(LobbyPlayersPacket* packet)
 	{
 		addPlayer(players[i]);
 	}
+
 	updatePlayerIcons();
 }
 
@@ -145,14 +147,19 @@ void ClientLobbyMenu::handleLockUserPacket(LockUserPacket* packet, int id)
 	}
 }
 
-void ClientLobbyMenu::handleDisconnectUserPacket(DisconnectUserPacket*, int)
+void ClientLobbyMenu::handleDisconnectUserPacket(DisconnectUserPacket* packet, int id)
 {
-	Debug::warn("ClientLobbyMenu::handleDisconnectUserPacket(): TODO");
+	removePlayer(id);
+
+	unlockAll();
+	updatePlayerIcons();
 }
 
 void ClientLobbyMenu::handleTeamUserPacket(TeamUserPacket* packet, int id)
 {
 	getPlayer(id)->applyTeamUserPacket(packet);
+
+	unlockAll();
 	updatePlayerIcons();
 }
 
@@ -179,6 +186,7 @@ void ClientLobbyMenu::handleItemUserPacket(ItemUserPacket* packet, int id)
 
 void ClientLobbyMenu::handleMapPacket(MapPacket* packet)
 {
+	unlockAll();
 	updateMap(packet->getInts());
 }
 
