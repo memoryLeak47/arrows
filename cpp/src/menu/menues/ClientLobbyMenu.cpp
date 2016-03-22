@@ -70,7 +70,7 @@ void ClientLobbyMenu::handlePacketByID(Packet* packet, int id)
 	{
 		handleMapPacket((MapPacket*) packet);
 	}
-	else if (packet->getCID() == LOBBY_PLAYERS_PACKET_CID && getPhase() == TEAM_PHASE)
+	else if (packet->getCID() == LOBBY_PLAYERS_PACKET_CID)
 	{
 		handleLobbyPlayersPacket((LobbyPlayersPacket*) packet);
 	}
