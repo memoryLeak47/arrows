@@ -70,7 +70,7 @@ ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(LobbyMenu* lobbyMenu, PlayerP
 
 ChoosePlayerPropertyMenu::~ChoosePlayerPropertyMenu()
 {
-	delete slotPacket;
+	deleteAndNULL(slotPacket);
 }
 
 PlayerPropertyIcon* ChoosePlayerPropertyMenu::getFirstVoidSlotIcon() const

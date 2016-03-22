@@ -12,6 +12,8 @@
 #define STANDART_JUMPPOWER 0.6f
 #define STANDART_ACCELERATION 0.18f
 
+#define deleteAndNULL(x) delete x; x = NULL
+
 #include <string>
 
 class MenuList;

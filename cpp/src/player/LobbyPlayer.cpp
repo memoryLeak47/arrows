@@ -1,6 +1,7 @@
 #include "LobbyPlayer.hpp"
 
 #include "../misc/Debug.hpp"
+#include "../core/Main.hpp"
 
 LobbyPlayer::LobbyPlayer(LoginUserPacket* login, const sf::IpAddress& ip)
 	: ip(ip)
@@ -79,16 +80,16 @@ void LobbyPlayer::applyLockUserPacket(LockUserPacket* packet)
 {
 	if (lockPacket != NULL)
 	{
-		delete lockPacket;
+		deleteAndNULL(lockPacket);
 	}
 	lockPacket = new LockUserPacket(*packet);
 }
 
 void LobbyPlayer::applyTeamUserPacket(TeamUserPacket* packet)
 {
-	if (teamPacket!= NULL)
+	if (teamPacket != NULL)
 	{
-		delete teamPacket;
+		deleteAndNULL(teamPacket);
 	}
 	teamPacket = new TeamUserPacket(*packet);
 }
@@ -97,7 +98,7 @@ void LobbyPlayer::applyLoginUserPacket(LoginUserPacket* packet)
 {
 	if (loginPacket != NULL)
 	{
-		delete loginPacket;
+		deleteAndNULL(loginPacket);
 	}
 	loginPacket = new LoginUserPacket(*packet);
 }
@@ -106,7 +107,7 @@ void LobbyPlayer::applyAvatarUserPacket(AvatarUserPacket* packet)
 {
 	if (avatarPacket != NULL)
 	{
-		delete avatarPacket;
+		deleteAndNULL(avatarPacket);
 	}
 	avatarPacket = new AvatarUserPacket(*packet);
 }
@@ -115,7 +116,7 @@ void LobbyPlayer::applySkillUserPacket(SkillUserPacket* packet)
 {
 	if (skillPacket != NULL)
 	{
-		delete skillPacket;
+		deleteAndNULL(skillPacket);
 	}
 	skillPacket = new SkillUserPacket(*packet);
 }
@@ -124,7 +125,7 @@ void LobbyPlayer::applyItemUserPacket(ItemUserPacket* packet)
 {
 	if (itemPacket != NULL)
 	{
-		delete itemPacket;
+		deleteAndNULL(itemPacket);
 	}
 	itemPacket = new ItemUserPacket(*packet);
 }

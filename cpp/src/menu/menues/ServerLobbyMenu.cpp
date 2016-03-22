@@ -43,7 +43,7 @@ void ServerLobbyMenu::mapSelected()
 	// sendet neue Map zu allen Clients
 	MapPacket* mapPacket = new MapPacket(ints);
 	sendToAllClients(mapPacket);
-	delete mapPacket;
+	deleteAndNULL(mapPacket);
 
 	unlockAll();
 }
@@ -82,7 +82,7 @@ void ServerLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
 	{
 		Debug::warn("ServerLobbyMenu::handlePacket(): awkward packet(" + Converter::intToString((int)packet->getCID()) + ") in awkward phase(" + Converter::intToString(getPhase()) + ")");
 	}
-	delete packet;
+	deleteAndNULL(packet);
 }
 
 void ServerLobbyMenu::createServerPlayer()
@@ -90,15 +90,15 @@ void ServerLobbyMenu::createServerPlayer()
 	LoginUserPacket* packet = new LoginUserPacket(Main::getAccount()->getName(), Main::getAccount()->getRank());
 	LobbyPlayer* me = new LobbyPlayer(packet);
 	addPlayer(me);
-	delete me;
-	delete packet;
+	deleteAndNULL(me);
+	deleteAndNULL(packet);
 }
 
 void ServerLobbyMenu::lockPressed()
 {
 	LockUserPacket* l = new LockUserPacket(!getLocalPlayer()->getLockUserPacket()->isLocked());
 	packAndSendToAllClients(l, 0);
-	delete l;
+	deleteAndNULL(l);
 	nextPhase();
 }
 
@@ -106,7 +106,7 @@ void ServerLobbyMenu::disconnectPressed()
 {
 	DisconnectUserPacket* dis = new DisconnectUserPacket();
 	packAndSendToAllClients(dis, 0);
-	delete dis;
+	deleteAndNULL(dis);
 	Main::getMenuList()->back();
 }
 
@@ -115,7 +115,7 @@ void ServerLobbyMenu::teamPressed(Team* team)
 	TeamUserPacket* packet = new TeamUserPacket(team->getID());
 	getLocalPlayer()->applyTeamUserPacket(packet);
 	packAndSendToAllClients(packet, 0);
-	delete packet;
+	deleteAndNULL(packet);
 
 	unlockAll();
 	updatePlayerIcons();
@@ -134,7 +134,7 @@ void ServerLobbyMenu::packAndSendToAllClients(UserPacket* p, int id) const
 	{
 		send(packet, getPlayer(i)->getIP());
 	}
-	delete packet;
+	deleteAndNULL(packet);
 }
 
 void ServerLobbyMenu::packAndSendToFriendsOf(UserPacket* packet, int id) const
@@ -148,7 +148,7 @@ void ServerLobbyMenu::packAndSendToFriendsOf(UserPacket* packet, int id) const
 		{
 			UserPacketWithID* upwid = new UserPacketWithID(packet, id);
 			send(upwid, getPlayer(i)->getIP());
-			delete upwid;
+			deleteAndNULL(upwid);
 		}
 	}
 }
@@ -198,10 +198,10 @@ void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, const sf::I
 		{
 			MapPacket* mapPacket = new MapPacket(getLobbyTileMap()->getInts());
 			send(mapPacket, ip); // Die Map des neuen wird gesetzt
-			delete mapPacket;
+			deleteAndNULL(mapPacket);
 		}
 		addPlayer(player);
-		delete player;
+		deleteAndNULL(player);
 		packAndSendToAllClients(packet, ipToID(ip, getPlayers())); // das erhaltene packet wird an alle clients weitergegeben
 
 		unlockAll();
@@ -225,6 +225,7 @@ void ServerLobbyMenu::handleAvatarUserPacket(AvatarUserPacket* packet, int id)
 
 	packAndSendToFriendsOf(packet, id);
 	getUpdatedPlayer(id)->applyAvatarUserPacket(packet);
+	Debug::testIf(getUpdatedPlayer(id) == getPlayer(id), "WOW, SHIT TOO");
 }
 
 void ServerLobbyMenu::handleSkillUserPacket(SkillUserPacket* packet, int id)
@@ -324,7 +325,7 @@ void ServerLobbyMenu::updatePlayers()
 	}
 	LobbyPlayersPacket* p = new LobbyPlayersPacket(getUpdatedPlayers());
 	sendToAllClients(p);
-	delete p;
+	deleteAndNULL(p);
 }
 
 void ServerLobbyMenu::nextPhase()

@@ -3,6 +3,7 @@
 #include "../../misc/compress/Compressable.hpp"
 #include "../components/Label.hpp"
 #include "../../core/Screen.hpp"
+#include "../../core/Main.hpp"
 #include "../../misc/Converter.hpp"
 #include "../../misc/Debug.hpp"
 
@@ -42,7 +43,7 @@ LobbyMenu::LobbyMenu()
 
 LobbyMenu::~LobbyMenu()
 {
-	delete tileMap;
+	deleteAndNULL(tileMap);
 }
 
 std::vector<LobbyPlayer*> LobbyMenu::getPlayers() const
@@ -138,7 +139,7 @@ void LobbyMenu::clearPlayers()
 {
 	for (int i = 0; i < players.size(); i++)
 	{
-		delete players[i];
+		deleteAndNULL(players[i]);
 	}
 	players.clear();
 }

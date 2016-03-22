@@ -31,10 +31,10 @@ Main::Main()
 
 Main::~Main()
 {
-	delete menuList;
-	delete networkDevice;
-	delete game;
-	delete account; // really needed?
+	deleteAndNULL(menuList);
+	deleteAndNULL(networkDevice);
+	deleteAndNULL(game);
+	deleteAndNULL(account); // really needed?
 	Screen::uninit();
 	Team::uninit();
 	Avatar::uninit();
@@ -104,8 +104,7 @@ Account* Main::getAccount()
 
 void Main::logout()
 {
-	delete account;
-	account = NULL;
+	deleteAndNULL(account);
 }
 
 MenuList* Main::getMenuList()

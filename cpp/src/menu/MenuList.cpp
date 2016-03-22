@@ -2,6 +2,7 @@
 
 #include "../misc/Debug.hpp"
 #include "menues/LoginMenu.hpp"
+#include "../core/Main.hpp"
 
 MenuList::MenuList()
 {
@@ -39,7 +40,7 @@ void MenuList::addMenu(Menu* menu)
 
 void MenuList::back()
 {
-	delete menues.back();
+	deleteAndNULL(menues[menues.size()-1]);
 	menues.pop_back();
 }
 

@@ -24,7 +24,7 @@ void Screen::init()
 void Screen::uninit()
 {
 	window->close();
-	delete window;
+	deleteAndNULL(window);
 }
 
 void Screen::tick()

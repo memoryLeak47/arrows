@@ -9,7 +9,7 @@ ClientLobbyMenu::ClientLobbyMenu(const std::string& ip)
 {
 	LoginUserPacket* p = new LoginUserPacket(Main::getName(), Main::getRank());
 	sendToServer(p);
-	delete p;
+	deleteAndNULL(p);
 }
 
 LobbyPlayer* ClientLobbyMenu::getLocalPlayer() const
@@ -28,7 +28,7 @@ void ClientLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
 	else
 	{
 		Debug::warn("got packet from non-server player");
-		delete packet;
+		deleteAndNULL(packet);
 	}
 }
 
@@ -78,7 +78,7 @@ void ClientLobbyMenu::handlePacketByID(Packet* packet, int id)
 	{
 		Debug::warn("ClientLobbyMenu::handlePacketByID(): awkward packet(" + Converter::intToString((int)packet->getCID()) + ") in awkward phase(" + Converter::intToString(getPhase()) + ")");
 	}
-	delete packet;
+	deleteAndNULL(packet);
 }
 
 void ClientLobbyMenu::lockPressed()
@@ -87,14 +87,14 @@ void ClientLobbyMenu::lockPressed()
 	Debug::warnIf(getLocalPlayer()->getLockUserPacket() == NULL, "ClientLobbyMenu::lockPressed(): getLocalPlayer()->getLockUserPacket() == NULL");
 	LockUserPacket* packet = new LockUserPacket(!getLocalPlayer()->getLockUserPacket()->isLocked());
 	sendToServer(packet);
-	delete packet;
+	deleteAndNULL(packet);
 }
 
 void ClientLobbyMenu::disconnectPressed()
 {
 	DisconnectUserPacket* packet = new DisconnectUserPacket();
 	sendToServer(packet);
-	delete packet;
+	deleteAndNULL(packet);
 	Main::getMenuList()->back();
 }
 
@@ -102,7 +102,7 @@ void ClientLobbyMenu::teamPressed(Team* team)
 {
 	TeamUserPacket* packet = new TeamUserPacket(team->getID());
 	sendToServer(packet);
-	delete packet;
+	deleteAndNULL(packet);
 }
 
 void ClientLobbyMenu::sendToServer(Packet* p)
