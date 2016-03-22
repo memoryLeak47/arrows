@@ -96,7 +96,7 @@ void LobbyMenu::updatePlayerIcons() const
 
 LobbyPlayer* LobbyMenu::getPlayer(int id) const
 {
-	Debug::warnIf(id < 0 || id >= getPlayers().size(), "LobbyMenu::getPlayer(): id out of range");
+	Debug::warnIf(id < 0 || id >= getPlayers().size(), "LobbyMenu::getPlayer(): id out of range: " + Converter::intToString(id));
 	return players[id];
 }
 
