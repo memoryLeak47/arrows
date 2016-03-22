@@ -114,10 +114,12 @@ void LobbyMenu::updateMap(const std::vector<std::vector<int>>& ints)
 
 void LobbyMenu::unlockAll()
 {
+	LockUserPacket* packet = new LockUserPacket(false);
 	for (int i = 0; i < getPlayers().size(); i++)
 	{
-		getPlayers()[i]->applyLockUserPacket(new LockUserPacket(false));
+		getPlayers()[i]->applyLockUserPacket(packet);
 	}
+	delete packet;
 }
 
 void LobbyMenu::nextPhase()
