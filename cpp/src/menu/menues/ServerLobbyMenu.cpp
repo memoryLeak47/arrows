@@ -90,15 +90,20 @@ void ServerLobbyMenu::createServerPlayer()
 	LoginUserPacket* packet = new LoginUserPacket(Main::getAccount()->getName(), Main::getAccount()->getRank());
 	LobbyPlayer* me = new LobbyPlayer(packet);
 	addPlayer(me);
+	addUpdatedPlayer(me);
 	deleteAndNULL(me);
 	deleteAndNULL(packet);
 }
 
 void ServerLobbyMenu::lockPressed()
 {
+	Debug::test("yo, lockPressed()");
 	LockUserPacket* l = new LockUserPacket(!getLocalPlayer()->getLockUserPacket()->isLocked());
+	Debug::test("yo, 1");
 	packAndSendToAllClients(l, 0);
+	Debug::test("yo, 2");
 	deleteAndNULL(l);
+	Debug::test("yo, going to next phase");
 	nextPhase();
 }
 
@@ -204,6 +209,7 @@ void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, const sf::I
 			deleteAndNULL(mapPacket);
 		}
 		addPlayer(player);
+		addUpdatedPlayer(player);
 		deleteAndNULL(player);
 		packAndSendToAllClients(packet, ipToID(ip, getPlayers())); // das erhaltene packet wird an alle clients weitergegeben
 
@@ -305,7 +311,6 @@ void ServerLobbyMenu::addUpdatedPlayer(LobbyPlayer* p)
 void ServerLobbyMenu::addPlayer(LobbyPlayer* p)
 {
 	LobbyMenu::addPlayer(new LobbyPlayer(p));
-	addUpdatedPlayer(p);
 }
 
 void ServerLobbyMenu::updateLockButton() const
@@ -341,6 +346,7 @@ void ServerLobbyMenu::updatePlayers()
 
 void ServerLobbyMenu::nextPhase()
 {
+	Debug::test("yo, nextPhase");
 	if (getPhase() == TEAM_PHASE)
 	{
 		mapSelectButton->setEnabled(false);
@@ -348,8 +354,11 @@ void ServerLobbyMenu::nextPhase()
 	}
 	else if (getPhase() == AVATAR_PHASE || getPhase() == SKILL_PHASE || getPhase() == ITEM_PHASE)
 	{
+		Debug::test("updatePlayers");
 		updatePlayers();
+		Debug::test("updatePlayers  - END");
 	}
+	Debug::test("yo, Lobby::nextPhase");
 	LobbyMenu::nextPhase();
 }
 
