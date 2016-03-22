@@ -34,6 +34,7 @@ class ServerLobbyMenu : public LobbyMenu
 		// converts the UserPacket* into a UserPacketWithID(Packet*, id)* and sends it to all clients
 		std::vector<LobbyPlayer*> getUpdatedPlayers() const;
 		LobbyPlayer* getUpdatedPlayer(int) const;
+		LobbyPlayer* getUpdatedLocalPlayer() const;
 		void addUpdatedPlayer(LobbyPlayer*);
 		virtual void addPlayer(LobbyPlayer*) override;
 		void createServerPlayer();

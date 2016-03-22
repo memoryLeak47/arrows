@@ -114,6 +114,7 @@ void ServerLobbyMenu::teamPressed(Team* team)
 {
 	TeamUserPacket* packet = new TeamUserPacket(team->getID());
 	getLocalPlayer()->applyTeamUserPacket(packet);
+	getUpdatedLocalPlayer()->applyTeamUserPacket(packet);
 	packAndSendToAllClients(packet, 0);
 	deleteAndNULL(packet);
 
@@ -165,6 +166,7 @@ void ServerLobbyMenu::sendToAllClients(Packet* packet) const
 void ServerLobbyMenu::handleLockUserPacket(LockUserPacket* packet, int id)
 {
 	getPlayer(id)->applyLockUserPacket(packet);
+	getUpdatedPlayer(id)->applyLockUserPacket(packet);
 	packAndSendToAllClients(packet, id);
 }
 
@@ -180,6 +182,7 @@ void ServerLobbyMenu::handleDisconnectUserPacket(DisconnectUserPacket* packet, i
 void ServerLobbyMenu::handleTeamUserPacket(TeamUserPacket* packet, int id)
 {
 	getPlayer(id)->applyTeamUserPacket(packet);
+	getUpdatedPlayer(id)->applyTeamUserPacket(packet);
 	packAndSendToAllClients(packet, id);
 
 	unlockAll();
@@ -262,12 +265,15 @@ void ServerLobbyMenu::playerPropertySelected(PlayerPropertyUserPacket* packet)
 	{
 		case AVATAR_USER_PACKET_CID:
 			getLocalPlayer()->applyAvatarUserPacket(dynamic_cast<AvatarUserPacket*>(packet));
+			getUpdatedLocalPlayer()->applyAvatarUserPacket(dynamic_cast<AvatarUserPacket*>(packet));
 			break;
 		case SKILL_USER_PACKET_CID:
 			getLocalPlayer()->applySkillUserPacket(dynamic_cast<SkillUserPacket*>(packet));
+			getUpdatedLocalPlayer()->applySkillUserPacket(dynamic_cast<SkillUserPacket*>(packet));
 			break;
 		case ITEM_USER_PACKET_CID:
 			getLocalPlayer()->applyItemUserPacket(dynamic_cast<ItemUserPacket*>(packet));
+			getUpdatedLocalPlayer()->applyItemUserPacket(dynamic_cast<ItemUserPacket*>(packet));
 			break;
 		default:
 			Debug::warn("ServerLobbyMenu::playerPropertySelected(): awkward packet");
@@ -279,6 +285,11 @@ LobbyPlayer* ServerLobbyMenu::getUpdatedPlayer(int id) const
 {
 	Debug::warnIf(id < 0 || id >= getUpdatedPlayers().size(), "ServerLobbyMenu::getUpdatedPlayers(): size == 0");
 	return getUpdatedPlayers()[id];
+}
+
+LobbyPlayer* ServerLobbyMenu::getUpdatedLocalPlayer() const
+{
+	return getUpdatedPlayers()[0];
 }
 
 std::vector<LobbyPlayer*> ServerLobbyMenu::getUpdatedPlayers() const
