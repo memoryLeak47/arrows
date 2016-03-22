@@ -2,6 +2,7 @@
 #define __NETWORKDEVICE_CLASS__
 
 #define PORT 4242
+#define MAX_PACKET_LENGTH 50
 
 #include <SFML/Network.hpp>
 

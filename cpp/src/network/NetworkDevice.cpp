@@ -25,7 +25,14 @@ void NetworkDevice::send(Packet* packet, const sf::IpAddress& ip)
 	}
 	else
 	{
-		Debug::noteIf(TAG_NETWORK, "sent packet with string: " + Converter::charsToString(string));
+		if (string.length() > MAX_PACKET_LENGTH)
+		{
+			Debug::noteIf(TAG_NETWORK, "sent big packet with CID: " + Converter::intToString(string[0]));
+		}
+		else
+		{
+			Debug::noteIf(TAG_NETWORK, "sent packet with string: " + Converter::charsToString(string));
+		}
 	}
 
 	sfmlPacket.clear();
@@ -44,7 +51,14 @@ void NetworkDevice::receive()
 	std::string string;
 	sfmlPacket >> string;
 
-	Debug::noteIf(TAG_NETWORK, "received packet with string: " + Converter::charsToString(string));
+	if (string.length() > MAX_PACKET_LENGTH)
+	{
+		Debug::noteIf(TAG_NETWORK, "received big packet with CID: " + Converter::intToString(string[0]));
+	}
+	else
+	{
+		Debug::noteIf(TAG_NETWORK, "received packet with string: " + Converter::charsToString(string));
+	}
 
 	Packet* packet = (Packet*) Compressable::decompress(string);
 
