@@ -9,6 +9,7 @@ std::vector<sf::Texture*> TextureManager::textures;
 TextureID VOID_ICON;
 
 TextureID ARCHER_ICON;
+TextureID ROGUE_ICON;
 
 TextureID ARROWSHOTSKILL_ICON;
 
@@ -19,6 +20,7 @@ void TextureManager::init()
 	addImage(&VOID_ICON, "res/icons/void.png");
 
 	addImage(&ARCHER_ICON, "res/icons/avatars/archer.png");
+	addImage(&ROGUE_ICON, "res/icons/avatars/rogue.png");
 
 	addImage(&ARROWSHOTSKILL_ICON, "res/icons/skills/arrowshot.png");
 

@@ -4,14 +4,17 @@
 #include "../../../misc/Converter.hpp"
 #include "../../../misc/Debug.hpp"
 #include "avatars/Archer.hpp"
+#include "avatars/Rogue.hpp"
 
 std::vector<Avatar*> Avatar::avatars;
 
 extern const int ARCHER_AID = 0; // skills can define class of owner with this id
+extern const int ROGUE_AID = 0; // skills can define class of owner with this id
 
 void Avatar::init()
 {
 	avatars.push_back(new Archer());
+	avatars.push_back(new Rogue());
 }
 
 void Avatar::uninit()
