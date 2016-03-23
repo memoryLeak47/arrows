@@ -11,7 +11,7 @@ class UserPacketWithID : public Packet
 	public:
 		UserPacketWithID(UserPacket*, int);
 		UserPacketWithID(CompressBuffer*);
-		virtual ~UserPacketWithID();
+		virtual ~UserPacketWithID(); // does not delete packet; otherwise: 'double-free ERROR'
 		int getID() const;
 		UserPacket* getPacket() const;
 		std::string toString() const override;

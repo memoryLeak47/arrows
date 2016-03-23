@@ -12,9 +12,7 @@ UserPacketWithID::UserPacketWithID(CompressBuffer* buffer)
 }
 
 UserPacketWithID::~UserPacketWithID()
-{
-	deleteAndNULL(packet);
-}
+{} // should not delete packet, otherwise: 'double-free ERROR'
 
 int UserPacketWithID::getID() const
 {
