@@ -4,9 +4,7 @@ PacketAndIP::PacketAndIP(Packet* packet, const sf::IpAddress& ip) : packet(packe
 {}
 
 PacketAndIP::~PacketAndIP()
-{
-	delete packet;
-}
+{} // should not delete packet
 
 Packet* PacketAndIP::getPacket()
 {
