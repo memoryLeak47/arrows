@@ -15,7 +15,7 @@ class PlayerPropertyIcon : public Icon
 		virtual TextureID getTextureID() const override;
 		PlayerProperty* getPlayerProperty() const;
 	private:
-		PlayerProperty* property;
+		PlayerProperty* property; // TODO deleted?
 };
 
 #include "../../player/property/PlayerProperty.hpp"

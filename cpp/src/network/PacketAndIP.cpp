@@ -3,6 +3,11 @@
 PacketAndIP::PacketAndIP(Packet* packet, const sf::IpAddress& ip) : packet(packet), ip(ip)
 {}
 
+PacketAndIP::~PacketAndIP()
+{
+	delete packet;
+}
+
 Packet* PacketAndIP::getPacket()
 {
 	return packet;

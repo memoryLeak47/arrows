@@ -44,6 +44,7 @@ LobbyMenu::LobbyMenu()
 LobbyMenu::~LobbyMenu()
 {
 	deleteAndNULL(tileMap);
+	deleteAndClearVector(players);
 }
 
 std::vector<LobbyPlayer*> LobbyMenu::getPlayers() const
@@ -134,14 +135,11 @@ void LobbyMenu::nextPhase()
 
 void LobbyMenu::removePlayer(int id)
 {
+	deleteAndNULL(players[id]);
 	players.erase(players.begin() + id);
 }
 
 void LobbyMenu::clearPlayers()
 {
-	for (int i = 0; i < players.size(); i++)
-	{
-		deleteAndNULL(players[i]);
-	}
-	players.clear();
+	deleteAndClearVector(players);
 }

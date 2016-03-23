@@ -12,7 +12,6 @@ class LockUserPacket : public UserPacket
 	public:
 		LockUserPacket(bool);
 		LockUserPacket(CompressBuffer*);
-		//compress TODO
 		bool isLocked() const;
 		std::string toString() const override;
 		CID getCID() const override;

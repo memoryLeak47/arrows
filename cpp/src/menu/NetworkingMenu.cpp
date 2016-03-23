@@ -6,6 +6,11 @@
 NetworkingMenu::NetworkingMenu()
 {}
 
+NetworkingMenu::~NetworkingMenu()
+{
+	deleteAndClearVector(packets);
+}
+
 void NetworkingMenu::tick()
 {
 	Menu::tick();

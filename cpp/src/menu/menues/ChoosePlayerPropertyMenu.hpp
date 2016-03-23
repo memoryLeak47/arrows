@@ -24,7 +24,7 @@ class ChoosePlayerPropertyMenu : public Menu
 	private:
 		LobbyMenu* lobby;
 		PlayerPropertyUserPacket* slotPacket;
-		const std::vector<PlayerProperty*> chooseProperties;
+		const std::vector<PlayerProperty*> chooseProperties; // TODO deleted?
 		std::vector<PlayerPropertyIcon*> slotIcons;
 };
 

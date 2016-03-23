@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-class Account
+class Account // TODO in .cpp are memoryleaks D:
 {
 	public:
 		Account(const std::string&, const std::string&);

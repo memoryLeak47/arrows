@@ -9,6 +9,7 @@ class PacketAndIP
 {
 	public:
 		PacketAndIP(Packet*, const sf::IpAddress&);
+		virtual ~PacketAndIP();
 		Packet* getPacket();
 		const sf::IpAddress& getIP();
 	private:

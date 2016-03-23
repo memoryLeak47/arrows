@@ -26,6 +26,11 @@ ServerLobbyMenu::ServerLobbyMenu()
 	updatePlayerIcons();
 }
 
+ServerLobbyMenu::~ServerLobbyMenu()
+{
+	deleteAndClearVector(updatedPlayers);
+}
+
 void ServerLobbyMenu::mapSelected()
 {
 	std::string path = "res/maps/" + mapSelectEditField->getText() + ".png";
@@ -367,5 +372,6 @@ void ServerLobbyMenu::unlockAll()
 void ServerLobbyMenu::removePlayer(int id)
 {
 	LobbyMenu::removePlayer(id);
+	deleteAndNULL(updatedPlayers[id]);
 	updatedPlayers.erase(updatedPlayers.begin() + id);
 }
