@@ -10,7 +10,7 @@ class MenuComponent
 {
 	public:
 		MenuComponent(ComponentContainer* parent, const PixelRect& rect);
-		~MenuComponent();
+		virtual ~MenuComponent();
 		virtual void tick();
 		virtual void render() const = 0;
 		virtual void onClick(int mouseButton);

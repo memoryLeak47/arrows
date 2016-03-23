@@ -11,7 +11,7 @@ class MenuList
 {
 	public:
 		MenuList();
-		~MenuList();
+		virtual ~MenuList();
 		void onEvent(const sf::Event &event);
 		void tick();
 		void render();

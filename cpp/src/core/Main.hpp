@@ -13,6 +13,7 @@
 #define STANDART_ACCELERATION 0.18f
 
 #define deleteAndNULL(x) delete x; x = NULL
+#define deleteAndClearVector(x) for (int i = 0; i < x.size(); i++) { delete x[i]; } x.clear();
 
 #include <string>
 
@@ -25,7 +26,7 @@ class Main
 {
 	public:
 		Main();
-		~Main();
+		virtual ~Main();
 		static NetworkDevice* getNetworkDevice();
 		static void setAccount(Account*);
 		static Account* getAccount();

@@ -1,6 +1,7 @@
 #include "ComponentContainer.hpp"
 
 #include "../misc/Debug.hpp"
+#include "../core/Main.hpp"
 #include "../core/Screen.hpp"
 #include "../math/pixel/PixelVector.hpp"
 
@@ -25,7 +26,7 @@ void ComponentContainer::addComponent(MenuComponent* c)
 
 void ComponentContainer::clearComponents()
 {
-	components.clear();
+	deleteAndClearVector(components);
 }
 
 PixelVector ComponentContainer::getRelativeCursorPosition() const

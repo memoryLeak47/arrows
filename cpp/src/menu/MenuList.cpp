@@ -11,7 +11,7 @@ MenuList::MenuList()
 
 MenuList::~MenuList()
 {
-	menues.clear();
+	deleteAndClearVector(menues);
 }
 
 void MenuList::onEvent(const sf::Event &event)
