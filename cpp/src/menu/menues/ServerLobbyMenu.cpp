@@ -356,6 +356,7 @@ void ServerLobbyMenu::nextPhase()
 	{
 		updatePlayers();
 	}
+	updatePlayerIcons();
 }
 
 void ServerLobbyMenu::unlockAll()
