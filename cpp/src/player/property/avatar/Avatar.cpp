@@ -9,7 +9,7 @@
 std::vector<Avatar*> Avatar::avatars;
 
 extern const int ARCHER_AID = 0; // skills can define class of owner with this id
-extern const int ROGUE_AID = 0; // skills can define class of owner with this id
+extern const int ROGUE_AID = 1; // skills can define class of owner with this id
 
 void Avatar::init()
 {
