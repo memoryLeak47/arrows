@@ -1,5 +1,6 @@
 #include "Avatar.hpp"
 
+#include "../../../core/Main.hpp"
 #include "../../../misc/Converter.hpp"
 #include "../../../misc/Debug.hpp"
 #include "avatars/Archer.hpp"
@@ -15,7 +16,7 @@ void Avatar::init()
 
 void Avatar::uninit()
 {
-	avatars.clear();
+	deleteAndClearVector(avatars);
 }
 
 Avatar* Avatar::get(int id)

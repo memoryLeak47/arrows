@@ -52,6 +52,16 @@ LobbyPlayer::LobbyPlayer(CompressBuffer* buffer)
 	itemPacket = static_cast<ItemUserPacket*>(buffer->cutByCID(ITEM_USER_PACKET_CID));
 }
 
+LobbyPlayer::~LobbyPlayer()
+{
+	deleteAndNULL(lockPacket);
+	deleteAndNULL(teamPacket);
+	deleteAndNULL(loginPacket);
+	deleteAndNULL(avatarPacket);
+	deleteAndNULL(skillPacket);
+	deleteAndNULL(itemPacket);
+}
+
 sf::IpAddress LobbyPlayer::getIP() const
 {
 	return ip;

@@ -94,7 +94,7 @@ std::vector<Account*>& Account::getAccounts()
 		std::string readname, readpwd;
 		std::getline(filestream, readname);
 		std::getline(filestream, readpwd);
-		Account* a = new Account(readname, readpwd);
+		Account* a = new Account(readname, readpwd); // TODO muchos memoryleak
 		accounts.push_back(a);
 	}
 

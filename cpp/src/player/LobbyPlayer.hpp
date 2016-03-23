@@ -20,6 +20,7 @@ class LobbyPlayer : public Compressable
 		LobbyPlayer(LoginUserPacket*, const sf::IpAddress&);
 		LobbyPlayer(LoginUserPacket*);
 		LobbyPlayer(CompressBuffer*);
+		virtual ~LobbyPlayer();
 		sf::IpAddress getIP() const;
 		LockUserPacket* getLockUserPacket() const;
 		TeamUserPacket* getTeamUserPacket() const;

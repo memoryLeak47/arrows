@@ -1,5 +1,6 @@
 #include "Skill.hpp"
 
+#include "../../../core/Main.hpp"
 #include "../../../misc/Converter.hpp"
 #include "../../../misc/Debug.hpp"
 #include "skills/ArrowShotSkill.hpp"
@@ -15,7 +16,7 @@ void Skill::init()
 
 void Skill::uninit()
 {
-	skills.clear();
+	deleteAndClearVector(skills);
 }
 
 Skill* Skill::get(int id)

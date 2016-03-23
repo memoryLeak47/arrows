@@ -11,6 +11,7 @@ class UserPacketWithID : public Packet
 	public:
 		UserPacketWithID(UserPacket*, int);
 		UserPacketWithID(CompressBuffer*);
+		virtual ~UserPacketWithID();
 		int getID() const;
 		UserPacket* getPacket() const;
 		std::string toString() const override;

@@ -1,5 +1,6 @@
 #include "Item.hpp"
 
+#include "../../../core/Main.hpp"
 #include "../../../misc/Converter.hpp"
 #include "../../../misc/Debug.hpp"
 #include "items/HealthRing.hpp"
@@ -18,7 +19,7 @@ void Item::init()
 
 void Item::uninit()
 {
-	items.clear();
+	deleteAndClearVector(items);
 }
 
 Item* Item::get(int id)

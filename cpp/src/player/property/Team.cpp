@@ -1,5 +1,6 @@
 #include "Team.hpp"
 
+#include "../../core/Main.hpp"
 #include "../../misc/Debug.hpp"
 
 std::vector<Team*> Team::teams;
@@ -19,7 +20,7 @@ void Team::init()
 
 void Team::uninit()
 {
-	teams.clear();
+	deleteAndClearVector(teams);
 }
 
 Team* Team::get(int id)

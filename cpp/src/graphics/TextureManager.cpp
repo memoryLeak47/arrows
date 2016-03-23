@@ -1,5 +1,6 @@
 #include "TextureManager.hpp"
 
+#include "../core/Main.hpp"
 #include "../misc/Debug.hpp"
 #include "../misc/Converter.hpp"
 
@@ -26,7 +27,7 @@ void TextureManager::init()
 
 void TextureManager::uninit()
 {
-	textures.clear();
+	deleteAndClearVector(textures);
 }
 
 sf::Texture* TextureManager::getTexture(const TextureID& id)

@@ -1,5 +1,7 @@
 #include "UserPacketWithID.hpp"
 
+#include "../../core/Main.hpp"
+
 UserPacketWithID::UserPacketWithID(UserPacket* packet, int id) : packet(packet), id(id)
 {}
 
@@ -7,6 +9,11 @@ UserPacketWithID::UserPacketWithID(CompressBuffer* buffer)
 {
 	packet = static_cast<UserPacket*>(buffer->cutByCID(buffer->cutChar()));
 	id = buffer->cutInt();
+}
+
+UserPacketWithID::~UserPacketWithID()
+{
+	deleteAndNULL(packet);
 }
 
 int UserPacketWithID::getID() const

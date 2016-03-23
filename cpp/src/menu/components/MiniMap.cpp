@@ -3,6 +3,7 @@
 #include "../../graphics/TextureManager.hpp"
 extern TextureID VOID_ICON;
 
+#include "../../core/Main.hpp"
 #include "../../core/Screen.hpp"
 #include "../../misc/Debug.hpp"
 #include "../../misc/Converter.hpp"
@@ -10,6 +11,11 @@ extern TextureID VOID_ICON;
 MiniMap::MiniMap(ComponentContainer* c, const PixelRect& r) : MenuComponent(c, r)
 {
 	tileMapTexture = NULL;
+}
+
+MiniMap::~MiniMap()
+{
+	deleteAndNULL(tileMapTexture);
 }
 
 void MiniMap::render() const
