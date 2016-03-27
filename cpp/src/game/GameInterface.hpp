@@ -5,7 +5,8 @@
 
 class GameInterface : public NetworkingMenu
 {
-	
+	public:
+		virtual void tick() override;
 };
 
 #endif
