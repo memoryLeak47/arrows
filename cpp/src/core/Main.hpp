@@ -18,7 +18,6 @@
 #include <string>
 
 class MenuList;
-class Game;
 class NetworkDevice;
 class Account;
 
@@ -36,7 +35,6 @@ class Main
 		static std::string getName();
 		static int getRank();
 	private:
-		static Game* game;
 		static MenuList* menuList;
 		static NetworkDevice* networkDevice;
 		static Account* account;
@@ -47,7 +45,6 @@ class Main
 };
 
 #include "../menu/MenuList.hpp"
-#include "../game/Game.hpp"
 #include "../network/NetworkDevice.hpp"
 #include "../misc/Account.hpp"
 

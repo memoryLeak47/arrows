@@ -11,7 +11,6 @@
 bool Main::running = true;
 MenuList* Main::menuList;
 NetworkDevice* Main::networkDevice;
-Game* Main::game;
 Account* Main::account;
 
 Main::Main()
@@ -33,7 +32,6 @@ Main::~Main()
 {
 	deleteAndNULL(menuList);
 	deleteAndNULL(networkDevice);
-	deleteAndNULL(game);
 	deleteAndNULL(account); // really needed?
 	Screen::uninit();
 	Team::uninit();
