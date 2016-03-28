@@ -130,6 +130,11 @@ void LobbyMenu::nextPhase()
 	{
 		teamListPanel->disableTeamButtons();
 	}
+	else if (phase == GAME_PHASE)
+	{
+		createGameInterface();
+		resetLobby();
+	}
 	unlockAll();
 }
 
@@ -142,4 +147,12 @@ void LobbyMenu::removePlayer(int id)
 void LobbyMenu::clearPlayers()
 {
 	deleteAndClearVector(players);
+}
+
+void LobbyMenu::resetLobby()
+{
+	unlockAll();
+	deleteAndNULL(tileMap);
+	// TODO more!
+	Debug::warn("LobbyMenu::resetLobby(): TODO");
 }

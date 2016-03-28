@@ -32,6 +32,7 @@ class ServerLobbyMenu : public LobbyMenu
 		virtual void nextPhase() override;
 		virtual void unlockAll() override;
 		virtual void removePlayer(int) override;
+		virtual void createGameInterface() override;
 	private:
 		// converts the UserPacket* into a UserPacketWithID(Packet*, id)* and sends it to all clients
 		std::vector<LobbyPlayer*> getUpdatedPlayers() const;

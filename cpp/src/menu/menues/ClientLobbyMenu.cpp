@@ -3,6 +3,7 @@
 #include "../../misc/Converter.hpp"
 #include "../../misc/Debug.hpp"
 #include "../../core/Main.hpp"
+#include "../../game/ClientGameInterface.hpp"
 
 ClientLobbyMenu::ClientLobbyMenu(const std::string& ip)
 	: serverIP(ip), localPlayerID(-1)
@@ -226,4 +227,9 @@ void ClientLobbyMenu::playerPropertySelected(PlayerPropertyUserPacket* packet)
 			Debug::warn("ClientLobbyMenu::playerPropertySelected(): awkward packet");
 	}
 	sendToServer(packet);
+}
+
+void ClientLobbyMenu::createGameInterface()
+{
+	Main::getMenuList()->addMenu(new ClientGameInterface(getLobbyTileMap(), getPlayers(), localPlayerID, serverIP));
 }

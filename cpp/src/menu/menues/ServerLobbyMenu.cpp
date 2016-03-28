@@ -4,7 +4,7 @@
 #include "../../core/Screen.hpp"
 #include "../../misc/Converter.hpp"
 #include "../../misc/Debug.hpp"
-//#include "../../network/packets/MapPacket.hpp"
+#include "../../game/ServerGameInterface.hpp"
 
 ServerLobbyMenu::ServerLobbyMenu()
 {
@@ -375,4 +375,9 @@ void ServerLobbyMenu::removePlayer(int id)
 	LobbyMenu::removePlayer(id);
 	deleteAndNULL(updatedPlayers[id]);
 	updatedPlayers.erase(updatedPlayers.begin() + id);
+}
+
+void ServerLobbyMenu::createGameInterface()
+{
+	Main::getMenuList()->addMenu(new ServerGameInterface(getLobbyTileMap(), getPlayers()));
 }
