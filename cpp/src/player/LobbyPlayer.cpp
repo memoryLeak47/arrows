@@ -43,7 +43,7 @@ LobbyPlayer::LobbyPlayer(LoginUserPacket* login)
 
 LobbyPlayer::LobbyPlayer(CompressBuffer* buffer)
 {
-	ip = new sf::IpAddress(sf::IpAddress::getLocalAddress());
+	ip = NULL;
 	lockPacket = static_cast<LockUserPacket*>(buffer->cutByCID(LOCK_USER_PACKET_CID));
 	teamPacket = static_cast<TeamUserPacket*>(buffer->cutByCID(TEAM_USER_PACKET_CID));
 	loginPacket = static_cast<LoginUserPacket*>(buffer->cutByCID(LOGIN_USER_PACKET_CID));
