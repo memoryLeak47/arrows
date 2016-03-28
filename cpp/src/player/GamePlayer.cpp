@@ -6,7 +6,14 @@ GamePlayer::GamePlayer(LobbyPlayer* player)
 	: name(player->getLoginUserPacket()->getName()),
 	  rank(player->getLoginUserPacket()->getRank())
 {
-	ip = new sf::IpAddress(*player->getIP());
+	if (player->getIP() == NULL)
+	{
+		ip = NULL;
+	}
+	else
+	{
+		ip = new sf::IpAddress(*player->getIP());
+	}
 
 	team = player->getTeamUserPacket()->getTeam();
 	for (int i = 0; i < player->getSkillUserPacket()->getPlayerProperties().size(); i++)

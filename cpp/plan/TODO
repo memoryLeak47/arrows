@@ -1,0 +1,12 @@
+Topic			Dependency
+
+Body			-
+Camera			-
+Entity			Body
+Tile			Entity
+GameTileMap		Tile
+Mob			Entity
+ArcherGamePlayer	Mob
+Rendering		GameTileMap, Entity, Camera
+Collision		Body
+PacketManaging		
