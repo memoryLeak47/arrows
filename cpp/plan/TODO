@@ -9,4 +9,9 @@ Mob			Entity
 ArcherGamePlayer	Mob
 Rendering		GameTileMap, Entity, Camera
 Collision		Body
-PacketManaging		
+PacketManaging		-
+Damage			Mob
+Effects			Entity
+Bullets			Entity
+Explosions		Collision
+Animations		Rendering
