@@ -5,7 +5,8 @@
 #define AVATAR_PHASE 1
 #define SKILL_PHASE 2
 #define ITEM_PHASE 3
-#define GAME_PHASE 4
+#define PREGAME_PHASE 4
+#define GAME_PHASE 5
 
 #include <vector>
 #include <SFML/Network.hpp>

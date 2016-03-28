@@ -328,6 +328,9 @@ void ServerLobbyMenu::updateLockButton() const
 		case ITEM_PHASE:
 			lockButton->setEnabled(areAllClientsLocked() && getLocalPlayer()->getItemUserPacket()->isValid());
 		break;
+		case PREGAME_PHASE:
+			lockButton->setEnabled(areAllClientsLocked());
+		break;
 	}
 }
 
