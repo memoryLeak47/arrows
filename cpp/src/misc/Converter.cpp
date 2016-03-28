@@ -33,3 +33,8 @@ std::string Converter::charsToString(const std::string& arg)
 	}
 	return res + ")";
 }
+
+template <class T> T* Converter::clone(T* t)
+{
+	return new T(*t);
+}
