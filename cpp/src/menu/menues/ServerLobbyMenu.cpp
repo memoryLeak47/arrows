@@ -53,7 +53,7 @@ void ServerLobbyMenu::mapSelected()
 	unlockAll();
 }
 
-void ServerLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
+void ServerLobbyMenu::handlePacket(Packet* packet, sf::IpAddress* ip)
 {
 	if (packet->getCID() == LOCK_USER_PACKET_CID)
 	{
@@ -160,7 +160,6 @@ void ServerLobbyMenu::packAndSendToFriendsOf(UserPacket* packet, int id) const
 	}
 }
 
-
 void ServerLobbyMenu::sendToAllClients(Packet* packet) const
 {
 	for (int i = 1; i < getPlayers().size(); i++)
@@ -195,7 +194,7 @@ void ServerLobbyMenu::handleTeamUserPacket(TeamUserPacket* packet, int id)
 	updatePlayerIcons();
 }
 
-void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, const sf::IpAddress& ip)
+void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, sf::IpAddress* ip)
 {
 	if (ipToID(ip, getPlayers()) == -1) // Wenn es noch keinen Spieler mit dieser IP gibt
 	{

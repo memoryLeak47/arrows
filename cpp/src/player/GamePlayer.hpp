@@ -1,3 +1,7 @@
+/*
+	Der GamePlayer wird im ServerGameInterface, sowie im ClientGameInterface genutzt.
+*/
+
 #ifndef __GAMEPLAYER_CLASS__
 #define __GAMEPLAYER_CLASS__
 
@@ -5,6 +9,8 @@
 #include <vector>
 
 #include "../entity/Mob.hpp"
+#include <SFML/Network.hpp>
+#include "../misc/Debug.hpp"
 
 class LobbyPlayer;
 class Team;
@@ -15,13 +21,15 @@ class GamePlayer : public Mob
 {
 	public:
 		GamePlayer(LobbyPlayer*);
+		~GamePlayer();
 	private:
-		// sf::IpAddress ip; TODO only in ServerGamePlayer
+		sf::IpAddress* ip;
 		std::string name;
 		int rank;
 		Team* team;
 		std::vector<Skill*> skills;
 		std::vector<Item*> items;
+		void setIP(sf::IpAddress*);
 };
 
 #include "LobbyPlayer.hpp"

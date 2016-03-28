@@ -6,11 +6,17 @@
 #include "../../game/ClientGameInterface.hpp"
 
 ClientLobbyMenu::ClientLobbyMenu(const std::string& ip)
-	: serverIP(ip), localPlayerID(-1)
+	: localPlayerID(-1)
 {
+	serverIP = new sf::IpAddress(ip);
 	LoginUserPacket* p = new LoginUserPacket(Main::getName(), Main::getRank());
 	sendToServer(p);
 	deleteAndNULL(p);
+}
+
+ClientLobbyMenu::~ClientLobbyMenu()
+{
+	delete serverIP;
 }
 
 LobbyPlayer* ClientLobbyMenu::getLocalPlayer() const
@@ -18,11 +24,11 @@ LobbyPlayer* ClientLobbyMenu::getLocalPlayer() const
 	return getPlayer(localPlayerID);
 }
 
-void ClientLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
+void ClientLobbyMenu::handlePacket(Packet* packet, sf::IpAddress* ip)
 {
 	Debug::warnIf(packet == NULL, "ClientLobbyMenu::handlePacket(): packet == NULL");
 
-	if (ip == serverIP)
+	if ((*ip) == (*serverIP))
 	{
 		handlePacketByID(packet, 0);
 	}

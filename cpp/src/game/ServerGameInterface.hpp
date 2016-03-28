@@ -9,7 +9,7 @@ class ServerGameInterface : public GameInterface
 {
 	public:
 		ServerGameInterface(LobbyTileMap*, const std::vector<LobbyPlayer*>&);
-		void handlePacket(Packet*, const sf::IpAddress&) override;
+		void handlePacket(Packet*, sf::IpAddress*) override;
 };
 
 #include "../player/LobbyPlayer.hpp"

@@ -6,6 +6,8 @@ GamePlayer::GamePlayer(LobbyPlayer* player)
 	: name(player->getLoginUserPacket()->getName()),
 	  rank(player->getLoginUserPacket()->getRank())
 {
+	ip = new sf::IpAddress(*player->getIP());
+
 	team = player->getTeamUserPacket()->getTeam();
 	for (int i = 0; i < player->getSkillUserPacket()->getPlayerProperties().size(); i++)
 	{
@@ -16,4 +18,9 @@ GamePlayer::GamePlayer(LobbyPlayer* player)
 	{
 		items.push_back(dynamic_cast<Item*>(player->getItemUserPacket()->getPlayerProperties()[i]));
 	}
+}
+
+GamePlayer::~GamePlayer()
+{
+	delete ip;
 }

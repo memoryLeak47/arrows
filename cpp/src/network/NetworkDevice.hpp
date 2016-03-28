@@ -13,7 +13,7 @@ class NetworkDevice
 {
 	public:
 		NetworkDevice();
-		void send(Packet*, const sf::IpAddress& ip);
+		void send(Packet*, sf::IpAddress* ip);
 		void receive();
 	private:
 		sf::UdpSocket socket;

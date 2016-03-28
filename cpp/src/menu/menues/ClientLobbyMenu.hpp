@@ -10,7 +10,8 @@ class ClientLobbyMenu : public LobbyMenu
 {
 	public:
 		ClientLobbyMenu(const std::string&);
-		virtual void handlePacket(Packet*, const sf::IpAddress&) override;
+		~ClientLobbyMenu();
+		virtual void handlePacket(Packet*, sf::IpAddress*) override;
 		void handlePacketByID(Packet*, int);
 		virtual LobbyPlayer* getLocalPlayer() const override;
 		virtual void lockPressed() override;
@@ -32,7 +33,7 @@ class ClientLobbyMenu : public LobbyMenu
 		virtual void createGameInterface() override;
 	private:
 		int localPlayerID;
-		sf::IpAddress serverIP;
+		sf::IpAddress* serverIP;
 };
 
 #endif

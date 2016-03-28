@@ -4,8 +4,8 @@
 #include "../core/Main.hpp"
 
 LobbyPlayer::LobbyPlayer(LobbyPlayer* player)
-	: ip(player->ip)
 {
+	ip = new sf::IpAddress(*player->getIP());
 	lockPacket = new LockUserPacket(*player->lockPacket);
 	teamPacket = new TeamUserPacket(*player->teamPacket);
 	loginPacket = new LoginUserPacket(*player->loginPacket);
@@ -19,9 +19,9 @@ LobbyPlayer::LobbyPlayer(const LobbyPlayer& player)
 	Debug::error("DONT USE LobbyPlayer::LobbyPlayer(const LobbyPlayer&); USE THE POINTER STUFF");
 }
 
-LobbyPlayer::LobbyPlayer(LoginUserPacket* login, const sf::IpAddress& ip)
-	: ip(ip)
+LobbyPlayer::LobbyPlayer(LoginUserPacket* login, sf::IpAddress* ipArg)
 {
+	ip = new sf::IpAddress(*ipArg);
 	lockPacket = new LockUserPacket(false);
 	teamPacket = new TeamUserPacket((char)0);
 	itemPacket = new ItemUserPacket();
@@ -31,8 +31,8 @@ LobbyPlayer::LobbyPlayer(LoginUserPacket* login, const sf::IpAddress& ip)
 }
 
 LobbyPlayer::LobbyPlayer(LoginUserPacket* login)
-	: ip(sf::IpAddress::getLocalAddress())
 {
+	ip = new sf::IpAddress(sf::IpAddress::getLocalAddress());
 	lockPacket = new LockUserPacket(false);
 	teamPacket = new TeamUserPacket((char)0);
 	itemPacket = new ItemUserPacket();
@@ -42,8 +42,8 @@ LobbyPlayer::LobbyPlayer(LoginUserPacket* login)
 }
 
 LobbyPlayer::LobbyPlayer(CompressBuffer* buffer)
-	: ip(sf::IpAddress::getLocalAddress())
 {
+	ip = new sf::IpAddress(sf::IpAddress::getLocalAddress());
 	lockPacket = static_cast<LockUserPacket*>(buffer->cutByCID(LOCK_USER_PACKET_CID));
 	teamPacket = static_cast<TeamUserPacket*>(buffer->cutByCID(TEAM_USER_PACKET_CID));
 	loginPacket = static_cast<LoginUserPacket*>(buffer->cutByCID(LOGIN_USER_PACKET_CID));
@@ -60,9 +60,10 @@ LobbyPlayer::~LobbyPlayer()
 	deleteAndNULL(avatarPacket);
 	deleteAndNULL(skillPacket);
 	deleteAndNULL(itemPacket);
+	deleteAndNULL(ip);
 }
 
-sf::IpAddress LobbyPlayer::getIP() const
+sf::IpAddress* LobbyPlayer::getIP() const
 {
 	return ip;
 }

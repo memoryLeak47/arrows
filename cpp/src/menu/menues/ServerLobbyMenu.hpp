@@ -13,7 +13,7 @@ class ServerLobbyMenu : public LobbyMenu
 	public:
 		ServerLobbyMenu();
 		virtual ~ServerLobbyMenu();
-		virtual void handlePacket(Packet*, const sf::IpAddress&) override;
+		virtual void handlePacket(Packet*, sf::IpAddress*) override;
 		virtual LobbyPlayer* getLocalPlayer() const override;
 		virtual void lockPressed() override;
 		virtual void disconnectPressed() override;
@@ -22,7 +22,7 @@ class ServerLobbyMenu : public LobbyMenu
 		void handleLockUserPacket(LockUserPacket*, int);
 		void handleDisconnectUserPacket(DisconnectUserPacket*, int);
 		void handleTeamUserPacket(TeamUserPacket*, int);
-		void handleLoginUserPacket(LoginUserPacket*, const sf::IpAddress&);
+		void handleLoginUserPacket(LoginUserPacket*, sf::IpAddress*);
 		void handleAvatarUserPacket(AvatarUserPacket*, int);
 		void handleSkillUserPacket(SkillUserPacket*, int);
 		void handleItemUserPacket(ItemUserPacket*, int);

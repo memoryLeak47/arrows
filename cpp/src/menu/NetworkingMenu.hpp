@@ -14,11 +14,11 @@ class NetworkingMenu : public Menu
 		NetworkingMenu();
 		virtual ~NetworkingMenu();
 		void tick() override;
-		void receivePacket(Packet* p, const sf::IpAddress&);
-		virtual void handlePacket(Packet* p, const sf::IpAddress&) = 0;
+		void receivePacket(Packet* p, sf::IpAddress*);
+		virtual void handlePacket(Packet* p, sf::IpAddress*) = 0;
 		virtual bool isNetworkingMenu() const override;
 	protected:
-		void send(Packet*, const sf::IpAddress&) const;
+		void send(Packet*, sf::IpAddress*) const;
 	private:
 		void handleAllPackets();
 		std::vector<PacketAndIP*>& getPackets();

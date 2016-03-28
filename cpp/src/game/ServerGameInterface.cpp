@@ -11,7 +11,7 @@ ServerGameInterface::ServerGameInterface(LobbyTileMap* map, const std::vector<Lo
 	}
 }
 
-void ServerGameInterface::handlePacket(Packet*, const sf::IpAddress&)
+void ServerGameInterface::handlePacket(Packet*, sf::IpAddress*)
 {
 	Debug::warn("ServerGameInterface::handlePacket(): TODO");
 }

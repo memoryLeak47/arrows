@@ -17,12 +17,12 @@ void NetworkingMenu::tick()
 	handleAllPackets();
 }
 
-void NetworkingMenu::send(Packet* packet, const sf::IpAddress& ip) const
+void NetworkingMenu::send(Packet* packet, sf::IpAddress* ip) const
 {
 	Main::getNetworkDevice()->send(packet, ip);
 }
 
-void NetworkingMenu::receivePacket(Packet* packet, const sf::IpAddress& ip)
+void NetworkingMenu::receivePacket(Packet* packet, sf::IpAddress* ip)
 {
 	packets.push_back(new PacketAndIP(packet, ip));
 }
