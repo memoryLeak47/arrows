@@ -3,13 +3,11 @@
 #include "../misc/Debug.hpp"
 
 ServerGameInterface::ServerGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players)
-	: GameInterface(map)
-{
-	for (int i = 0; i < players.size(); i++)
-	{
-		Debug::warn("ServerGameInterface::ServerGameInterface(): add player HERE, TODO");
-	}
-}
+	: GameInterface(map, players)
+{}
+
+ServerGameInterface::~ServerGameInterface()
+{}
 
 void ServerGameInterface::handlePacket(Packet*, sf::IpAddress*)
 {

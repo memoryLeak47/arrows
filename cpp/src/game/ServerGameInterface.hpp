@@ -9,6 +9,7 @@ class ServerGameInterface : public GameInterface
 {
 	public:
 		ServerGameInterface(LobbyTileMap*, const std::vector<LobbyPlayer*>&);
+		virtual ~ServerGameInterface();
 		void handlePacket(Packet*, sf::IpAddress*) override;
 };
 
