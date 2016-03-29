@@ -33,7 +33,7 @@ int Skill::getAmount()
 const std::vector<Skill*> Skill::getAllSkillsByAvatarID(char avatarID)
 {
 	std::vector<Skill*> tmp;
-	for (int i = 0; i < skills.size(); i++)
+	for (unsigned int i = 0; i < skills.size(); i++)
 	{
 		if (skills[i]->getAvatarID() == avatarID)
 		{

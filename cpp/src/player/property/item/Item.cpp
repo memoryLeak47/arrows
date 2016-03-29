@@ -11,7 +11,7 @@ void Item::init()
 {
 	items.push_back(new HealthRing());
 
-	for (int i = 0; i < items.size(); i++)
+	for (unsigned int i = 0; i < items.size(); i++)
 	{
 		items[i]->setID(i);
 	}

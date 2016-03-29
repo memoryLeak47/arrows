@@ -6,6 +6,7 @@
 class Skill : public PlayerProperty
 {
 	public:
+		virtual ~Skill() {}
 		static void init();
 		static void uninit();
 		static Skill* get(int);

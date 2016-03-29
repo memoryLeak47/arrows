@@ -11,7 +11,7 @@ class Team
 		static void init();
 		static void uninit();
 		static Team* get(int);
-		static int getAmount();
+		static unsigned int getAmount();
 		std::string getName() const;
 		char getID() const;
 		bool isFriendlyTeam(Team*) const;

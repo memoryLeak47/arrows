@@ -2,7 +2,7 @@
 
 #include "../../core/Main.hpp"
 
-UserPacketWithID::UserPacketWithID(UserPacket* packet, int id) : packet(packet), id(id)
+UserPacketWithID::UserPacketWithID(UserPacket* packet, int id) : id(id), packet(packet)
 {}
 
 UserPacketWithID::UserPacketWithID(CompressBuffer* buffer)

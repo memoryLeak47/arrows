@@ -7,7 +7,7 @@ LobbyPlayersPacket::LobbyPlayersPacket(const std::vector<LobbyPlayer*>& players)
 LobbyPlayersPacket::LobbyPlayersPacket(CompressBuffer* buffer)
 {
 	std::vector<void*> vec(buffer->cutVectorByCID(LOBBY_PLAYER_CID));
-	for (int i = 0; i < vec.size(); i++)
+	for (unsigned int i = 0; i < vec.size(); i++)
 	{
 		players.push_back(static_cast<LobbyPlayer*>(vec[i]));
 	}
@@ -16,7 +16,7 @@ LobbyPlayersPacket::LobbyPlayersPacket(CompressBuffer* buffer)
 std::string LobbyPlayersPacket::toString() const
 {
 	std::vector<Compressable*> vec;
-	for (int i = 0; i < players.size(); i++)
+	for (unsigned int i = 0; i < players.size(); i++)
 	{
 		vec.push_back(players[i]);
 	}

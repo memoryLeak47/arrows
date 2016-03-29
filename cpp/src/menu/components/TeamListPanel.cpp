@@ -13,7 +13,7 @@ void TeamListPanel::update()
 {
 	// Formatieren der TeamPanels (nach unten rutschen, falls das obere Panel zu weit nach unten reicht)
 	clearComponents();
-	for (int i = 0; i < Team::getAmount(); i++) // für alle TeamPanels updaten + formatieren
+	for (unsigned int i = 0; i < Team::getAmount(); i++) // für alle TeamPanels updaten + formatieren
 	{
 		if (i == 0)
 		{
@@ -35,7 +35,7 @@ LobbyMenu* TeamListPanel::getLobbyMenu() const
 
 void TeamListPanel::disableTeamButtons()
 {
-	for (int i = 0; i < getComponents().size(); i++)
+	for (unsigned int i = 0; i < getComponents().size(); i++)
 	{
 		dynamic_cast<TeamPanel*>(getComponents()[i])->disableTeamButton();
 	}

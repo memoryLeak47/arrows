@@ -27,7 +27,7 @@ std::string Converter::intToString(int i)
 std::string Converter::charsToString(const std::string& arg)
 {
 	std::string res = "(";
-	for (int i = 0; i < arg.size(); i++)
+	for (unsigned int i = 0; i < arg.size(); i++)
 	{
 		res += intToString((int)arg[i]) + ((i != arg.size()-1)?", ":"");
 	}

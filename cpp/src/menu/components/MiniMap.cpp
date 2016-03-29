@@ -37,9 +37,9 @@ void MiniMap::updateMap(const std::vector<std::vector<int>>& ints)
 	sf::Image image;
 	image.create((int)ints.size(), (int)ints[0].size(), sf::Color::Green); // random color :D
 
-	for (int x = 0; x < ints.size(); x++)
+	for (unsigned int x = 0; x < ints.size(); x++)
 	{
-		for (int y = 0; y < ints[0].size(); y++)
+		for (unsigned int y = 0; y < ints[0].size(); y++)
 		{
 			image.setPixel(x, y, Converter::intToColor(ints[x][y])); // drittes Argument: int -> Color
 		}

@@ -29,7 +29,7 @@ Team* Team::get(int id)
 	return teams[id];
 }
 
-int Team::getAmount()
+unsigned int Team::getAmount()
 {
 	Debug::warnIf(teams.size() == 0, "Team::getAmount(): == 0");
 	return teams.size();

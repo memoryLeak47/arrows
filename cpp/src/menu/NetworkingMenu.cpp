@@ -31,7 +31,7 @@ bool NetworkingMenu::isNetworkingMenu() const { return true; }
 
 void NetworkingMenu::handleAllPackets()
 {
-	for (int i = 0; i < packets.size(); i++)
+	for (unsigned int i = 0; i < packets.size(); i++)
 	{
 		handlePacket(packets[i]->getPacket(), packets[i]->getIP());
 	}

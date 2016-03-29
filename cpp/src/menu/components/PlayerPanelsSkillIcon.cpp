@@ -21,7 +21,7 @@ void PlayerPanelsSkillIcon::onClick(int mouseButton)
 	{
 		const std::vector<Skill*>& skills = Skill::getAllSkillsByAvatarID(getLobbyMenu()->getLocalPlayer()->getAvatarUserPacket()->getAvatarID());
 		std::vector<PlayerProperty*> tmp;
-		for (int i = 0; i < skills.size(); i++)
+		for (unsigned int i = 0; i < skills.size(); i++)
 		{
 			tmp.push_back(skills[i]);
 		}

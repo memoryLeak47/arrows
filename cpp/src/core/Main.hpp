@@ -13,7 +13,7 @@
 #define STANDART_ACCELERATION 0.18f
 
 #define deleteAndNULL(x) delete x; x = NULL
-#define deleteAndClearVector(x) for (int i = 0; i < x.size(); i++) { delete x[i]; } x.clear();
+#define deleteAndClearVector(x) for (unsigned int i = 0; i < x.size(); i++) { delete x[i]; } x.clear();
 
 #include <string>
 

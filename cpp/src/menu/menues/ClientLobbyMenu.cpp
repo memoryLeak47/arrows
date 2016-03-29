@@ -134,7 +134,7 @@ void ClientLobbyMenu::handleLobbyPlayersPacket(LobbyPlayersPacket* packet)
 {
 	clearPlayers();
 	std::vector<LobbyPlayer*> players(packet->getPlayers());
-	for (int i = 0; i < players.size(); i++)
+	for (unsigned int i = 0; i < players.size(); i++)
 	{
 		addPlayer(players[i]);
 	}

@@ -29,7 +29,7 @@ void PasswordField::render() const
 {
 	Screen::fillRect(getAbsoluteRect(), sf::Color::Blue);
 	std::string renderedText = "";
-	for (int i = 0; i < getText().length(); i++)
+	for (unsigned int i = 0; i < getText().length(); i++)
 	{
 		renderedText += "*";
 	}

@@ -18,7 +18,7 @@ void* Compressable::decompress(const std::string& string)
 std::string Compressable::compressVector(const std::vector<Compressable*>& vec)
 {
 	std::string s = compressInt(vec.size());
-	for (int i = 0; i < vec.size(); i++)
+	for (unsigned int i = 0; i < vec.size(); i++)
 	{
 		s += vec[i]->toString();
 	}
@@ -63,16 +63,16 @@ std::string Compressable::compressString(const std::string& s)
 
 std::string Compressable::compressMap(const std::vector<std::vector<int>>& map)
 {
-	int height = map.size();
-	int width = map[0].size();
+	unsigned int height = map.size();
+	unsigned int width = map[0].size();
 	std::string s = "";
 
 	s += compressInt(width);
 	s += compressInt(height);
 
-	for (int y = 0; y < height; y++)
+	for (unsigned int y = 0; y < height; y++)
 	{
-		for (int x = 0; x < width; x++)
+		for (unsigned int x = 0; x < width; x++)
 		{
 			s += compressInt(map[y][x]);
 		}

@@ -137,7 +137,7 @@ LobbyPlayer* ServerLobbyMenu::getLocalPlayer() const
 void ServerLobbyMenu::packAndSendToAllClients(UserPacket* p, int id) const
 {
 	UserPacketWithID* packet = new UserPacketWithID(p, id);
-	for (int i = 1; i < getPlayers().size(); i++)
+	for (unsigned int i = 1; i < getPlayers().size(); i++)
 	{
 		send(packet, getPlayer(i)->getIP());
 	}
@@ -146,9 +146,9 @@ void ServerLobbyMenu::packAndSendToAllClients(UserPacket* p, int id) const
 
 void ServerLobbyMenu::packAndSendToFriendsOf(UserPacket* packet, int id) const
 {
-	for (int i = 1; i < getPlayers().size(); i++)
+	for (unsigned int i = 1; i < getPlayers().size(); i++)
 	{
-		if (id == i) // Client verwaltet sich selbst
+		if (id == (int)i) // Client verwaltet sich selbst
 			continue;
 
 		if (getPlayer(id)->getTeamUserPacket()->getTeam()->isFriendlyTeam(getPlayer(i)->getTeamUserPacket()->getTeam()))
@@ -162,7 +162,7 @@ void ServerLobbyMenu::packAndSendToFriendsOf(UserPacket* packet, int id) const
 
 void ServerLobbyMenu::sendToAllClients(Packet* packet) const
 {
-	for (int i = 1; i < getPlayers().size(); i++)
+	for (unsigned int i = 1; i < getPlayers().size(); i++)
 	{
 		send(packet, getPlayer(i)->getIP());
 	}
@@ -288,7 +288,7 @@ void ServerLobbyMenu::playerPropertySelected(PlayerPropertyUserPacket* packet)
 
 LobbyPlayer* ServerLobbyMenu::getUpdatedPlayer(int id) const
 {
-	Debug::warnIf(id < 0 || id >= getUpdatedPlayers().size(), "ServerLobbyMenu::getUpdatedPlayers(): size == 0");
+	Debug::warnIf(id < 0 || id >= (int)getUpdatedPlayers().size(), "ServerLobbyMenu::getUpdatedPlayers(): size == 0");
 	return getUpdatedPlayers()[id];
 }
 
@@ -337,7 +337,7 @@ void ServerLobbyMenu::updateLockButton() const
 void ServerLobbyMenu::updatePlayers()
 {
 	clearPlayers(); // doesn't clear the updatedPlayers
-	for (int i = 0; i < getUpdatedPlayers().size(); i++)
+	for (unsigned int i = 0; i < getUpdatedPlayers().size(); i++)
 	{
 		addPlayer(getUpdatedPlayers()[i]);
 	}
@@ -365,7 +365,7 @@ void ServerLobbyMenu::unlockAll()
 {
 	LobbyMenu::unlockAll();
 	LockUserPacket* packet = new LockUserPacket(false);
-	for (int i = 0; i < getUpdatedPlayers().size(); i++)
+	for (unsigned int i = 0; i < getUpdatedPlayers().size(); i++)
 	{
 		getUpdatedPlayers()[i]->applyLockUserPacket(packet);
 	}

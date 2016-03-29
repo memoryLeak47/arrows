@@ -34,7 +34,7 @@ void TextureManager::uninit()
 
 sf::Texture* TextureManager::getTexture(const TextureID& id)
 {
-	Debug::warnIf(id < 0 || id >= textures.size(), "TextureManager::getTexture(): id(" + Converter::intToString(id) + ") may be out of range");
+	Debug::warnIf(id < 0 || id >= (int)textures.size(), "TextureManager::getTexture(): id(" + Converter::intToString(id) + ") may be out of range");
 	return textures[id];
 }
 

@@ -46,11 +46,12 @@ MenuComponent* ComponentContainer::getHoveredComponent() const
 			return getComponents()[i]->getHoveredComponentRecursively();
 		}
 	} // wenn keine Component gefunden wurde
+	return NULL;
 }
 
 void ComponentContainer::render() const
 {
-	for (int i = 0; i < getComponents().size(); i++)
+	for (unsigned int i = 0; i < getComponents().size(); i++)
 	{
 		getComponents()[i]->render();
 	}

@@ -29,7 +29,7 @@ void Account::updateAccount(Account* account) // called when user quits arrows
 	if (!isNameFree(account->getName(), accounts))
 	{
 		// delete account with name account->getName()
-		for (int i = 0; i < accounts.size(); i++)
+		for (unsigned int i = 0; i < accounts.size(); i++)
 		{
 			if (accounts[i]->getName() == account->getName())
 			{
@@ -66,7 +66,7 @@ bool Account::add(const std::string& name, const std::string& pwd)
 
 Account* Account::getByName(const std::string& name, const std::vector<Account*>& accounts)
 {
-	for (int i = 0; i < accounts.size(); i++)
+	for (unsigned int i = 0; i < accounts.size(); i++)
 	{
 		if (accounts[i]->getName() == name)
 		{
@@ -112,7 +112,7 @@ void Account::writeAccountsToFile(const std::vector<Account*>& accounts)
 		filestream.close();
 		return;
 	}
-	for (int i = 0; i < accounts.size(); i++)
+	for (unsigned int i = 0; i < accounts.size(); i++)
 	{
 		filestream << accounts[i]->getName() << std::endl;
 		filestream << accounts[i]->getPassword() << std::endl;

@@ -21,7 +21,7 @@ void PlayerPanelsItemIcon::onClick(int mouseButton)
 	{
 		const std::vector<Item*>& items = Item::getAllItems();
 		std::vector<PlayerProperty*> tmp;
-		for (int i = 0; i < items.size(); i++)
+		for (unsigned int i = 0; i < items.size(); i++)
 		{
 			tmp.push_back(items[i]);
 		}

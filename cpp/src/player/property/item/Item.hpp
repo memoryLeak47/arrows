@@ -6,6 +6,7 @@
 class Item : public PlayerProperty
 {
 	public:
+		virtual ~Item() {}
 		static void init();
 		static void uninit();
 		static Item* get(int);

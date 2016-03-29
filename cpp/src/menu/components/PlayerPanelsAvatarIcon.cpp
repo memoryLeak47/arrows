@@ -21,7 +21,7 @@ void PlayerPanelsAvatarIcon::onClick(int mouseButton)
 	{
 		const std::vector<Avatar*>& avatars = Avatar::getAllAvatars();
 		std::vector<PlayerProperty*> tmp;
-		for (int i = 0; i < avatars.size(); i++)
+		for (unsigned int i = 0; i < avatars.size(); i++)
 		{
 			tmp.push_back(avatars[i]);
 		}

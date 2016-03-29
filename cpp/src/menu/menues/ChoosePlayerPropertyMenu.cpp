@@ -47,7 +47,7 @@ ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(LobbyMenu* lobbyMenu, PlayerP
 	slotPacket = packet; // copy-constructor of packet already used when this constructor is called
 
 	// Slot Icons
-	for (int i = 0; i < slotPacket->getPlayerProperties().size(); i++)
+	for (unsigned int i = 0; i < slotPacket->getPlayerProperties().size(); i++)
 	{
 		PlayerPropertyIcon* icon = new SlotIcon(this, slotPacket->getPlayerProperties()[i], PixelRect(60 + i * (PlayerPropertyIcon::getSize().getX() + 15), 40, PlayerPropertyIcon::getSize().getX(), PlayerPropertyIcon::getSize().getY()));
 		addComponent(icon);
@@ -55,7 +55,7 @@ ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(LobbyMenu* lobbyMenu, PlayerP
 	}
 
 	// Choose Icons
-	for (int i = 0; i < chooseProperties.size(); i++)
+	for (unsigned int i = 0; i < chooseProperties.size(); i++)
 	{
 		PlayerPropertyIcon* icon = new ChooseIcon(this, PixelRect(40 + i * (PlayerPropertyIcon::getSize().getX() + 5), 140, PlayerPropertyIcon::getSize().getX(), PlayerPropertyIcon::getSize().getY()), chooseProperties[i]);
 		addComponent(icon);
@@ -75,7 +75,7 @@ ChoosePlayerPropertyMenu::~ChoosePlayerPropertyMenu()
 
 PlayerPropertyIcon* ChoosePlayerPropertyMenu::getFirstVoidSlotIcon() const
 {
-	for (int i = 0; i < slotIcons.size(); i++)
+	for (unsigned int i = 0; i < slotIcons.size(); i++)
 	{
 		if (slotIcons[i]->getPlayerProperty() == NULL)
 		{
@@ -99,7 +99,7 @@ LobbyMenu* ChoosePlayerPropertyMenu::getLobbyMenu() const
 void ChoosePlayerPropertyMenu::okPressed()
 {
 	std::string ids = "";
-	for (int i = 0; i < getSlotIcons().size(); i++)
+	for (unsigned int i = 0; i < getSlotIcons().size(); i++)
 	{
 		if (getSlotIcons()[i]->getPlayerProperty() != NULL)
 		{

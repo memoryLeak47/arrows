@@ -3,7 +3,7 @@
 #include "PlayerPanel.hpp"
 #include "../../misc/Debug.hpp"
 
-TeamPanel::TeamPanel(LobbyMenu* m, TeamListPanel* c, const PixelRect& r, Team* team) : Panel(c, r), team(team), lobby(m)
+TeamPanel::TeamPanel(LobbyMenu* m, TeamListPanel* c, const PixelRect& r, Team* team) : Panel(c, r), lobby(m), team(team)
 {
 	teamButton = NULL; // otherwise the program crashes
 }
@@ -27,7 +27,7 @@ void TeamPanel::update(const std::vector<LobbyPlayer*>& players)
 	teamButton->setEnabled(buttonWasEnabled);
 
 	int c = 0;
-	for (int i = 0; i < players.size(); i++)
+	for (unsigned int i = 0; i < players.size(); i++)
 	{
 		if (players[i]->getTeamUserPacket()->getTeam() == team)
 		{

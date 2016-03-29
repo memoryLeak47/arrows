@@ -10,6 +10,7 @@ class DisconnectUserPacket : public UserPacket
 	public:
 		DisconnectUserPacket();
 		DisconnectUserPacket(CompressBuffer*);
+		virtual ~DisconnectUserPacket() {}
 		std::string toString() const;
 		CID getCID() const;
 };

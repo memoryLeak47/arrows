@@ -10,6 +10,7 @@ class PlayerProperty;
 class PlayerPropertyUserPacket : public UserPacket
 {
 	public:
+		virtual ~PlayerPropertyUserPacket() {}
 		virtual const std::vector<PlayerProperty*> getPlayerProperties() const = 0;
 		virtual void setIDs(const std::string&) = 0;
 };

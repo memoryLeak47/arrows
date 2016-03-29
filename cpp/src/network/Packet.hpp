@@ -5,7 +5,8 @@
 
 class Packet : public Compressable
 {
-	
+	public:
+		virtual ~Packet() {}
 };
 
 #endif

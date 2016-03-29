@@ -6,6 +6,7 @@
 class Avatar : public PlayerProperty
 {
 	public:
+		virtual ~Avatar() {}
 		static void init();
 		static void uninit();
 		static Avatar* get(int);

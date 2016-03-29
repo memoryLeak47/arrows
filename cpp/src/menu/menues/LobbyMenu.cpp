@@ -59,7 +59,7 @@ LobbyTileMap* LobbyMenu::getLobbyTileMap() const
 
 bool LobbyMenu::areAllClientsLocked() const
 {
-	for (int i = 1; i < getPlayers().size(); i++)
+	for (unsigned int i = 1; i < getPlayers().size(); i++)
 	{
 		if (!getPlayer(i)->getLockUserPacket()->isLocked())
 			return false;
@@ -80,7 +80,7 @@ void LobbyMenu::tick()
 
 int LobbyMenu::ipToID(sf::IpAddress* ip, const std::vector<LobbyPlayer*>& players) const
 {
-	for (int i = 0; i < players.size(); i++)
+	for (unsigned int i = 0; i < players.size(); i++)
 	{
 		if ((*players[i]->getIP()) == (*ip))
 		{
@@ -98,7 +98,7 @@ void LobbyMenu::updatePlayerIcons() const
 
 LobbyPlayer* LobbyMenu::getPlayer(int id) const
 {
-	Debug::warnIf(id < 0 || id >= getPlayers().size(), "LobbyMenu::getPlayer(): id out of range: " + Converter::intToString(id) + "; size of Players(): " + Converter::intToString(getPlayers().size()));
+	Debug::warnIf(id < 0 || id >= (int)getPlayers().size(), "LobbyMenu::getPlayer(): id out of range: " + Converter::intToString(id) + "; size of Players(): " + Converter::intToString(getPlayers().size()));
 	return players[id];
 }
 
@@ -116,7 +116,7 @@ void LobbyMenu::updateMap(const std::vector<std::vector<int>>& ints)
 void LobbyMenu::unlockAll()
 {
 	LockUserPacket* packet = new LockUserPacket(false);
-	for (int i = 0; i < getPlayers().size(); i++)
+	for (unsigned int i = 0; i < getPlayers().size(); i++)
 	{
 		getPlayers()[i]->applyLockUserPacket(packet);
 	}
