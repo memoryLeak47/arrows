@@ -19,6 +19,8 @@ void Entity::calculateCollisions(const std::vector<Mob*>& mobs, const std::vecto
 {
 	for (unsigned int i = 0; i < mobs.size(); i++)
 	{
+		if (this == mobs[i])
+			continue;
 		if (this->wantsToCollide(mobs[i]) || mobs[i]->wantsToCollide(this))
 		{
 			GameVector spot(CollisionDetector::getCollisionPoint(getBody(), mobs[i]->getBody()));
@@ -32,6 +34,8 @@ void Entity::calculateCollisions(const std::vector<Mob*>& mobs, const std::vecto
 	// TODO Annäherung hinzufügen
 	for (unsigned int i = 0; i < tiles.size(); i++)
 	{
+		if (this == tiles[i])
+			continue;
 		if (this->wantsToCollide(tiles[i]) || tiles[i]->wantsToCollide(this))
 		{
 			GameVector spot(CollisionDetector::getCollisionPoint(getBody(), tiles[i]->getBody()));
@@ -44,6 +48,8 @@ void Entity::calculateCollisions(const std::vector<Mob*>& mobs, const std::vecto
 
 	for (unsigned int i = 0; i < bullets.size(); i++)
 	{
+		if (this == bullets[i])
+			continue;
 		if (this->wantsToCollide(bullets[i]) || bullets[i]->wantsToCollide(this))
 		{
 			GameVector spot(CollisionDetector::getCollisionPoint(getBody(), bullets[i]->getBody()));
