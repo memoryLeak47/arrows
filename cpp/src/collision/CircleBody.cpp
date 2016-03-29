@@ -13,8 +13,7 @@ BodyType CircleBody::getBodyType() const
 
 RectBody* CircleBody::getWrapper() const
 {
-	Debug::warn("CircleBody::getWrapper(): TODO");
-	return NULL;
+	return new RectBody(getPosition(), GameVector(2*getRadius(), 2*getRadius()));
 }
 
 // position

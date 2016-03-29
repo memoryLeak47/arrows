@@ -2,9 +2,8 @@
 
 #include "../misc/Debug.hpp"
 
-// RectBody::RectBody(const GameVector& pos, const GameVector& speed=GameVector(0, 0), const GameVector& size=GameVector(0, 0), float rot=0, float spin=0)
-RectBody::RectBody(const GameVector& pos, const GameVector& speed, const GameVector& size, float rot, float spin)
-	: position(pos), speed(speed), size(size), rotation(rot), spin(spin)
+RectBody::RectBody(const GameVector& pos, const GameVector& size, const GameVector& speed, float rot, float spin)
+	: position(pos), size(size), speed(speed), rotation(rot), spin(spin)
 {}
 
 BodyType RectBody::getBodyType() const
@@ -26,6 +25,11 @@ void RectBody::setPosition(const GameVector& pos)
 const GameVector& RectBody::getPosition() const
 {
 	return position;
+}
+
+const GameVector& RectBody::getSize() const
+{
+	return size;
 }
 
 void RectBody::setSpeed(const GameVector& s)

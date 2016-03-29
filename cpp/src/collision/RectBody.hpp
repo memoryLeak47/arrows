@@ -6,7 +6,7 @@
 class RectBody : public Body
 {
 	public:
-		RectBody(const GameVector&, const GameVector& =GameVector(0, 0), const GameVector& =GameVector(0, 0), float=0, float=0);
+		RectBody(const GameVector&, const GameVector& =GameVector(1, 1), const GameVector& =GameVector(0, 0), float=0, float=0);
 		virtual ~RectBody() {}
 		virtual BodyType getBodyType() const override;
 
@@ -14,6 +14,8 @@ class RectBody : public Body
 
 		virtual void setPosition(const GameVector&) override;
 		virtual const GameVector& getPosition() const override;
+
+		const GameVector& getSize() const;
 
 		virtual void setSpeed(const GameVector&) override;
 		virtual const GameVector& getSpeed() const override;
@@ -25,8 +27,8 @@ class RectBody : public Body
 		virtual float getSpin() const override;
 	private:
 		GameVector position;
-		GameVector speed;
 		GameVector size;
+		GameVector speed;
 		float rotation;
 		float spin;
 };
