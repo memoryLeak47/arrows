@@ -1,8 +1,21 @@
 #include "CircleBody.hpp"
 
+#include "../misc/Debug.hpp"
+
 CircleBody::CircleBody(const GameVector& position, const GameVector& speed, float rotation, float radius, float spin)
 	: position(position), speed(speed), rotation(rotation), radius(radius), spin(spin)
 {}
+
+BodyType CircleBody::getBodyType() const
+{
+	return CIRCLE;
+}
+
+RectBody* CircleBody::getWrapper() const
+{
+	Debug::warn("CircleBody::getWrapper(): TODO");
+	return NULL;
+}
 
 // position
 const GameVector& CircleBody::getPosition() const

@@ -3,10 +3,17 @@
 
 #include "Body.hpp"
 
+class RectBody;
+
 class CircleBody : public Body
 {
 	public:
 		CircleBody(const GameVector&, const GameVector&, float, float, float);
+		virtual ~CircleBody() {}
+		virtual BodyType getBodyType() const override;
+
+		virtual RectBody* getWrapper() const override;
+
 		// position
 		const GameVector& getPosition() const override;
 		void setPosition(const GameVector&) override;
@@ -28,5 +35,7 @@ class CircleBody : public Body
 		float radius;
 		float spin;
 };
+
+#include "RectBody.hpp"
 
 #endif

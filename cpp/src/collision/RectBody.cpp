@@ -1,8 +1,22 @@
 #include "RectBody.hpp"
 
+#include "../misc/Debug.hpp"
+
+// RectBody::RectBody(const GameVector& pos, const GameVector& speed=GameVector(0, 0), const GameVector& size=GameVector(0, 0), float rot=0, float spin=0)
 RectBody::RectBody(const GameVector& pos, const GameVector& speed, const GameVector& size, float rot, float spin)
 	: position(pos), speed(speed), size(size), rotation(rot), spin(spin)
 {}
+
+BodyType RectBody::getBodyType() const
+{
+	return RECT;
+}
+
+RectBody* RectBody::getWrapper() const
+{
+	Debug::warn("RectBody::getWrapper(): TODO");
+	return NULL;
+}
 
 void RectBody::setPosition(const GameVector& pos)
 {

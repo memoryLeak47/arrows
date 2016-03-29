@@ -1,9 +1,11 @@
 #include "GamePlayer.hpp"
 
+#include "../collision/RectBody.hpp"
 #include "../misc/Converter.hpp"
 
 GamePlayer::GamePlayer(LobbyPlayer* player)
-	: name(player->getLoginUserPacket()->getName()),
+	: Mob(new RectBody(GameVector(0, 0))), // TODO real position
+	  name(player->getLoginUserPacket()->getName()),
 	  rank(player->getLoginUserPacket()->getRank())
 {
 	if (player->getIP() == NULL)
@@ -30,4 +32,9 @@ GamePlayer::GamePlayer(LobbyPlayer* player)
 GamePlayer::~GamePlayer()
 {
 	delete ip;
+}
+
+bool GamePlayer::wantsToCollide(Entity* e) const
+{
+	return e->getEntityType() == TILE; // TODO also colliding players?
 }

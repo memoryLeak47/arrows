@@ -1,10 +1,13 @@
 #ifndef __MOB_CLASS__
 #define __MOB_CLASS__
 
-#include "DynamicEntity.hpp"
+#include "Entity.hpp"
 
-class Mob : public DynamicEntity
+class Mob : public Entity
 {
+	public:
+		Mob(Body*);
+		virtual ~Mob() {}
 };
 
 #endif

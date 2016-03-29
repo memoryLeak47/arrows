@@ -20,13 +20,22 @@
 #ifndef __BODY_CLASS__
 #define __BODY_CLASS__
 
+enum BodyType
+{
+	RECT, CIRCLE
+};
+
 class GameVector;
+class RectBody;
 
 class Body
 {
 	public:
 		// Konstruktor/Destruktor
 		virtual ~Body() {}
+		virtual BodyType getBodyType() const = 0;
+
+		virtual RectBody* getWrapper() const = 0;
 		// speed
 		virtual const GameVector& getSpeed() const = 0;
 		virtual void setSpeed(const GameVector&) = 0;
@@ -42,5 +51,6 @@ class Body
 };
 
 #include "../math/game/GameVector.hpp"
+#include "RectBody.hpp"
 
 #endif

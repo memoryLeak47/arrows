@@ -6,7 +6,9 @@
 
 class LobbyTileMap;
 class LobbyPlayer;
-class GamePlayer;
+class Mob;
+class Tile;
+class Bullet;
 
 class GameInterface : public NetworkingMenu
 {
@@ -15,12 +17,16 @@ class GameInterface : public NetworkingMenu
 		virtual ~GameInterface();
 		virtual void tick() override;
 	private:
-		std::vector<GamePlayer*> players;
+		std::vector<Mob*> mobs;
+		std::vector<Tile*> tiles;
+		std::vector<Bullet*> bullets;
 		GameTileMap* tileMap;
 };
 
 #include "../tile/map/LobbyTileMap.hpp"
 #include "../player/LobbyPlayer.hpp"
-#include "../player/GamePlayer.hpp"
+#include "../entity/Mob.hpp"
+#include "../entity/Tile.hpp"
+#include "../entity/Bullet.hpp"
 
 #endif
