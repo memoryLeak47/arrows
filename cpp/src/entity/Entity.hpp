@@ -5,6 +5,7 @@
 
 class Body;
 class Mob;
+class GameTileMap;
 class Tile;
 class Bullet;
 class Collision;
@@ -18,7 +19,7 @@ class Entity
 		virtual ~Entity();
 		virtual void tick();
 
-		void calculateCollisions(const std::vector<Mob*>& mobs, const std::vector<Tile*>& tiles, const std::vector<Bullet*>& bullets);
+		void calculateCollisions(const std::vector<Mob*>& mobs, GameTileMap*, const std::vector<Bullet*>& bullets);
 		virtual void handleCollisions() = 0; // should NOT add forces to the collision-partner
 		void applyForces();
 
@@ -50,6 +51,7 @@ class Entity
 
 #include "../collision/Body.hpp"
 #include "../entity/Mob.hpp"
+#include "../tile/map/GameTileMap.hpp"
 #include "../entity/Tile.hpp"
 #include "../entity/Bullet.hpp"
 #include "../collision/Collision.hpp"

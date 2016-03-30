@@ -38,15 +38,15 @@ void GameInterface::tick()
 	// calculate Collisions
 	for (unsigned int i = 0; i < mobs.size(); i++)
 	{
-		mobs[i]->calculateCollisions(mobs, tiles, bullets);
+		mobs[i]->calculateCollisions(mobs, getGameTileMap(), bullets);
 	}
 	for (unsigned int i = 0; i < tiles.size(); i++)
 	{
-		tiles[i]->calculateCollisions(mobs, tiles, bullets);
+		tiles[i]->calculateCollisions(mobs, getGameTileMap(), bullets);
 	}
 	for (unsigned int i = 0; i < bullets.size(); i++)
 	{
-		bullets[i]->calculateCollisions(mobs, tiles, bullets);
+		bullets[i]->calculateCollisions(mobs, getGameTileMap(), bullets);
 	}
 
 	// handle Collisions
@@ -82,4 +82,9 @@ void GameInterface::tick()
 			bullets[i]->applyForces();
 		bullets[i]->resetCollisionSystem();
 	}
+}
+
+GameTileMap* GameInterface::getGameTileMap() const
+{
+	return tileMap;
 }

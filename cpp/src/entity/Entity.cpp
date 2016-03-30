@@ -28,7 +28,7 @@ void Entity::tick()
 	}
 }
 
-void Entity::calculateCollisions(const std::vector<Mob*>& mobs, const std::vector<Tile*>& tiles, const std::vector<Bullet*>& bullets)
+void Entity::calculateCollisions(const std::vector<Mob*>& mobs, GameTileMap* tileMap, const std::vector<Bullet*>& bullets)
 {
 	if (isCollidingMobs())
 	{
@@ -47,6 +47,8 @@ void Entity::calculateCollisions(const std::vector<Mob*>& mobs, const std::vecto
 	// TODO Annäherung hinzufügen
 	if (isCollidingTiles())
 	{
+		std::vector<Tile*> tiles(tileMap->getIntersectionTiles(getBody()->getWrapper()));
+
 		for (unsigned int i = 0; i < tiles.size(); i++)
 		{
 			if (this == tiles[i])
