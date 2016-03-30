@@ -22,6 +22,6 @@ Tile* Tile::createByColorID(const int id, const GameVector& position)
 	{
 		return new VoidTile(position);
 	}
-	Debug::warn("Tile::createByColorID(): No Block_ID = " + id);
+	Debug::warn("Tile::createByColorID(): No Block_ID = " + Converter::intToString(id));
 	return NULL;
 }

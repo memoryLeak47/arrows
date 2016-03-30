@@ -1,6 +1,7 @@
 #include "GameTileMap.hpp"
 
 #include "../../core/Main.hpp"
+#include "../../misc/Converter.hpp"
 #include "../../misc/Debug.hpp"
 
 GameTileMap::GameTileMap(LobbyTileMap* lobbyMap)
