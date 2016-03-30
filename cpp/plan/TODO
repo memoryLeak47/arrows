@@ -1,17 +1,14 @@
 Topic			Dependency
 
-Body			-
 Camera			-
-Entity			Body
-Tile			Entity
+Tile			-
 GameTileMap		Tile
-Mob			Entity
+Mob			-
 ArcherGamePlayer	Mob
-Rendering		GameTileMap, Entity, Camera
-Collision		Body
+Rendering		GameTileMap, Camera
 PacketManaging		-
+SkillSystem		ArcherGamePlayer
 Damage			Mob
-Effects			Entity
-Bullets			Entity
-Explosions		Collision
+Effects			-
+Explosions		-
 Animations		Rendering
