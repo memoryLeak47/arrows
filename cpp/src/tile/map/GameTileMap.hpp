@@ -12,6 +12,7 @@ class GameTileMap
 {
 	public:
 		GameTileMap(LobbyTileMap*);
+		virtual ~GameTileMap();
 		const std::vector<Tile*> getIntersectionTiles(const GameRect&) const;
 	private:
 		std::vector<std::vector<Tile*>> tiles;
