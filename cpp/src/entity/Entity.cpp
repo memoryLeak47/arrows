@@ -30,59 +30,67 @@ void Entity::tick()
 
 void Entity::calculateCollisions(const std::vector<Mob*>& mobs, const std::vector<Tile*>& tiles, const std::vector<Bullet*>& bullets)
 {
-	for (unsigned int i = 0; i < mobs.size(); i++)
+	if (isCollidingMobs())
 	{
-		if (this == mobs[i])
-			continue;
-		if (wouldCollide(mobs[i]))
+		for (unsigned int i = 0; i < mobs.size(); i++)
 		{
+			if (this == mobs[i])
+				continue;
 			GameVector spot(CollisionDetector::getCollisionPoint(getBody(), mobs[i]->getBody()));
 			if (spot != GameVector(-1, -1))
 			{
-				collisions.push_back(new Collision(mobs[i], spot));
+				applyCollision(new Collision(mobs[i], spot)); // added die Collision nur, wenn noch keine Collision mit der Entity vorhanden ist
 			}
 		}
 	}
 
 	// TODO Annäherung hinzufügen
-	for (unsigned int i = 0; i < tiles.size(); i++)
+	if (isCollidingTiles())
 	{
-		if (this == tiles[i])
-			continue;
-		if (wouldCollide(tiles[i]))
+		for (unsigned int i = 0; i < tiles.size(); i++)
 		{
+			if (this == tiles[i])
+				continue;
 			GameVector spot(CollisionDetector::getCollisionPoint(getBody(), tiles[i]->getBody()));
 			if (spot != GameVector(-1, -1))
 			{
-				collisions.push_back(new Collision(tiles[i], spot));
+				applyCollision(new Collision(tiles[i], spot));
 			}
 		}
 	}
 
-	for (unsigned int i = 0; i < bullets.size(); i++)
+	if (isCollidingBullets())
 	{
-		if (this == bullets[i])
-			continue;
-		if (wouldCollide(bullets[i]))
+		for (unsigned int i = 0; i < bullets.size(); i++)
 		{
+			if (this == bullets[i])
+				continue;
 			GameVector spot(CollisionDetector::getCollisionPoint(getBody(), bullets[i]->getBody()));
 			if (spot != GameVector(-1, -1))
 			{
-				collisions.push_back(new Collision(bullets[i], spot));
+				applyCollision(new Collision(bullets[i], spot));
 			}
 		}
 	}
+}
+
+void Entity::applyCollision(Collision* c)
+{
+	for (unsigned int i = 0; i < getCollisions().size(); i++)
+	{
+		if (getCollisions()[i]->getEntity() == c->getEntity())
+		{
+			delete c;
+			return;
+		}
+	}
+	getCollisions().push_back(c);
 }
 
 void Entity::applyForces()
 {
 	Debug::warn("Entity::applyForces(): TODO");
 	// TODO apply...
-}
-
-bool Entity::wouldCollide(Entity* entity) const
-{
-	return this->wantsToCollide(entity) || entity->wantsToCollide(this);
 }
 
 Body* Entity::getBody() const
@@ -122,4 +130,14 @@ void Entity::resetCollisionSystem()
 {
 	deleteAndClearVector(collisions);
 	deleteAndClearVector(forces);
+}
+
+std::vector<Collision*>& Entity::getCollisions()
+{
+	return collisions;
+}
+
+std::vector<Force*>& Entity::getForces()
+{
+	return forces;
 }

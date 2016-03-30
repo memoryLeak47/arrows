@@ -3,11 +3,6 @@
 
 #include <vector>
 
-enum EntityType // needed in wantsToCollide
-{
-	MOB, TILE, BULLET
-};
-
 class Body;
 class Mob;
 class Tile;
@@ -27,11 +22,11 @@ class Entity
 		virtual void handleCollisions() = 0; // should NOT add forces to the collision-partner
 		void applyForces();
 
-		virtual bool wantsToCollide(const Entity*) const = 0;
-		bool wouldCollide(Entity*) const;
+		virtual bool isCollidingMobs() const { return false; }
+		virtual bool isCollidingTiles() const { return false; }
+		virtual bool isCollidingBullets() const { return false; }
 
 		Body* getBody() const;
-		virtual EntityType getEntityType() const = 0;
 
 		void dash(const GameVector&, float);
 		bool couldDashTo(const GameVector&) const;
@@ -41,7 +36,11 @@ class Entity
 
 		virtual bool isIgnoringForces() const;
 		void resetCollisionSystem();
+	protected:
+		std::vector<Collision*>& getCollisions();
+		std::vector<Force*>& getForces();
 	private:
+		void applyCollision(Collision*);
 		int dashCounter;
 		Body* body;
 		std::vector<Collision*> collisions;

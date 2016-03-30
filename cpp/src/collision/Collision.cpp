@@ -5,3 +5,8 @@ Collision::Collision(Entity* e, const GameVector& v)
 {
 	entity = e;
 }
+
+Entity* Collision::getEntity() const
+{
+	return entity;
+}

@@ -10,6 +10,7 @@ class Collision
 	public:
 		Collision(Entity*, const GameVector&);
 		virtual ~Collision() {}
+		Entity* getEntity() const;
 	private:
 		Entity* entity;
 		GameVector collisionPoint;

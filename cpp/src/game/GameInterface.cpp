@@ -35,6 +35,7 @@ void GameInterface::tick()
 		bullets[i]->tick();
 	}
 
+	// calculate Collisions
 	for (unsigned int i = 0; i < mobs.size(); i++)
 	{
 		mobs[i]->calculateCollisions(mobs, tiles, bullets);
@@ -48,6 +49,7 @@ void GameInterface::tick()
 		bullets[i]->calculateCollisions(mobs, tiles, bullets);
 	}
 
+	// handle Collisions
 	for (unsigned int i = 0; i < mobs.size(); i++)
 	{
 		mobs[i]->handleCollisions();
@@ -61,6 +63,7 @@ void GameInterface::tick()
 		bullets[i]->handleCollisions();
 	}
 
+	// apply Forces
 	for (unsigned int i = 0; i < mobs.size(); i++)
 	{
 		if (!mobs[i]->isIgnoringForces())

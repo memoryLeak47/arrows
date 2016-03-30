@@ -33,8 +33,3 @@ GamePlayer::~GamePlayer()
 {
 	delete ip;
 }
-
-bool GamePlayer::wantsToCollide(const Entity* e) const
-{
-	return e->getEntityType() == TILE; // TODO also colliding players?
-}
