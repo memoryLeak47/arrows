@@ -22,7 +22,7 @@ class GamePlayer : public Mob
 	public:
 		GamePlayer(LobbyPlayer*);
 		~GamePlayer();
-		virtual bool wantsToCollide(Entity*) const override;
+		virtual bool wantsToCollide(const Entity*) const override;
 	private:
 		sf::IpAddress* ip;
 		std::string name;

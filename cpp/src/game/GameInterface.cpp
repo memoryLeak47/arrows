@@ -50,27 +50,42 @@ void GameInterface::tick()
 
 	for (unsigned int i = 0; i < mobs.size(); i++)
 	{
-		mobs[i]->calculateForces();
+		mobs[i]->handleCollisions();
 	}
 	for (unsigned int i = 0; i < tiles.size(); i++)
 	{
-		tiles[i]->calculateForces();
+		tiles[i]->handleCollisions();
 	}
 	for (unsigned int i = 0; i < bullets.size(); i++)
 	{
-		bullets[i]->calculateForces();
+		bullets[i]->handleCollisions();
 	}
 
 	for (unsigned int i = 0; i < mobs.size(); i++)
 	{
+		if (mobs[i]->isIgnoringForces())
+		{
+			mobs[i]->resetForces();
+			continue;
+		}
 		mobs[i]->applyForces();
 	}
 	for (unsigned int i = 0; i < tiles.size(); i++)
 	{
+		if (tiles[i]->isIgnoringForces())
+		{
+			tiles[i]->resetForces();
+			continue;
+		}
 		tiles[i]->applyForces();
 	}
 	for (unsigned int i = 0; i < bullets.size(); i++)
 	{
+		if (bullets[i]->isIgnoringForces())
+		{
+			bullets[i]->resetForces();
+			continue;
+		}
 		bullets[i]->applyForces();
 	}
 }

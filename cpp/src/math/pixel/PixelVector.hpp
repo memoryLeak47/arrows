@@ -15,8 +15,8 @@ class PixelVector
 		bool operator!=(const PixelVector&) const;
 		PixelVector operator+(const PixelVector&) const;
 		PixelVector operator-(const PixelVector&) const;
-		PixelVector operator*(const PixelVector&) const;
-		PixelVector operator/(const PixelVector&) const;
+		PixelVector operator*(float) const;
+		PixelVector operator/(float) const;
 	private:
 		int x, y;
 };

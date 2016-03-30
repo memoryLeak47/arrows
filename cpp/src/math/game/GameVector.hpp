@@ -17,8 +17,8 @@ class GameVector
 		bool operator!=(const GameVector&) const;
 		GameVector operator+(const GameVector&) const;
 		GameVector operator-(const GameVector&) const;
-		GameVector operator*(const GameVector&) const;
-		GameVector operator/(const GameVector&) const;
+		GameVector operator*(float) const;
+		GameVector operator/(float) const;
 	private:
 		float x, y;
 };

@@ -57,16 +57,12 @@ GameVector GameVector::operator-(const GameVector& vec) const
 	return GameVector(x, y);
 }
 
-GameVector GameVector::operator*(const GameVector& vec) const
+GameVector GameVector::operator*(float f) const
 {
-	float x = getX() * vec.getX();
-	float y = getY() * vec.getY();
-	return GameVector(x, y);
+	return GameVector(getX()*f, getY()*f);
 }
 
-GameVector GameVector::operator/(const GameVector& vec) const
+GameVector GameVector::operator/(float f) const
 {
-	float x = getX() / vec.getX();
-	float y = getY() / vec.getY();
-	return GameVector(x, y);
+	return GameVector(getX()/f, getY()/f);
 }
