@@ -118,7 +118,8 @@ bool Entity::isIgnoringForces() const
 	return dashCounter > 0;
 }
 
-void Entity::resetForces()
+void Entity::resetCollisionSystem()
 {
+	deleteAndClearVector(collisions);
 	deleteAndClearVector(forces);
 }

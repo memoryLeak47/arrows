@@ -40,7 +40,7 @@ class Entity
 		bool couldFlashTo(const GameVector&) const; // TODO GameVector Entity::whereToFlash(const GameVector&);
 
 		virtual bool isIgnoringForces() const;
-		void resetForces();
+		void resetCollisionSystem();
 	private:
 		int dashCounter;
 		Body* body;
