@@ -16,6 +16,7 @@ Account* Main::account;
 Main::Main()
 {
 	Debug::init();
+	Account::init();
 	Screen::init();
 	Team::init();
 	Avatar::init();
@@ -32,7 +33,7 @@ Main::~Main()
 {
 	deleteAndNULL(menuList);
 	deleteAndNULL(networkDevice);
-	deleteAndNULL(account); // really needed?
+	Account::uninit();
 	Screen::uninit();
 	Team::uninit();
 	Avatar::uninit();

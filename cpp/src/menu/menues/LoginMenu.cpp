@@ -46,7 +46,7 @@ LoginMenu::LoginMenu() : Menu()
 
 void LoginMenu::login()
 {
-	Account* account = Account::get(usernameField->getText(), passwordField->getText());
+	Account* account = Account::authenticate(usernameField->getText(), passwordField->getText());
 	if (account != NULL)
 	{
 		Main::setAccount(account);
@@ -60,8 +60,11 @@ void LoginMenu::login()
 
 void LoginMenu::signin()
 {
-	if (Account::add(usernameField->getText(), passwordField->getText()))
+	if (Account::isNameFree(usernameField->getText()))
 	{
+		Account* account = new Account(usernameField->getText(), passwordField->getText());
+		Account::add(account);
+		Main::setAccount(account);
 		Main::getMenuList()->addMenu(new MainMenu());
 	}
 	else
