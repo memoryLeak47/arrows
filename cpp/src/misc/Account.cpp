@@ -21,8 +21,11 @@ void Account::init()
 		std::string readname, readpwd;
 		std::getline(filestream, readname);
 		std::getline(filestream, readpwd);
-		Account* a = new Account(readname, readpwd);
-		accounts.push_back(a);
+		if (readname != "" && readpwd != "")
+		{
+			Account* a = new Account(readname, readpwd);
+			accounts.push_back(a);
+		}
 	}
 
 	filestream.close();
