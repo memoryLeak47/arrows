@@ -2,6 +2,7 @@
 
 #include <fstream>
 
+#include "Converter.hpp"
 #include "Debug.hpp"
 #include "../core/Main.hpp"
 

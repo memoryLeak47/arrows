@@ -103,7 +103,7 @@ Account* Main::getAccount()
 
 void Main::logout()
 {
-	deleteAndNULL(account);
+	account = NULL;
 }
 
 MenuList* Main::getMenuList()
