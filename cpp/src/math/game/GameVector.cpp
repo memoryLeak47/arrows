@@ -1,7 +1,9 @@
 #include "GameVector.hpp"
 
-#include "../../misc/Debug.hpp"
 #include <iostream>
+#include <math.h>
+
+#include "../../misc/Debug.hpp"
 
 GameVector::GameVector(float x, float y)
 {
@@ -24,6 +26,11 @@ void GameVector::apply(const GameVector& g)
 {
 	x = g.getX();
 	y = g.getY();
+}
+
+float GameVector::getMagnitude() const
+{
+	return sqrt(getX() * getX() + getY() * getY());
 }
 
 bool GameVector::operator==(const GameVector& vec) const

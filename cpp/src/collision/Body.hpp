@@ -25,8 +25,8 @@ enum BodyType
 	RECT, CIRCLE
 };
 
+class GameRect;
 class GameVector;
-class RectBody;
 
 class Body
 {
@@ -35,7 +35,7 @@ class Body
 		virtual ~Body() {}
 		virtual BodyType getBodyType() const = 0;
 
-		virtual RectBody* getWrapper() const = 0;
+		virtual GameRect getWrapper() const = 0;
 		// speed
 		virtual const GameVector& getSpeed() const = 0;
 		virtual void setSpeed(const GameVector&) = 0;
@@ -50,7 +50,7 @@ class Body
 		virtual void setSpin(float) = 0;
 };
 
+#include "../math/game/GameRect.hpp"
 #include "../math/game/GameVector.hpp"
-#include "RectBody.hpp"
 
 #endif

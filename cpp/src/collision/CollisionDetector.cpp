@@ -4,10 +4,11 @@
 
 GameVector CollisionDetector::getCollisionPoint(Body* a, Body* b)
 {
-	if (!checkWrapper(a, b))
+	if (!a->getWrapper().collidesWith(b->getWrapper()))
 	{
 		return GameVector(-1, -1);
 	}
+
 	if (a->getBodyType() == RECT)
 	{
 		if (b->getBodyType() == RECT)
@@ -40,22 +41,4 @@ GameVector CollisionDetector::circleCollision(CircleBody* a, CircleBody* b)
 {
 	Debug::warn("CollisionDetector: TODO");
 	return GameVector(-1, -1);
-}
-
-bool CollisionDetector::unrotatedRectCollision(RectBody* a, RectBody* b)
-{
-	return     (a->getPosition().getX() <= b->getPosition().getX() + b->getSize().getX())
-		&& (a->getPosition().getY() <= b->getPosition().getY() + b->getSize().getY())
-		&& (b->getPosition().getX() <= a->getPosition().getX() + a->getSize().getX())
-		&& (b->getPosition().getY() <= a->getPosition().getY() + a->getSize().getY());
-}
-
-bool CollisionDetector::checkWrapper(Body* a, Body* b)
-{
-	RectBody* wa = a->getWrapper();
-	RectBody* wb = b->getWrapper();
-	bool result = unrotatedRectCollision(wa, wb);
-	delete wa;
-	delete wb;
-	return result;
 }

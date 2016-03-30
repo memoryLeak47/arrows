@@ -12,6 +12,7 @@ class GameVector
 		float getX() const;
 		float getY() const;
 		void apply(const GameVector&);
+		float getMagnitude() const;
 		bool operator==(const GameVector&) const;
 		bool operator!=(const GameVector&) const;
 		GameVector operator+(const GameVector&) const;

@@ -11,10 +11,11 @@ BodyType RectBody::getBodyType() const
 	return RECT;
 }
 
-RectBody* RectBody::getWrapper() const
+GameRect RectBody::getWrapper() const
 {
-	Debug::warn("RectBody::getWrapper(): TODO");
-	return NULL;
+	Debug::warn("RectBody::getWrapper(): TODO inaccurate");
+	float diagonal = getSize().getMagnitude();
+	return GameRect(getPosition(), GameVector(diagonal, diagonal));
 }
 
 void RectBody::setPosition(const GameVector& pos)

@@ -10,7 +10,7 @@ class RectBody : public Body
 		virtual ~RectBody() {}
 		virtual BodyType getBodyType() const override;
 
-		virtual RectBody* getWrapper() const override;
+		virtual GameRect getWrapper() const override;
 
 		virtual void setPosition(const GameVector&) override;
 		virtual const GameVector& getPosition() const override;

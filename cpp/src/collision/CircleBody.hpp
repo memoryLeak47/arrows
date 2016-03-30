@@ -12,7 +12,7 @@ class CircleBody : public Body
 		virtual ~CircleBody() {}
 		virtual BodyType getBodyType() const override;
 
-		virtual RectBody* getWrapper() const override;
+		virtual GameRect getWrapper() const override;
 
 		// position
 		const GameVector& getPosition() const override;

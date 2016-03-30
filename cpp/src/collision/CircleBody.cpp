@@ -11,9 +11,9 @@ BodyType CircleBody::getBodyType() const
 	return CIRCLE;
 }
 
-RectBody* CircleBody::getWrapper() const
+GameRect CircleBody::getWrapper() const
 {
-	return new RectBody(getPosition(), GameVector(2*getRadius(), 2*getRadius()));
+	return GameRect(getPosition(), GameVector(2*getRadius(), 2*getRadius()));
 }
 
 // position

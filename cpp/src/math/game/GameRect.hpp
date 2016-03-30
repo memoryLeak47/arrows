@@ -18,6 +18,8 @@ class GameRect
 		float getTop() const;
 		float getBot() const;
 
+		bool collidesWith(const GameRect&) const;
+
 		bool operator==(const GameRect&);
 	private:
 		GameVector position; // left-top edge

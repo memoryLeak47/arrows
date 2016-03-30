@@ -14,9 +14,6 @@ class CollisionDetector
 		static GameVector rectCollision(RectBody*, RectBody*);
 		static GameVector rectCircleCollision(RectBody*, CircleBody*);
 		static GameVector circleCollision(CircleBody*, CircleBody*);
-
-		static bool unrotatedRectCollision(RectBody*, RectBody*);
-		static bool checkWrapper(Body*, Body*);
 };
 
 #include "../math/game/GameVector.hpp"
