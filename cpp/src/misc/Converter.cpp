@@ -1,11 +1,31 @@
 #include "Converter.hpp"
 
 #include <sstream>
+#include "Debug.hpp"
 
 int Converter::colorToInt(const sf::Color& color)
 {
 	return ((color.a << 24) | (color.r << 16) |
                     (color.g << 8)  | (color.b << 0));
+}
+
+int Converter::hexaStringToInt(const std::string& hexa)
+{
+	int x;
+	std::stringstream ss;
+	ss << std::hex << hexa;
+	ss >> x;
+	return x;
+}
+
+int Converter::colorStringToInt(const std::string& colorString)
+{
+	Debug::errorIf(colorString.size() != 6, "Converter::colorStringToInt(): colorString of size " + intToString(colorString.size()));
+
+	int red = hexaStringToInt(colorString.substr(0, 1));
+	int green = hexaStringToInt(colorString.substr(2, 4));
+	int blue = hexaStringToInt(colorString.substr(5, 6));
+	return colorToInt(sf::Color(red, green, blue));
 }
 
 sf::Color Converter::intToColor(int i)

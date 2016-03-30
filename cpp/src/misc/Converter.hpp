@@ -7,6 +7,8 @@ class Converter
 {
 	public:
 		static int colorToInt(const sf::Color&);
+		static int hexaStringToInt(const std::string&);
+		static int colorStringToInt(const std::string&);
 		static sf::Color intToColor(int);
 		static std::string intToString(int);
 		static std::string charsToString(const std::string&);
