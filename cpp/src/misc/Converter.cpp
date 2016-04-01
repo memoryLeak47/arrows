@@ -22,9 +22,9 @@ int Converter::colorStringToInt(const std::string& colorString)
 {
 	Debug::errorIf(colorString.size() != 6, "Converter::colorStringToInt(): colorString of size " + intToString(colorString.size()));
 
-	int red = hexaStringToInt(colorString.substr(0, 1));
-	int green = hexaStringToInt(colorString.substr(2, 4));
-	int blue = hexaStringToInt(colorString.substr(5, 6));
+	int red = hexaStringToInt(colorString.substr(0, 2));
+	int green = hexaStringToInt(colorString.substr(2, 2));
+	int blue = hexaStringToInt(colorString.substr(4, 2));
 	return colorToInt(sf::Color(red, green, blue));
 }
 
