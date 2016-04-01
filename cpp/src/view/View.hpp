@@ -11,6 +11,7 @@
 #include "../math/game/GameVector.hpp"
 
 class GameRect;
+class PixelRect;
 
 class View
 {
@@ -19,11 +20,13 @@ class View
 		virtual ~View() {}
 		GameRect getVisionRect() const;
 		void updateSpot(const GameVector&);
+		PixelRect gameRectToPixelRect(const GameRect&) const;
 	private:
 		float scale;
 		GameVector spot;
 };
 
 #include "../math/game/GameRect.hpp"
+#include "../math/pixel/PixelRect.hpp"
 
 #endif

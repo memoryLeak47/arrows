@@ -48,6 +48,8 @@ class Body
 		// spin
 		virtual float getSpin() const = 0;
 		virtual void setSpin(float) = 0;
+
+		virtual GameRect getRenderGameRect() const = 0;
 };
 
 #include "../math/game/GameRect.hpp"

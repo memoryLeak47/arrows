@@ -61,3 +61,8 @@ float CircleBody::getRadius() const
 {
 	return radius;
 }
+
+GameRect CircleBody::getRenderGameRect() const
+{
+	return GameRect(getPosition(), GameVector(2*getRadius(), 2*getRadius()));
+}

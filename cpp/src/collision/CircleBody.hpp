@@ -28,6 +28,7 @@ class CircleBody : public Body
 		// spin
 		float getSpin() const override;
 		virtual void setSpin(float) override;
+		virtual GameRect getRenderGameRect() const override;
 	private:
 		GameVector position;
 		GameVector speed;

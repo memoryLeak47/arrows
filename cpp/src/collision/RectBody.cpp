@@ -62,3 +62,8 @@ float RectBody::getSpin() const
 {
 	return spin;
 }
+
+GameRect RectBody::getRenderGameRect() const
+{
+	return GameRect(position, size);
+}

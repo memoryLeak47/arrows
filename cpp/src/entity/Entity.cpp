@@ -1,6 +1,7 @@
 #include "Entity.hpp"
 
 #include "../core/Main.hpp"
+#include "../core/Screen.hpp"
 #include "../misc/Debug.hpp"
 #include "../collision/CollisionDetector.hpp"
 
@@ -100,10 +101,19 @@ Body* Entity::getBody() const
 	return body;
 }
 
-GameRect Entity::getRenderRect() const
+void Entity::render(const View& v) const
 {
-	Debug::warn("Entity::getRenderRect(): TODO");
-	return GameRect(0,0,0,0);
+	basicRender(v);
+}
+
+void Entity::basicRender(const View& v) const
+{
+	Screen::drawTextureID(1, getRenderRect(v), getBody()->getRotation());
+}
+
+PixelRect Entity::getRenderRect(const View& v) const
+{
+	return v.gameRectToPixelRect(getBody()->getRenderGameRect());
 }
 
 void Entity::dash(const GameVector& targetPosition, float duration)

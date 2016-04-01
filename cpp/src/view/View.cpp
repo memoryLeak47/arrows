@@ -12,3 +12,9 @@ void View::updateSpot(const GameVector& s)
 {
 	spot = s;
 }
+
+PixelRect View::gameRectToPixelRect(const GameRect&) const
+{
+	Debug::warn("View::gameRectToPixelRect(): TODO");
+	return PixelRect(0, 0, 1, 1);
+}

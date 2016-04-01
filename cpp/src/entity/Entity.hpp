@@ -12,6 +12,8 @@ class Collision;
 class Force;
 class GameVector;
 class GameRect;
+class PixelRect;
+class View;
 
 class Entity
 {
@@ -40,8 +42,10 @@ class Entity
 		void resetCollisionSystem();
 
 		// Rendering
-		GameRect getRenderRect() const;
+		virtual void render(const View&) const;
 	protected:
+		void basicRender(const View&) const;
+		PixelRect getRenderRect(const View&) const;
 		std::vector<Collision*>& getCollisions();
 		std::vector<Force*>& getForces();
 	private:
@@ -62,5 +66,7 @@ class Entity
 #include "../collision/Force.hpp"
 #include "../math/game/GameVector.hpp"
 #include "../math/game/GameRect.hpp"
+#include "../math/pixel/PixelRect.hpp"
+#include "../view/View.hpp"
 
 #endif

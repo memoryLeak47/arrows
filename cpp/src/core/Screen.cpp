@@ -82,15 +82,19 @@ void Screen::fillRect(const PixelRect& rect, const sf::Color& color)
 	window->draw(s);
 }
 
-void Screen::drawTextureID(const TextureID& id, const PixelRect& rect)
+void Screen::drawTextureID(const TextureID& id, const PixelRect& rect, float rotation)
 {
-	drawTexture(TextureManager::getTexture(id), rect);
+	drawTexture(TextureManager::getTexture(id), rect, rotation);
 }
 
-void Screen::drawTexture(const sf::Texture* tex, const PixelRect& rect)
+void Screen::drawTexture(const sf::Texture* tex, const PixelRect& rect, float rotation)
 {
 	sf::Sprite s(*tex);
 	s.move(rect.getPosition().getX(), rect.getPosition().getY());
+	if (rotation != 0)
+	{
+		s.rotate(rotation);
+	}
 	s.setScale( ((float) rect.getSize().getX())/tex->getSize().x, ((float) rect.getSize().getY())/tex->getSize().y);
 	window->draw(s);
 }
