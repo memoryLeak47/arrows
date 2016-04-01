@@ -100,6 +100,12 @@ Body* Entity::getBody() const
 	return body;
 }
 
+GameRect Entity::getRenderRect() const
+{
+	Debug::warn("Entity::getRenderRect(): TODO");
+	return GameRect(0,0,0,0);
+}
+
 void Entity::dash(const GameVector& targetPosition, float duration)
 {
 	getBody()->setSpeed((targetPosition - getBody()->getPosition())/duration);

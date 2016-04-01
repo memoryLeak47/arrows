@@ -11,6 +11,7 @@ class Bullet;
 class Collision;
 class Force;
 class GameVector;
+class GameRect;
 
 class Entity
 {
@@ -37,6 +38,9 @@ class Entity
 
 		virtual bool isIgnoringForces() const;
 		void resetCollisionSystem();
+
+		// Rendering
+		GameRect getRenderRect() const;
 	protected:
 		std::vector<Collision*>& getCollisions();
 		std::vector<Force*>& getForces();
@@ -57,5 +61,6 @@ class Entity
 #include "../collision/Collision.hpp"
 #include "../collision/Force.hpp"
 #include "../math/game/GameVector.hpp"
+#include "../math/game/GameRect.hpp"
 
 #endif
