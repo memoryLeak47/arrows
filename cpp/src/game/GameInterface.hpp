@@ -16,8 +16,12 @@ class GameInterface : public NetworkingMenu
 		GameInterface(LobbyTileMap*, const std::vector<LobbyPlayer*>&);
 		virtual ~GameInterface();
 		virtual void tick() override;
+		virtual void render() const override;
 		GameTileMap* getGameTileMap() const;
 	private:
+		void renderMap() const;
+		void renderBars() const;
+		void renderEntities() const;
 		std::vector<Mob*> mobs;
 		std::vector<Tile*> tiles;
 		std::vector<Bullet*> bullets;

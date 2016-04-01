@@ -84,6 +84,32 @@ void GameInterface::tick()
 	}
 }
 
+void GameInterface::render() const
+{
+	renderMap();
+	renderBars();
+	renderEntities();
+	NetworkingMenu::render();
+}
+
+void GameInterface::renderMap() const
+{
+	// TODO
+	Debug::warn("GameInterface::renderMap(): TODO");
+}
+
+void GameInterface::renderBars() const
+{
+	// TODO
+	Debug::warn("GameInterface::renderBars(): TODO");
+}
+
+void GameInterface::renderEntities() const
+{
+	// TODO
+	Debug::warn("GameInterface::renderEntities(): TODO");
+}
+
 GameTileMap* GameInterface::getGameTileMap() const
 {
 	return tileMap;
