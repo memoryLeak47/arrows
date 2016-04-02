@@ -8,6 +8,7 @@ class VoidTile : public Tile
 	public:
 		VoidTile(const GameVector&);
 		virtual void handleCollisions() override {}
+		virtual TextureID getTextureID() const override;
 };
 
 #endif

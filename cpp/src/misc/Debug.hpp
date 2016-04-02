@@ -36,7 +36,6 @@
 #define BCYAN "\u001B[46m"
 #define BWHITE "\u001B[47m"
 
-
 #include <string>
 #include <stdio.h>
 #include <iostream>

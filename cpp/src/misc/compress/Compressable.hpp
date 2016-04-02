@@ -30,7 +30,7 @@
 #include <string>
 #include <vector>
 
-typedef char CID;
+#include "../Def.hpp"
 
 class Compressable // represents Compressable.java and Compressor.java
 {

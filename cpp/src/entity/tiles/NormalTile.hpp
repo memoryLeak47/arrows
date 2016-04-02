@@ -8,6 +8,7 @@ class NormalTile : public Tile
 	public:
 		NormalTile(const GameVector&);
 		virtual void handleCollisions() override {}
+		virtual TextureID getTextureID() const override;
 };
 
 #endif

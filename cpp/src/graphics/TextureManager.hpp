@@ -2,10 +2,9 @@
 #define __TEXTUREMANAGER_CLASS__
 
 #include <vector>
-
 #include <SFML/Graphics.hpp>
 
-typedef int TextureID;
+#include "../misc/Def.hpp"
 
 class TextureManager
 {

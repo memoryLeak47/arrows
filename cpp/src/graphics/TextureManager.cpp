@@ -15,6 +15,9 @@ TextureID ARROWSHOTSKILL_ICON;
 
 TextureID HEALTHRING_ICON;
 
+TextureID VOIDTILE;
+TextureID NORMALTILE;
+
 void TextureManager::init()
 {
 	addImage(&VOID_ICON, "res/icons/void.png");
@@ -25,6 +28,9 @@ void TextureManager::init()
 	addImage(&ARROWSHOTSKILL_ICON, "res/icons/skills/arrowshot.png");
 
 	addImage(&HEALTHRING_ICON, "res/icons/items/healthring.png");
+
+	addImage(&VOIDTILE, "res/entities/tile/voidtile.png");
+	addImage(&NORMALTILE, "res/entities/tile/normaltile.png");
 }
 
 void TextureManager::uninit()

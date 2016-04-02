@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include "../misc/Def.hpp"
+
 class Body;
 class Mob;
 class GameTileMap;
@@ -43,6 +45,7 @@ class Entity
 
 		// Rendering
 		virtual void render(const View&) const;
+		virtual TextureID getTextureID() const = 0;
 	protected:
 		void basicRender(const View&) const;
 		PixelRect getRenderRect(const View&) const;
