@@ -1,6 +1,13 @@
 /*
-	width/height:
-		Gibt die Anzahl der Tiles an.
+	Tiles teilt sich in einen äußeren Vector A und viele innere Vectoren I.
+	In jedem I-Vector liegt eine Spalte der Map, sodass ein Tile über tiles[x][y] angesprochen werden kann.
+	Der A-Vector enthält also alle Spalten der Map.
+
+	width:
+		Gibt die Anzahl der Tiles in X-Richtung an. Dies entspricht tiles.size()
+
+	height:
+		Gibt die Anzahl der Tiles in Y-Richtung an. Dies entspricht tiles[0].size()
 
 	TILESIZE:
 		Gibt an, wieviele Pixel ein Tile einnimmt (nur für das rendern der staticTexture)

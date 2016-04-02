@@ -1,3 +1,8 @@
+/*
+	std::vector<std::vector<int>> map:
+		siehe GameTileMap
+*/
+
 #ifndef __MAPPACKET_CLASS__
 #define __MAPPACKET_CLASS__
 

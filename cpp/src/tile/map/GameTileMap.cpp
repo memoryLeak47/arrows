@@ -15,10 +15,10 @@ GameTileMap::GameTileMap(LobbyTileMap* lobbyMap)
 
 void GameTileMap::loadFromLobbyTileMap(LobbyTileMap* lobbyMap)
 {
-	for (unsigned int y = 0; y < lobbyMap->getInts()[0].size(); y++)
+	for (unsigned int x = 0; x < lobbyMap->getInts().size(); x++)
 	{
 		tiles.push_back(std::vector<Tile*>());
-		for (unsigned int x = 0; x < lobbyMap->getInts().size(); x++)
+		for (unsigned int y = 0; y < lobbyMap->getInts()[0].size(); y++)
 		{
 			tiles.back().push_back(Tile::createByColorID(lobbyMap->getInts()[x][y], GameVector(x, y)));
 		}
@@ -43,9 +43,9 @@ void GameTileMap::updateFullTexture()
 {
 	Debug::warnIf(getHeight() < 0, "GameTileMap::updateFullTexture(): getHeight == " + Converter::intToString(getHeight()));
 	Debug::warnIf(getWidth() < 0, "GameTileMap::updateFullTexture(): getWidth == " + Converter::intToString(getWidth()));
-	for (int y = 0; y < getHeight(); y++)
+	for (int x = 0; x < getWidth(); x++)
 	{
-		for (int x = 0; x < getWidth(); x++)
+		for (int y = 0; y < getHeight(); y++)
 		{
 			Debug::errorIf(tiles[x][y] == NULL, "GameTileMap::updateFullTexture(): tiles[" + Converter::intToString(x) + "][" + Converter::intToString(y) + "] == NULL");
 			TextureID tileTextureID = tiles[x][y]->getTextureID();

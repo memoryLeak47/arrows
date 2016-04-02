@@ -1,3 +1,8 @@
+/*
+	std::vector<std::vector<int>> ints:
+		siehe GameTileMap
+*/
+
 #ifndef __LOBBYTILEMAP_CLASS__
 #define __LOBBYTILEMAP_CLASS__
 
