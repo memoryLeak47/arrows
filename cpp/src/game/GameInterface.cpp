@@ -96,7 +96,7 @@ void GameInterface::render() const
 void GameInterface::renderMap() const
 {
 	Debug::warn("GameInterface::renderMap(): TODO");
-	Screen::drawTexture(getGameTileMap()->getStaticTexture(), PixelRect(0, 0, 400, 500));
+	Screen::drawTexture(getGameTileMap()->getStaticTexture(), PixelRect(0, 0, 1600, 1000));
 }
 
 void GameInterface::renderBars() const
