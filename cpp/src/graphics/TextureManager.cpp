@@ -33,6 +33,8 @@ void TextureManager::init()
 
 	addImage(&VOIDTILE, "res/entities/tiles/voidtile.png");
 	addImage(&NORMALTILE, "res/entities/tiles/normaltile.png");
+	addImage(&LAVATILE, "res/entities/tiles/lavatile.png");
+	addImage(&SPAWNTEAMTILE, "res/entities/tiles/spawnteamtile.png");
 }
 
 void TextureManager::uninit()
