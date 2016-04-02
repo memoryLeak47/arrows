@@ -4,12 +4,12 @@
 #include "../core/Screen.hpp"
 
 View::View()
-	: scale(40), spot(150,15)
+	: scale(40), spot(0,0)
 {}
 
 GameRect View::getVisionRect() const
 {
-	GameVector screenSize(Screen::getSize().getX() / scale, Screen::getSize().getY() / scale);
+	GameVector screenSize(((float) Screen::getSize().getX()) / scale, ((float) Screen::getSize().getY()) / scale);
 	return GameRect(getGameViewRoot(), screenSize);
 }
 
@@ -27,6 +27,6 @@ PixelRect View::gameRectToPixelRect(const GameRect& r) const
 
 GameVector View::getGameViewRoot() const
 {
-	GameVector screenSize(Screen::getSize().getX() / scale, Screen::getSize().getY() / scale);
+	GameVector screenSize(((float) Screen::getSize().getX()) / scale, ((float) Screen::getSize().getY()) / scale);
 	return GameVector(spot - screenSize/2);
 }

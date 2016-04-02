@@ -46,12 +46,12 @@ PixelVector PixelVector::operator-(const PixelVector& vec) const
 
 PixelVector PixelVector::operator*(float f) const
 {
-	return PixelVector(getX()*x, getY()*y);
+	return PixelVector(((float)getX())*x, ((float)getY())*y);
 }
 
 PixelVector PixelVector::operator/(float f) const
 {
-	return PixelVector(getX()/f, getY()/f);
+	return PixelVector(((float) getX())/f, ((float) getY())/f);
 }
 
 std::string PixelVector::toString() const
