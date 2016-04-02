@@ -24,6 +24,10 @@ GameInterface::~GameInterface()
 
 void GameInterface::tick()
 {
+	/*
+		static int a, b;
+		view.updateSpot(GameVector(a++, b++));
+	*/
 	NetworkingMenu::tick();
 	for (unsigned int i = 0; i < mobs.size(); i++)
 	{

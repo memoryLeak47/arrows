@@ -83,25 +83,29 @@ int GameTileMap::getHeight() const
 
 void GameTileMap::render(const View& v) const
 {
-	PixelRect r = v.gameRectToPixelRect(v.getVisionRect());
+	PixelRect r = v.gameRectToPixelRect(GameRect(0,0, getWidth(), getHeight())); // correct
 	Debug::test("r = " + r.toString());
-	int x = -r.getPosition().getX();
-	int y = -r.getPosition().getY();
-	int realX = std::max(0, -x);
-	int realY = std::max(0, -y);
-	int w = r.getSize().getX() - std::max(0, x) - std::max(0, r.getSize().getX()) - (x + Screen::getSize().getX());
-	int h = r.getSize().getY() - std::max(0, y) - std::max(0, r.getSize().getY()) - (y + Screen::getSize().getY());
+	int x = r.getPosition().getX();
+	int y = r.getPosition().getY();
+	int realX = std::max(0, x);
+	int realY = std::max(0, y);
+	int w = r.getSize().getX() - std::max(0, x) + std::min(0, x + r.getSize().getX() - Screen::getSize().getX());
+	int h = r.getSize().getY() - std::max(0, y) + std::min(0, y + r.getSize().getY() - Screen::getSize().getY());
+	// int w = r.getSize().getX() - std::max(0, x) - std::max(0, r.getSize().getX()) - (x + Screen::getSize().getX());
+	// int h = r.getSize().getY() - std::max(0, y) - std::max(0, r.getSize().getY()) - (y + Screen::getSize().getY());
 
+	/*
 	if (w <= 0 || h <= 0 || realX < 0 || realY < 0 || realX+w > r.getSize().getX() || realY+h > r.getSize().getY())
 	{
 		Debug::warn("GameInterface.renderMap(): outside of raster x: " + Converter::intToString(realX) + ", y: " + Converter::intToString(realY) + ", w: " + Converter::intToString(w) + ", h: " + Converter::intToString(h));
 	}
 	else
 	{
+	*/
 		sf::Texture t;
-		t.loadFromImage(staticImage, sf::IntRect(std::max(0,x), std::max(0, y), w, h));
+		t.loadFromImage(staticImage, sf::IntRect(std::max(0,-x), std::max(0, -y), w, h));
 		Screen::drawTexture(&t, PixelRect(realX, realY, w, h));
-	}
+	//}
 
 	/*
 		Java

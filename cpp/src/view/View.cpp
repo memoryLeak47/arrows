@@ -1,5 +1,6 @@
 #include "View.hpp"
 
+#include "../misc/Converter.hpp"
 #include "../misc/Debug.hpp"
 #include "../core/Screen.hpp"
 
