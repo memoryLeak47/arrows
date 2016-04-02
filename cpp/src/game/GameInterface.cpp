@@ -1,7 +1,6 @@
 #include "GameInterface.hpp"
 
 #include "../core/Main.hpp"
-#include "../core/Screen.hpp"
 #include "../misc/Debug.hpp"
 #include "../player/GamePlayer.hpp"
 
@@ -95,8 +94,7 @@ void GameInterface::render() const
 
 void GameInterface::renderMap() const
 {
-	Debug::warn("GameInterface::renderMap(): TODO");
-	Screen::drawTexture(getGameTileMap()->getStaticTexture(), PixelRect(0, 0, 1600, 1000));
+	getGameTileMap()->render(getView());
 }
 
 void GameInterface::renderBars() const
@@ -114,4 +112,9 @@ void GameInterface::renderEntities() const
 GameTileMap* GameInterface::getGameTileMap() const
 {
 	return tileMap;
+}
+
+const View& GameInterface::getView() const
+{
+	return view;
 }

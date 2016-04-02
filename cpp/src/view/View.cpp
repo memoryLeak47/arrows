@@ -2,6 +2,10 @@
 
 #include "../misc/Debug.hpp"
 
+View::View()
+	: spot(0,0)
+{}
+
 GameRect View::getVisionRect() const
 {
 	Debug::warn("View::getVisionRect(): TODO");

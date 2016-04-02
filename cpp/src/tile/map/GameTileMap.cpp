@@ -1,6 +1,7 @@
 #include "GameTileMap.hpp"
 
 #include "../../core/Main.hpp"
+#include "../../core/Screen.hpp"
 #include "../../misc/Converter.hpp"
 #include "../../misc/Debug.hpp"
 
@@ -9,8 +10,8 @@
 GameTileMap::GameTileMap(LobbyTileMap* lobbyMap)
 {
 	loadFromLobbyTileMap(lobbyMap);
-	staticTexture.create(getWidth()*TILESIZE, getHeight()*TILESIZE);
-	updateFullTexture();
+	staticImage.create(getWidth()*TILESIZE, getHeight()*TILESIZE);
+	updateFullImage();
 }
 
 void GameTileMap::loadFromLobbyTileMap(LobbyTileMap* lobbyMap)
@@ -39,7 +40,7 @@ const std::vector<Tile*> GameTileMap::getIntersectionTiles(const GameRect& gameR
 	return std::vector<Tile*>();
 }
 
-void GameTileMap::updateFullTexture()
+void GameTileMap::updateFullImage()
 {
 	Debug::warnIf(getHeight() < 0, "GameTileMap::updateFullTexture(): getHeight == " + Converter::intToString(getHeight()));
 	Debug::warnIf(getWidth() < 0, "GameTileMap::updateFullTexture(): getWidth == " + Converter::intToString(getWidth()));
@@ -49,7 +50,7 @@ void GameTileMap::updateFullTexture()
 		{
 			Debug::errorIf(tiles[x][y] == NULL, "GameTileMap::updateFullTexture(): tiles[" + Converter::intToString(x) + "][" + Converter::intToString(y) + "] == NULL");
 			TextureID tileTextureID = tiles[x][y]->getTextureID();
-			staticTexture.update(TextureManager::getTexture(tileTextureID)->copyToImage(), x*TILESIZE, y*TILESIZE);
+			staticImage.copy(TextureManager::getTexture(tileTextureID)->copyToImage(), x*TILESIZE, y*TILESIZE);
 		}
 	}
 }
@@ -80,7 +81,10 @@ int GameTileMap::getHeight() const
 	}
 }
 
-const sf::Texture* GameTileMap::getStaticTexture() const
+void GameTileMap::render(const View& v) const
 {
-	return &staticTexture;
+	sf::Texture t;
+	//PixelRect r = v.gameRectToPixelRect(v.getVisionRect());
+	t.loadFromImage(staticImage); //, sf::IntRect(r.getPosition().getX(), r.getPosition().getY(), r.getSize().getX(), r.getSize().getY()));
+	Screen::drawTexture(&t, PixelRect(0, 0, 800, 600));
 }

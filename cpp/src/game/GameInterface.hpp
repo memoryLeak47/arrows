@@ -3,6 +3,7 @@
 
 #include "../menu/NetworkingMenu.hpp"
 #include "../tile/map/GameTileMap.hpp"
+#include "../view/View.hpp"
 
 class LobbyTileMap;
 class LobbyPlayer;
@@ -17,14 +18,19 @@ class GameInterface : public NetworkingMenu
 		virtual ~GameInterface();
 		virtual void tick() override;
 		virtual void render() const override;
-		GameTileMap* getGameTileMap() const;
 	private:
+		// functions
 		void renderMap() const;
 		void renderBars() const;
 		void renderEntities() const;
+		GameTileMap* getGameTileMap() const;
+		const View& getView() const;
+
+		// elements
 		std::vector<Mob*> mobs;
 		std::vector<Tile*> tiles;
 		std::vector<Bullet*> bullets;
+		View view;
 		GameTileMap* tileMap;
 };
 

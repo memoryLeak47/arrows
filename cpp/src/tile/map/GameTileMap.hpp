@@ -25,6 +25,7 @@
 
 class GameRect;
 class Tile;
+class View;
 
 class GameTileMap
 {
@@ -35,16 +36,18 @@ class GameTileMap
 
 		int getWidth() const;
 		int getHeight() const;
-		const sf::Texture* getStaticTexture() const;
+
+		void render(const View&) const;
 	private:
-		void updateFullTexture();
+		void updateFullImage();
 		void loadFromLobbyTileMap(LobbyTileMap*);
 
 		std::vector<std::vector<Tile*>> tiles;
-		sf::Texture staticTexture;
+		sf::Image staticImage;
 };
 
 #include "../../math/game/GameRect.hpp"
 #include "../../entity/Tile.hpp"
+#include "../../view/View.hpp"
 
 #endif
