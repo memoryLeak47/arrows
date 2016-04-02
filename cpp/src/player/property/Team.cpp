@@ -2,10 +2,12 @@
 
 #include "../../core/Main.hpp"
 #include "../../misc/Debug.hpp"
+#include "../../misc/Converter.hpp"
 
 std::vector<Team*> Team::teams;
 
-Team::Team(char id, const std::string& name, const std::string& color) : id(id), name(name) // TODO define color id
+Team::Team(char id, const std::string& name, const std::string& color)
+	: id(id), name(name), colorID(Converter::colorStringToInt(color)) // TODO define color id
 {}
 
 void Team::init()
