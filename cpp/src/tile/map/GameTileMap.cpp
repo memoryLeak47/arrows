@@ -6,6 +6,12 @@
 
 GameTileMap::GameTileMap(LobbyTileMap* lobbyMap)
 {
+	loadFromLobbyTileMap(lobbyMap);
+	updateFullTexture();
+}
+
+void GameTileMap::loadFromLobbyTileMap(LobbyTileMap* lobbyMap)
+{
 	for (unsigned int y = 0; y < lobbyMap->getInts()[0].size(); y++)
 	{
 		tiles.push_back(std::vector<Tile*>());
@@ -28,4 +34,35 @@ const std::vector<Tile*> GameTileMap::getIntersectionTiles(const GameRect& gameR
 {
 	Debug::warn("GameTileMap::createIntersectionTiles(): TODO");
 	return std::vector<Tile*>();
+}
+
+void GameTileMap::updateFullTexture()
+{
+	//staticTexture.create(
+}
+
+int GameTileMap::getWidth() const
+{
+	if (tiles.size() > 0)
+	{
+		return (int) tiles.size();
+	}
+	else
+	{
+		Debug::warn("GameTileMap::getWidth(): tiles.size == " + Converter::intToString((int) tiles.size()));
+		return -1;
+	}
+}
+
+int GameTileMap::getHeigth() const
+{
+	if ((tiles.size() > 0) && (tiles[0].size() > 0))
+	{
+		return (int) tiles[0].size();
+	}
+	else
+	{
+		Debug::warn("GameTileMap::getHeight(): invalid size");
+		return -1;
+	}
 }
