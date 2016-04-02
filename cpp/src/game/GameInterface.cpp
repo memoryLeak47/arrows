@@ -99,14 +99,22 @@ void GameInterface::renderMap() const
 
 void GameInterface::renderBars() const
 {
-	// TODO
-	Debug::warn("GameInterface::renderBars(): TODO");
+	for (unsigned int i = 0; i < mobs.size(); i++)
+	{
+		mobs[i]->renderBar(getView());
+	}
 }
 
 void GameInterface::renderEntities() const
 {
-	// TODO
-	Debug::warn("GameInterface::renderEntities(): TODO");
+	for (unsigned int i = 0; i < mobs.size(); i++)
+	{
+		mobs[i]->render(getView());
+	}
+	for (unsigned int i = 0; i < bullets.size(); i++)
+	{
+		bullets[i]->render(getView());
+	}
 }
 
 GameTileMap* GameInterface::getGameTileMap() const
