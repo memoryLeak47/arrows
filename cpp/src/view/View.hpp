@@ -22,6 +22,7 @@ class View
 		void updateSpot(const GameVector&);
 		PixelRect gameRectToPixelRect(const GameRect&) const;
 	private:
+		GameVector getGameViewRoot() const;
 		float scale;
 		GameVector spot;
 };

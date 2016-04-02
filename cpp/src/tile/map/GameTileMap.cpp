@@ -83,8 +83,9 @@ int GameTileMap::getHeight() const
 
 void GameTileMap::render(const View& v) const
 {
+	Debug::warn("GameTileMap::render(): TODO unfinished");
 	sf::Texture t;
-	//PixelRect r = v.gameRectToPixelRect(v.getVisionRect());
-	t.loadFromImage(staticImage); //, sf::IntRect(r.getPosition().getX(), r.getPosition().getY(), r.getSize().getX(), r.getSize().getY()));
-	Screen::drawTexture(&t, PixelRect(0, 0, 800, 600));
+	PixelRect r = v.gameRectToPixelRect(v.getVisionRect());
+	t.loadFromImage(staticImage, sf::IntRect(r.getPosition().getX(), r.getPosition().getY(), r.getSize().getX(), r.getSize().getY()));
+	Screen::drawTexture(&t, PixelRect(0, 0, Screen::getSize().getX(), Screen::getSize().getY()));
 }

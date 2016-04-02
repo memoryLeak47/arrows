@@ -1,15 +1,16 @@
 #include "View.hpp"
 
 #include "../misc/Debug.hpp"
+#include "../core/Screen.hpp"
 
 View::View()
-	: spot(0,0)
+	: scale(40), spot(150,15)
 {}
 
 GameRect View::getVisionRect() const
 {
-	Debug::warn("View::getVisionRect(): TODO");
-	return GameRect(0,0,0,0);
+	GameVector screenSize(Screen::getSize().getX() / scale, Screen::getSize().getY() / scale);
+	return GameRect(getGameViewRoot(), screenSize);
 }
 
 void View::updateSpot(const GameVector& s)
@@ -17,8 +18,15 @@ void View::updateSpot(const GameVector& s)
 	spot = s;
 }
 
-PixelRect View::gameRectToPixelRect(const GameRect&) const
+PixelRect View::gameRectToPixelRect(const GameRect& r) const
 {
-	Debug::warn("View::gameRectToPixelRect(): TODO");
-	return PixelRect(0, 0, 1, 1);
+	GameVector pos = (r.getPosition() - getGameViewRoot()) * scale;
+	GameVector size = r.getSize() * scale;
+	return PixelRect((int) pos.getX(), (int) pos.getY(), (int) size.getX(), (int) size.getY());
+}
+
+GameVector View::getGameViewRoot() const
+{
+	GameVector screenSize(Screen::getSize().getX() / scale, Screen::getSize().getY() / scale);
+	return GameVector(spot - screenSize/2);
 }
