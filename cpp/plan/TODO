@@ -1,14 +1,10 @@
 Topic			Dependency
 
-Camera			-
-Tile			-
-GameTileMap		Tile
 Mob			-
 ArcherGamePlayer	Mob
-Rendering		GameTileMap, Camera
 PacketManaging		-
 SkillSystem		ArcherGamePlayer
 Damage			Mob
 Effects			-
 Explosions		-
-Animations		Rendering
+Animations		-
