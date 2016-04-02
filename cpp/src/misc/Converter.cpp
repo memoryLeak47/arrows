@@ -44,6 +44,13 @@ std::string Converter::intToString(int i)
 	return s.str();
 }
 
+std::string Converter::floatToString(float i)
+{
+	std::stringstream s;
+	s << i;
+	return s.str();
+}
+
 std::string Converter::charsToString(const std::string& arg)
 {
 	std::string res = "(";

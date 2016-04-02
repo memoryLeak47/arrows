@@ -43,3 +43,8 @@ bool PixelRect::operator==(const PixelRect& rect)
 {
 	return rect.getPosition() == getPosition() && rect.getSize() == getSize();
 }
+
+std::string PixelRect::toString() const
+{
+	return "PR(" + getPosition().toString() + ", " + getSize().toString() + ")";
+}

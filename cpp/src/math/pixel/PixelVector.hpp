@@ -1,6 +1,8 @@
 #ifndef __PIXELVECTOR_CLASS__
 #define __PIXELVECTOR_CLASS__
 
+#include <string>
+
 class PixelRect;
 
 class PixelVector
@@ -17,6 +19,7 @@ class PixelVector
 		PixelVector operator-(const PixelVector&) const;
 		PixelVector operator*(float) const;
 		PixelVector operator/(float) const;
+		std::string toString() const;
 	private:
 		int x, y;
 };

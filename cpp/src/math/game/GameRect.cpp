@@ -51,3 +51,8 @@ bool GameRect::operator==(const GameRect& rect)
 {
 	return rect.getPosition() == getPosition() && rect.getSize() == getSize();
 }
+
+std::string GameRect::toString() const
+{
+	return "GR(" + getPosition().toString() + ", " + getSize().toString() + ")";
+}

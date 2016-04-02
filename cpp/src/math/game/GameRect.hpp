@@ -1,6 +1,8 @@
 #ifndef __GAMERECT_CLASS__
 #define __GAMERECT_CLASS__
 
+#include <string>
+
 #include "GameVector.hpp"
 
 class GameRect
@@ -21,6 +23,7 @@ class GameRect
 		bool collidesWith(const GameRect&) const;
 
 		bool operator==(const GameRect&);
+		std::string toString() const;
 	private:
 		GameVector position; // left-top edge
 		GameVector size;

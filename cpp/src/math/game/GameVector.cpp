@@ -3,6 +3,7 @@
 #include <iostream>
 #include <math.h>
 
+#include "../../misc/Converter.hpp"
 #include "../../misc/Debug.hpp"
 
 GameVector::GameVector(float x, float y)
@@ -65,4 +66,9 @@ GameVector GameVector::operator*(float f) const
 GameVector GameVector::operator/(float f) const
 {
 	return GameVector(getX()/f, getY()/f);
+}
+
+std::string GameVector::toString() const
+{
+	return "GV(" + Converter::floatToString(getX()) + ", " + Converter::floatToString(getY()) + ")";
 }

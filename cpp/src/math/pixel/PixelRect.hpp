@@ -1,6 +1,8 @@
 #ifndef __PIXELRECT_CLASS__
 #define __PIXELRECT_CLASS__
 
+#include <string>
+
 #include "PixelVector.hpp"
 
 class PixelRect
@@ -19,6 +21,7 @@ class PixelRect
 		int getBot() const;
 
 		bool operator==(const PixelRect&);
+		std::string toString() const;
 	private:
 		PixelVector position; // left-top edge
 		PixelVector size;

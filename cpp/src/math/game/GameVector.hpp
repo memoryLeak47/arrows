@@ -1,6 +1,8 @@
 #ifndef __GAMEVECTOR_CLASS__
 #define __GAMEVECTOR_CLASS__
 
+#include <string>
+
 class GameRect;
 
 class GameVector
@@ -19,6 +21,7 @@ class GameVector
 		GameVector operator-(const GameVector&) const;
 		GameVector operator*(float) const;
 		GameVector operator/(float) const;
+		std::string toString() const;
 	private:
 		float x, y;
 };

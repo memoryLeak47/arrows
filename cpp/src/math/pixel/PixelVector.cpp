@@ -1,7 +1,7 @@
 #include "PixelVector.hpp"
 
 #include "../../misc/Debug.hpp"
-#include <iostream>
+#include "../../misc/Converter.hpp"
 
 PixelVector::PixelVector(int x, int y)
 {
@@ -52,4 +52,9 @@ PixelVector PixelVector::operator*(float f) const
 PixelVector PixelVector::operator/(float f) const
 {
 	return PixelVector(getX()/f, getY()/f);
+}
+
+std::string PixelVector::toString() const
+{
+	return "PV(" + Converter::intToString(getX()) + ", " + Converter::intToString(getY()) + ")";
 }
