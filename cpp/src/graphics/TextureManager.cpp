@@ -17,6 +17,8 @@ TextureID HEALTHRING_ICON;
 
 TextureID VOIDTILE;
 TextureID NORMALTILE;
+TextureID LAVATILE;
+TextureID SPAWNTEAMTILE;
 
 void TextureManager::init()
 {
@@ -29,8 +31,8 @@ void TextureManager::init()
 
 	addImage(&HEALTHRING_ICON, "res/icons/items/healthring.png");
 
-	addImage(&VOIDTILE, "res/entities/tile/voidtile.png");
-	addImage(&NORMALTILE, "res/entities/tile/normaltile.png");
+	addImage(&VOIDTILE, "res/entities/tiles/voidtile.png");
+	addImage(&NORMALTILE, "res/entities/tiles/normaltile.png");
 }
 
 void TextureManager::uninit()

@@ -11,7 +11,9 @@ class Tile : public Entity
 {
 	public:
 		Tile(Body*);
+		Tile(const GameVector&);
 		virtual ~Tile() {}
+		virtual void handleCollisions() override {}
 
 		static Tile* createByColorID(const int, const GameVector&);
 };

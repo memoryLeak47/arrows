@@ -14,6 +14,7 @@ class Team
 		static unsigned int getAmount();
 		std::string getName() const;
 		char getID() const;
+		int getColorID() const;
 		bool isFriendlyTeam(Team*) const;
 	private:
 		static std::vector<Team*> teams;

@@ -47,6 +47,11 @@ char Team::getID() const
 	return id;
 }
 
+int Team::getColorID() const
+{
+	return colorID;
+}
+
 bool Team::isFriendlyTeam(Team* team) const
 {
 	return (getID() != 0) && (getID() == team->getID());
