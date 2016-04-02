@@ -1,6 +1,9 @@
 /*
 	width/height:
 		Gibt die Anzahl der Tiles an.
+
+	TILESIZE:
+		Gibt an, wieviele Pixel ein Tile einnimmt (nur für das rendern der staticTexture)
 */
 
 #ifndef __GAMETILEMAP_CLASS__
@@ -10,6 +13,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "LobbyTileMap.hpp"
+
+#define TILESIZE 40
 
 class GameRect;
 class Tile;
@@ -22,7 +27,7 @@ class GameTileMap
 		const std::vector<Tile*> getIntersectionTiles(const GameRect&) const;
 
 		int getWidth() const;
-		int getHeigth() const;
+		int getHeight() const;
 	private:
 		void updateFullTexture();
 		void loadFromLobbyTileMap(LobbyTileMap*);

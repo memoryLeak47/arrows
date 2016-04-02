@@ -4,9 +4,12 @@
 #include "../../misc/Converter.hpp"
 #include "../../misc/Debug.hpp"
 
+#include "../../graphics/TextureManager.hpp"
+
 GameTileMap::GameTileMap(LobbyTileMap* lobbyMap)
 {
 	loadFromLobbyTileMap(lobbyMap);
+	staticTexture.create(getWidth()*TILESIZE, getHeight()*TILESIZE);
 	updateFullTexture();
 }
 
@@ -38,7 +41,17 @@ const std::vector<Tile*> GameTileMap::getIntersectionTiles(const GameRect& gameR
 
 void GameTileMap::updateFullTexture()
 {
-	//staticTexture.create(
+	Debug::warnIf(getHeight() < 0, "GameTileMap::updateFullTexture(): getHeight == " + Converter::intToString(getHeight()));
+	Debug::warnIf(getWidth() < 0, "GameTileMap::updateFullTexture(): getWidth == " + Converter::intToString(getWidth()));
+	for (int y = 0; y < getHeight(); y++)
+	{
+		for (int x = 0; x < getWidth(); x++)
+		{
+			Debug::errorIf(tiles[x][y] == NULL, "GameTileMap::updateFullTexture(): tiles[" + Converter::intToString(x) + "][" + Converter::intToString(y) + "] == NULL");
+			TextureID tileTextureID = tiles[x][y]->getTextureID();
+			staticTexture.update(TextureManager::getTexture(tileTextureID)->copyToImage(), x*TILESIZE, y*TILESIZE);
+		}
+	}
 }
 
 int GameTileMap::getWidth() const
@@ -54,7 +67,7 @@ int GameTileMap::getWidth() const
 	}
 }
 
-int GameTileMap::getHeigth() const
+int GameTileMap::getHeight() const
 {
 	if ((tiles.size() > 0) && (tiles[0].size() > 0))
 	{
