@@ -79,3 +79,8 @@ int GameTileMap::getHeight() const
 		return -1;
 	}
 }
+
+const sf::Texture* GameTileMap::getStaticTexture() const
+{
+	return &staticTexture;
+}

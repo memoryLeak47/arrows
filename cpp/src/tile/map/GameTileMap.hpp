@@ -28,6 +28,7 @@ class GameTileMap
 
 		int getWidth() const;
 		int getHeight() const;
+		const sf::Texture* getStaticTexture() const;
 	private:
 		void updateFullTexture();
 		void loadFromLobbyTileMap(LobbyTileMap*);
