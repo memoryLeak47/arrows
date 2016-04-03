@@ -1,10 +1,12 @@
 #include "GraphicsBuffer.hpp"
 
+#include <dirent.h>
+
 #include "../core/Main.hpp"
 #include "../misc/Debug.hpp"
 
-GraphicsBuffer::GraphicsBuffer(const std::string& path)
-	: path(path)
+GraphicsBuffer::GraphicsBuffer(const std::string& path, bool isDirectory)
+	: isDirectory(isDirectory), path(path)
 {}
 
 GraphicsBuffer::~GraphicsBuffer()
@@ -28,23 +30,37 @@ void GraphicsBuffer::load()
 {
 	if (!isLoaded())
 	{
-		// if path represents a file
-		if (true) // TODO
+		if (isDirectory)
+		{
+			DIR *dir;
+			struct dirent *ent;
+			if ((dir = opendir(path.c_str())) != NULL)
+			{
+				while ((ent = readdir(dir)) != NULL)
+				{
+					sf::Texture* t = new sf::Texture();
+					if (!t->loadFromFile(std::string(ent->d_name)))
+					{
+						Debug::warn("GraphicsBuffer::load(): Could not load file from path \'" + std::string(ent->d_name) + "\' from directory \'" + path + "\'");
+					}
+					textures.push_back(t);
+				}
+				closedir (dir);
+			}
+			else
+			{
+				Debug::warn("GraphicsBuffer::load(): Could not load directory from path \'" + path + "\'");
+			}
+		}
+		else
 		{
 			sf::Texture* t = new sf::Texture();
 			if (!t->loadFromFile(path))
 			{
-				Debug::warn("GraphicsBuffer::load(): Could not load from Path \'" + path + "\'");
+				Debug::warn("GraphicsBuffer::load(): Could not file load from Path \'" + path + "\'");
 			}
 			textures.push_back(t);
 		}
-		/*
-		else
-		{
-			counter++;
-			textures[counter] = ...;
-		}
-		*/
 			
 	}
 }

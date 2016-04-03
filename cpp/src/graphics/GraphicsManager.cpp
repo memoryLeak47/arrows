@@ -53,25 +53,8 @@ GraphicsBuffer* GraphicsManager::getBuffer(GraphicsID id)
 	return buffers[id];
 }
 
-void GraphicsManager::addGraphicsBuffer(GraphicsID id, const std::string& path)
+void GraphicsManager::addGraphicsBuffer(GraphicsID id, const std::string& path, bool isDirectory)
 {
-	// if path represents a file
-	if (true) // TODO
-	{
-		/*
-		if (!t->loadFromFile(path))
-		{
-			Debug::warn("GraphicsManager::addImage(): Could not load from Path \'" + path + "\'");
-		}
-		*/
-		Debug::warnIf((int) buffers.size() != (int) id, "GraphicsManager::addGraphicsBuffer(): addGraphicsBuffer not same order as in enum (id=" + Converter::intToString(id) + ")");
-		buffers.push_back(new GraphicsBuffer(path));
-	}
-	/*
-	else
-	{
-		counter++;
-		textures[counter] = ...;
-	}
-	*/
+	Debug::warnIf((int) buffers.size() != (int) id, "GraphicsManager::addGraphicsBuffer(): addGraphicsBuffer not same order as in enum (id=" + Converter::intToString(id) + ")");
+	buffers.push_back(new GraphicsBuffer(path, isDirectory));
 }

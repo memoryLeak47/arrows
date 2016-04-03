@@ -28,7 +28,7 @@ class GraphicsManager
 		static unsigned int getAmountOf(GraphicsID);
 	private:
 		static GraphicsBuffer* getBuffer(GraphicsID);
-		static void addGraphicsBuffer(GraphicsID, const std::string&);
+		static void addGraphicsBuffer(GraphicsID, const std::string&, bool isDirectory=false);
 		static std::vector<GraphicsBuffer*> buffers;
 };
 
