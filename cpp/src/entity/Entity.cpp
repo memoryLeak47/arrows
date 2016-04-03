@@ -113,7 +113,9 @@ void Entity::basicRender(const View& v) const
 
 PixelRect Entity::getRenderRect(const View& v) const
 {
-	return v.gameRectToPixelRect(getBody()->getRenderGameRect());
+	GameRect r = getBody()->getRenderGameRect();
+	r = GameRect(r.getPosition() - r.getSize()/2, r.getSize());
+	return v.gameRectToPixelRect(r);
 }
 
 void Entity::dash(const GameVector& targetPosition, float duration)
