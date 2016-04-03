@@ -108,7 +108,7 @@ void Entity::render(const View& v) const
 
 void Entity::basicRender(const View& v) const
 {
-	Screen::drawGraphicsID(getRenderRect(v), VOID_ICON_GID, getBody()->getRotation());
+	Screen::drawTexture(getTexture(), getRenderRect(v), getBody()->getRotation());
 }
 
 PixelRect Entity::getRenderRect(const View& v) const
