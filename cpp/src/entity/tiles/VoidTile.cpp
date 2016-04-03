@@ -1,12 +1,10 @@
 #include "VoidTile.hpp"
 
-extern TextureID VOIDTILE_TID;
-
 VoidTile::VoidTile(const GameVector& pos)
 	: Tile(new RectBody(pos))
 {}
 
-TextureID VoidTile::getTextureID() const
+sf::Texture* VoidTile::getTexture() const
 {
-	return VOIDTILE_TID;
+	return GraphicsManager::getTexture(VOIDTILE_GID);
 }

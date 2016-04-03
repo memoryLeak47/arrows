@@ -8,7 +8,7 @@ class LavaTile : public Tile
 	public:
 		LavaTile(const GameVector&);
 		virtual ~LavaTile() {}
-		virtual TextureID getTextureID() const override;
+		virtual sf::Texture* getTexture() const override;
 };
 
 #endif

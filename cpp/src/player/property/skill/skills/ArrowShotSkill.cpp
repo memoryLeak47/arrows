@@ -1,8 +1,7 @@
 #include "ArrowShotSkill.hpp"
 
-extern const char ARCHER_AID;
-extern const char ARROWSHOTSKILL_SID;
-extern TextureID ARROWSHOTSKILL_ICON_TID;
+extern int ARROWSHOTSKILL_SID;
+extern int ARCHER_AID;
 
 char ArrowShotSkill::getID() const
 {
@@ -19,9 +18,9 @@ char ArrowShotSkill::getAvatarID() const
 	return ARCHER_AID;
 }
 
-TextureID ArrowShotSkill::getIconTextureID() const
+GraphicsID ArrowShotSkill::getIconGraphicsID() const
 {
-	return ARROWSHOTSKILL_ICON_TID;
+	return ARROWSHOTSKILL_ICON_GID;
 }
 
 Skill* ArrowShotSkill::clone() const

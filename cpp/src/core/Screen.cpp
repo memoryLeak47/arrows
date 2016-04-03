@@ -82,9 +82,9 @@ void Screen::fillRect(const PixelRect& rect, const sf::Color& color)
 	window->draw(s);
 }
 
-void Screen::drawTextureID(const TextureID& id, const PixelRect& rect, float rotation)
+void Screen::drawGraphicsID(const PixelRect& rect, GraphicsID id, int index, float rotation)
 {
-	drawTexture(TextureManager::getTexture(id), rect, rotation);
+	drawTexture(GraphicsManager::getTexture(id, index), rect, rotation);
 }
 
 void Screen::drawTexture(const sf::Texture* tex, const PixelRect& rect, float rotation)

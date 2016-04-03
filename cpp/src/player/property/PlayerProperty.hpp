@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../../graphics/TextureManager.hpp" // TextureID
+#include "../../graphics/GraphicsManager.hpp"
 
 class PlayerProperty
 {
@@ -11,7 +11,7 @@ class PlayerProperty
 		virtual ~PlayerProperty() {}
 		virtual std::string getDescription() const = 0;
 		virtual char getID() const = 0;
-		virtual TextureID getIconTextureID() const;
+		virtual GraphicsID getIconGraphicsID() const;
 };
 
 #endif

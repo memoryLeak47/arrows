@@ -10,7 +10,7 @@
 		Gibt die Anzahl der Tiles in Y-Richtung an. Dies entspricht tiles[0].size()
 
 	TILESIZE:
-		Gibt an, wieviele Pixel ein Tile einnimmt (nur für das rendern der staticTexture)
+		Gibt an, wieviele Pixel ein Tile einnimmt (nur für das rendern des staticImage)
 */
 
 #ifndef __GAMETILEMAP_CLASS__

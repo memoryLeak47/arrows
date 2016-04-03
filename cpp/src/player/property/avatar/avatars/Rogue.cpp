@@ -1,11 +1,10 @@
 #include "Rogue.hpp"
 
-extern TextureID ROGUE_ICON_TID;
-extern const int ROGUE_AID;
+extern int ROGUE_AID;
 
-TextureID Rogue::getIconTextureID() const
+GraphicsID Rogue::getIconGraphicsID() const
 {
-	return ROGUE_ICON_TID;
+	return ROGUE_ICON_GID;
 }
 
 char Rogue::getID() const

@@ -9,7 +9,7 @@ class ArrowShotSkill : public Skill
 		char getID() const override;
 		std::string getDescription() const override;
 		char getAvatarID() const override;
-		TextureID getIconTextureID() const override;
+		GraphicsID getIconGraphicsID() const override;
 		Skill* clone() const override;
 };
 

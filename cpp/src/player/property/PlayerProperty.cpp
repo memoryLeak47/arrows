@@ -1,8 +1,6 @@
 #include "PlayerProperty.hpp"
 
-extern TextureID VOID_ICON_TID;
-
-TextureID PlayerProperty::getIconTextureID() const
+GraphicsID PlayerProperty::getIconGraphicsID() const
 {
-	return VOID_ICON_TID;
+	return VOID_ICON_GID;
 }

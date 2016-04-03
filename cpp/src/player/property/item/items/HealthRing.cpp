@@ -1,10 +1,8 @@
 #include "HealthRing.hpp"
 
-extern TextureID HEALTHRING_ICON_TID;
-
-TextureID HealthRing::getIconTextureID() const
+GraphicsID HealthRing::getIconGraphicsID() const
 {
-	return HEALTHRING_ICON_TID;
+	return HEALTHRING_ICON_GID;
 }
 
 float HealthRing::getHealthStat() const

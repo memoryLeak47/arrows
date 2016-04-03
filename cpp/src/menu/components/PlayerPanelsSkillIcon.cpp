@@ -5,8 +5,6 @@
 #include "../../misc/Debug.hpp"
 #include "../../player/property/skill/Skill.hpp"
 
-extern TextureID VOID_ICON_TID;
-
 PlayerPanelsSkillIcon::PlayerPanelsSkillIcon(int n, LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : PlayerPanelsIcon(p, m, c, r), number(n)
 {}
 
@@ -29,12 +27,12 @@ void PlayerPanelsSkillIcon::onClick(int mouseButton)
 	}
 }
 
-TextureID PlayerPanelsSkillIcon::getTextureID() const
+GraphicsID PlayerPanelsSkillIcon::getGraphicsID() const
 {
 	if ((getPlayer()->getSkillUserPacket() == NULL) ||
 	    (getPlayer()->getSkillUserPacket()->getPlayerProperties()[number] == NULL))
 	{
-		return VOID_ICON_TID;
+		return VOID_ICON_GID;
 	}
-	return getPlayer()->getSkillUserPacket()->getPlayerProperties()[number]->getIconTextureID();
+	return getPlayer()->getSkillUserPacket()->getPlayerProperties()[number]->getIconGraphicsID();
 }

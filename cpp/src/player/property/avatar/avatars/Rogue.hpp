@@ -8,7 +8,7 @@
 class Rogue : public Avatar
 {
 	public:
-		virtual TextureID getIconTextureID() const override;
+		virtual GraphicsID getIconGraphicsID() const override;
 		char getID() const override;
 		std::string getDescription() const;
 };

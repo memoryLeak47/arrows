@@ -5,8 +5,6 @@
 #include "../../misc/Debug.hpp"
 #include "../../player/property/item/Item.hpp"
 
-extern TextureID VOID_ICON_TID;
-
 PlayerPanelsItemIcon::PlayerPanelsItemIcon(int n, LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : PlayerPanelsIcon(p, m, c, r), number(n)
 {}
 
@@ -29,12 +27,12 @@ void PlayerPanelsItemIcon::onClick(int mouseButton)
 	}
 }
 
-TextureID PlayerPanelsItemIcon::getTextureID() const
+GraphicsID PlayerPanelsItemIcon::getGraphicsID() const
 {
 	if ((getPlayer()->getItemUserPacket() == NULL) ||
 	    (getPlayer()->getItemUserPacket()->getPlayerProperties()[number] == NULL))
 	{
-		return VOID_ICON_TID;
+		return VOID_ICON_GID;
 	}
-	return getPlayer()->getItemUserPacket()->getPlayerProperties()[number]->getIconTextureID();
+	return getPlayer()->getItemUserPacket()->getPlayerProperties()[number]->getIconGraphicsID();
 }

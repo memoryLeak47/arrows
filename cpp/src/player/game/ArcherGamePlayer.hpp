@@ -7,7 +7,7 @@ class ArcherGamePlayer : public GamePlayer
 {
 	public:
 		ArcherGamePlayer(const GameVector&, const LobbyPlayer*);
-		virtual TextureID getTextureID() const override { return 1; } // TODO
+		virtual sf::Texture* getTexture() const override;
 };
 
 #endif

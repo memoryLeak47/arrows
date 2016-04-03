@@ -8,14 +8,7 @@ Icon::Icon(ComponentContainer* c, const PixelRect& r) : MenuComponent(c, r)
 
 void Icon::render() const
 {
-	/* // TODO
-	if (!getTextureID() != 0)
-	{
-		Debug::error("Icon::render() tries to render null IconID");
-		return;
-	}
-	*/
-	Screen::drawTextureID(getTextureID(), getAbsoluteRect());
+	Screen::drawGraphicsID(getAbsoluteRect(), getGraphicsID());
 }
 
 

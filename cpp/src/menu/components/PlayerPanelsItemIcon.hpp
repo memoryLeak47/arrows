@@ -9,7 +9,7 @@ class PlayerPanelsItemIcon : public PlayerPanelsIcon
 		PlayerPanelsItemIcon(int, LobbyPlayer*, LobbyMenu*, ComponentContainer*, const PixelRect&);
 		virtual int getChoosePhase() const override;
 		virtual void onClick(int) override;
-		virtual TextureID getTextureID() const override;
+		virtual GraphicsID getGraphicsID() const override;
 	private:
 		int number;
 };

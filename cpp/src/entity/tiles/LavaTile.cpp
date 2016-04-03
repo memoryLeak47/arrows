@@ -1,12 +1,10 @@
 #include "LavaTile.hpp"
 
-extern TextureID LAVATILE_TID;
-
 LavaTile::LavaTile(const GameVector& pos)
 	: Tile(pos)
 {}
 
-TextureID LavaTile::getTextureID() const
+sf::Texture* LavaTile::getTexture() const
 {
-	return LAVATILE_TID;
+	return GraphicsManager::getTexture(LAVATILE_GID);
 }

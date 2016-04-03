@@ -6,7 +6,7 @@
 #include "../../misc/Debug.hpp"
 
 #include "../../entity/tiles/SpawnTeamTile.hpp"
-#include "../../graphics/TextureManager.hpp"
+#include "../../graphics/GraphicsManager.hpp"
 
 GameTileMap::GameTileMap(LobbyTileMap* lobbyMap)
 {
@@ -58,15 +58,15 @@ const std::vector<Tile*> GameTileMap::getIntersectionTiles(const GameRect& gameR
 
 void GameTileMap::updateFullImage()
 {
-	Debug::warnIf(getHeight() < 0, "GameTileMap::updateFullTexture(): getHeight == " + Converter::intToString(getHeight()));
-	Debug::warnIf(getWidth() < 0, "GameTileMap::updateFullTexture(): getWidth == " + Converter::intToString(getWidth()));
+	Debug::warnIf(getHeight() < 0, "GameTileMap::updateFullImage(): getHeight == " + Converter::intToString(getHeight()));
+	Debug::warnIf(getWidth() < 0, "GameTileMap::updateFullImage(): getWidth == " + Converter::intToString(getWidth()));
 	for (int x = 0; x < getWidth(); x++)
 	{
 		for (int y = 0; y < getHeight(); y++)
 		{
-			Debug::errorIf(tiles[x][y] == NULL, "GameTileMap::updateFullTexture(): tiles[" + Converter::intToString(x) + "][" + Converter::intToString(y) + "] == NULL");
-			TextureID tileTextureID = tiles[x][y]->getTextureID();
-			staticImage.copy(TextureManager::getTexture(tileTextureID)->copyToImage(), x*TILESIZE, y*TILESIZE);
+			Debug::errorIf(tiles[x][y] == NULL, "GameTileMap::updateFullImage(): tiles[" + Converter::intToString(x) + "][" + Converter::intToString(y) + "] == NULL");
+			sf::Texture* tileTexture = tiles[x][y]->getTexture();
+			staticImage.copy(tileTexture->copyToImage(), x*TILESIZE, y*TILESIZE);
 		}
 	}
 }

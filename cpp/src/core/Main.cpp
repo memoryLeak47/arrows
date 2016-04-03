@@ -6,7 +6,7 @@
 #include "../player/property/avatar/Avatar.hpp"
 #include "../player/property/skill/Skill.hpp"
 #include "../player/property/item/Item.hpp"
-#include "../graphics/TextureManager.hpp"
+#include "../graphics/GraphicsManager.hpp"
 
 bool Main::running = true;
 MenuList* Main::menuList;
@@ -22,7 +22,7 @@ Main::Main()
 	Avatar::init();
 	Skill::init();
 	Item::init();
-	TextureManager::init();
+	GraphicsManager::init();
 	menuList = new MenuList();
 	networkDevice = new NetworkDevice();
 	running = true;
@@ -39,7 +39,7 @@ Main::~Main()
 	Avatar::uninit();
 	Skill::uninit();
 	Item::uninit();
-	TextureManager::uninit();
+	GraphicsManager::uninit();
 }
 
 NetworkDevice* Main::getNetworkDevice()

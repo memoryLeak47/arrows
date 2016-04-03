@@ -1,14 +1,12 @@
 #include "SpawnTeamTile.hpp"
 
-extern TextureID SPAWNTEAMTILE_TID;
-
 SpawnTeamTile::SpawnTeamTile(Team* team, const GameVector& pos)
 	: Tile(pos), team(team)
 {}
 
-TextureID SpawnTeamTile::getTextureID() const
+sf::Texture* SpawnTeamTile::getTexture() const
 {
-	return SPAWNTEAMTILE_TID;
+	return GraphicsManager::getTexture(SPAWNTEAMTILE_GID);
 }
 
 bool SpawnTeamTile::isSpawnTeamTile() const

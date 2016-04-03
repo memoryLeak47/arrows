@@ -4,7 +4,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
-#include "../graphics/TextureManager.hpp" // for the TextureID typedef
+#include "../graphics/GraphicsManager.hpp" // for the TextureID typedef
 
 class PixelRect;
 class PixelVector;
@@ -21,7 +21,7 @@ class Screen
 
 		static void drawRect(const PixelRect&, const sf::Color&);
 		static void fillRect(const PixelRect&, const sf::Color&);
-		static void drawTextureID(const TextureID&, const PixelRect&, float rotation=0);
+		static void drawGraphicsID(const PixelRect&, GraphicsID, int index=0, float rotation=0);
 		static void drawTexture(const sf::Texture*, const PixelRect&, float rotation=0);
 		static void drawText(const std::string&, const PixelVector&, const sf::Color&);
 	private:

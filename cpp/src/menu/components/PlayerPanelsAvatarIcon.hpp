@@ -9,7 +9,7 @@ class PlayerPanelsAvatarIcon : public PlayerPanelsIcon
 		PlayerPanelsAvatarIcon(LobbyPlayer*, LobbyMenu*, ComponentContainer*, const PixelRect&);
 		virtual int getChoosePhase() const override;
 		virtual void onClick(int) override;
-		virtual TextureID getTextureID() const override;
+		virtual GraphicsID getGraphicsID() const override;
 };
 
 #endif

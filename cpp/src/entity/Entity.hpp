@@ -2,6 +2,7 @@
 #define __ENTITY_CLASS__
 
 #include <vector>
+#include <SFML/Graphics.hpp>
 
 #include "../misc/Def.hpp"
 
@@ -45,7 +46,7 @@ class Entity
 
 		// Rendering
 		virtual void render(const View&) const;
-		virtual TextureID getTextureID() const = 0;
+		virtual sf::Texture* getTexture() const = 0;
 	protected:
 		void basicRender(const View&) const;
 		PixelRect getRenderRect(const View&) const;
@@ -71,5 +72,7 @@ class Entity
 #include "../math/game/GameRect.hpp"
 #include "../math/pixel/PixelRect.hpp"
 #include "../view/View.hpp"
+
+#include "../graphics/GraphicsManager.hpp"
 
 #endif
