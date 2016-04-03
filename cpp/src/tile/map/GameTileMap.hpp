@@ -21,8 +21,6 @@
 
 #include "LobbyTileMap.hpp"
 
-#define TILESIZE 40
-
 class Team;
 class GameRect;
 class GameVector;
