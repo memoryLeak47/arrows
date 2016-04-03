@@ -31,7 +31,7 @@ void GameTileMap::loadFromLobbyTileMap(LobbyTileMap* lobbyMap)
 			tiles.back().push_back(Tile::createByColorID(lobbyMap->getInts()[x][y], GameVector(x, y)));
 			if (tiles.back().back()->isSpawnTeamTile())
 			{
-				spawnPositions[dynamic_cast<SpawnTeamTile*>(tiles.back().back())->getTeam()->getID()] = GameVector(x, y);
+				spawnPositions[dynamic_cast<SpawnTeamTile*>(tiles.back().back())->getTeam()->getID()] = GameVector(x + 0.5f , y + 0.5f);
 			}
 		}
 	}
