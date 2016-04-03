@@ -6,35 +6,45 @@
 
 std::vector<sf::Texture*> TextureManager::textures;
 
-TextureID VOID_ICON;
+TextureID VOID_ICON_TID;
 
-TextureID ARCHER_ICON;
-TextureID ROGUE_ICON;
+TextureID ARCHER_ICON_TID;
+TextureID ROGUE_ICON_TID;
 
-TextureID ARROWSHOTSKILL_ICON;
+TextureID ARROWSHOTSKILL_ICON_TID;
 
-TextureID HEALTHRING_ICON;
+TextureID HEALTHRING_ICON_TID;
 
-TextureID VOIDTILE;
-TextureID NORMALTILE;
-TextureID LAVATILE;
-TextureID SPAWNTEAMTILE;
+TextureID VOIDTILE_TID;
+TextureID NORMALTILE_TID;
+TextureID LAVATILE_TID;
+TextureID SPAWNTEAMTILE_TID;
+
+TextureID ARCHER_TID;
 
 void TextureManager::init()
 {
-	addImage(&VOID_ICON, "res/icons/void.png");
+	// VOID
+	addImage(&VOID_ICON_TID, "res/icons/void.png");
 
-	addImage(&ARCHER_ICON, "res/icons/avatars/archer.png");
-	addImage(&ROGUE_ICON, "res/icons/avatars/rogue.png");
+	// Avatar-Icons
+	addImage(&ARCHER_ICON_TID, "res/icons/avatars/archer.png");
+	addImage(&ROGUE_ICON_TID, "res/icons/avatars/rogue.png");
 
-	addImage(&ARROWSHOTSKILL_ICON, "res/icons/skills/arrowshot.png");
+	// Skill-Icons
+	addImage(&ARROWSHOTSKILL_ICON_TID, "res/icons/skills/arrowshot.png");
 
-	addImage(&HEALTHRING_ICON, "res/icons/items/healthring.png");
+	// Item-Icons
+	addImage(&HEALTHRING_ICON_TID, "res/icons/items/healthring.png");
 
-	addImage(&VOIDTILE, "res/entities/tiles/voidtile.png");
-	addImage(&NORMALTILE, "res/entities/tiles/normaltile.png");
-	addImage(&LAVATILE, "res/entities/tiles/lavatile.png");
-	addImage(&SPAWNTEAMTILE, "res/entities/tiles/spawnteamtile.png");
+	// Tiles
+	addImage(&VOIDTILE_TID, "res/entities/tiles/voidtile.png");
+	addImage(&NORMALTILE_TID, "res/entities/tiles/normaltile.png");
+	addImage(&LAVATILE_TID, "res/entities/tiles/lavatile.png");
+	addImage(&SPAWNTEAMTILE_TID, "res/entities/tiles/spawnteamtile.png");
+
+	// Avatars
+	addImage(&ARCHER_TID, "res/entities/avatars/archer.png");
 }
 
 void TextureManager::uninit()

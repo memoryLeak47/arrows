@@ -1,7 +1,7 @@
 #include "MiniMap.hpp"
 
 #include "../../graphics/TextureManager.hpp"
-extern TextureID VOID_ICON;
+extern TextureID VOID_ICON_TID;
 
 #include "../../core/Main.hpp"
 #include "../../core/Screen.hpp"
@@ -22,7 +22,7 @@ void MiniMap::render() const
 {
 	if (tileMapTexture == NULL)
 	{
-		Screen::drawTextureID(VOID_ICON, getAbsoluteRect());
+		Screen::drawTextureID(VOID_ICON_TID, getAbsoluteRect());
 	}
 	else
 	{

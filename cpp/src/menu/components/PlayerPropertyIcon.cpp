@@ -1,6 +1,6 @@
 #include "PlayerPropertyIcon.hpp"
 
-extern TextureID VOID_ICON;
+extern TextureID VOID_ICON_TID;
 
 PlayerPropertyIcon::PlayerPropertyIcon(ComponentContainer* c, const PixelRect& r, PlayerProperty* p)
 	: Icon(c, r)
@@ -28,7 +28,7 @@ TextureID PlayerPropertyIcon::getTextureID() const
 {
 	if (getPlayerProperty() == NULL || getPlayerProperty()->getIconTextureID() == -1)
 	{
-		return VOID_ICON;
+		return VOID_ICON_TID;
 	}
 	return getPlayerProperty()->getIconTextureID();
 }

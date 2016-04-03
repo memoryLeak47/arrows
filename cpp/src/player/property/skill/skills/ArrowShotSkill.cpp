@@ -2,7 +2,7 @@
 
 extern const char ARCHER_AID;
 extern const char ARROWSHOTSKILL_SID;
-extern TextureID ARROWSHOTSKILL_ICON;
+extern TextureID ARROWSHOTSKILL_ICON_TID;
 
 char ArrowShotSkill::getID() const
 {
@@ -21,7 +21,7 @@ char ArrowShotSkill::getAvatarID() const
 
 TextureID ArrowShotSkill::getIconTextureID() const
 {
-	return ARROWSHOTSKILL_ICON;
+	return ARROWSHOTSKILL_ICON_TID;
 }
 
 Skill* ArrowShotSkill::clone() const

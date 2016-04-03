@@ -1,6 +1,6 @@
 #include "SpawnTeamTile.hpp"
 
-extern TextureID SPAWNTEAMTILE;
+extern TextureID SPAWNTEAMTILE_TID;
 
 SpawnTeamTile::SpawnTeamTile(Team* team, const GameVector& pos)
 	: Tile(pos), team(team)
@@ -8,5 +8,5 @@ SpawnTeamTile::SpawnTeamTile(Team* team, const GameVector& pos)
 
 TextureID SpawnTeamTile::getTextureID() const
 {
-	return SPAWNTEAMTILE;
+	return SPAWNTEAMTILE_TID;
 }

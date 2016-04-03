@@ -5,7 +5,7 @@
 #include "../../misc/Debug.hpp"
 #include "../../player/property/avatar/Avatar.hpp"
 
-extern TextureID VOID_ICON;
+extern TextureID VOID_ICON_TID;
 
 PlayerPanelsAvatarIcon::PlayerPanelsAvatarIcon(LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : PlayerPanelsIcon(p, m, c, r)
 {}
@@ -34,7 +34,7 @@ TextureID PlayerPanelsAvatarIcon::getTextureID() const
 	if ((getPlayer()->getAvatarUserPacket() == NULL) ||
 	    (getPlayer()->getAvatarUserPacket()->getPlayerProperties()[0] == NULL))
 	{
-		return VOID_ICON;
+		return VOID_ICON_TID;
 	}
 	return getPlayer()->getAvatarUserPacket()->getPlayerProperties()[0]->getIconTextureID();
 }

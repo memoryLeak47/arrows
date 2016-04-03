@@ -1,6 +1,6 @@
 #include "LavaTile.hpp"
 
-extern TextureID LAVATILE;
+extern TextureID LAVATILE_TID;
 
 LavaTile::LavaTile(const GameVector& pos)
 	: Tile(pos)
@@ -8,5 +8,5 @@ LavaTile::LavaTile(const GameVector& pos)
 
 TextureID LavaTile::getTextureID() const
 {
-	return LAVATILE;
+	return LAVATILE_TID;
 }

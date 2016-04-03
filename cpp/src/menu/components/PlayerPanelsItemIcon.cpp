@@ -5,7 +5,7 @@
 #include "../../misc/Debug.hpp"
 #include "../../player/property/item/Item.hpp"
 
-extern TextureID VOID_ICON;
+extern TextureID VOID_ICON_TID;
 
 PlayerPanelsItemIcon::PlayerPanelsItemIcon(int n, LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : PlayerPanelsIcon(p, m, c, r), number(n)
 {}
@@ -34,7 +34,7 @@ TextureID PlayerPanelsItemIcon::getTextureID() const
 	if ((getPlayer()->getItemUserPacket() == NULL) ||
 	    (getPlayer()->getItemUserPacket()->getPlayerProperties()[number] == NULL))
 	{
-		return VOID_ICON;
+		return VOID_ICON_TID;
 	}
 	return getPlayer()->getItemUserPacket()->getPlayerProperties()[number]->getIconTextureID();
 }

@@ -2,12 +2,12 @@
 
 #include "../../../game/ArcherGamePlayer.hpp"
 
-extern TextureID ARCHER_ICON;
+extern TextureID ARCHER_ICON_TID;
 extern const int ARCHER_AID;
 
 TextureID Archer::getIconTextureID() const
 {
-	return ARCHER_ICON;
+	return ARCHER_ICON_TID;
 }
 
 char Archer::getID() const

@@ -1,6 +1,6 @@
 #include "NormalTile.hpp"
 
-extern TextureID NORMALTILE;
+extern TextureID NORMALTILE_TID;
 
 NormalTile::NormalTile(const GameVector& pos)
 	: Tile(new RectBody(pos))
@@ -8,5 +8,5 @@ NormalTile::NormalTile(const GameVector& pos)
 
 TextureID NormalTile::getTextureID() const
 {
-	return NORMALTILE;
+	return NORMALTILE_TID;
 }
