@@ -5,6 +5,7 @@
 #include "../../misc/Converter.hpp"
 #include "../../misc/Debug.hpp"
 
+#include "../../entity/tiles/SpawnTeamTile.hpp"
 #include "../../graphics/TextureManager.hpp"
 
 GameTileMap::GameTileMap(LobbyTileMap* lobbyMap)
@@ -16,12 +17,22 @@ GameTileMap::GameTileMap(LobbyTileMap* lobbyMap)
 
 void GameTileMap::loadFromLobbyTileMap(LobbyTileMap* lobbyMap)
 {
+	spawnPositions.clear();
+	for (unsigned int i = 0; i < Team::getAmount(); i++)
+	{
+		spawnPositions.push_back(GameVector(0,0));
+	}
+
 	for (unsigned int x = 0; x < lobbyMap->getInts().size(); x++)
 	{
 		tiles.push_back(std::vector<Tile*>());
 		for (unsigned int y = 0; y < lobbyMap->getInts()[0].size(); y++)
 		{
 			tiles.back().push_back(Tile::createByColorID(lobbyMap->getInts()[x][y], GameVector(x, y)));
+			if (tiles.back().back()->isSpawnTeamTile())
+			{
+				spawnPositions[dynamic_cast<SpawnTeamTile*>(tiles.back().back())->getTeam()->getID()] = GameVector(x, y);
+			}
 		}
 	}
 }
@@ -32,6 +43,11 @@ GameTileMap::~GameTileMap()
 	{
 		deleteAndClearVector(tiles[i]);
 	}
+}
+
+GameVector GameTileMap::teamToSpawnPosition(Team* team)
+{
+	return spawnPositions[team->getID()];
 }
 
 const std::vector<Tile*> GameTileMap::getIntersectionTiles(const GameRect& gameRect) const

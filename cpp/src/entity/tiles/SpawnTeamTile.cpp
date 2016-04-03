@@ -10,3 +10,13 @@ TextureID SpawnTeamTile::getTextureID() const
 {
 	return SPAWNTEAMTILE_TID;
 }
+
+bool SpawnTeamTile::isSpawnTeamTile() const
+{
+	return true;
+}
+
+Team* SpawnTeamTile::getTeam() const
+{
+	return team;
+}

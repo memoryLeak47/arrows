@@ -14,6 +14,7 @@ class Tile : public Entity
 		Tile(const GameVector&);
 		virtual ~Tile() {}
 		virtual void handleCollisions() override {}
+		virtual bool isSpawnTeamTile() const;
 
 		static Tile* createByColorID(const int, const GameVector&);
 };

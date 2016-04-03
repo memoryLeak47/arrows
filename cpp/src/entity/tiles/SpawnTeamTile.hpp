@@ -11,6 +11,8 @@ class SpawnTeamTile : public Tile
 		SpawnTeamTile(Team*, const GameVector&);
 		virtual ~SpawnTeamTile() {}
 		virtual TextureID getTextureID() const override;
+		virtual bool isSpawnTeamTile() const override;
+		Team* getTeam() const;
 	private:
 		Team* team;
 };

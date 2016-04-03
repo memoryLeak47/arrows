@@ -23,7 +23,9 @@
 
 #define TILESIZE 40
 
+class Team;
 class GameRect;
+class GameVector;
 class Tile;
 class View;
 
@@ -38,7 +40,9 @@ class GameTileMap
 		int getHeight() const;
 
 		void render(const View&) const;
+		GameVector teamToSpawnPosition(Team*);
 	private:
+		std::vector<GameVector> spawnPositions;
 		void updateFullImage();
 		void loadFromLobbyTileMap(LobbyTileMap*);
 
@@ -46,7 +50,9 @@ class GameTileMap
 		sf::Image staticImage;
 };
 
+#include "../../player/property/Team.hpp"
 #include "../../math/game/GameRect.hpp"
+#include "../../math/game/GameVector.hpp"
 #include "../../entity/Tile.hpp"
 #include "../../view/View.hpp"
 

@@ -19,6 +19,11 @@ Tile::Tile(const GameVector& pos)
 	: Entity(new RectBody(pos, GameVector(1, 1)))
 {}
 
+bool Tile::isSpawnTeamTile() const
+{
+	return false;
+}
+
 Tile* Tile::createByColorID(const int id, const GameVector& position)
 {
 	if (id == NORMAL_BLOCK_ID)
