@@ -6,6 +6,8 @@
 
 #include "../misc/Def.hpp"
 
+class PixelVector;
+class GameVector;
 class GraphicsBuffer;
 
 enum GraphicsID
@@ -26,6 +28,8 @@ class GraphicsManager
 		static void uninit();
 		static sf::Texture* getTexture(GraphicsID, int index=0);
 		static unsigned int getAmountOf(GraphicsID);
+		static PixelVector getPixelSizeOf(GraphicsID, int index=0);
+		static GameVector getGameSizeOf(GraphicsID, int index=0);
 	private:
 		static GraphicsBuffer* getBuffer(GraphicsID);
 		static void addGraphicsBuffer(GraphicsID, const std::string&, bool isDirectory=false);
@@ -33,5 +37,7 @@ class GraphicsManager
 };
 
 #include "GraphicsBuffer.hpp"
+#include "../math/pixel/PixelVector.hpp"
+#include "../math/game/GameVector.hpp"
 
 #endif

@@ -47,6 +47,18 @@ unsigned int GraphicsManager::getAmountOf(GraphicsID id)
 	return getBuffer(id)->getAmount();
 }
 
+PixelVector GraphicsManager::getPixelSizeOf(GraphicsID id, int index)
+{
+	sf::Texture* t = getTexture(id, index);
+	return PixelVector(t->getSize().x, t->getSize().y);
+}
+
+GameVector GraphicsManager::getGameSizeOf(GraphicsID id, int index)
+{
+	PixelVector p = getPixelSizeOf(id, index);
+	return GameVector((float) p.getX() / TILESIZE, (float) p.getY() / TILESIZE);
+}
+
 GraphicsBuffer* GraphicsManager::getBuffer(GraphicsID id)
 {
 	Debug::warnIf((int) buffers.size() < (int) id, "GraphicsManager::getBuffer(): outta range (" + Converter::intToString(id) + ")");
