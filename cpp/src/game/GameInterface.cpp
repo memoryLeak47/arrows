@@ -9,8 +9,8 @@ GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>&
 	tileMap = new GameTileMap(map);
 	for (unsigned int i = 0; i < lobbyPlayers.size(); i++)
 	{
-		Debug::warn("GameInterface::GameInterface(): TODO: create <Avatar>GamePlayer");
-		// mobs.push_back(lobbyPlayers[i]->createGamePlayer());
+		Debug::warn("mobs.push_back(player?)");
+		mobs.push_back(Avatar::get(lobbyPlayers[i]->getAvatarUserPacket()->getAvatarID())->createGamePlayer(GameVector(0,0), lobbyPlayers[i]));
 	}
 }
 

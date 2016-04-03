@@ -11,6 +11,7 @@ class Archer : public Avatar
 		virtual TextureID getIconTextureID() const override;
 		char getID() const override;
 		std::string getDescription() const;
+		virtual GamePlayer* createGamePlayer(const GameVector&, const LobbyPlayer*) const override;
 };
 
 #endif

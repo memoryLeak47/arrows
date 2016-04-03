@@ -8,7 +8,9 @@ class Mob : public Entity
 	public:
 		Mob(Body*);
 		virtual ~Mob() {}
-		virtual void renderBar(const View&) = 0;
+		virtual void renderBar(const View&) const = 0;
+		virtual void handleCollisions() override;
+		void handleCollisionsLikeAMob();
 };
 
 #endif

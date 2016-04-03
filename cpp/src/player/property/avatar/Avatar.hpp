@@ -3,6 +3,10 @@
 
 #include "../PlayerProperty.hpp"
 
+class GamePlayer;
+class GameVector;
+class LobbyPlayer;
+
 class Avatar : public PlayerProperty
 {
 	public:
@@ -14,8 +18,14 @@ class Avatar : public PlayerProperty
 		static const std::vector<Avatar*> getAllAvatars();
 		virtual int getMassStat() const;
 		virtual float getHealthStat() const;
+
+		virtual GamePlayer* createGamePlayer(const GameVector&, const LobbyPlayer*) const = 0;
 	private:
 		static std::vector<Avatar*> avatars;
 };
+
+#include "../../GamePlayer.hpp"
+#include "../../../math/game/GameVector.hpp"
+#include "../../LobbyPlayer.hpp"
 
 #endif

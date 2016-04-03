@@ -1,5 +1,7 @@
 #include "Archer.hpp"
 
+#include "../../../game/ArcherGamePlayer.hpp"
+
 extern TextureID ARCHER_ICON;
 extern const int ARCHER_AID;
 
@@ -16,4 +18,9 @@ char Archer::getID() const
 std::string Archer::getDescription() const
 {
 	return "legolas; enough said";
+}
+
+GamePlayer* Archer::createGamePlayer(const GameVector& pos, const LobbyPlayer* player) const
+{
+	return new ArcherGamePlayer(pos, player);
 }

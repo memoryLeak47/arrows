@@ -14,19 +14,22 @@
 
 class LobbyPlayer;
 class Team;
+class Avatar;
 class Skill;
 class Item;
 
 class GamePlayer : public Mob
 {
 	public:
-		GamePlayer(LobbyPlayer*);
+		GamePlayer(Body*, const LobbyPlayer*);
 		~GamePlayer();
+		virtual void renderBar(const View&) const override;
 	private:
 		sf::IpAddress* ip;
 		std::string name;
 		int rank;
 		Team* team;
+		Avatar* avatar;
 		std::vector<Skill*> skills;
 		std::vector<Item*> items;
 		void setIP(sf::IpAddress*);
@@ -34,6 +37,7 @@ class GamePlayer : public Mob
 
 #include "LobbyPlayer.hpp"
 #include "property/Team.hpp"
+#include "property/avatar/Avatar.hpp"
 #include "property/skill/Skill.hpp"
 #include "property/item/Item.hpp"
 

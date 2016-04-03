@@ -1,12 +1,14 @@
 #include "GamePlayer.hpp"
 
+#include "../misc/Debug.hpp"
 #include "../collision/RectBody.hpp"
 #include "../misc/Converter.hpp"
 
-GamePlayer::GamePlayer(LobbyPlayer* player)
-	: Mob(new RectBody(GameVector(0, 0))), // TODO real position
+GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
+	: Mob(body),
 	  name(player->getLoginUserPacket()->getName()),
-	  rank(player->getLoginUserPacket()->getRank())
+	  rank(player->getLoginUserPacket()->getRank()),
+	  avatar(Avatar::get(player->getAvatarUserPacket()->getAvatarID()))
 {
 	if (player->getIP() == NULL)
 	{
@@ -32,4 +34,9 @@ GamePlayer::GamePlayer(LobbyPlayer* player)
 GamePlayer::~GamePlayer()
 {
 	delete ip;
+}
+
+void GamePlayer::renderBar(const View&) const
+{
+	Debug::warn("GamePlayer::renderBar(): TODO");
 }

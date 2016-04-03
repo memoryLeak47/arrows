@@ -14,7 +14,7 @@ extern const int ROGUE_AID = 1; // skills can define class of owner with this id
 void Avatar::init()
 {
 	avatars.push_back(new Archer());
-	avatars.push_back(new Rogue());
+//	avatars.push_back(new Rogue());
 }
 
 void Avatar::uninit()
