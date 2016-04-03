@@ -15,6 +15,8 @@ class Tile : public Entity
 		virtual ~Tile() {}
 		virtual void handleCollisions() override {}
 		virtual bool isSpawnTeamTile() const;
+		virtual void renderToImage(sf::Image&, int, int) const;
+		virtual bool rendersStatic() const;
 
 		static Tile* createByColorID(const int, const GameVector&);
 };

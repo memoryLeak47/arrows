@@ -65,8 +65,7 @@ void GameTileMap::updateFullImage()
 		for (int y = 0; y < getHeight(); y++)
 		{
 			Debug::errorIf(tiles[x][y] == NULL, "GameTileMap::updateFullImage(): tiles[" + Converter::intToString(x) + "][" + Converter::intToString(y) + "] == NULL");
-			sf::Texture* tileTexture = tiles[x][y]->getTexture();
-			staticImage.copy(tileTexture->copyToImage(), x*TILESIZE, y*TILESIZE);
+			tiles[x][y]->renderToImage(staticImage, x*TILESIZE, y*TILESIZE);
 		}
 	}
 }

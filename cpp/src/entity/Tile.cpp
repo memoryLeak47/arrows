@@ -1,6 +1,7 @@
 #include "Tile.hpp"
 
 #include "../misc/Converter.hpp"
+#include "../misc/Debug.hpp"
 #include "../player/property/Team.hpp"
 #include "tiles/NormalTile.hpp"
 #include "tiles/VoidTile.hpp"
@@ -22,6 +23,19 @@ Tile::Tile(const GameVector& pos)
 bool Tile::isSpawnTeamTile() const
 {
 	return false;
+}
+
+void Tile::renderToImage(sf::Image& image, int x, int y) const
+{
+	if (rendersStatic())
+	{
+		image.copy(getTexture()->copyToImage(), x, y);
+	}
+}
+
+bool Tile::rendersStatic() const
+{
+	return true;
 }
 
 Tile* Tile::createByColorID(const int id, const GameVector& position)
