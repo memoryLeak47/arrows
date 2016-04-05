@@ -10,7 +10,7 @@ class Icon : public MenuComponent
 	public:
 		Icon(ComponentContainer*, const PixelRect&);
 		virtual void render() const override;
-		virtual GraphicsID getGraphicsID() const = 0;
+		virtual TextureID getTextureID() const = 0;
 };
 
 #endif

@@ -8,7 +8,7 @@
 class HealthRing : public Item
 {
 	public:
-		virtual GraphicsID getIconGraphicsID() const override;
+		virtual TextureID getIconTextureID() const override;
 		float getHealthStat() const;
 		std::string getDescription() const;
 };

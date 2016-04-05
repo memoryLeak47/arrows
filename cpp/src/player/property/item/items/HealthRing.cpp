@@ -1,6 +1,6 @@
 #include "HealthRing.hpp"
 
-GraphicsID HealthRing::getIconGraphicsID() const
+TextureID HealthRing::getIconTextureID() const
 {
 	return HEALTHRING_ICON_GID;
 }

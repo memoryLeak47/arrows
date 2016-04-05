@@ -27,12 +27,12 @@ void PlayerPanelsSkillIcon::onClick(int mouseButton)
 	}
 }
 
-GraphicsID PlayerPanelsSkillIcon::getGraphicsID() const
+TextureID PlayerPanelsSkillIcon::getTextureID() const
 {
 	if ((getPlayer()->getSkillUserPacket() == NULL) ||
 	    (getPlayer()->getSkillUserPacket()->getPlayerProperties()[number] == NULL))
 	{
 		return VOID_ICON_GID;
 	}
-	return getPlayer()->getSkillUserPacket()->getPlayerProperties()[number]->getIconGraphicsID();
+	return getPlayer()->getSkillUserPacket()->getPlayerProperties()[number]->getIconTextureID();
 }

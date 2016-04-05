@@ -12,7 +12,7 @@ class PlayerPropertyIcon : public Icon
 		PlayerPropertyIcon(ComponentContainer*, const PixelRect&);
 		static PixelVector getSize();
 		void setPlayerProperty(PlayerProperty*);
-		virtual GraphicsID getGraphicsID() const override;
+		virtual TextureID getTextureID() const override;
 		PlayerProperty* getPlayerProperty() const;
 	private:
 		PlayerProperty* property; // TODO deleted?

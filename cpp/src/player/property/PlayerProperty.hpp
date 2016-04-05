@@ -11,7 +11,7 @@ class PlayerProperty
 		virtual ~PlayerProperty() {}
 		virtual std::string getDescription() const = 0;
 		virtual char getID() const = 0;
-		virtual GraphicsID getIconGraphicsID() const;
+		virtual TextureID getIconTextureID() const;
 };
 
 #endif

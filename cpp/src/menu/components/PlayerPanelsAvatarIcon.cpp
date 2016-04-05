@@ -27,12 +27,12 @@ void PlayerPanelsAvatarIcon::onClick(int mouseButton)
 	}
 }
 
-GraphicsID PlayerPanelsAvatarIcon::getGraphicsID() const
+TextureID PlayerPanelsAvatarIcon::getTextureID() const
 {
 	if ((getPlayer()->getAvatarUserPacket() == NULL) ||
 	    (getPlayer()->getAvatarUserPacket()->getPlayerProperties()[0] == NULL))
 	{
 		return VOID_ICON_GID;
 	}
-	return getPlayer()->getAvatarUserPacket()->getPlayerProperties()[0]->getIconGraphicsID();
+	return getPlayer()->getAvatarUserPacket()->getPlayerProperties()[0]->getIconTextureID();
 }
