@@ -2,11 +2,11 @@
 
 #include "../misc/Debug.hpp"
 
-GameVector CollisionDetector::getCollisionPoint(Body* a, Body* b)
+CollisionLine CollisionDetector::getCollisionLine(Body* a, Body* b)
 {
 	if (!a->getWrapper().collidesWith(b->getWrapper()))
 	{
-		return GameVector(-1, -1);
+		return CollisionLine(GameVector(-1, -1), GameVector(-1, -1));
 	}
 
 	if (a->getBodyType() == RECT)
@@ -25,20 +25,20 @@ GameVector CollisionDetector::getCollisionPoint(Body* a, Body* b)
 	}
 }
 
-GameVector CollisionDetector::rectCollision(RectBody* a, RectBody* b)
+CollisionLine CollisionDetector::rectCollision(RectBody* a, RectBody* b)
 {
 	Debug::warn("CollisionDetector: TODO");
-	return GameVector(-1, -1);
+	return CollisionLine(GameVector(-1, -1), GameVector(-1, -1));
 }
 
-GameVector CollisionDetector::rectCircleCollision(RectBody* a, CircleBody* b)
+CollisionLine CollisionDetector::rectCircleCollision(RectBody* a, CircleBody* b)
 {
 	Debug::warn("CollisionDetector: TODO");
-	return GameVector(-1, -1);
+	return CollisionLine(GameVector(-1, -1), GameVector(-1, -1));
 }
 
-GameVector CollisionDetector::circleCollision(CircleBody* a, CircleBody* b)
+CollisionLine CollisionDetector::circleCollision(CircleBody* a, CircleBody* b)
 {
 	Debug::warn("CollisionDetector: TODO");
-	return GameVector(-1, -1);
+	return CollisionLine(GameVector(-1, -1), GameVector(-1, -1));
 }

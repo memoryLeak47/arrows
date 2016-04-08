@@ -4,6 +4,7 @@
 #include "../core/Screen.hpp"
 #include "../misc/Debug.hpp"
 #include "../collision/CollisionDetector.hpp"
+#include "../collision/CollisionLine.hpp"
 
 Entity::Entity(Body* bodyArg)
 {
@@ -37,10 +38,10 @@ void Entity::calculateCollisions(const std::vector<Mob*>& mobs, GameTileMap* til
 		{
 			if (this == mobs[i])
 				continue;
-			GameVector spot(CollisionDetector::getCollisionPoint(getBody(), mobs[i]->getBody()));
-			if (spot != GameVector(-1, -1))
+			CollisionLine line(CollisionDetector::getCollisionLine(getBody(), mobs[i]->getBody()));
+			if (line.isValid())
 			{
-				applyCollision(new Collision(mobs[i], spot)); // added die Collision nur, wenn noch keine Collision mit der Entity vorhanden ist
+				applyCollision(new Collision(mobs[i], line)); // added die Collision nur, wenn noch keine Collision mit der Entity vorhanden ist
 			}
 		}
 	}
@@ -54,10 +55,10 @@ void Entity::calculateCollisions(const std::vector<Mob*>& mobs, GameTileMap* til
 		{
 			if (this == tiles[i])
 				continue;
-			GameVector spot(CollisionDetector::getCollisionPoint(getBody(), tiles[i]->getBody()));
-			if (spot != GameVector(-1, -1))
+			CollisionLine line(CollisionDetector::getCollisionLine(getBody(), tiles[i]->getBody()));
+			if (line.isValid())
 			{
-				applyCollision(new Collision(tiles[i], spot));
+				applyCollision(new Collision(tiles[i], line));
 			}
 		}
 	}
@@ -68,10 +69,10 @@ void Entity::calculateCollisions(const std::vector<Mob*>& mobs, GameTileMap* til
 		{
 			if (this == bullets[i])
 				continue;
-			GameVector spot(CollisionDetector::getCollisionPoint(getBody(), bullets[i]->getBody()));
-			if (spot != GameVector(-1, -1))
+			CollisionLine line(CollisionDetector::getCollisionLine(getBody(), bullets[i]->getBody()));
+			if (line.isValid())
 			{
-				applyCollision(new Collision(bullets[i], spot));
+				applyCollision(new Collision(bullets[i], line));
 			}
 		}
 	}
