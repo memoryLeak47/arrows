@@ -22,13 +22,13 @@ void PlayerPropertyIcon::setPlayerProperty(PlayerProperty* prop)
 	property = prop;
 }
 
-GraphicsID PlayerPropertyIcon::getGraphicsID() const
+TextureID PlayerPropertyIcon::getTextureID() const
 {
-	if (getPlayerProperty() == NULL || getPlayerProperty()->getIconGraphicsID() == -1)
+	if (getPlayerProperty() == NULL || getPlayerProperty()->getIconTextureID() == -1)
 	{
 		return VOID_ICON_GID;
 	}
-	return getPlayerProperty()->getIconGraphicsID();
+	return getPlayerProperty()->getIconTextureID();
 }
 
 PlayerProperty* PlayerPropertyIcon::getPlayerProperty() const

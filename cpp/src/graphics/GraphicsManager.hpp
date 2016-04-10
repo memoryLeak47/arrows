@@ -10,7 +10,7 @@ class PixelVector;
 class GameVector;
 class GraphicsBuffer;
 
-enum GraphicsID
+enum GraphicsID // represents a Graphics (earlier: Animation); to specify a texture an index + GraphicsID is needed
 {
 	VOID_ICON_GID,
 	ARCHER_ICON_GID, ROGUE_ICON_GID,
@@ -20,6 +20,7 @@ enum GraphicsID
 	ARCHER_GID
 };
 
+typedef GraphicsID TextureID; // a TextureID represents the first texture of its GraphicsBuffer
 
 class GraphicsManager
 {

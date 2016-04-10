@@ -8,7 +8,7 @@ Icon::Icon(ComponentContainer* c, const PixelRect& r) : MenuComponent(c, r)
 
 void Icon::render() const
 {
-	Screen::drawGraphicsID(getAbsoluteRect(), getGraphicsID());
+	Screen::drawGraphicsID(getAbsoluteRect(), getTextureID());
 }
 
 

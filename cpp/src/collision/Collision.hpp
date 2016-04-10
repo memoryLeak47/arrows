@@ -3,17 +3,19 @@
 
 #include "../math/game/GameVector.hpp"
 
+#include "CollisionLine.hpp"
+
 class Entity;
 
 class Collision
 {
 	public:
-		Collision(Entity*, const GameVector&);
+		Collision(Entity*, const CollisionLine&);
 		virtual ~Collision() {}
 		Entity* getEntity() const;
 	private:
 		Entity* entity;
-		GameVector collisionPoint;
+		CollisionLine line;
 };
 
 #include "../entity/Entity.hpp"

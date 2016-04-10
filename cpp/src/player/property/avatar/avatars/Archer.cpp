@@ -4,7 +4,7 @@
 
 extern int ARCHER_AID;
 
-GraphicsID Archer::getIconGraphicsID() const
+TextureID Archer::getIconTextureID() const
 {
 	return ARCHER_ICON_GID;
 }

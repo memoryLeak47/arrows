@@ -2,7 +2,7 @@
 
 extern int ROGUE_AID;
 
-GraphicsID Rogue::getIconGraphicsID() const
+TextureID Rogue::getIconTextureID() const
 {
 	return ROGUE_ICON_GID;
 }

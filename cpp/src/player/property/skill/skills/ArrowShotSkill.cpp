@@ -18,7 +18,7 @@ char ArrowShotSkill::getAvatarID() const
 	return ARCHER_AID;
 }
 
-GraphicsID ArrowShotSkill::getIconGraphicsID() const
+TextureID ArrowShotSkill::getIconTextureID() const
 {
 	return ARROWSHOTSKILL_ICON_GID;
 }
