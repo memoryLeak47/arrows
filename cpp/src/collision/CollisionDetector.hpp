@@ -5,15 +5,16 @@ class GameVector;
 class Body;
 class RectBody;
 class CircleBody;
+class CollisionLine;
 
 class CollisionDetector
 {
 	public:
-		static GameVector getCollisionPoint(Body*, Body*);
+		static CollisionLine getCollisionLine(Body*, Body*);
 	private:
-		static GameVector rectCollision(RectBody*, RectBody*);
-		static GameVector rectCircleCollision(RectBody*, CircleBody*);
-		static GameVector circleCollision(CircleBody*, CircleBody*);
+		static CollisionLine rectCollision(RectBody*, RectBody*);
+		static CollisionLine rectCircleCollision(RectBody*, CircleBody*);
+		static CollisionLine circleCollision(CircleBody*, CircleBody*);
 };
 
 #include "../math/game/GameVector.hpp"
@@ -21,5 +22,6 @@ class CollisionDetector
 #include "Body.hpp"
 #include "RectBody.hpp"
 #include "CircleBody.hpp"
+#include "CollisionLine.hpp"
 
 #endif

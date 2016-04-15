@@ -1,7 +1,7 @@
 #include "Collision.hpp"
 	
-Collision::Collision(Entity* e, const GameVector& v)
-	: collisionPoint(v)
+Collision::Collision(Entity* e, const CollisionLine& line)
+	: line(line)
 {
 	entity = e;
 }
