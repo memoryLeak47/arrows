@@ -1,0 +1,29 @@
+# rotRects
+
+# unrotated
+v in UnrotatedRect =
+(v.x >= Rect.left &&
+ v.x <= Rect.right &&
+ v.y >= Rect.up &&
+ v.y <= Rect.top)
+
+# rotated
+v in RotatedRect =
+('v.x*cos(-r) - v.y*sin(-r)' >= Rect.left &&
+ 'v.x*cos(-r) - v.y*sin(-r)' <= Rect.right &&
+ 'v.x*sin(-r) + v.y*cos(-r)' >= Rect.up &&
+ 'v.x*sin(-r) + v.y*cos(-r)' <= Rect.top)
+
+# with spin
+v in RotatedRect =
+(v.x*cos(-r '- spin.x*ct') - v.y*sin(-r '- spin.x*ct') >= Rect.left &&
+ v.x*cos(-r '- spin.x*ct') - v.y*sin(-r '- spin.x*ct') <= Rect.right &&
+ v.x*sin(-r '- spin.y*ct') + v.y*cos(-r '- spin.y*ct') >= Rect.up &&
+ v.x*sin(-r '- spin.y*ct') + v.y*cos(-r '- spin.y*ct') <= Rect.top)
+
+# with speed
+v in RotatedRect =
+(v.x*cos(-r - spin.x*ct) - v.y*sin(-r - spin.x*ct) >= Size.x/2+velocity.x*ct' &&
+ v.x*cos(-r - spin.x*ct) - v.y*sin(-r - spin.x*ct) <= Size.x/2+velocity.x*ct' &&
+ v.x*sin(-r - spin.y*ct) + v.y*cos(-r - spin.y*ct) >= Size.y/2+velocity.y*ct' &&
+ v.x*sin(-r - spin.y*ct) + v.y*cos(-r - spin.y*ct) <= Size.y/2+velocity.y*ct' )

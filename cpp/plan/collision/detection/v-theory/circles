@@ -1,0 +1,3 @@
+# circles
+
+2*sx*sy*ct² + (-2*vy*sx + 2*b1.old.x*sx - 2*vy*sy + 2*b1.old.y*sy)*ct - 2*vx*b1.old.x + b1.old.x² - 2*vy*b1.old.y + b1.old.y² + vx² + vy² - b1.r² <= 0
