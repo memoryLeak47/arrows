@@ -1,0 +1,7 @@
+# README
+
+Herrangehen:
+	Man interpretiert den Body als Menge aller Punkte, die im Body liegen und errechnet dann die Schnittmenge der zwei Bodys, die kollidieren sollen. Dabei entsteht eine Abhängigkeit von t (also der Zeit: siehe TinyT)
+	Nun stellt man nach diesem t um und erhält ober und untergrenzen für t.
+	Liegt die Obergrenze höher als die Untergrenze und ist die Untergrenze <= 1, so ist die Zeit für die Kollision der beiden Bodies gefunden.
+	Sie ist gleich der Untergrenze für t.
