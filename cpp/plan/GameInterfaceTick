@@ -3,6 +3,8 @@
 # TODO:
 # what about gravity?
 
+static float GameInterface::MAX_TIME = 1;
+
 void GameInterface::tick()
 {
 	// TODO receive() & send()
@@ -18,50 +20,45 @@ void GameInterface::tickEntities()
 
 void GameInterface::tickPhysics()
 {
-	float t = 0;
+	float timeLeft = MAX_TIME;
 	std::vector<Collision*> collisions;
 	addAllCollisions(&collisions); // Errechnet alle Collisions, die in diesem Frame passieren würden, wenn sich die zugehörigen Entities mit konstanter Geschwindigkeit bewegen würden
 	while (collisions.size() > 0)
 	{
-		Collision* c = getTinyT(collisions); // Returnt die Collision mit kleinstem t. Also die Collision, die als nächstes ausgeführt werden muss.
-		moveAllEntities(c->getTime() - t); // bewegt alle Entities bis zu der Situation, in der die nächste "globale" Collision passiert
+		Collision* c = getFirstCollision(collisions); // Returnt die Collision mit kleinstem getTime(). Also die Collision, die als nächstes ausgeführt werden muss.
+		moveAllEntities(c->getTime()); // bewegt alle Entities bis zu der Situation, in der die nächste "globale" Collision passiert
 						   // TODO remember rotation is updated too
-		t = c->getTime();
+		timeLeft -= c->getTime();
 
 		// Reaktion auf die Collision
 		// Falls eine der Entities beschleunigt wurde, werden die Collisions der Entity neu berechnet (Die alten werden gelöscht)(auch beide Entities können betroffen sein)
 		// Die Collision, auf die gerade reagiert wurde, wird auf alle Fälle gelöscht, auch wenn keine der beiden Entities 
-		applyCollision(c, collisions, t); 
+		applyCollision(c, collisions, timeLeft);
 	}
-	moveAllEntities(MAX_T-t);
+	moveAllEntities(timeLeft);
 }
 
 void GameInterface::addAllCollisions(std::vector<Collision*>* collisions)
 {
-	for entity as non-tile-entity: addCollisionFrom(entity, collisions, MAX_T);
+	for entity as non-tile-entity: addCollisionsFrom(entity, collisions, MAX_TIME);
 }
 
-void GameInterface::addCollisionFrom(Entity* e, std::vector<Collision*>* collisions, float t)
+void GameInterface::addCollisionsFrom(Entity* e, std::vector<Collision*>* collisions, float timeLeft)
 {
 	for entity in entities
 	{
 		if (e != entity && e->getCollisionPriority(entity) + entity->getCollisionPriority(e) >= 0 && collision doesnt exist)
 		{
-			Collision *c = CollisionDetector::getCollisionWithT(entity, e, t);
+			Collision *c = CollisionDetector::getCollisionBetween(entity, e, timeLeft);
 			if (c != NULL)
 			{
 				collisions->push_back(c);
 			}
-		}	
+		}
 	}
 }
 
-Collision* CollisionDetector::getCollisionWithT(Entity* e1, Entity* e2, float t)
-{
-	// Ansätze für diese Funktion finden sich in collisionDetection/
-}
-
-void GameInterface::applyCollision(Collision* c, std::vector<Collision*>* collisions, float t)
+void GameInterface::applyCollision(Collision* c, std::vector<Collision*>* collisions, float timeLeft)
 {
 	// Collision wird aus Liste entfernt
 	EntferneDieCollisionAusListe(c, collisions);
@@ -72,18 +69,15 @@ void GameInterface::applyCollision(Collision* c, std::vector<Collision*>* collis
 		if (e.applyCollision(c))
 		{
 			LöscheAlleCollisionsMit(e);
-			addCollisionFrom(e, collisions, t);
+			addCollisionsFrom(e, collisions, timeLeft);
 		}
 	}
 	delete c;
 }
 
-Collision* CollisionDetector::getCollisionWithT(Entity*, Entity*, float t)
+Collision* CollisionDetector::getCollisionBetween(Entity*, Entity*, float timeLeft)
 {
-	Collision* c = // get collision anyhow
-	// REMEMBER c->time should be relative to t = 0
-	// ==> c->setTime(c->getTime() + t);
-	return c;
+	// Ansätze für diese Funktion finden sich in collisionDetection/
 }
 
 void Entity::applyCollision(Collision* c)
