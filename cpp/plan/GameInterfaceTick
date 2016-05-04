@@ -1,11 +1,22 @@
-// Tiny T
-//
-// TinyT.6
-//
+# GameInterfaceTick()
 
-static const float GameInterface::MAX_T = 1;
+# TODO:
+# what about gravity?
 
 void GameInterface::tick()
+{
+	// TODO receive() & send()
+	tickEntities();
+	tickPhysics();
+	render();
+}
+
+void GameInterface::tickEntities()
+{
+	for dynamic-entity: tick();
+}
+
+void GameInterface::tickPhysics()
 {
 	float t = 0;
 	std::vector<Collision*> collisions;
@@ -14,6 +25,7 @@ void GameInterface::tick()
 	{
 		Collision* c = getTinyT(collisions); // Returnt die Collision mit kleinstem t. Also die Collision, die als nächstes ausgeführt werden muss.
 		moveAllEntities(c->getTime() - t); // bewegt alle Entities bis zu der Situation, in der die nächste "globale" Collision passiert
+						   // TODO remember rotation is updated too
 		t = c->getTime();
 
 		// Reaktion auf die Collision
@@ -24,8 +36,6 @@ void GameInterface::tick()
 	moveAllEntities(MAX_T-t);
 }
 
-// Errechnet alle Collisions, die in diesem Frame passieren würden, wenn sich die zugehörigen Entities mit konstanter Geschwindigkeit bewegen würden und fügt diese der Collision Liste hinzu
-// Geht dafür alle Entities außer statik-Tiles durch und prüft für diese Entities die Collisions mit allen anderen Entities (auch Statik-Tiles)
 void GameInterface::addAllCollisions(std::vector<Collision*>* collisions)
 {
 	for entity as non-tile-entity: addCollisionFrom(entity, collisions, MAX_T);
@@ -44,6 +54,11 @@ void GameInterface::addCollisionFrom(Entity* e, std::vector<Collision*>* collisi
 			}
 		}	
 	}
+}
+
+Collision* CollisionDetector::getCollisionWithT(Entity* e1, Entity* e2, float t)
+{
+	// Ansätze für diese Funktion finden sich in collisionDetection/
 }
 
 void GameInterface::applyCollision(Collision* c, std::vector<Collision*>* collisions, float t)
@@ -69,4 +84,45 @@ Collision* CollisionDetector::getCollisionWithT(Entity*, Entity*, float t)
 	// REMEMBER c->time should be relative to t = 0
 	// ==> c->setTime(c->getTime() + t);
 	return c;
+}
+
+void Entity::applyCollision(Collision* c)
+{
+	// TODO
+
+	/* Grober Plan:
+		sponginess := max(sponginess1, sponginess2)
+		v1 := (m1*v1 + m2*v2)/(m1 + m2)*(1 + sponginess) // Funktioniert für sticky-collision
+		v2 := (m1*v1 + m2*v2)/(m1 + m2)*(1 - sponginess)
+
+		CollisionHandlingTypes:
+		- solid { float sponginess; }
+		- permeable
+
+		- bool Entity::isStatic()
+		- CollisionHandlingType* Entity::collisionHandlingType;
+		- GameVector Entity::push(GameVector speed, GameVector point, float/int mass)
+			Falls zwei solid-Objekte sich berühren, ruft entity1 folgendes auf: otherEntity->push(this->speed, collisionPoint, this->mass)
+			die push()-Funktion wird rekursiv ausgeführt
+			die push()-Funktion returnt die Geschwindigkeit die das aufrufende Objekt nach der Kollision bekommt
+
+			Beispiel:
+
+				  | // arrow A
+				  V
+				[""] // Kiste B
+				["""""] // static-tile C
+
+				A fällt von oben in B
+				A führt deshalb
+					B->push(this->speed, collisionPoint, this->mass) aus.
+				B::push(speed, collisionPoint, mass) leitet push weiter, führt also
+					C->push(speed + this->speed, collisionPointToC, mass + this->mass) aus.
+				C::push(speed, collisionPoint, mass)
+					returnt GameVector(0,0), da es ein static-tile ist
+				B::push gibt GameVector(0,0) zurück.
+				deshalb: B->speed = GameVector(0,0)
+				A::push gibt GameVector(0,0) zurück.
+				deshalb: A->speed = GameVector(0,0)
+	*/
 }
