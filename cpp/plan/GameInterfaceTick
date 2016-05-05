@@ -1,7 +1,7 @@
 # GameInterfaceTick()
 
 # TODO:
-# what about gravity?
+# when to call Entity::onCollide() / Entity::offCollide() ?
 
 static float GameInterface::MAX_TIME = 1;
 
@@ -21,35 +21,60 @@ void GameInterface::tickEntities()
 void GameInterface::tickPhysics()
 {
 	float timeLeft = MAX_TIME;
-	std::vector<Collision*> collisions;
+	std::vector<ExpectedCollision*> collisions; // Es gäbe auch die Möglichkeit diesen vector global zu machen & länger als nur MAX_TIME vorauszuberechnen
 	addAllCollisions(&collisions); // Errechnet alle Collisions, die in diesem Frame passieren würden, wenn sich die zugehörigen Entities mit konstanter Geschwindigkeit bewegen würden
 	while (collisions.size() > 0)
 	{
-		Collision* c = getFirstCollision(collisions); // Returnt die Collision mit kleinstem getTime(). Also die Collision, die als nächstes ausgeführt werden muss.
-		moveAllEntities(c->getTime()); // bewegt alle Entities bis zu der Situation, in der die nächste "globale" Collision passiert
-						   // TODO remember rotation is updated too
+		ExpectedCollision* c = getFirstCollision(collisions); // Returnt die Collision mit kleinstem getTime(). Also die Collision, die als nächstes ausgeführt werden muss.
+		moveAllEntities(c->getTime());	// bewegt alle Entities bis zu der Situation, in der die nächste "globale" Collision passiert
+						// TODO remember rotation is updated too
 		timeLeft -= c->getTime();
 
 		// Reaktion auf die Collision
-		// Falls eine der Entities beschleunigt wurde, werden die Collisions der Entity neu berechnet (Die alten werden gelöscht)(auch beide Entities können betroffen sein)
-		// Die Collision, auf die gerade reagiert wurde, wird auf alle Fälle gelöscht, auch wenn keine der beiden Entities 
-		applyCollision(c, collisions, timeLeft);
+		CollisionHandler::handleCollision(c);
+
+		// Falls eine der Entities beschleunigt/umpositioniert wurden, werden die Collisions der Entity neu berechnet
+		for entity in dynamic-entity:
+		{
+			if entity->hasChanged()
+			{
+				updateCollisionsFrom(entity, &collisions, timeLeft);
+			}
+		}
 	}
 	moveAllEntities(timeLeft);
+
+	for entity in dynamic-entity:
+	{
+		if !entity->isFloating()
+		{
+			entity->applyGravity();
+		}
+	}
 }
 
-void GameInterface::addAllCollisions(std::vector<Collision*>* collisions)
+// collision-list working
+
+void GameInterface::addAllCollisions(std::vector<ExpectedCollision*>* collisions)
 {
 	for entity as non-tile-entity: addCollisionsFrom(entity, collisions, MAX_TIME);
 }
 
-void GameInterface::addCollisionsFrom(Entity* e, std::vector<Collision*>* collisions, float timeLeft)
+void GameInterface::updateCollisionsFrom(Entity* e, std::vector<ExpectedCollision*>* collisions, float timeLeft)
+{
+	for col in *collisions:
+		if e in col->getEntities()
+			remove col from collisions
+	addCollisionsFrom(e, collisions, timeLeft);
+}
+
+void GameInterface::addCollisionsFrom(Entity* e, std::vector<ExpectedCollision*>* collisions, float timeLeft)
 {
 	for entity in entities
 	{
 		if (e != entity && e->getCollisionPriority(entity) + entity->getCollisionPriority(e) >= 0 && collision doesnt exist)
 		{
-			Collision *c = CollisionDetector::getCollisionBetween(entity, e, timeLeft);
+			ExpectedCollision *c = CollisionDetector::expectCollisionBetween(entity, e, timeLeft);
 			if (c != NULL)
 			{
 				collisions->push_back(c);
@@ -58,29 +83,16 @@ void GameInterface::addCollisionsFrom(Entity* e, std::vector<Collision*>* collis
 	}
 }
 
-void GameInterface::applyCollision(Collision* c, std::vector<Collision*>* collisions, float timeLeft)
-{
-	// Collision wird aus Liste entfernt
-	EntferneDieCollisionAusListe(c, collisions);
-	// Beide Entities reagieren auf die Collision
-	for e in c->getEntities()
-	{
-		// Collisions neu berechnen, wenn eine der Entities beschleunigt wurde
-		if (e.applyCollision(c))
-		{
-			LöscheAlleCollisionsMit(e);
-			addCollisionsFrom(e, collisions, timeLeft);
-		}
-	}
-	delete c;
-}
+// findCollision
 
-Collision* CollisionDetector::getCollisionBetween(Entity*, Entity*, float timeLeft)
+ExpectedCollision* CollisionDetector::expectCollisionBetween(Entity*, Entity*, float timeLeft)
 {
 	// Ansätze für diese Funktion finden sich in collisionDetection/
 }
 
-void Entity::applyCollision(Collision* c)
+// handleCollision
+
+void CollisionHandler::handleCollision(ExpectedCollision* c)
 {
 	// TODO
 
