@@ -92,6 +92,7 @@ void Entity::applyCollision(Collision* c)
 		CollisionHandlingTypes:
 		- solid { float sponginess; }
 		- permeable
+		- sticky
 
 		- bool Entity::isStatic()
 		- CollisionHandlingType* Entity::collisionHandlingType;
