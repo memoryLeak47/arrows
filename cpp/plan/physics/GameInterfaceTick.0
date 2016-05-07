@@ -51,6 +51,7 @@ void GameInterface::tickPhysics()
 		// Reaktion auf die Collision
 		CollisionHandler::handleCollision(c);
 
+		// In die CollisionPartner-List einfügen, falls noch nicht geschehen
 		if (! c->getEntities()[0]->getCollisionPartners().contains(c->getEntities()[1]))
 		{
 			c->getEntities()[0]->addCollisionPartner(c->getEntities()[1]); // calls onCollide
