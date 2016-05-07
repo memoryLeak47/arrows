@@ -1,4 +1,4 @@
-# GameInterfaceTick:0
+# GameInterfaceTick.0
 
 # TODO:
 # when to call Entity::offCollide() ?
