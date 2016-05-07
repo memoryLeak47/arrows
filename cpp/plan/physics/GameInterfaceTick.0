@@ -1,7 +1,7 @@
 # GameInterfaceTick()
 
 # TODO:
-# when to call Entity::onCollide() / Entity::offCollide() ?
+# when to call Entity::offCollide() ?
 # receive and send
 # GameInterface::tickPhysics(): variable c muss deleted werden
 
@@ -17,13 +17,30 @@ void GameInterface::tick()
 void GameInterface::tickEntities()
 {
 	for dynamic-entity: tick();
+	// Entity::tick():
+	/*
+		if (!isFloating())
+		{
+			applyGravity();
+		}
+	*/
 }
 
 void GameInterface::tickPhysics()
 {
 	float timeLeft = MAX_TIME;
 	std::vector<ExpectedCollision*> collisions; // Es gäbe auch die Möglichkeit diesen vector global zu machen & länger als nur MAX_TIME vorauszuberechnen
-	addAllCollisions(&collisions); // Errechnet alle Collisions, die in diesem Frame passieren würden, wenn sich die zugehörigen Entities mit konstanter Geschwindigkeit bewegen würden
+
+	// fügt alle Collisions in die TickPhysics-Liste
+	for entity in dynamicEntities
+	{
+		if (entity->hasChanged)
+		{
+			entity->addCollisionsFrom(entity, &collisions, timeLeft);
+			entity->hasChanged = false
+		}
+	}
+
 	while (collisions.size() > 0)
 	{
 		ExpectedCollision* c = getFirstCollision(collisions); // Returnt die Collision mit kleinstem getTime(). Also die Collision, die als nächstes ausgeführt werden muss.
@@ -34,32 +51,25 @@ void GameInterface::tickPhysics()
 		// Reaktion auf die Collision
 		CollisionHandler::handleCollision(c);
 
+		if (! c->getEntities()[0]->getCollisionPartners().contains(c->getEntities()[1]))
+		{
+			c->getEntities()[0]->addCollisionPartner(c->getEntities()[1]); // calls onCollide
+			c->getEntities()[1]->addCollisionPartner(c->getEntities()[0]);
+		}
+
 		// Falls eine der Entities beschleunigt/umpositioniert wurden, werden die Collisions der Entity neu berechnet
 		for entity in dynamic-entity:
 		{
-			if entity->hasChanged()
+			if (entity->hasChanged)
 			{
 				updateCollisionsFrom(entity, &collisions, timeLeft);
 			}
 		}
 	}
 	moveAllEntities(timeLeft);
-
-	for entity in dynamic-entity:
-	{
-		if !entity->isFloating()
-		{
-			entity->applyGravity();
-		}
-	}
 }
 
 // collision-list working
-
-void GameInterface::addAllCollisions(std::vector<ExpectedCollision*>* collisions)
-{
-	for entity as non-tile-entity: addCollisionsFrom(entity, collisions, MAX_TIME);
-}
 
 void GameInterface::updateCollisionsFrom(Entity* e, std::vector<ExpectedCollision*>* collisions, float timeLeft)
 {
@@ -73,7 +83,7 @@ void GameInterface::addCollisionsFrom(Entity* e, std::vector<ExpectedCollision*>
 {
 	for entity in entities
 	{
-		if (e != entity && e->getCollisionPriority(entity) + entity->getCollisionPriority(e) >= 0 && collision doesnt exist)
+		if (e != entity && e->getCollisionPriority(entity) + entity->getCollisionPriority(e) >= 0) // && ! e in entity->getCollisionPartners())
 		{
 			ExpectedCollision *c = CollisionDetector::expectCollisionBetween(entity, e, timeLeft);
 			if (c != NULL)
@@ -83,6 +93,43 @@ void GameInterface::addCollisionsFrom(Entity* e, std::vector<ExpectedCollision*>
 		}
 	}
 }
+
+/*
+void GameInterface::addCollisionsFrom(Entity* e, std::vector<ExpectedCollision*>* collisions, float timeLeft)
+{
+	for entity in entities
+	{
+		if (e != entity && e->getCollisionPriority(entity) + entity->getCollisionPriority(e) >= 0) // && ! e in entity->getCollisionPartners())
+		{
+			ExpectedCollision *c = CollisionDetector::expectCollisionBetween(entity, e, timeLeft);
+			if (c != NULL)
+			{
+				collisions->push_back(c);
+			}
+			else
+			{
+				if (entity in e.collisionPartner())
+				{
+					remove entity in e.collisionPartner();
+					remove e in entity.collisionPartner();
+					entity.offCollision(e);
+					e.offCollision(entity);
+				}
+			}
+		}
+		else
+		{
+			if (entity in e.collisionPartner())
+			{
+				remove entity in e.collisionPartner();
+				remove e in entity.collisionPartner();
+				entity.offCollision(e);
+				e.offCollision(entity);
+			}
+		}
+	}
+}
+*/
 
 // findCollision
 
