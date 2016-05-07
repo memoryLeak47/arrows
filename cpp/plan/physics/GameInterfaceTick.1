@@ -3,7 +3,7 @@
 Anforderungen:
 	1. Keine Collision über Ecken
 	2. Joints
-	3. Collision-Detection/Phyics von starre Vierecke, rotierte Vierecke, Kreise
+	3. Collision-Detection/Physics von starre Vierecke, rotierte Vierecke, Kreise
 	4. eine sich drehende Kugel, sollte rollen (Reibung)
 	5. Über eine Ecke kippen
 	6. sponginess
@@ -27,4 +27,21 @@ Anforderungen:
 
 Zusammenfassung:
 
-	# TODO
+	Der Trampolineffekt wird über Listener gemacht.
+	Jede Entity hat eine applyPush(const Push&)-Funktion.
+	Statictiles überschreiben applyPush(const Push&) mit {}.
+	starre Rectangles überschreiben applyPush(const Push& push) mit { incMomentum(push->deltaMomentum); }
+	rotierende Rectangles & Kreise überschreiben applyPush(const Push& push) gaaaanz anders .. komplex.
+	class Push { /*Angriffspunkt; deltaMomentum*/ };
+
+	Falls eine Kollision vorliegt:
+	P = Das Prioritätensystem hat die Kollision nicht ausgeschlossen
+	S = Beide Entities: isSolid() == true
+	G = Das ineinanderglitchen wird unterbunden
+	O = Es werden onCollide() / offCollide() aufgerufen
+
+	P     !P
+	S !S  S !S
+	===========
+	G -   - -
+	O O   - -
