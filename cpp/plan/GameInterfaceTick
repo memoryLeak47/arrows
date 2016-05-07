@@ -2,12 +2,13 @@
 
 # TODO:
 # when to call Entity::onCollide() / Entity::offCollide() ?
+# receive and send
+# GameInterface::tickPhysics(): variable c muss deleted werden
 
 static float GameInterface::MAX_TIME = 1;
 
 void GameInterface::tick()
 {
-	// TODO receive() & send()
 	tickEntities();
 	tickPhysics();
 	render();
@@ -27,7 +28,7 @@ void GameInterface::tickPhysics()
 	{
 		ExpectedCollision* c = getFirstCollision(collisions); // Returnt die Collision mit kleinstem getTime(). Also die Collision, die als nächstes ausgeführt werden muss.
 		moveAllEntities(c->getTime());	// bewegt alle Entities bis zu der Situation, in der die nächste "globale" Collision passiert
-						// TODO remember rotation is updated too
+						// remember rotation is updated too
 		timeLeft -= c->getTime();
 
 		// Reaktion auf die Collision
