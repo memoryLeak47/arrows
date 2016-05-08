@@ -75,11 +75,10 @@ void GameInterface::tickPhysics()
 			if (! event->getEntities()[0]->getCollisionPartners().contains(event->getEntities()[1])) // you are new
 			{
 				// Partner :D
-				event->getEntities()[0]->addCollisionPartner(event->getEntities()[1]); // calls onCollide
+				event->getEntities()[0]->addCollisionPartner(event->getEntities()[1]);
 				event->getEntities()[1]->addCollisionPartner(event->getEntities()[0]);
-			}
-			else
-			{
+				event->getEntities()[0]->onCollide(event->getEntities()[1]);
+				event->getEntities()[1]->onCollide(event->getEntities()[0]);
 			}
 			CollisionHandler::handleCollisionEvent(event);
 		}
@@ -88,13 +87,15 @@ void GameInterface::tickPhysics()
 			if (event->getEntities()[0]->getCollisionPartners().contains(event->getEntities()[1])) // ma old friend
 			{
 				// Bye
-				event->getEntities()[0]->removeCollisionPartner(event->getEntities()[1]); // calls offCollide
+				event->getEntities()[0]->removeCollisionPartner(event->getEntities()[1]);
 				event->getEntities()[1]->removeCollisionPartner(event->getEntities()[0]);
+				event->getEntities()[0]->offCollide(event->getEntities()[1]);
+				event->getEntities()[1]->offCollide(event->getEntities()[0]);
 				
 			}
 			else
 			{
-				Debug::warn("shit2");
+				Debug::warn("shit");
 			}
 		}
 
@@ -157,8 +158,8 @@ void GameInterface::addEventsFrom(Entity* entity, std::vector<CollisionEvent*>* 
 
 // findCollision
 
-// Fügt sowohl das EnterEvent und das ExitEvent der EventListe hinzu, falls sie jeweils im Zeitrahmen 0 bis timeLeft stattfinden.
-// Wenn eine Collision vorliegt, aber sich keiner der CollisionPartner bewegt, so liegt trotzdem ein EnterEvent vor, mit getTime() = 0, aber kein ExitEvent (Beispiel: Wenn ein Player auf einem Tile steht)
+ addCollisionsBetween fügt sowohl das enterEvent und das exitEvent der events-Liste hinzu, falls sie jeweils im Zeitrahmen 0 bis timeLeft stattfinden.
+// Wenn eine Collision vorliegt, aber sich die CollisionPartner nicht ineinander bewegen, so liegt kein enterEvent vor (Beispiel: Wenn ein Player auf einem Tile steht)
 ExpectedCollision* CollisionDetector::addCollisionsBetween(Entity*, Entity*, float timeLeft, std::vector<CollisionEvent*>*)
 {
 	// Ansätze für diese Funktion finden sich in collisionDetection/
