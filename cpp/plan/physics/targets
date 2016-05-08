@@ -1,0 +1,47 @@
+# GameInterfaceTick.1
+
+Anforderungen:
+	1. Keine Collision über Ecken
+	2. Joints
+	3. Collision-Detection/Physics von starre Vierecke, rotierte Vierecke, Kreise
+	4. eine sich drehende Kugel, sollte rollen (Reibung)
+	5. Über eine Ecke kippen
+	6. sponginess
+	7. gravitation
+	8. explosion/wind
+	9. impulsübertragung
+	10. teleport / flash ohne glitch
+	11. dynamische Prioritäten (Prioritäten können sich zur Laufzeit ändern)
+	12. On/Off-Collide Listener System
+	13. Pfeile können stecken bleiben
+	14. Permeable (trotzdem on/off Collide)
+	15. kein Glitchen
+	16. impulserhaltung
+	17. statics (static tiles)
+	18. joints an der Luft fixieren
+	19. Trampolin-Effekt
+	20. Reibung
+	21. In der Luft und auf normalem Stein gilt gleiche Reibung
+	22. Auf dem Eis rutscht man weiter (gilt nur für X-Achse)
+	23. Rutscheffekte
+
+Zusammenfassung:
+
+	Der Trampolineffekt wird über Listener gemacht.
+	Jede Entity hat eine applyPush(const Push&)-Funktion.
+	Statictiles überschreiben applyPush(const Push&) mit {}.
+	starre Rectangles überschreiben applyPush(const Push& push) mit { incMomentum(push->deltaMomentum); }
+	rotierende Rectangles & Kreise überschreiben applyPush(const Push& push) gaaaanz anders .. komplex.
+	class Push { /*Angriffspunkt; deltaMomentum*/ };
+
+	Falls eine Kollision vorliegt:
+	P = Das Prioritätensystem hat die Kollision nicht ausgeschlossen
+	S = Beide Entities: isSolid() == true
+	G = Das ineinanderglitchen wird unterbunden
+	O = Es werden onCollide() / offCollide() aufgerufen
+
+	P     !P
+	S !S  S !S
+	===========
+	G -   - -
+	O O   - -

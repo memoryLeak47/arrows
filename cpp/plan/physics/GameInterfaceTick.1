@@ -1,47 +1,172 @@
-# GameInterfaceTick.1
+# GameInterfaceTick.0
 
-Anforderungen:
-	1. Keine Collision über Ecken
-	2. Joints
-	3. Collision-Detection/Physics von starre Vierecke, rotierte Vierecke, Kreise
-	4. eine sich drehende Kugel, sollte rollen (Reibung)
-	5. Über eine Ecke kippen
-	6. sponginess
-	7. gravitation
-	8. explosion/wind
-	9. impulsübertragung
-	10. teleport / flash ohne glitch
-	11. dynamische Prioritäten (Prioritäten können sich zur Laufzeit ändern)
-	12. On/Off-Collide Listener System
-	13. Pfeile können stecken bleiben
-	14. Permeable (trotzdem on/off Collide)
-	15. kein Glitchen
-	16. impulserhaltung
-	17. statics (static tiles)
-	18. joints an der Luft fixieren
-	19. Trampolin-Effekt
-	20. Reibung
-	21. In der Luft und auf normalem Stein gilt gleiche Reibung
-	22. Auf dem Eis rutscht man weiter (gilt nur für X-Achse)
-	23. Rutscheffekte
+# TODO:
+# receive and send
+# render()
 
-Zusammenfassung:
+# Schematischer Ablauf:
+# {
+#	TickPhysicsList für diesen Frame füllen (alle Collisions aller Entities)
+#	while (TickPhysicsList.size() > 0)
+#	{
+#		event = getFirstEvent()
+#		move(event->getTime())
+#		PartnerUpdate
+#		if (event->isEntering())
+#		{
+#			call OnCollide
+#			handle(event)
+#		}
+#		else
+#		{
+#			call OffCollide
+#		}
+#		updateCollisionEvents
+#	}
+#	moveRest()
+# }
 
-	Der Trampolineffekt wird über Listener gemacht.
-	Jede Entity hat eine applyPush(const Push&)-Funktion.
-	Statictiles überschreiben applyPush(const Push&) mit {}.
-	starre Rectangles überschreiben applyPush(const Push& push) mit { incMomentum(push->deltaMomentum); }
-	rotierende Rectangles & Kreise überschreiben applyPush(const Push& push) gaaaanz anders .. komplex.
-	class Push { /*Angriffspunkt; deltaMomentum*/ };
+# hasChanged wird auf true gesetzt, falls ein Push oder Flash auf eine Dynamische Entity einwirkt
+# hasChanged wird im Konstruktor auf true gesetzt
 
-	Falls eine Kollision vorliegt:
-	P = Das Prioritätensystem hat die Kollision nicht ausgeschlossen
-	S = Beide Entities: isSolid() == true
-	G = Das ineinanderglitchen wird unterbunden
-	O = Es werden onCollide() / offCollide() aufgerufen
+static float GameInterface::MAX_TIME = 1; # #define MAX_TIME 1
 
-	P     !P
-	S !S  S !S
-	===========
-	G -   - -
-	O O   - -
+void GameInterface::tick()
+{
+	tickEntities();
+	tickPhysics();
+	render(); # TODO
+}
+
+void GameInterface::tickEntities()
+{
+	for dynamic-entity: tick();
+	// Entity::tick():
+	/*
+		if (!isFloating())
+		{
+			applyGravity();
+		}
+	*/
+}
+
+void GameInterface::tickPhysics()
+{
+	float timeLeft = MAX_TIME;
+	std::vector<CollisionEvent*> events; // Es gäbe auch die Möglichkeit diesen vector global zu machen & länger als nur MAX_TIME vorauszuberechnen
+
+	// fügt alle CollisionEvents in die TickPhysics-Liste
+	for entity in dynamicEntities
+	{
+		entity->addEventsFrom(entity, &events, timeLeft);
+		entity->hasChanged = false;
+	}
+
+	while (events.size() > 0)
+	{
+		CollisionEvent* event = cutFirstEvent(events); // Returnt die Collision mit kleinstem getTime(). Also die Collision, die als nächstes ausgeführt werden muss.
+		moveAllEntities(event->getTime());	// bewegt alle Entities bis zu der Situation, in der die nächste "globale" Collision passiert
+						// remember rotation is updated too
+		timeLeft -= event->getTime();
+
+		// CollisionPartner aktualisieren / on/offCollide
+		if (event->enters) // Hi
+		{
+			if (! event->getEntities()[0]->getCollisionPartners().contains(event->getEntities()[1])) // you are new
+			{
+				// Partner :D
+				event->getEntities()[0]->addCollisionPartner(event->getEntities()[1]); // calls onCollide
+				event->getEntities()[1]->addCollisionPartner(event->getEntities()[0]);
+			}
+			else
+			{
+			}
+			CollisionHandler::handleCollisionEvent(event);
+		}
+		else // Bye
+		{
+			if (event->getEntities()[0]->getCollisionPartners().contains(event->getEntities()[1])) // ma old friend
+			{
+				// Bye
+				event->getEntities()[0]->removeCollisionPartner(event->getEntities()[1]); // calls offCollide
+				event->getEntities()[1]->removeCollisionPartner(event->getEntities()[0]);
+				
+			}
+			else
+			{
+				Debug::warn("shit2");
+			}
+		}
+
+		delete event;
+
+		// Falls eine der Entities beschleunigt/umpositioniert wurden, werden die Collisions der Entity neu berechnet
+		for entity in dynamic-entity:
+		{
+			if (entity->hasChanged)
+			{
+				updateEventsFrom(entity, &events, timeLeft);
+				entity->hasChanged = false;
+			}
+		}
+	}
+	moveAllEntities(timeLeft);
+}
+
+// events-list working
+
+void GameInterface::cutFirstEvent(std::vector<CollisionEvent*>* events)
+{
+	int bigIndex = 0;
+	for (int i = 1; i < events->size(); i++)
+	{
+		if ((*events)[bigIndex]->getTime() < (*events)[i]->getTime() ||
+		   ((*events)[bigIndex]->getTime() == (*events)[i]->getTime() && ! (*events)[bigIndex]->enters && (*events)[i]->enters))
+		{
+			bigIndex = i;
+		}
+	}
+	CollisionEvent* ret = (*events)[bigIndex];
+	events->erase(events->first + bigIndex);
+	return ret;
+}
+
+void GameInterface::updateEventsFrom(Entity* entity, std::vector<CollisionEvent*>* events, float timeLeft)
+{
+	for (int i = 0; i < events->size(); i++)
+	{
+		if ((*events)[i]->getEntities().contains(entity))
+		{
+			events->erase(events->first + i);
+		}
+	}
+	addEventsFrom(entity, events, timeLeft);
+}
+
+void GameInterface::addEventsFrom(Entity* entity, std::vector<CollisionEvent*>* events, float timeLeft)
+{
+	// alle Entities durchgehen
+	for (e in entities)
+	{
+		if (priority-check && e != entity)
+		{
+			CollisionDetector::addCollisionsBetween(entity, e, timeLeft, events);
+		}
+	}
+}
+
+// findCollision
+
+// Fügt sowohl das EnterEvent und das ExitEvent der EventListe hinzu, falls sie jeweils im Zeitrahmen 0 bis timeLeft stattfinden.
+// Wenn eine Collision vorliegt, aber sich keiner der CollisionPartner bewegt, so liegt trotzdem ein EnterEvent vor, mit getTime() = 0, aber kein ExitEvent (Beispiel: Wenn ein Player auf einem Tile steht)
+ExpectedCollision* CollisionDetector::addCollisionsBetween(Entity*, Entity*, float timeLeft, std::vector<CollisionEvent*>*)
+{
+	// Ansätze für diese Funktion finden sich in collisionDetection/
+}
+
+// handleCollision
+
+void CollisionHandler::handleCollision(CollisionEvent* event)
+{
+	// Ein alter Plan hiervon findet sich in der GameInterfaceTick.0
+}
