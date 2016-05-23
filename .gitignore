@@ -1,10 +1,10 @@
 *.swp
 */bin/
 
-java/log
-java/.accounts
-java/.debug
+/java/log
+/java/.accounts
+/java/.debug
 
-cpp/exe
-cpp/.accounts
-cpp/core
+/cpp/exe
+/cpp/.accounts
+/cpp/core
