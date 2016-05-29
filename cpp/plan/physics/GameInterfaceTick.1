@@ -64,8 +64,8 @@ void GameInterface::tickPhysics()
 
 	while (events.size() > 0)
 	{
-		CollisionEvent* event = cutFirstEvent(events); // Returnt die Collision mit kleinstem getTime(). Also die Collision, die als nächstes ausgeführt werden muss.
-		moveAllEntities(event->getTime());	// bewegt alle Entities bis zu der Situation, in der die nächste "globale" Collision passiert
+		CollisionEvent* event = cutFirstEvent(events); // Returnt die Collision, die als nächstes ausgeführt werden muss.
+		moveAllEntities(timeLeft - event->getTimeUntilFrameEnds());	// bewegt alle Entities bis zu der Situation, in der die nächste "globale" Collision passiert
 						// remember rotation is updated too
 		timeLeft = event->getTimeUntilFrameEnds();
 
@@ -121,8 +121,8 @@ void GameInterface::cutFirstEvent(std::vector<CollisionEvent*>* events)
 	int bigIndex = 0;
 	for (int i = 1; i < events->size(); i++)
 	{
-		if ((*events)[bigIndex]->getTime() < (*events)[i]->getTime() ||
-		   ((*events)[bigIndex]->getTime() == (*events)[i]->getTime() && ! (*events)[bigIndex]->enters && (*events)[i]->enters))
+		if ((*events)[bigIndex]->getTimeUntilFrameEnds() > (*events)[i]->getTimeUntilFrameEnds() ||
+		   ((*events)[bigIndex]->getTimeUntilFrameEnds() == (*events)[i]->getTimeUntilFrameEnds() && ! (*events)[bigIndex]->enters && (*events)[i]->enters))
 		{
 			bigIndex = i;
 		}
