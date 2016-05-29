@@ -97,6 +97,10 @@ public class MenuList implements MouseMotionListener, MouseListener, KeyListener
 
 	@Override public void keyPressed(KeyEvent event)
 	{
+		if (event.getKeyChar() == 'x')
+		{
+			System.exit(0);
+		}
 		onEvent(new KeyPressEvent(event));
 	}
 
