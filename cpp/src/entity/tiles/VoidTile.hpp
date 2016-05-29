@@ -7,7 +7,6 @@ class VoidTile : public Tile
 {
 	public:
 		VoidTile(const GameVector&);
-		virtual void handleCollisions() override {}
 		virtual sf::Texture* getTexture() const override;
 };
 

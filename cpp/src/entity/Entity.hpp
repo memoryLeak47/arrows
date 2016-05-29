@@ -6,13 +6,19 @@
 
 #include "../misc/Def.hpp"
 
+enum EntityType
+{
+	MOB,
+	BULLET,
+	TILE,
+	COSMETIC
+};
+
 class Body;
 class Mob;
 class GameTileMap;
 class Tile;
 class Bullet;
-class Collision;
-class Force;
 class GameVector;
 class GameRect;
 class PixelRect;
@@ -25,13 +31,14 @@ class Entity
 		virtual ~Entity();
 		virtual void tick();
 
-		void calculateCollisions(const std::vector<Mob*>& mobs, GameTileMap*, const std::vector<Bullet*>& bullets);
-		virtual void handleCollisions() = 0; // should NOT add forces to the collision-partner
-		void applyForces();
+		virtual float getCollisionPriority(Entity* e) { return 0; } // TODO = 0
+		virtual EntityType getEntityType() = 0;
+		virtual void onCollide(Entity*) {}
+		virtual void offCollide(Entity*) {}
 
-		virtual bool isCollidingMobs() const { return false; }
-		virtual bool isCollidingTiles() const { return false; }
-		virtual bool isCollidingBullets() const { return false; }
+		void addCollisionPartner(Entity*);
+		void removeCollisionPartner(Entity*);
+		std::vector<Entity*> getCollisionPartners();
 
 		Body* getBody() const;
 
@@ -41,24 +48,16 @@ class Entity
 		void flash(const GameVector&);
 		bool couldFlashTo(const GameVector&) const; // TODO GameVector Entity::whereToFlash(const GameVector&);
 
-		virtual bool isIgnoringForces() const;
-		void resetCollisionSystem();
-
 		// Rendering
 		virtual void render(const View&) const;
 		virtual sf::Texture* getTexture() const = 0;
 	protected:
 		void basicRender(const View&) const;
 		PixelRect getRenderRect(const View&) const;
-		std::vector<Collision*>& getCollisions();
-		std::vector<Force*>& getForces();
 	private:
-		void applyCollision(Collision*);
 		int dashCounter;
 		Body* body;
-		std::vector<Collision*> collisions;
-		std::vector<Force*> forces;
-	
+		std::vector<Entity*> collisionPartners;
 };
 
 #include "../collision/Body.hpp"
@@ -66,8 +65,6 @@ class Entity
 #include "../tile/map/GameTileMap.hpp"
 #include "../entity/Tile.hpp"
 #include "../entity/Bullet.hpp"
-#include "../collision/Collision.hpp"
-#include "../collision/Force.hpp"
 #include "../math/game/GameVector.hpp"
 #include "../math/game/GameRect.hpp"
 #include "../math/pixel/PixelRect.hpp"

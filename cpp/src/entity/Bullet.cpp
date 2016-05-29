@@ -3,3 +3,8 @@
 Bullet::Bullet(Body* body)
 	: Entity(body)
 {}
+
+EntityType Bullet::getEntityType()
+{
+	return BULLET;
+}

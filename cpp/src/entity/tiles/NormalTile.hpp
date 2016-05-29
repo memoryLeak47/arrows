@@ -7,7 +7,6 @@ class NormalTile : public Tile
 {
 	public:
 		NormalTile(const GameVector&);
-		virtual void handleCollisions() override {}
 		virtual sf::Texture* getTexture() const override;
 };
 

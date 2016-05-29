@@ -4,7 +4,6 @@
 #include "../core/Screen.hpp"
 #include "../misc/Debug.hpp"
 #include "../collision/CollisionDetector.hpp"
-#include "../collision/CollisionLine.hpp"
 
 Entity::Entity(Body* bodyArg)
 {
@@ -30,71 +29,20 @@ void Entity::tick()
 	}
 }
 
-void Entity::calculateCollisions(const std::vector<Mob*>& mobs, GameTileMap* tileMap, const std::vector<Bullet*>& bullets)
+void Entity::addCollisionPartner(Entity* e)
 {
-	if (isCollidingMobs())
-	{
-		for (unsigned int i = 0; i < mobs.size(); i++)
-		{
-			if (this == mobs[i])
-				continue;
-			CollisionLine line(CollisionDetector::getCollisionLine(getBody(), mobs[i]->getBody()));
-			if (line.isValid())
-			{
-				applyCollision(new Collision(mobs[i], line)); // added die Collision nur, wenn noch keine Collision mit der Entity vorhanden ist
-			}
-		}
-	}
-
-	// TODO Annäherung hinzufügen
-	if (isCollidingTiles())
-	{
-		std::vector<Tile*> tiles(tileMap->getIntersectionTiles(getBody()->getWrapper()));
-
-		for (unsigned int i = 0; i < tiles.size(); i++)
-		{
-			if (this == tiles[i])
-				continue;
-			CollisionLine line(CollisionDetector::getCollisionLine(getBody(), tiles[i]->getBody()));
-			if (line.isValid())
-			{
-				applyCollision(new Collision(tiles[i], line));
-			}
-		}
-	}
-
-	if (isCollidingBullets())
-	{
-		for (unsigned int i = 0; i < bullets.size(); i++)
-		{
-			if (this == bullets[i])
-				continue;
-			CollisionLine line(CollisionDetector::getCollisionLine(getBody(), bullets[i]->getBody()));
-			if (line.isValid())
-			{
-				applyCollision(new Collision(bullets[i], line));
-			}
-		}
-	}
+	collisionPartners.push_back(e);
 }
 
-void Entity::applyCollision(Collision* c)
+void Entity::removeCollisionPartner(Entity* e)
 {
-	for (unsigned int i = 0; i < getCollisions().size(); i++)
-	{
-		if (getCollisions()[i]->getEntity() == c->getEntity())
-		{
-			delete c;
-			return;
-		}
-	}
-	getCollisions().push_back(c);
+	// TODO
+	// collisionPartners.erase(e);
 }
 
-void Entity::applyForces()
+std::vector<Entity*> Entity::getCollisionPartners()
 {
-	Debug::warn("Entity::applyForces(): TODO");
-	// TODO apply...
+	return collisionPartners;
 }
 
 Body* Entity::getBody() const
@@ -140,25 +88,4 @@ bool Entity::couldFlashTo(const GameVector&) const
 {
 	Debug::warn("Entity::couldFlashTo(): TODO");
 	return true;
-}
-
-bool Entity::isIgnoringForces() const
-{
-	return dashCounter > 0;
-}
-
-void Entity::resetCollisionSystem()
-{
-	deleteAndClearVector(collisions);
-	deleteAndClearVector(forces);
-}
-
-std::vector<Collision*>& Entity::getCollisions()
-{
-	return collisions;
-}
-
-std::vector<Force*>& Entity::getForces()
-{
-	return forces;
 }

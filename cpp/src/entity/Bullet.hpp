@@ -8,6 +8,7 @@ class Bullet : public Entity
 	public:
 		Bullet(Body*);
 		virtual ~Bullet() {}
+		virtual EntityType getEntityType() override;
 };
 
 #endif

@@ -20,6 +20,11 @@ Tile::Tile(const GameVector& pos)
 	: Entity(new RectBody(pos, GameVector(1, 1)))
 {}
 
+EntityType Tile::getEntityType()
+{
+	return TILE;
+}
+
 bool Tile::isSpawnTeamTile() const
 {
 	return false;

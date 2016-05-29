@@ -13,7 +13,7 @@ class Tile : public Entity
 		Tile(Body*);
 		Tile(const GameVector&);
 		virtual ~Tile() {}
-		virtual void handleCollisions() override {}
+		virtual EntityType getEntityType() override;
 		virtual bool isSpawnTeamTile() const;
 		virtual void renderToImage(sf::Image&, int, int) const;
 		virtual bool rendersStatic() const;

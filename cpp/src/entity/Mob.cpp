@@ -6,12 +6,7 @@ Mob::Mob(Body* body)
 	: Entity(body)
 {}
 
-void Mob::handleCollisions()
+EntityType Mob::getEntityType()
 {
-	handleCollisionsLikeAMob();
-}
-
-void Mob::handleCollisionsLikeAMob()
-{
-	Debug::warn("Mob::handleCollisionsLikeAMob(): TODO");
+	return MOB;
 }
