@@ -67,7 +67,7 @@ void GameInterface::tickPhysics()
 		CollisionEvent* event = cutFirstEvent(events); // Returnt die Collision mit kleinstem getTime(). Also die Collision, die als nächstes ausgeführt werden muss.
 		moveAllEntities(event->getTime());	// bewegt alle Entities bis zu der Situation, in der die nächste "globale" Collision passiert
 						// remember rotation is updated too
-		timeLeft -= event->getTime();
+		timeLeft = event->getTimeUntilFrameEnds();
 
 		// CollisionPartner aktualisieren / on/offCollide
 		if (event->enters) // Hi
@@ -139,6 +139,7 @@ void GameInterface::updateEventsFrom(Entity* entity, std::vector<CollisionEvent*
 		if ((*events)[i]->getEntities().contains(entity))
 		{
 			events->erase(events->first + i);
+			# TODO delete?
 		}
 	}
 	addEventsFrom(entity, events, timeLeft);
