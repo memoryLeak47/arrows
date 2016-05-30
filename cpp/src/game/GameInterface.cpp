@@ -132,8 +132,9 @@ void GameInterface::updateEventsFrom(Entity* entity, std::vector<CollisionEvent*
         {
                 if ((*events)[i]->getEntity1() == entity || (*events)[i]->getEntity2() == entity)
                 {
+			CollisionEvent* e = (*events)[i];
                         events->erase(events->begin() + i);
-                        // TODO delete?
+			deleteAndNULL(e);
                 }
         }
         addEventsFrom(entity, events, timeLeft);
