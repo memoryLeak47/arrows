@@ -41,6 +41,8 @@ class Entity
 		std::vector<Entity*> getCollisionPartners();
 
 		Body* getBody() const;
+		bool hasChanged() const;
+		void setChanged(bool);
 
 		void dash(const GameVector&, float);
 		bool couldDashTo(const GameVector&) const;
@@ -55,6 +57,7 @@ class Entity
 		void basicRender(const View&) const;
 		PixelRect getRenderRect(const View&) const;
 	private:
+		bool changed;
 		int dashCounter;
 		Body* body;
 		std::vector<Entity*> collisionPartners;

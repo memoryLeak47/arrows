@@ -1,6 +1,7 @@
 #include "GameInterface.hpp"
 
 #include "../core/Main.hpp"
+#include "../misc/Converter.hpp"
 #include "../misc/Debug.hpp"
 #include "../player/GamePlayer.hpp"
 #include "../collision/CollisionHandler.hpp"
@@ -49,14 +50,12 @@ void GameInterface::tickPhysics()
 	std::vector<CollisionEvent*> events; // Es gäbe auch die Möglichkeit diesen vector global zu machen & länger als nur GAME_FRAME_TIME vorauszuber
 
 	// fügt alle CollisionEvents in die TickPhysics-Liste
-	/*
-	// TODO
-	for entity in dynamicEntities
+	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
 	{
-		entity->addEventsFrom(entity, &events, timeLeft);
-		entity->hasChanged = false;
+		Entity* entity = getDynamicEntity(i);
+		addEventsFrom(entity, &events, timeLeft);
+		entity->setChanged(false);
 	}
-	*/
 
 	while (events.size() > 0)
 	{
@@ -98,17 +97,15 @@ void GameInterface::tickPhysics()
 		delete event;
 
 		// Falls eine der Entities beschleunigt/umpositioniert wurden, werden die Collisions der Entity neu berechnet
-		/*
-		// TODO
-		for entity in dynamic-entity:
+		for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
 		{
+			Entity* entity = getDynamicEntity(i);
 			if (entity->hasChanged())
 			{
 				updateEventsFrom(entity, &events, timeLeft);
 				entity->setChanged(false);
 			}
 		}
-		*/
 	}
 	moveAllEntities(timeLeft);
 }
@@ -203,4 +200,32 @@ GameTileMap* GameInterface::getGameTileMap() const
 const View& GameInterface::getView() const
 {
 	return view;
+}
+
+Entity* GameInterface::getDynamicEntity(unsigned int id)
+{
+	if (id >= mobs.size())
+	{
+		id -= mobs.size();
+		if (id >= bullets.size())
+		{
+			// id -= bullets.size();
+			// return dynamictiles[id];
+		}
+		else
+		{
+			return bullets[id];
+		}
+	}
+	else
+	{
+		return mobs[id];
+	}
+	Debug::error("GameInterface::getDynamicEntity(" + Converter::intToString(id) + "): id kinda out of range");
+	return NULL;
+}
+
+unsigned int GameInterface::getDynamicEntityAmount()
+{
+	return mobs.size() + bullets.size();
 }

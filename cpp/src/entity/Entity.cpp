@@ -50,6 +50,16 @@ Body* Entity::getBody() const
 	return body;
 }
 
+bool Entity::hasChanged() const
+{
+	return changed;
+}
+
+void Entity::setChanged(bool b)
+{
+	changed = b;
+}
+
 void Entity::render(const View& v) const
 {
 	basicRender(v);

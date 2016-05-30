@@ -30,6 +30,8 @@ class GameInterface : public NetworkingMenu
 		void renderEntities() const;
 		GameTileMap* getGameTileMap() const;
 		const View& getView() const;
+		Entity* getDynamicEntity(unsigned int);
+		unsigned int getDynamicEntityAmount();
 
 		// physics/collision-system
 		CollisionEvent* cutFirstEvent(std::vector<CollisionEvent*>* events);
