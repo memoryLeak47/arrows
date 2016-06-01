@@ -52,8 +52,21 @@ GameVector GameTileMap::teamToSpawnPosition(Team* team)
 
 const std::vector<Tile*> GameTileMap::getIntersectionTiles(const GameRect& gameRect) const
 {
-	Debug::warn("GameTileMap::createIntersectionTiles(): TODO");
-	return std::vector<Tile*>();
+	int left = ((int)gameRect.getLeft());
+	int right = ((int)gameRect.getRight()) + 1;
+	int top = ((int)gameRect.getTop());
+	int bot = ((int)gameRect.getBot()) + 1;
+
+	std::vector<Tile*> intersectionTiles;
+
+	for (int x = left; x <= right; x++)
+	{
+		for (int y = top; y <= bot; y++)
+		{
+			intersectionTiles.push_back(tiles[x][y]);
+		}
+	}
+	return intersectionTiles;
 }
 
 void GameTileMap::updateFullImage()
