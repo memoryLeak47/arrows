@@ -36,13 +36,49 @@ void Entity::addCollisionPartner(Entity* e)
 
 void Entity::removeCollisionPartner(Entity* e)
 {
-	// TODO
-	// collisionPartners.erase(e);
+	Debug::warn("Entity::removeCollisionPartner(): TODO");
+	// TODO collisionPartners.erase(e);
 }
 
 std::vector<Entity*> Entity::getCollisionPartners()
 {
 	return collisionPartners;
+}
+
+bool Entity::hasCollisionPartner(Entity* e) const
+{
+	for (unsigned int i = 0; i < collisionPartners.size(); i++)
+	{
+		if (e == collisionPartners[i])
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Entity::areCollisionPartners(Entity* e1, Entity* e2)
+{
+	bool alreadyPartners = false;
+	if (e1->hasCollisionPartner(e2))
+	{
+		alreadyPartners = true;
+	}
+	if (e2->hasCollisionPartner(e1))
+	{
+		if (!alreadyPartners)
+		{
+			Debug::error("Entity::areCollisionPartners(): e2 has CollisionPartner e1, but not vice versa");
+		}
+	}
+	else
+	{
+		if (alreadyPartners)
+		{
+			Debug::error("Entity::areCollisionPartners(): e1 has CollisionPartner e2, but not vice versa");
+		}
+	}
+	return alreadyPartners;
 }
 
 Body* Entity::getBody() const

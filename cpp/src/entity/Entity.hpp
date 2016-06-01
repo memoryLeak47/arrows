@@ -39,6 +39,8 @@ class Entity
 		void addCollisionPartner(Entity*);
 		void removeCollisionPartner(Entity*);
 		std::vector<Entity*> getCollisionPartners();
+		bool hasCollisionPartner(Entity*) const;
+		static bool areCollisionPartners(Entity*, Entity*);
 
 		Body* getBody() const;
 		bool hasChanged() const;
