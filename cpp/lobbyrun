@@ -2,8 +2,10 @@
 
 req 'xdotool'
 
-sleepiness=0.1
+sleepiness=0.01
 mapsleepiness=0.2
+startsleepiness=0.3
+
 screenSize=$(xdotool getdisplaygeometry)
 screenSizeX=${screenSize% *}
 screenSizeY=${screenSize#* }
@@ -45,7 +47,7 @@ do
 done
 
 ./exe &
-sleep 0.7
+sleep $startsleepiness
 
 xdotool mousemove 380 280 # login
 xdotool click 1

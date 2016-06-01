@@ -76,3 +76,8 @@ GameRect RectBody::getRenderGameRect() const
 {
 	return GameRect(position, size);
 }
+
+bool RectBody::isEven() const
+{
+	return (getSpin() == 0.f) && (getRotation() == 0.f);
+}

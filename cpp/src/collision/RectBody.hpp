@@ -26,6 +26,8 @@ class RectBody : public Body
 		virtual void setSpin(float) override;
 		virtual float getSpin() const override;
 		virtual GameRect getRenderGameRect() const override;
+
+		bool isEven() const;
 	private:
 		GameVector position;
 		GameVector size;
