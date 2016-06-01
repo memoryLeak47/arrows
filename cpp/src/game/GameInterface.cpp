@@ -5,6 +5,7 @@
 #include "../misc/Debug.hpp"
 #include "../player/GamePlayer.hpp"
 #include "../collision/CollisionHandler.hpp"
+#include "../collision/CollisionDetector.hpp"
 
 GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers)
 {
@@ -112,47 +113,57 @@ void GameInterface::tickPhysics()
 
 CollisionEvent* GameInterface::cutFirstEvent(std::vector<CollisionEvent*>* events)
 {
-        int bigIndex = 0;
-        for (unsigned int i = 1; i < events->size(); i++)
-        {
-                if ((*events)[bigIndex]->getTimeUntilFrameEnds() > (*events)[i]->getTimeUntilFrameEnds() ||
-                   ((*events)[bigIndex]->getTimeUntilFrameEnds() == (*events)[i]->getTimeUntilFrameEnds() && ! (*events)[bigIndex]->isEnterEvent() && (*events)[bigIndex]->isEnterEvent() && (*events)[i]->isEnterEvent()))
-                {
-                        bigIndex = i;
-                }
-        }
-        CollisionEvent* ret = (*events)[bigIndex];
-        events->erase(events->begin() + bigIndex);
-        return ret;
+	int bigIndex = 0;
+	for (unsigned int i = 1; i < events->size(); i++)
+	{
+		if ((*events)[bigIndex]->getTimeUntilFrameEnds() > (*events)[i]->getTimeUntilFrameEnds() ||
+		   ((*events)[bigIndex]->getTimeUntilFrameEnds() == (*events)[i]->getTimeUntilFrameEnds() && ! (*events)[bigIndex]->isEnterEvent() && (*events)[bigIndex]->isEnterEvent() && (*events)[i]->isEnterEvent()))
+		{
+			bigIndex = i;
+		}
+	}
+	CollisionEvent* ret = (*events)[bigIndex];
+	events->erase(events->begin() + bigIndex);
+	return ret;
 }
 
 void GameInterface::updateEventsFrom(Entity* entity, std::vector<CollisionEvent*>* events, float timeLeft)
 {
-        for (unsigned int i = 0; i < events->size(); i++)
-        {
-                if ((*events)[i]->getEntity1() == entity || (*events)[i]->getEntity2() == entity)
-                {
+	for (unsigned int i = 0; i < events->size(); i++)
+	{
+		if ((*events)[i]->getEntity1() == entity || (*events)[i]->getEntity2() == entity)
+		{
 			CollisionEvent* e = (*events)[i];
-                        events->erase(events->begin() + i);
+			events->erase(events->begin() + i);
 			deleteAndNULL(e);
-                }
-        }
-        addEventsFrom(entity, events, timeLeft);
+		}
+	}
+	addEventsFrom(entity, events, timeLeft);
 }
 
 void GameInterface::addEventsFrom(Entity* entity, std::vector<CollisionEvent*>* events, float timeLeft)
 {
-        // alle Entities durchgehen
-	/*
-	// TODO
-        for (e in entities)
-        {
-                if (priority-check && e != entity)
-                {
-                        CollisionDetector::addCollisionsBetween(entity, e, timeLeft, events);
-                }
-        }
-	*/
+	// find Collision with dynamic entities
+	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
+	{
+		Entity* e = getDynamicEntity(i);
+								// >= 0
+		if (e->getCollisionPriority(entity) + entity->getCollisionPriority(e) > 0 && e != entity)
+		{
+			CollisionDetector::addCollisionsBetween(entity, e, events, timeLeft);
+		}
+	}
+
+	// find Collision with static tiles
+	const std::vector<Tile*> collisionTiles = getGameTileMap()->getIntersectionTiles(entity->getBody()->getWrapper());
+	for (unsigned int i = 0; i < collisionTiles.size(); i++)
+	{
+		Tile* t = collisionTiles[i];
+		if (t->getCollisionPriority(entity) + entity->getCollisionPriority(t) > 0)
+		{
+			CollisionDetector::addCollisionsBetween(entity, t, events, timeLeft);
+		}
+	}
 }
 
 void GameInterface::moveAllEntities(float time)

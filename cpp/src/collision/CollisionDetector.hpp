@@ -9,7 +9,7 @@ class Entity;
 class CollisionDetector
 {
 	public:
-		static void addCollisionsBetween(Entity*, Entity*, float timeLeft, std::vector<CollisionEvent*>*);
+		static void addCollisionsBetween(Entity*, Entity*, std::vector<CollisionEvent*>*, float timeLeft);
 };
 
 #include "CollisionEvent.hpp"
