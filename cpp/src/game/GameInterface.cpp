@@ -168,7 +168,10 @@ void GameInterface::addEventsFrom(Entity* entity, std::vector<CollisionEvent*>* 
 
 void GameInterface::moveAllEntities(float time)
 {
-	Debug::warn("GameInterface::moveAllEntities: TODO");
+	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
+	{
+		getDynamicEntity(i)->getBody()->move(time);
+	}
 }
 
 void GameInterface::render() const
