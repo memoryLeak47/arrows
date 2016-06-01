@@ -35,7 +35,7 @@ class Body
 		virtual ~Body() {}
 		virtual BodyType getBodyType() const = 0;
 
-		virtual GameRect getWrapper() const = 0;
+		virtual GameRect getWrapper(float timeLeft) const = 0;
 		// speed
 		virtual const GameVector& getSpeed() const = 0;
 		virtual void setSpeed(const GameVector&) = 0;

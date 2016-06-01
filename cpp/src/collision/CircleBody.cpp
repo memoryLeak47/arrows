@@ -1,5 +1,7 @@
 #include "CircleBody.hpp"
 
+#include <algorithm>
+
 #include "../misc/Debug.hpp"
 
 CircleBody::CircleBody(const GameVector& position, const GameVector& speed, float rotation, float radius, float spin)
@@ -11,9 +13,18 @@ BodyType CircleBody::getBodyType() const
 	return CIRCLE;
 }
 
-GameRect CircleBody::getWrapper() const
+GameRect CircleBody::getWrapper(float timeLeft) const
 {
-	return GameRect(getPosition(), GameVector(2*getRadius(), 2*getRadius()));
+	float deltaX = speed.getX() * timeLeft;
+	float deltaY = speed.getY() * timeLeft;
+
+	float diagonal = 2 * getRadius();
+	float sizeX = diagonal + std::abs(deltaX);
+	float sizeY = diagonal + std::abs(deltaY);
+	float posX = getPosition().getX() + deltaX/2 - sizeX/2;
+	float posY = getPosition().getY() + deltaY/2 - sizeY/2;
+
+	return GameRect(GameVector(posX, posY), GameVector(sizeX, sizeY));
 }
 
 // position

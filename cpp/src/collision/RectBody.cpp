@@ -1,5 +1,7 @@
 #include "RectBody.hpp"
 
+#include <algorithm>
+
 #include "../misc/Debug.hpp"
 
 RectBody::RectBody(const GameVector& pos, const GameVector& size, const GameVector& speed, float rot, float spin)
@@ -11,11 +13,18 @@ BodyType RectBody::getBodyType() const
 	return RECT;
 }
 
-GameRect RectBody::getWrapper() const
+GameRect RectBody::getWrapper(float timeLeft) const
 {
-	Debug::warn("RectBody::getWrapper(): TODO inaccurate");
-	float diagonal = getSize().getMagnitude();
-	return GameRect(getPosition(), GameVector(diagonal, diagonal));
+	float deltaX = speed.getX() * timeLeft;
+	float deltaY = speed.getY() * timeLeft;
+
+	float diagonal = 2 * getSize().getMagnitude();
+	float sizeX = diagonal + std::abs(deltaX);
+	float sizeY = diagonal + std::abs(deltaY);
+	float posX = getPosition().getX() + deltaX/2 - sizeX/2;
+	float posY = getPosition().getY() + deltaY/2 - sizeY/2;
+
+	return GameRect(GameVector(posX, posY), GameVector(sizeX, sizeY));
 }
 
 void RectBody::setPosition(const GameVector& pos)
