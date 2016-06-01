@@ -13,6 +13,8 @@
 #define STANDART_JUMPPOWER 0.6f
 #define STANDART_ACCELERATION 0.18f
 
+#define eraseFromVector(x, y) for (unsigned int i = 0; i < y.size(); i++) if (y[0] == x) y.erase(y.begin() + i);
+#define deleteFromVector(x, y) for (unsigned int i = 0; i < y.size(); i++) if (y[0] == x) { delete y[i]; y.erase(y.begin() + i); }
 #define deleteAndNULL(x) delete x; x = NULL
 #define deleteAndClearVector(x) for (unsigned int i = 0; i < x.size(); i++) { delete x[i]; } x.clear();
 #define memberOf(x, y) (std::find(y.begin(), y.end(), x) != y.end())

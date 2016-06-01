@@ -36,8 +36,7 @@ void Entity::addCollisionPartner(Entity* e)
 
 void Entity::removeCollisionPartner(Entity* e)
 {
-	Debug::warn("Entity::removeCollisionPartner(): TODO");
-	// TODO collisionPartners.erase(e);
+	eraseFromVector(e, collisionPartners);
 }
 
 std::vector<Entity*> Entity::getCollisionPartners()
