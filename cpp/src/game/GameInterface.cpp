@@ -168,6 +168,11 @@ void GameInterface::addEventsFrom(Entity* entity, std::vector<CollisionEvent*>* 
 
 void GameInterface::moveAllEntities(float time)
 {
+	if (time == 0)
+	{
+		return;
+	}
+
 	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
 	{
 		getDynamicEntity(i)->getBody()->move(time);
