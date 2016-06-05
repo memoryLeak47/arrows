@@ -31,7 +31,7 @@ class Entity
 		virtual ~Entity();
 		virtual void tick();
 
-		virtual float getCollisionPriority(Entity* e) { return 0; } // TODO = 0
+		virtual float getCollisionPriority(Entity* e) { return 1; } // TODO = 0
 		virtual EntityType getEntityType() = 0;
 		virtual void onCollide(Entity*) {}
 		virtual void offCollide(Entity*) {}

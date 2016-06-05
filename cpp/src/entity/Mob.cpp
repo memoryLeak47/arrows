@@ -4,7 +4,10 @@
 
 Mob::Mob(Body* body)
 	: Entity(body)
-{}
+{
+	getBody()->setSpeed(GameVector(0.03f, 0.f)); // TODO remove
+	Debug::warn("Mob::Mob(): remove setSpeed");
+}
 
 EntityType Mob::getEntityType()
 {
