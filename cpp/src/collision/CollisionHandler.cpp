@@ -22,6 +22,8 @@ void CollisionHandler::handleCollisionEventSolid(CollisionEvent* event)
 	Entity* entity1 = event->getEntity1();
 	Entity* entity2 = event->getEntity2();
 
+	Debug::test("collision: " + entity1->toString() + " vs " + entity2->toString());
+
 	float massShare1; // wieviel Prozent der Gesamtmasse der beiden CollisionPartner nimmt entity1 ein
 	float massShare2; // wieviel Prozent der Gesamtmasse der beiden CollisionPartner nimmt entity2 ein
 
@@ -44,6 +46,6 @@ void CollisionHandler::handleCollisionEventSolid(CollisionEvent* event)
 
 	massShare2 = 1-massShare1;
 	GameVector speedDif = entity1->getBody()->getSpeed() - entity2->getBody()->getSpeed();
-	entity1->getBody()->setSpeed(entity1->getBody()->getSpeed() + speedDif * massShare2);
-	entity2->getBody()->setSpeed(entity2->getBody()->getSpeed() + speedDif * massShare1);
+	entity1->getBody()->setSpeed(entity1->getBody()->getSpeed() - speedDif * massShare2);
+	entity2->getBody()->setSpeed(entity2->getBody()->getSpeed() - speedDif * massShare1);
 }
