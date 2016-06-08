@@ -37,12 +37,18 @@ class Entity
 		virtual ~Entity();
 		virtual void tick();
 
+		// collision
 		virtual float getCollisionPriority(Entity* e) { return 1; } // TODO = 0
 		virtual EntityType getEntityType() = 0;
 		virtual CollisionType getCollisionType() { return COLLISIONTYPE_SOLID; } // TODO = 0
 		virtual void onCollide(Entity*) {}
 		virtual void offCollide(Entity*) {}
 
+		// physics
+		virtual float getMass() { return 10.f; }
+		virtual bool isStatic() { return false; }
+
+		// collisionPartner
 		void addCollisionPartner(Entity*);
 		void removeCollisionPartner(Entity*);
 		std::vector<Entity*> getCollisionPartners();

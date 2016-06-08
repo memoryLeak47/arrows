@@ -16,7 +16,33 @@ void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 	}
 }
 
-void CollisionHandler::handleCollisionEventSolid(CollisionEvent*)
+void CollisionHandler::handleCollisionEventSolid(CollisionEvent* event)
 {
-	Debug::warn("CollisionHandler::handleCollisionEventSolid(): TODO");
+	Entity* entity1 = event->getEntity1();
+	Entity* entity2 = event->getEntity2();
+
+	float massShare1; // wieviel Prozent der Gesamtmasse der beiden CollisionPartner nimmt entity1 ein
+	float massShare2; // wieviel Prozent der Gesamtmasse der beiden CollisionPartner nimmt entity2 ein
+
+	if (entity1->isStatic())
+	{
+		massShare1 = 1;
+		if (entity2->isStatic())
+		{
+			Debug::error("CollisionHandler::handleCollisionEventSolid(): static vs static :/");
+		}
+	}
+	else if (entity2->isStatic())
+	{
+		massShare1 = 0;
+	}
+	else
+	{
+		massShare1 = entity1->getMass() / (entity1->getMass() + entity2->getMass());
+	}
+
+	massShare2 = 1-massShare1;
+	GameVector speedDif = entity1->getBody()->getSpeed() - entity2->getBody()->getSpeed();
+	entity1->getBody()->setSpeed(entity1->getBody()->getSpeed() + speedDif * massShare2);
+	entity2->getBody()->setSpeed(entity2->getBody()->getSpeed() + speedDif * massShare1);
 }
