@@ -8,3 +8,8 @@
 /cpp/exe
 /cpp/.accounts
 /cpp/core
+
+/cpp/build/
+/cpp/.bam/
+/cpp/lib/*/include/
+/cpp/lib/*/lib/
