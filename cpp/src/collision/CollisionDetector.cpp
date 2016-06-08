@@ -4,6 +4,11 @@
 
 void CollisionDetector::addCollisionsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
 {
+	if ((! e1->hasChanged()) && (! e2->hasChanged())) // TODO really?
+	{
+		return;
+	}
+
 	if (e1->getBody()->getBodyType() == BodyType::RECT && e2->getBody()->getBodyType() == BodyType::RECT)
 	{
 		if (dynamic_cast<RectBody*>(e1->getBody())->isEven() && dynamic_cast<RectBody*>(e2->getBody())->isEven())
@@ -45,7 +50,7 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 
 	bool alreadyPartners = Entity::areCollisionPartners(e1, e2);
 
-	if (minCT < timeLeft && minCT < maxCT)
+	if (minCT < timeLeft) // Diese Abfrage ( minCT < maxCT ) ist falsch, aber iwas fehlt da noch ...
 	{
 		if (!alreadyPartners)
 		{

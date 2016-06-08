@@ -34,15 +34,13 @@ void GameInterface::tick()
 
 void GameInterface::tickEntities()
 {
-	for (unsigned int i = 0; i < mobs.size(); i++)
+	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
 	{
-		mobs[i]->tick();
+		Entity* entity = getDynamicEntity(i);
+		entity->tick();
+		entity->setChanged(true);
 	}
 	// TODO tick tiles?
-	for (unsigned int i = 0; i < bullets.size(); i++)
-	{
-		bullets[i]->tick();
-	}
 }
 
 void GameInterface::tickPhysics()

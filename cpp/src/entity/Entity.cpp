@@ -6,6 +6,7 @@
 #include "../collision/CollisionDetector.hpp"
 
 Entity::Entity(Body* bodyArg)
+	: changed(true)
 {
 	body = bodyArg;
 }
