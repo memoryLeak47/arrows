@@ -8,3 +8,8 @@ sf::Texture* ArcherGamePlayer::getTexture() const
 {
 	return GraphicsManager::getTexture(ARCHER_GID);
 }
+
+std::string ArcherGamePlayer::toString() const
+{
+	return "ArcherGamePlayer";
+}

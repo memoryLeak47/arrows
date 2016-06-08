@@ -8,3 +8,8 @@ sf::Texture* VoidTile::getTexture() const
 {
 	return GraphicsManager::getTexture(VOIDTILE_GID);
 }
+
+std::string VoidTile::toString() const
+{
+	return "VoidTile";
+}

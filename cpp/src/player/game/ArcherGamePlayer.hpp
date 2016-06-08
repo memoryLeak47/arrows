@@ -8,6 +8,7 @@ class ArcherGamePlayer : public GamePlayer
 	public:
 		ArcherGamePlayer(const GameVector&, const LobbyPlayer*);
 		virtual sf::Texture* getTexture() const override;
+		virtual std::string toString() const override;
 };
 
 #endif

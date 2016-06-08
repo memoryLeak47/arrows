@@ -36,6 +36,7 @@ class Entity
 		Entity(Body*);
 		virtual ~Entity();
 		virtual void tick();
+		virtual std::string toString() const = 0;
 
 		// collision
 		virtual float getCollisionPriority(Entity* e) { return 1; } // TODO = 0

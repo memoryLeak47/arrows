@@ -9,6 +9,7 @@ class LavaTile : public Tile
 		LavaTile(const GameVector&);
 		virtual ~LavaTile() {}
 		virtual sf::Texture* getTexture() const override;
+		virtual std::string toString() const override;
 };
 
 #endif

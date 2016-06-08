@@ -18,3 +18,8 @@ Team* SpawnTeamTile::getTeam() const
 {
 	return team;
 }
+
+std::string SpawnTeamTile::toString() const
+{
+	return "SpawnTeamTile";
+}

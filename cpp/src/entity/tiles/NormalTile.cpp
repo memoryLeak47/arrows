@@ -8,3 +8,8 @@ sf::Texture* NormalTile::getTexture() const
 {
 	return GraphicsManager::getTexture(NORMALTILE_GID);
 }
+
+std::string NormalTile::toString() const
+{
+	return "NormalTile";
+}

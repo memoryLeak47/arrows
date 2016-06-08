@@ -13,6 +13,7 @@ class SpawnTeamTile : public Tile
 		virtual sf::Texture* getTexture() const override;
 		virtual bool isSpawnTeamTile() const override;
 		Team* getTeam() const;
+		virtual std::string toString() const override;
 	private:
 		Team* team;
 };
