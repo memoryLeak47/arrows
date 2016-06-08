@@ -11,5 +11,5 @@ Mob::Mob(Body* body)
 
 EntityType Mob::getEntityType()
 {
-	return MOB;
+	return ENTITYTYPE_MOB;
 }

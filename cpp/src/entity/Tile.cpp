@@ -22,7 +22,7 @@ Tile::Tile(const GameVector& pos)
 
 EntityType Tile::getEntityType()
 {
-	return TILE;
+	return ENTITYTYPE_TILE;
 }
 
 bool Tile::isSpawnTeamTile() const

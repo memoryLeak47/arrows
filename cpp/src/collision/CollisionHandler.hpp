@@ -7,6 +7,8 @@ class CollisionHandler
 {
 	public:
 		static void handleCollisionEvent(CollisionEvent*);
+	private:
+		static void handleCollisionEventSolid(CollisionEvent*);
 };
 
 #include "CollisionEvent.hpp"
