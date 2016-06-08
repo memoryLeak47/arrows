@@ -28,7 +28,7 @@ void GameTileMap::loadFromLobbyTileMap(LobbyTileMap* lobbyMap)
 		tiles.push_back(std::vector<Tile*>());
 		for (unsigned int y = 0; y < lobbyMap->getInts()[0].size(); y++)
 		{
-			tiles.back().push_back(Tile::createByColorID(lobbyMap->getInts()[x][y], GameVector(x, y)));
+			tiles.back().push_back(Tile::createByColorID(lobbyMap->getInts()[x][y], GameVector(x + 0.5f, y + 0.5f)));
 			if (tiles.back().back()->isSpawnTeamTile())
 			{
 				spawnPositions[dynamic_cast<SpawnTeamTile*>(tiles.back().back())->getTeam()->getID()] = GameVector(x + 0.5f , y + 0.5f);
