@@ -2,8 +2,6 @@
 Import("bam/lua/print_r.lua")
 Import("bam/lua/util.lua")
 
-plattform = "linux";
-
 function ValidiateArg(arg, value)
 	if arg == "conf" then
 		if conf ~= "debug" and conf ~= "release" then
