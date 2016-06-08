@@ -8,6 +8,7 @@ class VoidTile : public Tile
 	public:
 		VoidTile(const GameVector&);
 		virtual sf::Texture* getTexture() const override;
+		virtual float getCollisionPriority(Entity* e) { return -100; }
 };
 
 #endif
