@@ -141,6 +141,11 @@ void GameInterface::updateEventsFrom(Entity* entity, std::vector<CollisionEvent*
 
 void GameInterface::addEventsFrom(Entity* entity, std::vector<CollisionEvent*>* events, float timeLeft)
 {
+	if (!entity->hasChanged())
+	{
+		return;
+	}
+
 	// find Collision with dynamic entities
 	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
 	{

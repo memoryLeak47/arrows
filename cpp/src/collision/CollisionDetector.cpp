@@ -4,11 +4,6 @@
 
 void CollisionDetector::addCollisionsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
 {
-	if ((! e1->hasChanged()) && (! e2->hasChanged())) // TODO really?
-	{
-		return;
-	}
-
 	if (e1->getBody()->getBodyType() == BodyType::RECT && e2->getBody()->getBodyType() == BodyType::RECT)
 	{
 		if (dynamic_cast<RectBody*>(e1->getBody())->isEven() && dynamic_cast<RectBody*>(e2->getBody())->isEven())

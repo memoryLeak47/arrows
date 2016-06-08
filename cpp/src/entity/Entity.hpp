@@ -57,7 +57,7 @@ class Entity
 		static bool areCollisionPartners(Entity*, Entity*);
 
 		Body* getBody() const;
-		bool hasChanged() const;
+		virtual bool hasChanged() const;
 		void setChanged(bool);
 
 		void dash(const GameVector&, float);
