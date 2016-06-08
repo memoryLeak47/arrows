@@ -1,5 +1,6 @@
 #include "CollisionHandler.hpp"
 
+#include "../misc/Converter.hpp"
 #include "../misc/Debug.hpp"
 
 void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
@@ -29,7 +30,7 @@ void CollisionHandler::handleCollisionEventSolid(CollisionEvent* event)
 		massShare1 = 1;
 		if (entity2->isStatic())
 		{
-			Debug::error("CollisionHandler::handleCollisionEventSolid(): static vs static :/");
+			Debug::error("CollisionHandler::handleCollisionEventSolid(): static vs static :/ (" + Converter::intToString(entity1->getEntityType()) + " - " + Converter::intToString(entity2->getEntityType()));
 		}
 	}
 	else if (entity2->isStatic())
