@@ -48,4 +48,6 @@ void CollisionHandler::handleCollisionEventSolid(CollisionEvent* event)
 	GameVector speedDif = entity1->getBody()->getSpeed() - entity2->getBody()->getSpeed();
 	entity1->getBody()->setSpeed(entity1->getBody()->getSpeed() - speedDif * massShare2);
 	entity2->getBody()->setSpeed(entity2->getBody()->getSpeed() - speedDif * massShare1);
+	entity1->setChanged(true);
+	entity2->setChanged(true);
 }

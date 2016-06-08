@@ -38,5 +38,5 @@ GamePlayer::~GamePlayer()
 
 void GamePlayer::renderBar(const View&) const
 {
-	Debug::warn("GamePlayer::renderBar(): TODO");
+	// TODO
 }

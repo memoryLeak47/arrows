@@ -27,6 +27,7 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 	float posY1 = dynamic_cast<RectBody*>(e1->getBody())->getPosition().getY();
 	float sizeX1 = dynamic_cast<RectBody*>(e1->getBody())->getSize().getX();
 	float sizeY1 = dynamic_cast<RectBody*>(e1->getBody())->getSize().getY();
+
 	// speed subtraction
 	float speedX1 = dynamic_cast<RectBody*>(e1->getBody())->getSpeed().getX() - dynamic_cast<RectBody*>(e2->getBody())->getSpeed().getX();
 	float speedY1 = dynamic_cast<RectBody*>(e1->getBody())->getSpeed().getY() - dynamic_cast<RectBody*>(e2->getBody())->getSpeed().getY();
@@ -36,11 +37,11 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 	float sizeX2 = dynamic_cast<RectBody*>(e2->getBody())->getSize().getX();
 	float sizeY2 = dynamic_cast<RectBody*>(e2->getBody())->getSize().getY();
 
-	float minCT = std::max(((posX2 - sizeX2/2.f) - (posX1 + sizeX1/2.f))/speedX1,
-			((posY2 - sizeY2/2.f) - (posY1 + sizeY1/2.f))/speedY1);
+	float a = ((posX2 + sizeX2/2.f) - (posX1 - sizeX1/2.f))/speedX1;
+	float b = ((posY2 + sizeY2/2.f) - (posY1 - sizeY1/2.f))/speedY1;
 
-	float maxCT = std::min(((posX2 + sizeX2/2.f) - (posX1 - sizeX1/2.f))/speedX1, 
-				((posY2 + sizeY2/2.f) - (posY1 - sizeY1/2.f))/speedY1);
+	float minCT = std::max(a, b);
+	float maxCT = std::min(a, b);
 
 	bool alreadyPartners = Entity::areCollisionPartners(e1, e2);
 

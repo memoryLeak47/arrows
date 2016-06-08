@@ -4,7 +4,7 @@ req 'xdotool'
 
 sleepiness=0.01
 mapsleepiness=0.2
-startsleepiness=0.3
+startsleepiness=2
 
 screenSize=$(xdotool getdisplaygeometry)
 screenSizeX=${screenSize% *}
