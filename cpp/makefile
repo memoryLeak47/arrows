@@ -8,6 +8,6 @@ runlog:
 	@./bam/build/debug/arrows > log
 lobbyrunlog:
 	@./lobbyrun > log
-readlog:
-	@cat log
-.PHONY: compile run lobbyrun runlog lobbyrunlog readlog
+getlog:
+	@if [ -f log ]; then cat log; else echo "no log file"; fi
+.PHONY: compile run lobbyrun runlog lobbyrunlog getlog
