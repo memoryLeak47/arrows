@@ -1,6 +1,6 @@
 
-Import("lua/print_r.lua")
-Import("lua/util.lua")
+Import("bam/lua/print_r.lua")
+Import("bam/lua/util.lua")
 
 plattform = "linux";
 
@@ -16,7 +16,7 @@ function ValidiateArg(arg, value)
 end
 
 function GenerateLibSettings(settings, name)
-	Import("lib/" .. name .. "/" .. name .. ".lua")
+	Import("bam/lib/" .. name .. "/" .. name .. ".lua")
 	lib:configure()
 	lib:apply(settings)
 end
@@ -56,7 +56,7 @@ ValidiateArg("conf", conf)
 if ScriptArgs["dir"] then
 	build_dir = ScriptArgs["dir"]
 else
-	build_dir = "build"
+	build_dir = "bam/build"
 end
 ValidiateArg("dir", build_dir)
 build_dir = PathJoin(build_dir, conf)

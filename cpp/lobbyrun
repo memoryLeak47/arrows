@@ -46,7 +46,7 @@ do
 
 done
 
-./exe &
+./bam/build/debug/arrows &
 sleep $startsleepiness
 
 xdotool mousemove 380 280 # login

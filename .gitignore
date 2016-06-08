@@ -1,7 +1,7 @@
 *.swp
 */bin/
+*/log
 
-/java/log
 /java/.accounts
 /java/.debug
 
@@ -9,7 +9,5 @@
 /cpp/.accounts
 /cpp/core
 
-/cpp/build/
+/cpp/bam/build
 /cpp/.bam/
-/cpp/lib/*/include/
-/cpp/lib/*/lib/
