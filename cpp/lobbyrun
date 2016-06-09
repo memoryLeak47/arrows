@@ -2,7 +2,7 @@
 
 req 'xdotool'
 
-sleepiness=0.01
+sleepiness=0.03
 mapsleepiness=0.2
 startsleepiness=2
 

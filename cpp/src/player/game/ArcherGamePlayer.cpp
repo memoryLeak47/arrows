@@ -11,5 +11,5 @@ sf::Texture* ArcherGamePlayer::getTexture() const
 
 std::string ArcherGamePlayer::toString() const
 {
-	return "ArcherGamePlayer";
+	return "ArcherGamePlayer: " + getBody()->getPosition().toString();
 }

@@ -11,5 +11,5 @@ sf::Texture* NormalTile::getTexture() const
 
 std::string NormalTile::toString() const
 {
-	return "NormalTile";
+	return "NormalTile: " + getBody()->getPosition().toString();
 }
