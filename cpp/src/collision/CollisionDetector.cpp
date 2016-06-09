@@ -55,7 +55,14 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 	std::vector<float> floats;
 	std::vector<bool> bools;
 
+	// x
 	float a = ((posX1 + sizeX1/2.f) - (posX2 - sizeX2/2.f))/speedX;
+	if (a >= 0 && a <= timeLeft)
+	{
+		floats.push_back(a);
+		bools.push_back(true);
+	}
+	a = (-(posX1 + sizeX1/2.f) + (posX2 - sizeX2/2.f))/speedX;
 	if (a >= 0 && a <= timeLeft)
 	{
 		floats.push_back(a);
@@ -67,14 +74,33 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 		floats.push_back(a);
 		bools.push_back(true);
 	}
+	a = (-(posX2 + sizeX2/2.f) + (posX1 - sizeX1/2.f))/speedX;
+	if (a >= 0 && a <= timeLeft)
+	{
+		floats.push_back(a);
+		bools.push_back(true);
+	}
 
+	// y
 	a = ((posY1 + sizeY1/2.f) - (posY2 - sizeY2/2.f))/speedY;
 	if (a >= 0 && a <= timeLeft)
 	{
 		floats.push_back(a);
 		bools.push_back(false);
 	}
+	a = (-(posY1 + sizeY1/2.f) + (posY2 - sizeY2/2.f))/speedY;
+	if (a >= 0 && a <= timeLeft)
+	{
+		floats.push_back(a);
+		bools.push_back(false);
+	}
 	a = ((posY2 + sizeY2/2.f) - (posY1 - sizeY1/2.f))/speedY;
+	if (a >= 0 && a <= timeLeft)
+	{
+		floats.push_back(a);
+		bools.push_back(false);
+	}
+	a = (-(posY2 + sizeY2/2.f) + (posY1 - sizeY1/2.f))/speedY;
 	if (a >= 0 && a <= timeLeft)
 	{
 		floats.push_back(a);
