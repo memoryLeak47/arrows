@@ -10,6 +10,9 @@ class Mob : public Entity
 		virtual ~Mob() {}
 		virtual EntityType getEntityType() override;
 		virtual void renderBar(const View&) const = 0;
+		virtual void actionGoLeft();
+		virtual void actionGoRight();
+		virtual void actionJump();
 };
 
 #endif

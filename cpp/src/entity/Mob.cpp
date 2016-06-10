@@ -4,12 +4,24 @@
 
 Mob::Mob(Body* body)
 	: Entity(body)
-{
-	getBody()->setSpeed(GameVector(-0.03f, 0.03f)); // TODO remove
-	Debug::warn("Mob::Mob(): remove setSpeed");
-}
+{}
 
 EntityType Mob::getEntityType()
 {
 	return ENTITYTYPE_MOB;
+}
+
+void Mob::actionGoLeft()
+{
+	getBody()->setSpeed(getBody()->getSpeed() - GameVector(0.003f, 0.f));
+}
+
+void Mob::actionGoRight()
+{
+	getBody()->setSpeed(getBody()->getSpeed() + GameVector(0.003f, 0.f));
+}
+
+void Mob::actionJump()
+{
+	getBody()->setSpeed(GameVector(getBody()->getSpeed().getX(), -0.1f));
 }

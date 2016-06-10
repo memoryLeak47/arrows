@@ -13,6 +13,7 @@ class Mob;
 class Tile;
 class Bullet;
 class CollisionEvent;
+class GamePlayer;
 
 class GameInterface : public NetworkingMenu
 {
@@ -21,8 +22,14 @@ class GameInterface : public NetworkingMenu
 		virtual ~GameInterface();
 		virtual void tick() override;
 		virtual void render() const override;
+	protected:
+		virtual GamePlayer* getLocalPlayer() const = 0;
+		std::vector<Mob*> mobs;
+		std::vector<Tile*> tiles;
+		std::vector<Bullet*> bullets;
 	private:
 		// functions
+		void controlLocalPlayer();
 		void tickEntities();
 		void tickPhysics();
 		void renderMap() const;
@@ -40,9 +47,6 @@ class GameInterface : public NetworkingMenu
 		void moveAllEntities(float time);
 		
 		// elements
-		std::vector<Mob*> mobs;
-		std::vector<Tile*> tiles;
-		std::vector<Bullet*> bullets;
 		View view;
 		GameTileMap* tileMap;
 };
@@ -53,5 +57,6 @@ class GameInterface : public NetworkingMenu
 #include "../entity/Tile.hpp"
 #include "../entity/Bullet.hpp"
 #include "../collision/CollisionEvent.hpp"
+#include "../player/GamePlayer.hpp"
 
 #endif

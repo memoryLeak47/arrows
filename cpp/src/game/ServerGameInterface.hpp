@@ -11,6 +11,8 @@ class ServerGameInterface : public GameInterface
 		ServerGameInterface(LobbyTileMap*, const std::vector<LobbyPlayer*>&);
 		virtual ~ServerGameInterface();
 		void handlePacket(Packet*, sf::IpAddress*) override;
+	protected:
+		virtual GamePlayer* getLocalPlayer() const override;
 };
 
 #include "../player/LobbyPlayer.hpp"

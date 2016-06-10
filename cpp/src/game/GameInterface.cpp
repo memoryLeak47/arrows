@@ -32,8 +32,25 @@ void GameInterface::tick()
 	tickPhysics();
 }
 
+void GameInterface::controlLocalPlayer()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		getLocalPlayer()->actionGoLeft();
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		getLocalPlayer()->actionGoRight();
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		getLocalPlayer()->actionJump();
+	}
+}
+
 void GameInterface::tickEntities()
 {
+	controlLocalPlayer();
 	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
 	{
 		Entity* entity = getDynamicEntity(i);

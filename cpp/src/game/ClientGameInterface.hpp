@@ -8,12 +8,14 @@ class LobbyPlayer;
 class ClientGameInterface : public GameInterface
 {
 	public:
-		ClientGameInterface(LobbyTileMap*, const std::vector<LobbyPlayer*>&, int, sf::IpAddress*);
+		ClientGameInterface(LobbyTileMap*, const std::vector<LobbyPlayer*>&, int playerID, sf::IpAddress*);
 		virtual ~ClientGameInterface();
 		void handlePacket(Packet*, sf::IpAddress*) override;
+	protected:
+		virtual GamePlayer* getLocalPlayer() const override;
 	private:
 		sf::IpAddress* serverIP;
-		int localPlayerID;
+		unsigned int localPlayerID;
 };
 
 #include "../player/LobbyPlayer.hpp"

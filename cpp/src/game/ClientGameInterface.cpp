@@ -2,8 +2,8 @@
 
 #include "../misc/Debug.hpp"
 
-ClientGameInterface::ClientGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players, int localPlayerID, sf::IpAddress* ip)
-	: GameInterface(map, players), localPlayerID(localPlayerID)
+ClientGameInterface::ClientGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players, int playerID, sf::IpAddress* ip)
+	: GameInterface(map, players), localPlayerID(playerID)
 {
 	serverIP = new sf::IpAddress(*ip);
 }
@@ -16,4 +16,9 @@ ClientGameInterface::~ClientGameInterface()
 void ClientGameInterface::handlePacket(Packet*, sf::IpAddress*)
 {
 	Debug::warn("ClientGameInterface::handlePacket(): TODO");
+}
+
+GamePlayer* ClientGameInterface::getLocalPlayer() const
+{
+	return dynamic_cast<GamePlayer*>(mobs[localPlayerID]);
 }

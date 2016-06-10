@@ -13,3 +13,8 @@ void ServerGameInterface::handlePacket(Packet*, sf::IpAddress*)
 {
 	Debug::warn("ServerGameInterface::handlePacket(): TODO");
 }
+
+GamePlayer* ServerGameInterface::getLocalPlayer() const
+{
+	return dynamic_cast<GamePlayer*>(mobs[0]);
+}
