@@ -46,6 +46,12 @@ void GameInterface::controlLocalPlayer()
 	{
 		getLocalPlayer()->actionJump();
 	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::O))
+	{
+		view.setEntity(getLocalPlayer()); // TODO NOT NICE OF YOU ..
+		view.changeFocus();
+	}
 }
 
 void GameInterface::tickEntities()

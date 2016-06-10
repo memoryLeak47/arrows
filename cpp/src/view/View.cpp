@@ -19,6 +19,16 @@ void View::updateSpot(const GameVector& s)
 	spot = s;
 }
 
+void View::changeFocus()
+{
+	focusEntity = !focusEntity;
+}
+
+void View::setEntity(Entity* e)
+{
+	entity = e;
+}
+
 PixelRect View::gameRectToPixelRect(const GameRect& r) const
 {
 	GameVector pos = (r.getPosition() - getGameViewRoot()) * scale;
@@ -29,5 +39,17 @@ PixelRect View::gameRectToPixelRect(const GameRect& r) const
 GameVector View::getGameViewRoot() const
 {
 	GameVector screenSize(((float) Screen::getSize().getX()) / scale, ((float) Screen::getSize().getY()) / scale);
-	return GameVector(spot - screenSize/2);
+	return GameVector(getFocus() - screenSize/2);
+}
+
+GameVector View::getFocus() const
+{
+	if (focusEntity)
+	{
+		return entity->getBody()->getPosition();
+	}
+	else
+	{
+		return spot;
+	}
 }
