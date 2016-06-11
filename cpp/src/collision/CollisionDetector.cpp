@@ -137,10 +137,10 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 			bools.erase(bools.begin() + index);
 			if (xCol && yCol)
 			{
-				events->push_back(new CollisionEvent(e1, e2, time, true));
+				events->push_back(new CollisionEvent(e1, e2, timeLeft-time, true));
 				if (floats.size() > 0)
 				{
-					events->push_back(new CollisionEvent(e1, e2, floats[getNextIndex(floats)], false));
+					events->push_back(new CollisionEvent(e1, e2, timeLeft-floats[getNextIndex(floats)], false));
 				}
 				return;
 			}
