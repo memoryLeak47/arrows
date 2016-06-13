@@ -19,7 +19,7 @@ function GenerateLibSettings(settings, name)
 	lib:apply(settings)
 end
 
-function GenerateGenerelSettings(settings)
+function GenerateGeneralSettings(settings)
 	if conf == "debug" then
 		settings.debug = 1
 		settings.optimize = 0
@@ -63,7 +63,7 @@ src_dir = "src"
 datasrc_dir = "res"
 
 settings = NewSettings()
-GenerateGenerelSettings(settings)
+GenerateGeneralSettings(settings)
 GenerateClientSettings(settings)
 
 PseudoTarget("client")
