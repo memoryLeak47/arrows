@@ -95,7 +95,7 @@ void Debug::funcOn(const std::string& s)
 	{
 		t += "    ";
 	}
-	std::cout << FUNC_COLOR << "FUNC:" + t + s << RESET_COLOR << std::endl;
+	std::cout << FUNC_COLOR << "FUNC:" + t + s + " {" << RESET_COLOR << std::endl;
 	indentCounter++;
 }
 
@@ -108,5 +108,5 @@ void Debug::funcOff(const std::string& s)
 		t += "    ";
 	}
 
-	std::cout << FUNC_COLOR << "FUNC:" + t + "/" + s << RESET_COLOR << std::endl;
+	std::cout << FUNC_COLOR << "FUNC:" + t + "}" << RESET_COLOR << std::endl;
 }
