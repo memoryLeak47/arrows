@@ -18,6 +18,8 @@ Entity::~Entity()
 
 void Entity::tick()
 {
+	optGravity();
+	optDrag();
 	if (dashCounter > 1)
 	{
 		dashCounter--;
@@ -39,6 +41,16 @@ void Entity::applyImpact(const Impact& impact)
 {
 	body->applyImpact(impact);
 	setChanged(true);
+}
+
+void Entity::optGravity()
+{
+	applyImpact(Impact(GameVector(0.f, 1.f), 0.0002f, GameVector(body->getPosition())));
+}
+
+void Entity::optDrag()
+{
+	applyImpact(Impact(GameVector(0.f, 0.f), 0.09f, GameVector(body->getPosition())));
 }
 
 void Entity::addCollisionPartner(Entity* e)

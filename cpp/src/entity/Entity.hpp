@@ -42,6 +42,8 @@ class Entity
 		// for body
 		void move(float time);
 		void applyImpact(const Impact& impact);
+		virtual void optGravity();
+		virtual void optDrag();
 
 		// collision
 		virtual float getCollisionPriority(Entity* e) { return 1; } // TODO = 0
