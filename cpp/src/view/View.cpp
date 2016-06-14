@@ -5,7 +5,7 @@
 #include "../core/Screen.hpp"
 
 View::View()
-	: scale(40), spot(0,0)
+	: scale(40), spot(0,0), focusEntity(false)
 {}
 
 GameRect View::getVisionRect() const
