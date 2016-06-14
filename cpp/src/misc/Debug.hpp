@@ -53,6 +53,10 @@ class Debug
 		static void error(const std::string&);
 		static void errorIf(bool, const std::string&);
 		static void time(const std::string&);
+		static void funcOn(const std::string&);
+		static void funcOff(const std::string&);
+	private:
+		static int indentCounter;
 };
 
 #endif

@@ -3,8 +3,12 @@
 #include "Converter.hpp"
 #include "../core/Main.hpp"
 
+int Debug::indentCounter;
+
 void Debug::init()
-{}
+{
+	indentCounter = 0;
+}
 
 // note
 
@@ -72,4 +76,28 @@ void Debug::time(const std::string& s)
 	static sf::Clock c;
 	int t = c.restart().asMilliseconds();
 	std::cout << TIME_COLOR << "TIME: " << Converter::intToString(t) << ": " << s << std::endl;
+}
+
+void Debug::funcOn(const std::string& s)
+{
+	indentCounter++;
+	std::string t;
+	for (int i = 0; i < indentCounter; i++)
+	{
+		t += "\t";
+	}
+
+	std::cout << NOTE_COLOR << "FUNC:" + t + s << RESET_COLOR << std::endl;
+}
+
+void Debug::funcOff(const std::string& s)
+{
+	std::string t;
+	for (int i = 0; i < indentCounter; i++)
+	{
+		t += "\t";
+	}
+
+	std::cout << NOTE_COLOR << "FUNC:" + t + "\\" + s << RESET_COLOR << std::endl;
+	indentCounter--;
 }
