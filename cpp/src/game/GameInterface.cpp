@@ -27,9 +27,11 @@ GameInterface::~GameInterface()
 
 void GameInterface::tick()
 {
+	Debug::funcOn("GameInterface::tick");
 	NetworkingMenu::tick();
 	tickEntities();
 	tickPhysics();
+	Debug::funcOff("GameInterface::tick");
 }
 
 void GameInterface::controlLocalPlayer()

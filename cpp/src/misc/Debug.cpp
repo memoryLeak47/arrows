@@ -83,7 +83,7 @@ void Debug::func(const std::string& s)
 	std::string t = "";
 	for (int i = 0; i < indentCounter; i++)
 	{
-		t += "  ";
+		t += "    ";
 	}
 	std::cout << FUNC_COLOR << "FUNC:" + t + s << RESET_COLOR << std::endl;
 }
@@ -93,7 +93,7 @@ void Debug::funcOn(const std::string& s)
 	std::string t = "";
 	for (int i = 0; i < indentCounter; i++)
 	{
-		t += "  ";
+		t += "    ";
 	}
 	std::cout << FUNC_COLOR << "FUNC:" + t + s << RESET_COLOR << std::endl;
 	indentCounter++;
@@ -105,7 +105,7 @@ void Debug::funcOff(const std::string& s)
 	std::string t = "";
 	for (int i = 0; i < indentCounter; i++)
 	{
-		t += "  ";
+		t += "    ";
 	}
 
 	std::cout << FUNC_COLOR << "FUNC:" + t + "/" + s << RESET_COLOR << std::endl;
