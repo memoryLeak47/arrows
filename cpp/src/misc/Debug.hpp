@@ -15,6 +15,7 @@
 #define WARN_COLOR FRED
 #define ERROR_COLOR FRED
 #define TIME_COLOR FCYAN
+#define FUNC_COLOR FCYAN
 
 #define RESET_COLOR "\u001B[0m"
 
@@ -53,6 +54,7 @@ class Debug
 		static void error(const std::string&);
 		static void errorIf(bool, const std::string&);
 		static void time(const std::string&);
+		static void func(const std::string&);
 		static void funcOn(const std::string&);
 		static void funcOff(const std::string&);
 	private:

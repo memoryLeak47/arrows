@@ -5,6 +5,7 @@
 
 void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 {
+	Debug::funcOn("CollisionHandler::handleCollisionEvent");
 	int collisionType = std::max(ev->getEntity1()->getCollisionType(), ev->getEntity2()->getCollisionType());
 	switch (collisionType)
 	{
@@ -15,6 +16,7 @@ void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 			// do nothing, unsuccessfully
 			break;
 	}
+	Debug::funcOff("CollisionHandler::handleCollisionEvent");
 }
 
 void CollisionHandler::handleCollisionEventSolid(CollisionEvent* event)

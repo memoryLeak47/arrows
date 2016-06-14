@@ -78,26 +78,35 @@ void Debug::time(const std::string& s)
 	std::cout << TIME_COLOR << "TIME: " << Converter::intToString(t) << ": " << s << std::endl;
 }
 
-void Debug::funcOn(const std::string& s)
+void Debug::func(const std::string& s)
 {
-	indentCounter++;
-	std::string t;
+	std::string t = "";
 	for (int i = 0; i < indentCounter; i++)
 	{
-		t += "\t";
+		t += "  ";
 	}
+	std::cout << FUNC_COLOR << "FUNC:" + t + s << RESET_COLOR << std::endl;
+}
 
-	std::cout << NOTE_COLOR << "FUNC:" + t + s << RESET_COLOR << std::endl;
+void Debug::funcOn(const std::string& s)
+{
+	std::string t = "";
+	for (int i = 0; i < indentCounter; i++)
+	{
+		t += "  ";
+	}
+	std::cout << FUNC_COLOR << "FUNC:" + t + s << RESET_COLOR << std::endl;
+	indentCounter++;
 }
 
 void Debug::funcOff(const std::string& s)
 {
-	std::string t;
+	indentCounter--;
+	std::string t = "";
 	for (int i = 0; i < indentCounter; i++)
 	{
-		t += "\t";
+		t += "  ";
 	}
 
-	std::cout << NOTE_COLOR << "FUNC:" + t + "\\" + s << RESET_COLOR << std::endl;
-	indentCounter--;
+	std::cout << FUNC_COLOR << "FUNC:" + t + "/" + s << RESET_COLOR << std::endl;
 }

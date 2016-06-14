@@ -18,6 +18,7 @@ Entity::~Entity()
 
 void Entity::tick()
 {
+	Debug::func("Entity::tick");
 	optGravity();
 	optDrag();
 	if (dashCounter > 1)
