@@ -45,9 +45,7 @@ void CollisionHandler::handleCollisionEventSolid(CollisionEvent* event)
 	}
 
 	massShare2 = 1-massShare1;
-	GameVector speedDif = entity1->getBody()->getSpeed() - entity2->getBody()->getSpeed();
-	entity1->getBody()->setSpeed(entity1->getBody()->getSpeed() - speedDif * massShare2);
-	entity2->getBody()->setSpeed(entity2->getBody()->getSpeed() - speedDif * massShare1);
-	entity1->setChanged(true);
-	entity2->setChanged(true);
+	//GameVector speedDif = entity1->getBody()->getSpeed() - entity2->getBody()->getSpeed();
+	entity1->applyImpact(Impact(entity2->getBody()->getSpeed(), massShare2, GameVector(0.f, 0.f)));
+	entity2->applyImpact(Impact(entity1->getBody()->getSpeed(), massShare1, GameVector(0.f, 0.f)));
 }

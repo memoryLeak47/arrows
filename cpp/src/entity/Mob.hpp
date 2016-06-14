@@ -13,6 +13,8 @@ class Mob : public Entity
 		virtual void actionGoLeft();
 		virtual void actionGoRight();
 		virtual void actionJump();
+	protected:
+		virtual float getMaxXSpeed() { return 0.3f; }
 };
 
 #endif

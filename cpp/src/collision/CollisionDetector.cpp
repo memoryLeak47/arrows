@@ -6,7 +6,7 @@ void CollisionDetector::addCollisionsBetween(Entity* e1, Entity* e2, std::vector
 {
 	if (e1->getBody()->getBodyType() == BodyType::RECT && e2->getBody()->getBodyType() == BodyType::RECT)
 	{
-		if (dynamic_cast<RectBody*>(e1->getBody())->isEven() && dynamic_cast<RectBody*>(e2->getBody())->isEven())
+		if (dynamic_cast<const RectBody*>(e1->getBody())->isEven() && dynamic_cast<const RectBody*>(e2->getBody())->isEven())
 		{
 			addCollisionsBetweenEvenRects(e1, e2, events, timeLeft);
 		}
@@ -38,19 +38,19 @@ int getNextIndex(const std::vector<float>& floats)
 
 void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
 {
-	float posX1 = dynamic_cast<RectBody*>(e1->getBody())->getPosition().getX();
-	float posY1 = dynamic_cast<RectBody*>(e1->getBody())->getPosition().getY();
-	float sizeX1 = dynamic_cast<RectBody*>(e1->getBody())->getSize().getX();
-	float sizeY1 = dynamic_cast<RectBody*>(e1->getBody())->getSize().getY();
+	float posX1 = dynamic_cast<const RectBody*>(e1->getBody())->getPosition().getX();
+	float posY1 = dynamic_cast<const RectBody*>(e1->getBody())->getPosition().getY();
+	float sizeX1 = dynamic_cast<const RectBody*>(e1->getBody())->getSize().getX();
+	float sizeY1 = dynamic_cast<const RectBody*>(e1->getBody())->getSize().getY();
 
 	// speed subtraction
-	float speedX = dynamic_cast<RectBody*>(e1->getBody())->getSpeed().getX() - dynamic_cast<RectBody*>(e2->getBody())->getSpeed().getX();
-	float speedY = dynamic_cast<RectBody*>(e1->getBody())->getSpeed().getY() - dynamic_cast<RectBody*>(e2->getBody())->getSpeed().getY();
+	float speedX = dynamic_cast<const RectBody*>(e1->getBody())->getSpeed().getX() - dynamic_cast<const RectBody*>(e2->getBody())->getSpeed().getX();
+	float speedY = dynamic_cast<const RectBody*>(e1->getBody())->getSpeed().getY() - dynamic_cast<const RectBody*>(e2->getBody())->getSpeed().getY();
 
-	float posX2 = dynamic_cast<RectBody*>(e2->getBody())->getPosition().getX();
-	float posY2 = dynamic_cast<RectBody*>(e2->getBody())->getPosition().getY();
-	float sizeX2 = dynamic_cast<RectBody*>(e2->getBody())->getSize().getX();
-	float sizeY2 = dynamic_cast<RectBody*>(e2->getBody())->getSize().getY();
+	float posX2 = dynamic_cast<const RectBody*>(e2->getBody())->getPosition().getX();
+	float posY2 = dynamic_cast<const RectBody*>(e2->getBody())->getPosition().getY();
+	float sizeX2 = dynamic_cast<const RectBody*>(e2->getBody())->getSize().getX();
+	float sizeY2 = dynamic_cast<const RectBody*>(e2->getBody())->getSize().getY();
 
 	std::vector<float> floats;
 	std::vector<bool> bools;

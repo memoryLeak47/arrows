@@ -4,8 +4,8 @@
 
 #include "../misc/Debug.hpp"
 
-RectBody::RectBody(const GameVector& pos, const GameVector& size, const GameVector& speed, float rot, float spin)
-	: position(pos), size(size), speed(speed), rotation(rot), spin(spin)
+RectBody::RectBody(const GameVector& pos, const GameVector& size, const GameVector& speed, bool isRot, float rot, float spin)
+	: Body(isRot), position(pos), size(size), speed(speed), rotation(rot), spin(spin)
 {}
 
 BodyType RectBody::getBodyType() const

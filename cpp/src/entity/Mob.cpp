@@ -13,15 +13,15 @@ EntityType Mob::getEntityType()
 
 void Mob::actionGoLeft()
 {
-	getBody()->setSpeed(getBody()->getSpeed() - GameVector(0.003f, 0.f));
+	body->applyImpact(Impact(GameVector(-getMaxXSpeed(), 0.f), 0.03f, body->getPosition()));
 }
 
 void Mob::actionGoRight()
 {
-	getBody()->setSpeed(getBody()->getSpeed() + GameVector(0.003f, 0.f));
+	body->applyImpact(Impact(GameVector(getMaxXSpeed(), 0.f), 0.03f, body->getPosition()));
 }
 
 void Mob::actionJump()
 {
-	getBody()->setSpeed(GameVector(getBody()->getSpeed().getX(), -0.1f));
+	body->setSpeed(GameVector(body->getSpeed().getX(), -0.1f));
 }

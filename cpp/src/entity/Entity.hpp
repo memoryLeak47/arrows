@@ -29,6 +29,7 @@ class GameVector;
 class GameRect;
 class PixelRect;
 class View;
+class Impact;
 
 class Entity
 {
@@ -37,6 +38,10 @@ class Entity
 		virtual ~Entity();
 		virtual void tick();
 		virtual std::string toString() const = 0;
+
+		// for body
+		void move(float time);
+		void applyImpact(const Impact& impact);
 
 		// collision
 		virtual float getCollisionPriority(Entity* e) { return 1; } // TODO = 0
@@ -56,7 +61,7 @@ class Entity
 		bool hasCollisionPartner(Entity*) const;
 		static bool areCollisionPartners(Entity*, Entity*);
 
-		Body* getBody() const;
+		const Body* getBody() const;
 		virtual bool hasChanged() const;
 		void setChanged(bool);
 
@@ -72,10 +77,10 @@ class Entity
 	protected:
 		void basicRender(const View&) const;
 		PixelRect getRenderRect(const View&) const;
+		Body* body;
 	private:
 		bool changed;
 		int dashCounter;
-		Body* body;
 		std::vector<Entity*> collisionPartners;
 };
 
@@ -88,6 +93,7 @@ class Entity
 #include "../math/game/GameRect.hpp"
 #include "../math/pixel/PixelRect.hpp"
 #include "../view/View.hpp"
+#include "../collision/Impact.hpp"
 
 #include "../graphics/GraphicsManager.hpp"
 

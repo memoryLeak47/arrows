@@ -30,6 +30,17 @@ void Entity::tick()
 	}
 }
 
+void Entity::move(float time)
+{
+	body->move(time);
+}
+
+void Entity::applyImpact(const Impact& impact)
+{
+	body->applyImpact(impact);
+	setChanged(true);
+}
+
 void Entity::addCollisionPartner(Entity* e)
 {
 	collisionPartners.push_back(e);
@@ -81,7 +92,7 @@ bool Entity::areCollisionPartners(Entity* e1, Entity* e2)
 	return alreadyPartners;
 }
 
-Body* Entity::getBody() const
+const Body* Entity::getBody() const
 {
 	return body;
 }
@@ -115,7 +126,7 @@ PixelRect Entity::getRenderRect(const View& v) const
 
 void Entity::dash(const GameVector& targetPosition, float duration)
 {
-	getBody()->setSpeed((targetPosition - getBody()->getPosition())/duration);
+	body->setSpeed((targetPosition - getBody()->getPosition())/duration);
 	dashCounter = duration;
 }
 
@@ -127,7 +138,8 @@ bool Entity::couldDashTo(const GameVector&) const
 
 void Entity::flash(const GameVector& target)
 {
-	getBody()->setPosition(target);
+	body->setPosition(target);
+	setChanged(true);
 }
 
 bool Entity::couldFlashTo(const GameVector&) const

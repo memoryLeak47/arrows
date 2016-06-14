@@ -27,34 +27,36 @@ enum BodyType
 
 class GameRect;
 class GameVector;
+class Impact;
 
 class Body
 {
 	public:
 		// Konstruktor/Destruktor
+		Body(bool isRot);
 		virtual ~Body() {}
 		virtual BodyType getBodyType() const = 0;
 
 		void move(float time);
-
+		void applyImpact(const Impact&);
 		virtual GameRect getWrapper(float timeLeft) const = 0;
-		// speed
+
 		virtual const GameVector& getSpeed() const = 0;
-		virtual void setSpeed(const GameVector&) = 0;
-		// position
 		virtual const GameVector& getPosition() const = 0; // returnt die Position relativ zur Map vom ImageCenter
-		virtual void setPosition(const GameVector&) = 0;
-		// rotation
 		virtual float getRotation() const = 0;
-		virtual void setRotation(float) = 0;
-		// spin
 		virtual float getSpin() const = 0;
-		virtual void setSpin(float) = 0;
 
 		virtual GameRect getRenderGameRect() const = 0;
+		virtual void setSpeed(const GameVector&) = 0;
+		virtual void setPosition(const GameVector&) = 0;
+		virtual void setRotation(float) = 0;
+		virtual void setSpin(float) = 0;
+	private:
+		bool rotateable;
 };
 
 #include "../math/game/GameRect.hpp"
 #include "../math/game/GameVector.hpp"
+#include "../collision/Impact.hpp"
 
 #endif

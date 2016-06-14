@@ -201,7 +201,7 @@ void GameInterface::moveAllEntities(float time)
 
 	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
 	{
-		getDynamicEntity(i)->getBody()->move(time);
+		getDynamicEntity(i)->move(time);
 	}
 }
 
