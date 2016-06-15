@@ -46,7 +46,7 @@ void Entity::applyImpact(const Impact& impact)
 
 void Entity::optGravity()
 {
-	applyImpact(Impact(GameVector(0.f, 1.f), 0.0002f, GameVector(body->getPosition())));
+	applyImpact(Impact(GameVector(0.f, 1.f), 0.002f, GameVector(body->getPosition())));
 }
 
 void Entity::optDrag()

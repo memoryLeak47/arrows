@@ -47,18 +47,22 @@ void CollisionHandler::handleCollisionEventSolid(CollisionEvent* event)
 	}
 
 	massShare2 = 1-massShare1;
-	//GameVector speedDif = entity1->getBody()->getSpeed() - entity2->getBody()->getSpeed();
+
+	GameVector point = (event->getCollisionPoints()[0] + event->getCollisionPoints()[1])/2.f;
+
 	if (event->getCollisionPoints().size() == 1)
 	{
-		entity1->applyImpact(Impact(entity2->getBody()->getSpeed(), massShare2, GameVector(0.f, 0.f)));
-		entity2->applyImpact(Impact(entity1->getBody()->getSpeed(), massShare1, GameVector(0.f, 0.f)));
+		entity1->applyImpact(Impact(entity2->getBody()->getSpeed(), massShare2, point));
+		entity2->applyImpact(Impact(entity1->getBody()->getSpeed(), massShare1, point));
 	}
 	else if (event->getCollisionPoints().size() == 2)
 	{
-		GameVector v1(entity2->getBody()->getSpeed()); // TODO be better !
-		GameVector v2(entity1->getBody()->getSpeed());
-		entity1->applyImpact(Impact(v1, massShare2, GameVector(0.f, 0.f)));
-		entity2->applyImpact(Impact(v2, massShare1, GameVector(0.f, 0.f)));
+		GameVector norm(event->getCollisionPoints()[0] - event->getCollisionPoints()[1]);
+		norm = norm/norm.getMagnitude();
+		GameVector v1(norm * GameVector::getScalarProduct(norm, entity2->getBody()->getSpeed()));
+		GameVector v2(norm * GameVector::getScalarProduct(norm, entity1->getBody()->getSpeed()));
+		entity1->applyImpact(Impact(v1, massShare2, point));
+		entity2->applyImpact(Impact(v2, massShare1, point));
 	}
 	else
 	{
