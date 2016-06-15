@@ -81,3 +81,55 @@ bool RectBody::isEven() const
 {
 	return (getSpin() == 0.f) && (getRotation() == 0.f);
 }
+
+float RectBody::getLeft() const
+{
+	if (isEven())
+	{
+		return getPosition().getX() - getSize().getX()/2.f;
+	}
+	else
+	{
+		Debug::warn("RectBody::getLeft(): TODO");
+	}
+	return 0.f;
+}
+
+float RectBody::getRight() const
+{
+	if (isEven())
+	{
+		return getPosition().getX() + getSize().getX()/2.f;
+	}
+	else
+	{
+		Debug::warn("RectBody::getRight(): TODO");
+	}
+	return 0.f;
+}
+
+float RectBody::getTop() const
+{
+	if (isEven())
+	{
+		return getPosition().getY() - getSize().getY()/2.f;
+	}
+	else
+	{
+		Debug::warn("RectBody::getTop(): TODO");
+	}
+	return 0.f;
+}
+
+float RectBody::getBot() const
+{
+	if (isEven())
+	{
+		return getPosition().getY() + getSize().getY()/2.f;
+	}
+	else
+	{
+		Debug::warn("RectBody::getBot(): TODO");
+	}
+	return 0.f;
+}

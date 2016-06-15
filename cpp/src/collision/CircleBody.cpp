@@ -77,3 +77,27 @@ GameRect CircleBody::getRenderGameRect() const
 {
 	return GameRect(getPosition(), GameVector(2*getRadius(), 2*getRadius()));
 }
+
+float CircleBody::getLeft() const
+{
+	Debug::warn("CircleBody::getLeft(): TODO");
+	return 0.f;
+}
+
+float CircleBody::getRight() const
+{
+	Debug::warn("CircleBody::getRight(): TODO");
+	return 0.f;
+}
+
+float CircleBody::getTop() const
+{
+	Debug::warn("CircleBody::getTop(): TODO");
+	return 0.f;
+}
+
+float CircleBody::getBot() const
+{
+	Debug::warn("CircleBody::getBot(): TODO");
+	return 0.f;
+}

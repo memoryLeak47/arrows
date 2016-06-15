@@ -24,6 +24,11 @@ class CircleBody : public Body
 		virtual void setSpeed(const GameVector&) override;
 		virtual void setRotation(float) override;
 		virtual void setSpin(float) override;
+
+		virtual float getLeft() const;
+		virtual float getRight() const;
+		virtual float getTop() const;
+		virtual float getBot() const;
 	private:
 		GameVector position;
 		GameVector speed;

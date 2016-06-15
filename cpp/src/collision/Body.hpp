@@ -51,6 +51,11 @@ class Body
 		virtual void setPosition(const GameVector&) = 0;
 		virtual void setRotation(float) = 0;
 		virtual void setSpin(float) = 0;
+
+		virtual float getLeft() const = 0;
+		virtual float getRight() const = 0;
+		virtual float getTop() const = 0;
+		virtual float getBot() const = 0;
 	private:
 		bool rotateable;
 };
