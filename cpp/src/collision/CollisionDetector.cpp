@@ -107,8 +107,8 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 		bools.push_back(false);
 	}
 
-	bool xCol = ((posX1 + sizeX1/2.f) > (posX2 - sizeX2/2.f)) && ((posX2 + sizeX2/2.f) > (posX1 - sizeX1/2.f));
-	bool yCol = ((posY1 + sizeY1/2.f) > (posY2 - sizeY2/2.f)) && ((posY2 + sizeY2/2.f) > (posY1 - sizeY1/2.f));
+	bool xCol = ((posX1 + sizeX1/2.f) >= (posX2 - sizeX2/2.f)) && ((posX2 + sizeX2/2.f) >= (posX1 - sizeX1/2.f));
+	bool yCol = ((posY1 + sizeY1/2.f) >= (posY2 - sizeY2/2.f)) && ((posY2 + sizeY2/2.f) >= (posY1 - sizeY1/2.f));
 
 	if (xCol && yCol)
 	{
