@@ -5,7 +5,7 @@
 
 void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 {
-	Debug::funcOn("CollisionHandler::handleCollisionEvent");
+	Debug::funcOn("CollisionHandler::handleCollisionEvent: " + ev->toString());
 	int collisionType = std::max(ev->getEntity1()->getCollisionType(), ev->getEntity2()->getCollisionType());
 	switch (collisionType)
 	{
@@ -16,15 +16,13 @@ void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 			// do nothing, unsuccessfully
 			break;
 	}
-	Debug::funcOff("CollisionHandler::handleCollisionEvent");
+	Debug::funcOff("CollisionHandler::handleCollisionEvent: " + ev->toString());
 }
 
 void CollisionHandler::handleCollisionEventSolid(CollisionEvent* event)
 {
 	Entity* entity1 = event->getEntity1();
 	Entity* entity2 = event->getEntity2();
-
-	Debug::test("collision: " + entity1->toString() + " vs " + entity2->toString());
 
 	float massShare1; // wieviel Prozent der Gesamtmasse der beiden CollisionPartner nimmt entity1 ein
 	float massShare2; // wieviel Prozent der Gesamtmasse der beiden CollisionPartner nimmt entity2 ein
@@ -50,6 +48,10 @@ void CollisionHandler::handleCollisionEventSolid(CollisionEvent* event)
 
 	GameVector point = (event->getCollisionPoints()[0] + event->getCollisionPoints()[1])/2.f;
 
+	for (unsigned int i = 0; i < event->getCollisionPoints().size(); i++)
+	{
+		Debug::test("collisionPoint[" + Converter::intToString((int)i) + "] = " + event->getCollisionPoints()[i].toString());
+	}
 	if (event->getCollisionPoints().size() == 1)
 	{
 		entity1->applyImpact(Impact(entity2->getBody()->getSpeed(), massShare2, point));
@@ -59,6 +61,8 @@ void CollisionHandler::handleCollisionEventSolid(CollisionEvent* event)
 	{
 		GameVector norm(event->getCollisionPoints()[0] - event->getCollisionPoints()[1]);
 		norm = norm/norm.getMagnitude();
+		norm = GameVector(norm.getY(), -norm.getX());
+		Debug::test("norm = " + norm.toString());
 		GameVector v1(norm * GameVector::getScalarProduct(norm, entity2->getBody()->getSpeed()));
 		GameVector v2(norm * GameVector::getScalarProduct(norm, entity1->getBody()->getSpeed()));
 		entity1->applyImpact(Impact(v1, massShare2, point));

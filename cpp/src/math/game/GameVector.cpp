@@ -75,5 +75,5 @@ GameVector GameVector::operator/(float f) const
 
 std::string GameVector::toString() const
 {
-	return "GV(" + Converter::floatToString(getX()) + ", " + Converter::floatToString(getY()) + ")";
+	return "(" + Converter::floatToString(getX()) + ", " + Converter::floatToString(getY()) + ")";
 }

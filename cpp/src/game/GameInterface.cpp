@@ -157,7 +157,6 @@ CollisionEvent* GameInterface::cutFirstEvent(std::vector<CollisionEvent*>* event
 
 void GameInterface::updateEventsFrom(Entity* entity, std::vector<CollisionEvent*>* events, float timeLeft)
 {
-	Debug::func("GameInterface::updateEventsFrom " + entity->toString());
 	for (unsigned int i = 0; i < events->size(); i++)
 	{
 		if ((*events)[i]->getEntity1() == entity || (*events)[i]->getEntity2() == entity)
@@ -172,6 +171,7 @@ void GameInterface::updateEventsFrom(Entity* entity, std::vector<CollisionEvent*
 
 void GameInterface::addEventsFrom(Entity* entity, std::vector<CollisionEvent*>* events, float timeLeft)
 {
+	Debug::funcOn("GameInterface::addEventsFrom " + entity->toString());
 	if (!entity->hasChanged())
 	{
 		return;
@@ -198,6 +198,7 @@ void GameInterface::addEventsFrom(Entity* entity, std::vector<CollisionEvent*>* 
 			CollisionDetector::addCollisionsBetween(entity, t, events, timeLeft);
 		}
 	}
+	Debug::funcOff("GameInterface::addEventsFrom " + entity->toString());
 }
 
 void GameInterface::moveAllEntities(float time)

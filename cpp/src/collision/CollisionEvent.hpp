@@ -2,6 +2,7 @@
 #define __COLLISIONEVENT_CLASS__
 
 #include <vector>
+#include <string>
 
 class Entity;
 class GameVector;
@@ -15,6 +16,7 @@ class CollisionEvent
 		float getTimeUntilFrameEnds() const;
 		bool isEnterEvent() const;
 		const std::vector<GameVector>& getCollisionPoints() const;
+		std::string toString() const;
 	private:
 		Entity* entity1;
 		Entity* entity2;

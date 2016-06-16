@@ -114,7 +114,9 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 	{
 		if (floats.size() > 0)
 		{
-			events->push_back(new CollisionEvent(e1, e2, timeLeft-floats[getNextIndex(floats)], false, std::vector<GameVector>()));
+			CollisionEvent* ev1 = new CollisionEvent(e1, e2, timeLeft-floats[getNextIndex(floats)], false, std::vector<GameVector>());
+			Debug::test("ev1: " + ev1->toString());
+			events->push_back(ev1);
 		}
 	}
 	else
@@ -164,10 +166,14 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 										std::min(e1->getBody()->getTop() + e1->getBody()->getSpeed().getY() * time,
 											 e2->getBody()->getTop() + e2->getBody()->getSpeed().getY() * time)));
 				}
-				events->push_back(new CollisionEvent(e1, e2, timeLeft-time, true, collisionPoints));
+				CollisionEvent* ev2 = new CollisionEvent(e1, e2, timeLeft-time, true, collisionPoints);
+				Debug::test("ev2: " + ev2->toString());
+				events->push_back(ev2);
 				if (floats.size() > 0)
 				{
-					events->push_back(new CollisionEvent(e1, e2, timeLeft-floats[getNextIndex(floats)], false, std::vector<GameVector>()));
+					CollisionEvent* ev3 = new CollisionEvent(e1, e2, timeLeft-floats[getNextIndex(floats)], false, std::vector<GameVector>());
+					Debug::test("ev3: " + ev3->toString());
+					events->push_back(ev3);
 				}
 				return;
 			}
