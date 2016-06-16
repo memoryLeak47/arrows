@@ -63,8 +63,8 @@ void CollisionHandler::handleCollisionEventSolid(CollisionEvent* event)
 		norm = norm/norm.getMagnitude();
 		norm = GameVector(norm.getY(), -norm.getX());
 		Debug::test("norm = " + norm.toString());
-		GameVector v1(norm * GameVector::getScalarProduct(norm, entity2->getBody()->getSpeed()));
-		GameVector v2(norm * GameVector::getScalarProduct(norm, entity1->getBody()->getSpeed()));
+		GameVector v1(norm * GameVector::getScalarProduct(norm, entity2->getBody()->getSpeed() - entity1->getBody()->getSpeed()));
+		GameVector v2(norm * GameVector::getScalarProduct(norm, entity1->getBody()->getSpeed() - entity2->getBody()->getSpeed()));
 		entity1->applyImpact(Impact(v1, massShare2, point));
 		entity2->applyImpact(Impact(v2, massShare1, point));
 	}

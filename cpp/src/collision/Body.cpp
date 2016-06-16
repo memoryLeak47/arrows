@@ -1,5 +1,7 @@
 #include "Body.hpp"
 
+#include "../misc/Debug.hpp"
+
 Body::Body(bool isRot)
 	: rotateable(isRot)
 {}
@@ -13,13 +15,13 @@ void Body::move(float time)
 
 void Body::applyImpact(const Impact& impact)
 {
+	Debug::test("applyImpact(" + impact.getSpeed().toString() + ")");
 	if (rotateable)
 	{
 		// TODO
 	}
 	else
 	{
-		GameVector speedDif = impact.getSpeed() - getSpeed();
-		setSpeed(getSpeed() + (speedDif * impact.getStrength()));
+		setSpeed(getSpeed() + (impact.getSpeed() * impact.getStrength()));
 	}
 }

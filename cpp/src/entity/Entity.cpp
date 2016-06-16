@@ -51,7 +51,7 @@ void Entity::optGravity()
 
 void Entity::optDrag()
 {
-	applyImpact(Impact(GameVector(0.f, 0.f), 0.09f, GameVector(body->getPosition())));
+	applyImpact(Impact(GameVector(body->getSpeed() * (-1.f)), 0.09f, GameVector(body->getPosition())));
 }
 
 void Entity::addCollisionPartner(Entity* e)
