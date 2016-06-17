@@ -36,6 +36,37 @@ int getNextIndex(const std::vector<float>& floats)
 	return spot;
 }
 
+// private function
+std::vector<GameVector> getCollisionPoints(Entity* e1, Entity* e2, bool lastColWasX, float time)
+{
+	std::vector<GameVector> collisionPoints;
+	if (lastColWasX)
+	{
+		collisionPoints.push_back(GameVector(	std::max(e1->getBody()->getLeft() + e1->getBody()->getSpeed().getX() * time, 
+								e2->getBody()->getLeft() + e2->getBody()->getSpeed().getX() * time),
+							std::max(e1->getBody()->getTop() + e1->getBody()->getSpeed().getY() * time,
+								e2->getBody()->getTop() + e2->getBody()->getSpeed().getY() * time)));
+
+		collisionPoints.push_back(GameVector(	std::max(e1->getBody()->getLeft() + e1->getBody()->getSpeed().getX() * time, 
+								e2->getBody()->getLeft() + e2->getBody()->getSpeed().getX() * time),
+							std::min(e1->getBody()->getBot() + e1->getBody()->getSpeed().getY() * time,
+								e2->getBody()->getBot() + e2->getBody()->getSpeed().getY() * time)));
+	}
+	else
+	{
+		collisionPoints.push_back(GameVector(	std::max(e1->getBody()->getLeft() + e1->getBody()->getSpeed().getX() * time,
+								 e2->getBody()->getLeft() + e2->getBody()->getSpeed().getX() * time),
+							std::min(e1->getBody()->getTop() + e1->getBody()->getSpeed().getY() * time,
+								 e2->getBody()->getTop() + e2->getBody()->getSpeed().getY() * time)));
+
+		collisionPoints.push_back(GameVector(	std::min(e1->getBody()->getRight() + e1->getBody()->getSpeed().getX() * time,
+								 e2->getBody()->getRight() + e2->getBody()->getSpeed().getX() * time),
+							std::min(e1->getBody()->getTop() + e1->getBody()->getSpeed().getY() * time,
+								 e2->getBody()->getTop() + e2->getBody()->getSpeed().getY() * time)));
+	}
+	return collisionPoints;
+}
+
 void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
 {
 	float posX1 = dynamic_cast<const RectBody*>(e1->getBody())->getPosition().getX();
@@ -114,7 +145,7 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 	{
 		if (floats.size() > 0)
 		{
-			CollisionEvent* ev1 = new CollisionEvent(e1, e2, timeLeft-floats[getNextIndex(floats)], false, std::vector<GameVector>());
+			CollisionEvent* ev1 = new CollisionEvent(e1, e2, timeLeft-floats[getNextIndex(floats)], COLLISIONEVENTTYPE_EXIT, std::vector<GameVector>());
 			Debug::test("ev1: " + ev1->toString());
 			events->push_back(ev1);
 		}
@@ -141,39 +172,20 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 			bools.erase(bools.begin() + index);
 			if (xCol && yCol)
 			{
-				std::vector<GameVector> collisionPoints;
-				if (lastColWasX)
-				{
-					collisionPoints.push_back(GameVector(	std::max(e1->getBody()->getLeft() + e1->getBody()->getSpeed().getX() * time, 
-											e2->getBody()->getLeft() + e2->getBody()->getSpeed().getX() * time),
-										std::max(e1->getBody()->getTop() + e1->getBody()->getSpeed().getY() * time,
-											e2->getBody()->getTop() + e2->getBody()->getSpeed().getY() * time)));
+				std::vector<GameVector> collisionPoints = getCollisionPoints(e1, e2, lastColWasX, time);
 
-					collisionPoints.push_back(GameVector(	std::max(e1->getBody()->getLeft() + e1->getBody()->getSpeed().getX() * time, 
-											e2->getBody()->getLeft() + e2->getBody()->getSpeed().getX() * time),
-										std::min(e1->getBody()->getBot() + e1->getBody()->getSpeed().getY() * time,
-											e2->getBody()->getBot() + e2->getBody()->getSpeed().getY() * time)));
-				}
-				else
-				{
-					collisionPoints.push_back(GameVector(	std::max(e1->getBody()->getLeft() + e1->getBody()->getSpeed().getX() * time,
-											 e2->getBody()->getLeft() + e2->getBody()->getSpeed().getX() * time),
-										std::min(e1->getBody()->getTop() + e1->getBody()->getSpeed().getY() * time,
-											 e2->getBody()->getTop() + e2->getBody()->getSpeed().getY() * time)));
-
-					collisionPoints.push_back(GameVector(	std::min(e1->getBody()->getRight() + e1->getBody()->getSpeed().getX() * time,
-											 e2->getBody()->getRight() + e2->getBody()->getSpeed().getX() * time),
-										std::min(e1->getBody()->getTop() + e1->getBody()->getSpeed().getY() * time,
-											 e2->getBody()->getTop() + e2->getBody()->getSpeed().getY() * time)));
-				}
-				CollisionEvent* ev2 = new CollisionEvent(e1, e2, timeLeft-time, true, collisionPoints);
+				CollisionEvent* ev2 = new CollisionEvent(e1, e2, timeLeft-time, COLLISIONEVENTTYPE_ENTER, collisionPoints);
 				Debug::test("ev2: " + ev2->toString());
 				events->push_back(ev2);
+
+				CollisionEvent* ev3 = new CollisionEvent(e1, e2, timeLeft-time, COLLISIONEVENTTYPE_STAY, collisionPoints);
+				Debug::test("ev3: " + ev3->toString());
+				events->push_back(ev3);
 				if (floats.size() > 0)
 				{
-					CollisionEvent* ev3 = new CollisionEvent(e1, e2, timeLeft-floats[getNextIndex(floats)], false, std::vector<GameVector>());
-					Debug::test("ev3: " + ev3->toString());
-					events->push_back(ev3);
+					CollisionEvent* ev4 = new CollisionEvent(e1, e2, timeLeft-floats[getNextIndex(floats)], COLLISIONEVENTTYPE_EXIT, std::vector<GameVector>());
+					Debug::test("ev4: " + ev4->toString());
+					events->push_back(ev4);
 				}
 				return;
 			}
