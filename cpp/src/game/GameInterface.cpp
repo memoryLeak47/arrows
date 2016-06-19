@@ -93,34 +93,33 @@ void GameInterface::tickPhysics()
 		timeLeft = event->getTimeUntilFrameEnds();
 
 		// CollisionPartner aktualisieren / on/offCollide
-		if (event->getType() == COLLISIONEVENTTYPE_ENTER) // Hi
+		if (event->isEnterEvent()) // Hi
 		{
-			// Partner :D
-			event->getEntity1()->addCollisionPartner(event->getEntity2());
-			event->getEntity2()->addCollisionPartner(event->getEntity1());
-			event->getEntity1()->onCollide(event->getEntity2());
-			event->getEntity2()->onCollide(event->getEntity1());
-			if (memberOf(event->getEntity2(), event->getEntity1()->getCollisionPartners())) // you are new
+			if (! memberOf(event->getEntity2(), event->getEntity1()->getCollisionPartners())) // you are new
 			{
-				Debug::warn("enter event with partner: " + event->toString());
+				// Partner :D
+				event->getEntity1()->addCollisionPartner(event->getEntity2());
+				event->getEntity2()->addCollisionPartner(event->getEntity1());
+				event->getEntity1()->onCollide(event->getEntity2());
+				event->getEntity2()->onCollide(event->getEntity1());
 			}
-		}
-		else if (event->getType() == COLLISIONEVENTTYPE_EXIT) // Bye
-		{
-			// Bye
-			event->getEntity1()->removeCollisionPartner(event->getEntity2());
-			event->getEntity2()->removeCollisionPartner(event->getEntity1());
-			event->getEntity1()->offCollide(event->getEntity2());
-			event->getEntity2()->offCollide(event->getEntity1());
-
-			if (!memberOf(event->getEntity2(), event->getEntity1()->getCollisionPartners())) // ma old friend
-			{
-				Debug::warn("exit event with stranger: " + event->toString());
-			}
-		}
-		else // stay event
-		{
 			CollisionHandler::handleCollisionEvent(event);
+		}
+		else // Bye
+		{
+			if (memberOf(event->getEntity2(), event->getEntity1()->getCollisionPartners())) // ma old friend
+			{
+				// Bye
+				event->getEntity1()->removeCollisionPartner(event->getEntity2());
+				event->getEntity2()->removeCollisionPartner(event->getEntity1());
+				event->getEntity1()->offCollide(event->getEntity2());
+				event->getEntity2()->offCollide(event->getEntity1());
+
+			}
+			else
+			{
+				Debug::warn("shit");
+			}
 		}
 
 		delete event;
@@ -145,8 +144,8 @@ CollisionEvent* GameInterface::cutFirstEvent(std::vector<CollisionEvent*>* event
 	int bigIndex = 0;
 	for (unsigned int i = 1; i < events->size(); i++)
 	{
-		if ((*events)[bigIndex]->getTimeUntilFrameEnds() > (*events)[i]->getTimeUntilFrameEnds())
-		   // || ((*events)[bigIndex]->getTimeUntilFrameEnds() == (*events)[i]->getTimeUntilFrameEnds() && ! (*events)[bigIndex]->isEnterEvent() && (*events)[bigIndex]->isEnterEvent() && (*events)[i]->isEnterEvent()))
+		if ((*events)[bigIndex]->getTimeUntilFrameEnds() > (*events)[i]->getTimeUntilFrameEnds() ||
+		   ((*events)[bigIndex]->getTimeUntilFrameEnds() == (*events)[i]->getTimeUntilFrameEnds() && ! (*events)[bigIndex]->isEnterEvent() && (*events)[bigIndex]->isEnterEvent() && (*events)[i]->isEnterEvent()))
 		{
 			bigIndex = i;
 		}

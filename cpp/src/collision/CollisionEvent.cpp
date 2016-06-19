@@ -2,8 +2,8 @@
 
 #include "../misc/Converter.hpp"
 
-CollisionEvent::CollisionEvent(Entity* e1, Entity* e2, float timeUntilFrameEnds, CollisionEventType typeArg, const std::vector<GameVector>& colPoints)
-	: entity1(e1), entity2(e2), timeUntilFrameEnds(timeUntilFrameEnds), type(typeArg), collisionPoints(colPoints)
+CollisionEvent::CollisionEvent(Entity* e1, Entity* e2, float timeUntilFrameEnds, bool isEnter, const std::vector<GameVector>& colPoints)
+	: entity1(e1), entity2(e2), timeUntilFrameEnds(timeUntilFrameEnds), isEnter(isEnter), collisionPoints(colPoints)
 {}
 
 Entity* CollisionEvent::getEntity1() const
@@ -21,9 +21,9 @@ float CollisionEvent::getTimeUntilFrameEnds() const
 	return timeUntilFrameEnds;
 }
 
-CollisionEventType CollisionEvent::getType() const
+bool CollisionEvent::isEnterEvent() const
 {
-	return type;
+	return isEnter;
 }
 
 const std::vector<GameVector>& CollisionEvent::getCollisionPoints() const
@@ -33,5 +33,5 @@ const std::vector<GameVector>& CollisionEvent::getCollisionPoints() const
 
 std::string CollisionEvent::toString() const
 {
-	return "(" + entity1->toString() + ", " + entity2->toString() + ", " + Converter::floatToString(timeUntilFrameEnds) + ", " + (type == COLLISIONEVENTTYPE_ENTER? "enter" : (type == COLLISIONEVENTTYPE_EXIT? "exit" : "stay")) + ")";
+	return "(" + entity1->toString() + ", " + entity2->toString() + ", " + Converter::floatToString(timeUntilFrameEnds) + ", " + (isEnter? "enter" : "exit") + ")";
 }
