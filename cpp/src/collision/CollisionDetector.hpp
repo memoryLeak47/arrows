@@ -6,6 +6,7 @@
 		adds enterEvent on border-collide: if the entities would glitch into each other
 		adds exitEvent on border-collide: if the entities will move away from each other
 		adds nothing on border-collide: if the entities don't move away / to each other
+		If i flash into an Ignore-entity, an enterEvent has to be added
 */
 
 #ifndef __COLLISIONDETECTOR_CLASS__
