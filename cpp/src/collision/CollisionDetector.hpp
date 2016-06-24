@@ -4,13 +4,13 @@
 
 	Requirements:
 		solid collision:
-			adds enterEvent on border-collide if the entities would glitch into each other
-			adds exitEvent on border-collide if the entities will move away from each other
-			adds nothing on border-collide if the entities don't move away / to each other
+			adds enterEvent on border-collide: if the entities would glitch into each other
+			adds exitEvent on border-collide: if the entities will move away from each other
+			adds nothing on border-collide: if the entities don't move away / to each other
 		ignore collision:
-			adds enterEvent on border-collide if the entities would glitch into each other(, even if they already are glitched into each other)
-			adds exitEvent on border-collide if the entities will move away from each other
-			adds nothing on border-collide if the entities don't move away / to each other
+			adds enterEvent on border-collide or glitch: if the entities would glitch into each other(, even if they already are glitched into each other)
+			adds exitEvent on border-collide: if the entities will move away from each other
+			adds nothing on border-collide: if the entities don't move away / to each other
 */
 
 #ifndef __COLLISIONDETECTOR_CLASS__
