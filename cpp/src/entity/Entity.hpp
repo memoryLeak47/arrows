@@ -62,6 +62,7 @@ class Entity
 		std::vector<Entity*> getCollisionPartners();
 		bool hasCollisionPartner(Entity*) const;
 		static bool areCollisionPartners(Entity*, Entity*);
+		static CollisionType getCollisionTypeBetween(Entity* e1, Entity* e2);
 
 		const Body* getBody() const;
 		virtual bool hasChanged() const;

@@ -105,6 +105,11 @@ bool Entity::areCollisionPartners(Entity* e1, Entity* e2)
 	return alreadyPartners;
 }
 
+CollisionType Entity::getCollisionTypeBetween(Entity* e1, Entity* e2)
+{
+	return std::max(e1->getCollisionType(), e2->getCollisionType());
+}
+
 const Body* Entity::getBody() const
 {
 	return body;
