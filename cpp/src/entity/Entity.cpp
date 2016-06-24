@@ -158,6 +158,8 @@ void Entity::flash(const GameVector& target)
 {
 	body->setPosition(target);
 	setChanged(true);
+	// clear collisionpartners
+	// recalculate collisionpartners
 }
 
 bool Entity::couldFlashTo(const GameVector&) const
