@@ -21,6 +21,10 @@ void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 
 void CollisionHandler::handleCollisionEventSolid(CollisionEvent* event)
 {
+	event->getEntity1()->stop();
+	event->getEntity2()->stop();
+
+	/*
 	Debug::errorIf(event->getCollisionPoints().size() == 0, "CollisionHandler::handleCollisionEventSolid: event has to collision points");
 	Entity* entity1 = event->getEntity1();
 	Entity* entity2 = event->getEntity2();
@@ -73,4 +77,5 @@ void CollisionHandler::handleCollisionEventSolid(CollisionEvent* event)
 	{
 		Debug::warn("CollisionHandler::handleCollisionEventSolid: so many points!");
 	}
+	*/
 }

@@ -77,6 +77,7 @@ class Entity
 		// Rendering
 		virtual void render(const View&) const;
 		virtual sf::Texture* getTexture() const = 0;
+		void stop();
 	protected:
 		void basicRender(const View&) const;
 		PixelRect getRenderRect(const View&) const;

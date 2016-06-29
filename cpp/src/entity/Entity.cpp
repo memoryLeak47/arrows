@@ -167,3 +167,8 @@ bool Entity::couldFlashTo(const GameVector&) const
 	Debug::warn("Entity::couldFlashTo(): TODO");
 	return true;
 }
+
+void Entity::stop()
+{
+	body->setSpeed(GameVector(0.f, 0.f));
+}

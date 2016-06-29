@@ -16,12 +16,29 @@ MenuList::~MenuList()
 
 void MenuList::onEvent(const sf::Event &event)
 {
-	getTopmostMenu()->onEvent(event);
+	if (!IS_DEBUG_MODE)
+	{
+		getTopmostMenu()->onEvent(event);
+	}
+	else
+	{
+		if (sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
+		{
+			getTopmostMenu()->tick();
+		}
+		else
+		{
+			getTopmostMenu()->onEvent(event);
+		}
+	}
 }
 
 void MenuList::tick()
 {
-	getTopmostMenu()->tick();
+	if (!IS_DEBUG_MODE)
+	{
+		getTopmostMenu()->tick();
+	}
 }
 
 void MenuList::render()

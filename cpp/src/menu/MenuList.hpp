@@ -1,6 +1,8 @@
 #ifndef __MENULIST_CLASS__
 #define __MENULIST_CLASS__
 
+#define IS_DEBUG_MODE true
+
 #include <vector>
 #include <SFML/Window.hpp>
 
