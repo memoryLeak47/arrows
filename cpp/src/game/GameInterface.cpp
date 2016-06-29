@@ -91,37 +91,7 @@ void GameInterface::tickPhysics()
 		moveAllEntities(timeLeft - event->getTimeUntilFrameEnds());     // bewegt alle Entities bis zu der Situation, in der die nächste
 						// remember rotation is updated too
 		timeLeft = event->getTimeUntilFrameEnds();
-
-		// CollisionPartner aktualisieren / on/offCollide
-		if (event->isEnterEvent()) // Hi
-		{
-			if (! memberOf(event->getEntity2(), event->getEntity1()->getCollisionPartners())) // you are new
-			{
-				// Partner :D
-				event->getEntity1()->addCollisionPartner(event->getEntity2());
-				event->getEntity2()->addCollisionPartner(event->getEntity1());
-				event->getEntity1()->onCollide(event->getEntity2());
-				event->getEntity2()->onCollide(event->getEntity1());
-			}
-			CollisionHandler::handleCollisionEvent(event);
-		}
-		else // Bye
-		{
-			if (memberOf(event->getEntity2(), event->getEntity1()->getCollisionPartners())) // ma old friend
-			{
-				// Bye
-				event->getEntity1()->removeCollisionPartner(event->getEntity2());
-				event->getEntity2()->removeCollisionPartner(event->getEntity1());
-				event->getEntity1()->offCollide(event->getEntity2());
-				event->getEntity2()->offCollide(event->getEntity1());
-
-			}
-			else
-			{
-				Debug::warn("shit");
-			}
-		}
-
+		CollisionHandler::handleCollisionEvent(event);
 		delete event;
 
 		// Falls eine der Entities beschleunigt/umpositioniert wurden, werden die Collisions der Entity neu berechnet
@@ -144,13 +114,12 @@ CollisionEvent* GameInterface::cutFirstEvent(std::vector<CollisionEvent*>* event
 	int bigIndex = 0;
 	for (unsigned int i = 1; i < events->size(); i++)
 	{
-		if ((*events)[bigIndex]->getTimeUntilFrameEnds() > (*events)[i]->getTimeUntilFrameEnds() ||
-		   ((*events)[bigIndex]->getTimeUntilFrameEnds() == (*events)[i]->getTimeUntilFrameEnds() && ! (*events)[bigIndex]->isEnterEvent() && (*events)[bigIndex]->isEnterEvent() && (*events)[i]->isEnterEvent()))
+		if (events->at(bigIndex)->getTimeUntilFrameEnds() > events->at(i)->getTimeUntilFrameEnds())
 		{
 			bigIndex = i;
 		}
 	}
-	CollisionEvent* ret = (*events)[bigIndex];
+	CollisionEvent* ret = events->at(bigIndex);
 	events->erase(events->begin() + bigIndex);
 	return ret;
 }
@@ -159,9 +128,9 @@ void GameInterface::updateEventsFrom(Entity* entity, std::vector<CollisionEvent*
 {
 	for (unsigned int i = 0; i < events->size(); i++)
 	{
-		if ((*events)[i]->getEntity1() == entity || (*events)[i]->getEntity2() == entity)
+		if (events->at(i)->getEntity1() == entity || events->at(i)->getEntity2() == entity)
 		{
-			CollisionEvent* e = (*events)[i];
+			CollisionEvent* e = events->at(i);
 			events->erase(events->begin() + i);
 			deleteAndNULL(e);
 		}

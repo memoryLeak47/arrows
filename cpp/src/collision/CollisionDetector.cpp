@@ -97,37 +97,6 @@ std::pair<std::vector<float>, std::vector<bool>> getPair(float posX1, float posY
 	return std::pair<std::vector<float>, std::vector<bool>>(floats, bools);
 }
 
-// private function
-std::vector<GameVector> getCollisionPoints(Entity* e1, Entity* e2, float time) // TODO correct?
-{
-	std::vector<GameVector> collisionPoints;
-	if (e1->getBody()->getLeft() + e1->getBody()->getSpeed().getX() * time == e2->getBody()->getRight() || e1->getBody()->getRight() + e1->getBody()->getSpeed().getX() == e2->getBody()->getLeft())
-	{
-		collisionPoints.push_back(GameVector(	std::max(e1->getBody()->getLeft() + e1->getBody()->getSpeed().getX() * time,
-								e2->getBody()->getLeft() + e2->getBody()->getSpeed().getX() * time),
-							std::max(e1->getBody()->getTop() + e1->getBody()->getSpeed().getY() * time,
-								e2->getBody()->getTop() + e2->getBody()->getSpeed().getY() * time)));
-
-		collisionPoints.push_back(GameVector(	std::max(e1->getBody()->getLeft() + e1->getBody()->getSpeed().getX() * time,
-								e2->getBody()->getLeft() + e2->getBody()->getSpeed().getX() * time),
-							std::min(e1->getBody()->getBot() + e1->getBody()->getSpeed().getY() * time,
-								e2->getBody()->getBot() + e2->getBody()->getSpeed().getY() * time)));
-	}
-	else
-	{
-		collisionPoints.push_back(GameVector(	std::max(e1->getBody()->getLeft() + e1->getBody()->getSpeed().getX() * time,
-								 e2->getBody()->getLeft() + e2->getBody()->getSpeed().getX() * time),
-							std::min(e1->getBody()->getTop() + e1->getBody()->getSpeed().getY() * time,
-								 e2->getBody()->getTop() + e2->getBody()->getSpeed().getY() * time)));
-
-		collisionPoints.push_back(GameVector(	std::min(e1->getBody()->getRight() + e1->getBody()->getSpeed().getX() * time,
-								 e2->getBody()->getRight() + e2->getBody()->getSpeed().getX() * time),
-							std::min(e1->getBody()->getTop() + e1->getBody()->getSpeed().getY() * time,
-								 e2->getBody()->getTop() + e2->getBody()->getSpeed().getY() * time)));
-	}
-	return collisionPoints;
-}
-
 void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
 {
 	float posX1 = dynamic_cast<const RectBody*>(e1->getBody())->getPosition().getX();
@@ -151,53 +120,33 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 			bool xCol = ((posX1 + sizeX1/2.f) >= (posX2 - sizeX2/2.f)) && ((posX2 + sizeX2/2.f) >= (posX1 - sizeX1/2.f));
 			bool yCol = ((posY1 + sizeY1/2.f) >= (posY2 - sizeY2/2.f)) && ((posY2 + sizeY2/2.f) >= (posY1 - sizeY1/2.f));
 
-			if (xCol && yCol)
-			{
-				std::pair<std::vector<float>, std::vector<bool>> pair = getPair(posX1, posY1, sizeX1, sizeY1, speedX, speedY, posX2, posY2, sizeX2, sizeY2, std::numeric_limits<int>::infinity());
-				std::vector<float> floats = pair.first;
-				std::vector<bool> bools = pair.second;
+			std::pair<std::vector<float>, std::vector<bool>> pair = getPair(posX1, posY1, sizeX1, sizeY1, speedX, speedY, posX2, posY2, sizeX2, sizeY2, timeLeft);
+			std::vector<float> floats = pair.first;
+			std::vector<bool> bools = pair.second;
 
-				if (floats.size() > 1)
+			bool wasColliding = (xCol && yCol);
+			while (floats.size() > 0)
+			{
+				int index = getNextIndex(floats);
+				float time = floats[index];
+
+				if (bools[index])
 				{
-					CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft, true, getCollisionPoints(e1, e2, 0));
-					Debug::test("ev1: " + ev->toString());
-					events->push_back(ev);
+					xCol = !xCol;
 				}
 				else
 				{
-					CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft, false, getCollisionPoints(e1, e2, 0));
-					Debug::test("ev2: " + ev->toString());
-					events->push_back(ev);
+					yCol = !yCol;
 				}
-			}
-			else
-			{
-				std::pair<std::vector<float>, std::vector<bool>> pair = getPair(posX1, posY1, sizeX1, sizeY1, speedX, speedY, posX2, posY2, sizeX2, sizeY2, timeLeft);
-				std::vector<float> floats = pair.first;
-				std::vector<bool> bools = pair.second;
-				while (floats.size() > 0)
+
+				floats.erase(floats.begin() + index);
+				bools.erase(bools.begin() + index);
+				if (wasColliding != (xCol && yCol))
 				{
-					int index = getNextIndex(floats);
-					float time = floats[index];
-
-					if (bools[index])
-					{
-						xCol = !xCol;
-					}
-					else
-					{
-						yCol = !yCol;
-					}
-
-					floats.erase(floats.begin() + index);
-					bools.erase(bools.begin() + index);
-					if (xCol && yCol)
-					{
-						CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft-time, true, getCollisionPoints(e1, e2, time));
-						Debug::test("ev3: " + ev->toString());
-						events->push_back(ev);
-						return;
-					}
+					CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft-time);
+					Debug::test("ev: " + ev->toString());
+					events->push_back(ev);
+					wasColliding = (xCol && yCol);
 				}
 			}
 			break;
