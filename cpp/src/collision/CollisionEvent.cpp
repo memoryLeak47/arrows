@@ -23,5 +23,5 @@ float CollisionEvent::getTimeUntilFrameEnds() const
 
 std::string CollisionEvent::toString() const
 {
-	return "(" + entity1->toString() + ", " + entity2->toString() + ", " + Converter::floatToString(timeUntilFrameEnds) + ")";
+	return "(e1=" + entity1->toString() + " e2=" + entity2->toString() + " time=" + Converter::floatToString(timeUntilFrameEnds) + ")";
 }
