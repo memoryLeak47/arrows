@@ -1,6 +1,6 @@
 #include "MenuList.hpp"
 
-#include "../misc/Debug.hpp"
+#include "../misc/Global.hpp"
 #include "menues/LoginMenu.hpp"
 #include "../core/Main.hpp"
 
@@ -16,13 +16,13 @@ MenuList::~MenuList()
 
 void MenuList::onEvent(const sf::Event &event)
 {
-	if (!IS_DEBUG_MODE)
+	if (!global::DEBUG_STEPWISE)
 	{
 		getTopmostMenu()->onEvent(event);
 	}
 	else
 	{
-		if (sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
+		if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
 		{
 			getTopmostMenu()->tick();
 		}
@@ -35,7 +35,7 @@ void MenuList::onEvent(const sf::Event &event)
 
 void MenuList::tick()
 {
-	if (!IS_DEBUG_MODE)
+	if (!global::DEBUG_STEPWISE)
 	{
 		getTopmostMenu()->tick();
 	}

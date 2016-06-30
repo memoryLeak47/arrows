@@ -13,6 +13,7 @@ namespace global
 	bool DEBUG_FUNC;
 	bool DEBUG_NOTE;
 	bool DEBUG_TEST;
+	bool DEBUG_STEPWISE;
 	float GAME_FRAME_TIME;
 	int TILESIZE;
 	float DRAG_X;
@@ -31,6 +32,7 @@ void global::init()
 	DEBUG_FUNC = true;
 	DEBUG_NOTE = true;
 	DEBUG_TEST = true;
+	DEBUG_STEPWISE = false;
 	GAME_FRAME_TIME = 1;
 	TILESIZE = 40;
 	DRAG_X = 1.9f;
@@ -66,6 +68,12 @@ void global::init()
 		{
 			if (value == "fullscreen") WINDOW_STYLE = sf::Style::Fullscreen;
 			else if (value == "resize") WINDOW_STYLE = sf::Style::Resize;
+			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
+		}
+		else if (key == "debug.stepwise")
+		{
+			if (value == "true") DEBUG_STEPWISE = true;
+			else if (value == "false") DEBUG_STEPWISE = false;
 			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
 		}
 		else
