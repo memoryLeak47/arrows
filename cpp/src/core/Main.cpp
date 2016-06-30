@@ -15,6 +15,7 @@ Account* Main::account;
 
 Main::Main()
 {
+	global::load();
 	Debug::init();
 	Account::init();
 	Screen::init();
@@ -58,15 +59,15 @@ void Main::run()
 		renderCounter += tmp;
 		tickCounter += tmp;
 
-		if (tickCounter > MAX_TICK_COUNTER)
+		if (tickCounter > global::MAX_TICK_COUNTER)
 		{
 			tick();
-			tickCounter -= MAX_TICK_COUNTER;
+			tickCounter -= global::MAX_TICK_COUNTER;
 		}
-		if (renderCounter > MAX_RENDER_COUNTER)
+		if (renderCounter > global::MAX_RENDER_COUNTER)
 		{
 			render();
-			renderCounter -= MAX_RENDER_COUNTER;
+			renderCounter -= global::MAX_RENDER_COUNTER;
 		}
 	}
 }

@@ -1,8 +1,7 @@
 #include "GameInterface.hpp"
 
 #include "../core/Main.hpp"
-#include "../misc/Converter.hpp"
-#include "../misc/Debug.hpp"
+#include "../misc/Global.hpp"
 #include "../player/GamePlayer.hpp"
 #include "../collision/CollisionHandler.hpp"
 #include "../collision/CollisionDetector.hpp"
@@ -74,7 +73,7 @@ void GameInterface::tickEntities()
 void GameInterface::tickPhysics()
 {
 	Debug::funcOn("GameInterface::tickPhysics");
-	float timeLeft = GAME_FRAME_TIME;
+	float timeLeft = global::GAME_FRAME_TIME;
 	std::vector<CollisionEvent*> events; // Es gäbe auch die Möglichkeit diesen vector global zu machen & länger als nur GAME_FRAME_TIME vorauszuber
 
 	// fügt alle CollisionEvents in die TickPhysics-Liste

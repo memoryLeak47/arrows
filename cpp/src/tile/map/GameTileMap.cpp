@@ -11,7 +11,7 @@
 GameTileMap::GameTileMap(LobbyTileMap* lobbyMap)
 {
 	loadFromLobbyTileMap(lobbyMap);
-	staticImage.create(getWidth()*TILESIZE, getHeight()*TILESIZE);
+	staticImage.create(getWidth()*global::TILESIZE, getHeight()*global::TILESIZE);
 	updateFullImage();
 }
 
@@ -78,7 +78,7 @@ void GameTileMap::updateFullImage()
 		for (int y = 0; y < getHeight(); y++)
 		{
 			Debug::errorIf(tiles[x][y] == NULL, "GameTileMap::updateFullImage(): tiles[" + Converter::intToString(x) + "][" + Converter::intToString(y) + "] == NULL");
-			tiles[x][y]->renderToImage(staticImage, x*TILESIZE, y*TILESIZE);
+			tiles[x][y]->renderToImage(staticImage, x*global::TILESIZE, y*global::TILESIZE);
 		}
 	}
 }

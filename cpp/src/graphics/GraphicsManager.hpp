@@ -4,7 +4,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 
-#include "../misc/Def.hpp"
+#include "../misc/Global.hpp"
 
 class PixelVector;
 class GameVector;

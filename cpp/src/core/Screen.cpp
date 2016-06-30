@@ -1,6 +1,6 @@
 #include "Screen.hpp"
 
-#include "../misc/Debug.hpp"
+#include "../misc/Global.hpp"
 #include "Main.hpp"
 
 sf::RenderWindow* Screen::window;
@@ -8,7 +8,7 @@ sf::Text Screen::text;
 
 void Screen::init()
 {
-	window = new sf::RenderWindow(sf::VideoMode(getSize().getX(), getSize().getY()), "Arrows", sf::Style::Fullscreen);
+	window = new sf::RenderWindow(sf::VideoMode(getSize().getX(), getSize().getY()), "Arrows", global::WINDOW_STYLE);
 	static sf::Font font;
 	if (!font.loadFromFile("res/fonts/font.ttf"))
 	{
