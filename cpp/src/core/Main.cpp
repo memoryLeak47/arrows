@@ -15,7 +15,8 @@ Account* Main::account;
 
 Main::Main()
 {
-	global::load();
+	running = true;
+	global::init();
 	Debug::init();
 	Account::init();
 	Screen::init();
@@ -26,7 +27,6 @@ Main::Main()
 	GraphicsManager::init();
 	menuList = new MenuList();
 	networkDevice = new NetworkDevice();
-	running = true;
 	run();
 }
 

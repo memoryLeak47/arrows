@@ -5,7 +5,7 @@
 
 namespace global
 {
-	void load();
+	void init();
 	int WINDOW_STYLE;
 	int MAX_TICK_COUNTER;
 	int MAX_RENDER_COUNTER;
@@ -22,7 +22,7 @@ namespace global
 	float STANDART_ACCELERATION;
 }
 
-void global::load()
+void global::init()
 {
 	WINDOW_STYLE = sf::Style::Fullscreen;
 	MAX_TICK_COUNTER = 2000;
@@ -48,29 +48,29 @@ void global::load()
 		{
 			if (value == "true") DEBUG_FUNC = true;
 			else if (value == "false") DEBUG_FUNC = false;
-			else Debug::error("unknown value '" + value + "' for key '" + key + "'");
+			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
 		}
 		else if (key == "debug.note")
 		{
 			if (value == "true") DEBUG_NOTE = true;
 			else if (value == "false") DEBUG_NOTE = false;
-			else Debug::error("unknown value '" + value + "' for key '" + key + "'");
+			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
 		}
 		else if (key == "debug.test")
 		{
 			if (value == "true") DEBUG_TEST = true;
 			else if (value == "false") DEBUG_TEST = false;
-			else Debug::error("unknown value '" + value + "' for key '" + key + "'");
+			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
 		}
 		else if (key == "window.style")
 		{
 			if (value == "fullscreen") WINDOW_STYLE = sf::Style::Fullscreen;
 			else if (value == "resize") WINDOW_STYLE = sf::Style::Resize;
-			else Debug::error("unknown value '" + value + "' for key '" + key + "'");
+			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
 		}
 		else
 		{
-			Debug::error("unknown key '" + key + "'");
+			Debug::error("global::init(): unknown key '" + key + "'");
 		}
 	}
 	f.close();

@@ -13,7 +13,7 @@ typedef char CID;
 
 namespace global
 {
-	void load();
+	void init();
 	extern int WINDOW_STYLE;
 	extern int MAX_TICK_COUNTER;
 	extern int MAX_RENDER_COUNTER;
