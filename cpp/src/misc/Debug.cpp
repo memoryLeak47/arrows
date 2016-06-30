@@ -80,33 +80,41 @@ void Debug::time(const std::string& s)
 
 void Debug::func(const std::string& s)
 {
-	std::string t = "";
-	for (int i = 0; i < indentCounter; i++)
+	if (global::TRACE)
 	{
-		t += "    ";
+		std::string t = "";
+		for (int i = 0; i < indentCounter; i++)
+		{
+			t += "    ";
+		}
+		std::cout << FUNC_COLOR << "FUNC:" + t + s << RESET_COLOR << std::endl;
 	}
-	std::cout << FUNC_COLOR << "FUNC:" + t + s << RESET_COLOR << std::endl;
 }
 
 void Debug::funcOn(const std::string& s)
 {
-	std::string t = "";
-	for (int i = 0; i < indentCounter; i++)
+	if (global::TRACE)
 	{
-		t += "    ";
+		std::string t = "";
+		for (int i = 0; i < indentCounter; i++)
+		{
+			t += "    ";
+		}
+		std::cout << FUNC_COLOR << "FUNC:" + t + s + " {" << RESET_COLOR << std::endl;
+		indentCounter++;
 	}
-	std::cout << FUNC_COLOR << "FUNC:" + t + s + " {" << RESET_COLOR << std::endl;
-	indentCounter++;
 }
 
 void Debug::funcOff(const std::string& s)
 {
-	indentCounter--;
-	std::string t = "";
-	for (int i = 0; i < indentCounter; i++)
+	if (global::TRACE)
 	{
-		t += "    ";
+		indentCounter--;
+		std::string t = "";
+		for (int i = 0; i < indentCounter; i++)
+		{
+			t += "    ";
+		}
+		std::cout << FUNC_COLOR << "FUNC:" + t + "}" << RESET_COLOR << std::endl;
 	}
-
-	std::cout << FUNC_COLOR << "FUNC:" + t + "}" << RESET_COLOR << std::endl;
 }
