@@ -46,7 +46,7 @@ void global::load()
 			else if (value == "false") TRACE = false;
 			else std::cout << "unknown value '" << value << "' for key '" << key << "'" << std::endl;
 		}
-		else if (key == "windowstyle")
+		else if (key == "window.style")
 		{
 			if (value == "fullscreen") WINDOW_STYLE = sf::Style::Fullscreen;
 			else if (value == "resize") WINDOW_STYLE = sf::Style::Resize;
