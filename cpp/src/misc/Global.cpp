@@ -10,7 +10,9 @@ namespace global
 	int MAX_TICK_COUNTER;
 	int MAX_RENDER_COUNTER;
 	int FRAME_INTERVAL;
-	bool TRACE;
+	bool DEBUG_FUNC;
+	bool DEBUG_NOTE;
+	bool DEBUG_TEST;
 	float GAME_FRAME_TIME;
 	int TILESIZE;
 	float DRAG_X;
@@ -26,7 +28,9 @@ void global::load()
 	MAX_TICK_COUNTER = 2000;
 	MAX_RENDER_COUNTER = 2000;
 	FRAME_INTERVAL = 40;
-	TRACE = true;
+	DEBUG_FUNC = true;
+	DEBUG_NOTE = true;
+	DEBUG_TEST = true;
 	GAME_FRAME_TIME = 1;
 	TILESIZE = 40;
 	DRAG_X = 1.9f;
@@ -40,21 +44,33 @@ void global::load()
 	std::string key, value;
 	while (f >> key >> value)
 	{
-		if (key == "trace")
+		if (key == "debug.func")
 		{
-			if (value == "true") TRACE = true;
-			else if (value == "false") TRACE = false;
-			else std::cout << "unknown value '" << value << "' for key '" << key << "'" << std::endl;
+			if (value == "true") DEBUG_FUNC = true;
+			else if (value == "false") DEBUG_FUNC = false;
+			else Debug::error("unknown value '" + value + "' for key '" + key + "'");
+		}
+		else if (key == "debug.note")
+		{
+			if (value == "true") DEBUG_NOTE = true;
+			else if (value == "false") DEBUG_NOTE = false;
+			else Debug::error("unknown value '" + value + "' for key '" + key + "'");
+		}
+		else if (key == "debug.test")
+		{
+			if (value == "true") DEBUG_TEST = true;
+			else if (value == "false") DEBUG_TEST = false;
+			else Debug::error("unknown value '" + value + "' for key '" + key + "'");
 		}
 		else if (key == "window.style")
 		{
 			if (value == "fullscreen") WINDOW_STYLE = sf::Style::Fullscreen;
 			else if (value == "resize") WINDOW_STYLE = sf::Style::Resize;
-			else std::cout << "unknown value '" << value << "' for key '" << key << "'" << std::endl;
+			else Debug::error("unknown value '" + value + "' for key '" + key + "'");
 		}
 		else
 		{
-			std::cout << "unknown key '" << key << "'" << std::endl;
+			Debug::error("unknown key '" + key + "'");
 		}
 	}
 	f.close();

@@ -14,12 +14,15 @@ void Debug::init()
 
 void Debug::note(const std::string& s)
 {
-	std::cout << NOTE_COLOR << "NOTE: " << s << RESET_COLOR << std::endl;
+	if (global::DEBUG_NOTE)
+	{
+		std::cout << NOTE_COLOR << "NOTE: " << s << RESET_COLOR << std::endl;
+	}
 }
 
 void Debug::noteIf(bool b, const std::string& s)
 {
-	if (b)
+	if (global::DEBUG_NOTE and b)
 	{
 		note(s);
 	}
@@ -29,12 +32,15 @@ void Debug::noteIf(bool b, const std::string& s)
 
 void Debug::test(const std::string& s)
 {
-	std::cout << TEST_COLOR << "TEST: " << s << RESET_COLOR << std::endl;
+	if (global::DEBUG_TEST)
+	{
+		std::cout << TEST_COLOR << "TEST: " << s << RESET_COLOR << std::endl;
+	}
 }
 
 void Debug::testIf(bool b, const std::string& s)
 {
-	if (b)
+	if (global::DEBUG_TEST and b)
 	{
 		test(s);
 	}
@@ -80,7 +86,7 @@ void Debug::time(const std::string& s)
 
 void Debug::func(const std::string& s)
 {
-	if (global::TRACE)
+	if (global::DEBUG_FUNC)
 	{
 		std::string t = "";
 		for (int i = 0; i < indentCounter; i++)
@@ -93,7 +99,7 @@ void Debug::func(const std::string& s)
 
 void Debug::funcOn(const std::string& s)
 {
-	if (global::TRACE)
+	if (global::DEBUG_FUNC)
 	{
 		std::string t = "";
 		for (int i = 0; i < indentCounter; i++)
@@ -107,7 +113,7 @@ void Debug::funcOn(const std::string& s)
 
 void Debug::funcOff(const std::string& s)
 {
-	if (global::TRACE)
+	if (global::DEBUG_FUNC)
 	{
 		indentCounter--;
 		std::string t = "";

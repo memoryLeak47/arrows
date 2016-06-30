@@ -18,7 +18,9 @@ namespace global
 	extern int MAX_TICK_COUNTER;
 	extern int MAX_RENDER_COUNTER;
 	extern int FRAME_INTERVAL;
-	extern bool TRACE;
+	extern bool DEBUG_FUNC;
+	extern bool DEBUG_NOTE;
+	extern bool DEBUG_TEST;
 	extern float GAME_FRAME_TIME;
 	extern int TILESIZE;
 	extern float DRAG_X;
