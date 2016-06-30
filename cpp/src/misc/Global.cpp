@@ -54,7 +54,7 @@ void global::load()
 		}
 		else
 		{
-			std::cout << "unknown key " << key << std::endl;
+			std::cout << "unknown key '" << key << "'" << std::endl;
 		}
 	}
 	f.close();
