@@ -53,7 +53,7 @@ PixelVector Screen::getCursorPosition()
 {
 	int x = sf::Mouse::getPosition().x;
 	int y = sf::Mouse::getPosition().y;
-	return PixelVector(x, y);
+	return PixelVector(x - window->getPosition().x, y - window->getPosition().y);
 }
 
 PixelVector Screen::getSize()
