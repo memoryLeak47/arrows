@@ -144,7 +144,7 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 				if (wasColliding != (xCol && yCol))
 				{
 					CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft-time);
-					Debug::test("ev: " + ev->toString());
+					Debug::test("ev: " + ev->toString() + " enter=" + (wasColliding ? "false" : "true"));
 					events->push_back(ev);
 					wasColliding = (xCol && yCol);
 				}
