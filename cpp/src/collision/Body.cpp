@@ -15,7 +15,6 @@ void Body::move(float time)
 
 void Body::applyImpact(const Impact& impact)
 {
-	Debug::test("applyImpact(" + impact.getSpeed().toString() + ")");
 	if (rotateable)
 	{
 		// TODO

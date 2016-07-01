@@ -1,12 +1,11 @@
 /*
-	glitch         = non-superficial collision / IN einander / eg. unrotated rects: 1.y == 2.y && 1.x == 2.x
-	border-collide = superficial collision / AN einander / eg. unrotated rects: 1.y == 2.y && 1.right == 2.left
+	in = non-superficial collision / IN einander / eg. unrotated rects: 1.y == 2.y && 1.x == 2.x
+	border = superficial collision / AN einander / eg. unrotated rects: 1.y == 2.y && 1.right == 2.left
+	out = entfernt von einander
 
-	Requirements:
-		adds enterEvent on border-collide: if the entities would glitch into each other
-		adds exitEvent on border-collide: if the entities will move away from each other
-		adds nothing on border-collide: if the entities don't move away / to each other
-		If i flash into an Ignore-entity, an enterEvent has to be added
+	two entities always have a collisionstatus = in / border / out
+
+	CollisionDetector adds CollisionEvent on collision-status-change
 */
 
 #ifndef __COLLISIONDETECTOR_CLASS__
