@@ -46,6 +46,11 @@ void global::init()
 	std::string key, value;
 	while (f >> key >> value)
 	{
+		if (key[0] == '#')
+		{
+			continue;
+		}
+
 		if (key == "debug.func")
 		{
 			if (value == "true") DEBUG_FUNC = true;
