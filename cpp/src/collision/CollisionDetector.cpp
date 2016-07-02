@@ -115,7 +115,7 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 
 	switch (Entity::getCollisionTypeBetween(e1, e2))
 	{
-		case COLLISIONTYPE_SOLID:
+		case CollisionType::SOLID:
 		{
 			bool xCol = ((posX1 + sizeX1/2.f) >= (posX2 - sizeX2/2.f)) && ((posX2 + sizeX2/2.f) >= (posX1 - sizeX1/2.f));
 			bool yCol = ((posY1 + sizeY1/2.f) >= (posY2 - sizeY2/2.f)) && ((posY2 + sizeY2/2.f) >= (posY1 - sizeY1/2.f));
@@ -152,7 +152,7 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 			}
 			break;
 		}
-		case COLLISIONTYPE_IGNORE:
+		case CollisionType::IGNORE:
 		{
 			Debug::warn("TODO ignore collision");
 			break;

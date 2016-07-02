@@ -6,5 +6,5 @@ Bullet::Bullet(Body* body)
 
 EntityType Bullet::getEntityType()
 {
-	return ENTITYTYPE_BULLET;
+	return EntityType::BULLET;
 }

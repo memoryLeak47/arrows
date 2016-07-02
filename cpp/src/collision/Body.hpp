@@ -42,6 +42,7 @@ class Body
 		virtual GameRect getWrapper(float timeLeft) const = 0;
 
 		virtual const GameVector& getSpeed() const = 0;
+		virtual const GameVector getSpeedAt(const GameVector&) const;
 		virtual const GameVector& getPosition() const = 0; // returnt die Position relativ zur Map vom ImageCenter
 		virtual float getRotation() const = 0;
 		virtual float getSpin() const = 0;

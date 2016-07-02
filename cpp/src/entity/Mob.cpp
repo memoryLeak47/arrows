@@ -8,7 +8,7 @@ Mob::Mob(Body* body)
 
 EntityType Mob::getEntityType()
 {
-	return ENTITYTYPE_MOB;
+	return EntityType::MOB;
 }
 
 void Mob::actionGoLeft()

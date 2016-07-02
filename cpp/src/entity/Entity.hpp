@@ -8,16 +8,16 @@
 
 enum EntityType
 {
-	ENTITYTYPE_MOB,
-	ENTITYTYPE_BULLET,
-	ENTITYTYPE_TILE,
-	ENTITYTYPE_COSMETIC
+	MOB,
+	BULLET,
+	TILE,
+	COSMETIC
 };
 
 enum CollisionType
 {
-	COLLISIONTYPE_SOLID,
-	COLLISIONTYPE_IGNORE
+	SOLID,
+	IGNORE
 };
 
 class Body;
@@ -48,7 +48,7 @@ class Entity
 		// collision
 		virtual float getCollisionPriority(Entity* e) { return 1; } // TODO = 0
 		virtual EntityType getEntityType() = 0;
-		virtual CollisionType getCollisionType() { return COLLISIONTYPE_SOLID; } // TODO = 0
+		virtual CollisionType getCollisionType() { return CollisionType::SOLID; } // TODO = 0
 		virtual void onCollide(Entity*) {}
 		virtual void offCollide(Entity*) {}
 

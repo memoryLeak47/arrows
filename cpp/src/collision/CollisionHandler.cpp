@@ -2,80 +2,155 @@
 
 #include "../misc/Converter.hpp"
 #include "../misc/Debug.hpp"
+#include "PhysicsHandler.hpp"
+
+/*
+	CollisionPoints
+	EscapeVector
+	Status
+	CollisionType
+	PartnerHandling (onEvent...)
+	if (enterEvent && solid)
+	{
+		PhysicsHandler::handleSolidCollision(Entities, EscapeVectoren, CollisionPoints)
+	}
+*/
 
 void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 {
 	Debug::funcOn("CollisionHandler::handleCollisionEvent: " + ev->toString());
-	int collisionType = std::max(ev->getEntity1()->getCollisionType(), ev->getEntity2()->getCollisionType());
-	switch (collisionType)
+	// Calculate CollisionPoints
+	std::vector<GameVector> collisionPoints = getCollisionPoints(ev);
+
+	// Calculate EscapeVectors
+	std::vector<GameVector> escapeVectors1 = getEscapeVectors(ev->getEntity1(), collisionPoints);
+	std::vector<GameVector> escapeVectors2 = getEscapeVectors(ev->getEntity2(), collisionPoints);
+
+	switch (getCollisionStatus(ev, collisionPoints, escapeVectors1)) // switch between the new collision status
 	{
-		case COLLISIONTYPE_SOLID:
-			handleCollisionEventSolid(ev);
+		case CollisionStatus::IN:
+		{
+			Debug::test("in");
+			// add partner
+
+			CollisionType type = Entity::getCollisionTypeBetween(ev->getEntity1(), ev->getEntity2());
+			if (type == CollisionType::SOLID)
+			{
+				PhysicsHandler::handlePhysics(ev->getEntity1(), ev->getEntity2(), collisionPoints, escapeVectors1, escapeVectors2);
+			}
 			break;
-		case COLLISIONTYPE_IGNORE:
-			// do nothing, unsuccessfully
+		}
+		case CollisionStatus::OUT:
+		{
+			Debug::test("out");
+			// remove partner
 			break;
+		}
+		case CollisionStatus::BORDER:
+		{
+			Debug::test("border");
+			break;
+		}
+		default:
+		{
+			Debug::error("CollisionHandler::handleCollisionEvent(): unknown CollisionStatus");
+		}
 	}
+
 	Debug::funcOff("CollisionHandler::handleCollisionEvent: " + ev->toString());
 }
 
-void CollisionHandler::handleCollisionEventSolid(CollisionEvent* event)
+std::vector<GameVector> CollisionHandler::getCollisionPoints(CollisionEvent* event)
 {
-	event->getEntity1()->stop();
-	event->getEntity2()->stop();
-
-	/*
-	Debug::errorIf(event->getCollisionPoints().size() == 0, "CollisionHandler::handleCollisionEventSolid: event has to collision points");
-	Entity* entity1 = event->getEntity1();
-	Entity* entity2 = event->getEntity2();
-
-	float massShare1; // wieviel Prozent der Gesamtmasse der beiden CollisionPartner nimmt entity1 ein
-	float massShare2; // wieviel Prozent der Gesamtmasse der beiden CollisionPartner nimmt entity2 ein
-
-	if (entity1->isStatic())
+	std::vector<GameVector> result;
+	Entity *e1 = event->getEntity1(), *e2 = event->getEntity2();
+	if (e1->getBody()->getBodyType() == BodyType::RECT && e2->getBody()->getBodyType() == BodyType::RECT)
 	{
-		massShare1 = 1;
-		if (entity2->isStatic())
+		const RectBody *b1 = dynamic_cast<const RectBody*>(e1->getBody());
+		const RectBody *b2 = dynamic_cast<const RectBody*>(e2->getBody());
+		if (b1->isEven() && b2->isEven())
 		{
-			Debug::error("CollisionHandler::handleCollisionEventSolid(): static vs static :/ (" + Converter::intToString(entity1->getEntityType()) + " - " + Converter::intToString(entity2->getEntityType()));
+			if (b1->getLeft() == b2->getRight())
+			{
+				result.push_back(GameVector(b1->getLeft(), std::max(b1->getTop(), b2->getTop())));
+				result.push_back(GameVector(b1->getLeft(), std::min(b1->getBot(), b2->getBot())));
+			}
+			else if (b2->getLeft() == b1->getRight())
+			{
+				result.push_back(GameVector(b2->getLeft(), std::max(b1->getTop(), b2->getTop())));
+				result.push_back(GameVector(b2->getLeft(), std::min(b1->getBot(), b2->getBot())));
+			}
+
+			if (b1->getTop() == b2->getBot())
+			{
+				result.push_back(GameVector(std::max(b1->getLeft(), b2->getLeft()), b1->getTop()));
+				result.push_back(GameVector(std::min(b1->getRight(), b2->getRight()), b1->getTop()));
+			}
+			else if (b2->getTop() == b1->getBot())
+			{
+				result.push_back(GameVector(std::max(b1->getLeft(), b2->getLeft()), b1->getTop()));
+				result.push_back(GameVector(std::min(b1->getRight(), b2->getRight()), b1->getTop()));
+			}
+
+			if (result.size() == 0)
+			{
+				Debug::warn("CollisionHandler::getCollisionPoints(): result.size() == null");
+			}
 		}
 	}
-	else if (entity2->isStatic())
+	//Debug::warn("CollisionHandler::getCollisionPoints(): TODO");
+	return result;
+}
+
+std::vector<GameVector> CollisionHandler::getEscapeVectors(Entity* e, const std::vector<GameVector>& collisionPoints)
+{
+	if (collisionPoints.size() == 2)
 	{
-		massShare1 = 0;
+		GameVector ab = collisionPoints[1] - collisionPoints[0]; // Vector vom einen zum anderen CollisionPoint
+		GameVector am = e->getBody()->getPosition() - collisionPoints[0]; // Vector von a nach Mittelpunkt der Entity
+		GameVector o(ab.getY(), -ab.getX()); // gedrehter ab Vector um 90°
+		GameVector f = o * ( GameVector::getScalarProduct(o, am));
+
+		std::vector<GameVector> result;
+		result.push_back(f);
+		return result;
 	}
 	else
 	{
-		massShare1 = entity1->getMass() / (entity1->getMass() + entity2->getMass());
+		Debug::warn("CollisionHandler::getEscapeVectors(): collisionPoints.size() != 2");
+	}
+	return std::vector<GameVector>();
+}
+
+CollisionStatus CollisionHandler::getCollisionStatus(CollisionEvent* ev, const std::vector<GameVector>& collisionPoints, const std::vector<GameVector>& escapeVectors)
+{
+	if (collisionPoints.size() == 0)
+	{
+		Debug::error("CollisionHandler::getCollisionStatus(): collisionPoints.size == 0");
+		return CollisionStatus::IN;
 	}
 
-	massShare2 = 1-massShare1;
+	GameVector speedAt(ev->getEntity1()->getBody()->getSpeedAt(collisionPoints[0]));
+	for (unsigned int i = 0; i < escapeVectors.size(); i++)
+	{
+		float angle = GameVector::getScalarProduct(speedAt, escapeVectors[i]);
+		if (angle > 0)
+		{
+			return CollisionStatus::OUT;
+		}
+		else if (angle == 0)
+		{
+			return CollisionStatus::BORDER;
+		}
+		else if (angle < 0)
+		{
+			// Weiter prüfen
+		}
+		else
+		{
+			Debug::warn("CollisionHandler::getCollisionStatus(): WTF, angle=" + Converter::floatToString(angle));
+		}
+	}
 
-	GameVector point = (event->getCollisionPoints()[0] + event->getCollisionPoints()[1])/2.f;
-
-	for (unsigned int i = 0; i < event->getCollisionPoints().size(); i++)
-	{
-		Debug::test("collisionPoint[" + Converter::intToString((int)i) + "] = " + event->getCollisionPoints()[i].toString());
-	}
-	if (event->getCollisionPoints().size() == 1)
-	{
-		entity1->applyImpact(Impact(entity2->getBody()->getSpeed(), massShare2, point));
-		entity2->applyImpact(Impact(entity1->getBody()->getSpeed(), massShare1, point));
-	}
-	else if (event->getCollisionPoints().size() == 2)
-	{
-		GameVector norm(event->getCollisionPoints()[0] - event->getCollisionPoints()[1]);
-		norm = norm/norm.getMagnitude();
-		norm = GameVector(norm.getY(), -norm.getX());
-		Debug::test("norm = " + norm.toString());
-		GameVector v1(norm * GameVector::getScalarProduct(norm, entity2->getBody()->getSpeed() - entity1->getBody()->getSpeed()));
-		GameVector v2(norm * GameVector::getScalarProduct(norm, entity1->getBody()->getSpeed() - entity2->getBody()->getSpeed()));
-		entity1->applyImpact(Impact(v1, massShare2, point));
-		entity2->applyImpact(Impact(v2, massShare1, point));
-	}
-	else
-	{
-		Debug::warn("CollisionHandler::handleCollisionEventSolid: so many points!");
-	}
-	*/
+	return CollisionStatus::IN;
 }

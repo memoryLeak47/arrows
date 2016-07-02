@@ -13,6 +13,13 @@ void Body::move(float time)
 	// TODO rotation
 }
 
+
+const GameVector Body::getSpeedAt(const GameVector&) const
+{
+	Debug::warn("Body::getSpeedAt(): Not accurate, when rotating");
+	return GameVector(getSpeed());
+}
+
 void Body::applyImpact(const Impact& impact)
 {
 	if (rotateable)

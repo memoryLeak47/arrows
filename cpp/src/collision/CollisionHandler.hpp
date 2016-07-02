@@ -17,16 +17,26 @@
 #ifndef __COLLISIONHANDLER_CLASS__
 #define __COLLISIONHANDLER_CLASS__
 
+#include <vector>
+
+enum CollisionStatus {IN, BORDER, OUT};
+
 class CollisionEvent;
+class GameVector;
+class Entity;
 
 class CollisionHandler
 {
 	public:
 		static void handleCollisionEvent(CollisionEvent*);
 	private:
-		static void handleCollisionEventSolid(CollisionEvent*);
+		static std::vector<GameVector> getCollisionPoints(CollisionEvent*);
+		static std::vector<GameVector> getEscapeVectors(Entity*, const std::vector<GameVector>& collisionPoints);
+		static CollisionStatus getCollisionStatus(CollisionEvent*, const std::vector<GameVector>& collisionPoints, const std::vector<GameVector>& escapeVectors);
 };
 
 #include "CollisionEvent.hpp"
+#include "../math/game/GameVector.hpp"
+#include "../entity/Entity.hpp"
 
 #endif
