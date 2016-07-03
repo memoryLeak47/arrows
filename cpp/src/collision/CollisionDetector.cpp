@@ -39,60 +39,52 @@ int getNextIndex(const std::vector<float>& floats)
 // private function
 std::pair<std::vector<float>, std::vector<bool>> getPair(float posX1, float posY1, float sizeX1, float sizeY1, float speedX, float speedY, float posX2, float posY2, float sizeX2, float sizeY2, float timeLeft)
 {
+	Debug::funcOn("CollisionDetector::getPair(posY1=" + Converter::floatToString(posY1) + " speedY1=" + Converter::floatToString(speedY) + " timeLeft=" + Converter::floatToString(timeLeft) + ")");
+
 	std::vector<float> floats;
 	std::vector<bool> bools;
+
 	// x
-	float a = ((posX1 + sizeX1/2.f) - (posX2 - sizeX2/2.f))/speedX;
+	float a = ((posX1 - sizeX1/2.f) - (posX2 + sizeX2/2.f)) / -speedX;
+	Debug::test("ax1=" + Converter::floatToString(a));
+	Debug::test("right1=" + Converter::floatToString(posX1 + sizeX1/2.f) + " left2=" + Converter::floatToString(posX2 - sizeX2/2.f) + " speedX=" + Converter::floatToString(speedX));
 	if (a >= 0 && a <= timeLeft)
 	{
 		floats.push_back(a);
-		bools.push_back(true);
+		bools.push_back(false);
+		Debug::test("5 " + Converter::floatToString(a) + " x");
 	}
-	a = (-(posX1 + sizeX1/2.f) + (posX2 - sizeX2/2.f))/speedX;
+	a = ((posX2 - sizeX2/2.f) - (posX1 + sizeX1/2.f)) / speedX;
+	Debug::test("ax2=" + Converter::floatToString(a));
+	Debug::test("right1=" + Converter::floatToString(posX1 + sizeX1/2.f) + " left2=" + Converter::floatToString(posX2 - sizeX2/2.f) + " speedX=" + Converter::floatToString(speedX));
 	if (a >= 0 && a <= timeLeft)
 	{
 		floats.push_back(a);
-		bools.push_back(true);
-	}
-	a = ((posX2 + sizeX2/2.f) - (posX1 - sizeX1/2.f))/speedX;
-	if (a >= 0 && a <= timeLeft)
-	{
-		floats.push_back(a);
-		bools.push_back(true);
-	}
-	a = (-(posX2 + sizeX2/2.f) + (posX1 - sizeX1/2.f))/speedX;
-	if (a >= 0 && a <= timeLeft)
-	{
-		floats.push_back(a);
-		bools.push_back(true);
+		bools.push_back(false);
+		Debug::test("6 " + Converter::floatToString(a) + " x");
 	}
 
 	// y
-	a = ((posY1 + sizeY1/2.f) - (posY2 - sizeY2/2.f))/speedY;
+	a = ((posY1 - sizeY1/2.f) - (posY2 + sizeY2/2.f)) / -speedY;
+	Debug::test("ay1=" + Converter::floatToString(a));
+	Debug::test("bot1=" + Converter::floatToString(posY1 + sizeY1/2.f) + " top2=" + Converter::floatToString(posY2 - sizeY2/2.f) + " speedY=" + Converter::floatToString(speedY));
 	if (a >= 0 && a <= timeLeft)
 	{
 		floats.push_back(a);
 		bools.push_back(false);
+		Debug::test("5 " + Converter::floatToString(a) + " y");
 	}
-	a = (-(posY1 + sizeY1/2.f) + (posY2 - sizeY2/2.f))/speedY;
+	a = ((posY2 - sizeY2/2.f) - (posY1 + sizeY1/2.f)) / speedY;
+	Debug::test("ay2=" + Converter::floatToString(a));
+	Debug::test("bot1=" + Converter::floatToString(posY1 + sizeY1/2.f) + " top2=" + Converter::floatToString(posY2 - sizeY2/2.f) + " speedY=" + Converter::floatToString(speedY));
 	if (a >= 0 && a <= timeLeft)
 	{
 		floats.push_back(a);
 		bools.push_back(false);
-	}
-	a = ((posY2 + sizeY2/2.f) - (posY1 - sizeY1/2.f))/speedY;
-	if (a >= 0 && a <= timeLeft)
-	{
-		floats.push_back(a);
-		bools.push_back(false);
-	}
-	a = (-(posY2 + sizeY2/2.f) + (posY1 - sizeY1/2.f))/speedY;
-	if (a >= 0 && a <= timeLeft)
-	{
-		floats.push_back(a);
-		bools.push_back(false);
+		Debug::test("6 " + Converter::floatToString(a) + " y");
 	}
 
+	Debug::funcOff("CollisionDetector::getPair()");
 	return std::pair<std::vector<float>, std::vector<bool>>(floats, bools);
 }
 
