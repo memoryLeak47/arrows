@@ -21,6 +21,7 @@ namespace global
 	float GRAVITY;
 	float STANDART_JUMPPOWER;
 	float STANDART_ACCELERATION;
+	bool SKIP_LOBBY;
 }
 
 void global::init()
@@ -40,6 +41,7 @@ void global::init()
 	GRAVITY = 0.04f;
 	STANDART_JUMPPOWER = 0.6f;
 	STANDART_ACCELERATION = 0.18f;
+	SKIP_LOBBY = false;
 
 	std::ifstream f;
 	f.open(".global", std::ios::in);
@@ -79,6 +81,12 @@ void global::init()
 		{
 			if (value == "true") DEBUG_STEPWISE = true;
 			else if (value == "false") DEBUG_STEPWISE = false;
+			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
+		}
+		else if (key == "skip_lobby")
+		{
+			if (value == "true") SKIP_LOBBY = true;
+			else if (value == "false") SKIP_LOBBY = false;
 			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
 		}
 		else

@@ -2,11 +2,33 @@
 
 #include "../misc/Global.hpp"
 #include "menues/LoginMenu.hpp"
+#include "../game/ServerGameInterface.hpp"
 #include "../core/Main.hpp"
 
 MenuList::MenuList()
 {
-	menues.push_back(new LoginMenu());
+	if (global::SKIP_LOBBY)
+	{
+		LobbyTileMap* lobbyTileMap = new LobbyTileMap(LobbyTileMap::getIntsByFile("res/maps/default.png"));
+		std::vector<LobbyPlayer*> lobbyPlayers;
+		LobbyPlayer* player = new LobbyPlayer(new LoginUserPacket("myself", 42));
+		player->applyTeamUserPacket(new TeamUserPacket((char)0));
+		player->applyAvatarUserPacket(new AvatarUserPacket((char)0));
+		std::string a = "";
+		a += (char)0;
+		a += (char)0;
+		a += (char)0;
+		player->applyItemUserPacket(new ItemUserPacket(a));
+		a += (char)0;
+		player->applySkillUserPacket(new SkillUserPacket(a));
+
+		lobbyPlayers.push_back(player);
+		menues.push_back(new ServerGameInterface(lobbyTileMap, lobbyPlayers));
+	}
+	else
+	{
+		menues.push_back(new LoginMenu());
+	}
 }
 
 MenuList::~MenuList()

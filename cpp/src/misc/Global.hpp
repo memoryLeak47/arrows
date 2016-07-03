@@ -29,6 +29,7 @@ namespace global
 	extern float GRAVITY;
 	extern float STANDART_JUMPPOWER;
 	extern float STANDART_ACCELERATION;
+	extern bool SKIP_LOBBY;
 }
 
 #include "Converter.hpp"
