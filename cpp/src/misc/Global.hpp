@@ -2,6 +2,7 @@
 #define __GLOBAL_NAMESPACE__
 
 #include <SFML/Graphics.hpp>
+#include <string>
 
 #define eraseFromVector(x, y) for (unsigned int i = 0; i < y.size(); i++) if (y[0] == x) y.erase(y.begin() + i);
 #define deleteFromVector(x, y) for (unsigned int i = 0; i < y.size(); i++) if (y[0] == x) { delete y[i]; y.erase(y.begin() + i); }
@@ -30,6 +31,7 @@ namespace global
 	extern float STANDART_JUMPPOWER;
 	extern float STANDART_ACCELERATION;
 	extern bool SKIP_LOBBY;
+	extern std::string SKIP_LOBBY_MAP;
 }
 
 #include "Converter.hpp"

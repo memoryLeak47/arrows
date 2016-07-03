@@ -22,6 +22,7 @@ namespace global
 	float STANDART_JUMPPOWER;
 	float STANDART_ACCELERATION;
 	bool SKIP_LOBBY;
+	std::string SKIP_LOBBY_MAP;
 }
 
 void global::init()
@@ -88,6 +89,10 @@ void global::init()
 			if (value == "true") SKIP_LOBBY = true;
 			else if (value == "false") SKIP_LOBBY = false;
 			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
+		}
+		else if (key == "skip_lobby.map")
+		{
+			SKIP_LOBBY_MAP = value;
 		}
 		else
 		{
