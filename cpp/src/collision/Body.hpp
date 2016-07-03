@@ -27,7 +27,6 @@ enum BodyType
 
 class GameRect;
 class GameVector;
-class Impact;
 
 class Body
 {
@@ -38,11 +37,9 @@ class Body
 		virtual BodyType getBodyType() const = 0;
 
 		void move(float time);
-		void applyImpact(const Impact&);
 		virtual GameRect getWrapper(float timeLeft) const = 0;
 
 		virtual const GameVector& getSpeed() const = 0;
-		virtual const GameVector getSpeedAt(const GameVector&) const;
 		virtual const GameVector& getPosition() const = 0; // returnt die Position relativ zur Map vom ImageCenter
 		virtual float getRotation() const = 0;
 		virtual float getSpin() const = 0;
@@ -57,12 +54,14 @@ class Body
 		virtual float getRight() const = 0;
 		virtual float getTop() const = 0;
 		virtual float getBot() const = 0;
+
+		virtual void setSpeedAt(const GameVector&, const GameVector& where) = 0; // where is a map-coordinate
+		virtual GameVector getSpeedAt(const GameVector& where) const = 0; // where is a map-coordinate
 	private:
 		bool rotateable;
 };
 
 #include "../math/game/GameRect.hpp"
 #include "../math/game/GameVector.hpp"
-#include "../collision/Impact.hpp"
 
 #endif

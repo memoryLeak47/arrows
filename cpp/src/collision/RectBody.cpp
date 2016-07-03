@@ -133,3 +133,22 @@ float RectBody::getBot() const
 	}
 	return 0.f;
 }
+
+void RectBody::setSpeedAt(const GameVector& how, const GameVector& where) // where is a map-coordinate
+{
+	if (isEven() || where == getPosition())
+	{
+		setSpeed(how);
+	}
+	Debug::warn("RectBody::setSpeedAt: TODO");
+}
+
+GameVector RectBody::getSpeedAt(const GameVector& where) const // where is a map-coordinate
+{
+	if (isEven() || where == getPosition())
+	{
+		return getSpeed();
+	}
+	Debug::warn("RectBody::getSpeedAt: TODO");
+	return GameVector(0,0);
+}

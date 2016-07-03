@@ -38,20 +38,66 @@ void Entity::move(float time)
 	body->move(time);
 }
 
-void Entity::applyImpact(const Impact& impact)
+void Entity::setSpeed(const GameVector& speed)
 {
-	body->applyImpact(impact);
+	body->setSpeed(speed);
 	setChanged(true);
+}
+
+void Entity::setPosition(const GameVector& position)
+{
+	body->setPosition(position);
+	setChanged(true);
+	// TODO reload collision partners
+}
+
+void Entity::setRotation(float rotation)
+{
+	body->setRotation(rotation);
+	setChanged(true);
+}
+
+void Entity::setSpin(float spin)
+{
+	body->setSpin(spin);
+	setChanged(true);
+}
+
+void Entity::push(const GameVector& how, const GameVector& where)
+{
+	addSpeedAt(how/getMass(), where);
+}
+
+void Entity::push(const GameVector& how)
+{
+	push(how, body->getPosition());
+}
+
+void Entity::setSpeedAt(const GameVector& how, const GameVector& where)
+{
+	body->setSpeedAt(how, where);
+	setChanged(true);
+}
+
+void Entity::addSpeedAt(const GameVector& how, const GameVector& where)
+{
+	setSpeedAt(body->getSpeedAt(where) + how, where);
+	setChanged(true);
+}
+
+void Entity::addSpeed(const GameVector& how)
+{
+	setSpeed(how + body->getSpeed());
 }
 
 void Entity::optGravity()
 {
-	applyImpact(Impact(GameVector(0.f, 1.f), 0.002f, GameVector(body->getPosition())));
+	addSpeed(GameVector(0.f, 0.02f));
 }
 
 void Entity::optDrag()
 {
-	applyImpact(Impact(GameVector(body->getSpeed() * (-1.f)), 0.09f, GameVector(body->getPosition())));
+	push(body->getSpeed() * -0.01f);
 }
 
 void Entity::addCollisionPartner(Entity* e)

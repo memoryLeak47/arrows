@@ -101,3 +101,14 @@ float CircleBody::getBot() const
 	Debug::warn("CircleBody::getBot(): TODO");
 	return 0.f;
 }
+
+void CircleBody::setSpeedAt(const GameVector&, const GameVector& where) // where is a map-coordinate
+{
+	// TODO
+}
+
+GameVector CircleBody::getSpeedAt(const GameVector& where) const // where is a map-coordinate
+{
+	// TODO
+	return GameVector(0, 0);
+}

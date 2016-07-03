@@ -29,7 +29,6 @@ class GameVector;
 class GameRect;
 class PixelRect;
 class View;
-class Impact;
 
 class Entity
 {
@@ -41,7 +40,17 @@ class Entity
 
 		// for body
 		void move(float time);
-		void applyImpact(const Impact& impact);
+		void setSpeed(const GameVector& speed);
+		void setPosition(const GameVector& position);
+		void setRotation(float rotation);
+		void setSpin(float spin);
+		void push(const GameVector& how);
+		void push(const GameVector& how, const GameVector& where);
+
+		void setSpeedAt(const GameVector& how, const GameVector& where);
+		void addSpeedAt(const GameVector& how, const GameVector& where);
+		void addSpeed(const GameVector& how);
+
 		virtual void optGravity();
 		virtual void optDrag();
 
@@ -97,7 +106,6 @@ class Entity
 #include "../math/game/GameRect.hpp"
 #include "../math/pixel/PixelRect.hpp"
 #include "../view/View.hpp"
-#include "../collision/Impact.hpp"
 
 #include "../graphics/GraphicsManager.hpp"
 

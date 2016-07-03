@@ -29,6 +29,9 @@ class CircleBody : public Body
 		virtual float getRight() const;
 		virtual float getTop() const;
 		virtual float getBot() const;
+
+		virtual void setSpeedAt(const GameVector&, const GameVector& where) override; // where is a map-coordinate
+		virtual GameVector getSpeedAt(const GameVector& where) const override; // where is a map-coordinate
 	private:
 		GameVector position;
 		GameVector speed;
