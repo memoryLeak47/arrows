@@ -21,22 +21,10 @@ void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 	Debug::funcOn("CollisionHandler::handleCollisionEvent: " + ev->toString());
 	// Calculate CollisionPoints
 	std::vector<GameVector> collisionPoints = getCollisionPoints(ev);
-	for (GameVector v : collisionPoints)
-	{
-		Debug::test("collisionPoints=" + v.toString());
-	}
 
 	// Calculate EscapeVectors
 	std::vector<GameVector> escapeVectors1 = getEscapeVectors(ev->getEntity1(), collisionPoints);
-	for (GameVector v : escapeVectors1)
-	{
-		Debug::test("escapeVector1=" + v.toString());
-	}
 	std::vector<GameVector> escapeVectors2 = getEscapeVectors(ev->getEntity2(), collisionPoints);
-	for (GameVector v : escapeVectors2)
-	{
-		Debug::test("escapeVector2=" + v.toString());
-	}
 
 	switch (getCollisionStatus(ev, collisionPoints, escapeVectors1)) // switch between the new collision status
 	{
@@ -84,33 +72,33 @@ std::vector<GameVector> CollisionHandler::getCollisionPoints(CollisionEvent* eve
 		{
 			if (b1->getLeft() == b2->getRight())
 			{
-				Debug::test("1");
+				Debug::test(e1->toString()  + " is Right from " + e2->toString());
 				result.push_back(GameVector(b1->getLeft(), std::max(b1->getTop(), b2->getTop())));
 				result.push_back(GameVector(b1->getLeft(), std::min(b1->getBot(), b2->getBot())));
 			}
 			else if (b2->getLeft() == b1->getRight())
 			{
-				Debug::test("2");
+				Debug::test(e1->toString()  + " is Left from " + e2->toString());
 				result.push_back(GameVector(b2->getLeft(), std::max(b1->getTop(), b2->getTop())));
 				result.push_back(GameVector(b2->getLeft(), std::min(b1->getBot(), b2->getBot())));
 			}
 
 			if (b1->getTop() == b2->getBot())
 			{
-				Debug::test("3");
+				Debug::test(e1->toString()  + " is under " + e2->toString());
 				result.push_back(GameVector(std::max(b1->getLeft(), b2->getLeft()), b1->getTop()));
 				result.push_back(GameVector(std::min(b1->getRight(), b2->getRight()), b1->getTop()));
 			}
 			else if (b2->getTop() == b1->getBot())
 			{
+				Debug::test(e1->toString()  + " is over " + e2->toString());
 				result.push_back(GameVector(std::max(b1->getLeft(), b2->getLeft()), b2->getTop()));
 				result.push_back(GameVector(std::min(b1->getRight(), b2->getRight()), b2->getTop()));
-				Debug::test("4, e1=" + event->getEntity1()->toString() + ", e2=" + event->getEntity2()->toString());
 			}
 
 			if (result.size() == 0)
 			{
-				Debug::warn("CollisionHandler::getCollisionPoints(): result.size() == null, on b1=" + b1->getPosition().toString() + " b2=" + b2->getPosition().toString());
+				Debug::warn("CollisionHandler::getCollisionPoints(): result.size() == 0, on b1=" + b1->getPosition().toString() + " b2=" + b2->getPosition().toString());
 			}
 		}
 	}
@@ -126,12 +114,6 @@ std::vector<GameVector> CollisionHandler::getEscapeVectors(Entity* e, const std:
 		GameVector am = e->getBody()->getPosition() - collisionPoints[0]; // Vector von a nach Mittelpunkt der Entity
 		GameVector o = GameVector(ab.getY(), -ab.getX()); // gedrehter ab Vector um 90°
 		GameVector f = o * GameVector::getScalarProduct(o, am);
-		Debug::test("a=" + collisionPoints[0].toString());
-		Debug::test("b=" + collisionPoints[1].toString());
-		Debug::test("ab=" + ab.toString());
-		Debug::test("am=" + am.toString());
-		Debug::test("o=" + o.toString());
-		Debug::test("escapevec=" + f.toString());
 
 		std::vector<GameVector> result;
 		result.push_back(f);
