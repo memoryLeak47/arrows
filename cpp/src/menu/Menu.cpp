@@ -6,11 +6,11 @@
 #include "menues/PopupMenu.hpp"
 
 Menu::Menu(const PixelRect& rect)
-	: rect(rect)
+	: focusedComponent(NULL), rect(rect)
 {}
 
 Menu::Menu()
-	: rect(PixelRect(0, 0, Screen::getSize().getX(), Screen::getSize().getY()))
+	: focusedComponent(NULL), rect(PixelRect(0, 0, Screen::getSize().getX(), Screen::getSize().getY()))
 {}
 
 bool Menu::isFullscreen() { return getRelativeRect() == PixelRect(0, 0, Screen::getSize().getX(), Screen::getSize().getY()); }
