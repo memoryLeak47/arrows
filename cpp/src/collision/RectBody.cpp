@@ -1,6 +1,7 @@
 #include "RectBody.hpp"
 
 #include <algorithm>
+#include <math.h>
 
 #include "../misc/Debug.hpp"
 
@@ -149,6 +150,8 @@ GameVector RectBody::getSpeedAt(const GameVector& where) const // where is a map
 	{
 		return getSpeed();
 	}
-	Debug::warn("RectBody::getSpeedAt: TODO");
-	return GameVector(0,0);
+	else
+	{
+		return ((where - getPosition()) * getSpin() * 2 * ((float)M_PI)) + getSpeed();
+	}
 }
