@@ -43,14 +43,14 @@ void Screen::tick()
 		}
 		else if (event.type == sf::Event::MouseMoved)
 		{
-			if (event.mouseMove.x != getSize().getX()/2 or event.mouseMove.y != getSize().getY()/2)
+			if (sf::Mouse::getPosition(*window).x != getSize().getX()/2 or sf::Mouse::getPosition(*window).y != getSize().getY()/2)
 			{
 				cursorPosition = cursorPosition + PixelVector(event.mouseMove.x - getSize().getX()/2, event.mouseMove.y - getSize().getY()/2);
 				cursorPosition = PixelVector(
 					std::min(std::max(cursorPosition.getX(), 0), getSize().getX()),
 					std::min(std::max(cursorPosition.getY(), 0), getSize().getY())
 				);
-				sf::Mouse::setPosition(sf::Vector2i(getSize().getX()/2, getSize().getY()/2));
+				sf::Mouse::setPosition(sf::Vector2i(getSize().getX()/2, getSize().getY()/2), *window);
 			}
 		}
 		else
