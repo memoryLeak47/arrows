@@ -1,7 +1,6 @@
 #include "RectBody.hpp"
 
 #include <algorithm>
-#include <math.h>
 
 #include "../misc/Debug.hpp"
 
@@ -146,12 +145,12 @@ void RectBody::setSpeedAt(const GameVector& how, const GameVector& where) // whe
 
 GameVector RectBody::getSpeedAt(const GameVector& where) const // where is a map-coordinate
 {
-	if (isEven() || where == getPosition())
+	if (isEven())
 	{
 		return getSpeed();
 	}
 	else
 	{
-		return ((where - getPosition()) * getSpin() * 2 * ((float)M_PI)) + getSpeed();
+		return Body::getSpeedAt(where);
 	}
 }

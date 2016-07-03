@@ -106,9 +106,3 @@ void CircleBody::setSpeedAt(const GameVector&, const GameVector& where) // where
 {
 	// TODO
 }
-
-GameVector CircleBody::getSpeedAt(const GameVector& where) const // where is a map-coordinate
-{
-	// TODO
-	return GameVector(0, 0);
-}

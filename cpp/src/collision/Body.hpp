@@ -56,7 +56,7 @@ class Body
 		virtual float getBot() const = 0;
 
 		virtual void setSpeedAt(const GameVector&, const GameVector& where) = 0; // where is a map-coordinate
-		virtual GameVector getSpeedAt(const GameVector& where) const = 0; // where is a map-coordinate
+		virtual GameVector getSpeedAt(const GameVector& where) const; // where is a map-coordinate
 	private:
 		bool rotateable;
 };
