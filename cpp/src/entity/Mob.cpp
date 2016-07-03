@@ -23,5 +23,5 @@ void Mob::actionGoRight()
 
 void Mob::actionJump()
 {
-	body->setSpeed(GameVector(body->getSpeed().getX(), -0.1f));
+	setSpeed(GameVector(body->getSpeed().getX(), -0.1f));
 }
