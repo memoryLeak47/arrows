@@ -24,7 +24,9 @@ class Screen
 		static void drawGraphicsID(const PixelRect&, GraphicsID, int index=0, float rotation=0);
 		static void drawTexture(const sf::Texture*, const PixelRect&, float rotation=0);
 		static void drawText(const std::string&, const PixelVector&, const sf::Color&);
+		static void renderCursor();
 	private:
+		static PixelVector cursorPosition;
 		static sf::RenderWindow *window;
 		static sf::Text text;
 };

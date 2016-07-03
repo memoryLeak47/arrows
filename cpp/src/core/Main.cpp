@@ -82,6 +82,7 @@ void Main::tick()
 void Main::render()
 {
 	menuList->render();
+	Screen::renderCursor();
 	Screen::display();
 }
 

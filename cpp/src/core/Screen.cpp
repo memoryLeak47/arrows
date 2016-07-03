@@ -1,14 +1,19 @@
 #include "Screen.hpp"
 
+#include <algorithm>
+
 #include "../misc/Global.hpp"
 #include "Main.hpp"
 
+PixelVector Screen::cursorPosition = PixelVector(0, 0);
 sf::RenderWindow* Screen::window;
 sf::Text Screen::text;
 
 void Screen::init()
 {
 	window = new sf::RenderWindow(sf::VideoMode(getSize().getX(), getSize().getY()), "Arrows", global::WINDOW_STYLE);
+	window->setMouseCursorVisible(false);
+	sf::Mouse::setPosition(sf::Vector2i(getSize().getX()/2, getSize().getY()/2));
 	static sf::Font font;
 	if (!font.loadFromFile("res/fonts/font.ttf"))
 	{
@@ -36,6 +41,18 @@ void Screen::tick()
 		{
 			Main::exit();
 		}
+		else if (event.type == sf::Event::MouseMoved)
+		{
+			if (event.mouseMove.x != getSize().getX()/2 or event.mouseMove.y != getSize().getY()/2)
+			{
+				cursorPosition = cursorPosition + PixelVector(event.mouseMove.x - getSize().getX()/2, event.mouseMove.y - getSize().getY()/2);
+				cursorPosition = PixelVector(
+					std::min(std::max(cursorPosition.getX(), 0), getSize().getX()),
+					std::min(std::max(cursorPosition.getY(), 0), getSize().getY())
+				);
+				sf::Mouse::setPosition(sf::Vector2i(getSize().getX()/2, getSize().getY()/2));
+			}
+		}
 		else
 		{
 			Main::getMenuList()->onEvent(event);
@@ -51,9 +68,7 @@ void Screen::display()
 
 PixelVector Screen::getCursorPosition()
 {
-	int x = sf::Mouse::getPosition().x;
-	int y = sf::Mouse::getPosition().y;
-	return PixelVector(x - window->getPosition().x, y - window->getPosition().y);
+	return cursorPosition;
 }
 
 PixelVector Screen::getSize()
@@ -86,6 +101,11 @@ void Screen::fillRect(const PixelRect& rect, const sf::Color& color)
 void Screen::drawGraphicsID(const PixelRect& rect, GraphicsID id, int index, float rotation)
 {
 	drawTexture(GraphicsManager::getTexture(id, index), rect, rotation);
+}
+
+void Screen::renderCursor()
+{
+	fillRect(PixelRect(cursorPosition - PixelVector(2,2), PixelVector(4,4)), sf::Color::White);
 }
 
 void Screen::drawTexture(const sf::Texture* tex, const PixelRect& rect, float rotation)
