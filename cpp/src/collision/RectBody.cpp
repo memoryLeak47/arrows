@@ -15,16 +15,23 @@ BodyType RectBody::getBodyType() const
 
 GameRect RectBody::getWrapper(float timeLeft) const
 {
-	float deltaX = speed.getX() * timeLeft;
-	float deltaY = speed.getY() * timeLeft;
+	if (isEven())
+	{
+		return GameRect(getPosition(), getSize());
+	}
+	else
+	{
+		float deltaX = speed.getX() * timeLeft;
+		float deltaY = speed.getY() * timeLeft;
 
-	float diagonal = 2 * getSize().getMagnitude();
-	float sizeX = diagonal + std::abs(deltaX);
-	float sizeY = diagonal + std::abs(deltaY);
-	float posX = getPosition().getX() + deltaX/2 - sizeX/2;
-	float posY = getPosition().getY() + deltaY/2 - sizeY/2;
+		float diagonal = 2 * getSize().getMagnitude();
+		float sizeX = diagonal + std::abs(deltaX);
+		float sizeY = diagonal + std::abs(deltaY);
+		float posX = getPosition().getX() + deltaX/2 - sizeX/2;
+		float posY = getPosition().getY() + deltaY/2 - sizeY/2;
 
-	return GameRect(GameVector(posX, posY), GameVector(sizeX, sizeY));
+		return GameRect(GameVector(posX, posY), GameVector(sizeX, sizeY));
+	}
 }
 
 void RectBody::setPosition(const GameVector& pos)
