@@ -3,5 +3,5 @@ run:
 getlog:
 	@if [ -f log ]; then cat log; else echo "no log file"; fi
 gdb:
-	@gdb ./bam/build/debug/arrows core
+	@if [ -f core ]; then gdb ./bam/build/debug/arrows core; else echo no core; fi
 .PHONY: run getlog gdb
