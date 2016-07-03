@@ -171,4 +171,5 @@ bool Entity::couldFlashTo(const GameVector&) const
 void Entity::stop()
 {
 	body->setSpeed(GameVector(0.f, 0.f));
+	setChanged(true);
 }
