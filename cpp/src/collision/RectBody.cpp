@@ -140,7 +140,10 @@ void RectBody::setSpeedAt(const GameVector& how, const GameVector& where) // whe
 	{
 		setSpeed(how);
 	}
-	Debug::warn("RectBody::setSpeedAt: TODO");
+	else
+	{
+		Debug::warn("RectBody::setSpeedAt: TODO");
+	}
 }
 
 GameVector RectBody::getSpeedAt(const GameVector& where) const // where is a map-coordinate
