@@ -112,3 +112,8 @@ int Main::getRank()
 {
 	return getAccount()->getRank();
 }
+
+bool Main::isRunning()
+{
+	return running;
+}

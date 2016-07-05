@@ -14,7 +14,7 @@ void Debug::init()
 
 void Debug::note(const std::string& s)
 {
-	if (global::DEBUG_NOTE)
+	if (global::DEBUG_NOTE and Main::isRunning())
 	{
 		std::cout << NOTE_COLOR << "NOTE: " << s << RESET_COLOR << std::endl;
 	}
@@ -32,7 +32,7 @@ void Debug::noteIf(bool b, const std::string& s)
 
 void Debug::test(const std::string& s)
 {
-	if (global::DEBUG_TEST)
+	if (global::DEBUG_TEST and Main::isRunning())
 	{
 		std::cout << TEST_COLOR << "TEST: " << s << RESET_COLOR << std::endl;
 	}
@@ -50,7 +50,10 @@ void Debug::testIf(bool b, const std::string& s)
 
 void Debug::warn(const std::string& s)
 {
-	std::cout << WARN_COLOR << "WARN: " << s << RESET_COLOR << std::endl;
+	if (Main::isRunning())
+	{
+		std::cout << WARN_COLOR << "WARN: " << s << RESET_COLOR << std::endl;
+	}
 }
 
 void Debug::warnIf(bool b, const std::string& s)
@@ -65,8 +68,11 @@ void Debug::warnIf(bool b, const std::string& s)
 
 void Debug::error(const std::string& s)
 {
-	std::cout << ERROR_COLOR << "ERROR: " << s << RESET_COLOR << std::endl;
-	Main::exit();
+	if (Main::isRunning())
+	{
+		std::cout << ERROR_COLOR << "ERROR: " << s << RESET_COLOR << std::endl;
+		Main::exit();
+	}
 }
 
 void Debug::errorIf(bool b, const std::string& s)
@@ -79,14 +85,17 @@ void Debug::errorIf(bool b, const std::string& s)
 
 void Debug::time(const std::string& s)
 {
-	static sf::Clock c;
-	int t = c.restart().asMilliseconds();
-	std::cout << TIME_COLOR << "TIME: " << Converter::intToString(t) << ": " << s << std::endl;
+	if (Main::isRunning())
+	{
+		static sf::Clock c;
+		int t = c.restart().asMilliseconds();
+		std::cout << TIME_COLOR << "TIME: " << Converter::intToString(t) << ": " << s << std::endl;
+	}
 }
 
 void Debug::func(const std::string& s)
 {
-	if (global::DEBUG_FUNC)
+	if (global::DEBUG_FUNC and Main::isRunning())
 	{
 		std::string t = "";
 		for (int i = 0; i < indentCounter; i++)
@@ -99,7 +108,7 @@ void Debug::func(const std::string& s)
 
 void Debug::funcOn(const std::string& s)
 {
-	if (global::DEBUG_FUNC)
+	if (global::DEBUG_FUNC and Main::isRunning())
 	{
 		std::string t = "";
 		for (int i = 0; i < indentCounter; i++)
@@ -113,7 +122,7 @@ void Debug::funcOn(const std::string& s)
 
 void Debug::funcOff(const std::string& s)
 {
-	if (global::DEBUG_FUNC)
+	if (global::DEBUG_FUNC and Main::isRunning())
 	{
 		indentCounter--;
 		std::string t = "";

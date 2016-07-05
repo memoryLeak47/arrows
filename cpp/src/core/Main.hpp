@@ -20,6 +20,7 @@ class Main
 		static MenuList* getMenuList();
 		static std::string getName();
 		static int getRank();
+		static bool isRunning();
 	private:
 		static MenuList* menuList;
 		static NetworkDevice* networkDevice;
