@@ -9,6 +9,7 @@ class Converter
 		static int colorToInt(const sf::Color&);
 		static int hexaStringToInt(const std::string&);
 		static int colorStringToInt(const std::string&);
+		static int stringToInt(const std::string&);
 		static sf::Color intToColor(int);
 		static std::string intToString(int);
 		static std::string floatToString(float);

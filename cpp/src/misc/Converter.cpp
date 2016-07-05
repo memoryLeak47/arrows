@@ -28,6 +28,11 @@ int Converter::colorStringToInt(const std::string& colorString)
 	return colorToInt(sf::Color(red, green, blue));
 }
 
+int Converter::stringToInt(const std::string& s)
+{
+	return atoi(s.c_str());
+}
+
 sf::Color Converter::intToColor(int i)
 {
 	sf::Uint8 a = (sf::Uint8)(i >> 24);

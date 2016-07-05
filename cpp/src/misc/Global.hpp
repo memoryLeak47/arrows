@@ -16,9 +16,7 @@ namespace global
 {
 	void init();
 	extern int WINDOW_STYLE;
-	extern int MAX_TICK_COUNTER;
-	extern int MAX_RENDER_COUNTER;
-	extern int FRAME_INTERVAL;
+	extern int FPS;
 	extern bool DEBUG_FUNC;
 	extern bool DEBUG_NOTE;
 	extern bool DEBUG_TEST;

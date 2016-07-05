@@ -51,23 +51,13 @@ NetworkDevice* Main::getNetworkDevice()
 void Main::run()
 {
 	sf::Clock clock;
-	int renderCounter = 0;
-	int tickCounter = 0;
 	while (running)
 	{
-		int tmp = clock.getElapsedTime().asMilliseconds();
-		renderCounter += tmp;
-		tickCounter += tmp;
-
-		if (tickCounter > global::MAX_TICK_COUNTER)
+		if (clock.getElapsedTime().asSeconds() > 1/global::FPS)
 		{
 			tick();
-			tickCounter -= global::MAX_TICK_COUNTER;
-		}
-		if (renderCounter > global::MAX_RENDER_COUNTER)
-		{
 			render();
-			renderCounter -= global::MAX_RENDER_COUNTER;
+			clock.restart();
 		}
 	}
 }

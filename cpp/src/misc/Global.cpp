@@ -7,9 +7,7 @@ namespace global
 {
 	void init();
 	int WINDOW_STYLE;
-	int MAX_TICK_COUNTER;
-	int MAX_RENDER_COUNTER;
-	int FRAME_INTERVAL;
+	int FPS;
 	bool DEBUG_FUNC;
 	bool DEBUG_NOTE;
 	bool DEBUG_TEST;
@@ -28,9 +26,7 @@ namespace global
 void global::init()
 {
 	WINDOW_STYLE = sf::Style::Fullscreen;
-	MAX_TICK_COUNTER = 2000;
-	MAX_RENDER_COUNTER = 2000;
-	FRAME_INTERVAL = 40;
+	FPS = 40;
 	DEBUG_FUNC = true;
 	DEBUG_NOTE = true;
 	DEBUG_TEST = true;
@@ -94,6 +90,10 @@ void global::init()
 		else if (key == "skip_lobby.map")
 		{
 			SKIP_LOBBY_MAP = value;
+		}
+		else if (key == "fps")
+		{
+			FPS = Converter::stringToInt(value);
 		}
 		else
 		{
