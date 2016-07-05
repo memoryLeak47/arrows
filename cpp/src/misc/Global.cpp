@@ -56,44 +56,52 @@ void global::init()
 			if (value == "true") DEBUG_FUNC = true;
 			else if (value == "false") DEBUG_FUNC = false;
 			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
+			Debug::note("settings debug.func to " + Converter::boolToString(DEBUG_STEPWISE));
 		}
 		else if (key == "debug.note")
 		{
 			if (value == "true") DEBUG_NOTE = true;
 			else if (value == "false") DEBUG_NOTE = false;
 			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
+			Debug::note("settings debug.note to " + Converter::boolToString(DEBUG_STEPWISE));
 		}
 		else if (key == "debug.test")
 		{
 			if (value == "true") DEBUG_TEST = true;
 			else if (value == "false") DEBUG_TEST = false;
 			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
+			Debug::note("settings debug.test to " + Converter::boolToString(DEBUG_STEPWISE));
 		}
 		else if (key == "window.style")
 		{
 			if (value == "fullscreen") WINDOW_STYLE = sf::Style::Fullscreen;
 			else if (value == "resize") WINDOW_STYLE = sf::Style::Resize;
 			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
+			Debug::note("settings window.style to " + Converter::intToString(WINDOW_STYLE));
 		}
 		else if (key == "debug.stepwise")
 		{
 			if (value == "true") DEBUG_STEPWISE = true;
 			else if (value == "false") DEBUG_STEPWISE = false;
 			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
+			Debug::note("settings debug.stepwise to " + Converter::boolToString(DEBUG_STEPWISE));
 		}
 		else if (key == "skip_lobby")
 		{
 			if (value == "true") SKIP_LOBBY = true;
 			else if (value == "false") SKIP_LOBBY = false;
 			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
+			Debug::note("settings skip_lobby to " + Converter::boolToString(SKIP_LOBBY));
 		}
 		else if (key == "skip_lobby.map")
 		{
 			SKIP_LOBBY_MAP = value;
+			Debug::note("settings skip_lobby.map to " + value);
 		}
 		else if (key == "fps")
 		{
 			FPS = Converter::stringToInt(value);
+			Debug::note("settings fps to " + Converter::intToString(FPS));
 		}
 		else
 		{

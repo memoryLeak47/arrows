@@ -14,6 +14,7 @@ class Converter
 		static std::string intToString(int);
 		static std::string floatToString(float);
 		static std::string charsToString(const std::string&);
+		static std::string boolToString(bool);
 		template <class T> static T* clone(T*);
 };
 

@@ -66,6 +66,11 @@ std::string Converter::charsToString(const std::string& arg)
 	return res + ")";
 }
 
+std::string Converter::boolToString(bool b)
+{
+	return b ? "true" : "false";
+}
+
 template <class T> T* Converter::clone(T* t)
 {
 	return new T(*t);
