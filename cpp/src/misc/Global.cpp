@@ -7,7 +7,7 @@ namespace global
 {
 	void init();
 	int WINDOW_STYLE;
-	int FPS;
+	float FPS;
 	bool DEBUG_FUNC;
 	bool DEBUG_NOTE;
 	bool DEBUG_TEST;
@@ -100,8 +100,8 @@ void global::init()
 		}
 		else if (key == "fps")
 		{
-			FPS = Converter::stringToInt(value);
-			Debug::note("settings fps to " + Converter::intToString(FPS));
+			FPS = Converter::stringToFloat(value);
+			Debug::note("settings fps to " + Converter::floatToString(FPS));
 		}
 		else
 		{

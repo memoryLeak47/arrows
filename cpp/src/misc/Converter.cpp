@@ -33,6 +33,11 @@ int Converter::stringToInt(const std::string& s)
 	return atoi(s.c_str());
 }
 
+float Converter::stringToFloat(const std::string& s)
+{
+	return std::stof(s);
+}
+
 sf::Color Converter::intToColor(int i)
 {
 	sf::Uint8 a = (sf::Uint8)(i >> 24);

@@ -16,7 +16,7 @@ namespace global
 {
 	void init();
 	extern int WINDOW_STYLE;
-	extern int FPS;
+	extern float FPS;
 	extern bool DEBUG_FUNC;
 	extern bool DEBUG_NOTE;
 	extern bool DEBUG_TEST;
