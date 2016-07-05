@@ -43,6 +43,7 @@ void global::init()
 	STANDART_JUMPPOWER = 0.6f;
 	STANDART_ACCELERATION = 0.18f;
 	SKIP_LOBBY = false;
+	SKIP_LOBBY_MAP = "default.png";
 
 	std::ifstream f;
 	f.open(".global", std::ios::in);
