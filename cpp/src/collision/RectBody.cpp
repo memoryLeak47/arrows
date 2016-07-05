@@ -17,7 +17,7 @@ GameRect RectBody::getWrapper(float timeLeft) const
 {
 	if (isEven())
 	{
-		return GameRect(getPosition(), getSize());
+		return GameRect(getPosition() - getSize()/2.f, getSize());
 	}
 	else
 	{
