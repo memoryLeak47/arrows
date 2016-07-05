@@ -60,9 +60,9 @@ const std::vector<Tile*> GameTileMap::getIntersectionTiles(const GameRect& gameR
 
 	std::vector<Tile*> intersectionTiles;
 
-	for (int x = left; x <= right; x++)
+	for (int x = left; x < right; x++)
 	{
-		for (int y = top; y <= bot; y++)
+		for (int y = top; y < bot; y++)
 		{
 			intersectionTiles.push_back(tiles[x][y]);
 		}
