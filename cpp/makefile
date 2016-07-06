@@ -6,4 +6,6 @@ gdb:
 	@if [ -f core ]; then gdb ./bam/build/debug/arrows core; else echo no core; fi
 line-counter:
 	@line-counter *pp
-.PHONY: run getlog gdb line-counter
+compile:
+	@bam -j `nproc`
+.PHONY: run getlog gdb line-counter compile
