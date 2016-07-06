@@ -52,11 +52,10 @@ GameVector GameTileMap::teamToSpawnPosition(Team* team)
 
 const std::vector<Tile*> GameTileMap::getIntersectionTiles(const GameRect& gameRect) const
 {
-	// TODO remove -1 / +1 when fixed
-	int left = std::max(0, ((int)gameRect.getLeft())-1); // +0
-	int right = std::min(getWidth(), ((int)gameRect.getRight()) + 2); // +1
-	int top = std::max(0, ((int)gameRect.getTop())-1); // +0
-	int bot = std::min(getHeight(), ((int)gameRect.getBot()) + 2); // +1
+	int left = std::max(0, ((int)gameRect.getLeft()));
+	int right = std::min(getWidth(), ((int)gameRect.getRight()) + 1);
+	int top = std::max(0, ((int)gameRect.getTop()));
+	int bot = std::min(getHeight(), ((int)gameRect.getBot()) + 1);
 
 	std::vector<Tile*> intersectionTiles;
 

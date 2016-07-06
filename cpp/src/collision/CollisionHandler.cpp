@@ -110,15 +110,24 @@ std::vector<GameVector> CollisionHandler::getCollisionPoints(CollisionEvent* eve
 
 			if (result.size() == 0)
 			{
-				Debug::warn("CollisionHandler::getCollisionPoints(): result.size() == 0, on b1=" + b1->getPosition().toString() + " b2=" + b2->getPosition().toString());
+				Debug::warn("CollisionHandler::getCollisionPoints(): result.size() == 0, on b1=" + b1->getPosition().toString()
+					+ " b2=" + b2->getPosition().toString()
+				);
 
-				/*
-					Debug::test("b1->getTop()=" + Converter::floatToString(b1->getTop()) + " ; b2->getBot()=" + Converter::floatToString(b2->getBot()));
-					Debug::test("b2->getTop()=" + Converter::floatToString(b2->getTop()) + " ; b1->getBot()=" + Converter::floatToString(b1->getBot()));
+				Debug::test("b1->getTop()=" + Converter::floatToString(b1->getTop()) +
+					" ; b2->getBot()=" + Converter::floatToString(b2->getBot())
+				);
+				Debug::test("b2->getTop()=" + Converter::floatToString(b2->getTop()) +
+					" ; b1->getBot()=" + Converter::floatToString(b1->getBot())
+				);
 
-					Debug::test("b1->getLeft()=" + Converter::floatToString(b1->getLeft()) + " ; b2->getRight()=" + Converter::floatToString(b2->getRight()) + " is equal = " + Converter::boolToString(b1->getLeft() == b2->getRight()));
-					Debug::test("b2->getLeft()=" + Converter::floatToString(b2->getLeft()) + " ; b1->getRight()=" + Converter::floatToString(b1->getRight()));
-				*/
+				Debug::test("b1->getLeft()=" + Converter::floatToString(b1->getLeft()) +
+					" ; b2->getRight()=" + Converter::floatToString(b2->getRight()) +
+					" is equal = " + Converter::boolToString(b1->getLeft() == b2->getRight())
+				);
+				Debug::test("b2->getLeft()=" + Converter::floatToString(b2->getLeft()) +
+					" ; b1->getRight()=" + Converter::floatToString(b1->getRight())
+				);
 			}
 		}
 	}

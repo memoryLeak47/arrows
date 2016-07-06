@@ -17,7 +17,15 @@ GameRect RectBody::getWrapper(float timeLeft) const
 {
 	if (isEven())
 	{
-		return GameRect(getPosition() - getSize()/2.f, getSize());
+		float deltaX = speed.getX() * timeLeft;
+		float deltaY = speed.getY() * timeLeft;
+
+		float sizeX = size.getX() + std::abs(deltaX);
+		float sizeY = size.getY() + std::abs(deltaY);
+		float posX = getPosition().getX() + deltaX/2 - sizeX/2;
+		float posY = getPosition().getY() + deltaY/2 - sizeY/2;
+
+		return GameRect(GameVector(posX, posY), GameVector(sizeX, sizeY));
 	}
 	else
 	{
