@@ -71,26 +71,33 @@ std::vector<GameVector> CollisionHandler::getCollisionPoints(CollisionEvent* eve
 		if (b1->isEven() && b2->isEven())
 		{
 			// seems like a Rundungsfehler
-			if (b1->getLeft() == b2->getRight())
+//			std::cout << b1->getLeft() << " == " << b2->getRight() << std::endl;
+//			std::cout << "left - right : " << b1->getLeft() - b2->getRight() << std::endl;
+//			std::cout << "left - right == 0 :" << ((b1->getLeft() - b2->getRight()) == 0.f) << std::endl;
+//			std::cout << "left == right : " << (b1->getLeft() == b2->getRight()) << std::endl;
+
+			static const float DISTANCE = 0.0001f;
+
+			if (std::abs(b1->getLeft() - b2->getRight()) < DISTANCE)
 			{
 				Debug::test(e1->toString()  + " is Right from " + e2->toString());
 				result.push_back(GameVector(b1->getLeft(), std::max(b1->getTop(), b2->getTop())));
 				result.push_back(GameVector(b1->getLeft(), std::min(b1->getBot(), b2->getBot())));
 			}
-			else if (b2->getLeft() == b1->getRight())
+			else if (std::abs(b2->getLeft() - b1->getRight()) < DISTANCE)
 			{
 				Debug::test(e1->toString()  + " is Left from " + e2->toString());
 				result.push_back(GameVector(b2->getLeft(), std::max(b1->getTop(), b2->getTop())));
 				result.push_back(GameVector(b2->getLeft(), std::min(b1->getBot(), b2->getBot())));
 			}
 
-			if (b1->getTop() == b2->getBot())
+			if (std::abs(b1->getTop() - b2->getBot()) < DISTANCE)
 			{
 				Debug::test(e1->toString()  + " is under " + e2->toString());
 				result.push_back(GameVector(std::max(b1->getLeft(), b2->getLeft()), b1->getTop()));
 				result.push_back(GameVector(std::min(b1->getRight(), b2->getRight()), b1->getTop()));
 			}
-			else if (b2->getTop() == b1->getBot())
+			else if (std::abs(b2->getTop() - b1->getBot()) < DISTANCE)
 			{
 				Debug::test(e1->toString()  + " is over " + e2->toString());
 				result.push_back(GameVector(std::max(b1->getLeft(), b2->getLeft()), b2->getTop()));
@@ -104,8 +111,15 @@ std::vector<GameVector> CollisionHandler::getCollisionPoints(CollisionEvent* eve
 					if (result[i] == result[j])
 					{
 						result.erase(result.begin() + j);
+						i--;
+						break;
 					}
 				}
+			}
+
+			for (unsigned int i = 0; i < result.size(); i++)
+			{
+				Debug::test("collisionPoint(" + Converter::intToString(i) + ")=" + result[i].toString());
 			}
 
 			if (result.size() == 0)

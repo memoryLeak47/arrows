@@ -46,13 +46,13 @@ std::pair<std::vector<float>, std::vector<bool>> getPair(float posX1, float posY
 
 	// x
 	float a = ((posX1 - sizeX1/2.f) - (posX2 + sizeX2/2.f)) / -speedX;
-	if (a >= 0 && a <= timeLeft)
+	if (a >= 0.f && a <= timeLeft)
 	{
 		floats.push_back(a);
 		bools.push_back(true);
 	}
 	a = ((posX2 - sizeX2/2.f) - (posX1 + sizeX1/2.f)) / speedX;
-	if (a >= 0 && a <= timeLeft)
+	if (a >= 0.f && a <= timeLeft)
 	{
 		floats.push_back(a);
 		bools.push_back(true);
@@ -60,13 +60,13 @@ std::pair<std::vector<float>, std::vector<bool>> getPair(float posX1, float posY
 
 	// y
 	a = ((posY1 - sizeY1/2.f) - (posY2 + sizeY2/2.f)) / -speedY;
-	if (a >= 0 && a <= timeLeft)
+	if (a >= 0.f && a <= timeLeft)
 	{
 		floats.push_back(a);
 		bools.push_back(false);
 	}
 	a = ((posY2 - sizeY2/2.f) - (posY1 + sizeY1/2.f)) / speedY;
-	if (a >= 0 && a <= timeLeft)
+	if (a >= 0.f && a <= timeLeft)
 	{
 		floats.push_back(a);
 		bools.push_back(false);
