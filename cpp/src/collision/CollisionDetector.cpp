@@ -49,13 +49,13 @@ std::pair<std::vector<float>, std::vector<bool>> getPair(float posX1, float posY
 	if (a >= 0 && a <= timeLeft)
 	{
 		floats.push_back(a);
-		bools.push_back(false);
+		bools.push_back(true);
 	}
 	a = ((posX2 - sizeX2/2.f) - (posX1 + sizeX1/2.f)) / speedX;
 	if (a >= 0 && a <= timeLeft)
 	{
 		floats.push_back(a);
-		bools.push_back(false);
+		bools.push_back(true);
 	}
 
 	// y
@@ -96,6 +96,7 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 	{
 		case CollisionType::SOLID:
 		{
+			// getestet
 			bool xCol = ((posX1 + sizeX1/2.f) >= (posX2 - sizeX2/2.f)) && ((posX2 + sizeX2/2.f) >= (posX1 - sizeX1/2.f));
 			bool yCol = ((posY1 + sizeY1/2.f) >= (posY2 - sizeY2/2.f)) && ((posY2 + sizeY2/2.f) >= (posY1 - sizeY1/2.f));
 

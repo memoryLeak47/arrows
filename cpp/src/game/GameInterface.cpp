@@ -158,10 +158,7 @@ void GameInterface::addEventsFrom(Entity* entity, std::vector<CollisionEvent*>* 
 
 	// find Collision with static tiles
 	const std::vector<Tile*> collisionTiles = getGameTileMap()->getIntersectionTiles(entity->getBody()->getWrapper(timeLeft));
-	for (unsigned int i = 0; i < collisionTiles.size(); i++)
-	{
-		Debug::test("tile" + Converter::intToString(i) + "= " + collisionTiles[i]->toString());
-	}
+
 	for (unsigned int i = 0; i < collisionTiles.size(); i++)
 	{
 		Tile* t = collisionTiles[i];
