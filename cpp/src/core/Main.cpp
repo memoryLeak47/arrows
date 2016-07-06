@@ -78,8 +78,8 @@ void Main::render()
 
 void Main::exit()
 {
-	running = false; // in the next-frame -> destructor
 	Debug::note("Exiting...");
+	running = false; // in the next-frame -> destructor
 }
 
 void Main::setAccount(Account* a)
