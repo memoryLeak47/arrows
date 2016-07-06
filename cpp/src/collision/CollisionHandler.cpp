@@ -70,6 +70,7 @@ std::vector<GameVector> CollisionHandler::getCollisionPoints(CollisionEvent* eve
 		const RectBody *b2 = dynamic_cast<const RectBody*>(e2->getBody());
 		if (b1->isEven() && b2->isEven())
 		{
+			// seems like a Rundungsfehler
 			if (b1->getLeft() == b2->getRight())
 			{
 				Debug::test(e1->toString()  + " is Right from " + e2->toString());
@@ -96,13 +97,31 @@ std::vector<GameVector> CollisionHandler::getCollisionPoints(CollisionEvent* eve
 				result.push_back(GameVector(std::min(b1->getRight(), b2->getRight()), b2->getTop()));
 			}
 
+			for (unsigned int i = 0; i < result.size(); i++)
+			{
+				for (unsigned int j = i+1; j < result.size(); j++)
+				{
+					if (result[i] == result[j])
+					{
+						result.erase(result.begin() + j);
+					}
+				}
+			}
+
 			if (result.size() == 0)
 			{
 				Debug::warn("CollisionHandler::getCollisionPoints(): result.size() == 0, on b1=" + b1->getPosition().toString() + " b2=" + b2->getPosition().toString());
+
+				/*
+					Debug::test("b1->getTop()=" + Converter::floatToString(b1->getTop()) + " ; b2->getBot()=" + Converter::floatToString(b2->getBot()));
+					Debug::test("b2->getTop()=" + Converter::floatToString(b2->getTop()) + " ; b1->getBot()=" + Converter::floatToString(b1->getBot()));
+
+					Debug::test("b1->getLeft()=" + Converter::floatToString(b1->getLeft()) + " ; b2->getRight()=" + Converter::floatToString(b2->getRight()) + " is equal = " + Converter::boolToString(b1->getLeft() == b2->getRight()));
+					Debug::test("b2->getLeft()=" + Converter::floatToString(b2->getLeft()) + " ; b1->getRight()=" + Converter::floatToString(b1->getRight()));
+				*/
 			}
 		}
 	}
-	//Debug::warn("CollisionHandler::getCollisionPoints(): TODO");
 	return result;
 }
 
@@ -121,7 +140,7 @@ std::vector<GameVector> CollisionHandler::getEscapeVectors(Entity* e, const std:
 	}
 	else
 	{
-		Debug::warn("CollisionHandler::getEscapeVectors(): collisionPoints.size() != 2");
+		Debug::warn("CollisionHandler::getEscapeVectors(): collisionPoints.size() = " + Converter::intToString(collisionPoints.size()));
 		return std::vector<GameVector>();
 	}
 }
