@@ -104,6 +104,12 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 			std::vector<float> floats = pair.first;
 			std::vector<bool> bools = pair.second;
 
+			if (xCol && yCol)
+			{
+				CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft);
+				Debug::test("ev0: " + ev->toString());
+				events->push_back(ev);
+			}
 			bool wasColliding = (xCol && yCol);
 			while (floats.size() > 0)
 			{
@@ -125,7 +131,7 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 				if (wasColliding != (xCol && yCol))
 				{
 					CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft-time);
-					Debug::test("ev: " + ev->toString());
+					Debug::test("ev1: " + ev->toString());
 					events->push_back(ev);
 					wasColliding = (xCol && yCol);
 				}

@@ -76,7 +76,7 @@ std::vector<GameVector> CollisionHandler::getCollisionPoints(CollisionEvent* eve
 //			std::cout << "left - right == 0 :" << ((b1->getLeft() - b2->getRight()) == 0.f) << std::endl;
 //			std::cout << "left == right : " << (b1->getLeft() == b2->getRight()) << std::endl;
 
-			static const float DISTANCE = 0.0001f;
+			static const float DISTANCE = 0.01f;
 
 			if (std::abs(b1->getLeft() - b2->getRight()) < DISTANCE)
 			{
