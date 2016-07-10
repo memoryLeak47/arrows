@@ -26,16 +26,13 @@ GameInterface::~GameInterface()
 
 void GameInterface::tick()
 {
-	Debug::funcOn("GameInterface::tick");
 	NetworkingMenu::tick();
 	tickEntities();
 	tickPhysics();
-	Debug::funcOff("GameInterface::tick");
 }
 
 void GameInterface::controlLocalPlayer()
 {
-	Debug::func("GameInterface::controlLocalPlayer");
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		getLocalPlayer()->actionGoLeft();
@@ -58,7 +55,6 @@ void GameInterface::controlLocalPlayer()
 
 void GameInterface::tickEntities()
 {
-	Debug::funcOn("GameInterface::tickEntities");
 	controlLocalPlayer();
 	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
 	{
@@ -67,12 +63,10 @@ void GameInterface::tickEntities()
 		entity->setChanged(true);
 	}
 	// TODO tick tiles?
-	Debug::funcOff("GameInterface::tickEntities");
 }
 
 void GameInterface::tickPhysics()
 {
-	Debug::funcOn("GameInterface::tickPhysics");
 	float timeLeft = global::GAME_FRAME_TIME;
 	std::vector<CollisionEvent*> events; // Es gäbe auch die Möglichkeit diesen vector global zu machen & länger als nur GAME_FRAME_TIME vorauszuber
 
@@ -105,7 +99,6 @@ void GameInterface::tickPhysics()
 		}
 	}
 	moveAllEntities(timeLeft);
-	Debug::funcOff("GameInterface::tickPhysics");
 }
 
 CollisionEvent* GameInterface::cutFirstEvent(std::vector<CollisionEvent*>* events)
@@ -139,7 +132,6 @@ void GameInterface::updateEventsFrom(Entity* entity, std::vector<CollisionEvent*
 
 void GameInterface::addEventsFrom(Entity* entity, std::vector<CollisionEvent*>* events, float timeLeft)
 {
-	Debug::funcOn("GameInterface::addEventsFrom " + entity->toString());
 	if (!entity->hasChanged())
 	{
 		return;
@@ -167,12 +159,10 @@ void GameInterface::addEventsFrom(Entity* entity, std::vector<CollisionEvent*>* 
 			CollisionDetector::addCollisionsBetween(entity, t, events, timeLeft);
 		}
 	}
-	Debug::funcOff("GameInterface::addEventsFrom " + entity->toString());
 }
 
 void GameInterface::moveAllEntities(float time)
 {
-	Debug::func("GameInterface::moveAllEntities(" + Converter::floatToString(time) + ")");
 	if (time == 0)
 	{
 		return;

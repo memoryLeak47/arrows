@@ -39,8 +39,6 @@ int getNextIndex(const std::vector<float>& floats)
 // private function
 std::pair<std::vector<float>, std::vector<bool>> getPair(float posX1, float posY1, float sizeX1, float sizeY1, float speedX, float speedY, float posX2, float posY2, float sizeX2, float sizeY2, float timeLeft)
 {
-	Debug::funcOn("CollisionDetector::getPair(posY1=" + Converter::floatToString(posY1) + " speedY1=" + Converter::floatToString(speedY) + " timeLeft=" + Converter::floatToString(timeLeft) + ")");
-
 	std::vector<float> floats;
 	std::vector<bool> bools;
 
@@ -72,7 +70,6 @@ std::pair<std::vector<float>, std::vector<bool>> getPair(float posX1, float posY
 		bools.push_back(false);
 	}
 
-	Debug::funcOff("CollisionDetector::getPair()");
 	return std::pair<std::vector<float>, std::vector<bool>>(floats, bools);
 }
 
@@ -107,7 +104,6 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 			if (xCol && yCol)
 			{
 				CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft);
-				Debug::test("ev0: " + ev->toString());
 				events->push_back(ev);
 			}
 			bool wasColliding = (xCol && yCol);
@@ -131,7 +127,6 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 				if (wasColliding != (xCol && yCol))
 				{
 					CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft-time);
-					Debug::test("ev1: " + ev->toString());
 					events->push_back(ev);
 					wasColliding = (xCol && yCol);
 				}

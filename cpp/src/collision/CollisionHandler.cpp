@@ -18,7 +18,6 @@
 
 void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 {
-	Debug::funcOn("CollisionHandler::handleCollisionEvent: " + ev->toString());
 	// Calculate CollisionPoints
 	std::vector<GameVector> collisionPoints = getCollisionPoints(ev);
 
@@ -30,7 +29,6 @@ void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 	{
 		case CollisionStatus::IN:
 		{
-			Debug::test("in");
 			// add partner
 
 			CollisionType type = Entity::getCollisionTypeBetween(ev->getEntity1(), ev->getEntity2());
@@ -42,13 +40,11 @@ void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 		}
 		case CollisionStatus::OUT:
 		{
-			Debug::test("out");
 			// remove partner
 			break;
 		}
 		case CollisionStatus::BORDER:
 		{
-			Debug::test("border");
 			break;
 		}
 		default:
@@ -56,8 +52,6 @@ void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 			Debug::error("CollisionHandler::handleCollisionEvent(): unknown CollisionStatus");
 		}
 	}
-
-	Debug::funcOff("CollisionHandler::handleCollisionEvent: " + ev->toString());
 }
 
 std::vector<GameVector> CollisionHandler::getCollisionPoints(CollisionEvent* event)
@@ -80,30 +74,27 @@ std::vector<GameVector> CollisionHandler::getCollisionPoints(CollisionEvent* eve
 
 			if (std::abs(b1->getLeft() - b2->getRight()) < DISTANCE)
 			{
-				Debug::test(e1->toString()  + " is Right from " + e2->toString());
 				result.push_back(GameVector(b1->getLeft(), std::max(b1->getTop(), b2->getTop())));
 				result.push_back(GameVector(b1->getLeft(), std::min(b1->getBot(), b2->getBot())));
 			}
 			else if (std::abs(b2->getLeft() - b1->getRight()) < DISTANCE)
 			{
-				Debug::test(e1->toString()  + " is Left from " + e2->toString());
 				result.push_back(GameVector(b2->getLeft(), std::max(b1->getTop(), b2->getTop())));
 				result.push_back(GameVector(b2->getLeft(), std::min(b1->getBot(), b2->getBot())));
 			}
 
 			if (std::abs(b1->getTop() - b2->getBot()) < DISTANCE)
 			{
-				Debug::test(e1->toString()  + " is under " + e2->toString());
 				result.push_back(GameVector(std::max(b1->getLeft(), b2->getLeft()), b1->getTop()));
 				result.push_back(GameVector(std::min(b1->getRight(), b2->getRight()), b1->getTop()));
 			}
 			else if (std::abs(b2->getTop() - b1->getBot()) < DISTANCE)
 			{
-				Debug::test(e1->toString()  + " is over " + e2->toString());
 				result.push_back(GameVector(std::max(b1->getLeft(), b2->getLeft()), b2->getTop()));
 				result.push_back(GameVector(std::min(b1->getRight(), b2->getRight()), b2->getTop()));
 			}
 
+			// removing doubles
 			for (unsigned int i = 0; i < result.size(); i++)
 			{
 				for (unsigned int j = i+1; j < result.size(); j++)
@@ -117,31 +108,9 @@ std::vector<GameVector> CollisionHandler::getCollisionPoints(CollisionEvent* eve
 				}
 			}
 
-			for (unsigned int i = 0; i < result.size(); i++)
-			{
-				Debug::test("collisionPoint(" + Converter::intToString(i) + ")=" + result[i].toString());
-			}
-
 			if (result.size() == 0)
 			{
-				Debug::warn("CollisionHandler::getCollisionPoints(): result.size() == 0, on b1=" + b1->getPosition().toString()
-					+ " b2=" + b2->getPosition().toString()
-				);
-
-				Debug::test("b1->getTop()=" + Converter::floatToString(b1->getTop()) +
-					" ; b2->getBot()=" + Converter::floatToString(b2->getBot())
-				);
-				Debug::test("b2->getTop()=" + Converter::floatToString(b2->getTop()) +
-					" ; b1->getBot()=" + Converter::floatToString(b1->getBot())
-				);
-
-				Debug::test("b1->getLeft()=" + Converter::floatToString(b1->getLeft()) +
-					" ; b2->getRight()=" + Converter::floatToString(b2->getRight()) +
-					" is equal = " + Converter::boolToString(b1->getLeft() == b2->getRight())
-				);
-				Debug::test("b2->getLeft()=" + Converter::floatToString(b2->getLeft()) +
-					" ; b1->getRight()=" + Converter::floatToString(b1->getRight())
-				);
+				Debug::error("CollisionHandler::getCollisionPoints(): no collision points detected");
 			}
 		}
 	}
