@@ -117,6 +117,8 @@ std::vector<GameVector> CollisionHandler::getCollisionPoints(CollisionEvent* eve
 	return result;
 }
 
+// Ein EscapeVector gibt an, in welche Richtung man sich von einer Entity(e) entfernen kann.
+// Ein EscapeVector zeigt von der Entity(e) weg.
 std::vector<GameVector> CollisionHandler::getEscapeVectors(Entity* e, const std::vector<GameVector>& collisionPoints)
 {
 	if (collisionPoints.size() == 2)
@@ -128,6 +130,35 @@ std::vector<GameVector> CollisionHandler::getEscapeVectors(Entity* e, const std:
 
 		std::vector<GameVector> result;
 		result.push_back(f);
+		return result;
+	}
+	else if (collisionPoints.size() == 1) // Der CollisionPunkt muss sich an einer der Ecken der Entity befinden
+	{
+		std::vector<GameVector> result;
+		if (e->getBody()->getPosition().getX() < collisionPoints[0].getX())
+		{
+			result.push_back(GameVector(1.f, 0.f));
+		}
+		else if (e->getBody()->getPosition().getX() > collisionPoints[0].getX())
+		{
+			result.push_back(GameVector(-1.f, 0.f));
+		}
+		else
+		{
+			Debug::error("CollisionHandler::getEscapeVectors(): CollisionPoints.size() == 1:\te->getBody()->getX() == collisionPoints[0]->getX()");
+		}
+		if (e->getBody()->getPosition().getY() < collisionPoints[0].getY())
+		{
+			result.push_back(GameVector(0.f, 1.f));
+		}
+		else if (e->getBody()->getPosition().getY() > collisionPoints[0].getY())
+		{
+			result.push_back(GameVector(0.f, -1.f));
+		}
+		else
+		{
+			Debug::error("CollisionHandler::getEscapeVectors(): CollisionPoints.size() == 1:\te->getBody()->getY() == collisionPoints[0]->getY()");
+		}
 		return result;
 	}
 	else
