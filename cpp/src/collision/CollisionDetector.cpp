@@ -75,19 +75,22 @@ std::pair<std::vector<float>, std::vector<bool>> getPair(float posX1, float posY
 
 void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
 {
-	float posX1 = dynamic_cast<const RectBody*>(e1->getBody())->getPosition().getX();
-	float posY1 = dynamic_cast<const RectBody*>(e1->getBody())->getPosition().getY();
-	float sizeX1 = dynamic_cast<const RectBody*>(e1->getBody())->getSize().getX();
-	float sizeY1 = dynamic_cast<const RectBody*>(e1->getBody())->getSize().getY();
+	const RectBody* b1 = dynamic_cast<const RectBody*>(e1->getBody());
+	const RectBody* b2 = dynamic_cast<const RectBody*>(e2->getBody());
+
+	float posX1 = b1->getPosition().getX();
+	float posY1 = b1->getPosition().getY();
+	float sizeX1 = b1->getSize().getX();
+	float sizeY1 = b1->getSize().getY();
 
 	// speed subtraction
-	float speedX = dynamic_cast<const RectBody*>(e1->getBody())->getSpeed().getX() - dynamic_cast<const RectBody*>(e2->getBody())->getSpeed().getX();
-	float speedY = dynamic_cast<const RectBody*>(e1->getBody())->getSpeed().getY() - dynamic_cast<const RectBody*>(e2->getBody())->getSpeed().getY();
+	float speedX = b1->getSpeed().getX() - b2->getSpeed().getX();
+	float speedY = b1->getSpeed().getY() - b2->getSpeed().getY();
 
-	float posX2 = dynamic_cast<const RectBody*>(e2->getBody())->getPosition().getX();
-	float posY2 = dynamic_cast<const RectBody*>(e2->getBody())->getPosition().getY();
-	float sizeX2 = dynamic_cast<const RectBody*>(e2->getBody())->getSize().getX();
-	float sizeY2 = dynamic_cast<const RectBody*>(e2->getBody())->getSize().getY();
+	float posX2 = b2->getPosition().getX();
+	float posY2 = b2->getPosition().getY();
+	float sizeX2 = b2->getSize().getX();
+	float sizeY2 = b2->getSize().getY();
 
 	switch (Entity::getCollisionTypeBetween(e1, e2))
 	{
