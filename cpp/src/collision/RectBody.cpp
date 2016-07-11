@@ -153,7 +153,7 @@ std::string RectBody::toString() const
 {
 	if (isEven())
 	{
-		return "rect: lefttop=" + GameVector(getLeft(), getTop()).toString() + " rightbot=" + GameVector(getRight(), getBot()).toString() + " speed=" + getSpeed().toString();
+		return "rect: left=" + Converter::floatToString(getLeft()) + " top=" + Converter::floatToString(getTop()) + " right=" + Converter::floatToString(getRight()) + " bot=" + Converter::floatToString(getBot()) + " speed=" + getSpeed().toString();
 	}
 	else
 	{
