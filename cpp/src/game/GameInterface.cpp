@@ -120,11 +120,12 @@ void GameInterface::updateEventsFrom(Entity* entity, std::vector<CollisionEvent*
 {
 	for (unsigned int i = 0; i < events->size(); i++)
 	{
-		if (events->at(i)->getEntity1() == entity || events->at(i)->getEntity2() == entity)
+		CollisionEvent* e = events->at(i);
+		if (e->getEntity1() == entity || e->getEntity2() == entity)
 		{
-			CollisionEvent* e = events->at(i);
 			events->erase(events->begin() + i);
 			deleteAndNULL(e);
+			i--;
 		}
 	}
 	addEventsFrom(entity, events, timeLeft);
