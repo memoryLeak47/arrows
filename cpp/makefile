@@ -1,3 +1,4 @@
+start: compile run
 run:
 	@./bam/build/debug/arrows | tee log
 getlog:
@@ -8,4 +9,4 @@ line-counter:
 	@line-counter *pp
 compile:
 	@bam -j `nproc`
-.PHONY: run getlog gdb line-counter compile
+.PHONY: run getlog gdb line-counter compile start
