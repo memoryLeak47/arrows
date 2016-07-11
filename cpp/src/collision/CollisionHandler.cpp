@@ -64,56 +64,19 @@ std::vector<GameVector> CollisionHandler::getCollisionPoints(CollisionEvent* eve
 		const RectBody *b2 = dynamic_cast<const RectBody*>(e2->getBody());
 		if (b1->isEven() && b2->isEven())
 		{
-			// seems like a Rundungsfehler
+			float x1 = std::max(b1->getLeft(), b2->getLeft());
+			float x2 = std::min(b1->getRight(), b2->getRight());
 
-			static const float DISTANCE = 0.0001f;
+			float y1 = std::max(b1->getTop(), b2->getTop());
+			float y2 = std::min(b1->getBot(), b2->getBot());
 
-			if (std::abs(b1->getLeft() - b2->getRight()) < DISTANCE)
-			{
-				result.push_back(GameVector(b1->getLeft(), std::max(b1->getTop(), b2->getTop())));
-				result.push_back(GameVector(b1->getLeft(), std::min(b1->getBot(), b2->getBot())));
-			}
-			else if (std::abs(b2->getLeft() - b1->getRight()) < DISTANCE)
-			{
-				result.push_back(GameVector(b2->getLeft(), std::max(b1->getTop(), b2->getTop())));
-				result.push_back(GameVector(b2->getLeft(), std::min(b1->getBot(), b2->getBot())));
-			}
+			GameVector lefttop(std::min(x1, x2), std::min(y1, y2));
+			GameVector rightbot(std::max(x1, x2), std::max(y1, y2));
 
-			if (std::abs(b1->getTop() - b2->getBot()) < DISTANCE)
+			result.push_back(lefttop);
+			if (lefttop != rightbot)
 			{
-				result.push_back(GameVector(std::max(b1->getLeft(), b2->getLeft()), b1->getTop()));
-				result.push_back(GameVector(std::min(b1->getRight(), b2->getRight()), b1->getTop()));
-			}
-			else if (std::abs(b2->getTop() - b1->getBot()) < DISTANCE)
-			{
-				result.push_back(GameVector(std::max(b1->getLeft(), b2->getLeft()), b2->getTop()));
-				result.push_back(GameVector(std::min(b1->getRight(), b2->getRight()), b2->getTop()));
-			}
-
-			// removing doubles
-			for (unsigned int i = 0; i < result.size(); i++)
-			{
-				for (unsigned int j = i+1; j < result.size(); j++)
-				{
-					if ((result[i] - result[j]).getMagnitude() < DISTANCE)
-					{
-						result.erase(result.begin() + j);
-						i--;
-						break;
-					}
-				}
-			}
-
-			if ((result.size() != 1) && (result.size() != 2))
-			{
-				Debug::warn("strange number of collisionPoints:");
-				for (unsigned int i = 0; i < result.size(); i++)
-				{
-					Debug::note("collisionPoints[" + Converter::intToString(i) + "]=" + result[i].toString());
-				}
-				Debug::note("\tentity1=" + e1->toString());
-				Debug::note("\tentity2=" + e2->toString());
-				Debug::error("\tCollisionHandler::getCollisionPoints(): strange number of collision points detected: " + Converter::intToString(result.size()));
+				result.push_back(rightbot);
 			}
 		}
 	}
