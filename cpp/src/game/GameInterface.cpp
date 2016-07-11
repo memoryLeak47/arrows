@@ -106,7 +106,7 @@ CollisionEvent* GameInterface::cutFirstEvent(std::vector<CollisionEvent*>* event
 	int bigIndex = 0;
 	for (unsigned int i = 1; i < events->size(); i++)
 	{
-		if (events->at(bigIndex)->getTimeUntilFrameEnds() > events->at(i)->getTimeUntilFrameEnds())
+		if (events->at(bigIndex)->getTimeUntilFrameEnds() < events->at(i)->getTimeUntilFrameEnds())
 		{
 			bigIndex = i;
 		}
