@@ -65,12 +65,8 @@ std::vector<GameVector> CollisionHandler::getCollisionPoints(CollisionEvent* eve
 		if (b1->isEven() && b2->isEven())
 		{
 			// seems like a Rundungsfehler
-//			std::cout << b1->getLeft() << " == " << b2->getRight() << std::endl;
-//			std::cout << "left - right : " << b1->getLeft() - b2->getRight() << std::endl;
-//			std::cout << "left - right == 0 :" << ((b1->getLeft() - b2->getRight()) == 0.f) << std::endl;
-//			std::cout << "left == right : " << (b1->getLeft() == b2->getRight()) << std::endl;
 
-			static const float DISTANCE = 0.01f;
+			static const float DISTANCE = 0.0001f;
 
 			if (std::abs(b1->getLeft() - b2->getRight()) < DISTANCE)
 			{
@@ -99,7 +95,7 @@ std::vector<GameVector> CollisionHandler::getCollisionPoints(CollisionEvent* eve
 			{
 				for (unsigned int j = i+1; j < result.size(); j++)
 				{
-					if (result[i] == result[j])
+					if ((result[i] - result[j]).getMagnitude() < DISTANCE)
 					{
 						result.erase(result.begin() + j);
 						i--;
@@ -108,9 +104,16 @@ std::vector<GameVector> CollisionHandler::getCollisionPoints(CollisionEvent* eve
 				}
 			}
 
-			if (result.size() == 0)
+			if ((result.size() != 1) && (result.size() != 2))
 			{
-				Debug::error("CollisionHandler::getCollisionPoints(): no collision points detected");
+				Debug::warn("strange number of collisionPoints:");
+				for (unsigned int i = 0; i < result.size(); i++)
+				{
+					Debug::note("collisionPoints[" + Converter::intToString(i) + "]=" + result[i].toString());
+				}
+				Debug::note("\tentity1=" + e1->toString());
+				Debug::note("\tentity2=" + e2->toString());
+				Debug::error("\tCollisionHandler::getCollisionPoints(): strange number of collision points detected: " + Converter::intToString(result.size()));
 			}
 		}
 	}
