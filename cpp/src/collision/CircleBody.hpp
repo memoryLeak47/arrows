@@ -30,6 +30,8 @@ class CircleBody : public Body
 		virtual float getTop() const;
 		virtual float getBot() const;
 
+		virtual std::string toString() const override;
+
 		virtual void setSpeedAt(const GameVector&, const GameVector& where) override; // where is a map-coordinate
 	private:
 		GameVector position;

@@ -20,6 +20,8 @@
 #ifndef __BODY_CLASS__
 #define __BODY_CLASS__
 
+#include "../misc/Global.hpp"
+
 enum BodyType
 {
 	RECT, CIRCLE
@@ -54,6 +56,8 @@ class Body
 		virtual float getRight() const = 0;
 		virtual float getTop() const = 0;
 		virtual float getBot() const = 0;
+
+		virtual std::string toString() const = 0;
 
 		virtual void setSpeedAt(const GameVector&, const GameVector& where) = 0; // where is a map-coordinate
 		virtual GameVector getSpeedAt(const GameVector& where) const; // where is a map-coordinate

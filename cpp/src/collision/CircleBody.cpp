@@ -102,6 +102,11 @@ float CircleBody::getBot() const
 	return 0.f;
 }
 
+std::string CircleBody::toString() const
+{
+	return "circle: pos=" + getPosition().toString() + " radius=" + Converter::floatToString(radius) + " speed=" + getSpeed().toString() + " rotation=" + Converter::floatToString(rotation);
+}
+
 void CircleBody::setSpeedAt(const GameVector&, const GameVector& where) // where is a map-coordinate
 {
 	// TODO

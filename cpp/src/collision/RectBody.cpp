@@ -149,6 +149,18 @@ float RectBody::getBot() const
 	return 0.f;
 }
 
+std::string RectBody::toString() const
+{
+	if (isEven())
+	{
+		return "rect: lefttop=" + GameVector(getLeft(), getTop()).toString() + " rightbot=" + GameVector(getRight(), getBot()).toString() + " speed=" + getSpeed().toString();
+	}
+	else
+	{
+		return "rotated-rect: pos=" + getPosition().toString() + " size=" + getSize().toString() + " speed=" + getSpeed().toString() + " rotation=" + Converter::floatToString(rotation);
+	}
+}
+
 void RectBody::setSpeedAt(const GameVector& how, const GameVector& where) // where is a map-coordinate
 {
 	if (isEven() || where == getPosition())
