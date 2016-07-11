@@ -97,8 +97,8 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 		case CollisionType::SOLID:
 		{
 			// getestet
-			bool xCol = ((posX1 + sizeX1/2.f) >= (posX2 - sizeX2/2.f)) && ((posX2 + sizeX2/2.f) >= (posX1 - sizeX1/2.f));
-			bool yCol = ((posY1 + sizeY1/2.f) >= (posY2 - sizeY2/2.f)) && ((posY2 + sizeY2/2.f) >= (posY1 - sizeY1/2.f));
+			bool xCol = ((posX1 + sizeX1/2.f) > (posX2 - sizeX2/2.f)) && ((posX2 + sizeX2/2.f) > (posX1 - sizeX1/2.f));
+			bool yCol = ((posY1 + sizeY1/2.f) > (posY2 - sizeY2/2.f)) && ((posY2 + sizeY2/2.f) > (posY1 - sizeY1/2.f));
 
 			std::pair<std::vector<float>, std::vector<bool>> pair = getPair(posX1, posY1, sizeX1, sizeY1, speedX, speedY, posX2, posY2, sizeX2, sizeY2, timeLeft);
 			std::vector<float> floats = pair.first;
