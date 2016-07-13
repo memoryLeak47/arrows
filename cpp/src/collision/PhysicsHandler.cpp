@@ -8,29 +8,27 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2, std::vector<GameVecto
 	GameVector s2 = e2->getBody()->getSpeed();
 	float m1 = e1->getMass();
 	float m2 = e2->getMass();
+	float ms1, ms2;
 
-	GameVector v(0.f, 0.f);
 	if (m1 == INFINITY)
 	{
-		v = s1;
-		if (m2 == INFINITY)
-		{
-			Debug::error("infinite mass collision");
-		}
+		ms1 = 1.f;
+		ms2 = 0.f;
 	}
 	else if (m2 == INFINITY)
 	{
-		v = s2;
+		ms1 = 0.f;
+		ms2 = 1.f;
 	}
 	else
 	{
-		v = (e1->getBody()->getSpeed() * e1->getMass() + e2->getBody()->getSpeed() * e2->getMass()) / (e1->getMass() + e2->getMass());
+		ms1 = m1/(m1+m2);
+		ms2 = 1.f - ms1;
 	}
 
-	GameVector res1 = v;
-	GameVector res2 = v;
+	GameVector res1 = (s2 - s1).getProjectionOn(escapeVec1) * ms2;
+	GameVector res2 = (s1 - s2).getProjectionOn(escapeVec2) * ms1;
 
-	Debug::test("res1=" + res1.toString() + " res2=" + res2.toString());
-	e1->setSpeed(res1);
-	e2->setSpeed(res2);
+	e1->addSpeed(res1);
+	e2->addSpeed(res2);
 }

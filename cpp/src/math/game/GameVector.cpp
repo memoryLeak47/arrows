@@ -36,7 +36,8 @@ float GameVector::getMagnitude() const
 
 GameVector GameVector::getProjectionOn(const GameVector& arg) const
 {
-	return arg * getScalarProduct(*this, arg);
+	GameVector tmp = arg/arg.getMagnitude();
+	return tmp * getScalarProduct(*this, tmp);
 }
 
 GameVector GameVector::getOrthogonal() const
