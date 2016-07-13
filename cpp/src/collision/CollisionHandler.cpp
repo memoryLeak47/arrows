@@ -91,10 +91,7 @@ GameVector CollisionHandler::getEscapeVector(Entity* e, const std::vector<GameVe
 	{
 		GameVector ab = collisionPoints[1] - collisionPoints[0]; // Vector vom einen zum anderen CollisionPoint
 		GameVector am = e->getBody()->getPosition() - collisionPoints[0]; // Vector von a nach Mittelpunkt der Entity
-		GameVector o = GameVector(ab.getY(), -ab.getX()); // gedrehter ab Vector um 90°
-		GameVector f = am.getProjectionOn(o);
-
-		return f;
+		return am.getProjectionOn(ab.getOrthogonal());
 	}
 	else if (collisionPoints.size() == 1) // Der CollisionPunkt muss sich an einer der Ecken der Entity befinden
 	{

@@ -27,6 +27,10 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2, std::vector<GameVecto
 		v = (e1->getBody()->getSpeed() * e1->getMass() + e2->getBody()->getSpeed() * e2->getMass()) / (e1->getMass() + e2->getMass());
 	}
 
-	e1->setSpeed(v);
-	e2->setSpeed(v);
+	GameVector res1 = v;
+	GameVector res2 = v;
+
+	Debug::test("res1=" + res1.toString() + " res2=" + res2.toString());
+	e1->setSpeed(res1);
+	e2->setSpeed(res2);
 }
