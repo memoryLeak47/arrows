@@ -64,16 +64,20 @@ void Main::run()
 
 void Main::tick()
 {
+	Debug::funcOn("Main::tick()");
 	networkDevice->receive();
 	Screen::tick();
 	menuList->tick();
+	Debug::funcOff("Main::tick()");
 }
 
 void Main::render()
 {
+	Debug::funcOn("Main::render()");
 	menuList->render();
 	Screen::renderCursor();
 	Screen::display();
+	Debug::funcOff("Main::render()");
 }
 
 void Main::exit()

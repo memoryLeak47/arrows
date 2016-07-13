@@ -4,6 +4,7 @@
 
 void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2, std::vector<GameVector> collisionPoints, const GameVector& escapeVec1, const GameVector& escapeVec2)
 {
+	Debug::funcOn("PhysicsHandler::handlePhysics(" + e1->toString() + ", " + e2->toString() + ")");
 	GameVector s1 = e1->getBody()->getSpeed();
 	GameVector s2 = e2->getBody()->getSpeed();
 	float m1 = e1->getMass();
@@ -31,4 +32,5 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2, std::vector<GameVecto
 
 	e1->addSpeed(res1);
 	e2->addSpeed(res2);
+	Debug::funcOff("PhysicsHandler::handlePhysics(" + e1->toString() + ", " + e2->toString() + ")");
 }

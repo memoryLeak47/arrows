@@ -39,14 +39,20 @@ void Entity::move(float time)
 
 void Entity::setSpeed(const GameVector& speed)
 {
-	body->setSpeed(speed);
-	setChanged(true);
+	if (speed != body->getSpeed())
+	{
+		body->setSpeed(speed);
+		setChanged(true);
+	}
 }
 
 void Entity::setPosition(const GameVector& position)
 {
-	body->setPosition(position);
-	setChanged(true);
+	if (position != body->getPosition())
+	{
+		body->setPosition(position);
+		setChanged(true);
+	}
 	// TODO reload collision partners
 }
 

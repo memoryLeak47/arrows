@@ -67,6 +67,7 @@ void GameInterface::tickEntities()
 
 void GameInterface::tickPhysics()
 {
+	Debug::funcOn("GameInterface::tickPhysics()");
 	float timeLeft = global::GAME_FRAME_TIME;
 	std::vector<CollisionEvent*> events; // Es gäbe auch die Möglichkeit diesen vector global zu machen & länger als nur GAME_FRAME_TIME vorauszuber
 
@@ -99,6 +100,7 @@ void GameInterface::tickPhysics()
 		}
 	}
 	moveAllEntities(timeLeft);
+	Debug::funcOff("GameInterface::tickPhysics()");
 }
 
 CollisionEvent* GameInterface::cutFirstEvent(std::vector<CollisionEvent*>* events)
@@ -118,6 +120,7 @@ CollisionEvent* GameInterface::cutFirstEvent(std::vector<CollisionEvent*>* event
 
 void GameInterface::updateEventsFrom(Entity* entity, std::vector<CollisionEvent*>* events, float timeLeft)
 {
+	Debug::func("GameInterface::updateEventsFrom(" + entity->toString() + ")");
 	for (unsigned int i = 0; i < events->size(); i++)
 	{
 		CollisionEvent* e = events->at(i);
@@ -164,6 +167,7 @@ void GameInterface::addEventsFrom(Entity* entity, std::vector<CollisionEvent*>* 
 
 void GameInterface::moveAllEntities(float time)
 {
+	Debug::func("GameInterface::moveAllEntities(" + Converter::floatToString(time) + ")");
 	if (time == 0)
 	{
 		return;

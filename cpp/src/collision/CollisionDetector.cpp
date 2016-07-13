@@ -107,6 +107,7 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 			if (xCol && yCol)
 			{
 				CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft);
+				Debug::func("detected event(1): " + ev->toString());
 				events->push_back(ev);
 			}
 			bool wasColliding = (xCol && yCol);
@@ -131,6 +132,7 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 				{
 					CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft-time);
 					events->push_back(ev);
+					Debug::func("detected event(2): " + ev->toString());
 					wasColliding = (xCol && yCol);
 				}
 			}
