@@ -13,8 +13,9 @@ class Mob : public Entity
 		virtual void actionGoLeft();
 		virtual void actionGoRight();
 		virtual void actionJump();
+		virtual float getMass() const override;
 	protected:
-		virtual float getMaxXSpeed() { return 0.3f; }
+		virtual float getMaxXSpeed() const;
 };
 
 #endif

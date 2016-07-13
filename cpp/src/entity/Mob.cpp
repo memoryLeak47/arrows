@@ -25,3 +25,13 @@ void Mob::actionJump()
 {
 	setSpeed(GameVector(body->getSpeed().getX(), -0.1f));
 }
+
+float Mob::getMass() const
+{
+	return 10.f;
+}
+
+float Mob::getMaxXSpeed() const
+{
+	return 0.3f;
+}

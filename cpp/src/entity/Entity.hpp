@@ -62,8 +62,8 @@ class Entity
 		virtual void offCollide(Entity*) {}
 
 		// physics
-		virtual float getMass() { return 10.f; }
-		virtual bool isStatic() { return false; }
+		virtual float getMass() const = 0;
+		virtual bool isStatic() const { return false; }
 
 		// collisionPartner
 		void addCollisionPartner(Entity*);
