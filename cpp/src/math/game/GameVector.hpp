@@ -15,6 +15,7 @@ class GameVector
 		float getY() const;
 		void apply(const GameVector&);
 		float getMagnitude() const;
+		GameVector getProjectionOn(const GameVector&) const;
 		static float getScalarProduct(const GameVector& vec1, const GameVector& vec2);
 
 		bool operator==(const GameVector&) const;
