@@ -111,11 +111,8 @@ GameVector CollisionHandler::getEscapeVector(Entity* e, const std::vector<GameVe
 			Debug::error("CollisionHandler::getEscapeVector(): CollisionPoints.size() == 1:\te->getBody()->getX() == collisionPoints[0]->getX()");
 		}
 	}
-	else
-	{
-		Debug::warn("CollisionHandler::getEscapeVector(): collisionPoints.size() = " + Converter::intToString(collisionPoints.size()));
-		return GameVector(0.f, 0.f);
-	}
+	Debug::warn("CollisionHandler::getEscapeVector(): collisionPoints.size() = " + Converter::intToString(collisionPoints.size()));
+	return GameVector(0.f, 0.f);
 }
 
 CollisionStatus CollisionHandler::getCollisionStatus(CollisionEvent* ev, const std::vector<GameVector>& collisionPoints, const GameVector& escapeVector)
