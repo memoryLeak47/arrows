@@ -19,9 +19,8 @@
 
 #include <vector>
 
-enum CollisionStatus {IN, BORDER, OUT};
+#include "CollisionEvent.hpp"
 
-class CollisionEvent;
 class GameVector;
 class Entity;
 
@@ -35,7 +34,6 @@ class CollisionHandler
 		static CollisionStatus getCollisionStatus(CollisionEvent*, const std::vector<GameVector>& collisionPoints, const GameVector& escapeVector);
 };
 
-#include "CollisionEvent.hpp"
 #include "../math/game/GameVector.hpp"
 #include "../entity/Entity.hpp"
 

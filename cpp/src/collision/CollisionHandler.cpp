@@ -18,6 +18,7 @@
 
 void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 {
+	Debug::test("CollisionHandler::handleCollisionEvent(ev= " + ev->toString());
 	// Calculate CollisionPoints
 	std::vector<GameVector> collisionPoints = getCollisionPoints(ev);
 
@@ -29,6 +30,7 @@ void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 	{
 		case CollisionStatus::IN:
 		{
+			Debug::test("IN");
 			// add partner
 
 			CollisionType type = Entity::getCollisionTypeBetween(ev->getEntity1(), ev->getEntity2());
@@ -40,11 +42,13 @@ void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 		}
 		case CollisionStatus::OUT:
 		{
+			Debug::test("OUT");
 			// remove partner
 			break;
 		}
 		case CollisionStatus::BORDER:
 		{
+			Debug::test("BORDER");
 			break;
 		}
 		default:

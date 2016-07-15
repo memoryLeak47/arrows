@@ -6,6 +6,8 @@
 
 class Entity;
 
+enum CollisionStatus {IN, BORDER, OUT};
+
 class CollisionEvent
 {
 	public:
