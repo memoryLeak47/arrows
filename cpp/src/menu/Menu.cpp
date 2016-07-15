@@ -52,7 +52,7 @@ void Menu::onEvent(const sf::Event& event)
 	}
 	else // falls das event ein anderes ist
 	{
-		Debug::warnIf(TAG_EVENT, "bad Event-subclass"); // printe nen error und beende das programm
+		if (TAG_EVENT) Debug::warn("bad Event-subclass"); // printe nen error und beende das programm
 	}
 }
 

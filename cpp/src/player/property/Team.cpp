@@ -12,7 +12,7 @@ Team::Team(char id, const std::string& name, const std::string& color)
 
 void Team::init()
 {
-	Debug::warnIf(teams.size() != 0, "Team::init() was already called");
+	if (teams.size() != 0) Debug::warn("Team::init() was already called");
 	teams.push_back(new Team(0, "None", "666666"));
 	teams.push_back(new Team(1, "Red", "ff0000"));
 	teams.push_back(new Team(2, "Blue", "0000ff"));
@@ -27,13 +27,13 @@ void Team::uninit()
 
 Team* Team::get(int id)
 {
-	Debug::warnIf(teams.size() == 0, "Team::get(): Teams not yet initialized");
+	if (teams.size() == 0) Debug::warn("Team::get(): Teams not yet initialized");
 	return teams[id];
 }
 
 unsigned int Team::getAmount()
 {
-	Debug::warnIf(teams.size() == 0, "Team::getAmount(): == 0");
+	if (teams.size() == 0) Debug::warn("Team::getAmount(): == 0");
 	return teams.size();
 }
 

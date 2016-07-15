@@ -24,7 +24,7 @@ void Avatar::uninit()
 
 Avatar* Avatar::get(int id)
 {
-	Debug::warnIf(id < 0 || id >= getAmount(), "Avatar::get(): id(" + Converter::intToString(id) + ") out of range");
+	if (id < 0 || id >= getAmount()) Debug::warn("Avatar::get(): id(" + Converter::intToString(id) + ") out of range");
 	return avatars[id];
 }
 

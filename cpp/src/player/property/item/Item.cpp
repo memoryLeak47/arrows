@@ -24,7 +24,7 @@ void Item::uninit()
 
 Item* Item::get(int id)
 {
-	Debug::warnIf(id < 0 || id >= getAmount(), "Item::get(): id(" + Converter::intToString(id) + ") out of range");
+	if (id < 0 || id >= getAmount()) Debug::warn("Item::get(): id(" + Converter::intToString(id) + ") out of range");
 	return items[id];
 }
 

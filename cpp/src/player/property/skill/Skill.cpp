@@ -21,7 +21,7 @@ void Skill::uninit()
 
 Skill* Skill::get(int id)
 {
-	Debug::warnIf(id < 0 || id >= getAmount(), "Skill::get(): id(" + Converter::intToString(id) + ") out of range");
+	if (id < 0 || id >= getAmount()) Debug::warn("Skill::get(): id(" + Converter::intToString(id) + ") out of range");
 	return skills[id];
 }
 

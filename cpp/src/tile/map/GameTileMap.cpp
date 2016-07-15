@@ -71,13 +71,13 @@ const std::vector<Tile*> GameTileMap::getIntersectionTiles(const GameRect& gameR
 
 void GameTileMap::updateFullImage()
 {
-	Debug::warnIf(getHeight() < 0, "GameTileMap::updateFullImage(): getHeight == " + Converter::intToString(getHeight()));
-	Debug::warnIf(getWidth() < 0, "GameTileMap::updateFullImage(): getWidth == " + Converter::intToString(getWidth()));
+	if (getHeight() < 0) Debug::warn("GameTileMap::updateFullImage(): getHeight == " + Converter::intToString(getHeight()));
+	if (getWidth() < 0) Debug::warn("GameTileMap::updateFullImage(): getWidth == " + Converter::intToString(getWidth()));
 	for (int x = 0; x < getWidth(); x++)
 	{
 		for (int y = 0; y < getHeight(); y++)
 		{
-			Debug::errorIf(tiles[x][y] == NULL, "GameTileMap::updateFullImage(): tiles[" + Converter::intToString(x) + "][" + Converter::intToString(y) + "] == NULL");
+			if (tiles[x][y] == NULL) Debug::error("GameTileMap::updateFullImage(): tiles[" + Converter::intToString(x) + "][" + Converter::intToString(y) + "] == NULL");
 			tiles[x][y]->renderToImage(staticImage, x*global::TILESIZE, y*global::TILESIZE);
 		}
 	}

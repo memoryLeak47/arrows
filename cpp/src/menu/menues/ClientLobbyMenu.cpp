@@ -26,7 +26,7 @@ LobbyPlayer* ClientLobbyMenu::getLocalPlayer() const
 
 void ClientLobbyMenu::handlePacket(Packet* packet, sf::IpAddress* ip)
 {
-	Debug::warnIf(packet == NULL, "ClientLobbyMenu::handlePacket(): packet == NULL");
+	if (packet == NULL) Debug::warn("ClientLobbyMenu::handlePacket(): packet == NULL");
 
 	if ((*ip) == (*serverIP))
 	{
@@ -90,8 +90,8 @@ void ClientLobbyMenu::handlePacketByID(Packet* packet, int id)
 
 void ClientLobbyMenu::lockPressed()
 {
-	Debug::warnIf(getLocalPlayer() == NULL, "ClientLobbyMenu::lockPressed(): getLocalPlayer() == NULL");
-	Debug::warnIf(getLocalPlayer()->getLockUserPacket() == NULL, "ClientLobbyMenu::lockPressed(): getLocalPlayer()->getLockUserPacket() == NULL");
+	if (getLocalPlayer() == NULL) Debug::warn("ClientLobbyMenu::lockPressed(): getLocalPlayer() == NULL");
+	if (getLocalPlayer()->getLockUserPacket() == NULL) Debug::warn("ClientLobbyMenu::lockPressed(): getLocalPlayer()->getLockUserPacket() == NULL");
 	LockUserPacket* packet = new LockUserPacket(!getLocalPlayer()->getLockUserPacket()->isLocked());
 	sendToServer(packet);
 	deleteAndNULL(packet);
@@ -173,21 +173,22 @@ void ClientLobbyMenu::handleTeamUserPacket(TeamUserPacket* packet, int id)
 void ClientLobbyMenu::handleAvatarUserPacket(AvatarUserPacket* packet, int id)
 {
 	LobbyPlayer* player = getPlayer(id);
-	Debug::warnIf(player == NULL, "ClientLobbyMenu::handleAvatarUserPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
+	if (player == NULL) Debug::warn("ClientLobbyMenu::handleAvatarUserPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
 	player->applyAvatarUserPacket(packet);
 }
 
 void ClientLobbyMenu::handleSkillUserPacket(SkillUserPacket* packet, int id)
 {
 	LobbyPlayer* player = getPlayer(id);
-	Debug::warnIf(player == NULL, "ClientLobbyMenu::handleSkillUserPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
+	if (player == NULL) Debug::warn("ClientLobbyMenu::handleSkillUserPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
 	player->applySkillUserPacket(packet);
 }
 
 void ClientLobbyMenu::handleItemUserPacket(ItemUserPacket* packet, int id)
 {
+
 	LobbyPlayer* player = getPlayer(id);
-	Debug::warnIf(player == NULL, "ClientLobbyMenu::handleItemUserPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
+	if (player == NULL) Debug::warn("ClientLobbyMenu::handleItemUserPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
 	player->applyItemUserPacket(packet);
 }
 

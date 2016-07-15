@@ -40,8 +40,8 @@ class OkButton : public Button
 ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(LobbyMenu* lobbyMenu, PlayerPropertyUserPacket* packet, const std::vector<PlayerProperty*>& props)
 	: chooseProperties(props)
 {
-	Debug::errorIf(lobbyMenu == NULL, "ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(): lobbyMenu == NULL");
-	Debug::errorIf(packet == NULL, "ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(): packet == NULL");
+	if (lobbyMenu == NULL) Debug::error("ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(): lobbyMenu == NULL");
+	if (packet == NULL) Debug::error("ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(): packet == NULL");
 
 	lobby = lobbyMenu;
 	slotPacket = packet; // copy-constructor of packet already used when this constructor is called

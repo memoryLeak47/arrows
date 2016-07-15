@@ -34,9 +34,15 @@ float GameVector::getMagnitude() const
 	return sqrt(getX() * getX() + getY() * getY());
 }
 
+GameVector GameVector::getNormalized() const
+{
+	if (getMagnitude() == 0) Debug::warn("GameVector::getNormalized(): division by zero");
+	return *this/getMagnitude();
+}
+
 GameVector GameVector::getProjectionOn(const GameVector& arg) const
 {
-	GameVector tmp = arg/arg.getMagnitude();
+	GameVector tmp = arg.getNormalized();
 	return tmp * getScalarProduct(*this, tmp);
 }
 

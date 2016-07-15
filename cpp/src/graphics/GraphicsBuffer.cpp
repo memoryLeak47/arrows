@@ -67,7 +67,7 @@ void GraphicsBuffer::load()
 
 unsigned int GraphicsBuffer::getAmount() const
 {
-	Debug::warnIf(!isLoaded(), "GraphicsBuffer::getAmount(): not loaded yet");
+	if (!isLoaded()) Debug::warn("GraphicsBuffer::getAmount(): not loaded yet");
 	return textures.size();
 }
 

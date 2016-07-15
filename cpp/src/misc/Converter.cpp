@@ -20,7 +20,7 @@ int Converter::hexaStringToInt(const std::string& hexa)
 
 int Converter::colorStringToInt(const std::string& colorString)
 {
-	Debug::errorIf(colorString.size() != 6, "Converter::colorStringToInt(): colorString of size " + intToString(colorString.size()));
+	if (colorString.size() != 6) Debug::error("Converter::colorStringToInt(): colorString of size " + intToString(colorString.size()));
 
 	int red = hexaStringToInt(colorString.substr(0, 2));
 	int green = hexaStringToInt(colorString.substr(2, 2));

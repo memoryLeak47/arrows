@@ -46,13 +46,9 @@ class Debug
 	public:
 		static void init();
 		static void note(const std::string&);
-		static void noteIf(bool, const std::string&);
 		static void test(const std::string&);
-		static void testIf(bool, const std::string&);
 		static void warn(const std::string&);
-		static void warnIf(bool, const std::string&);
 		static void error(const std::string&);
-		static void errorIf(bool, const std::string&);
 		static void time(const std::string&);
 		static void func(const std::string&);
 		static void funcOn(const std::string&);

@@ -20,14 +20,6 @@ void Debug::note(const std::string& s)
 	}
 }
 
-void Debug::noteIf(bool b, const std::string& s)
-{
-	if (global::DEBUG_NOTE and b)
-	{
-		note(s);
-	}
-}
-
 // test
 
 void Debug::test(const std::string& s)
@@ -35,14 +27,6 @@ void Debug::test(const std::string& s)
 	if (global::DEBUG_TEST and Main::isRunning())
 	{
 		std::cout << TEST_COLOR << "TEST: " << s << RESET_COLOR << std::endl;
-	}
-}
-
-void Debug::testIf(bool b, const std::string& s)
-{
-	if (global::DEBUG_TEST and b)
-	{
-		test(s);
 	}
 }
 
@@ -56,14 +40,6 @@ void Debug::warn(const std::string& s)
 	}
 }
 
-void Debug::warnIf(bool b, const std::string& s)
-{
-	if (b)
-	{
-		warn(s);
-	}
-}
-
 // error
 
 void Debug::error(const std::string& s)
@@ -72,14 +48,6 @@ void Debug::error(const std::string& s)
 	{
 		std::cout << ERROR_COLOR << "ERROR: " << s << RESET_COLOR << std::endl;
 		Main::exit();
-	}
-}
-
-void Debug::errorIf(bool b, const std::string& s)
-{
-	if (b)
-	{
-		error(s);
 	}
 }
 

@@ -38,7 +38,7 @@ void GraphicsManager::uninit()
 
 sf::Texture* GraphicsManager::getTexture(GraphicsID id, int index)
 {
-	Debug::warnIf(id < 0 || id >= (int) buffers.size(), "GraphicsManager::getTexture(): id(" + Converter::intToString(id) + ") may be out of range");
+	if (id < 0 || id >= (int) buffers.size()) Debug::warn("GraphicsManager::getTexture(): id(" + Converter::intToString(id) + ") may be out of range");
 	return buffers[id]->getTexture(index);
 }
 
@@ -61,12 +61,12 @@ GameVector GraphicsManager::getGameSizeOf(GraphicsID id, int index)
 
 GraphicsBuffer* GraphicsManager::getBuffer(GraphicsID id)
 {
-	Debug::warnIf((int) buffers.size() < (int) id, "GraphicsManager::getBuffer(): outta range (" + Converter::intToString(id) + ")");
+	if ((int) buffers.size() < (int) id) Debug::warn("GraphicsManager::getBuffer(): outta range (" + Converter::intToString(id) + ")");
 	return buffers[id];
 }
 
 void GraphicsManager::addGraphicsBuffer(GraphicsID id, const std::string& path, bool isDirectory)
 {
-	Debug::warnIf((int) buffers.size() != (int) id, "GraphicsManager::addGraphicsBuffer(): addGraphicsBuffer not same order as in enum (id=" + Converter::intToString(id) + ")");
+	if ((int) buffers.size() != (int) id) Debug::warn("GraphicsManager::addGraphicsBuffer(): addGraphicsBuffer not same order as in enum (id=" + Converter::intToString(id) + ")");
 	buffers.push_back(new GraphicsBuffer(path, isDirectory));
 }

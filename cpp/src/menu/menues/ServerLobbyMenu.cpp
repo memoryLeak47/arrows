@@ -130,7 +130,7 @@ void ServerLobbyMenu::teamPressed(Team* team)
 
 LobbyPlayer* ServerLobbyMenu::getLocalPlayer() const
 {
-	Debug::warnIf(getPlayers().size() == 0, "ServerLobbyMenu::getLocalPlayer(): getPlayers().size() == 0 -> is probably NULL");
+	if (getPlayers().size() == 0) Debug::warn("ServerLobbyMenu::getLocalPlayer(): getPlayers().size() == 0 -> is probably NULL");
 	return getPlayer(0);
 }
 
@@ -199,7 +199,7 @@ void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, sf::IpAddre
 	if (ipToID(ip, getPlayers()) == -1) // Wenn es noch keinen Spieler mit dieser IP gibt
 	{
 		LobbyPlayer* player = new LobbyPlayer(packet, ip);
-		Debug::noteIf(TAG_STATUS, "ServerLobbyMenu.handleLoginUserPacket(): Player \"" + player->getLoginUserPacket()->getName() + "\" joined the Game and is happy :)");
+		if (TAG_STATUS) Debug::note("ServerLobbyMenu.handleLoginUserPacket(): Player \"" + player->getLoginUserPacket()->getName() + "\" joined the Game and is happy :)");
 		LobbyPlayersPacket* playersPacket = new LobbyPlayersPacket(getPlayers()); // 
 		send(playersPacket, ip); // liste ohne den Neuen an den Neuen senden.
 		if (getLobbyTileMap()->isValid())
@@ -224,7 +224,7 @@ void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, sf::IpAddre
 
 void ServerLobbyMenu::handleAvatarUserPacket(AvatarUserPacket* packet, int id)
 {
-	Debug::warnIf(getPlayer(id) == NULL, "ServerLobbyMenu::handleAvatarUserPacket(): no Player with id " + Converter::intToString(id));
+	if (getPlayer(id) == NULL) Debug::warn("ServerLobbyMenu::handleAvatarUserPacket(): no Player with id " + Converter::intToString(id));
 
 	// Wenn Spieler sich im gleichen Team befindet, wie Server (ich)
 	if (getPlayer(id)->getTeamUserPacket()->getTeam()->isFriendlyTeam(getLocalPlayer()->getTeamUserPacket()->getTeam()))
@@ -238,7 +238,7 @@ void ServerLobbyMenu::handleAvatarUserPacket(AvatarUserPacket* packet, int id)
 
 void ServerLobbyMenu::handleSkillUserPacket(SkillUserPacket* packet, int id)
 {
-	Debug::warnIf(getPlayer(id) == NULL, "ServerLobbyMenu::handleSkillUserPacket(): no Player with id " + Converter::intToString(id));
+	if (getPlayer(id) == NULL) Debug::warn("ServerLobbyMenu::handleSkillUserPacket(): no Player with id " + Converter::intToString(id));
 
 	// Wenn Spieler sich im gleichen Team befindet, wie Server (ich)
 	if (getPlayer(id)->getTeamUserPacket()->getTeam()->isFriendlyTeam(getLocalPlayer()->getTeamUserPacket()->getTeam()))
@@ -252,7 +252,7 @@ void ServerLobbyMenu::handleSkillUserPacket(SkillUserPacket* packet, int id)
 
 void ServerLobbyMenu::handleItemUserPacket(ItemUserPacket* packet, int id)
 {
-	Debug::warnIf(getPlayer(id) == NULL, "ServerLobbyMenu::handleItemUserPacket(): no Player with id " + Converter::intToString(id));
+	if (getPlayer(id) == NULL) Debug::warn("ServerLobbyMenu::handleItemUserPacket(): no Player with id " + Converter::intToString(id));
 
 	// Wenn Spieler sich im gleichen Team befindet, wie Server (ich)
 	if (getPlayer(id)->getTeamUserPacket()->getTeam()->isFriendlyTeam(getLocalPlayer()->getTeamUserPacket()->getTeam()))
@@ -288,7 +288,7 @@ void ServerLobbyMenu::playerPropertySelected(PlayerPropertyUserPacket* packet)
 
 LobbyPlayer* ServerLobbyMenu::getUpdatedPlayer(int id) const
 {
-	Debug::warnIf(id < 0 || id >= (int)getUpdatedPlayers().size(), "ServerLobbyMenu::getUpdatedPlayers(): size == 0");
+	if (id < 0 || id >= (int)getUpdatedPlayers().size()) Debug::warn("ServerLobbyMenu::getUpdatedPlayers(): size == 0");
 	return getUpdatedPlayers()[id];
 }
 

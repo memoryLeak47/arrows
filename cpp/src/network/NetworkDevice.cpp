@@ -13,7 +13,7 @@ NetworkDevice::NetworkDevice()
 
 void NetworkDevice::send(Packet* packet, sf::IpAddress* ip)
 {
-	Debug::warnIf(packet == NULL, "NetworkDevice::send(): packet is null");
+	if (packet == NULL) Debug::warn("NetworkDevice::send(): packet is null");
 
 	sf::Packet sfmlPacket;
 	std::string string = packet->compress();
@@ -27,11 +27,11 @@ void NetworkDevice::send(Packet* packet, sf::IpAddress* ip)
 	{
 		if (string.length() > MAX_PACKET_LENGTH)
 		{
-			Debug::noteIf(TAG_NETWORK, "sent big packet with CID: " + Converter::intToString(string[0]));
+			if (TAG_NETWORK) Debug::note("sent big packet with CID: " + Converter::intToString(string[0]));
 		}
 		else
 		{
-			Debug::noteIf(TAG_NETWORK, "sent packet with string: " + Converter::charsToString(string));
+			if (TAG_NETWORK) Debug::note("sent packet with string: " + Converter::charsToString(string));
 		}
 	}
 
@@ -53,11 +53,11 @@ void NetworkDevice::receive()
 
 	if (string.length() > MAX_PACKET_LENGTH)
 	{
-		Debug::noteIf(TAG_NETWORK, "received big packet with CID: " + Converter::intToString(string[0]));
+		if (TAG_NETWORK) Debug::note("received big packet with CID: " + Converter::intToString(string[0]));
 	}
 	else
 	{
-		Debug::noteIf(TAG_NETWORK, "received packet with string: " + Converter::charsToString(string));
+		if (TAG_NETWORK) Debug::note("received packet with string: " + Converter::charsToString(string));
 	}
 
 	Packet* packet = (Packet*) Compressable::decompress(string);
