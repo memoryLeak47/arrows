@@ -75,7 +75,7 @@ std::pair<std::vector<float>, std::vector<bool>> getPair(float posX1, float posY
 
 void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
 {
-	Debug::funcOn("addCollisionBetween(): " + e2->toString());
+	Debug::funcOn("addCollisionsBetweenEvenRects(): " + e2->toString() + " AND " + e1->toString());
 	const RectBody* b1 = dynamic_cast<const RectBody*>(e1->getBody());
 	const RectBody* b2 = dynamic_cast<const RectBody*>(e2->getBody());
 
@@ -115,7 +115,7 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 			{
 				xCol = CollisionStatus::IN;
 			}
-			else if ((right1 == left2) && (right2 == left1))
+			else if ((right1 == left2) || (right2 == left1))
 			{
 				xCol = CollisionStatus::BORDER;
 			}
@@ -128,7 +128,7 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 			{
 				yCol = CollisionStatus::IN;
 			}
-			else if ((bot1 == top2) && (bot2 == top1))
+			else if ((bot1 == top2) || (bot2 == top1))
 			{
 				yCol = CollisionStatus::BORDER;
 			}
@@ -152,22 +152,66 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 
 			for (unsigned int i = 0; i < bools.size(); i++)
 			{
-				Debug::test("bools[" + Converter::intToString(i) + "]=" + Converter::boolToString(bools[i]) + " | floats[i]=" + Converter::floatToString(floats[i]));
+				Debug::test((std::string)(bools[i]?"x":"y") + ": floats[i]=" + Converter::floatToString(floats[i]));
 			}
 
 			while (floats.size() > 0)
 			{
+				Debug::test("1: xCol=" + Converter::collisionStatusToString(xCol) + " yCol=" + Converter::collisionStatusToString(yCol));
 				int index = getNextIndex(floats);
 				float time = floats[index];
 
 				if (bools[index])
 				{
-					xCol = (CollisionStatus)(2 - (int) xCol);
+					if (xCol == CollisionStatus::IN)
+					{
+						xCol = CollisionStatus::OUT;
+					}
+					else if (xCol == CollisionStatus::OUT)
+					{
+						xCol = CollisionStatus::IN;
+					}
+					else
+					{
+						// linke entity schneller:
+						if (speedX == 0) Debug::error("CollisionDetector::addCollisionsBetweenEvenRects(): logical issue here (x)");
+						if ((speedX > 0) == (posX1 < posX2))
+						{
+							xCol = CollisionStatus::IN;
+						}
+						else
+						{
+							xCol = CollisionStatus::OUT;
+						}
+					}
+					// xCol = (CollisionStatus)(2 - (int) xCol);
 				}
 				else
 				{
-					yCol = (CollisionStatus)(2 - (int) yCol);
+					if (yCol == CollisionStatus::IN)
+					{
+						yCol = CollisionStatus::OUT;
+					}
+					else if (yCol == CollisionStatus::OUT)
+					{
+						yCol = CollisionStatus::IN;
+					}
+					else
+					{
+						// obere entity schneller:
+						if (speedY == 0) Debug::error("CollisionDetector::addCollisionsBetweenEvenRects(): logical issue here (y)");
+						if ((speedY > 0) == (posY1 < posY2))
+						{
+							yCol = CollisionStatus::IN;
+						}
+						else
+						{
+							yCol = CollisionStatus::OUT;
+						}
+					}
+					// yCol = (CollisionStatus)(2 - (int) yCol);
 				}
+				Debug::test("2: xCol=" + Converter::collisionStatusToString(xCol) + " yCol=" + Converter::collisionStatusToString(yCol));
 
 				floats.erase(floats.begin() + index);
 				bools.erase(bools.begin() + index);

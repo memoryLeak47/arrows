@@ -76,6 +76,13 @@ std::string Converter::boolToString(bool b)
 	return b ? "true" : "false";
 }
 
+std::string Converter::collisionStatusToString(CollisionStatus status)
+{
+	if (status == CollisionStatus::IN) return "IN";
+	if (status == CollisionStatus::OUT) return "OUT";
+	return "BORDER";
+}
+
 template <class T> T* Converter::clone(T* t)
 {
 	return new T(*t);
