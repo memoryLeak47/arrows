@@ -91,7 +91,9 @@ GameVector CollisionHandler::getEscapeVector(Entity* e, const std::vector<GameVe
 	{
 		GameVector ab = collisionPoints[1] - collisionPoints[0]; // Vector vom einen zum anderen CollisionPoint
 		GameVector am = e->getBody()->getPosition() - collisionPoints[0]; // Vector von a nach Mittelpunkt der Entity
-		return am.getProjectionOn(ab.getOrthogonal());
+		GameVector result = am.getProjectionOn(ab.getOrthogonal());
+		if (result.getMagnitude() == 0) Debug::error("CollisionHandler::getEscapeVector(): result is zero-vector");
+		return result;
 	}
 	else if (collisionPoints.size() == 1) // Der CollisionPunkt muss sich an einer der Ecken der Entity befinden
 	{
@@ -108,7 +110,7 @@ GameVector CollisionHandler::getEscapeVector(Entity* e, const std::vector<GameVe
 			Debug::error("CollisionHandler::getEscapeVector(): CollisionPoints.size() == 1:\te->getBody()->getX() == collisionPoints[0]->getX()");
 		}
 	}
-	Debug::warn("CollisionHandler::getEscapeVector(): collisionPoints.size() = " + Converter::intToString(collisionPoints.size()));
+	Debug::error("CollisionHandler::getEscapeVector(): collisionPoints.size() = " + Converter::intToString(collisionPoints.size()));
 	return GameVector(0.f, 0.f);
 }
 
