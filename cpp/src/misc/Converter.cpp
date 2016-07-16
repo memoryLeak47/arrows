@@ -79,12 +79,12 @@ std::string floatToStringPrecise(float f, int precision = 67)
 	if (counter != precision-4)
 	{
 		char buffer2[counter+5];
-		unsigned int i;
+		int i;
 		for (i = 0; i < counter; i++)
 		{
 			buffer2[i] = buffer[i];
 		}
-		for (unsigned int j = precision+1; j < precision+5; j++)
+		for (int j = precision+1; j < precision+5; j++)
 		{
 			buffer2[i] = buffer[j];
 			i++;
