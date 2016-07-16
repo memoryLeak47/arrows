@@ -16,6 +16,7 @@ class Converter
 		static sf::Color intToColor(int);
 		static std::string intToString(int);
 		static std::string floatToString(float);
+		static std::string floatToStringPrecise(float, int=67);
 		static std::string charsToString(const std::string&);
 		static std::string boolToString(bool);
 		static std::string collisionStatusToString(CollisionStatus);

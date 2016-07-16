@@ -61,6 +61,41 @@ std::string Converter::floatToString(float i)
 	return s.str();
 }
 
+std::string floatToStringPrecise(float f, int precision = 67)
+{
+	char buffer[precision];
+	precision = std::min(67, precision);
+	sprintf(buffer, "%.*e", (int)(precision-1), f);
+
+	int counter = precision;
+
+	while (buffer[counter] == '0')
+	{
+		counter--;
+	}
+
+	counter++;
+
+	if (counter != precision-4)
+	{
+		char buffer2[counter+5];
+		unsigned int i;
+		for (i = 0; i < counter; i++)
+		{
+			buffer2[i] = buffer[i];
+		}
+		for (unsigned int j = precision+1; j < precision+5; j++)
+		{
+			buffer2[i] = buffer[j];
+			i++;
+		}
+		buffer2[counter+4] = '\0';
+		return buffer2;
+	}
+	
+	return buffer;
+}
+
 std::string Converter::charsToString(const std::string& arg)
 {
 	std::string res = "(";
