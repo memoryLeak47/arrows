@@ -92,7 +92,7 @@ std::string floatToStringPrecise(float f, int precision = 67)
 		buffer2[counter+4] = '\0';
 		return buffer2;
 	}
-	
+
 	return buffer;
 }
 
