@@ -4,20 +4,24 @@
 #include <vector>
 #include <string>
 
+#include "CollisionStatus.hpp"
+
 class Entity;
 
 class CollisionEvent
 {
 	public:
-		CollisionEvent(Entity* e1, Entity* e2, float timeUntilFameEnds);
+		CollisionEvent(Entity* e1, Entity* e2, float timeUntilFameEnds, CollisionStatus status);
 		Entity* getEntity1() const;
 		Entity* getEntity2() const;
 		float getTimeUntilFrameEnds() const;
 		std::string toString() const;
+		CollisionStatus getStatus() const;
 	private:
 		Entity* entity1;
 		Entity* entity2;
 		float timeUntilFrameEnds;
+		CollisionStatus status;
 };
 
 #include "../entity/Entity.hpp"

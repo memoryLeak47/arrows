@@ -32,7 +32,6 @@ class CollisionHandler
 	private:
 		static std::vector<GameVector> getCollisionPoints(CollisionEvent*);
 		static GameVector getEscapeVector(Entity*, const std::vector<GameVector>& collisionPoints);
-		static CollisionStatus getCollisionStatus(CollisionEvent*, const std::vector<GameVector>& collisionPoints, const GameVector& escapeVector);
 };
 
 #include "CollisionEvent.hpp"

@@ -141,23 +141,16 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 
 			if (oldStatus < CollisionStatus::OUT)
 			{
-				CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft);
+				CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft, oldStatus);
 				events->push_back(ev);
-				Debug::test("detected event(1): timeUntilFrameEnds=" + Converter::intToString(timeLeft));
 			}
 
 			std::pair<std::vector<float>, std::vector<bool>> pair = getPair(posX1, posY1, sizeX1, sizeY1, speedX, speedY, posX2, posY2, sizeX2, sizeY2, timeLeft);
 			std::vector<float> floats = pair.first;
 			std::vector<bool> bools = pair.second;
 
-			for (unsigned int i = 0; i < bools.size(); i++)
-			{
-				Debug::test((std::string)(bools[i]?"x":"y") + ": floats[i]=" + Converter::floatToString(floats[i]));
-			}
-
 			while (floats.size() > 0)
 			{
-				Debug::test("1: xCol=" + Converter::collisionStatusToString(xCol) + " yCol=" + Converter::collisionStatusToString(yCol));
 				int index = getNextIndex(floats);
 				float time = floats[index];
 
@@ -211,17 +204,15 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 					}
 					// yCol = (CollisionStatus)(2 - (int) yCol);
 				}
-				Debug::test("2: xCol=" + Converter::collisionStatusToString(xCol) + " yCol=" + Converter::collisionStatusToString(yCol));
 
 				floats.erase(floats.begin() + index);
 				bools.erase(bools.begin() + index);
 
 				if (oldStatus != std::max(xCol, yCol))
 				{
-					CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft-time);
-					events->push_back(ev);
-					Debug::test("detected event(2): timeUntilFrameEnds=" + Converter::intToString(timeLeft-time));
 					oldStatus = std::max(xCol, yCol);
+					CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft-time, oldStatus);
+					events->push_back(ev);
 				}
 			}
 			break;

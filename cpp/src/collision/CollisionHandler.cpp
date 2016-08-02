@@ -18,7 +18,6 @@
 
 void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 {
-	Debug::test("CollisionHandler::handleCollisionEvent(ev= " + ev->toString());
 	// Calculate CollisionPoints
 	std::vector<GameVector> collisionPoints = getCollisionPoints(ev);
 
@@ -26,11 +25,20 @@ void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 	GameVector escapeVector1 = getEscapeVector(ev->getEntity1(), collisionPoints);
 	GameVector escapeVector2 = getEscapeVector(ev->getEntity2(), collisionPoints);
 
-	switch (getCollisionStatus(ev, collisionPoints, escapeVector1)) // switch between the new collision status
+	/*
+	std::cout << std::endl;
+	for (unsigned int i = 0; i < collisionPoints.size(); i++)
+	{
+		Debug::test("collisionPoint" + Converter::intToString((int)i) + "=" + collisionPoints[i].toString());
+	}
+	Debug::test("escapeVector1=" + escapeVector1.toString());
+	Debug::test("escapeVector2=" + escapeVector2.toString());
+	*/
+
+	switch (ev->getStatus()) // switch between the new collision status
 	{
 		case CollisionStatus::IN:
 		{
-			Debug::test("IN");
 			// add partner
 
 			CollisionType type = Entity::getCollisionTypeBetween(ev->getEntity1(), ev->getEntity2());
@@ -42,13 +50,11 @@ void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 		}
 		case CollisionStatus::OUT:
 		{
-			Debug::test("OUT");
 			// remove partner
 			break;
 		}
 		case CollisionStatus::BORDER:
 		{
-			Debug::test("BORDER");
 			break;
 		}
 		default:
@@ -103,11 +109,11 @@ GameVector CollisionHandler::getEscapeVector(Entity* e, const std::vector<GameVe
 	{
 		if (e->getBody()->getPosition().getX() < collisionPoints[0].getX())
 		{
-			return GameVector(1.f, 0.f);
+			return GameVector(-1.f, 0.f);
 		}
 		else if (e->getBody()->getPosition().getX() > collisionPoints[0].getX())
 		{
-			return GameVector(-1.f, 0.f);
+			return GameVector(1.f, 0.f);
 		}
 		else
 		{
@@ -116,34 +122,4 @@ GameVector CollisionHandler::getEscapeVector(Entity* e, const std::vector<GameVe
 	}
 	Debug::error("CollisionHandler::getEscapeVector(): collisionPoints.size() = " + Converter::intToString(collisionPoints.size()));
 	return GameVector(0.f, 0.f);
-}
-
-CollisionStatus CollisionHandler::getCollisionStatus(CollisionEvent* ev, const std::vector<GameVector>& collisionPoints, const GameVector& escapeVector)
-{
-	if (collisionPoints.size() == 0)
-	{
-		Debug::error("CollisionHandler::getCollisionStatus(): collisionPoints.size == 0");
-		return CollisionStatus::IN;
-	}
-
-	GameVector speedAt(ev->getEntity1()->getBody()->getSpeedAt(collisionPoints[0]));
-	float angle = GameVector::getScalarProduct(speedAt, escapeVector);
-	if (angle > 0)
-	{
-		return CollisionStatus::OUT;
-	}
-	else if (angle == 0)
-	{
-		return CollisionStatus::BORDER;
-	}
-	else if (angle < 0)
-	{
-		// Weiter prüfen
-	}
-	else
-	{
-		Debug::warn("CollisionHandler::getCollisionStatus(): WTF, angle=" + Converter::floatToString(angle));
-	}
-
-	return CollisionStatus::IN;
 }
