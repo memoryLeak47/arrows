@@ -1,6 +1,7 @@
 #include "CollisionDetector.hpp"
 
 #include "../misc/Debug.hpp"
+#include "../tile/map/GameTileMap.hpp"
 
 void CollisionDetector::addCollisionsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
 {
@@ -79,19 +80,19 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 	const RectBody* b1 = dynamic_cast<const RectBody*>(e1->getBody());
 	const RectBody* b2 = dynamic_cast<const RectBody*>(e2->getBody());
 
-	float posX1 = b1->getPosition().getX();
-	float posY1 = b1->getPosition().getY();
-	float sizeX1 = b1->getSize().getX();
-	float sizeY1 = b1->getSize().getY();
+	const float posX1 = b1->getPosition().getX();
+	const float posY1 = b1->getPosition().getY();
+	const float sizeX1 = b1->getSize().getX();
+	const float sizeY1 = b1->getSize().getY();
 
 	// speed subtraction
-	float speedX = b1->getSpeed().getX() - b2->getSpeed().getX();
-	float speedY = b1->getSpeed().getY() - b2->getSpeed().getY();
+	const float speedX = b1->getSpeed().getX() - b2->getSpeed().getX();
+	const float speedY = b1->getSpeed().getY() - b2->getSpeed().getY();
 
-	float posX2 = b2->getPosition().getX();
-	float posY2 = b2->getPosition().getY();
-	float sizeX2 = b2->getSize().getX();
-	float sizeY2 = b2->getSize().getY();
+	const float posX2 = b2->getPosition().getX();
+	const float posY2 = b2->getPosition().getY();
+	const float sizeX2 = b2->getSize().getX();
+	const float sizeY2 = b2->getSize().getY();
 
 	switch (Entity::getCollisionTypeBetween(e1, e2))
 	{
@@ -99,17 +100,17 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 		{
 			// getestet
 			CollisionStatus xCol, yCol;
-			float right1 = (posX1 + sizeX1/2.f);
-			float right2 = (posX2 + sizeX2/2.f);
+			const float right1 = (posX1 + sizeX1/2.f);
+			const float right2 = (posX2 + sizeX2/2.f);
 
-			float left1 = (posX1 - sizeX1/2.f);
-			float left2 = (posX2 - sizeX2/2.f);
+			const float left1 = (posX1 - sizeX1/2.f);
+			const float left2 = (posX2 - sizeX2/2.f);
 
-			float bot1 = (posY1 + sizeY1/2.f);
-			float bot2 = (posY2 + sizeY2/2.f);
+			const float bot1 = (posY1 + sizeY1/2.f);
+			const float bot2 = (posY2 + sizeY2/2.f);
 
-			float top1 = (posY1 - sizeY1/2.f);
-			float top2 = (posY2 - sizeY2/2.f);
+			const float top1 = (posY1 - sizeY1/2.f);
+			const float top2 = (posY2 - sizeY2/2.f);
 
 			if ((right1 > left2) && (right2 > left1))
 			{

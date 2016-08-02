@@ -53,9 +53,9 @@ GameVector GameTileMap::teamToSpawnPosition(Team* team)
 const std::vector<Tile*> GameTileMap::getIntersectionTiles(const GameRect& gameRect) const
 {
 	int left = std::max(0, ((int)gameRect.getLeft()));
-	int right = std::min(getWidth(), ((int)gameRect.getRight()) + 1);
+	int right = std::min((int) getWidth(), ((int)gameRect.getRight()) + 1);
 	int top = std::max(0, ((int)gameRect.getTop()));
-	int bot = std::min(getHeight(), ((int)gameRect.getBot()) + 1);
+	int bot = std::min((int) getHeight(), ((int)gameRect.getBot()) + 1);
 
 	std::vector<Tile*> intersectionTiles;
 
@@ -69,43 +69,59 @@ const std::vector<Tile*> GameTileMap::getIntersectionTiles(const GameRect& gameR
 	return intersectionTiles;
 }
 
+bool GameTileMap::obstacleAt(unsigned int x, unsigned int y) const
+{
+	if (not isValidIndex(x, y))
+	{
+		Debug::error("GameTileMap::obstacleAt(" + Converter::intToString((int) x) + ", " + Converter::intToString((int) y) + "): invalid index");
+		return false;
+	}
+	return tiles[x][y]->getCollisionType() == CollisionType::SOLID;
+
+}
+
+bool GameTileMap::isValidIndex(unsigned int x, unsigned int y) const
+{
+	return (x >= 0) && (y >= 0) && (x < getWidth()) && (y < getHeight());
+}
+
 void GameTileMap::updateFullImage()
 {
 	if (getHeight() < 0) Debug::warn("GameTileMap::updateFullImage(): getHeight == " + Converter::intToString(getHeight()));
 	if (getWidth() < 0) Debug::warn("GameTileMap::updateFullImage(): getWidth == " + Converter::intToString(getWidth()));
-	for (int x = 0; x < getWidth(); x++)
+	for (unsigned int x = 0; x < getWidth(); x++)
 	{
-		for (int y = 0; y < getHeight(); y++)
+		for (unsigned int y = 0; y < getHeight(); y++)
 		{
-			if (tiles[x][y] == NULL) Debug::error("GameTileMap::updateFullImage(): tiles[" + Converter::intToString(x) + "][" + Converter::intToString(y) + "] == NULL");
+			if (tiles[x][y] == NULL) Debug::error("GameTileMap::updateFullImage(): tiles[" + Converter::intToString((int) x) + "][" + Converter::intToString((int) y) + "] == NULL");
 			tiles[x][y]->renderToImage(staticImage, x*global::TILESIZE, y*global::TILESIZE);
 		}
 	}
 }
 
-int GameTileMap::getWidth() const
+unsigned int GameTileMap::getWidth() const
 {
 	if (tiles.size() > 0)
 	{
-		return (int) tiles.size();
+		return tiles.size();
 	}
 	else
 	{
 		Debug::warn("GameTileMap::getWidth(): tiles.size == " + Converter::intToString((int) tiles.size()));
-		return -1;
+		return 0;
 	}
 }
 
-int GameTileMap::getHeight() const
+unsigned int GameTileMap::getHeight() const
 {
 	if ((tiles.size() > 0) && (tiles[0].size() > 0))
 	{
-		return (int) tiles[0].size();
+		return tiles[0].size();
 	}
 	else
 	{
 		Debug::warn("GameTileMap::getHeight(): invalid size");
-		return -1;
+		return 0;
 	}
 }
 

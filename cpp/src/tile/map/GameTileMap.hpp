@@ -33,9 +33,11 @@ class GameTileMap
 		GameTileMap(LobbyTileMap*);
 		virtual ~GameTileMap();
 		const std::vector<Tile*> getIntersectionTiles(const GameRect&) const;
+		bool obstacleAt(unsigned int x, unsigned int y) const;
+		bool isValidIndex(unsigned int x, unsigned int y) const;
 
-		int getWidth() const;
-		int getHeight() const;
+		unsigned int getWidth() const;
+		unsigned int getHeight() const;
 
 		void render(const View&) const;
 		GameVector teamToSpawnPosition(Team*);
