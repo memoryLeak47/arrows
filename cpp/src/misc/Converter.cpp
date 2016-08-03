@@ -61,7 +61,7 @@ std::string Converter::floatToString(float i)
 	return s.str();
 }
 
-std::string floatToStringPrecise(float f, int precision = 67)
+std::string Converter::floatToStringPrecise(float f, int precision)
 {
 	char buffer[precision];
 	precision = std::min(67, precision);

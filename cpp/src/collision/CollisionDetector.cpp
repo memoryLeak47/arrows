@@ -112,15 +112,15 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 			const float top1 = (posY1 - sizeY1/2.f);
 			const float top2 = (posY2 - sizeY2/2.f);
 
-			if ((right1 > left2) && (right2 > left1))
+			if ((right1 > left2) && (right2 > left1)) // Wenn die Entities sich auf der xAchse schneiden
 			{
 				xCol = CollisionStatus::IN;
 			}
-			else if ((right1 == left2) || (right2 == left1))
+			else if ((right1 == left2) || (right2 == left1)) // Wenn die Entities sich auf der xAchse berühren
 			{
 				xCol = CollisionStatus::BORDER;
 			}
-			else
+			else // sonst OUT
 			{
 				xCol = CollisionStatus::OUT;
 			}

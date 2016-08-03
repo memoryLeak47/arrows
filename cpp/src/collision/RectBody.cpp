@@ -153,11 +153,11 @@ std::string RectBody::toString() const
 {
 	if (isEven())
 	{
-		return "rect: left=" + Converter::floatToString(getLeft()) + " top=" + Converter::floatToString(getTop()) + " right=" + Converter::floatToString(getRight()) + " bot=" + Converter::floatToString(getBot()) + " speed=" + getSpeed().toString();
+		return "rect: left=" + Converter::floatToStringPrecise(getLeft()) + " top=" + Converter::floatToStringPrecise(getTop()) + " right=" + Converter::floatToStringPrecise(getRight()) + " bot=" + Converter::floatToStringPrecise(getBot()) + " speed=" + getSpeed().toString();
 	}
 	else
 	{
-		return "rotated-rect: pos=" + getPosition().toString() + " size=" + getSize().toString() + " speed=" + getSpeed().toString() + " rotation=" + Converter::floatToString(rotation);
+		return "rotated-rect: pos=" + getPosition().toString() + " size=" + getSize().toString() + " speed=" + getSpeed().toString() + " rotation=" + Converter::floatToStringPrecise(rotation);
 	}
 }
 
