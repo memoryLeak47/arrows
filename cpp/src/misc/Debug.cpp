@@ -121,7 +121,7 @@ void Debug::func(const std::string& s)
 		std::cout << FUNC_COLOR << "FUNC:" + t + s << RESET_COLOR << std::endl;
 		if (global::DEBUG_FUNC_TO_SCREEN)
 		{
-			Debug::screen("FUNC:" + t + "}");
+			Debug::screen("FUNC:" + t + s);
 		}
 	}
 }
