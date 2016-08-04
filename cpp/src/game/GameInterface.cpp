@@ -184,7 +184,10 @@ void GameInterface::removeOutdatedCollisionPartners()
 
 void GameInterface::deglitchCollisionPartners()
 {
-	
+	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
+	{
+		getDynamicEntity(i)->deglitchCollisionPartners();
+	}
 }
 
 void GameInterface::moveAllEntities(float time)

@@ -4,6 +4,7 @@
 #include "../core/Screen.hpp"
 #include "../misc/Debug.hpp"
 #include "../collision/CollisionDetector.hpp"
+#include "../collision/CollisionTester.hpp"
 
 Entity::Entity(Body* bodyArg)
 	: changed(true)
@@ -29,6 +30,11 @@ void Entity::tick()
 		// if (!collides with tile)
 		//       dashCounter = 0;
 		Debug::warn("Entity::tick(): dashCounter == 1: TODO");
+	}
+
+	for (Entity* e : collisionPartners)
+	{
+		Debug::screen(e->toString());
 	}
 }
 
@@ -105,6 +111,30 @@ void Entity::optDrag()
 	push(body->getSpeed() * -0.01f);
 }
 
+void Entity::removeOutdatedCollisionPartners()
+{
+	for (Entity* e : collisionPartners)
+	{
+		if (!CollisionTester::isColliding(this, e))
+		{
+			removeCollisionPartner(e);
+			e->removeCollisionPartner(this);
+			offCollide(e);
+			e->offCollide(this);
+		}
+	}
+}
+
+void Entity::deglitchCollisionPartners()
+{
+        GameVector pos = getBody()->getPosition();
+        for (Entity* partner : collisionPartners)
+        {
+                GameVector ppos = partner->getBody()->getPosition();
+                setPosition(getBody()->getPosition() + (pos-ppos).getNormalized() * 0.0001f);
+        }
+}
+
 void Entity::addCollisionPartner(Entity* e)
 {
 	if (! memberOf(e, collisionPartners))
@@ -131,7 +161,7 @@ void Entity::removeCollisionPartner(Entity* e)
 		{
 			Debug::warn(collisionPartners[i]->toString());
 		}
-		Debug::error("och: " + e->toString());
+		Debug::error("Entity::removeCollisionPartner(): e=" + e->toString() + " was not found in collisionPartners");
 	}
 }
 

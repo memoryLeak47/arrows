@@ -56,8 +56,8 @@ void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 		}
 		case CollisionStatus::OUT:
 		{
-			ev->getEntity1()->removeCollisionPartner(ev->getEntity2());
-			ev->getEntity2()->removeCollisionPartner(ev->getEntity1());
+//			ev->getEntity1()->removeCollisionPartner(ev->getEntity2());
+//			ev->getEntity2()->removeCollisionPartner(ev->getEntity1());
 			break;
 		}
 		case CollisionStatus::BORDER:

@@ -60,6 +60,8 @@ class Entity
 		virtual CollisionType getCollisionType() { return CollisionType::SOLID; } // TODO = 0
 		virtual void onCollide(Entity*) {}
 		virtual void offCollide(Entity*) {}
+		void removeOutdatedCollisionPartners();
+		void deglitchCollisionPartners();
 
 		// physics
 		virtual float getMass() const = 0;
