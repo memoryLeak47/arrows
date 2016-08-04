@@ -42,9 +42,16 @@ void Debug::renderConsole()
 
 void Debug::note(const std::string& s)
 {
-	if (global::DEBUG_NOTE and Main::isRunning())
+	if (Main::isRunning())
 	{
-		std::cout << NOTE_COLOR << "NOTE: " << s << RESET_COLOR << std::endl;
+		if (global::DEBUG_NOTE)
+		{
+			std::cout << NOTE_COLOR << "NOTE: " << s << RESET_COLOR << std::endl;
+		}
+		if (global::DEBUG_NOTE_TO_SCREEN)
+		{
+			Debug::screen("NOTE: " + s);
+		}
 	}
 }
 
@@ -52,9 +59,16 @@ void Debug::note(const std::string& s)
 
 void Debug::test(const std::string& s)
 {
-	if (global::DEBUG_TEST and Main::isRunning())
+	if (Main::isRunning())
 	{
-		std::cout << TEST_COLOR << "TEST: " << s << RESET_COLOR << std::endl;
+		if (global::DEBUG_TEST)
+		{
+			std::cout << TEST_COLOR << "TEST: " << s << RESET_COLOR << std::endl;
+		}
+		if (global::DEBUG_TEST_TO_SCREEN)
+		{
+			Debug::screen("TEST: " + s);
+		}
 	}
 }
 
@@ -65,6 +79,10 @@ void Debug::warn(const std::string& s)
 	if (Main::isRunning())
 	{
 		std::cout << WARN_COLOR << "WARN: " << s << RESET_COLOR << std::endl;
+		if (global::DEBUG_WARN_TO_SCREEN)
+		{
+			Debug::screen("WARN: " + s);
+		}
 	}
 }
 
@@ -101,6 +119,10 @@ void Debug::func(const std::string& s)
 			t += "    ";
 		}
 		std::cout << FUNC_COLOR << "FUNC:" + t + s << RESET_COLOR << std::endl;
+		if (global::DEBUG_FUNC_TO_SCREEN)
+		{
+			Debug::screen("FUNC:" + t + "}");
+		}
 	}
 }
 
@@ -114,6 +136,10 @@ void Debug::funcOn(const std::string& s)
 			t += "    ";
 		}
 		std::cout << FUNC_COLOR << "FUNC:" + t + s + " {" << RESET_COLOR << std::endl;
+		if (global::DEBUG_FUNC_TO_SCREEN)
+		{
+			Debug::screen("FUNC:" + t + s + " {");
+		}
 		indentCounter++;
 	}
 }
@@ -129,10 +155,14 @@ void Debug::funcOff(const std::string& s)
 			t += "    ";
 		}
 		std::cout << FUNC_COLOR << "FUNC:" + t + "}" << RESET_COLOR << std::endl;
+		if (global::DEBUG_FUNC_TO_SCREEN)
+		{
+			Debug::screen("FUNC:" + t + "}");
+		}
 	}
 }
 
-void Debug::msg(const std::string& text, int time)
+void Debug::screen(const std::string& text, int time)
 {
 	Message m;
 	m.text = text;

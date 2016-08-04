@@ -8,9 +8,10 @@ namespace global
 	void init();
 	int WINDOW_STYLE;
 	float FPS;
-	bool DEBUG_FUNC;
-	bool DEBUG_NOTE;
-	bool DEBUG_TEST;
+	bool DEBUG_FUNC, DEBUG_FUNC_TO_SCREEN;
+	bool DEBUG_NOTE, DEBUG_NOTE_TO_SCREEN;
+	bool DEBUG_TEST, DEBUG_TEST_TO_SCREEN;
+	bool DEBUG_WARN_TO_SCREEN;
 	bool DEBUG_STEPWISE;
 	float GAME_FRAME_TIME;
 	int TILESIZE;
@@ -27,9 +28,10 @@ void global::init()
 {
 	WINDOW_STYLE = sf::Style::Fullscreen;
 	FPS = 40;
-	DEBUG_FUNC = true;
-	DEBUG_NOTE = true;
-	DEBUG_TEST = true;
+	DEBUG_FUNC = true; DEBUG_FUNC_TO_SCREEN = false;
+	DEBUG_NOTE = true; DEBUG_NOTE_TO_SCREEN = false;
+	DEBUG_TEST = true; DEBUG_TEST_TO_SCREEN = false;
+	DEBUG_WARN_TO_SCREEN = true;
 	DEBUG_STEPWISE = false;
 	GAME_FRAME_TIME = 1;
 	TILESIZE = 40;
@@ -85,6 +87,33 @@ void global::init()
 			else if (value == "false") DEBUG_STEPWISE = false;
 			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
 			Debug::note("setting debug.stepwise to " + Converter::boolToString(DEBUG_STEPWISE));
+		}
+		else if (key == "debug.toscreen")
+		{
+			if (value == "func")
+			{
+				DEBUG_FUNC_TO_SCREEN = true;
+				Debug::note("adding func to screen");
+			}
+			else if (value == "note")
+			{
+				DEBUG_NOTE_TO_SCREEN = true;
+				Debug::note("adding note to screen");
+			}
+			else if (value == "test")
+			{
+				DEBUG_TEST_TO_SCREEN = true;
+				Debug::note("adding test to screen");
+			}
+			else if (value == "warn")
+			{
+				DEBUG_WARN_TO_SCREEN = true;
+				Debug::note("adding warn to screen");
+			}
+			else
+			{
+				Debug::error("global::init(): Can't add " + value + " to screen");
+			}
 		}
 		else if (key == "skip_lobby")
 		{

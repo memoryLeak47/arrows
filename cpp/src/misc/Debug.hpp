@@ -63,7 +63,7 @@ class Debug
 		static void func(const std::string&);
 		static void funcOn(const std::string&);
 		static void funcOff(const std::string&);
-		static void msg(const std::string&, int time=1);
+		static void screen(const std::string&, int time=1);
 	private:
 		static int indentCounter;
 		static std::vector<Message> messages;

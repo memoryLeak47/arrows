@@ -17,9 +17,10 @@ namespace global
 	void init();
 	extern int WINDOW_STYLE;
 	extern float FPS;
-	extern bool DEBUG_FUNC;
-	extern bool DEBUG_NOTE;
-	extern bool DEBUG_TEST;
+	extern bool DEBUG_FUNC, DEBUG_FUNC_TO_SCREEN;
+	extern bool DEBUG_NOTE, DEBUG_NOTE_TO_SCREEN;
+	extern bool DEBUG_TEST, DEBUG_TEST_TO_SCREEN;
+	extern bool DEBUG_WARN_TO_SCREEN;
 	extern bool DEBUG_STEPWISE;
 	extern float GAME_FRAME_TIME;
 	extern int TILESIZE;
