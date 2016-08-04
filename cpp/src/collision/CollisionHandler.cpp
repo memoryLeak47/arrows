@@ -18,28 +18,34 @@
 
 void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 {
-	// Calculate CollisionPoints
-	std::vector<GameVector> collisionPoints = getCollisionPoints(ev);
-
-	// Calculate EscapeVectors
-	GameVector escapeVector1 = getEscapeVector(ev->getEntity1(), collisionPoints);
-	GameVector escapeVector2 = getEscapeVector(ev->getEntity2(), collisionPoints);
-
-	/*
-	std::cout << std::endl;
-	for (unsigned int i = 0; i < collisionPoints.size(); i++)
-	{
-		Debug::test("collisionPoint" + Converter::intToString((int)i) + "=" + collisionPoints[i].toString());
-	}
-	Debug::test("escapeVector1=" + escapeVector1.toString());
-	Debug::test("escapeVector2=" + escapeVector2.toString());
-	*/
-
 	switch (ev->getStatus()) // switch between the new collision status
 	{
 		case CollisionStatus::IN:
 		{
+			// Calculate CollisionPoints
+			std::vector<GameVector> collisionPoints = getCollisionPoints(ev);
+
+			/*
+			// Zwischenkantenkollision ausschließen
+			if (ev->getStatus() == CollisionStatus::SOLID)
+			{
+				for (GameVector p : collisionPoints)
+				{
+					if (/ *p unreachable* /)
+					{
+						return;
+					}
+				}
+			}
+			*/
+
+			// Calculate EscapeVectors
+			GameVector escapeVector1 = getEscapeVector(ev->getEntity1(), collisionPoints);
+			GameVector escapeVector2 = getEscapeVector(ev->getEntity2(), collisionPoints);
+
 			// add partner
+			ev->getEntity1()->addCollisionPartner(ev->getEntity2());
+			ev->getEntity2()->addCollisionPartner(ev->getEntity1());
 
 			CollisionType type = Entity::getCollisionTypeBetween(ev->getEntity1(), ev->getEntity2());
 			if (type == CollisionType::SOLID)
@@ -50,7 +56,8 @@ void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 		}
 		case CollisionStatus::OUT:
 		{
-			// remove partner
+			ev->getEntity1()->removeCollisionPartner(ev->getEntity2());
+			ev->getEntity2()->removeCollisionPartner(ev->getEntity1());
 			break;
 		}
 		case CollisionStatus::BORDER:
