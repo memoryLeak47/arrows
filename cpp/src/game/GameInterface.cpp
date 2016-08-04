@@ -29,6 +29,8 @@ void GameInterface::tick()
 	Debug::tickConsole();
 	NetworkingMenu::tick();
 	tickEntities();
+	removeOutdatedCollisionPartners();
+	deglitchCollisionPartners();
 	tickPhysics();
 }
 
@@ -170,6 +172,19 @@ void GameInterface::addEventsFrom(Entity* entity, std::vector<CollisionEvent*>* 
 			CollisionDetector::addCollisionsBetween(entity, t, events, timeLeft);
 		}
 	}
+}
+
+void GameInterface::removeOutdatedCollisionPartners()
+{
+	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
+	{
+		getDynamicEntity(i)->removeOutdatedCollisionPartners();
+	}
+}
+
+void GameInterface::deglitchCollisionPartners()
+{
+	
 }
 
 void GameInterface::moveAllEntities(float time)

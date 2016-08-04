@@ -115,7 +115,24 @@ void Entity::addCollisionPartner(Entity* e)
 
 void Entity::removeCollisionPartner(Entity* e)
 {
-	eraseFromVector(e, collisionPartners);
+	bool found = false;
+	for (unsigned int i = 0; i < collisionPartners.size(); i++)
+	{
+		if (collisionPartners[i] == e)
+		{
+			found = true;
+			collisionPartners.erase(collisionPartners.begin() + i);
+		}
+	}
+
+	if (not found)
+	{
+		for (unsigned int i = 0; i < collisionPartners.size(); i++)
+		{
+			Debug::warn(collisionPartners[i]->toString());
+		}
+		Debug::error("och: " + e->toString());
+	}
 }
 
 std::vector<Entity*> Entity::getCollisionPartners()
