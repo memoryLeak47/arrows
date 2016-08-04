@@ -26,6 +26,7 @@ GameInterface::~GameInterface()
 
 void GameInterface::tick()
 {
+	Debug::tick();
 	NetworkingMenu::tick();
 	tickEntities();
 	tickPhysics();
@@ -185,6 +186,7 @@ void GameInterface::render() const
 	renderBars();
 	renderEntities();
 	NetworkingMenu::render();
+	Debug::render();
 }
 
 void GameInterface::renderMap() const

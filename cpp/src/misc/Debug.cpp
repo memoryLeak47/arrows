@@ -2,12 +2,40 @@
 
 #include "Converter.hpp"
 #include "../core/Main.hpp"
+#include "../core/Screen.hpp"
+#include "../math/pixel/PixelVector.hpp"
 
 int Debug::indentCounter;
+std::vector<Message> Debug::messages;
 
 void Debug::init()
 {
 	indentCounter = 0;
+}
+
+void Debug::tick()
+{
+	// alte Messages aussortieren
+	for (unsigned int i = 0; i < messages.size(); i++)
+	{
+		messages[i].counter--;
+		if (messages[i].counter <= 0)
+		{
+			messages.erase(messages.begin() + i);
+			i--;
+		}
+	}
+}
+
+void Debug::render()
+{
+	// alle Messages rendern
+	int y = 0;
+	for (Message mess : messages)
+	{
+		Screen::drawText(mess.text, PixelVector(3, y), sf::Color::Magenta);
+		y += 15;
+	}
 }
 
 // note
@@ -61,6 +89,8 @@ void Debug::time(const std::string& s)
 	}
 }
 
+// func
+
 void Debug::func(const std::string& s)
 {
 	if (global::DEBUG_FUNC and Main::isRunning())
@@ -100,4 +130,12 @@ void Debug::funcOff(const std::string& s)
 		}
 		std::cout << FUNC_COLOR << "FUNC:" + t + "}" << RESET_COLOR << std::endl;
 	}
+}
+
+void Debug::mess(const std::string& text, int time)
+{
+	Message m;
+	m.text = text;
+	m.counter = time;
+	messages.push_back(m);
 }

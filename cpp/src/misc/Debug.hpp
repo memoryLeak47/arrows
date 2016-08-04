@@ -40,11 +40,21 @@
 #include <string>
 #include <stdio.h>
 #include <iostream>
+#include <vector>
+
+struct Message
+{
+	std::string text;
+	int counter;
+};
 
 class Debug
 {
 	public:
 		static void init();
+		static void tick();
+		static void render();
+
 		static void note(const std::string&);
 		static void test(const std::string&);
 		static void warn(const std::string&);
@@ -53,8 +63,10 @@ class Debug
 		static void func(const std::string&);
 		static void funcOn(const std::string&);
 		static void funcOff(const std::string&);
+		static void mess(const std::string&, int time=1);
 	private:
 		static int indentCounter;
+		static std::vector<Message> messages;
 };
 
 #endif
