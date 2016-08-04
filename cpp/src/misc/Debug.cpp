@@ -13,7 +13,7 @@ void Debug::init()
 	indentCounter = 0;
 }
 
-void Debug::tick()
+void Debug::tickConsole()
 {
 	// alte Messages aussortieren
 	for (unsigned int i = 0; i < messages.size(); i++)
@@ -27,13 +27,13 @@ void Debug::tick()
 	}
 }
 
-void Debug::render()
+void Debug::renderConsole()
 {
 	// alle Messages rendern
 	int y = 0;
-	for (Message mess : messages)
+	for (Message msg : messages)
 	{
-		Screen::drawText(mess.text, PixelVector(3, y), sf::Color::Magenta);
+		Screen::drawText(msg.text, PixelVector(3, y), sf::Color::Magenta);
 		y += 15;
 	}
 }
@@ -132,7 +132,7 @@ void Debug::funcOff(const std::string& s)
 	}
 }
 
-void Debug::mess(const std::string& text, int time)
+void Debug::msg(const std::string& text, int time)
 {
 	Message m;
 	m.text = text;
