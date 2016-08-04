@@ -76,6 +76,7 @@ void GameInterface::tickEntities()
 
 void GameInterface::tickPhysics()
 {
+	int c = 0;
 	Debug::funcOn("GameInterface::tickPhysics()");
 	float timeLeft = global::GAME_FRAME_TIME;
 	std::vector<CollisionEvent*> events; // Es gäbe auch die Möglichkeit diesen vector global zu machen & länger als nur GAME_FRAME_TIME vorauszuber
@@ -90,11 +91,13 @@ void GameInterface::tickPhysics()
 
 	while (events.size() > 0)
 	{
+		
 		CollisionEvent* event = cutFirstEvent(&events); // Returnt die Collision, die als nächstes ausgeführt werden muss.
 		moveAllEntities(timeLeft - event->getTimeUntilFrameEnds());     // bewegt alle Entities bis zu der Situation, in der die nächste
 						// remember rotation is updated too
 		timeLeft = event->getTimeUntilFrameEnds();
 		CollisionHandler::handleCollisionEvent(event);
+		c++;
 		delete event;
 
 		// Falls eine der Entities beschleunigt/umpositioniert wurden, werden die Collisions der Entity neu berechnet
@@ -106,6 +109,11 @@ void GameInterface::tickPhysics()
 				updateEventsFrom(entity, &events, timeLeft);
 				entity->setChanged(false);
 			}
+		}
+		if (c > 100)
+		{
+			Debug::error("GameInterface::tickPhysics(): infinite loop");
+			break;
 		}
 	}
 	moveAllEntities(timeLeft);
