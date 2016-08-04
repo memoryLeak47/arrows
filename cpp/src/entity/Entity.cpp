@@ -107,7 +107,10 @@ void Entity::optDrag()
 
 void Entity::addCollisionPartner(Entity* e)
 {
-	collisionPartners.push_back(e);
+	if (! memberOf(e, collisionPartners))
+	{
+		collisionPartners.push_back(e);
+	}
 }
 
 void Entity::removeCollisionPartner(Entity* e)
