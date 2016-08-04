@@ -60,6 +60,12 @@ void GameInterface::tickEntities()
 	{
 		Entity* entity = getDynamicEntity(i);
 		entity->tick();
+		/* // Security system
+		for (Entity* partner : entity->getCollisionPartners())
+		{
+			entity->addSpeed((entity->getBody()->getPosition() - partner->getBody()->getPosition()) * 0.001f);
+		}
+		*/
 		entity->setChanged(true);
 	}
 	// TODO tick tiles?
