@@ -127,12 +127,12 @@ void Entity::removeOutdatedCollisionPartners()
 
 void Entity::deglitchCollisionPartners()
 {
-        GameVector pos = getBody()->getPosition();
-        for (Entity* partner : collisionPartners)
-        {
-                GameVector ppos = partner->getBody()->getPosition();
-                setPosition(getBody()->getPosition() + (pos-ppos).getNormalized() * 0.0001f);
-        }
+	GameVector pos = getBody()->getPosition();
+	for (Entity* partner : collisionPartners)
+	{
+		GameVector ppos = partner->getBody()->getPosition();
+		setPosition(getBody()->getPosition() + (pos-ppos).getNormalized() * 0.03f); // TODO
+	}
 }
 
 void Entity::addCollisionPartner(Entity* e)

@@ -32,5 +32,6 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2, std::vector<GameVecto
 
 	e1->addSpeed(res1);
 	e2->addSpeed(res2);
+
 	Debug::funcOff("PhysicsHandler::handlePhysics(" + e1->toString() + ", " + e2->toString() + ")");
 }

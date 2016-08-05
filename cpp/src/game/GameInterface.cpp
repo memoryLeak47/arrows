@@ -91,7 +91,6 @@ void GameInterface::tickPhysics()
 
 	while (events.size() > 0)
 	{
-		
 		CollisionEvent* event = cutFirstEvent(&events); // Returnt die Collision, die als nächstes ausgeführt werden muss.
 		moveAllEntities(timeLeft - event->getTimeUntilFrameEnds());     // bewegt alle Entities bis zu der Situation, in der die nächste
 						// remember rotation is updated too

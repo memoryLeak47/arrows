@@ -31,9 +31,9 @@ bool CollisionTester::isColliding(Entity* e1, Entity* e2)
 
 bool CollisionTester::isCollidingEvenRects(const RectBody* b1, const RectBody* b2)
 {
-	if ((b1->getLeft() < b2->getRight()) && (b1->getRight() > b2->getLeft()))
+	if ((b1->getLeft() <= b2->getRight()) && (b1->getRight() >= b2->getLeft()))
 	{
-		if ((b1->getTop() < b2->getBot()) && (b1->getBot() > b2->getTop()))
+		if ((b1->getTop() <= b2->getBot()) && (b1->getBot() >= b2->getTop()))
 		{
 			return true;
 		}
