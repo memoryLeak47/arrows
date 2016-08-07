@@ -80,6 +80,13 @@ GameVector GameVector::operator-(const GameVector& vec) const
 	return GameVector(x, y);
 }
 
+GameVector GameVector::operator-() const
+{
+	float x = - getX();
+	float y = - getY();
+	return GameVector(x, y);
+}
+
 GameVector GameVector::operator*(float f) const
 {
 	return GameVector(getX()*f, getY()*f);

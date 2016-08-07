@@ -24,6 +24,7 @@ class GameVector
 		bool operator!=(const GameVector&) const;
 		GameVector operator+(const GameVector&) const;
 		GameVector operator-(const GameVector&) const;
+		GameVector operator-() const;
 		GameVector operator*(float) const;
 		GameVector operator/(float) const;
 		std::string toString() const;
