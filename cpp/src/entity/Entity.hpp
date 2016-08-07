@@ -61,7 +61,7 @@ class Entity
 		virtual void onCollide(Entity*) {}
 		virtual void offCollide(Entity*) {}
 		void removeOutdatedCollisionPartners();
-		void deglitchCollisionPartners();
+		void checkGlitch();
 
 		// physics
 		virtual float getMass() const = 0;

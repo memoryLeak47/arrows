@@ -20,6 +20,7 @@ namespace global
 	float GRAVITY;
 	float STANDART_JUMPPOWER;
 	float STANDART_ACCELERATION;
+	float BORDER_SIZE;
 	bool SKIP_LOBBY;
 	std::string SKIP_LOBBY_MAP;
 }
@@ -40,6 +41,7 @@ void global::init()
 	GRAVITY = 0.04f;
 	STANDART_JUMPPOWER = 0.6f;
 	STANDART_ACCELERATION = 0.18f;
+	BORDER_SIZE = 0.001f;
 	SKIP_LOBBY = false;
 	SKIP_LOBBY_MAP = "default.png";
 

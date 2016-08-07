@@ -115,7 +115,7 @@ void Entity::removeOutdatedCollisionPartners()
 {
 	for (Entity* e : collisionPartners)
 	{
-		if (!CollisionTester::isColliding(this, e))
+		if (!CollisionTester::isColliding(this, e, 2*global::BORDER_SIZE))
 		{
 			removeCollisionPartner(e);
 			e->removeCollisionPartner(this);
@@ -125,13 +125,14 @@ void Entity::removeOutdatedCollisionPartners()
 	}
 }
 
-void Entity::deglitchCollisionPartners()
+void Entity::checkGlitch()
 {
-	GameVector pos = getBody()->getPosition();
 	for (Entity* partner : collisionPartners)
 	{
-		GameVector ppos = partner->getBody()->getPosition();
-		setPosition(getBody()->getPosition() + (pos-ppos).getNormalized() * 0.03f); // TODO
+		if (CollisionTester::isColliding(this, partner, -0.001f))
+		{
+			Debug::error("GLITCH DETECTED: " + partner->toString() + " & " + toString());
+		}
 	}
 }
 

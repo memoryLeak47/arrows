@@ -7,7 +7,6 @@
 /*
 	CollisionPoints
 	EscapeVector
-	Status
 	CollisionType
 	PartnerHandling (onEvent...)
 	if (enterEvent && solid)
@@ -18,56 +17,35 @@
 
 void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 {
-	switch (ev->getStatus()) // switch between the new collision status
+	// Calculate CollisionPoints
+	std::vector<GameVector> collisionPoints = getCollisionPoints(ev);
+
+	/*
+	// Zwischenkantenkollision ausschließen
+	for (GameVector p : collisionPoints)
 	{
-		case CollisionStatus::IN:
+		if (/ *p unreachable* /)
 		{
-			// Calculate CollisionPoints
-			std::vector<GameVector> collisionPoints = getCollisionPoints(ev);
-
-			/*
-			// Zwischenkantenkollision ausschließen
-			if (ev->getStatus() == CollisionStatus::SOLID)
-			{
-				for (GameVector p : collisionPoints)
-				{
-					if (/ *p unreachable* /)
-					{
-						return;
-					}
-				}
-			}
-			*/
-
-			// Calculate EscapeVectors
-			GameVector escapeVector1 = getEscapeVector(ev->getEntity1(), collisionPoints);
-			GameVector escapeVector2 = getEscapeVector(ev->getEntity2(), collisionPoints);
-
-			// add partner
-			ev->getEntity1()->addCollisionPartner(ev->getEntity2());
-			ev->getEntity2()->addCollisionPartner(ev->getEntity1());
-
-			CollisionType type = Entity::getCollisionTypeBetween(ev->getEntity1(), ev->getEntity2());
-			if (type == CollisionType::SOLID)
-			{
-				PhysicsHandler::handlePhysics(ev->getEntity1(), ev->getEntity2(), collisionPoints, escapeVector1, escapeVector2);
-			}
-			break;
+			return;
 		}
-		case CollisionStatus::OUT:
-		{
-//			ev->getEntity1()->removeCollisionPartner(ev->getEntity2());
-//			ev->getEntity2()->removeCollisionPartner(ev->getEntity1());
-			break;
-		}
-		case CollisionStatus::BORDER:
-		{
-			break;
-		}
-		default:
-		{
-			Debug::error("CollisionHandler::handleCollisionEvent(): unknown CollisionStatus");
-		}
+	}
+	*/
+
+	// Calculate EscapeVectors
+	GameVector escapeVector1 = getEscapeVector(ev->getEntity1(), collisionPoints);
+	GameVector escapeVector2 = getEscapeVector(ev->getEntity2(), collisionPoints);
+
+	// add partner
+	if (not Entity::areCollisionPartners(ev->getEntity1(), ev->getEntity2()))
+	{
+		ev->getEntity1()->addCollisionPartner(ev->getEntity2());
+		ev->getEntity2()->addCollisionPartner(ev->getEntity1());
+	}
+
+	CollisionType type = Entity::getCollisionTypeBetween(ev->getEntity1(), ev->getEntity2());
+	if (type == CollisionType::SOLID)
+	{
+		PhysicsHandler::handlePhysics(ev->getEntity1(), ev->getEntity2(), collisionPoints, escapeVector1, escapeVector2);
 	}
 }
 

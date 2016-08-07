@@ -19,8 +19,6 @@
 
 #include <vector>
 
-#include "CollisionStatus.hpp"
-
 class CollisionEvent;
 class GameVector;
 class Entity;

@@ -3,8 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "../collision/CollisionStatus.hpp"
-
 class Converter
 {
 	public:
@@ -19,7 +17,6 @@ class Converter
 		static std::string floatToStringPrecise(float, int=4);
 		static std::string charsToString(const std::string&);
 		static std::string boolToString(bool);
-		static std::string collisionStatusToString(CollisionStatus);
 		template <class T> static T* clone(T*);
 };
 

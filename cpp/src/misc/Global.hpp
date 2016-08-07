@@ -29,6 +29,7 @@ namespace global
 	extern float GRAVITY;
 	extern float STANDART_JUMPPOWER;
 	extern float STANDART_ACCELERATION;
+	extern float BORDER_SIZE; // BORDER_SIZE is the size added left, right, top and bot to objects on exit-event detection
 	extern bool SKIP_LOBBY;
 	extern std::string SKIP_LOBBY_MAP;
 }

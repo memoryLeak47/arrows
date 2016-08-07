@@ -30,7 +30,7 @@ void GameInterface::tick()
 	NetworkingMenu::tick();
 	tickEntities();
 	removeOutdatedCollisionPartners();
-	deglitchCollisionPartners();
+	checkGlitch();
 	tickPhysics();
 }
 
@@ -189,11 +189,11 @@ void GameInterface::removeOutdatedCollisionPartners()
 	}
 }
 
-void GameInterface::deglitchCollisionPartners()
+void GameInterface::checkGlitch()
 {
 	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
 	{
-		getDynamicEntity(i)->deglitchCollisionPartners();
+		getDynamicEntity(i)->checkGlitch();
 	}
 }
 

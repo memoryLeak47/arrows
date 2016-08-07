@@ -46,7 +46,7 @@ class GameInterface : public NetworkingMenu
 		void addEventsFrom(Entity* entity, std::vector<CollisionEvent*>* events, float timeLeft);
 		void moveAllEntities(float time);
 		void removeOutdatedCollisionPartners();
-		void deglitchCollisionPartners();
+		void checkGlitch();
 		
 		// elements
 		View view;

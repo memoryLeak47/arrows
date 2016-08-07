@@ -16,6 +16,8 @@
 class CollisionEvent;
 class Entity;
 
+enum CollisionStatus {IN, BORDER, OUT};
+
 class CollisionDetector
 {
 	public:

@@ -142,7 +142,8 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 
 			if ((oldStatus < CollisionStatus::OUT) && not Entity::areCollisionPartners(e1, e2))
 			{
-				CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft, oldStatus);
+				CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft);
+				Debug::screen(ev->toString());
 				events->push_back(ev);
 			}
 
@@ -212,7 +213,8 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 				if ((oldStatus != std::max(xCol, yCol)) && not Entity::areCollisionPartners(e1, e2))
 				{
 					oldStatus = std::max(xCol, yCol);
-					CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft-time, oldStatus);
+					CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft-time);
+					Debug::screen(ev->toString());
 					events->push_back(ev);
 				}
 			}
