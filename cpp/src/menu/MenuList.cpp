@@ -38,9 +38,9 @@ MenuList::~MenuList()
 
 void MenuList::onEvent(const sf::Event &event)
 {
-	if (!global::DEBUG_STEPWISE)
+	if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Return)
 	{
-		getTopmostMenu()->onEvent(event);
+		getTopmostMenu()->tick();
 	}
 	else
 	{
@@ -50,7 +50,7 @@ void MenuList::onEvent(const sf::Event &event)
 
 void MenuList::tick()
 {
-	if (!global::DEBUG_STEPWISE || sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+	if (!global::DEBUG_STEPWISE)
 	{
 		getTopmostMenu()->tick();
 	}
