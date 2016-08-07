@@ -38,8 +38,15 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2, std::vector<GameVecto
 		float timeToMove = std::min(t.getX(), t.getY());
 	*/
 
-	e1->move(-0.1f);
-	e2->move(-0.1f);
+	if (s1 != GameVector(0, 0))
+	{
+		e1->addPosition(s1.getNormalized() * -global::BORDER_SIZE);
+	}
+
+	if (s2 != GameVector(0, 0))
+	{
+		e2->addPosition(s2.getNormalized() * -global::BORDER_SIZE);
+	}
 
 	// physics
 

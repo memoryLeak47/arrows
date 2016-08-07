@@ -31,16 +31,14 @@ void Entity::tick()
 		//       dashCounter = 0;
 		Debug::warn("Entity::tick(): dashCounter == 1: TODO");
 	}
-
-	for (Entity* e : collisionPartners)
-	{
-		Debug::screen(e->toString());
-	}
 }
 
 void Entity::move(float time)
 {
-	body->move(time);
+	if (!isStatic())
+	{
+		body->move(time);
+	}
 }
 
 void Entity::setSpeed(const GameVector& speed)
@@ -82,6 +80,11 @@ void Entity::push(const GameVector& how, const GameVector& where)
 void Entity::push(const GameVector& how)
 {
 	push(how, body->getPosition());
+}
+
+void Entity::addPosition(const GameVector& how)
+{
+	setPosition(body->getPosition() + how);
 }
 
 void Entity::setSpeedAt(const GameVector& how, const GameVector& where)
