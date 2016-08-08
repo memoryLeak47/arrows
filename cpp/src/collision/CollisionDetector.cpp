@@ -94,139 +94,120 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 	const float sizeX2 = b2->getSize().getX();
 	const float sizeY2 = b2->getSize().getY();
 
-	switch (Entity::getCollisionTypeBetween(e1, e2))
+	// getestet
+	CollisionStatus xCol, yCol;
+	const float right1 = (posX1 + sizeX1/2.f);
+	const float right2 = (posX2 + sizeX2/2.f);
+
+	const float left1 = (posX1 - sizeX1/2.f);
+	const float left2 = (posX2 - sizeX2/2.f);
+
+	const float bot1 = (posY1 + sizeY1/2.f);
+	const float bot2 = (posY2 + sizeY2/2.f);
+
+	const float top1 = (posY1 - sizeY1/2.f);
+	const float top2 = (posY2 - sizeY2/2.f);
+
+	if ((right1 > left2) && (right2 > left1)) // Wenn die Entities sich auf der xAchse schneiden
 	{
-		case CollisionType::SOLID:
+		xCol = CollisionStatus::IN;
+	}
+	else if ((right1 == left2) || (right2 == left1)) // Wenn die Entities sich auf der xAchse berühren
+	{
+		xCol = CollisionStatus::BORDER;
+	}
+	else // sonst OUT
+	{
+		xCol = CollisionStatus::OUT;
+	}
+
+	if ((bot1 > top2) && (bot2 > top1))
+	{
+		yCol = CollisionStatus::IN;
+	}
+	else if ((bot1 == top2) || (bot2 == top1))
+	{
+		yCol = CollisionStatus::BORDER;
+	}
+	else
+	{
+		yCol = CollisionStatus::OUT;
+	}
+
+	CollisionStatus oldStatus = std::max(xCol, yCol);
+
+	if (oldStatus < CollisionStatus::OUT)
+	{
+		CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft);
+		events->push_back(ev);
+	}
+
+	std::pair<std::vector<float>, std::vector<bool>> pair = getPair(posX1, posY1, sizeX1, sizeY1, speedX, speedY, posX2, posY2, sizeX2, sizeY2, timeLeft);
+	std::vector<float> floats = pair.first;
+	std::vector<bool> bools = pair.second;
+
+	while (floats.size() > 0)
+	{
+		int index = getNextIndex(floats);
+		float time = floats[index];
+
+		if (bools[index])
 		{
-			// getestet
-			CollisionStatus xCol, yCol;
-			const float right1 = (posX1 + sizeX1/2.f);
-			const float right2 = (posX2 + sizeX2/2.f);
-
-			const float left1 = (posX1 - sizeX1/2.f);
-			const float left2 = (posX2 - sizeX2/2.f);
-
-			const float bot1 = (posY1 + sizeY1/2.f);
-			const float bot2 = (posY2 + sizeY2/2.f);
-
-			const float top1 = (posY1 - sizeY1/2.f);
-			const float top2 = (posY2 - sizeY2/2.f);
-
-			if ((right1 > left2) && (right2 > left1)) // Wenn die Entities sich auf der xAchse schneiden
-			{
-				xCol = CollisionStatus::IN;
-			}
-			else if ((right1 == left2) || (right2 == left1)) // Wenn die Entities sich auf der xAchse berühren
-			{
-				xCol = CollisionStatus::BORDER;
-			}
-			else // sonst OUT
+			if (xCol == CollisionStatus::IN)
 			{
 				xCol = CollisionStatus::OUT;
 			}
-
-			if ((bot1 > top2) && (bot2 > top1))
+			else if (xCol == CollisionStatus::OUT)
 			{
-				yCol = CollisionStatus::IN;
-			}
-			else if ((bot1 == top2) || (bot2 == top1))
-			{
-				yCol = CollisionStatus::BORDER;
+				xCol = CollisionStatus::IN;
 			}
 			else
 			{
-				yCol = CollisionStatus::OUT;
-			}
-
-			CollisionStatus oldStatus = std::max(xCol, yCol);
-
-			if (oldStatus < CollisionStatus::OUT)
-			{
-				CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft);
-				events->push_back(ev);
-			}
-
-			std::pair<std::vector<float>, std::vector<bool>> pair = getPair(posX1, posY1, sizeX1, sizeY1, speedX, speedY, posX2, posY2, sizeX2, sizeY2, timeLeft);
-			std::vector<float> floats = pair.first;
-			std::vector<bool> bools = pair.second;
-
-			while (floats.size() > 0)
-			{
-				int index = getNextIndex(floats);
-				float time = floats[index];
-
-				if (bools[index])
+				// linke entity schneller:
+				if (speedX == 0) Debug::error("CollisionDetector::addCollisionsBetweenEvenRects(): logical issue here (x)");
+				if ((speedX > 0) == (posX1 < posX2))
 				{
-					if (xCol == CollisionStatus::IN)
-					{
-						xCol = CollisionStatus::OUT;
-					}
-					else if (xCol == CollisionStatus::OUT)
-					{
-						xCol = CollisionStatus::IN;
-					}
-					else
-					{
-						// linke entity schneller:
-						if (speedX == 0) Debug::error("CollisionDetector::addCollisionsBetweenEvenRects(): logical issue here (x)");
-						if ((speedX > 0) == (posX1 < posX2))
-						{
-							xCol = CollisionStatus::IN;
-						}
-						else
-						{
-							xCol = CollisionStatus::OUT;
-						}
-					}
-					// xCol = (CollisionStatus)(2 - (int) xCol);
+					xCol = CollisionStatus::IN;
 				}
 				else
 				{
-					if (yCol == CollisionStatus::IN)
-					{
-						yCol = CollisionStatus::OUT;
-					}
-					else if (yCol == CollisionStatus::OUT)
-					{
-						yCol = CollisionStatus::IN;
-					}
-					else
-					{
-						// obere entity schneller:
-						if (speedY == 0) Debug::error("CollisionDetector::addCollisionsBetweenEvenRects(): logical issue here (y)");
-						if ((speedY > 0) == (posY1 < posY2))
-						{
-							yCol = CollisionStatus::IN;
-						}
-						else
-						{
-							yCol = CollisionStatus::OUT;
-						}
-					}
-					// yCol = (CollisionStatus)(2 - (int) yCol);
-				}
-
-				floats.erase(floats.begin() + index);
-				bools.erase(bools.begin() + index);
-
-				if (oldStatus != std::max(xCol, yCol))
-				{
-					oldStatus = std::max(xCol, yCol);
-					CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft-time);
-					events->push_back(ev);
+					xCol = CollisionStatus::OUT;
 				}
 			}
-			break;
 		}
-		case CollisionType::IGNORE:
+		else
 		{
-			Debug::warn("TODO ignore collision");
-			break;
+			if (yCol == CollisionStatus::IN)
+			{
+				yCol = CollisionStatus::OUT;
+			}
+			else if (yCol == CollisionStatus::OUT)
+			{
+				yCol = CollisionStatus::IN;
+			}
+			else
+			{
+				// obere entity schneller:
+				if (speedY == 0) Debug::error("CollisionDetector::addCollisionsBetweenEvenRects(): logical issue here (y)");
+				if ((speedY > 0) == (posY1 < posY2))
+				{
+					yCol = CollisionStatus::IN;
+				}
+				else
+				{
+					yCol = CollisionStatus::OUT;
+				}
+			}
 		}
-		default:
+
+		floats.erase(floats.begin() + index);
+		bools.erase(bools.begin() + index);
+
+		if (oldStatus != std::max(xCol, yCol))
 		{
-			Debug::error("CollisionDetector::addCollisionsBetweenEvenRects: unknown CollisionType");
-			break;
+			oldStatus = std::max(xCol, yCol);
+			CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft-time);
+			events->push_back(ev);
 		}
 	}
 	Debug::funcOff("addCollisionBetween(): " + e2->toString());

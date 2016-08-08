@@ -4,37 +4,8 @@
 #include "../misc/Debug.hpp"
 #include "PhysicsHandler.hpp"
 
-/*
-	CollisionPoints
-	EscapeVector
-	CollisionType
-	PartnerHandling (onEvent...)
-	if (enterEvent && solid)
-	{
-		PhysicsHandler::handleSolidCollision(Entities, EscapeVector, CollisionPoints)
-	}
-*/
-
 void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 {
-	// Calculate CollisionPoints
-	std::vector<GameVector> collisionPoints = getCollisionPoints(ev);
-
-	/*
-	// Zwischenkantenkollision ausschließen
-	for (GameVector p : collisionPoints)
-	{
-		if (/ *p unreachable* /)
-		{
-			return;
-		}
-	}
-	*/
-
-	// Calculate EscapeVectors
-	GameVector escapeVector1 = getEscapeVector(ev->getEntity1(), collisionPoints);
-	GameVector escapeVector2 = getEscapeVector(ev->getEntity2(), collisionPoints);
-
 	// add partner
 	if (not Entity::areCollisionPartners(ev->getEntity1(), ev->getEntity2()))
 	{
@@ -42,9 +13,17 @@ void CollisionHandler::handleCollisionEvent(CollisionEvent* ev)
 		ev->getEntity2()->addCollisionPartner(ev->getEntity1());
 	}
 
-	CollisionType type = Entity::getCollisionTypeBetween(ev->getEntity1(), ev->getEntity2());
-	if (type == CollisionType::SOLID)
+	// if its solid-collision
+	if (Entity::getCollisionTypeBetween(ev->getEntity1(), ev->getEntity2()) == CollisionType::SOLID)
 	{
+		// Calculate CollisionPoints
+		std::vector<GameVector> collisionPoints = getCollisionPoints(ev);
+
+		// Calculate EscapeVectors
+		GameVector escapeVector1 = getEscapeVector(ev->getEntity1(), collisionPoints);
+		GameVector escapeVector2 = getEscapeVector(ev->getEntity2(), collisionPoints);
+
+		// Handle Physics
 		PhysicsHandler::handlePhysics(ev->getEntity1(), ev->getEntity2(), collisionPoints, escapeVector1, escapeVector2);
 	}
 }

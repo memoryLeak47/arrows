@@ -32,12 +32,6 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2, std::vector<GameVecto
 
 	// simple deglitch
 
-	/*
-		GameVector speedSubstraction = s1 - s2;
-		GameVector t = GameVector(global::BORDER_SIZE, global::BORDER_SIZE) / speedSubstraction;
-		float timeToMove = std::min(t.getX(), t.getY());
-	*/
-
 	if (s1 != GameVector(0, 0))
 	{
 		e1->addPosition(s1.getNormalized() * -global::BORDER_SIZE);

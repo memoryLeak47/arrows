@@ -137,7 +137,7 @@ void Entity::checkGlitch()
 {
 	for (Entity* partner : collisionPartners)
 	{
-		if (CollisionTester::isColliding(this, partner, -0.001f))
+		if ((Entity::getCollisionTypeBetween(this, partner) == CollisionType::SOLID) && CollisionTester::isColliding(this, partner, -0.001f))
 		{
 			Debug::error("GLITCH DETECTED: " + partner->toString() + " & " + toString());
 		}
