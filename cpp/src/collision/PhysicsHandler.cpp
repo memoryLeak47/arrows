@@ -15,7 +15,6 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2, std::vector<GameVecto
 	float m2 = e2->getMass();
 
 	float k = 0.9f;
-	//float ms1, ms2;
 
 	if (e1->isStatic())
 	{
@@ -50,11 +49,15 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2, std::vector<GameVecto
 	e1->setSpeed(v1res);
 	e2->setSpeed(v2res);
 
-	// GameVector res1 = (v2 - v1).getProjectionOn(escapeVec1) * ms2;
-	// GameVector res2 = (v1 - v2).getProjectionOn(escapeVec2) * ms1;
+	/* // This is a working older version
+		// mass-share (ms1, ms2) definition has been removed.
 
-	// e1->addSpeed(res1);
-	// e2->addSpeed(res2);
+		GameVector res1 = (v2 - v1).getProjectionOn(escapeVec1) * ms2;
+		GameVector res2 = (v1 - v2).getProjectionOn(escapeVec2) * ms1;
+
+		e1->addSpeed(res1);
+		e2->addSpeed(res2);
+	*/
 
 	Debug::funcOff("PhysicsHandler::handlePhysics(" + e1->toString() + ", " + e2->toString() + ")");
 }
