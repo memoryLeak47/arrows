@@ -8,48 +8,53 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2, std::vector<GameVecto
 
 	// init
 
-	GameVector s1 = e1->getBody()->getSpeed();
-	GameVector s2 = e2->getBody()->getSpeed();
+	GameVector v1 = e1->getBody()->getSpeed();
+	GameVector v2 = e2->getBody()->getSpeed();
+	GameVector v(0.f,0.f);
 	float m1 = e1->getMass();
 	float m2 = e2->getMass();
-	float ms1, ms2;
 
-	if (m1 == INFINITY)
+	float k = 0.9f;
+	//float ms1, ms2;
+
+	if (e1->isStatic())
 	{
-		ms1 = 1.f;
-		ms2 = 0.f;
+		v.apply(v1);
 	}
-	else if (m2 == INFINITY)
+	else if (e2->isStatic())
 	{
-		ms1 = 0.f;
-		ms2 = 1.f;
+		v.apply(v2);
 	}
 	else
 	{
-		ms1 = m1/(m1+m2);
-		ms2 = 1.f - ms1;
+		v = (v1 * m1) + (v2 * m2) / (m1 + m2);
 	}
 
 	// simple deglitch
 
-	if (s1 != GameVector(0, 0))
+	if (v1 != GameVector(0, 0))
 	{
-		e1->addPosition(s1.getNormalized() * -global::BORDER_SIZE);
+		e1->addPosition(v1.getNormalized() * -global::BORDER_SIZE);
 	}
 
-	if (s2 != GameVector(0, 0))
+	if (v2 != GameVector(0, 0))
 	{
-		e2->addPosition(s2.getNormalized() * -global::BORDER_SIZE);
+		e2->addPosition(v2.getNormalized() * -global::BORDER_SIZE);
 	}
 
 	// physics
 
-	GameVector res1 = (s2 - s1).getProjectionOn(escapeVec1) * ms2;
-	GameVector res2 = (s1 - s2).getProjectionOn(escapeVec2) * ms1;
+	GameVector v1res(v1.getProjectionOn(escapeVec1.getOrthogonal())*k + v.getProjectionOn(escapeVec1));
+	GameVector v2res(v2.getProjectionOn(escapeVec2.getOrthogonal())*k + v.getProjectionOn(escapeVec2));
 
-	e1->addSpeed(res1);
-	e2->addSpeed(res2);
-	
+	e1->setSpeed(v1res);
+	e2->setSpeed(v2res);
+
+	// GameVector res1 = (v2 - v1).getProjectionOn(escapeVec1) * ms2;
+	// GameVector res2 = (v1 - v2).getProjectionOn(escapeVec2) * ms1;
+
+	// e1->addSpeed(res1);
+	// e2->addSpeed(res2);
 
 	Debug::funcOff("PhysicsHandler::handlePhysics(" + e1->toString() + ", " + e2->toString() + ")");
 }
