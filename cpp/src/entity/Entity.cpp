@@ -122,15 +122,16 @@ void Entity::optDrag()
 void Entity::removeOutdatedCollisionPartners()
 {
 	Debug::funcOn("Entity::removeOutdatedCollisionPartners()" + toString());
-	for (auto it = collisionPartners.begin(); it != collisionPartners.end(); ++it)
+	for (auto it = collisionPartners.begin(); it != collisionPartners.end();)
 	{
-		if (!CollisionTester::isColliding(this, *it, 2*global::BORDER_SIZE))
+		if (CollisionTester::isColliding(this, *it, 2*global::BORDER_SIZE))
 		{
-			removeCollisionPartner(*it);
+			++it;
+		}
+		else
+		{
 			(*it)->removeCollisionPartner(this);
-			offCollide(*it);
-			(*it)->offCollide(this);
-			--it;
+			removeCollisionPartner(*it);
 		}
 	}
 	Debug::funcOff("Entity::removeOutdatedCollisionPartners()" + toString());
@@ -158,23 +159,33 @@ void Entity::addCollisionPartner(Entity* e)
 	{
 		collisionPartners.push_back(e);
 	}
+	else
+	{
+		Debug::warn("Entity::addCollisionPartner(): entity is already in collisionPartners");
+	}
 }
 
 void Entity::removeCollisionPartner(Entity* e)
 {
-	bool found = false;
-	for (unsigned int i = 0; i < collisionPartners.size(); i++)
+	if (e == this)
 	{
-		if (collisionPartners[i] == e)
+		Debug::error("Entity::removeCollisionPartner(): entity wanted to remove itself: " + e->toString());
+	}
+
+	bool found = false;
+	for (auto it = collisionPartners.begin(); it != collisionPartners.end(); ++it)
+	{
+		if (*it == e)
 		{
 			found = true;
-			collisionPartners.erase(collisionPartners.begin() + i);
+			collisionPartners.erase(it);
+			break;
 		}
 	}
 
 	if (not found)
 	{
-		Debug::error("Entity::removeCollisionPartner(): e=" + e->toString() + " was not found in collisionPartners");
+		Debug::error("Entity::removeCollisionPartner(): e=" + e->toString() + " was not found in " + toString() + ".collisionPartners");
 	}
 }
 

@@ -113,7 +113,7 @@ void GameInterface::tickPhysics()
 				entity->setChanged(false);
 			}
 		}
-		if (c > 100)
+		if (c > 10000)
 		{
 			Debug::error("GameInterface::tickPhysics(): infinite loop");
 			break;
