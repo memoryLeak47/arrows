@@ -104,6 +104,11 @@ void Entity::addSpeed(const GameVector& how)
 	setSpeed(how + body->getSpeed());
 }
 
+CollisionType Entity::getCollisionType() const
+{
+	return CollisionType::SOLID;
+}
+
 void Entity::optGravity()
 {
 	addSpeed(GameVector(0.f, 0.02f));

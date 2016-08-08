@@ -57,8 +57,8 @@ class Entity
 
 		// collision
 		virtual float getCollisionPriority(Entity* e) { return 1; } // TODO = 0
-		virtual EntityType getEntityType() = 0;
-		virtual CollisionType getCollisionType() { return CollisionType::SOLID; } // TODO = 0
+		virtual EntityType getEntityType() const = 0;
+		virtual CollisionType getCollisionType() const;
 		virtual void onCollide(Entity*) {}
 		virtual void offCollide(Entity*) {}
 		void removeOutdatedCollisionPartners();

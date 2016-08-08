@@ -4,7 +4,7 @@ Bullet::Bullet(Body* body)
 	: Entity(body)
 {}
 
-EntityType Bullet::getEntityType()
+EntityType Bullet::getEntityType() const
 {
 	return EntityType::BULLET;
 }

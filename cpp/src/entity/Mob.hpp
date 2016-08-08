@@ -8,7 +8,7 @@ class Mob : public Entity
 	public:
 		Mob(Body*);
 		virtual ~Mob() {}
-		virtual EntityType getEntityType() override;
+		virtual EntityType getEntityType() const override;
 		virtual void renderBar(const View&) const = 0;
 		virtual void actionGoLeft();
 		virtual void actionGoRight();

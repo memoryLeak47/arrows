@@ -20,7 +20,7 @@ Tile::Tile(const GameVector& pos)
 	: Entity(new RectBody(pos, GameVector(1, 1)))
 {}
 
-EntityType Tile::getEntityType()
+EntityType Tile::getEntityType() const
 {
 	return EntityType::TILE;
 }

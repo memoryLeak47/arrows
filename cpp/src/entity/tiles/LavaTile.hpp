@@ -10,6 +10,7 @@ class LavaTile : public Tile
 		virtual ~LavaTile() {}
 		virtual sf::Texture* getTexture() const override;
 		virtual std::string toString() const override;
+		virtual CollisionType getCollisionType() const override;
 };
 
 #endif

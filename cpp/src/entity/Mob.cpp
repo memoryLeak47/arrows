@@ -6,7 +6,7 @@ Mob::Mob(Body* body)
 	: Entity(body)
 {}
 
-EntityType Mob::getEntityType()
+EntityType Mob::getEntityType() const
 {
 	return EntityType::MOB;
 }

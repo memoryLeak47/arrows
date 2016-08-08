@@ -13,3 +13,8 @@ std::string LavaTile::toString() const
 {
 	return "LavaTile";
 }
+
+CollisionType LavaTile::getCollisionType() const
+{
+	return CollisionType::IGNORE;
+}
