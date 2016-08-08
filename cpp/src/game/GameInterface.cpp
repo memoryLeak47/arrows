@@ -6,6 +6,8 @@
 #include "../collision/CollisionHandler.hpp"
 #include "../collision/CollisionDetector.hpp"
 
+#include "../entity/TestKiste.hpp"
+
 GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers)
 {
 	tileMap = new GameTileMap(map);
@@ -14,6 +16,8 @@ GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>&
 		Debug::warn("GameInterface::GameInterface(): players in mobs?");
 		mobs.push_back(Avatar::get(lobbyPlayers[i]->getAvatarUserPacket()->getAvatarID())->createGamePlayer(getGameTileMap()->teamToSpawnPosition(lobbyPlayers[i]->getTeamUserPacket()->getTeam()), lobbyPlayers[i]));
 	}
+
+	mobs.push_back(new TestKiste(GameVector(2.f, 2.f)));
 }
 
 GameInterface::~GameInterface()

@@ -17,7 +17,8 @@ enum GraphicsID // represents a Graphics (earlier: Animation); to specify a text
 	ARROWSHOTSKILL_ICON_GID,
 	HEALTHRING_ICON_GID,
 	VOIDTILE_GID, NORMALTILE_GID, LAVATILE_GID, SPAWNTEAMTILE_GID,
-	ARCHER_GID
+	ARCHER_GID,
+	TESTKISTE_GID
 };
 
 typedef GraphicsID TextureID; // a TextureID represents the first texture of its GraphicsBuffer

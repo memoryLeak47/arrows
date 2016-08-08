@@ -29,6 +29,9 @@ void GraphicsManager::init()
 
 	// Avatars
 	addGraphicsBuffer(ARCHER_GID, "res/entities/avatars/archer.png");
+
+	// TestKiste
+	addGraphicsBuffer(TESTKISTE_GID, "res/entities/test/testbox.png");
 }
 
 void GraphicsManager::uninit()
