@@ -14,7 +14,7 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2, std::vector<GameVecto
 	float m1 = e1->getMass();
 	float m2 = e2->getMass();
 
-	float k = 0.9f;
+	float drag = 0.01f;
 
 	if (e1->isStatic())
 	{
@@ -43,8 +43,8 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2, std::vector<GameVecto
 
 	// physics
 
-	GameVector v1res(v1.getProjectionOn(escapeVec1.getOrthogonal())*k + v.getProjectionOn(escapeVec1));
-	GameVector v2res(v2.getProjectionOn(escapeVec2.getOrthogonal())*k + v.getProjectionOn(escapeVec2));
+	GameVector v1res(v1.getProjectionOn(escapeVec1.getOrthogonal())*(1-drag) + v.getProjectionOn(escapeVec1));
+	GameVector v2res(v2.getProjectionOn(escapeVec2.getOrthogonal())*(1-drag) + v.getProjectionOn(escapeVec2));
 
 	e1->setSpeed(v1res);
 	e2->setSpeed(v2res);
