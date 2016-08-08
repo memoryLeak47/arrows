@@ -69,8 +69,8 @@ class Entity
 		virtual bool isStatic() const { return false; }
 
 		// collisionPartner
-		void addCollisionPartner(Entity*);
-		void removeCollisionPartner(Entity*);
+		virtual void addCollisionPartner(Entity*);
+		virtual void removeCollisionPartner(Entity*);
 		std::vector<Entity*> getCollisionPartners();
 		bool hasCollisionPartner(Entity*) const;
 		static bool areCollisionPartners(Entity*, Entity*);

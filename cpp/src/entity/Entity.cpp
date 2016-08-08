@@ -121,16 +121,19 @@ void Entity::optDrag()
 
 void Entity::removeOutdatedCollisionPartners()
 {
-	for (Entity* e : collisionPartners)
+	Debug::funcOn("Entity::removeOutdatedCollisionPartners()" + toString());
+	for (auto it = collisionPartners.begin(); it != collisionPartners.end(); ++it)
 	{
-		if (!CollisionTester::isColliding(this, e, 2*global::BORDER_SIZE))
+		if (!CollisionTester::isColliding(this, *it, 2*global::BORDER_SIZE))
 		{
-			removeCollisionPartner(e);
-			e->removeCollisionPartner(this);
-			offCollide(e);
-			e->offCollide(this);
+			removeCollisionPartner(*it);
+			(*it)->removeCollisionPartner(this);
+			offCollide(*it);
+			(*it)->offCollide(this);
+			--it;
 		}
 	}
+	Debug::funcOff("Entity::removeOutdatedCollisionPartners()" + toString());
 }
 
 void Entity::checkGlitch()
@@ -146,6 +149,11 @@ void Entity::checkGlitch()
 
 void Entity::addCollisionPartner(Entity* e)
 {
+	if (e == this)
+	{
+		Debug::error("Entity::addCollisionPartner(): entity wanted to add itself: " + e->toString());
+	}
+
 	if (! memberOf(e, collisionPartners))
 	{
 		collisionPartners.push_back(e);
@@ -166,10 +174,6 @@ void Entity::removeCollisionPartner(Entity* e)
 
 	if (not found)
 	{
-		for (unsigned int i = 0; i < collisionPartners.size(); i++)
-		{
-			Debug::warn(collisionPartners[i]->toString());
-		}
 		Debug::error("Entity::removeCollisionPartner(): e=" + e->toString() + " was not found in collisionPartners");
 	}
 }
@@ -193,26 +197,7 @@ bool Entity::hasCollisionPartner(Entity* e) const
 
 bool Entity::areCollisionPartners(Entity* e1, Entity* e2)
 {
-	bool alreadyPartners = false;
-	if (e1->hasCollisionPartner(e2))
-	{
-		alreadyPartners = true;
-	}
-	if (e2->hasCollisionPartner(e1))
-	{
-		if (!alreadyPartners)
-		{
-			Debug::error("Entity::areCollisionPartners(): e2 has CollisionPartner e1, but not vice versa");
-		}
-	}
-	else
-	{
-		if (alreadyPartners)
-		{
-			Debug::error("Entity::areCollisionPartners(): e1 has CollisionPartner e2, but not vice versa");
-		}
-	}
-	return alreadyPartners;
+	return e1->hasCollisionPartner(e2) or e2->hasCollisionPartner(e1);
 }
 
 CollisionType Entity::getCollisionTypeBetween(Entity* e1, Entity* e2)

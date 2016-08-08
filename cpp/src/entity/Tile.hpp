@@ -20,6 +20,8 @@ class Tile : public Entity
 		virtual bool isStatic() const override { return true; }
 		virtual bool hasChanged() const override { return false; }
 		virtual float getMass() const override;
+		virtual void addCollisionPartner(Entity*) override;
+		virtual void removeCollisionPartner(Entity*) override;
 
 		static Tile* createByColorID(const int, const GameVector&);
 };

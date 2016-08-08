@@ -43,6 +43,12 @@ bool Tile::rendersStatic() const
 	return true;
 }
 
+void Tile::addCollisionPartner(Entity*)
+{}
+
+void Tile::removeCollisionPartner(Entity*)
+{}
+
 Tile* Tile::createByColorID(const int id, const GameVector& position)
 {
 	if (id == NORMAL_BLOCK_ID)
