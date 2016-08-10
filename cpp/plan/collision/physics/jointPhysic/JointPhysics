@@ -1,0 +1,61 @@
+JointPhysics 1.0
+
+	Funktionsweise:
+		Enter-Event:
+			Angleichen der Geschwindigkeiten:
+				Bei einem Enter-Event werden die Geschwindigkeiten beider Entities gesetzt:
+
+				v1 = Entity1->getSpeed(), v2 = Entity2->getSpeed()
+				m1 = Entity1->getMass(), m2 = Entity2->getMass()
+
+				v = (v1*m1 + v2*m2) / (m1 + m2)
+
+				v1' = v1.getProjectionOn(escapeVec1.getOrthogonal()) + v.getProjectionOn(escapeVec1)
+				v2' = v2.getProjectionOn(escapeVec2.getOrthogonal()) + v.getProjectionOn(escapeVec2)
+
+			Joint-Erzeugen:
+				Dann wird ein Joint zwischen beiden Entities erzeugt.
+
+				class Joint
+				{
+					Entity *e1, *e2; // Verweise auf die beiden Entities, die durch den Joint verbunden sind
+					GameVector fixVec1; // Vector der mit der Position der Entity1 addiert den Punkt angibt p1 angibt.
+					GameVector fixVec2; // Vector der mit der Position der Entity2 addiert den Punkt angibt p2 angibt.
+					float maxDistance; // wenn (p1-p2).getMagnitude() > maxDistance => Joint wird aufgelöst (Kette gerissen)
+					float impact; // Die Stärke mit der die Entities beschleunigt werden
+
+					Joint(Entity1*, Entity2*, const GameVector&, const GameVector&); // Konstruktor
+
+					void doPhysics(); // sorgt dafür, dass p1 und p2 auf einander zu beschleunigt werden, indem die Entities an eben diesen Punkten beschleunigt werden.
+				};
+
+				Dieser Joint sorgt dafür, dass die Entities nicht in einander glitchen.
+				Damit keine infinite loops entstehen, werden keine Enter-Events zwischen CollisionPartnern mehr hinzugefügt.
+
+		Exit-Events:
+			Einmal pro frame wird geprüft, ob die Entities nicht mehr kollidieren.
+			Dann wird ein Exit-Event gecalled und der Joint zwischen den beiden Entities wird gelöscht.
+
+	Verhalten:
+		Weiche Kanten. Entities können zerdrückt werden.
+
+	Probleme:
+		wrong Enter-Event-Handling*:
+			Beim laufen über eine Tile-Ebene wird beim Eintritt in ein neues Tile ein Enter-Event erzeugt. Dieses Enter-Event sorgt dafür, dass die laufende Entity angehalten wird.
+
+		Trampolin-Effect*:
+			Durch die Joints könnte eine Collision einen Trampolin-Effekt haben, da die Entity zurück beschleunigt wird.
+
+JointPhysics 1.1
+
+	Funktionsweise:
+		Bei Enter-Event wird ein Joint zwischen beiden Entities erzeugt.
+		Dieser Joint wird nach GameInterface::tickEntities() und vor GameInterface::tickPhyics() physikalisch verarbeitet (Die Kräfte des Joints werden applied)
+
+	Probleme:
+		Beim Eintritt einer sehr schnellen Entity reagiert die Physik zu spät, da sich die Wirkung des Joints erst im nächsten Frame entfaltet.
+
+JointPhysic 1.2
+	Funktionsweise:
+
+		
