@@ -183,9 +183,11 @@ void GameInterface::update(Entity* e1, Entity* e2, std::vector<CollisionEvent*>*
 
 	if (Entity::areCollisionPartners(e1, e2))
 	{
-		if (!CollisionTester::areColliding(e1, e2, EXIT_CHECK_BORDER_ADDITION))
+		if (!CollisionTester::areColliding(e1, e2, EXIT_CHECK_BORDER_ADDITION)) // prüfen, ob sie noch CollisionPartner sein sollten
 		{
 			// TODO call Exit-Event
+			e1->removeCollisionPartner(e2);
+			e2->removeCollisionPartner(e1);
 			addEventsBetween(e1, e2, events, timeLeft);
 		}
 		else
