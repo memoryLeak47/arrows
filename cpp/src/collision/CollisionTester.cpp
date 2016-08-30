@@ -1,6 +1,6 @@
 #include "CollisionTester.hpp"
 
-bool CollisionTester::isColliding(Entity* e1, Entity* e2, float borderAddition)
+bool CollisionTester::areColliding(Entity* e1, Entity* e2, float borderAddition)
 {
 	if (e1->getBody()->getBodyType() == BodyType::RECT)
 	{
@@ -12,7 +12,7 @@ bool CollisionTester::isColliding(Entity* e1, Entity* e2, float borderAddition)
 				if (dynamic_cast<const RectBody*>(e2->getBody())->isEven())
 				{
 					// e2 unrot Rects
-					return isCollidingEvenRects(dynamic_cast<const RectBody*>(e1->getBody()), dynamic_cast<const RectBody*>(e2->getBody()), borderAddition);
+					return areCollidingEvenRects(dynamic_cast<const RectBody*>(e1->getBody()), dynamic_cast<const RectBody*>(e2->getBody()), borderAddition);
 				}
 			}
 		}
@@ -29,7 +29,7 @@ bool CollisionTester::isColliding(Entity* e1, Entity* e2, float borderAddition)
 	return false;
 }
 
-bool CollisionTester::isCollidingEvenRects(const RectBody* b1, const RectBody* b2, float borderAddition)
+bool CollisionTester::areCollidingEvenRects(const RectBody* b1, const RectBody* b2, float borderAddition)
 {
 	if ((b1->getLeft() <= b2->getRight() + borderAddition) && (b1->getRight() + borderAddition >= b2->getLeft()))
 	{

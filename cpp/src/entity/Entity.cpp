@@ -125,35 +125,6 @@ void Entity::optDrag()
 	push(body->getSpeed() * -0.01f);
 }
 
-void Entity::removeOutdatedCollisionPartners()
-{
-	Debug::funcOn("Entity::removeOutdatedCollisionPartners()" + toString());
-	for (auto it = collisionPartners.begin(); it != collisionPartners.end();)
-	{
-		if (CollisionTester::isColliding(this, *it, 2*global::BORDER_SIZE))
-		{
-			++it;
-		}
-		else
-		{
-			(*it)->removeCollisionPartner(this);
-			removeCollisionPartner(*it);
-		}
-	}
-	Debug::funcOff("Entity::removeOutdatedCollisionPartners()" + toString());
-}
-
-void Entity::checkGlitch()
-{
-	for (Entity* partner : collisionPartners)
-	{
-		if ((Entity::getCollisionTypeBetween(this, partner) == CollisionType::SOLID) && CollisionTester::isColliding(this, partner, -0.001f))
-		{
-			Debug::error("GLITCH DETECTED: " + partner->toString() + " & " + toString());
-		}
-	}
-}
-
 std::pair<float, GameVector> Entity::getBackingAndMomentum(GameVector escapeVector, const std::vector<GameVector> &points)
 {
 	float backing = getMass();

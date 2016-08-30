@@ -62,8 +62,6 @@ class Entity
 		virtual CollisionType getCollisionType() const;
 		virtual void onCollide(Entity*) {}
 		virtual void offCollide(Entity*) {}
-		void removeOutdatedCollisionPartners();
-		void checkGlitch();
 		virtual std::pair<float, GameVector> getBackingAndMomentum(GameVector escapeVector, const std::vector<GameVector>& points);
 
 		// physics

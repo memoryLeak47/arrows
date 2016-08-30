@@ -42,12 +42,12 @@ class GameInterface : public NetworkingMenu
 
 		// physics/collision-system
 		CollisionEvent* cutFirstEvent(std::vector<CollisionEvent*>* events);
-		void updateEventsFrom(Entity* entity, std::vector<CollisionEvent*>* events, float timeLeft);
-		void addEventsFrom(Entity* entity, std::vector<CollisionEvent*>* events, float timeLeft);
 		void moveAllEntities(float time);
-		void removeOutdatedCollisionPartners();
-		void checkGlitch();
-		
+		void updateChanged(std::vector<CollisionEvent*>* events, float timeLeft);
+		void update(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft);
+		void addEventsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft);
+		void removeEventsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events);
+
 		// elements
 		View view;
 		GameTileMap* tileMap;

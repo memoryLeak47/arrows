@@ -4,9 +4,12 @@
 #include "../misc/Global.hpp"
 #include "../player/GamePlayer.hpp"
 #include "../collision/CollisionDetector.hpp"
+#include "../collision/CollisionTester.hpp"
 #include "../collision/PhysicsHandler.hpp"
 
 #include "../entity/TestKiste.hpp"
+
+const float EXIT_CHECK_BORDER_ADDITION = 0.03f;
 
 GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers)
 {
@@ -33,8 +36,6 @@ void GameInterface::tick()
 	Debug::tickConsole();
 	NetworkingMenu::tick();
 	tickEntities();
-	removeOutdatedCollisionPartners();
-	checkGlitch();
 	tickPhysics();
 }
 
@@ -67,31 +68,19 @@ void GameInterface::tickEntities()
 	{
 		Entity* entity = getDynamicEntity(i);
 		entity->tick();
-		/* // Security system
-		for (Entity* partner : entity->getCollisionPartners())
-		{
-			entity->addSpeed((entity->getBody()->getPosition() - partner->getBody()->getPosition()) * 0.001f);
-		}
-		*/
-		entity->setChanged(true);
+		entity->setChanged(true); // wichtig für tickPhysics()
 	}
 	// TODO tick tiles?
 }
 
 void GameInterface::tickPhysics()
 {
-	int c = 0;
 	Debug::funcOn("GameInterface::tickPhysics()");
+	int c = 0;
 	float timeLeft = global::GAME_FRAME_TIME;
-	std::vector<CollisionEvent*> events; // Es gäbe auch die Möglichkeit diesen vector global zu machen & länger als nur GAME_FRAME_TIME vorauszuber
+	std::vector<CollisionEvent*> events;
 
-	// fügt alle CollisionEvents in die TickPhysics-Liste
-	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
-	{
-		Entity* entity = getDynamicEntity(i);
-		addEventsFrom(entity, &events, timeLeft);
-		entity->setChanged(false);
-	}
+	updateChanged(&events, timeLeft);
 
 	while (events.size() > 0)
 	{
@@ -100,33 +89,28 @@ void GameInterface::tickPhysics()
 						// remember rotation is updated too
 		timeLeft = event->getTimeUntilFrameEnds();
 
-
+		// add Partners
 		if (not Entity::areCollisionPartners(event->getEntity1(), event->getEntity2()))
 		{
 			event->getEntity1()->addCollisionPartner(event->getEntity2());
 			event->getEntity2()->addCollisionPartner(event->getEntity1());
 		}
-		PhysicsHandler::handlePhysics(event->getEntity1(), event->getEntity2());
+		event->getEntity1()->setChanged(true);
+		event->getEntity2()->setChanged(true);
+
+		updateChanged(&events, timeLeft);
+
 		c++;
+		// TODO call Enter Event
 		delete event;
 
-		// Falls eine der Entities beschleunigt/umpositioniert wurden, werden die Collisions der Entity neu berechnet
-		for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
-		{
-			Entity* entity = getDynamicEntity(i);
-			if (entity->hasChanged())
-			{
-				updateEventsFrom(entity, &events, timeLeft);
-				entity->setChanged(false);
-			}
-		}
 		if (c > 100)
 		{
 			Debug::error("GameInterface::tickPhysics(): infinite loop");
 			break;
 		}
 	}
-	moveAllEntities(timeLeft);
+	moveAllEntities(timeLeft); // move to End of Frame
 	Debug::funcOff("GameInterface::tickPhysics()");
 }
 
@@ -145,69 +129,6 @@ CollisionEvent* GameInterface::cutFirstEvent(std::vector<CollisionEvent*>* event
 	return ret;
 }
 
-void GameInterface::updateEventsFrom(Entity* entity, std::vector<CollisionEvent*>* events, float timeLeft)
-{
-	Debug::func("GameInterface::updateEventsFrom(" + entity->toString() + ")");
-	for (unsigned int i = 0; i < events->size(); i++)
-	{
-		CollisionEvent* e = events->at(i);
-		if (e->getEntity1() == entity || e->getEntity2() == entity)
-		{
-			events->erase(events->begin() + i);
-			deleteAndNULL(e);
-			i--;
-		}
-	}
-	addEventsFrom(entity, events, timeLeft);
-}
-
-void GameInterface::addEventsFrom(Entity* entity, std::vector<CollisionEvent*>* events, float timeLeft)
-{
-	if (!entity->hasChanged())
-	{
-		return;
-	}
-
-	// find Collision with dynamic entities
-	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
-	{
-		Entity* e = getDynamicEntity(i);
-								// >= 0
-		if (e->getCollisionPriority(entity) + entity->getCollisionPriority(e) > 0 && e != entity)
-		{
-			CollisionDetector::addCollisionsBetween(entity, e, events, timeLeft);
-		}
-	}
-
-	// find Collision with static tiles
-	const std::vector<Tile*> collisionTiles = getGameTileMap()->getIntersectionTiles(entity->getBody()->getWrapper(timeLeft));
-
-	for (unsigned int i = 0; i < collisionTiles.size(); i++)
-	{
-		Tile* t = collisionTiles[i];
-		if (t->getCollisionPriority(entity) + entity->getCollisionPriority(t) > 0)
-		{
-			CollisionDetector::addCollisionsBetween(entity, t, events, timeLeft);
-		}
-	}
-}
-
-void GameInterface::removeOutdatedCollisionPartners()
-{
-	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
-	{
-		getDynamicEntity(i)->removeOutdatedCollisionPartners();
-	}
-}
-
-void GameInterface::checkGlitch()
-{
-	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
-	{
-		getDynamicEntity(i)->checkGlitch();
-	}
-}
-
 void GameInterface::moveAllEntities(float time)
 {
 	Debug::func("GameInterface::moveAllEntities(" + Converter::floatToString(time) + ")");
@@ -219,6 +140,79 @@ void GameInterface::moveAllEntities(float time)
 	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
 	{
 		getDynamicEntity(i)->move(time);
+	}
+}
+
+void GameInterface::updateChanged(std::vector<CollisionEvent*>* events, float timeLeft)
+{
+	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
+	{
+		Entity* e1 = getDynamicEntity(i);
+		for (unsigned int j = i+1; j < getDynamicEntityAmount(); j++)
+		{
+			Entity* e2 = getDynamicEntity(j);
+			if (e1->hasChanged() || e2->hasChanged())
+			{
+				update(e1, e2, events, timeLeft);
+			}
+		}
+		if (e1->hasChanged())
+		{
+			std::vector<Tile*> intersectionTiles = getGameTileMap()->getIntersectionTiles(e1->getBody()->getWrapper(timeLeft));
+			for (auto iter = intersectionTiles.begin(); iter != intersectionTiles.end(); ++iter)
+			{
+				update(e1, *iter, events, timeLeft);
+			}
+		}
+	}
+
+	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
+	{
+		getDynamicEntity(i)->setChanged(false);
+	}
+}
+
+void GameInterface::update(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
+{
+	if (e1->isStatic() && e2->isStatic())
+	{
+		Debug::warn("GameInterface::update(): e1->isStatic && e2->isStatic()");
+		return;
+	}
+
+	if (Entity::areCollisionPartners(e1, e2))
+	{
+		if (CollisionTester::areColliding(e1, e2, EXIT_CHECK_BORDER_ADDITION))
+		{
+			// TODO call Exit-Event
+			addEventsBetween(e1, e2, events, timeLeft);
+		}
+		else
+		{
+			// TODO glitch check
+			PhysicsHandler::handlePhysics(e1, e2);
+		}
+	}
+	else
+	{
+		removeEventsBetween(e1, e2, events);
+		addEventsBetween(e1, e2, events, timeLeft);
+	}
+}
+
+void GameInterface::addEventsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
+{
+	CollisionDetector::addCollisionsBetween(e1, e2, events, timeLeft);
+}
+
+void GameInterface::removeEventsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events)
+{
+	for (unsigned int i = 0; i < events->size(); i++)
+	{
+		if (((events->at(i)->getEntity1() == e1) && (events->at(i)->getEntity2() == e2)) || ((events->at(i)->getEntity1() == e2) && (events->at(i)->getEntity2() == e1)))
+		{
+			events->erase(events->begin() + i);
+		}
 	}
 }
 
