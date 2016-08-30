@@ -22,10 +22,6 @@ std::vector<Entity*> getCollisionGroup(Entity* e)
 		}
 		i++;
 	}
-	for (auto iter = group.begin(); iter != group.end(); ++iter)
-	{
-		Debug::test((*iter)->toString());
-	}
 	return group;
 }
 
@@ -112,18 +108,12 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2)
 			{
 				std::pair<float, GameVector> pair = c->getBackingAndMomentum(escapeVec, collisionPoints);
 				GameVector tmp = escapeVec * std::get<0>(pair);
-				if (escapeVec.getX() == 0) tmp.apply(GameVector(0, escapeVec.getY())); // TODO setX(0)
-				if (escapeVec.getY() == 0) tmp.apply(GameVector(escapeVec.getX(), 0)); // TODO setY(0)
+				if (escapeVec.getX() == 0) tmp.apply(GameVector(0, tmp.getY())); // TODO setX(0)
+				if (escapeVec.getY() == 0) tmp.apply(GameVector(tmp.getX(), 0)); // TODO setY(0)
 				backVec += tmp;
 				momentum += std::get<1>(pair);
 			}
 		}
-			Debug::test(e->toString());
-			Debug::test("x = " + Converter::floatToString((e->getSpeed().getX() * e->getMass() + momentum.getX()) / (backVec.getX() + e->getMass())));
-			Debug::test("x = " + Converter::floatToString(e->getSpeed().getX() * e->getMass() + momentum.getX()) + " / " + Converter::floatToString(backVec.getX() + e->getMass()));
-			Debug::test("backVec.getX() = " + Converter::floatToString(backVec.getX()));
-			Debug::test("e->getMass() = " + Converter::floatToString(e->getMass()));
-			Debug::test("y = " + Converter::floatToString((e->getSpeed().getY() * e->getMass() + momentum.getY()) / (backVec.getY() + e->getMass())));
 		cache.insert(std::pair<Entity*, GameVector>(e, GameVector(
 			(e->getSpeed().getX() * e->getMass() + momentum.getX()) / (backVec.getX() + e->getMass()),
 			(e->getSpeed().getY() * e->getMass() + momentum.getY()) / (backVec.getY() + e->getMass())
