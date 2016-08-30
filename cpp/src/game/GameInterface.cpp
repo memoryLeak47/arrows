@@ -104,7 +104,7 @@ void GameInterface::tickPhysics()
 		// TODO call Enter Event
 		delete event;
 
-		if (c > 100)
+		if (c > 30)
 		{
 			Debug::error("GameInterface::tickPhysics(): infinite loop");
 			break;
@@ -202,7 +202,10 @@ void GameInterface::update(Entity* e1, Entity* e2, std::vector<CollisionEvent*>*
 
 void GameInterface::addEventsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
 {
-	CollisionDetector::addCollisionsBetween(e1, e2, events, timeLeft);
+	if (e1->getCollisionPriority(e2) + e2->getCollisionPriority(e1) > 0)
+	{
+		CollisionDetector::addCollisionsBetween(e1, e2, events, timeLeft);
+	}
 }
 
 void GameInterface::removeEventsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events)
