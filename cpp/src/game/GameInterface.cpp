@@ -183,7 +183,7 @@ void GameInterface::update(Entity* e1, Entity* e2, std::vector<CollisionEvent*>*
 
 	if (Entity::areCollisionPartners(e1, e2))
 	{
-		if (CollisionTester::areColliding(e1, e2, EXIT_CHECK_BORDER_ADDITION))
+		if (!CollisionTester::areColliding(e1, e2, EXIT_CHECK_BORDER_ADDITION))
 		{
 			// TODO call Exit-Event
 			addEventsBetween(e1, e2, events, timeLeft);
