@@ -3,8 +3,8 @@
 #include "../core/Main.hpp"
 #include "../misc/Global.hpp"
 #include "../player/GamePlayer.hpp"
-#include "../collision/CollisionHandler.hpp"
 #include "../collision/CollisionDetector.hpp"
+#include "../collision/PhysicsHandler.hpp"
 
 #include "../entity/TestKiste.hpp"
 
@@ -99,7 +99,14 @@ void GameInterface::tickPhysics()
 		moveAllEntities(timeLeft - event->getTimeUntilFrameEnds());     // bewegt alle Entities bis zu der Situation, in der die nächste
 						// remember rotation is updated too
 		timeLeft = event->getTimeUntilFrameEnds();
-		CollisionHandler::handleCollisionEvent(event);
+
+
+		if (not Entity::areCollisionPartners(event->getEntity1(), event->getEntity2()))
+		{
+			event->getEntity1()->addCollisionPartner(event->getEntity2());
+			event->getEntity2()->addCollisionPartner(event->getEntity1());
+		}
+		PhysicsHandler::handlePhysics(event->getEntity1(), event->getEntity2());
 		c++;
 		delete event;
 

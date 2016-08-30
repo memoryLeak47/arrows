@@ -66,6 +66,20 @@ bool GameVector::operator!=(const GameVector& vec) const
 	return vec.getX() != getX() || vec.getY() != getY();
 }
 
+GameVector GameVector::operator+=(const GameVector& vec)
+{
+	x = getX() + vec.getX();
+	y = getY() + vec.getY();
+	return *this;
+}
+
+GameVector GameVector::operator-=(const GameVector& vec)
+{
+	x = getX() - vec.getX();
+	y = getY() - vec.getY();
+	return *this;
+}
+
 GameVector GameVector::operator+(const GameVector& vec) const
 {
 	float x = getX() + vec.getX();

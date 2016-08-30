@@ -5,6 +5,7 @@
 #include "../misc/Debug.hpp"
 #include "../collision/CollisionDetector.hpp"
 #include "../collision/CollisionTester.hpp"
+#include "../collision/PhysicsHandler.hpp"
 
 Entity::Entity(Body* bodyArg)
 	: changed(true)
@@ -39,6 +40,11 @@ void Entity::move(float time)
 	{
 		body->move(time);
 	}
+}
+
+GameVector Entity::getSpeed() const
+{
+	return body->getSpeed();
 }
 
 void Entity::setSpeed(const GameVector& speed)
@@ -146,6 +152,29 @@ void Entity::checkGlitch()
 			Debug::error("GLITCH DETECTED: " + partner->toString() + " & " + toString());
 		}
 	}
+}
+
+std::pair<float, GameVector> Entity::getBackingAndMomentum(GameVector escapeVector, const std::vector<GameVector> &points)
+{
+	float backing = getMass();
+	GameVector momentum = getSpeed() * backing;
+	for (auto partner : getCollisionPartners())
+	{
+		if (GameVector::getScalarProduct(escapeVector, getSpeed() - partner->getSpeed()) > 0)
+		{
+			std::vector<GameVector> collisionPoints = PhysicsHandler::getCollisionPoints(this, partner);
+			GameVector escVec = PhysicsHandler::getEscapeVector(this, collisionPoints);
+
+			if (GameVector::getScalarProduct(escapeVector, escVec) > 0)
+			{
+				std::pair<float, GameVector> pair = partner->getBackingAndMomentum(escapeVector, collisionPoints);
+
+				backing += pair.first;
+				momentum += pair.second;
+			}
+		}
+	}
+	return std::pair<float, GameVector>(backing, momentum);
 }
 
 void Entity::addCollisionPartner(Entity* e)

@@ -22,6 +22,8 @@ class GameVector
 
 		bool operator==(const GameVector&) const;
 		bool operator!=(const GameVector&) const;
+		GameVector operator+=(const GameVector&);
+		GameVector operator-=(const GameVector&);
 		GameVector operator+(const GameVector&) const;
 		GameVector operator-(const GameVector&) const;
 		GameVector operator-() const;

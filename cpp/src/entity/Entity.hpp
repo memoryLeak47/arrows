@@ -40,6 +40,7 @@ class Entity
 
 		// for body
 		void move(float time);
+		GameVector getSpeed() const;
 		void setSpeed(const GameVector& speed);
 		void setPosition(const GameVector& position);
 		void setRotation(float rotation);
@@ -63,6 +64,7 @@ class Entity
 		virtual void offCollide(Entity*) {}
 		void removeOutdatedCollisionPartners();
 		void checkGlitch();
+		virtual std::pair<float, GameVector> getBackingAndMomentum(GameVector escapeVector, const std::vector<GameVector>& points);
 
 		// physics
 		virtual float getMass() const = 0;

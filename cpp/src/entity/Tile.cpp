@@ -7,6 +7,7 @@
 #include "tiles/VoidTile.hpp"
 #include "tiles/LavaTile.hpp"
 #include "tiles/SpawnTeamTile.hpp"
+#include <cmath>
 
 static int NORMAL_BLOCK_ID = Converter::colorStringToInt("000000");
 static int VOID_BLOCK_ID = Converter::colorStringToInt("ffffff");
@@ -78,4 +79,9 @@ Tile* Tile::createByColorID(const int id, const GameVector& position)
 float Tile::getMass() const
 {
 	return INFINITY;
+}
+
+std::pair<float, GameVector> Tile::getBackingAndMomentum(GameVector escapeVector, const std::vector<GameVector> &points)
+{
+	return std::pair<float, GameVector>(INFINITY, GameVector(0,0));
 }
