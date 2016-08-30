@@ -10,6 +10,7 @@
 #include "../entity/TestKiste.hpp"
 
 const float EXIT_CHECK_BORDER_ADDITION = 0.03f;
+const int LOOP_LIMIT = 30;
 
 GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers)
 {
@@ -104,7 +105,7 @@ void GameInterface::tickPhysics()
 		// TODO call Enter Event
 		delete event;
 
-		if (c > 30)
+		if (c > LOOP_LIMIT)
 		{
 			Debug::error("GameInterface::tickPhysics(): infinite loop");
 			break;
