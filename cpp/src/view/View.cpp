@@ -10,7 +10,7 @@ View::View()
 
 GameRect View::getVisionRect() const
 {
-	GameVector screenSize(((float) Screen::getSize().getX()) / scale, ((float) Screen::getSize().getY()) / scale);
+	GameVector screenSize(((float) Screen::getSize().x) / scale, ((float) Screen::getSize().y) / scale);
 	return GameRect(getGameViewRoot(), screenSize);
 }
 
@@ -33,12 +33,12 @@ PixelRect View::gameRectToPixelRect(const GameRect& r) const
 {
 	GameVector pos = (r.getPosition() - getGameViewRoot()) * scale;
 	GameVector size = r.getSize() * scale;
-	return PixelRect((int) pos.getX(), (int) pos.getY(), (int) size.getX(), (int) size.getY());
+	return PixelRect((int) pos.x, (int) pos.y, (int) size.x, (int) size.y);
 }
 
 GameVector View::getGameViewRoot() const
 {
-	GameVector screenSize(((float) Screen::getSize().getX()) / scale, ((float) Screen::getSize().getY()) / scale);
+	GameVector screenSize(((float) Screen::getSize().x) / scale, ((float) Screen::getSize().y) / scale);
 	return GameVector(getFocus() - screenSize/2);
 }
 

@@ -66,17 +66,17 @@ GameVector PhysicsHandler::getEscapeVector(Entity* e, const std::vector<GameVect
 	}
 	else if (collisionPoints.size() == 1) // Der CollisionPunkt muss sich an einer der Ecken der Entity befinden
 	{
-		if (e->getBody()->getPosition().getX() < collisionPoints[0].getX())
+		if (e->getBody()->getPosition().x < collisionPoints[0].x)
 		{
 			return GameVector(1.f, 0.f);
 		}
-		else if (e->getBody()->getPosition().getX() > collisionPoints[0].getX())
+		else if (e->getBody()->getPosition().x > collisionPoints[0].x)
 		{
 			return GameVector(-1.f, 0.f);
 		}
 		else
 		{
-			Debug::error("PhysicsHandler::getEscapeVector(): CollisionPoints.size() == 1:\te->getBody()->getX() == collisionPoints[0]->getX()");
+			Debug::error("PhysicsHandler::getEscapeVector(): CollisionPoints.size() == 1:\te->getBody()->x == collisionPoints[0]->x");
 		}
 	}
 	Debug::error("PhysicsHandler::getEscapeVector(): collisionPoints.size() = " + Converter::intToString(collisionPoints.size()));
@@ -105,15 +105,15 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2)
 			{
 				std::pair<float, GameVector> pair = c->getBackingAndMomentum(escapeVec, collisionPoints);
 				GameVector tmp = escapeVec * std::get<0>(pair);
-				if (escapeVec.getX() == 0) tmp.applyX(0);
-				if (escapeVec.getY() == 0) tmp.applyY(0);
+				if (escapeVec.x == 0) tmp.x = 0;
+				if (escapeVec.y == 0) tmp.y = 0;
 				backVec += tmp;
 				momentum += std::get<1>(pair);
 			}
 		}
 		cache.insert(std::pair<Entity*, GameVector>(e, GameVector(
-			(e->getSpeed().getX() * e->getMass() + momentum.getX()) / (backVec.getX() + e->getMass()),
-			(e->getSpeed().getY() * e->getMass() + momentum.getY()) / (backVec.getY() + e->getMass())
+			(e->getSpeed().x * e->getMass() + momentum.x) / (backVec.x + e->getMass()),
+			(e->getSpeed().y * e->getMass() + momentum.y) / (backVec.y + e->getMass())
 		)));
 	}
 

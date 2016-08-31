@@ -6,7 +6,7 @@
 #include "../components/BackButton.hpp"
 
 PopupMenu::PopupMenu(const std::string& text)
-	: Menu(PixelRect(Screen::getSize().getX()/2-200, Screen::getSize().getY()/2-150, 400, 300))
+	: Menu(PixelRect(Screen::getSize().x/2-200, Screen::getSize().y/2-150, 400, 300))
 {
 	this->text = text;
 	addComponent(new Panel(this, PixelRect(PixelVector(0, 0), getRelativeRect().getSize())));

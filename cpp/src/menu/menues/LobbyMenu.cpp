@@ -24,9 +24,9 @@ LobbyMenu::LobbyMenu()
 				((LobbyMenu*)getParent())->lockPressed();
 			}
 	};
-	addComponent(lockButton = new LockButton(this, PixelRect(Screen::getSize().getX() - 250, 600, 200, 60), "Lock"));
+	addComponent(lockButton = new LockButton(this, PixelRect(Screen::getSize().x - 250, 600, 200, 60), "Lock"));
 
-	addComponent(miniMap = new LobbyMiniMap(this, PixelRect(Screen::getSize().getX() - 250, 100, 200, 140)));
+	addComponent(miniMap = new LobbyMiniMap(this, PixelRect(Screen::getSize().x - 250, 100, 200, 140)));
 
 	class DisconnectButton : public Button
 	{

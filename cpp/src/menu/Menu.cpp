@@ -10,10 +10,10 @@ Menu::Menu(const PixelRect& rect)
 {}
 
 Menu::Menu()
-	: focusedComponent(NULL), rect(PixelRect(0, 0, Screen::getSize().getX(), Screen::getSize().getY()))
+	: focusedComponent(NULL), rect(PixelRect(0, 0, Screen::getSize().x, Screen::getSize().y))
 {}
 
-bool Menu::isFullscreen() { return getRelativeRect() == PixelRect(0, 0, Screen::getSize().getX(), Screen::getSize().getY()); }
+bool Menu::isFullscreen() { return getRelativeRect() == PixelRect(0, 0, Screen::getSize().x, Screen::getSize().y); }
 
 void Menu::onEvent(const sf::Event& event)
 {

@@ -23,7 +23,7 @@ void Mob::actionGoRight()
 
 void Mob::actionJump()
 {
-	setSpeed(GameVector(body->getSpeed().getX(), -0.1f));
+	setSpeed(GameVector(body->getSpeed().x, -0.1f));
 }
 
 float Mob::getMass() const

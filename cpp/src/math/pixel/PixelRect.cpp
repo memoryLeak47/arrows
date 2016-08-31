@@ -21,22 +21,22 @@ PixelVector PixelRect::getSize() const
 
 int PixelRect::getLeft() const
 {
-	return getPosition().getX();
+	return getPosition().x;
 }
 
 int PixelRect::getRight() const
 {
-	return getPosition().getX() + getSize().getX();
+	return getPosition().x + getSize().x;
 }
 
 int PixelRect::getTop() const
 {
-	return getPosition().getY();
+	return getPosition().y;
 }
 
 int PixelRect::getBot() const
 {
-	return getPosition().getY() + getSize().getY();
+	return getPosition().y + getSize().y;
 }
 
 bool PixelRect::operator==(const PixelRect& rect)

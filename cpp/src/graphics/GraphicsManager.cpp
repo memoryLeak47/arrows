@@ -59,7 +59,7 @@ PixelVector GraphicsManager::getPixelSizeOf(GraphicsID id, int index)
 GameVector GraphicsManager::getGameSizeOf(GraphicsID id, int index)
 {
 	PixelVector p = getPixelSizeOf(id, index);
-	return GameVector((float) p.getX() / global::TILESIZE, (float) p.getY() / global::TILESIZE);
+	return GameVector((float) p.x / global::TILESIZE, (float) p.y / global::TILESIZE);
 }
 
 GraphicsBuffer* GraphicsManager::getBuffer(GraphicsID id)

@@ -37,25 +37,25 @@ void Panel::calcSize()
 	// sucht die width/height indem alle Komponenten durchlaufen werden und die am weitesten rechts und unten gespeichert werden
 	for (unsigned int i = 0; i < getComponents().size(); i++)
 	{
-		width = std::max(width, getComponents()[i]->getRelativeRect().getRight() + getPadding().getX());
-		height = std::max(height, getComponents()[i]->getRelativeRect().getBot() + getPadding().getY());
+		width = std::max(width, getComponents()[i]->getRelativeRect().getRight() + getPadding().x);
+		height = std::max(height, getComponents()[i]->getRelativeRect().getBot() + getPadding().y);
 	}
 
-	if (width != getRelativeRect().getSize().getX())
+	if (width != getRelativeRect().getSize().x)
 	{
 		setRelativeRect(PixelRect(
-			getRelativeRect().getPosition().getX(),
-			getRelativeRect().getPosition().getY(),
+			getRelativeRect().getPosition().x,
+			getRelativeRect().getPosition().y,
 			width,
-			getRelativeRect().getSize().getY()));
+			getRelativeRect().getSize().y));
 	}
 
-	if (height != getRelativeRect().getSize().getY())
+	if (height != getRelativeRect().getSize().y)
 	{
 		setRelativeRect(PixelRect(
-			getRelativeRect().getPosition().getX(),
-			getRelativeRect().getPosition().getY(),
-			getRelativeRect().getSize().getX(),
+			getRelativeRect().getPosition().x,
+			getRelativeRect().getPosition().y,
+			getRelativeRect().getSize().x,
 			height));
 	}
 }

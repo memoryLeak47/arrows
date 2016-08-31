@@ -49,7 +49,7 @@ ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(LobbyMenu* lobbyMenu, PlayerP
 	// Slot Icons
 	for (unsigned int i = 0; i < slotPacket->getPlayerProperties().size(); i++)
 	{
-		PlayerPropertyIcon* icon = new SlotIcon(this, slotPacket->getPlayerProperties()[i], PixelRect(60 + i * (PlayerPropertyIcon::getSize().getX() + 15), 40, PlayerPropertyIcon::getSize().getX(), PlayerPropertyIcon::getSize().getY()));
+		PlayerPropertyIcon* icon = new SlotIcon(this, slotPacket->getPlayerProperties()[i], PixelRect(60 + i * (PlayerPropertyIcon::getSize().x + 15), 40, PlayerPropertyIcon::getSize().x, PlayerPropertyIcon::getSize().y));
 		addComponent(icon);
 		slotIcons.push_back(icon);
 	}
@@ -57,15 +57,15 @@ ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(LobbyMenu* lobbyMenu, PlayerP
 	// Choose Icons
 	for (unsigned int i = 0; i < chooseProperties.size(); i++)
 	{
-		PlayerPropertyIcon* icon = new ChooseIcon(this, PixelRect(40 + i * (PlayerPropertyIcon::getSize().getX() + 5), 140, PlayerPropertyIcon::getSize().getX(), PlayerPropertyIcon::getSize().getY()), chooseProperties[i]);
+		PlayerPropertyIcon* icon = new ChooseIcon(this, PixelRect(40 + i * (PlayerPropertyIcon::getSize().x + 5), 140, PlayerPropertyIcon::getSize().x, PlayerPropertyIcon::getSize().y), chooseProperties[i]);
 		addComponent(icon);
 	}
 
 	// Ok Button
-	addComponent(new OkButton(this, PixelRect(100, Screen::getSize().getY()-100, 30, 60), "Ok"));
+	addComponent(new OkButton(this, PixelRect(100, Screen::getSize().y-100, 30, 60), "Ok"));
 
 	// Back Button
-	addComponent(new BackButton(this, PixelVector(300, Screen::getSize().getY()-100)));
+	addComponent(new BackButton(this, PixelVector(300, Screen::getSize().y-100)));
 }
 
 ChoosePlayerPropertyMenu::~ChoosePlayerPropertyMenu()

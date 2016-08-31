@@ -31,7 +31,7 @@ void TeamPanel::update(const std::vector<LobbyPlayer*>& players)
 	{
 		if (players[i]->getTeamUserPacket()->getTeam() == team)
 		{
-			addComponent(new PlayerPanel(players[i], getLobbyMenu(), this, PixelRect(getRelativeRect().getPosition().getX() + 5 + c*65, 55, 60, 60)));
+			addComponent(new PlayerPanel(players[i], getLobbyMenu(), this, PixelRect(getRelativeRect().getPosition().x + 5 + c*65, 55, 60, 60)));
 			c++;
 		}
 	}

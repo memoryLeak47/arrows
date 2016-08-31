@@ -129,14 +129,14 @@ void GameTileMap::render(const View& v) const
 {
 	PixelRect r = v.gameRectToPixelRect(GameRect(0,0, getWidth(), getHeight())); // correct
 	// r = map in pixels
-	int x = r.getPosition().getX();
-	int y = r.getPosition().getY();
+	int x = r.getPosition().x;
+	int y = r.getPosition().y;
 	int realX = std::max(0, x);
 	int realY = std::max(0, y);
-	int w = Screen::getSize().getX() - std::max(0, x) + std::min(0, x + r.getSize().getX() - Screen::getSize().getX());
-	int h = Screen::getSize().getY() - std::max(0, y) + std::min(0, y + r.getSize().getY() - Screen::getSize().getY());
+	int w = Screen::getSize().x - std::max(0, x) + std::min(0, x + r.getSize().x - Screen::getSize().x);
+	int h = Screen::getSize().y - std::max(0, y) + std::min(0, y + r.getSize().y - Screen::getSize().y);
 
-	if (w <= 0 || h <= 0 || realX < 0 || realY < 0 || realX+w > Screen::getSize().getX() || realY+h > Screen::getSize().getY())
+	if (w <= 0 || h <= 0 || realX < 0 || realY < 0 || realX+w > Screen::getSize().x || realY+h > Screen::getSize().y)
 	{
 		Debug::warn("GameInterface.renderMap(): outside of raster x: " + Converter::intToString(realX) + ", y: " + Converter::intToString(realY) + ", w: " + Converter::intToString(w) + ", h: " + Converter::intToString(h));
 	}

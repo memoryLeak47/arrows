@@ -11,50 +11,43 @@ PixelVector::PixelVector(int x, int y)
 
 bool PixelVector::inRect(const PixelRect& r) const
 {
-	return (getX() >= r.getPosition().getX()
-	     && getX() <= r.getPosition().getX() + r.getSize().getX()
-	     && getY() >= r.getPosition().getY()
-	     && getY() <= r.getPosition().getY() + r.getSize().getY());
+	return (x >= r.getPosition().x
+	     && x <= r.getPosition().x + r.getSize().x
+	     && y >= r.getPosition().y
+	     && y <= r.getPosition().y + r.getSize().y);
 }
-
-int PixelVector::getX() const { return x; }
-int PixelVector::getY() const { return y; }
 
 bool PixelVector::operator==(const PixelVector& vec) const
 {
-	return vec.getX() == getX() && vec.getY() == getY();
+	return vec.x == x && vec.y == y;
 }
 
 bool PixelVector::operator!=(const PixelVector& vec) const
 {
-	return vec.getX() != getX() || vec.getY() != getY();
+	return vec.x != x || vec.y != y;
 }
 
 PixelVector PixelVector::operator+(const PixelVector& vec) const
 {
-	int x = getX() + vec.getX();
-	int y = getY() + vec.getY();
-	return PixelVector(x, y);
+	return PixelVector(x + vec.x, y + vec.y);
 }
 
 PixelVector PixelVector::operator-(const PixelVector& vec) const
 {
-	int x = getX() - vec.getX();
-	int y = getY() - vec.getY();
-	return PixelVector(x, y);
+	return PixelVector(x - vec.x, y - vec.y);
 }
 
 PixelVector PixelVector::operator*(float f) const
 {
-	return PixelVector(((float)getX())*x, ((float)getY())*y);
+	return PixelVector(x*f, y*f);
 }
 
 PixelVector PixelVector::operator/(float f) const
 {
-	return PixelVector(((float) getX())/f, ((float) getY())/f);
+	return PixelVector(x/f, y/f);
 }
 
 std::string PixelVector::toString() const
 {
-	return "PV(" + Converter::intToString(getX()) + ", " + Converter::intToString(getY()) + ")";
+	return "PV(" + Converter::intToString(x) + ", " + Converter::intToString(y) + ")";
 }

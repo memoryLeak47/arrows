@@ -80,19 +80,19 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 	const RectBody* b1 = dynamic_cast<const RectBody*>(e1->getBody());
 	const RectBody* b2 = dynamic_cast<const RectBody*>(e2->getBody());
 
-	const float posX1 = b1->getPosition().getX();
-	const float posY1 = b1->getPosition().getY();
-	const float sizeX1 = b1->getSize().getX();
-	const float sizeY1 = b1->getSize().getY();
+	const float posX1 = b1->getPosition().x;
+	const float posY1 = b1->getPosition().y;
+	const float sizeX1 = b1->getSize().x;
+	const float sizeY1 = b1->getSize().y;
 
 	// speed subtraction
-	const float speedX = b1->getSpeed().getX() - b2->getSpeed().getX();
-	const float speedY = b1->getSpeed().getY() - b2->getSpeed().getY();
+	const float speedX = b1->getSpeed().x - b2->getSpeed().x;
+	const float speedY = b1->getSpeed().y - b2->getSpeed().y;
 
-	const float posX2 = b2->getPosition().getX();
-	const float posY2 = b2->getPosition().getY();
-	const float sizeX2 = b2->getSize().getX();
-	const float sizeY2 = b2->getSize().getY();
+	const float posX2 = b2->getPosition().x;
+	const float posY2 = b2->getPosition().y;
+	const float sizeX2 = b2->getSize().x;
+	const float sizeY2 = b2->getSize().y;
 
 	// getestet
 	CollisionStatus xCol, yCol;

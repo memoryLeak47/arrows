@@ -11,11 +11,6 @@ class GameVector
 		GameVector(float x, float y);
 
 		bool inRect(const GameRect&) const;
-		float getX() const;
-		float getY() const;
-		void apply(const GameVector&);
-		void applyX(float);
-		void applyY(float);
 		float getMagnitude() const;
 		GameVector getNormalized() const;
 		GameVector getProjectionOn(const GameVector&) const;
@@ -32,7 +27,6 @@ class GameVector
 		GameVector operator*(float) const;
 		GameVector operator/(float) const;
 		std::string toString() const;
-	private:
 		float x, y;
 };
 

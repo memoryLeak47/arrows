@@ -17,26 +17,26 @@ GameRect RectBody::getWrapper(float timeLeft) const
 {
 	if (isEven())
 	{
-		float deltaX = speed.getX() * timeLeft;
-		float deltaY = speed.getY() * timeLeft;
+		float deltaX = speed.x * timeLeft;
+		float deltaY = speed.y * timeLeft;
 
-		float sizeX = size.getX() + std::abs(deltaX);
-		float sizeY = size.getY() + std::abs(deltaY);
-		float posX = getPosition().getX() + deltaX/2 - sizeX/2;
-		float posY = getPosition().getY() + deltaY/2 - sizeY/2;
+		float sizeX = size.x + std::abs(deltaX);
+		float sizeY = size.y + std::abs(deltaY);
+		float posX = getPosition().x + deltaX/2 - sizeX/2;
+		float posY = getPosition().y + deltaY/2 - sizeY/2;
 
 		return GameRect(GameVector(posX, posY), GameVector(sizeX, sizeY));
 	}
 	else
 	{
-		float deltaX = speed.getX() * timeLeft;
-		float deltaY = speed.getY() * timeLeft;
+		float deltaX = speed.x * timeLeft;
+		float deltaY = speed.y * timeLeft;
 
 		float diagonal = 2 * getSize().getMagnitude();
 		float sizeX = diagonal + std::abs(deltaX);
 		float sizeY = diagonal + std::abs(deltaY);
-		float posX = getPosition().getX() + deltaX/2 - sizeX/2;
-		float posY = getPosition().getY() + deltaY/2 - sizeY/2;
+		float posX = getPosition().x + deltaX/2 - sizeX/2;
+		float posY = getPosition().y + deltaY/2 - sizeY/2;
 
 		return GameRect(GameVector(posX, posY), GameVector(sizeX, sizeY));
 	}
@@ -44,7 +44,7 @@ GameRect RectBody::getWrapper(float timeLeft) const
 
 void RectBody::setPosition(const GameVector& pos)
 {
-	position.apply(pos);
+	position = pos;
 }
 
 const GameVector& RectBody::getPosition() const
@@ -59,7 +59,7 @@ const GameVector& RectBody::getSize() const
 
 void RectBody::setSpeed(const GameVector& s)
 {
-	speed.apply(s);
+	speed = s;
 }
 
 const GameVector& RectBody::getSpeed() const
@@ -101,7 +101,7 @@ float RectBody::getLeft() const
 {
 	if (isEven())
 	{
-		return getPosition().getX() - getSize().getX()/2.f;
+		return getPosition().x - getSize().x/2.f;
 	}
 	else
 	{
@@ -114,7 +114,7 @@ float RectBody::getRight() const
 {
 	if (isEven())
 	{
-		return getPosition().getX() + getSize().getX()/2.f;
+		return getPosition().x + getSize().x/2.f;
 	}
 	else
 	{
@@ -127,7 +127,7 @@ float RectBody::getTop() const
 {
 	if (isEven())
 	{
-		return getPosition().getY() - getSize().getY()/2.f;
+		return getPosition().y - getSize().y/2.f;
 	}
 	else
 	{
@@ -140,7 +140,7 @@ float RectBody::getBot() const
 {
 	if (isEven())
 	{
-		return getPosition().getY() + getSize().getY()/2.f;
+		return getPosition().y + getSize().y/2.f;
 	}
 	else
 	{

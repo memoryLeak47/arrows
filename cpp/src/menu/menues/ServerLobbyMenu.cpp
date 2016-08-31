@@ -8,7 +8,7 @@
 
 ServerLobbyMenu::ServerLobbyMenu()
 {
-	addComponent(mapSelectEditField = new EditField(this, PixelRect(Screen::getSize().getX()-240, 250, 50, 20), "default"));
+	addComponent(mapSelectEditField = new EditField(this, PixelRect(Screen::getSize().x-240, 250, 50, 20), "default"));
 
 	// Map Select - Button
 	class MapSelectButton : public Button
@@ -20,7 +20,7 @@ ServerLobbyMenu::ServerLobbyMenu()
 				dynamic_cast<ServerLobbyMenu*>(getParent())->mapSelected();
 			}
 	};
-	addComponent(mapSelectButton = new MapSelectButton(this, PixelRect(Screen::getSize().getX()-180, 250, 50, 20), "Ok"));
+	addComponent(mapSelectButton = new MapSelectButton(this, PixelRect(Screen::getSize().x-180, 250, 50, 20), "Ok"));
 
 	createServerPlayer();
 	updatePlayerIcons();

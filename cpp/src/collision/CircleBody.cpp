@@ -15,14 +15,14 @@ BodyType CircleBody::getBodyType() const
 
 GameRect CircleBody::getWrapper(float timeLeft) const
 {
-	float deltaX = speed.getX() * timeLeft;
-	float deltaY = speed.getY() * timeLeft;
+	float deltaX = speed.x * timeLeft;
+	float deltaY = speed.y * timeLeft;
 
 	float diagonal = 2 * getRadius();
 	float sizeX = diagonal + std::abs(deltaX);
 	float sizeY = diagonal + std::abs(deltaY);
-	float posX = getPosition().getX() + deltaX/2 - sizeX/2;
-	float posY = getPosition().getY() + deltaY/2 - sizeY/2;
+	float posX = getPosition().x + deltaX/2 - sizeX/2;
+	float posY = getPosition().y + deltaY/2 - sizeY/2;
 
 	return GameRect(GameVector(posX, posY), GameVector(sizeX, sizeY));
 }
@@ -35,7 +35,7 @@ const GameVector& CircleBody::getPosition() const
 
 void CircleBody::setPosition(const GameVector& vec)
 {
-	position.apply(vec);
+	position = vec;
 }
 
 const GameVector& CircleBody::getSpeed() const
@@ -45,7 +45,7 @@ const GameVector& CircleBody::getSpeed() const
 
 void CircleBody::setSpeed(const GameVector& vec)
 {
-	speed.apply(vec);
+	speed = vec;
 }
 
 float CircleBody::getRotation() const

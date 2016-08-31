@@ -21,22 +21,22 @@ GameVector GameRect::getSize() const
 
 float GameRect::getLeft() const
 {
-	return getPosition().getX();
+	return getPosition().x;
 }
 
 float GameRect::getRight() const
 {
-	return getPosition().getX() + getSize().getX();
+	return getPosition().x + getSize().x;
 }
 
 float GameRect::getTop() const
 {
-	return getPosition().getY();
+	return getPosition().y;
 }
 
 float GameRect::getBot() const
 {
-	return getPosition().getY() + getSize().getY();
+	return getPosition().y + getSize().y;
 }
 
 bool GameRect::collidesWith(const GameRect& r) const
