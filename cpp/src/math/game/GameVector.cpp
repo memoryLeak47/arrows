@@ -29,6 +29,16 @@ void GameVector::apply(const GameVector& g)
 	y = g.getY();
 }
 
+void GameVector::applyX(float f)
+{
+	x = f;
+}
+
+void GameVector::applyY(float f)
+{
+	y = f;
+}
+
 float GameVector::getMagnitude() const
 {
 	return sqrt(getX() * getX() + getY() * getY());

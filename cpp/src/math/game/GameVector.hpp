@@ -14,6 +14,8 @@ class GameVector
 		float getX() const;
 		float getY() const;
 		void apply(const GameVector&);
+		void applyX(float);
+		void applyY(float);
 		float getMagnitude() const;
 		GameVector getNormalized() const;
 		GameVector getProjectionOn(const GameVector&) const;

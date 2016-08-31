@@ -77,6 +77,7 @@ void GameInterface::tickEntities()
 void GameInterface::tickPhysics()
 {
 	Debug::funcOn("GameInterface::tickPhysics()");
+
 	int c = 0;
 	float timeLeft = global::GAME_FRAME_TIME;
 	std::vector<CollisionEvent*> events;
@@ -91,17 +92,23 @@ void GameInterface::tickPhysics()
 		timeLeft = event->getTimeUntilFrameEnds();
 
 		// add Partners
-		if (not Entity::areCollisionPartners(event->getEntity1(), event->getEntity2()))
+		if (Entity::areCollisionPartners(event->getEntity1(), event->getEntity2()))
+		{
+			Debug::warn("collision detected between collision partners");
+		}
+		else
 		{
 			event->getEntity1()->addCollisionPartner(event->getEntity2());
 			event->getEntity2()->addCollisionPartner(event->getEntity1());
 		}
+
 		event->getEntity1()->setChanged(true);
 		event->getEntity2()->setChanged(true);
 
 		updateChanged(&events, timeLeft);
 
 		c++;
+
 		// TODO call Enter Event
 		delete event;
 
@@ -117,24 +124,31 @@ void GameInterface::tickPhysics()
 
 CollisionEvent* GameInterface::cutFirstEvent(std::vector<CollisionEvent*>* events)
 {
-	int bigIndex = 0;
-	for (unsigned int i = 1; i < events->size(); i++)
+	if (events->empty())
 	{
-		if (events->at(bigIndex)->getTimeUntilFrameEnds() < events->at(i)->getTimeUntilFrameEnds())
+		Debug::error("GameInterface::cutFirstEvent(): no more events");
+		return NULL;
+	}
+
+	auto big = events->begin();
+	for (auto i = events->begin()+1; i != events->end(); i++)
+	{
+		if ((*big)->getTimeUntilFrameEnds() < (*i)->getTimeUntilFrameEnds())
 		{
-			bigIndex = i;
+			big = i;
 		}
 	}
-	CollisionEvent* ret = events->at(bigIndex);
-	events->erase(events->begin() + bigIndex);
+	CollisionEvent* ret = *big;
+	events->erase(big);
 	return ret;
 }
 
 void GameInterface::moveAllEntities(float time)
 {
 	Debug::func("GameInterface::moveAllEntities(" + Converter::floatToString(time) + ")");
-	if (time == 0)
+	if (time <= 0)
 	{
+		if (time < 0) Debug::warn("GameInterface::moveAllEntities(" + Converter::floatToString(time) + "): arg is negative");
 		return;
 	}
 
@@ -146,6 +160,12 @@ void GameInterface::moveAllEntities(float time)
 
 void GameInterface::updateChanged(std::vector<CollisionEvent*>* events, float timeLeft)
 {
+	if (timeLeft < 0)
+	{
+		Debug::error("GameInterface::updateChanged(..., " + Converter::floatToString(timeLeft) + "): timeLeft is negative");
+		return;
+	}
+
 	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
 	{
 		Entity* e1 = getDynamicEntity(i);

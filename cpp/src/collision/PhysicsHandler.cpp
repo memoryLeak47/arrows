@@ -7,7 +7,6 @@
 // hidden Function
 std::vector<Entity*> getCollisionGroup(Entity* e)
 {
-
 	std::vector<Entity*> group;
 	group.push_back(e);
 	unsigned int i = 0;
@@ -25,7 +24,6 @@ std::vector<Entity*> getCollisionGroup(Entity* e)
 	return group;
 }
 
-// hidden Function
 std::vector<GameVector> PhysicsHandler::getCollisionPoints(Entity* e1, Entity* e2)
 {
 	std::vector<GameVector> result;
@@ -54,7 +52,6 @@ std::vector<GameVector> PhysicsHandler::getCollisionPoints(Entity* e1, Entity* e
 	return result;
 }
 
-// hidden Function
 // Ein EscapeVector gibt an, in welche Richtung man sich von einer Entity(e) entfernen kann.
 // Ein EscapeVector zeigt von der Entity(e) weg.
 GameVector PhysicsHandler::getEscapeVector(Entity* e, const std::vector<GameVector>& collisionPoints)
@@ -108,8 +105,8 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2)
 			{
 				std::pair<float, GameVector> pair = c->getBackingAndMomentum(escapeVec, collisionPoints);
 				GameVector tmp = escapeVec * std::get<0>(pair);
-				if (escapeVec.getX() == 0) tmp.apply(GameVector(0, tmp.getY())); // TODO setX(0)
-				if (escapeVec.getY() == 0) tmp.apply(GameVector(tmp.getX(), 0)); // TODO setY(0)
+				if (escapeVec.getX() == 0) tmp.applyX(0);
+				if (escapeVec.getY() == 0) tmp.applyY(0);
 				backVec += tmp;
 				momentum += std::get<1>(pair);
 			}
