@@ -39,15 +39,15 @@ PixelVector PixelVector::operator-(const PixelVector& vec) const
 
 PixelVector PixelVector::operator*(float f) const
 {
-	return PixelVector(x*f, y*f);
+	return PixelVector(((float) x) * f, ((float) y) * f);
 }
 
 PixelVector PixelVector::operator/(float f) const
 {
-	return PixelVector(x/f, y/f);
+	return PixelVector(((float) x) / f, ((float) y) / f);
 }
 
 std::string PixelVector::toString() const
 {
-	return "PV(" + Converter::intToString(x) + ", " + Converter::intToString(y) + ")";
+	return "(" + Converter::intToString(x) + ", " + Converter::intToString(y) + ")";
 }

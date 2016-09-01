@@ -104,7 +104,7 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2)
 			if (GameVector::getScalarProduct(escapeVec, e->getSpeed() - c->getSpeed()) > 0.f)
 			{
 				std::pair<float, GameVector> pair = c->getBackingAndMomentum(escapeVec, collisionPoints);
-				GameVector tmp = escapeVec * std::get<0>(pair);
+				GameVector tmp = escapeVec.withMagnitude(std::get<0>(pair));
 				if (escapeVec.x == 0) tmp.x = 0;
 				if (escapeVec.y == 0) tmp.y = 0;
 				backVec += tmp;

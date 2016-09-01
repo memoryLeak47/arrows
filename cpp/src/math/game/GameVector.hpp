@@ -12,6 +12,8 @@ class GameVector
 
 		bool inRect(const GameRect&) const;
 		float getMagnitude() const;
+		void setMagnitude(float mag);
+		GameVector withMagnitude(float mag) const;
 		GameVector getNormalized() const;
 		GameVector getProjectionOn(const GameVector&) const;
 		GameVector getOrthogonal() const;

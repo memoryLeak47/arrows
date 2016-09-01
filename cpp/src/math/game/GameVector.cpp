@@ -25,6 +25,18 @@ float GameVector::getMagnitude() const
 	return sqrt(x * x + y * y);
 }
 
+void GameVector::setMagnitude(float mag)
+{
+	GameVector v = getNormalized() * mag;
+	x = v.x;
+	y = v.y;
+}
+
+GameVector GameVector::withMagnitude(float mag) const
+{
+	return getNormalized() * mag;
+}
+
 GameVector GameVector::getNormalized() const
 {
 	if (getMagnitude() == 0) Debug::warn("GameVector::getNormalized(): division by zero");
