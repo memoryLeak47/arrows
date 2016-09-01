@@ -62,7 +62,7 @@ GameVector PhysicsHandler::getEscapeVector(Entity* e, const std::vector<GameVect
 		GameVector am = e->getBody()->getPosition() - collisionPoints[0]; // Vector von a nach Mittelpunkt der Entity
 		GameVector result = am.getProjectionOn(ab.getOrthogonal());
 		if (result.getMagnitude() == 0) Debug::error("PhysicsHandler::getEscapeVector(): result is zero-vector");
-		return result * -1.f;
+		return (result * -1.f).getNormalized();
 	}
 	else if (collisionPoints.size() == 1) // Der CollisionPunkt muss sich an einer der Ecken der Entity befinden
 	{
