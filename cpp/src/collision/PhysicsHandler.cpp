@@ -2,6 +2,7 @@
 
 #include <map>
 #include <cmath>
+#include <iostream>
 
 // MultiCollisions sind noch nicht mit eingerechnet
 
@@ -113,13 +114,14 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2)
 			}
 		}
 		GameVector cacheVec{
-			(e->getSpeed().x * e->getMass() + momentum.x) / (backVec.x + e->getMass()),
-			(e->getSpeed().y * e->getMass() + momentum.y) / (backVec.y + e->getMass())
+			(e->getSpeed().x * e->getMass() + momentum.x) / (std::abs(backVec.x) + e->getMass()),
+			(e->getSpeed().y * e->getMass() + momentum.y) / (std::abs(backVec.y) + e->getMass())
 		};
 
 		if (not cacheVec.isValid())
 		{
 			Debug::warn("PhysicsHandler::handlePhysics(): cacheVec out of range: " + cacheVec.toString());
+			std::cout << "(" << e->getSpeed().x << " * " << e->getMass() <<  " + " << momentum.x << ") / (" << backVec.x << " + " << e->getMass() << "),(" << e->getSpeed().y << " * " << e->getMass() <<  " + " <<  momentum.y << ") / (" << backVec.y << " + " << e->getMass() << "))\n";
 		}
 		cache.insert(std::pair<Entity*, GameVector>(e, cacheVec));
 	}
