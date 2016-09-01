@@ -17,6 +17,7 @@ class Converter
 		static std::string floatToStringPrecise(float, int=4);
 		static std::string charsToString(const std::string&);
 		static std::string boolToString(bool);
+		static bool isValidFloat(float);
 		template <class T> static T* clone(T*);
 };
 

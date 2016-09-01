@@ -17,6 +17,7 @@ class GameVector
 		GameVector getNormalized() const;
 		GameVector getProjectionOn(const GameVector&) const;
 		GameVector getOrthogonal() const;
+		bool isValid() const;
 		static float getScalarProduct(const GameVector& vec1, const GameVector& vec2);
 
 		bool operator==(const GameVector&) const;

@@ -54,6 +54,11 @@ GameVector GameVector::getOrthogonal() const
 	return GameVector(-y, x);
 }
 
+bool GameVector::isValid() const
+{
+	return Converter::isValidFloat(x) and Converter::isValidFloat(y);
+}
+
 float GameVector::getScalarProduct(const GameVector& vec1, const GameVector& vec2)
 {
 	return vec1.x * vec2.x + vec1.y * vec2.y;

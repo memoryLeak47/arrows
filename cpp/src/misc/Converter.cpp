@@ -1,6 +1,8 @@
 #include "Converter.hpp"
 
 #include <sstream>
+#include <math.h>
+
 #include "Debug.hpp"
 
 int Converter::colorToInt(const sf::Color& color)
@@ -109,6 +111,11 @@ std::string Converter::charsToString(const std::string& arg)
 std::string Converter::boolToString(bool b)
 {
 	return b ? "true" : "false";
+}
+
+bool Converter::isValidFloat(float f)
+{
+	return std::isfinite(f);
 }
 
 template <class T> T* Converter::clone(T* t)

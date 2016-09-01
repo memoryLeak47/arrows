@@ -1,6 +1,7 @@
 #include "PhysicsHandler.hpp"
 
 #include <map>
+#include <cmath>
 
 // MultiCollisions sind noch nicht mit eingerechnet
 
@@ -111,10 +112,16 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2)
 				momentum += std::get<1>(pair);
 			}
 		}
-		cache.insert(std::pair<Entity*, GameVector>(e, GameVector(
+		GameVector cacheVec{
 			(e->getSpeed().x * e->getMass() + momentum.x) / (backVec.x + e->getMass()),
 			(e->getSpeed().y * e->getMass() + momentum.y) / (backVec.y + e->getMass())
-		)));
+		};
+
+		if (not cacheVec.isValid())
+		{
+			Debug::warn("PhysicsHandler::handlePhysics(): cacheVec out of range: " + cacheVec.toString());
+		}
+		cache.insert(std::pair<Entity*, GameVector>(e, cacheVec));
 	}
 
 	for (auto it = cache.begin(); it != cache.end(); ++it)
