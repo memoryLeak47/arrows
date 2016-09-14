@@ -1,5 +1,6 @@
 #include "CircleBody.hpp"
 
+#include <cmath>
 #include <algorithm>
 
 #include "../misc/Debug.hpp"

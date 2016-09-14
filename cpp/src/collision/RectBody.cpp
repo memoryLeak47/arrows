@@ -1,5 +1,6 @@
 #include "RectBody.hpp"
 
+#include <cmath>
 #include <algorithm>
 
 #include "../misc/Debug.hpp"
