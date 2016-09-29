@@ -22,6 +22,6 @@ class AvatarUserPacket : public PlayerPropertyUserPacket
 
 };
 
-#include "../../misc/compress/CompressBuffer.hpp"
+#include <misc/compress/CompressBuffer.hpp>
 
 #endif

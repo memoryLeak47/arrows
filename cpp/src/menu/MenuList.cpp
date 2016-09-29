@@ -1,9 +1,9 @@
 #include "MenuList.hpp"
 
-#include "../misc/Global.hpp"
+#include <misc/Global.hpp>
 #include "menues/LoginMenu.hpp"
-#include "../game/ServerGameInterface.hpp"
-#include "../core/Main.hpp"
+#include <game/ServerGameInterface.hpp>
+#include <core/Main.hpp>
 
 MenuList::MenuList()
 {

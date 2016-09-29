@@ -20,6 +20,6 @@ class CollisionEvent
 		float timeUntilFrameEnds;
 };
 
-#include "../entity/Entity.hpp"
+#include <entity/Entity.hpp>
 
 #endif

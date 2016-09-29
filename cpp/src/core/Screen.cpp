@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-#include "../misc/Global.hpp"
+#include <misc/Global.hpp>
 #include "Main.hpp"
 
 PixelVector Screen::cursorPosition = PixelVector(0, 0);

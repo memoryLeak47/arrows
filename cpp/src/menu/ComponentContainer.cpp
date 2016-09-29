@@ -1,9 +1,9 @@
 #include "ComponentContainer.hpp"
 
-#include "../misc/Debug.hpp"
-#include "../core/Main.hpp"
-#include "../core/Screen.hpp"
-#include "../math/pixel/PixelVector.hpp"
+#include <misc/Debug.hpp>
+#include <core/Main.hpp>
+#include <core/Screen.hpp>
+#include <math/pixel/PixelVector.hpp>
 
 ComponentContainer::ComponentContainer()
 {

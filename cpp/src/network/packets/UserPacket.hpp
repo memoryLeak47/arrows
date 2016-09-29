@@ -1,7 +1,7 @@
 #ifndef __USERPACKET_CLASS__
 #define __USERPACKET_CLASS__
 
-#include "../Packet.hpp"
+#include <network/Packet.hpp>
 
 class UserPacket : public Packet
 {};

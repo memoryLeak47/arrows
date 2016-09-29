@@ -1,7 +1,7 @@
 #ifndef __JOINSERVERMENU_CLASS__
 #define __JOINSERVERMENU_CLASS__
 
-#include "../Menu.hpp"
+#include <menu/Menu.hpp>
 
 class EditField;
 
@@ -14,6 +14,6 @@ class JoinServerMenu : public Menu
 		EditField* ipField;
 };
 
-#include "../components/EditField.hpp"
+#include <menu/components/EditField.hpp>
 
 #endif

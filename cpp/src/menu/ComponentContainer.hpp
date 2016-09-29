@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "../math/pixel/PixelRect.hpp"
+#include <math/pixel/PixelRect.hpp>
 
 class MenuComponent;
 

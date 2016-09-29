@@ -20,6 +20,6 @@ class LockUserPacket : public UserPacket
 		bool locked;
 };
 
-#include "../../misc/compress/CompressBuffer.hpp"
+#include <misc/compress/CompressBuffer.hpp>
 
 #endif

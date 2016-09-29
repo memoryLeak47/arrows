@@ -18,6 +18,6 @@ class ClientGameInterface : public GameInterface
 		unsigned int localPlayerID;
 };
 
-#include "../player/LobbyPlayer.hpp"
+#include <player/LobbyPlayer.hpp>
 
 #endif

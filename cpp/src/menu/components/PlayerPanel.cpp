@@ -1,7 +1,7 @@
 #include "PlayerPanel.hpp"
 
-#include "../../misc/Debug.hpp"
-#include "../../core/Screen.hpp"
+#include <misc/Debug.hpp>
+#include <core/Screen.hpp>
 #include "PlayerPanelsAvatarIcon.hpp"
 #include "PlayerPanelsSkillIcon.hpp"
 #include "PlayerPanelsItemIcon.hpp"

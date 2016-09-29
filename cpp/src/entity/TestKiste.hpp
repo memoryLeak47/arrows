@@ -14,6 +14,6 @@ class TestKiste : public Mob
 		virtual std::string toString() const override;
 };
 
-#include "../math/game/GameVector.hpp"
+#include <math/game/GameVector.hpp>
 
 #endif

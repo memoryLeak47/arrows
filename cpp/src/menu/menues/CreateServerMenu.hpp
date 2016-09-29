@@ -1,7 +1,7 @@
 #ifndef __CREATESERVERMENU_CLASS__
 #define __CREATESERVERMENU_CLASS__
 
-#include "../Menu.hpp"
+#include <menu/Menu.hpp>
 
 class CreateServerMenu : public Menu
 {

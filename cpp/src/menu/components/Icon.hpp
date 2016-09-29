@@ -1,9 +1,9 @@
 #ifndef __ICON_CLASS__
 #define __ICON_CLASS__
 
-#include "../../graphics/GraphicsManager.hpp"
+#include <graphics/GraphicsManager.hpp>
 
-#include "../MenuComponent.hpp"
+#include <menu/MenuComponent.hpp>
 
 class Icon : public MenuComponent
 {

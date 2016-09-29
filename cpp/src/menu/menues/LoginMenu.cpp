@@ -1,12 +1,12 @@
 #include "LoginMenu.hpp"
 
 #include "MainMenu.hpp"
-#include "../../misc/Account.hpp"
-#include "../../misc/Debug.hpp"
-#include "../../core/Main.hpp"
-#include "../components/Button.hpp"
-#include "../components/QuitButton.hpp"
-#include "../components/Label.hpp"
+#include <misc/Account.hpp>
+#include <misc/Debug.hpp>
+#include <core/Main.hpp>
+#include <menu/components/Button.hpp>
+#include <menu/components/QuitButton.hpp>
+#include <menu/components/Label.hpp>
 
 LoginMenu::LoginMenu() : Menu()
 {

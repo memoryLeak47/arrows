@@ -15,6 +15,6 @@ class PlayerPropertyUserPacket : public UserPacket
 		virtual void setIDs(const std::string&) = 0;
 };
 
-#include "../../player/property/PlayerProperty.hpp"
+#include <player/property/PlayerProperty.hpp>
 
 #endif

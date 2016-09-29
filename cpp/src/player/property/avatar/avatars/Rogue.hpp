@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../Avatar.hpp"
+#include <player/property/avatar/Avatar.hpp>
 
 class Rogue : public Avatar
 {

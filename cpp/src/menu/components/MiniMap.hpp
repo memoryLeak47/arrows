@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "../MenuComponent.hpp"
+#include <menu/MenuComponent.hpp>
 
 class MiniMap : public MenuComponent
 {

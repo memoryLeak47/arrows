@@ -1,7 +1,7 @@
 #include "AvatarUserPacket.hpp"
 
-#include "../../player/property/avatar/Avatar.hpp"
-#include "../../misc/Debug.hpp"
+#include <player/property/avatar/Avatar.hpp>
+#include <misc/Debug.hpp>
 
 AvatarUserPacket::AvatarUserPacket(char c)
         : avatarID(c)

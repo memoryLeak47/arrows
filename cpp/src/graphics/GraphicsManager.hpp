@@ -4,7 +4,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 
-#include "../misc/Global.hpp"
+#include <misc/Global.hpp>
 
 class PixelVector;
 class GameVector;
@@ -39,7 +39,7 @@ class GraphicsManager
 };
 
 #include "GraphicsBuffer.hpp"
-#include "../math/pixel/PixelVector.hpp"
-#include "../math/game/GameVector.hpp"
+#include <math/pixel/PixelVector.hpp>
+#include <math/game/GameVector.hpp>
 
 #endif

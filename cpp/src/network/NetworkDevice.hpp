@@ -20,6 +20,6 @@ class NetworkDevice
 };
 
 #include "Packet.hpp"
-#include "../menu/NetworkingMenu.hpp"
+#include <menu/NetworkingMenu.hpp>
 
 #endif

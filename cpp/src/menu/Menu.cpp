@@ -1,8 +1,8 @@
 #include "Menu.hpp"
 
-#include "../misc/Debug.hpp"
-#include "../core/Screen.hpp"
-#include "../core/Main.hpp"
+#include <misc/Debug.hpp>
+#include <core/Screen.hpp>
+#include <core/Main.hpp>
 #include "menues/PopupMenu.hpp"
 
 Menu::Menu(const PixelRect& rect)

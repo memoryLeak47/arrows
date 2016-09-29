@@ -1,8 +1,8 @@
 #include "GamePlayer.hpp"
 
-#include "../misc/Debug.hpp"
-#include "../collision/RectBody.hpp"
-#include "../misc/Converter.hpp"
+#include <misc/Debug.hpp>
+#include <collision/RectBody.hpp>
+#include <misc/Converter.hpp>
 
 GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
 	: Mob(body),

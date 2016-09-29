@@ -18,6 +18,6 @@ class PlayerPropertyIcon : public Icon
 		PlayerProperty* property; // TODO deleted?
 };
 
-#include "../../player/property/PlayerProperty.hpp"
+#include <player/property/PlayerProperty.hpp>
 
 #endif

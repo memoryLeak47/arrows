@@ -1,12 +1,11 @@
 #include "GameTileMap.hpp"
 
-#include "../../core/Main.hpp"
-#include "../../core/Screen.hpp"
-#include "../../misc/Converter.hpp"
-#include "../../misc/Debug.hpp"
-
-#include "../../entity/tiles/SpawnTeamTile.hpp"
-#include "../../graphics/GraphicsManager.hpp"
+#include <core/Main.hpp>
+#include <core/Screen.hpp>
+#include <misc/Converter.hpp>
+#include <misc/Debug.hpp>
+#include <entity/tiles/SpawnTeamTile.hpp>
+#include <graphics/GraphicsManager.hpp>
 
 GameTileMap::GameTileMap(LobbyTileMap* lobbyMap)
 {

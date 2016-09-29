@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../Menu.hpp"
+#include <menu/Menu.hpp>
 
 class PopupMenu : public Menu
 {

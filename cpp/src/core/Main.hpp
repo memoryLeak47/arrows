@@ -31,8 +31,8 @@ class Main
 		static void render();
 };
 
-#include "../menu/MenuList.hpp"
-#include "../network/NetworkDevice.hpp"
-#include "../misc/Account.hpp"
+#include <menu/MenuList.hpp>
+#include <network/NetworkDevice.hpp>
+#include <misc/Account.hpp>
 
 #endif

@@ -20,6 +20,6 @@ class ItemUserPacket : public PlayerPropertyUserPacket
 		std::string itemIDs;
 };
 
-#include "../../misc/compress/CompressBuffer.hpp"
+#include <misc/compress/CompressBuffer.hpp>
 
 #endif

@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../../graphics/GraphicsManager.hpp"
+#include <graphics/GraphicsManager.hpp>
 
 class PlayerProperty
 {

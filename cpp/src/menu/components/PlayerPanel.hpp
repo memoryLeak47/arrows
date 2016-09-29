@@ -24,7 +24,7 @@ class PlayerPanel : public Panel
 };
 
 #include "TeamPanel.hpp"
-#include "../../player/LobbyPlayer.hpp"
-#include "../menues/LobbyMenu.hpp"
+#include <player/LobbyPlayer.hpp>
+#include <menu/menues/LobbyMenu.hpp>
 
 #endif

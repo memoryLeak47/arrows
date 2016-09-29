@@ -1,11 +1,11 @@
 #include "Entity.hpp"
 
-#include "../core/Main.hpp"
-#include "../core/Screen.hpp"
-#include "../misc/Debug.hpp"
-#include "../collision/CollisionDetector.hpp"
-#include "../collision/CollisionTester.hpp"
-#include "../collision/PhysicsHandler.hpp"
+#include <core/Main.hpp>
+#include <core/Screen.hpp>
+#include <misc/Debug.hpp>
+#include <collision/CollisionDetector.hpp>
+#include <collision/CollisionTester.hpp>
+#include <collision/PhysicsHandler.hpp>
 
 Entity::Entity(Body* bodyArg)
 	: changed(true)

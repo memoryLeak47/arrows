@@ -1,6 +1,6 @@
 #include "LobbyTileMap.hpp"
 
-#include "../../misc/Converter.hpp"
+#include <misc/Converter.hpp>
 
 #include <SFML/Graphics.hpp>
 

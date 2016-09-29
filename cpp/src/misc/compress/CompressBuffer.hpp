@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "../Global.hpp"
+#include <misc/Global.hpp>
 
 class CompressBuffer
 {

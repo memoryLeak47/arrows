@@ -1,10 +1,10 @@
 #include "ChoosePlayerPropertyMenu.hpp"
 
-#include "../../core/Screen.hpp"
-#include "../../core/Main.hpp"
-#include "../../misc/Converter.hpp"
-#include "../../misc/Debug.hpp"
-#include "../components/BackButton.hpp"
+#include <core/Screen.hpp>
+#include <core/Main.hpp>
+#include <misc/Converter.hpp>
+#include <misc/Debug.hpp>
+#include <menu/components/BackButton.hpp>
 
 class SlotIcon : public PlayerPropertyIcon
 {

@@ -1,7 +1,7 @@
 #include "PixelVector.hpp"
 
-#include "../../misc/Debug.hpp"
-#include "../../misc/Converter.hpp"
+#include <misc/Debug.hpp>
+#include <misc/Converter.hpp>
 
 PixelVector::PixelVector(int x, int y)
 {

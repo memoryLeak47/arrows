@@ -25,10 +25,10 @@ class TeamPanel : public Panel
 		Team* team;
 };
 
-#include "../../player/property/Team.hpp"
+#include <player/property/Team.hpp>
 #include "Button.hpp"
 #include "TeamListPanel.hpp"
-#include "../../player/LobbyPlayer.hpp"
-#include "../menues/LobbyMenu.hpp"
+#include <player/LobbyPlayer.hpp>
+#include <menu/menues/LobbyMenu.hpp>
 
 #endif

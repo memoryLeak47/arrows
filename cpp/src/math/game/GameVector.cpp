@@ -3,8 +3,8 @@
 #include <iostream>
 #include <math.h>
 
-#include "../../misc/Converter.hpp"
-#include "../../misc/Debug.hpp"
+#include <misc/Converter.hpp>
+#include <misc/Debug.hpp>
 
 GameVector::GameVector(float x, float y)
 {

@@ -1,6 +1,6 @@
 #include "Archer.hpp"
 
-#include "../../../game/ArcherGamePlayer.hpp"
+#include <player/game/ArcherGamePlayer.hpp>
 
 extern int ARCHER_AID;
 

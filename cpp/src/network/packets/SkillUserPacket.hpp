@@ -20,6 +20,6 @@ class SkillUserPacket : public PlayerPropertyUserPacket
 		std::string skillIDs;
 };
 
-#include "../../misc/compress/CompressBuffer.hpp"
+#include <misc/compress/CompressBuffer.hpp>
 
 #endif

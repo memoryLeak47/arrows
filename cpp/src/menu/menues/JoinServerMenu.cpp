@@ -1,11 +1,11 @@
 #include "JoinServerMenu.hpp"
 
-#include "../../core/Main.hpp"
-#include "../components/Label.hpp"
-#include "../components/Button.hpp"
-#include "../components/BackButton.hpp"
-#include "../components/QuitButton.hpp"
-#include "../components/EditField.hpp"
+#include <core/Main.hpp>
+#include <menu/components/Label.hpp>
+#include <menu/components/Button.hpp>
+#include <menu/components/BackButton.hpp>
+#include <menu/components/QuitButton.hpp>
+#include <menu/components/EditField.hpp>
 #include "ClientLobbyMenu.hpp"
 
 JoinServerMenu::JoinServerMenu()

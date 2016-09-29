@@ -1,7 +1,7 @@
 #ifndef __NORMALTILE_CLASS__
 #define __NORMALTILE_CLASS__
 
-#include "../Tile.hpp"
+#include <entity/Tile.hpp>
 
 class NormalTile : public Tile
 {

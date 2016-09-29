@@ -3,7 +3,7 @@
 #include <cmath>
 #include <algorithm>
 
-#include "../misc/Debug.hpp"
+#include <misc/Debug.hpp>
 
 CircleBody::CircleBody(const GameVector& position, float radius, const GameVector& speed, bool isRot, float rotation, float spin)
 	: Body(isRot), position(position), speed(speed), rotation(rotation), radius(radius), spin(spin)

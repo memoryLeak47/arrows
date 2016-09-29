@@ -16,6 +16,6 @@ class TeamListPanel : public Panel
 		LobbyMenu* lobby;
 };
 
-#include "../menues/LobbyMenu.hpp"
+#include <menu/menues/LobbyMenu.hpp>
 
 #endif

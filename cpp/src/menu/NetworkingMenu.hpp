@@ -25,7 +25,7 @@ class NetworkingMenu : public Menu
 		std::vector<PacketAndIP*> packets;
 };
 
-#include "../network/Packet.hpp"
-#include "../network/PacketAndIP.hpp"
+#include <network/Packet.hpp>
+#include <network/PacketAndIP.hpp>
 
 #endif

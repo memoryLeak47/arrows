@@ -1,7 +1,7 @@
 #ifndef __MENUCOMPONENT_CLASS__
 #define __MENUCOMPONENT_CLASS__
 
-#include "../math/pixel/PixelRect.hpp"
+#include <math/pixel/PixelRect.hpp>
 
 class ComponentContainer;
 class PixelPosition;
@@ -33,6 +33,6 @@ class MenuComponent
 };
 
 #include "ComponentContainer.hpp"
-#include "../math/pixel/PixelVector.hpp"
+#include <math/pixel/PixelVector.hpp>
 
 #endif

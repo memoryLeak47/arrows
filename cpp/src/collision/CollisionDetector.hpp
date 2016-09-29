@@ -27,6 +27,6 @@ class CollisionDetector
 };
 
 #include "CollisionEvent.hpp"
-#include "../entity/Entity.hpp"
+#include <entity/Entity.hpp>
 
 #endif

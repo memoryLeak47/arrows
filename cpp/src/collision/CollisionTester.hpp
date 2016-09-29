@@ -12,7 +12,7 @@ class CollisionTester
 		static bool areCollidingEvenRects(const RectBody*, const RectBody*, float borderAddition);
 };
 
-#include "../entity/Entity.hpp"
+#include <entity/Entity.hpp>
 #include "RectBody.hpp"
 
 #endif

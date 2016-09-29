@@ -4,7 +4,7 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
-#include "../graphics/GraphicsManager.hpp" // for the TextureID typedef
+#include <graphics/GraphicsManager.hpp> // for the TextureID typedef
 
 class PixelRect;
 class PixelVector;
@@ -31,7 +31,7 @@ class Screen
 		static sf::Text text;
 };
 
-#include "../math/pixel/PixelRect.hpp"
-#include "../math/pixel/PixelVector.hpp"
+#include <math/pixel/PixelRect.hpp>
+#include <math/pixel/PixelVector.hpp>
 
 #endif

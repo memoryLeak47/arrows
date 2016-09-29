@@ -1,7 +1,7 @@
 #include "NetworkingMenu.hpp"
 
-#include "../core/Main.hpp"
-#include "../misc/Debug.hpp"
+#include <core/Main.hpp>
+#include <misc/Debug.hpp>
 
 NetworkingMenu::NetworkingMenu()
 {}

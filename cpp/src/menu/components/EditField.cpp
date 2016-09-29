@@ -1,7 +1,7 @@
 #include "EditField.hpp"
 
-#include "../../misc/Debug.hpp"
-#include "../../core/Screen.hpp"
+#include <misc/Debug.hpp>
+#include <core/Screen.hpp>
 
 EditField::EditField(ComponentContainer* parent, const PixelRect& rect, const std::string& s) : MenuComponent(parent, rect), text(s)
 {

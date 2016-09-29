@@ -1,7 +1,7 @@
 #include "LobbyPlayer.hpp"
 
-#include "../misc/Debug.hpp"
-#include "../core/Main.hpp"
+#include <misc/Debug.hpp>
+#include <core/Main.hpp>
 
 LobbyPlayer::LobbyPlayer(LobbyPlayer* player)
 {

@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../Item.hpp"
+#include <player/property/item/Item.hpp>
 
 class HealthRing : public Item
 {

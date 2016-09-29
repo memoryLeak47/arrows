@@ -2,7 +2,7 @@
 #define __LOBBYPLAYER_CLASS__
 
 #include <SFML/Network.hpp>
-#include "../misc/compress/Compressable.hpp"
+#include <misc/compress/Compressable.hpp>
 
 class LockUserPacket;
 class TeamUserPacket;
@@ -49,12 +49,12 @@ class LobbyPlayer : public Compressable
 		sf::IpAddress* ip;
 };
 
-#include "../network/packets/LockUserPacket.hpp"
-#include "../network/packets/TeamUserPacket.hpp"
-#include "../network/packets/LoginUserPacket.hpp"
-#include "../network/packets/AvatarUserPacket.hpp"
-#include "../network/packets/SkillUserPacket.hpp"
-#include "../network/packets/ItemUserPacket.hpp"
-#include "../misc/compress/CompressBuffer.hpp"
+#include <network/packets/LockUserPacket.hpp>
+#include <network/packets/TeamUserPacket.hpp>
+#include <network/packets/LoginUserPacket.hpp>
+#include <network/packets/AvatarUserPacket.hpp>
+#include <network/packets/SkillUserPacket.hpp>
+#include <network/packets/ItemUserPacket.hpp>
+#include <misc/compress/CompressBuffer.hpp>
 
 #endif

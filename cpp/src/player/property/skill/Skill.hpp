@@ -1,7 +1,7 @@
 #ifndef __SKILL_CLASS__
 #define __SKILL_CLASS__
 
-#include "../PlayerProperty.hpp"
+#include <player/property/PlayerProperty.hpp>
 
 class Skill : public PlayerProperty
 {

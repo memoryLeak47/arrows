@@ -3,7 +3,7 @@
 #include <cmath>
 #include <algorithm>
 
-#include "../misc/Debug.hpp"
+#include <misc/Debug.hpp>
 
 RectBody::RectBody(const GameVector& pos, const GameVector& size, const GameVector& speed, bool isRot, float rot, float spin)
 	: Body(isRot), position(pos), size(size), speed(speed), rotation(rot), spin(spin)

@@ -1,9 +1,9 @@
 #include "Debug.hpp"
 
 #include "Converter.hpp"
-#include "../core/Main.hpp"
-#include "../core/Screen.hpp"
-#include "../math/pixel/PixelVector.hpp"
+#include <core/Main.hpp>
+#include <core/Screen.hpp>
+#include <math/pixel/PixelVector.hpp>
 
 int Debug::indentCounter;
 std::vector<Message> Debug::messages;

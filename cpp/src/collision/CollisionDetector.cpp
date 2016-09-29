@@ -1,7 +1,7 @@
 #include "CollisionDetector.hpp"
 
-#include "../misc/Debug.hpp"
-#include "../tile/map/GameTileMap.hpp"
+#include <misc/Debug.hpp>
+#include <tile/map/GameTileMap.hpp>
 
 void CollisionDetector::addCollisionsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
 {

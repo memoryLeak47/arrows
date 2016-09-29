@@ -1,7 +1,7 @@
 #ifndef __ARCHERGAMEPLAYER_CLASS__
 #define __ARCHERGAMEPLAYER_CLASS__
 
-#include "../GamePlayer.hpp"
+#include <player/GamePlayer.hpp>
 
 class ArcherGamePlayer : public GamePlayer
 {

@@ -1,7 +1,7 @@
 #ifndef __MAINMENU_CLASS__
 #define __MAINMENU_CLASS__
 
-#include "../Menu.hpp"
+#include <menu/Menu.hpp>
 
 class MainMenu : public Menu
 {

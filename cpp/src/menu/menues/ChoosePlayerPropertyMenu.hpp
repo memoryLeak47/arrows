@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "../Menu.hpp"
+#include <menu/Menu.hpp>
 
 class LobbyMenu;
 class PlayerPropertyUserPacket;
@@ -29,8 +29,8 @@ class ChoosePlayerPropertyMenu : public Menu
 };
 
 #include "LobbyMenu.hpp"
-#include "../../network/packets/PlayerPropertyUserPacket.hpp"
-#include "../../player/property/PlayerProperty.hpp"
-#include "../components/PlayerPropertyIcon.hpp"
+#include <network/packets/PlayerPropertyUserPacket.hpp>
+#include <player/property/PlayerProperty.hpp>
+#include <menu/components/PlayerPropertyIcon.hpp>
 
 #endif

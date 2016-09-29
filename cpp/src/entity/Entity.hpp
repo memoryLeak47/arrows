@@ -4,7 +4,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 
-#include "../misc/Global.hpp"
+#include <misc/Global.hpp>
 
 enum EntityType
 {
@@ -100,16 +100,16 @@ class Entity
 		std::vector<Entity*> collisionPartners;
 };
 
-#include "../collision/Body.hpp"
-#include "../entity/Mob.hpp"
-#include "../tile/map/GameTileMap.hpp"
-#include "../entity/Tile.hpp"
-#include "../entity/Bullet.hpp"
-#include "../math/game/GameVector.hpp"
-#include "../math/game/GameRect.hpp"
-#include "../math/pixel/PixelRect.hpp"
-#include "../view/View.hpp"
+#include <collision/Body.hpp>
+#include <entity/Mob.hpp>
+#include <tile/map/GameTileMap.hpp>
+#include <entity/Tile.hpp>
+#include <entity/Bullet.hpp>
+#include <math/game/GameVector.hpp>
+#include <math/game/GameRect.hpp>
+#include <math/pixel/PixelRect.hpp>
+#include <view/View.hpp>
 
-#include "../graphics/GraphicsManager.hpp"
+#include <graphics/GraphicsManager.hpp>
 
 #endif

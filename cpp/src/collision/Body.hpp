@@ -20,7 +20,7 @@
 #ifndef __BODY_CLASS__
 #define __BODY_CLASS__
 
-#include "../misc/Global.hpp"
+#include <misc/Global.hpp>
 
 enum BodyType
 {
@@ -65,7 +65,7 @@ class Body
 		bool rotateable;
 };
 
-#include "../math/game/GameRect.hpp"
-#include "../math/game/GameVector.hpp"
+#include <math/game/GameRect.hpp>
+#include <math/game/GameVector.hpp>
 
 #endif

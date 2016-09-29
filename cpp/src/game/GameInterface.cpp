@@ -1,13 +1,13 @@
 #include "GameInterface.hpp"
 
-#include "../core/Main.hpp"
-#include "../misc/Global.hpp"
-#include "../player/GamePlayer.hpp"
-#include "../collision/CollisionDetector.hpp"
-#include "../collision/CollisionTester.hpp"
-#include "../collision/PhysicsHandler.hpp"
+#include <core/Main.hpp>
+#include <misc/Global.hpp>
+#include <player/GamePlayer.hpp>
+#include <collision/CollisionDetector.hpp>
+#include <collision/CollisionTester.hpp>
+#include <collision/PhysicsHandler.hpp>
 
-#include "../entity/TestKiste.hpp"
+#include <entity/TestKiste.hpp>
 
 const float EXIT_CHECK_BORDER_ADDITION = 0.03f;
 const int LOOP_LIMIT = 30;

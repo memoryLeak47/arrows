@@ -1,7 +1,7 @@
 #include "Icon.hpp"
 
-#include "../../core/Screen.hpp"
-#include "../../misc/Debug.hpp"
+#include <core/Screen.hpp>
+#include <misc/Debug.hpp>
 
 Icon::Icon(ComponentContainer* c, const PixelRect& r) : MenuComponent(c, r)
 {}

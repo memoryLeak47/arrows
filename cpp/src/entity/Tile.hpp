@@ -27,8 +27,8 @@ class Tile : public Entity
 		static Tile* createByColorID(const int, const GameVector&);
 };
 
-#include "../math/game/GameVector.hpp"
-#include "../misc/Debug.hpp"
-#include "../collision/RectBody.hpp"
+#include <math/game/GameVector.hpp>
+#include <misc/Debug.hpp>
+#include <collision/RectBody.hpp>
 
 #endif

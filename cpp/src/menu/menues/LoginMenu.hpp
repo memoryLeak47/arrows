@@ -1,7 +1,7 @@
 #ifndef __LOGINMENU_CLASS__
 #define __LOGINMENU_CLASS__
 
-#include "../Menu.hpp"
+#include <menu/Menu.hpp>
 
 class EditField;
 class PasswordField;
@@ -17,7 +17,7 @@ class LoginMenu : public Menu
 		PasswordField* passwordField;
 };
 
-#include "../components/EditField.hpp"
-#include "../components/PasswordField.hpp"
+#include <menu/components/EditField.hpp>
+#include <menu/components/PasswordField.hpp>
 
 #endif

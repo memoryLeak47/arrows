@@ -8,9 +8,9 @@
 #include <string>
 #include <vector>
 
-#include "../entity/Mob.hpp"
+#include <entity/Mob.hpp>
 #include <SFML/Network.hpp>
-#include "../misc/Debug.hpp"
+#include <misc/Debug.hpp>
 
 class LobbyPlayer;
 class Team;

@@ -1,9 +1,9 @@
 #include "CreateServerMenu.hpp"
 
-#include "../../core/Main.hpp"
-#include "../components/Button.hpp"
-#include "../components/BackButton.hpp"
-#include "../components/Label.hpp"
+#include <core/Main.hpp>
+#include <menu/components/Button.hpp>
+#include <menu/components/BackButton.hpp>
+#include <menu/components/Label.hpp>
 #include "ServerLobbyMenu.hpp"
 
 CreateServerMenu::CreateServerMenu()

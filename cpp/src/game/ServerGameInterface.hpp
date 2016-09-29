@@ -15,6 +15,6 @@ class ServerGameInterface : public GameInterface
 		virtual GamePlayer* getLocalPlayer() const override;
 };
 
-#include "../player/LobbyPlayer.hpp"
+#include <player/LobbyPlayer.hpp>
 
 #endif

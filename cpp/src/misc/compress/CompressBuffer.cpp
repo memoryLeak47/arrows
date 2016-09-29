@@ -1,17 +1,17 @@
 #include "CompressBuffer.hpp"
 
-#include "../Converter.hpp"
-#include "../Debug.hpp"
+#include <misc/Converter.hpp>
+#include <misc/Debug.hpp>
 
-#include "../../network/packets/AvatarUserPacket.hpp"
-#include "../../network/packets/SkillUserPacket.hpp"
-#include "../../network/packets/ItemUserPacket.hpp"
-#include "../../network/packets/TeamUserPacket.hpp"
-#include "../../network/packets/DisconnectUserPacket.hpp"
-#include "../../network/packets/LobbyPlayersPacket.hpp"
-#include "../../network/packets/MapPacket.hpp"
-#include "../../network/packets/UserPacketWithID.hpp"
-#include "../../player/LobbyPlayer.hpp"
+#include <network/packets/AvatarUserPacket.hpp>
+#include <network/packets/SkillUserPacket.hpp>
+#include <network/packets/ItemUserPacket.hpp>
+#include <network/packets/TeamUserPacket.hpp>
+#include <network/packets/DisconnectUserPacket.hpp>
+#include <network/packets/LobbyPlayersPacket.hpp>
+#include <network/packets/MapPacket.hpp>
+#include <network/packets/UserPacketWithID.hpp>
+#include <player/LobbyPlayer.hpp>
 
 CompressBuffer::CompressBuffer(const std::string& s)
 	: counter(0)

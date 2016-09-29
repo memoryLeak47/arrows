@@ -1,11 +1,11 @@
 #include "LobbyMenu.hpp"
 
-#include "../../misc/compress/Compressable.hpp"
-#include "../components/Label.hpp"
-#include "../../core/Screen.hpp"
-#include "../../core/Main.hpp"
-#include "../../misc/Converter.hpp"
-#include "../../misc/Debug.hpp"
+#include <misc/compress/Compressable.hpp>
+#include <menu/components/Label.hpp>
+#include <core/Screen.hpp>
+#include <core/Main.hpp>
+#include <misc/Converter.hpp>
+#include <misc/Debug.hpp>
 
 LobbyMenu::LobbyMenu()
 {

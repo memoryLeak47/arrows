@@ -50,10 +50,10 @@ class GameTileMap
 		sf::Image staticImage;
 };
 
-#include "../../player/property/Team.hpp"
-#include "../../math/game/GameRect.hpp"
-#include "../../math/game/GameVector.hpp"
-#include "../../entity/Tile.hpp"
-#include "../../view/View.hpp"
+#include <player/property/Team.hpp>
+#include <math/game/GameRect.hpp>
+#include <math/game/GameVector.hpp>
+#include <entity/Tile.hpp>
+#include <view/View.hpp>
 
 #endif

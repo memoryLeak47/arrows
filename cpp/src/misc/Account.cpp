@@ -4,7 +4,7 @@
 
 #include "Converter.hpp"
 #include "Debug.hpp"
-#include "../core/Main.hpp"
+#include <core/Main.hpp>
 
 std::vector<Account*> Account::accounts;
 

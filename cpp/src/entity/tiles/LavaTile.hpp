@@ -1,7 +1,7 @@
 #ifndef __LAVATILE_CLASS__
 #define __LAVATILE_CLASS__
 
-#include "../Tile.hpp"
+#include <entity/Tile.hpp>
 
 class LavaTile : public Tile
 {

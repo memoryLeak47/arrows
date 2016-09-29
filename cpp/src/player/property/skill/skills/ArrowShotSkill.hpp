@@ -1,7 +1,7 @@
 #ifndef __ARROWSHOTSKILL_CLASS__
 #define __ARROWSHOTSKILL_CLASS__
 
-#include "../Skill.hpp"
+#include <player/property/skill/Skill.hpp>
 
 class ArrowShotSkill : public Skill
 {

@@ -1,6 +1,6 @@
 #include "CollisionEvent.hpp"
 
-#include "../misc/Converter.hpp"
+#include <misc/Converter.hpp>
 
 CollisionEvent::CollisionEvent(Entity* e1, Entity* e2, float timeUntilFrameEnds)
 	: entity1(e1), entity2(e2), timeUntilFrameEnds(timeUntilFrameEnds)

@@ -15,6 +15,6 @@ class DisconnectUserPacket : public UserPacket
 		CID getCID() const;
 };
 
-#include "../../misc/compress/CompressBuffer.hpp"
+#include <misc/compress/CompressBuffer.hpp>
 
 #endif

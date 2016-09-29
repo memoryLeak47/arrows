@@ -1,9 +1,9 @@
 #include "ClientLobbyMenu.hpp"
 
-#include "../../misc/Converter.hpp"
-#include "../../misc/Debug.hpp"
-#include "../../core/Main.hpp"
-#include "../../game/ClientGameInterface.hpp"
+#include <misc/Converter.hpp>
+#include <misc/Debug.hpp>
+#include <core/Main.hpp>
+#include <game/ClientGameInterface.hpp>
 
 ClientLobbyMenu::ClientLobbyMenu(const std::string& ip)
 	: localPlayerID(-1)

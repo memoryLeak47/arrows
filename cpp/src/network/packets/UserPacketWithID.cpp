@@ -1,6 +1,6 @@
 #include "UserPacketWithID.hpp"
 
-#include "../../core/Main.hpp"
+#include <core/Main.hpp>
 
 UserPacketWithID::UserPacketWithID(UserPacket* packet, int id) : id(id), packet(packet)
 {}

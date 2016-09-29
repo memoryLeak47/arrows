@@ -30,7 +30,7 @@
 #include <string>
 #include <vector>
 
-#include "../Global.hpp"
+#include <misc/Global.hpp>
 
 class Compressable // represents Compressable.java and Compressor.java
 {

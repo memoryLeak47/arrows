@@ -1,7 +1,7 @@
 #ifndef __LOBBYPLAYERSPACKET_CLASS__
 #define __LOBBYPLAYERSPACKET_CLASS__
 
-#include "../Packet.hpp"
+#include <network/Packet.hpp>
 
 class CompressBuffer;
 class LobbyPlayer;
@@ -19,7 +19,7 @@ class LobbyPlayersPacket : public Packet
 		std::vector<LobbyPlayer*> players;
 };
 
-#include "../../misc/compress/CompressBuffer.hpp"
-#include "../../player/LobbyPlayer.hpp"
+#include <misc/compress/CompressBuffer.hpp>
+#include <player/LobbyPlayer.hpp>
 
 #endif

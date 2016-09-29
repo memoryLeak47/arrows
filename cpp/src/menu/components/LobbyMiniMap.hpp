@@ -11,6 +11,6 @@ class LobbyMiniMap : public MiniMap
 		LobbyMiniMap(LobbyMenu*, const PixelRect&);
 };
 
-#include "../menues/LobbyMenu.hpp"
+#include <menu/menues/LobbyMenu.hpp>
 
 #endif

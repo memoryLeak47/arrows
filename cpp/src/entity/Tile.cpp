@@ -1,8 +1,8 @@
 #include "Tile.hpp"
 
-#include "../misc/Converter.hpp"
-#include "../misc/Debug.hpp"
-#include "../player/property/Team.hpp"
+#include <misc/Converter.hpp>
+#include <misc/Debug.hpp>
+#include <player/property/Team.hpp>
 #include "tiles/NormalTile.hpp"
 #include "tiles/VoidTile.hpp"
 #include "tiles/LavaTile.hpp"

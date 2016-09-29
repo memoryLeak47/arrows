@@ -1,10 +1,10 @@
 #include "ServerLobbyMenu.hpp"
 
-#include "../../core/Main.hpp"
-#include "../../core/Screen.hpp"
-#include "../../misc/Converter.hpp"
-#include "../../misc/Debug.hpp"
-#include "../../game/ServerGameInterface.hpp"
+#include <core/Main.hpp>
+#include <core/Screen.hpp>
+#include <misc/Converter.hpp>
+#include <misc/Debug.hpp>
+#include <game/ServerGameInterface.hpp>
 
 ServerLobbyMenu::ServerLobbyMenu()
 {

@@ -1,8 +1,8 @@
 #ifndef __PANEL_CLASS__
 #define __PANEL_CLASS__
 
-#include "../MenuComponent.hpp"
-#include "../ComponentContainer.hpp"
+#include <menu/MenuComponent.hpp>
+#include <menu/ComponentContainer.hpp>
 
 class Panel : public MenuComponent, public ComponentContainer
 {

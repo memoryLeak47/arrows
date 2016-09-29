@@ -1,6 +1,6 @@
 #include "MapPacket.hpp"
 
-#include "../../misc/Debug.hpp"
+#include <misc/Debug.hpp>
 
 MapPacket::MapPacket(const std::vector<std::vector<int>>& map)
 	: map(map)

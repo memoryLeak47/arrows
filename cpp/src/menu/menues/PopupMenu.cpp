@@ -1,9 +1,9 @@
 #include "PopupMenu.hpp"
 
-#include "../../core/Screen.hpp"
-#include "../components/Panel.hpp"
-#include "../components/Label.hpp"
-#include "../components/BackButton.hpp"
+#include <core/Screen.hpp>
+#include <menu/components/Panel.hpp>
+#include <menu/components/Label.hpp>
+#include <menu/components/BackButton.hpp>
 
 PopupMenu::PopupMenu(const std::string& text)
 	: Menu(PixelRect(Screen::getSize().x/2-200, Screen::getSize().y/2-150, 400, 300))

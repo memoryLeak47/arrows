@@ -1,6 +1,6 @@
 #include "Body.hpp"
 
-#include "../misc/Debug.hpp"
+#include <misc/Debug.hpp>
 
 #include <math.h>
 

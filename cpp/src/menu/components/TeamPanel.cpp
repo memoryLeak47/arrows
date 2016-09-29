@@ -1,7 +1,7 @@
 #include "TeamPanel.hpp"
 
 #include "PlayerPanel.hpp"
-#include "../../misc/Debug.hpp"
+#include <misc/Debug.hpp>
 
 TeamPanel::TeamPanel(LobbyMenu* m, TeamListPanel* c, const PixelRect& r, Team* team) : Panel(c, r), lobby(m), team(team)
 {

@@ -1,6 +1,6 @@
 #include "ServerGameInterface.hpp"
 
-#include "../misc/Debug.hpp"
+#include <misc/Debug.hpp>
 
 ServerGameInterface::ServerGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players)
 	: GameInterface(map, players)

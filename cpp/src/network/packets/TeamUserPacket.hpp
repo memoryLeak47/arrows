@@ -19,7 +19,7 @@ class TeamUserPacket : public UserPacket
 		char teamID;
 };
 
-#include "../../player/property/Team.hpp"
-#include "../../misc/compress/CompressBuffer.hpp"
+#include <player/property/Team.hpp>
+#include <misc/compress/CompressBuffer.hpp>
 
 #endif

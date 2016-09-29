@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../MenuComponent.hpp"
+#include <menu/MenuComponent.hpp>
 
 class PixelRect;
 
@@ -20,6 +20,6 @@ class Button : public MenuComponent
 		std::string text;
 };
 
-#include "../../math/pixel/PixelRect.hpp"
+#include <math/pixel/PixelRect.hpp>
 
 #endif

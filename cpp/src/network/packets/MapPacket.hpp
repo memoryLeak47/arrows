@@ -8,7 +8,7 @@
 
 #include <vector>
 
-#include "../Packet.hpp"
+#include <network/Packet.hpp>
 
 class CompressBuffer;
 
@@ -24,6 +24,6 @@ class MapPacket : public Packet
 		std::vector<std::vector<int>> map; // Zweidimensionaler Vektor lol
 };
 
-#include "../../misc/compress/CompressBuffer.hpp"
+#include <misc/compress/CompressBuffer.hpp>
 
 #endif

@@ -1,10 +1,10 @@
 #include "MainMenu.hpp"
 
-#include "../../core/Main.hpp"
-#include "../components/EditField.hpp"
-#include "../components/Button.hpp"
-#include "../components/QuitButton.hpp"
-#include "../components/Label.hpp"
+#include <core/Main.hpp>
+#include <menu/components/EditField.hpp>
+#include <menu/components/Button.hpp>
+#include <menu/components/QuitButton.hpp>
+#include <menu/components/Label.hpp>
 #include "CreateServerMenu.hpp"
 #include "JoinServerMenu.hpp"
 

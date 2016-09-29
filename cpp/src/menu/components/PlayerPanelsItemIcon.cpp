@@ -1,9 +1,9 @@
 #include "PlayerPanelsItemIcon.hpp"
 
-#include "../menues/ChoosePlayerPropertyMenu.hpp"
-#include "../../core/Main.hpp"
-#include "../../misc/Debug.hpp"
-#include "../../player/property/item/Item.hpp"
+#include <menu/menues/ChoosePlayerPropertyMenu.hpp>
+#include <core/Main.hpp>
+#include <misc/Debug.hpp>
+#include <player/property/item/Item.hpp>
 
 PlayerPanelsItemIcon::PlayerPanelsItemIcon(int n, LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : PlayerPanelsIcon(p, m, c, r), number(n)
 {}

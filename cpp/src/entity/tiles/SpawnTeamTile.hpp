@@ -1,7 +1,7 @@
 #ifndef __SPAWNTEAMTILE_CLASS__
 #define __SPAWNTEAMTILE_CLASS__
 
-#include "../Tile.hpp"
+#include <entity/Tile.hpp>
 
 class Team;
 
@@ -19,6 +19,6 @@ class SpawnTeamTile : public Tile
 		Team* team;
 };
 
-#include "../../player/property/Team.hpp"
+#include <player/property/Team.hpp>
 
 #endif

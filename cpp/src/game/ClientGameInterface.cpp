@@ -1,6 +1,6 @@
 #include "ClientGameInterface.hpp"
 
-#include "../misc/Debug.hpp"
+#include <misc/Debug.hpp>
 
 ClientGameInterface::ClientGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players, int playerID, sf::IpAddress* ip)
 	: GameInterface(map, players), localPlayerID(playerID)

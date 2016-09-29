@@ -1,7 +1,7 @@
 #include "SkillUserPacket.hpp"
 
-#include "../../player/property/skill/Skill.hpp"
-#include "../../misc/Debug.hpp"
+#include <player/property/skill/Skill.hpp>
+#include <misc/Debug.hpp>
 
 SkillUserPacket::SkillUserPacket(const std::string& ids)
 {

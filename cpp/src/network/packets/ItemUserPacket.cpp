@@ -1,7 +1,7 @@
 #include "ItemUserPacket.hpp"
 
-#include "../../player/property/item/Item.hpp"
-#include "../../misc/Debug.hpp"
+#include <player/property/item/Item.hpp>
+#include <misc/Debug.hpp>
 
 ItemUserPacket::ItemUserPacket(const std::string& ids)
 {

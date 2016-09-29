@@ -1,9 +1,9 @@
 #include "NetworkDevice.hpp"
 
 #include "Packet.hpp"
-#include "../core/Main.hpp"
-#include "../misc/Debug.hpp"
-#include "../misc/Converter.hpp"
+#include <core/Main.hpp>
+#include <misc/Debug.hpp>
+#include <misc/Converter.hpp>
 
 NetworkDevice::NetworkDevice()
 {

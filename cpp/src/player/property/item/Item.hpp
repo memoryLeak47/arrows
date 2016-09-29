@@ -1,7 +1,7 @@
 #ifndef __ITEM_CLASS__
 #define __ITEM_CLASS__
 
-#include "../PlayerProperty.hpp"
+#include <player/property/PlayerProperty.hpp>
 
 class Item : public PlayerProperty
 {

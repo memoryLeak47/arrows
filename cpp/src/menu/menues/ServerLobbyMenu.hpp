@@ -51,7 +51,7 @@ class ServerLobbyMenu : public LobbyMenu
 		std::vector<LobbyPlayer*> updatedPlayers;
 };
 
-#include "../components/EditField.hpp"
-#include "../components/Button.hpp"
+#include <menu/components/EditField.hpp>
+#include <menu/components/Button.hpp>
 
 #endif

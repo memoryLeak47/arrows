@@ -1,7 +1,7 @@
 #ifndef __VOIDTILE_CLASS__
 #define __VOIDTILE_CLASS__
 
-#include "../Tile.hpp"
+#include <entity/Tile.hpp>
 
 class VoidTile : public Tile
 {

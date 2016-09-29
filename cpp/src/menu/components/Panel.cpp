@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-#include "../../core/Screen.hpp"
+#include <core/Screen.hpp>
 
 Panel::Panel(ComponentContainer* c, const PixelRect& r)
 	: MenuComponent(c, r)

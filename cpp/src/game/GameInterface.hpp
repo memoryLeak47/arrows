@@ -3,9 +3,9 @@
 
 #include <vector>
 
-#include "../menu/NetworkingMenu.hpp"
-#include "../tile/map/GameTileMap.hpp"
-#include "../view/View.hpp"
+#include <menu/NetworkingMenu.hpp>
+#include <tile/map/GameTileMap.hpp>
+#include <view/View.hpp>
 
 class LobbyTileMap;
 class LobbyPlayer;
@@ -53,12 +53,12 @@ class GameInterface : public NetworkingMenu
 		GameTileMap* tileMap;
 };
 
-#include "../tile/map/LobbyTileMap.hpp"
-#include "../player/LobbyPlayer.hpp"
-#include "../entity/Mob.hpp"
-#include "../entity/Tile.hpp"
-#include "../entity/Bullet.hpp"
-#include "../collision/CollisionEvent.hpp"
-#include "../player/GamePlayer.hpp"
+#include <tile/map/LobbyTileMap.hpp>
+#include <player/LobbyPlayer.hpp>
+#include <entity/Mob.hpp>
+#include <entity/Tile.hpp>
+#include <entity/Bullet.hpp>
+#include <collision/CollisionEvent.hpp>
+#include <player/GamePlayer.hpp>
 
 #endif

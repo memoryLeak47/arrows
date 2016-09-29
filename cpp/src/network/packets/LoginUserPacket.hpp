@@ -22,6 +22,6 @@ class LoginUserPacket : public UserPacket
 		int rank;
 };
 
-#include "../../misc/compress/CompressBuffer.hpp"
+#include <misc/compress/CompressBuffer.hpp>
 
 #endif

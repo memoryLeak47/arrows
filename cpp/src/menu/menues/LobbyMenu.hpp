@@ -11,9 +11,9 @@
 #include <vector>
 #include <SFML/Network.hpp>
 
-#include "../NetworkingMenu.hpp"
+#include <menu/NetworkingMenu.hpp>
 
-#include "../../tile/map/LobbyTileMap.hpp"
+#include <tile/map/LobbyTileMap.hpp>
 
 class Button;
 class Team;
@@ -69,21 +69,21 @@ class LobbyMenu : public NetworkingMenu
 		TeamListPanel* teamListPanel; // Nicht zwingend nötig, nur einfacherer Zugriff, da nicht über index
 };
 
-#include "../components/Button.hpp"
-#include "../../player/property/Team.hpp"
-#include "../components/LobbyMiniMap.hpp"
-#include "../../player/LobbyPlayer.hpp"
-#include "../components/TeamListPanel.hpp"
-#include "../../network/packets/LockUserPacket.hpp"
-#include "../../network/packets/DisconnectUserPacket.hpp"
-#include "../../network/packets/TeamUserPacket.hpp"
-#include "../../network/packets/LoginUserPacket.hpp"
-#include "../../network/packets/AvatarUserPacket.hpp"
-#include "../../network/packets/SkillUserPacket.hpp"
-#include "../../network/packets/ItemUserPacket.hpp"
-#include "../../network/packets/MapPacket.hpp"
-#include "../../network/packets/UserPacketWithID.hpp"
-#include "../../network/packets/LobbyPlayersPacket.hpp"
-#include "../../network/packets/PlayerPropertyUserPacket.hpp"
+#include <menu/components/Button.hpp>
+#include <player/property/Team.hpp>
+#include <menu/components/LobbyMiniMap.hpp>
+#include <player/LobbyPlayer.hpp>
+#include <menu/components/TeamListPanel.hpp>
+#include <network/packets/LockUserPacket.hpp>
+#include <network/packets/DisconnectUserPacket.hpp>
+#include <network/packets/TeamUserPacket.hpp>
+#include <network/packets/LoginUserPacket.hpp>
+#include <network/packets/AvatarUserPacket.hpp>
+#include <network/packets/SkillUserPacket.hpp>
+#include <network/packets/ItemUserPacket.hpp>
+#include <network/packets/MapPacket.hpp>
+#include <network/packets/UserPacketWithID.hpp>
+#include <network/packets/LobbyPlayersPacket.hpp>
+#include <network/packets/PlayerPropertyUserPacket.hpp>
 
 #endif
