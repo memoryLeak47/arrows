@@ -5,6 +5,11 @@
 
 void CollisionDetector::addCollisionsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
 {
+	if (Entity::areCollisionPartners(e1, e2))
+	{
+		Debug::warn(std::string(__PRETTY_FUNCTION__) + ": between collision partners");
+	}
+
 	if (e1->getBody()->getBodyType() == BodyType::RECT && e2->getBody()->getBodyType() == BodyType::RECT)
 	{
 		if (dynamic_cast<const RectBody*>(e1->getBody())->isEven() && dynamic_cast<const RectBody*>(e2->getBody())->isEven())
