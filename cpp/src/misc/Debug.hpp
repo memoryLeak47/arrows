@@ -42,6 +42,8 @@
 #include <iostream>
 #include <vector>
 
+#define whatIs(x) std::cout << #x << "=" << x << std::endl
+
 struct Message
 {
 	std::string text;
