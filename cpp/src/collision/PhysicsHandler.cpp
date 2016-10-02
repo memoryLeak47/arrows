@@ -4,7 +4,8 @@
 #include <cmath>
 #include <iostream>
 
-// MultiCollisions sind noch nicht mit eingerechnet
+static const float DRAG = 0.f;
+static const float SPONGE = 0.0001f;
 
 // hidden Function
 std::vector<Entity*> getCollisionGroup(Entity* e)
@@ -85,51 +86,49 @@ GameVector PhysicsHandler::getEscapeVector(Entity* e, const std::vector<GameVect
 	return GameVector(0.f, 0.f);
 }
 
+bool moveToEachOther(Entity* e1, Entity* e2, GameVector esc)
+{
+	return 0 < GameVector::getScalarProduct(esc, (e1->getBody()->getSpeed() - e2->getBody()->getSpeed()));
+}
+
+void applyPhysics(Entity* e1, Entity* e2)
+{
+	const float m1 = e1->getMass();
+	const float m2 = e2->getMass();
+
+	GameVector v_sum(0.f, 0.f);
+	if (not (e1->isStatic() or (e2->isStatic())))
+	{
+		v_sum = ((e1->getBody()->getSpeed()*m1)+(e2->getBody()->getSpeed()*m2)) / (m1+m2);
+	}
+
+	const std::vector<GameVector> points = PhysicsHandler::getCollisionPoints(e1, e2);
+	const GameVector escVec = PhysicsHandler::getEscapeVector(e1, points);
+	const GameVector otto = escVec.getOrthogonal();
+
+	if (not moveToEachOther(e1, e2, escVec)) return;
+	e1->setSpeed(e1->getBody()->getSpeed().getProjectionOn(otto)*(1-DRAG) + v_sum.getProjectionOn(escVec) - escVec.withMagnitude(SPONGE));
+	e2->setSpeed(e2->getBody()->getSpeed().getProjectionOn(otto)*(1-DRAG) + v_sum.getProjectionOn(escVec) + escVec.withMagnitude(SPONGE));
+}
+
+void handleRecursive(Entity* e1)
+{
+	for (unsigned int i = 0; i < e1->getCollisionPartners().size(); ++i)
+	{
+		GameVector esc = PhysicsHandler::getEscapeVector(e1, PhysicsHandler::getCollisionPoints(e1, e1->getCollisionPartners()[i]));
+		if (moveToEachOther(e1, e1->getCollisionPartners()[i], esc))
+		{
+			applyPhysics(e1, e1->getCollisionPartners()[i]);
+			handleRecursive(e1->getCollisionPartners()[i]);
+		}
+	}
+}
+
 void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2)
 {
 	Debug::funcOn("PhysicsHandler::handlePhysics(" + e1->toString() + ", " + e2->toString() + ")");
 
-	std::vector<Entity*> group = getCollisionGroup(e1); // Erstellt eine Liste mit allen CollisionPartnern
-	std::map<Entity*, GameVector> cache;
-
-	for (Entity* e : group)
-	{
-		if (e->isStatic())
-			continue;
-		GameVector backVec{0.f,0.f};
-		GameVector momentum{0.f,0.f};
-
-		for (Entity* c : e->getCollisionPartners())
-		{
-			std::vector<GameVector> collisionPoints = getCollisionPoints(e, c);
-			GameVector escapeVec = getEscapeVector(e, collisionPoints);
-			if (GameVector::getScalarProduct(escapeVec, e->getSpeed() - c->getSpeed()) > 0.f)
-			{
-				std::pair<float, GameVector> pair = c->getBackingAndMomentum(escapeVec, collisionPoints);
-				GameVector tmp = escapeVec.withMagnitude(std::get<0>(pair));
-				if (escapeVec.x == 0) tmp.x = 0;
-				if (escapeVec.y == 0) tmp.y = 0;
-				backVec += tmp;
-				momentum += std::get<1>(pair);
-			}
-		}
-		GameVector cacheVec{
-			(e->getSpeed().x * e->getMass() + momentum.x) / (std::abs(backVec.x) + e->getMass()),
-			(e->getSpeed().y * e->getMass() + momentum.y) / (std::abs(backVec.y) + e->getMass())
-		};
-
-		if (not cacheVec.isValid())
-		{
-			Debug::warn("PhysicsHandler::handlePhysics(): cacheVec out of range: " + cacheVec.toString());
-			std::cout << "(" << e->getSpeed().x << " * " << e->getMass() <<  " + " << momentum.x << ") / (" << backVec.x << " + " << e->getMass() << "),(" << e->getSpeed().y << " * " << e->getMass() <<  " + " <<  momentum.y << ") / (" << backVec.y << " + " << e->getMass() << "))\n";
-		}
-		cache.insert(std::pair<Entity*, GameVector>(e, cacheVec));
-	}
-
-	for (auto it = cache.begin(); it != cache.end(); ++it)
-	{
-		it->first->setSpeed(it->second);
-	}
+	handleRecursive(e1);
 
 	Debug::funcOff("PhysicsHandler::handlePhysics(" + e1->toString() + ", " + e2->toString() + ")");
 }

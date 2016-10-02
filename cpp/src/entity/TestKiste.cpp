@@ -7,6 +7,9 @@ TestKiste::TestKiste(const GameVector& position)
 void TestKiste::renderBar(const View&) const
 {}
 
+void TestKiste::optGravity()
+{}
+
 sf::Texture* TestKiste::getTexture() const
 {
 	return GraphicsManager::getTexture(TESTKISTE_GID);

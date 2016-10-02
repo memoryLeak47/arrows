@@ -10,6 +10,7 @@ class TestKiste : public Mob
 	public:
 		TestKiste(const GameVector&);
 		virtual void renderBar(const View&) const;
+		virtual void optGravity() override;
 		virtual sf::Texture* getTexture() const override;
 		virtual std::string toString() const override;
 };
