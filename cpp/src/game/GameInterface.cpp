@@ -173,6 +173,7 @@ void GameInterface::updateChanged(std::vector<CollisionEvent*>* events, float ti
 		for (unsigned int j = i+1; j < getDynamicEntityAmount(); j++)
 		{
 			Entity* e2 = getDynamicEntity(j);
+			if (Entity::areCollisionPartners(e1, e2)) continue;
 			if (e1->hasChanged() || e2->hasChanged())
 			{
 				update(e1, e2, events, timeLeft);
@@ -183,8 +184,13 @@ void GameInterface::updateChanged(std::vector<CollisionEvent*>* events, float ti
 			std::vector<Tile*> intersectionTiles = getGameTileMap()->getIntersectionTiles(e1->getBody()->getWrapper(timeLeft));
 			for (auto iter = intersectionTiles.begin(); iter != intersectionTiles.end(); ++iter)
 			{
+				if (Entity::areCollisionPartners(e1, *iter)) continue;
 				update(e1, *iter, events, timeLeft);
 			}
+		}
+		for (unsigned int k = 0; k < e1->getCollisionPartners().size(); ++k)
+		{
+			update(e1, e1->getCollisionPartners()[k], events, timeLeft);
 		}
 	}
 
@@ -204,7 +210,7 @@ void GameInterface::update(Entity* e1, Entity* e2, std::vector<CollisionEvent*>*
 
 	if (Entity::areCollisionPartners(e1, e2))
 	{
-		if (!CollisionTester::areColliding(e1, e2, EXIT_CHECK_BORDER_ADDITION)) // prüfen, ob sie noch CollisionPartner sein sollten
+		if (not CollisionTester::areColliding(e1, e2, EXIT_CHECK_BORDER_ADDITION)) // prüfen, ob sie noch CollisionPartner sein sollten
 		{
 			// TODO call Exit-Event
 			e1->removeCollisionPartner(e2);
