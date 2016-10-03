@@ -22,8 +22,6 @@ class CollisionDetector
 {
 	public:
 		static void addCollisionsBetween(Entity*, Entity*, std::vector<CollisionEvent*>*, float timeLeft);
-	private:
-		static void addCollisionsBetweenEvenRects(Entity*, Entity*, std::vector<CollisionEvent*>*, float timeLeft);
 };
 
 #include "CollisionEvent.hpp"

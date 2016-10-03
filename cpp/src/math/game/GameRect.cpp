@@ -39,6 +39,9 @@ float GameRect::getBot() const
 	return getPosition().y + getSize().y;
 }
 
+float GameRect::getWidth() const { return getRight() - getLeft(); }
+float GameRect::getHeight() const { return getBot() - getTop(); }
+
 bool GameRect::collidesWith(const GameRect& r) const
 {
 	return     getLeft() <= r.getRight()

@@ -20,6 +20,9 @@ class GameRect
 		float getTop() const;
 		float getBot() const;
 
+		float getWidth() const;
+		float getHeight() const;
+
 		bool collidesWith(const GameRect&) const;
 
 		bool operator==(const GameRect&);

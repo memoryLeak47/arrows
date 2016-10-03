@@ -3,31 +3,6 @@
 #include <misc/Debug.hpp>
 #include <tile/map/GameTileMap.hpp>
 
-void CollisionDetector::addCollisionsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
-{
-	if (Entity::areCollisionPartners(e1, e2))
-	{
-		Debug::warn(std::string(__PRETTY_FUNCTION__) + ": between collision partners");
-	}
-
-	if (e1->getBody()->getBodyType() == BodyType::RECT && e2->getBody()->getBodyType() == BodyType::RECT)
-	{
-		if (dynamic_cast<const RectBody*>(e1->getBody())->isEven() && dynamic_cast<const RectBody*>(e2->getBody())->isEven())
-		{
-			addCollisionsBetweenEvenRects(e1, e2, events, timeLeft);
-		}
-		else
-		{
-			Debug::warn("CollisionDetector::addCollisionsBetween: TODO");
-		}
-	}
-	else
-	{
-		Debug::warn("CollisionDetector::addCollisionsBetween: TODO");
-	}
-}
-
-
 // private function
 int getNextIndex(const std::vector<float>& floats)
 {
@@ -79,39 +54,46 @@ std::pair<std::vector<float>, std::vector<bool>> getPair(float posX1, float posY
 	return std::pair<std::vector<float>, std::vector<bool>>(floats, bools);
 }
 
-void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
+void CollisionDetector::addCollisionsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
 {
-	Debug::funcOn("addCollisionsBetweenEvenRects(): " + e2->toString() + " AND " + e1->toString());
-	const RectBody* b1 = dynamic_cast<const RectBody*>(e1->getBody());
-	const RectBody* b2 = dynamic_cast<const RectBody*>(e2->getBody());
+	if (Entity::areWrapperPartners(e1, e2))
+	{
+		Debug::warn(std::string(__PRETTY_FUNCTION__) + ": between collision partners");
+	}
+
+	const Body* b1 = e1->getBody();
+	const Body* b2 = e2->getBody();
+
+	const GameRect wrapper1 = b1->getWrapper(0.f); // TODO make getWrapper more beautiful
+	const GameRect wrapper2 = b2->getWrapper(0.f);
 
 	const float posX1 = b1->getPosition().x;
 	const float posY1 = b1->getPosition().y;
-	const float sizeX1 = b1->getSize().x;
-	const float sizeY1 = b1->getSize().y;
+	const float sizeX1 = wrapper1.getSize().x;
+	const float sizeY1 = wrapper1.getSize().y;
+
+	const float posX2 = b2->getPosition().x;
+	const float posY2 = b2->getPosition().y;
+	const float sizeX2 = wrapper2.getSize().x;
+	const float sizeY2 = wrapper2.getSize().y;
 
 	// speed subtraction
 	const float speedX = b1->getSpeed().x - b2->getSpeed().x;
 	const float speedY = b1->getSpeed().y - b2->getSpeed().y;
 
-	const float posX2 = b2->getPosition().x;
-	const float posY2 = b2->getPosition().y;
-	const float sizeX2 = b2->getSize().x;
-	const float sizeY2 = b2->getSize().y;
-
 	// getestet
 	CollisionStatus xCol, yCol;
-	const float right1 = (posX1 + sizeX1/2.f);
-	const float right2 = (posX2 + sizeX2/2.f);
+	const float right1 = wrapper1.getRight();
+	const float right2 = wrapper2.getRight();
 
-	const float left1 = (posX1 - sizeX1/2.f);
-	const float left2 = (posX2 - sizeX2/2.f);
+	const float left1 = wrapper1.getLeft();
+	const float left2 = wrapper2.getLeft();
 
-	const float bot1 = (posY1 + sizeY1/2.f);
-	const float bot2 = (posY2 + sizeY2/2.f);
+	const float bot1 = wrapper1.getBot();
+	const float bot2 = wrapper2.getBot();
 
-	const float top1 = (posY1 - sizeY1/2.f);
-	const float top2 = (posY2 - sizeY2/2.f);
+	const float top1 = wrapper1.getTop();
+	const float top2 = wrapper2.getTop();
 
 	if ((right1 > left2) && (right2 > left1)) // Wenn die Entities sich auf der xAchse schneiden
 	{
@@ -215,5 +197,4 @@ void CollisionDetector::addCollisionsBetweenEvenRects(Entity* e1, Entity* e2, st
 			events->push_back(ev);
 		}
 	}
-	Debug::funcOff("addCollisionBetween(): " + e2->toString());
 }

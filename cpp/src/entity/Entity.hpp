@@ -68,12 +68,16 @@ class Entity
 		virtual float getMass() const = 0;
 		virtual bool isStatic() const { return false; }
 
-		// collisionPartner
+		// collisionPartner / WrapperPartners
 		virtual void addCollisionPartner(Entity*);
+		virtual void addWrapperPartner(Entity*);
 		virtual void removeCollisionPartner(Entity*);
+		virtual void removeWrapperPartner(Entity*);
 		std::vector<Entity*> getCollisionPartners();
 		bool hasCollisionPartner(Entity*) const;
+		bool hasWrapperPartner(Entity*) const;
 		static bool areCollisionPartners(Entity*, Entity*);
+		static bool areWrapperPartners(Entity*, Entity*);
 		static CollisionType getCollisionTypeBetween(Entity* e1, Entity* e2);
 
 		const Body* getBody() const;
@@ -98,6 +102,7 @@ class Entity
 		bool changed;
 		int dashCounter;
 		std::vector<Entity*> collisionPartners;
+		std::vector<Entity*> wrapperPartners;
 };
 
 #include <collision/Body.hpp>

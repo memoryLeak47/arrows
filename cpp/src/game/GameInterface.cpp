@@ -9,7 +9,6 @@
 
 #include <entity/TestKiste.hpp>
 
-const float EXIT_CHECK_BORDER_ADDITION = 0.03f;
 const int LOOP_LIMIT = 30;
 
 GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers)
@@ -92,15 +91,15 @@ void GameInterface::tickPhysics()
 						// remember rotation is updated too
 		timeLeft = event->getTimeUntilFrameEnds();
 
-		// add Partners
-		if (Entity::areCollisionPartners(event->getEntity1(), event->getEntity2()))
+		// add Wrapper Partners
+		if (Entity::areWrapperPartners(event->getEntity1(), event->getEntity2()))
 		{
-			Debug::warn("collision detected between collision partners:\n\t" + event->getEntity1()->toString() + "\n\t" + event->getEntity2()->toString());
+			Debug::warn("collision detected between wrapper partners:\n\t" + event->getEntity1()->toString() + "\n\t" + event->getEntity2()->toString());
 		}
 		else
 		{
-			event->getEntity1()->addCollisionPartner(event->getEntity2());
-			event->getEntity2()->addCollisionPartner(event->getEntity1());
+			event->getEntity1()->addWrapperPartner(event->getEntity2());
+			event->getEntity2()->addWrapperPartner(event->getEntity1());
 		}
 
 		event->getEntity1()->setChanged(true);
@@ -149,7 +148,7 @@ void GameInterface::moveAllEntities(float time)
 	Debug::func("GameInterface::moveAllEntities(" + Converter::floatToString(time) + ")");
 	if (time <= 0)
 	{
-		if (time < 0) Debug::warn("GameInterface::moveAllEntities(" + Converter::floatToString(time) + "): arg is negative");
+		if (time < 0) Debug::error("GameInterface::moveAllEntities(" + Converter::floatToString(time) + "): arg is negative");
 		return;
 	}
 
@@ -173,7 +172,7 @@ void GameInterface::updateChanged(std::vector<CollisionEvent*>* events, float ti
 		for (unsigned int j = i+1; j < getDynamicEntityAmount(); j++)
 		{
 			Entity* e2 = getDynamicEntity(j);
-			if (Entity::areCollisionPartners(e1, e2)) continue;
+			if (Entity::areWrapperPartners(e1, e2)) continue;
 			if (e1->hasChanged() || e2->hasChanged())
 			{
 				update(e1, e2, events, timeLeft);
@@ -184,13 +183,9 @@ void GameInterface::updateChanged(std::vector<CollisionEvent*>* events, float ti
 			std::vector<Tile*> intersectionTiles = getGameTileMap()->getIntersectionTiles(e1->getBody()->getWrapper(timeLeft));
 			for (auto iter = intersectionTiles.begin(); iter != intersectionTiles.end(); ++iter)
 			{
-				if (Entity::areCollisionPartners(e1, *iter)) continue;
+				if (Entity::areWrapperPartners(e1, *iter)) continue;
 				update(e1, *iter, events, timeLeft);
 			}
-		}
-		for (unsigned int k = 0; k < e1->getCollisionPartners().size(); ++k)
-		{
-			update(e1, e1->getCollisionPartners()[k], events, timeLeft);
 		}
 	}
 
@@ -202,26 +197,9 @@ void GameInterface::updateChanged(std::vector<CollisionEvent*>* events, float ti
 
 void GameInterface::update(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
 {
-	if (e1->isStatic() && e2->isStatic())
+	if (Entity::areWrapperPartners(e1, e2))
 	{
-		Debug::warn("GameInterface::update(): e1->isStatic && e2->isStatic()");
-		return;
-	}
-
-	if (Entity::areCollisionPartners(e1, e2))
-	{
-		if (not CollisionTester::areColliding(e1, e2, EXIT_CHECK_BORDER_ADDITION)) // prüfen, ob sie noch CollisionPartner sein sollten
-		{
-			// TODO call Exit-Event
-			e1->removeCollisionPartner(e2);
-			e2->removeCollisionPartner(e1);
-			addEventsBetween(e1, e2, events, timeLeft);
-		}
-		else
-		{
-			// TODO glitch check
-			PhysicsHandler::handlePhysics(e1, e2);
-		}
+		Debug::warn(std::string(__PRETTY_FUNCTION__) + " called for Wrapper partners:\n\t" + e1->toString() + "\n\t" + e2->toString());
 	}
 	else
 	{
