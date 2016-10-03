@@ -21,7 +21,8 @@ GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>&
 		mobs.push_back(Avatar::get(lobbyPlayers[i]->getAvatarUserPacket()->getAvatarID())->createGamePlayer(getGameTileMap()->teamToSpawnPosition(lobbyPlayers[i]->getTeamUserPacket()->getTeam()), lobbyPlayers[i]));
 	}
 
-	mobs.push_back(new TestKiste(GameVector(9.f, 2.5f)));
+	mobs.push_back(new TestKiste(GameVector(7.5f, 4.5f)));
+	mobs.push_back(new TestKiste(GameVector(7.5f, 3.5f)));
 }
 
 GameInterface::~GameInterface()
