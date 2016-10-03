@@ -75,7 +75,15 @@ getEsc(e, points):
 		res = am.getProjectionOn(ab.getOrthogonal())
 		if (result.getMagnitude() == 0)
 			throw ERROR
-		return (-res).getNormalized()
+		v = (-res).getNormalized()
+                if (abs(v.x) > abs(v.y)): # even-rects workaround
+                        if (v.x<0):
+                                return {-1, 0}
+                        return {1,0}
+                if (v.y<0):
+                        return {0,-1}
+                return {0,1}
+
 	if (points.size == 1):
 		if (e.pos.x < points[0].x):
 			return {1, 0}
