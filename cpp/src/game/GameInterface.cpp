@@ -9,7 +9,8 @@
 
 #include <entity/TestKiste.hpp>
 
-const int LOOP_LIMIT = 30;
+static const int LOOP_LIMIT = 30;
+static const int NO_FRAMES = 5;
 
 GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers)
 {
@@ -74,6 +75,13 @@ void GameInterface::tickEntities()
 	// TODO tick tiles?
 }
 
+float getNextCheckTime(float timeLeft)
+{
+	float f = 0.f;
+	while ((f += 1/NO_FRAMES) < timeLeft);
+	return f - (1/NO_FRAMES);
+}
+
 void GameInterface::tickPhysics()
 {
 	Debug::funcOn("GameInterface::tickPhysics()");
@@ -84,42 +92,67 @@ void GameInterface::tickPhysics()
 
 	updateChanged(&events, timeLeft);
 
-	while (events.size() > 0)
+	while (true)
 	{
-		CollisionEvent* event = cutFirstEvent(&events); // Returnt die Collision, die als nächstes ausgeführt werden muss.
-		moveAllEntities(timeLeft - event->getTimeUntilFrameEnds());     // bewegt alle Entities bis zu der Situation, in der die nächste
-						// remember rotation is updated too
-		timeLeft = event->getTimeUntilFrameEnds();
-
-		// add Wrapper Partners
-		if (Entity::areWrapperPartners(event->getEntity1(), event->getEntity2()))
+		enum Id {CHECK, END, EVENT};
+		struct TimeStruct
 		{
-			Debug::warn("collision detected between wrapper partners:\n\t" + event->getEntity1()->toString() + "\n\t" + event->getEntity2()->toString());
-		}
-		else
+			static TimeStruct getFirst(TimeStruct t1, TimeStruct t2, TimeStruct t3)
+			{
+				if (t1.time > t2.time && t1.time > t3.time) return t1;
+				if (t2.time > t3.time && t2.time > t1.time) return t2;
+				return t3;
+			}
+			Id id;
+			float time; /* until frame ends */
+		};
+
+		float eventTime = -1.f;
+		if (events.size() > 0)
 		{
-			event->getEntity1()->addWrapperPartner(event->getEntity2());
-			event->getEntity2()->addWrapperPartner(event->getEntity1());
+			eventTime = events[0]->getTimeUntilFrameEnds();
 		}
+		TimeStruct first = TimeStruct::getFirst({CHECK, getNextCheckTime(timeLeft)}, {END, 0}, {EVENT, eventTime});
+		moveAllEntities(timeLeft - first.time);
+		switch (first.id)
+		{
+			case CHECK:
+				for (unsigned int i = 0; i < getDynamicEntityAmount(); ++i)
+				{
+					// getDynamicEntity(i)->checkWrapperPartners();
+				}
+				break;
+			case END:
+				Debug::funcOff("GameInterface::tickPhysics()");
+				return;
+			case EVENT:
+				// add Wrapper Partners
+				if (Entity::areWrapperPartners(events[0]->getEntity1(), events[0]->getEntity2()))
+				{
+					Debug::warn("collision detected between wrapper partners:\n\t" + events[0]->getEntity1()->toString() + "\n\t" + events[0]->getEntity2()->toString());
+				}
+				else
+				{
+					events[0]->getEntity1()->addWrapperPartner(events[0]->getEntity2());
+					events[0]->getEntity2()->addWrapperPartner(events[0]->getEntity1());
+				}
 
-		event->getEntity1()->setChanged(true);
-		event->getEntity2()->setChanged(true);
+				events[0]->getEntity1()->setChanged(true);
+				events[0]->getEntity2()->setChanged(true);
+				// TODO remove event
 
-		updateChanged(&events, timeLeft);
 
-		c++;
+				// TODO call Enter Event
+				updateChanged(&events, timeLeft);
+		}
+		timeLeft = first.time;
 
-		// TODO call Enter Event
-		delete event;
-
-		if (c > LOOP_LIMIT)
+		if (c++ > LOOP_LIMIT)
 		{
 			Debug::error("GameInterface::tickPhysics(): infinite loop");
 			break;
 		}
 	}
-	moveAllEntities(timeLeft); // move to End of Frame
-	Debug::funcOff("GameInterface::tickPhysics()");
 }
 
 CollisionEvent* GameInterface::cutFirstEvent(std::vector<CollisionEvent*>* events)
