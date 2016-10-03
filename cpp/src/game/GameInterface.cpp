@@ -95,7 +95,7 @@ void GameInterface::tickPhysics()
 		// add Partners
 		if (Entity::areCollisionPartners(event->getEntity1(), event->getEntity2()))
 		{
-			Debug::warn("collision detected between collision partners");
+			Debug::warn("collision detected between collision partners:\n\t" + event->getEntity1()->toString() + "\n\t" + event->getEntity2()->toString());
 		}
 		else
 		{
