@@ -13,6 +13,7 @@ class CircleBody : public Body
 		virtual BodyType getBodyType() const override;
 
 		virtual GameRect getWrapper(float timeLeft) const override;
+		virtual bool isCollidingPoint(const GameVector&) const override;
 
 		virtual const GameVector& getPosition() const override;
 		virtual const GameVector& getSpeed() const override;

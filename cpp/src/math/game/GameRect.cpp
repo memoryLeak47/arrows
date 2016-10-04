@@ -50,6 +50,11 @@ bool GameRect::collidesWith(const GameRect& r) const
 		&& getBot() >= r.getTop();
 }
 
+bool GameRect::isValid() const
+{
+	return ((getLeft() < getRight()) && (getTop() < getBot()));
+}
+
 bool GameRect::operator==(const GameRect& rect)
 {
 	return rect.getPosition() == getPosition() && rect.getSize() == getSize();
@@ -58,4 +63,9 @@ bool GameRect::operator==(const GameRect& rect)
 std::string GameRect::toString() const
 {
 	return "GR(" + getPosition().toString() + ", " + getSize().toString() + ")";
+}
+
+GameRect GameRect::getIntersectionRect(const GameRect& r, const GameRect& s)
+{
+	return GameRect(std::max(r.getLeft(), s.getLeft()), std::min(r.getRight(), s.getRight()), std::max(r.getTop(), s.getTop()), std::min(r.getBot(), s.getBot()));
 }

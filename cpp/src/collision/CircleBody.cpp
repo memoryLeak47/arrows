@@ -28,6 +28,12 @@ GameRect CircleBody::getWrapper(float timeLeft) const
 	return GameRect(GameVector(posX, posY), GameVector(sizeX, sizeY));
 }
 
+bool CircleBody::isCollidingPoint(const GameVector&) const
+{
+	Debug::warn(std::string(__PRETTY_FUNCTION__) + " TODO");
+	return false;
+}
+
 // position
 const GameVector& CircleBody::getPosition() const
 {

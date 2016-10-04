@@ -40,6 +40,7 @@ class Body
 
 		void move(float time);
 		virtual GameRect getWrapper(float timeLeft) const = 0;
+		virtual bool isCollidingPoint(const GameVector&) const = 0;
 
 		virtual const GameVector& getSpeed() const = 0;
 		virtual const GameVector& getPosition() const = 0; // returnt die Position relativ zur Map vom ImageCenter

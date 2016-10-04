@@ -43,6 +43,24 @@ GameRect RectBody::getWrapper(float timeLeft) const
 	}
 }
 
+bool RectBody::isCollidingPoint(const GameVector& point) const
+{
+	if (isEven())
+	{
+		if ((point.x > getLeft()) && (point.x < getRight()))
+		{
+			if ((point.y > getTop()) && (point.y < getBot()))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	// is not Even
+	Debug::warn("RectBody::isCollidingPoint(): TODO");
+	return false;
+}
+
 void RectBody::setPosition(const GameVector& pos)
 {
 	position = pos;

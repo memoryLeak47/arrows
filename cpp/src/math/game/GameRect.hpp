@@ -8,6 +8,7 @@
 class GameRect
 {
 	public:
+		// Konstruktor
 		GameRect(float x, float y, float width, float height);
 		GameRect(const GameVector& position, const GameVector& size);
 		GameRect(const GameRect& rect);
@@ -24,9 +25,11 @@ class GameRect
 		float getHeight() const;
 
 		bool collidesWith(const GameRect&) const;
+		bool isValid() const;
 
 		bool operator==(const GameRect&);
 		std::string toString() const;
+		static GameRect getIntersectionRect(const GameRect&, const GameRect&);
 	private:
 		GameVector position; // left-top edge
 		GameVector size;
