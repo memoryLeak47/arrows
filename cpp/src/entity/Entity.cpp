@@ -29,7 +29,7 @@ void Entity::tick()
 	{
 		// if (!collides with tile)
 		//       dashCounter = 0;
-		Debug::warn("Entity::tick(): dashCounter == 1: TODO");
+		//Debug::warn("Entity::tick(): dashCounter == 1: TODO");
 	}
 }
 

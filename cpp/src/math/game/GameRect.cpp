@@ -67,5 +67,10 @@ std::string GameRect::toString() const
 
 GameRect GameRect::getIntersectionRect(const GameRect& r, const GameRect& s)
 {
-	return GameRect(std::max(r.getLeft(), s.getLeft()), std::min(r.getRight(), s.getRight()), std::max(r.getTop(), s.getTop()), std::min(r.getBot(), s.getBot()));
+	return GameRect(
+		std::max(r.getLeft(), s.getLeft()), // x
+		std::max(r.getTop(), s.getTop()), // y
+		std::min(r.getRight(), s.getRight()), // w
+		std::min(r.getBot(), s.getBot()) // h
+	);
 }
