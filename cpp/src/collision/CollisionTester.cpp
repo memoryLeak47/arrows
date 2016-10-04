@@ -26,6 +26,7 @@ bool CollisionTester::areColliding(Entity* e1, Entity* e2, GameVector* p)
 			}
 			point.x += STEPSIZE;
 		}
+		point.x = intersectionRect.getLeft();
 		point.y += STEPSIZE;
 	}
 
