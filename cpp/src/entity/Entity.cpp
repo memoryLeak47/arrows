@@ -3,7 +3,6 @@
 #include <core/Main.hpp>
 #include <core/Screen.hpp>
 #include <misc/Debug.hpp>
-#include <collision/CollisionDetector.hpp>
 #include <collision/CollisionTester.hpp>
 #include <collision/PhysicsHandler.hpp>
 
@@ -108,6 +107,44 @@ void Entity::addSpeedAt(const GameVector& how, const GameVector& where)
 void Entity::addSpeed(const GameVector& how)
 {
 	setSpeed(how + body->getSpeed());
+}
+
+void Entity::checkWrapperPartners()
+{
+	for (unsigned int i = 0; i < wrapperPartners.size(); ++i)
+	{
+		Entity* p = wrapperPartners[i];
+		if (CollisionTester::areWrapperColliding(this, p))
+		{
+			if (CollisionTester::areColliding(this, p))
+			{
+				if (not Entity::areCollisionPartners(this, p))
+				{
+					addCollisionPartner(p);
+					p->addCollisionPartner(this);
+					// TODO throw enter event
+				}
+				PhysicsHandler::handlePhysics(this, p);
+
+				this->setChanged(true);
+				p->setChanged(true);
+			}
+			else
+			{
+				if (Entity::areCollisionPartners(this, p))
+				{
+					removeCollisionPartner(p);
+					p->removeCollisionPartner(this);
+					// TODO throw exit event
+				}
+			}
+		}
+		else
+		{
+			removeWrapperPartner(p);
+			p->removeWrapperPartner(this);
+		}
+	}
 }
 
 CollisionType Entity::getCollisionType() const

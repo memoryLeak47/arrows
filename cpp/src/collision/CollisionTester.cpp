@@ -2,38 +2,19 @@
 
 bool CollisionTester::areColliding(Entity* e1, Entity* e2, float borderAddition)
 {
-	if (e1->getBody()->getBodyType() == BodyType::RECT)
-	{
-		if (dynamic_cast<const RectBody*>(e1->getBody())->isEven())
-		{
-			// e1 unrot rect
-			if (e2->getBody()->getBodyType() == BodyType::RECT)
-			{
-				if (dynamic_cast<const RectBody*>(e2->getBody())->isEven())
-				{
-					// e2 unrot Rects
-					return areCollidingEvenRects(dynamic_cast<const RectBody*>(e1->getBody()), dynamic_cast<const RectBody*>(e2->getBody()), borderAddition);
-				}
-			}
-		}
-		else
-		{
-			// e1 Rotated Rect
-		}
-	}
-	else
-	{
-		// e1 Circle
-	}
-	Debug::error("CollisionTester::isColliding(): unhandled Entity Combination");
+	// TODO
+	Debug::warn("CollisionTester::areColliding(): TODO");
 	return false;
 }
 
-bool CollisionTester::areCollidingEvenRects(const RectBody* b1, const RectBody* b2, float borderAddition)
+bool CollisionTester::areWrapperColliding(Entity* e1, Entity* e2)
 {
-	if ((b1->getLeft() <= b2->getRight() + borderAddition) && (b1->getRight() + borderAddition >= b2->getLeft()))
+	const GameRect r1 = e1->getBody()->getWrapper(0);
+	const GameRect r2 = e2->getBody()->getWrapper(0);
+
+	if ((r1.getLeft() <= r2.getRight()) && (r1.getRight() >= r2.getLeft()))
 	{
-		if ((b1->getTop() <= b2->getBot() + borderAddition) && (b1->getBot() + borderAddition >= b2->getTop()))
+		if ((r1.getTop() <= r2.getBot()) && (r1.getBot() >= r2.getTop()))
 		{
 			return true;
 		}

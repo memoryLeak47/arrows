@@ -10,7 +10,7 @@
 #include <entity/TestKiste.hpp>
 
 static const int LOOP_LIMIT = 30;
-static const int NO_FRAMES = 5;
+static const float FREQ = 0.2f;
 
 GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers)
 {
@@ -77,9 +77,16 @@ void GameInterface::tickEntities()
 
 float getNextCheckTime(float timeLeft)
 {
-	float f = 0.f;
-	while ((f += 1/NO_FRAMES) < timeLeft);
-	return f - (1/NO_FRAMES);
+	float f = 0;
+	while (f < timeLeft)
+	{
+		f += FREQ;
+	}
+
+	f -= FREQ;
+	if (f == timeLeft)
+		f -= FREQ;
+	return f;
 }
 
 void GameInterface::tickPhysics()
@@ -99,8 +106,8 @@ void GameInterface::tickPhysics()
 		{
 			static TimeStruct getFirst(TimeStruct t1, TimeStruct t2, TimeStruct t3)
 			{
-				if (t1.time > t2.time && t1.time > t3.time) return t1;
-				if (t2.time > t3.time && t2.time > t1.time) return t2;
+				if (t1.time >= t2.time && t1.time >= t3.time) return t1; /* XXX not sure about this */
+				if (t2.time >= t3.time && t2.time >= t1.time) return t2;
 				return t3;
 			}
 			Id id;
@@ -119,13 +126,19 @@ void GameInterface::tickPhysics()
 			case CHECK:
 				for (unsigned int i = 0; i < getDynamicEntityAmount(); ++i)
 				{
-					// getDynamicEntity(i)->checkWrapperPartners();
+					getDynamicEntity(i)->checkWrapperPartners();
 				}
+				updateChanged(&events, timeLeft);
 				break;
 			case END:
 				Debug::funcOff("GameInterface::tickPhysics()");
 				return;
 			case EVENT:
+				if (events.size() == 0)
+				{
+					Debug::error("GameInterface::tickPhysics(): events.size() == 0");
+					return;
+				}
 				// add Wrapper Partners
 				if (Entity::areWrapperPartners(events[0]->getEntity1(), events[0]->getEntity2()))
 				{
@@ -139,11 +152,10 @@ void GameInterface::tickPhysics()
 
 				events[0]->getEntity1()->setChanged(true);
 				events[0]->getEntity2()->setChanged(true);
-				// TODO remove event
 
-
-				// TODO call Enter Event
-				updateChanged(&events, timeLeft);
+				auto x = events[0];
+				events.erase(events.begin());
+				delete x;
 		}
 		timeLeft = first.time;
 

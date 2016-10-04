@@ -8,8 +8,7 @@ class CollisionTester
 {
 	public:
 		static bool areColliding(Entity*, Entity*, float borderAddition=0);
-	private:
-		static bool areCollidingEvenRects(const RectBody*, const RectBody*, float borderAddition);
+		static bool areWrapperColliding(Entity*, Entity*);
 };
 
 #include <entity/Entity.hpp>

@@ -57,6 +57,7 @@ class Entity
 		virtual void optDrag();
 
 		// collision
+		void checkWrapperPartners();
 		virtual float getCollisionPriority(Entity* e) { return 1; } // TODO = 0
 		virtual EntityType getEntityType() const = 0;
 		virtual CollisionType getCollisionType() const;
