@@ -75,25 +75,12 @@ void GameInterface::tickEntities()
 	// TODO tick tiles?
 }
 
-float getNextCheckTime(float timeLeft)
-{
-	float f = 0;
-	while (f < timeLeft)
-	{
-		f += FREQ;
-	}
-
-	f -= FREQ;
-	if (f == timeLeft)
-		f -= FREQ;
-	return f;
-}
-
 void GameInterface::tickPhysics()
 {
 	Debug::funcOn("GameInterface::tickPhysics()");
 
 	int c = 0;
+	int checkCounter = 1;
 	float timeLeft = global::GAME_FRAME_TIME;
 	std::vector<CollisionEvent*> events;
 
@@ -121,12 +108,13 @@ void GameInterface::tickPhysics()
 		}
 
 		// suche ersten Zeitpunkt, um dann zu ihm zu gehen
-		TimeStruct first = TimeStruct::getFirst({CHECK, getNextCheckTime(timeLeft)}, {END, 0}, {EVENT, eventTime});
+		TimeStruct first = TimeStruct::getFirst({CHECK, global::GAME_FRAME_TIME-(checkCounter*FREQ)}, {END, 0}, {EVENT, eventTime});
 		moveAllEntities(timeLeft - first.time); // bewege die Entities um die Zeitänderung
 		timeLeft = first.time;
 		switch (first.id)
 		{
 			case CHECK:
+				checkCounter++;
 				for (unsigned int i = 0; i < getDynamicEntityAmount(); ++i)
 				{
 					getDynamicEntity(i)->checkWrapperPartners();
