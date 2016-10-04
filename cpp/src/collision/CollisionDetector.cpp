@@ -17,6 +17,19 @@ int getNextIndex(const std::vector<float>& floats)
 	return spot;
 }
 
+void addEvent(std::vector<CollisionEvent*>* events, CollisionEvent* event)
+{
+	for (unsigned int i = 0; i < events->size(); i++)
+	{
+		if (events->at(i)->getTimeUntilFrameEnds() <= event->getTimeUntilFrameEnds())
+		{
+			events->insert(events->begin()+i, event);
+			return;
+		}
+	}
+	events->push_back(event);
+}
+
 // private function
 std::pair<std::vector<float>, std::vector<bool>> getPair(float posX1, float posY1, float sizeX1, float sizeY1, float speedX, float speedY, float posX2, float posY2, float sizeX2, float sizeY2, float timeLeft)
 {
@@ -126,7 +139,7 @@ void CollisionDetector::addCollisionsBetween(Entity* e1, Entity* e2, std::vector
 	if (oldStatus < CollisionStatus::OUT)
 	{
 		CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft);
-		events->push_back(ev);
+		addEvent(events, ev);
 	}
 
 	std::pair<std::vector<float>, std::vector<bool>> pair = getPair(posX1, posY1, sizeX1, sizeY1, speedX, speedY, posX2, posY2, sizeX2, sizeY2, timeLeft);
@@ -194,7 +207,7 @@ void CollisionDetector::addCollisionsBetween(Entity* e1, Entity* e2, std::vector
 		{
 			oldStatus = std::max(xCol, yCol);
 			CollisionEvent* ev = new CollisionEvent(e1, e2, timeLeft-time);
-			events->push_back(ev);
+			addEvent(events, ev);
 		}
 	}
 }

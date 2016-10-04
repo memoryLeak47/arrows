@@ -119,8 +119,11 @@ void GameInterface::tickPhysics()
 		{
 			eventTime = events[0]->getTimeUntilFrameEnds();
 		}
+
+		// suche ersten Zeitpunkt, um dann zu ihm zu gehen
 		TimeStruct first = TimeStruct::getFirst({CHECK, getNextCheckTime(timeLeft)}, {END, 0}, {EVENT, eventTime});
-		moveAllEntities(timeLeft - first.time);
+		moveAllEntities(timeLeft - first.time); // bewege die Entities um die Zeitänderung
+		timeLeft = first.time;
 		switch (first.id)
 		{
 			case CHECK:
@@ -157,7 +160,6 @@ void GameInterface::tickPhysics()
 				events.erase(events.begin());
 				delete x;
 		}
-		timeLeft = first.time;
 
 		if (c++ > LOOP_LIMIT)
 		{
