@@ -4,7 +4,7 @@
 
 const float STEPSIZE = 0.01f; // Schrittweite bei der CollisionPoint suche
 
-bool CollisionTester::areColliding(Entity* e1, Entity* e2, float borderAddition, GameVector* p)
+bool CollisionTester::areColliding(Entity* e1, Entity* e2, GameVector* p)
 {
 	// TODO
 	GameRect intersectionRect = GameRect::getIntersectionRect(e1->getBody()->getWrapper(0), e2->getBody()->getWrapper(0));

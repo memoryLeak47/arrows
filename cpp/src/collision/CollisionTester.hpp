@@ -9,7 +9,7 @@ class GameVector;
 class CollisionTester
 {
 	public:
-		static bool areColliding(Entity*, Entity*, float borderAddition=0, GameVector* point = NULL);
+		static bool areColliding(Entity*, Entity*, GameVector* point = NULL);
 		static bool areWrapperColliding(Entity*, Entity*);
 };
 

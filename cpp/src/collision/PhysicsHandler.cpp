@@ -140,13 +140,6 @@ void handleRecursive(Entity* e1)
 void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2)
 {
 	Debug::funcOn("PhysicsHandler::handlePhysics(" + e1->toString() + ", " + e2->toString() + ")");
-
-	if (not CollisionTester::areColliding(e1, e2, 0.3f))
-	{
-		Debug::warn("PhysicsHandler::handlePhysics(): collision test fails:\n\t" + e1->toString() + "\n\t" + e2->toString());
-	}
-
-	handleRecursive(e1);
-
+	Debug::warn("PhysicsHandler::handlePhysics(): TODO");
 	Debug::funcOff("PhysicsHandler::handlePhysics(" + e1->toString() + ", " + e2->toString() + ")");
 }
