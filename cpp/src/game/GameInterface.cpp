@@ -144,9 +144,7 @@ void GameInterface::tickPhysics()
 				events[0]->getEntity1()->setChanged(true);
 				events[0]->getEntity2()->setChanged(true);
 
-				auto x = events[0];
-				events.erase(events.begin());
-				delete x;
+				removeEventsBetween(events[0]->getEntity1(), events[0]->getEntity2(), &events);
 		}
 
 		if (c++ > LOOP_LIMIT)
@@ -255,9 +253,13 @@ void GameInterface::removeEventsBetween(Entity* e1, Entity* e2, std::vector<Coll
 {
 	for (unsigned int i = 0; i < events->size(); i++)
 	{
-		if (((events->at(i)->getEntity1() == e1) && (events->at(i)->getEntity2() == e2)) || ((events->at(i)->getEntity1() == e2) && (events->at(i)->getEntity2() == e1)))
+		Entity* f1 = events->at(i)->getEntity1();
+		Entity* f2 = events->at(i)->getEntity2();
+		if ((f1 == e1 and f2 == e2) or (f1 == e2 and f2 == e1))
 		{
-			events->erase(events->begin() + i);
+			CollisionEvent* event = events->at(i);
+			events->erase(events->begin() + i--);
+			delete event;
 		}
 	}
 }
