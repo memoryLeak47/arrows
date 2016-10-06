@@ -2,7 +2,7 @@
 
 #include <math/game/GameRect.hpp>
 
-const float STEPSIZE = 0.01f; // Schrittweite bei der CollisionPoint suche
+const float STEPSIZE = 0.05f; // Schrittweite bei der CollisionPoint suche
 
 bool CollisionTester::areColliding(Entity* e1, Entity* e2, GameVector* p)
 {

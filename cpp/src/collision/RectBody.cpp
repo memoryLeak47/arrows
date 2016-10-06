@@ -47,9 +47,9 @@ bool RectBody::isCollidingPoint(const GameVector& point) const
 {
 	if (isEven())
 	{
-		if ((point.x > getLeft()) && (point.x < getRight()))
+		if ((point.x >= getLeft()) && (point.x <= getRight()))
 		{
-			if ((point.y > getTop()) && (point.y < getBot()))
+			if ((point.y >= getTop()) && (point.y <= getBot()))
 			{
 				return true;
 			}
