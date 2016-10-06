@@ -5,6 +5,9 @@
 
 #include <misc/Debug.hpp>
 
+static const float RANGE = 0.1f;
+static const float IMPULSE = 0.01f;
+
 RectBody::RectBody(const GameVector& pos, const GameVector& size, const GameVector& speed, bool isRot, float rot, float spin)
 	: Body(isRot), position(pos), size(size), speed(speed), rotation(rot), spin(spin)
 {}
@@ -204,23 +207,87 @@ GameVector RectBody::getSpeedAt(const GameVector& where) const // where is a map
 	}
 }
 
-void RectBody::reactToCollision(float massshare, const GameVector& speed, const GameVector& collisionPoint)
+void RectBody::reactToCollision(float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint)
 {
 	if (isEven())
 	{
-		GameVector ch = (speed - getSpeed()) * (1.f-massshare);
-		if (std::abs(collisionPoint.x - getPosition().x) > std::abs(collisionPoint.y - getPosition().y))
+		enum Pos { MIN, MID, MAX };
+
+		Pos x, y;
+		// set x
+		if (collisionPoint.x > getLeft() + RANGE)
 		{
-			// if collision is on right/left
-			ch.y = 0.f;
+			if ((collisionPoint.x < getRight() - RANGE))
+			{
+				x = MID;
+			}
+			else
+			{
+				x = MAX;
+			}
 		}
 		else
 		{
-			// if collision is on top/bot
-			ch.x = 0.f;
+			x = MIN;
 		}
-		GameVector res = getSpeed() + ch;
-		setSpeed(res);
+
+		// set y
+		if (collisionPoint.y > getTop() + RANGE)
+		{
+			if ((collisionPoint.y < getBot() - RANGE))
+			{
+				y = MID;
+			}
+			else
+			{
+				y = MAX;
+			}
+		}
+		else
+		{
+			y = MIN;
+		}
+
+		// react
+		if ((x == MID) && (y == MID))
+		{
+			// Move Out
+			if (collisionPoint.x < position.x) // move right
+				speed.x = std::max(IMPULSE, speed.x);
+			else
+				speed.x = std::min(-IMPULSE, speed.x);
+
+			if (collisionPoint.y < position.y)
+				speed.y = std::max(IMPULSE, speed.y);
+			else
+				speed.y = std::min(-IMPULSE, speed.y);
+		}
+		else if (x == MID)
+		{
+			if (y == MIN)
+			{
+				// Move Down
+				speed.y = std::max(IMPULSE, speed.y);
+			}
+			else
+			{
+				// Move Up
+				speed.y = std::min(-IMPULSE, speed.y);
+			}
+		}
+		else if (y == MID)
+		{
+			if (x == MIN)
+			{
+				// Move Right
+				speed.x = std::max(IMPULSE, speed.x);
+			}
+			else
+			{
+				// Move Left
+				speed.x = std::min(-IMPULSE, speed.x);
+			}
+ 		}
 	}
 	else
 	{
