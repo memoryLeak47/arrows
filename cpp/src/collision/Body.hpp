@@ -62,6 +62,7 @@ class Body
 
 		virtual void setSpeedAt(const GameVector&, const GameVector& where) = 0; // where is a map-coordinate
 		virtual GameVector getSpeedAt(const GameVector& where) const; // where is a map-coordinate
+		virtual void reactToCollision(float massshare, const GameVector& speed, const GameVector& collisionPoint) = 0;
 	private:
 		bool rotateable;
 };

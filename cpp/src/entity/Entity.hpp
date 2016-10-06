@@ -68,6 +68,7 @@ class Entity
 		// physics
 		virtual float getMass() const = 0;
 		virtual bool isStatic() const { return false; }
+		void reactToCollision(float massshare, const GameVector& speed, const GameVector& collisionPoint);
 
 		// collisionPartner / WrapperPartners
 		virtual void addCollisionPartner(Entity*);

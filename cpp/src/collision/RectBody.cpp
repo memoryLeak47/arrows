@@ -203,3 +203,15 @@ GameVector RectBody::getSpeedAt(const GameVector& where) const // where is a map
 		return Body::getSpeedAt(where);
 	}
 }
+
+void RectBody::reactToCollision(float massshare, const GameVector& speed, const GameVector& collisionPoint)
+{
+	if (isEven())
+	{
+		Debug::warn("RectBody::reactToCollision(): TODO");
+	}
+	else
+	{
+		Debug::warn("RectBody::reactToCollision(): not Even TODO");
+	}
+}

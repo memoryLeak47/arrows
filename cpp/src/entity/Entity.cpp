@@ -116,7 +116,8 @@ void Entity::checkWrapperPartners()
 		Entity* p = wrapperPartners[i];
 		if (CollisionTester::areWrapperColliding(this, p))
 		{
-			if (CollisionTester::areColliding(this, p))
+			GameVector collisionPoint(0,0);
+			if (CollisionTester::areColliding(this, p, &collisionPoint))
 			{
 				if (not Entity::areCollisionPartners(this, p))
 				{
@@ -124,7 +125,7 @@ void Entity::checkWrapperPartners()
 					p->addCollisionPartner(this);
 					// TODO throw enter event
 				}
-				PhysicsHandler::handlePhysics(this, p);
+				PhysicsHandler::handlePhysics(this, p, collisionPoint);
 
 				this->setChanged(true);
 				p->setChanged(true);
@@ -150,6 +151,13 @@ void Entity::checkWrapperPartners()
 CollisionType Entity::getCollisionType() const
 {
 	return CollisionType::SOLID;
+}
+
+// die Parameter beziehen sich auf die Entity mit der kollidiert wird, am collisionPoint
+void Entity::reactToCollision(float massshare, const GameVector& speed, const GameVector& collisionPoint)
+{
+	if (not isStatic())
+		body->reactToCollision(massshare, speed, collisionPoint);
 }
 
 void Entity::optGravity()
