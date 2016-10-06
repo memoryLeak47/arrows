@@ -208,7 +208,19 @@ void RectBody::reactToCollision(float massshare, const GameVector& speed, const 
 {
 	if (isEven())
 	{
-		Debug::warn("RectBody::reactToCollision(): TODO");
+		GameVector ch = (speed - getSpeed()) * (1.f-massshare);
+		if (std::abs(collisionPoint.x - getPosition().x) > std::abs(collisionPoint.y - getPosition().y))
+		{
+			// if collision is on right/left
+			ch.y = 0.f;
+		}
+		else
+		{
+			// if collision is on top/bot
+			ch.x = 0.f;
+		}
+		GameVector res = getSpeed() + ch;
+		setSpeed(res);
 	}
 	else
 	{
