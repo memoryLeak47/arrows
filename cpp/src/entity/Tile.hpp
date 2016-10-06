@@ -22,7 +22,6 @@ class Tile : public Entity
 		virtual float getMass() const override;
 		virtual void addCollisionPartner(Entity*) override;
 		virtual void removeCollisionPartner(Entity*) override;
-		virtual std::pair<float, GameVector> getBackingAndMomentum(GameVector escapeVector, const std::vector<GameVector> &points) override;
 
 		static Tile* createByColorID(const int, const GameVector&);
 };

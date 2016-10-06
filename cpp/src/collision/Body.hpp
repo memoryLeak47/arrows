@@ -22,10 +22,7 @@
 
 #include <misc/Global.hpp>
 
-enum BodyType
-{
-	RECT, CIRCLE
-};
+enum BodyType { RECT, CIRCLE, ROTRECT };
 
 class GameRect;
 class GameVector;
@@ -34,7 +31,7 @@ class Body
 {
 	public:
 		// Konstruktor/Destruktor
-		Body(bool isRot);
+		Body();
 		virtual ~Body() {}
 		virtual BodyType getBodyType() const = 0;
 
@@ -63,8 +60,6 @@ class Body
 		virtual void setSpeedAt(const GameVector&, const GameVector& where) = 0; // where is a map-coordinate
 		virtual GameVector getSpeedAt(const GameVector& where) const; // where is a map-coordinate
 		virtual void reactToCollision(float massshare, const GameVector& speed, const GameVector& collisionPoint) = 0;
-	private:
-		bool rotateable;
 };
 
 #include <math/game/GameRect.hpp>

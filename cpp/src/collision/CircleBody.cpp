@@ -5,8 +5,8 @@
 
 #include <misc/Debug.hpp>
 
-CircleBody::CircleBody(const GameVector& position, float radius, const GameVector& speed, bool isRot, float rotation, float spin)
-	: Body(isRot), position(position), speed(speed), rotation(rotation), radius(radius), spin(spin)
+CircleBody::CircleBody(const GameVector& position, float radius, const GameVector& speed, float rotation, float spin)
+	: position(position), speed(speed), rotation(rotation), radius(radius), spin(spin)
 {}
 
 BodyType CircleBody::getBodyType() const

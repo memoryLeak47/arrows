@@ -170,29 +170,6 @@ void Entity::optDrag()
 	push(body->getSpeed() * -0.01f);
 }
 
-std::pair<float, GameVector> Entity::getBackingAndMomentum(GameVector escapeVector, const std::vector<GameVector> &points)
-{
-	float backing = getMass();
-	GameVector momentum = getSpeed() * backing;
-	for (auto partner : getCollisionPartners())
-	{
-		if (GameVector::getScalarProduct(escapeVector, getSpeed() - partner->getSpeed()) > 0)
-		{
-			std::vector<GameVector> collisionPoints = PhysicsHandler::getCollisionPoints(this, partner);
-			GameVector escVec = PhysicsHandler::getEscapeVector(this, collisionPoints);
-
-			if (GameVector::getScalarProduct(escapeVector, escVec) > 0)
-			{
-				std::pair<float, GameVector> pair = partner->getBackingAndMomentum(escapeVector, collisionPoints);
-
-				backing += pair.first;
-				momentum += pair.second;
-			}
-		}
-	}
-	return std::pair<float, GameVector>(backing, momentum);
-}
-
 void Entity::addCollisionPartner(Entity* e)
 {
 	if (e == this)

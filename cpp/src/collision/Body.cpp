@@ -4,8 +4,7 @@
 
 #include <math.h>
 
-Body::Body(bool isRot)
-	: rotateable(isRot)
+Body::Body()
 {}
 
 void Body::move(float time)

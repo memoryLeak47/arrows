@@ -80,8 +80,3 @@ float Tile::getMass() const
 {
 	return INFINITY;
 }
-
-std::pair<float, GameVector> Tile::getBackingAndMomentum(GameVector escapeVector, const std::vector<GameVector> &points)
-{
-	return std::pair<float, GameVector>(getMass(), GameVector(0,0));
-}

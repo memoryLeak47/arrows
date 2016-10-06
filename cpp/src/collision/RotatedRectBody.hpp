@@ -1,13 +1,13 @@
-#ifndef __RECTBODY_CLASS__
-#define __RECTBODY_CLASS__
+#ifndef __ROTATEDECTBODY_CLASS__
+#define __ROTATEDECTBODY_CLASS__
 
 #include "Body.hpp"
 
-class RectBody : public Body
+class RotatedRectBody : public Body
 {
 	public:
-		RectBody(const GameVector& pos, const GameVector& size =GameVector(1, 1), const GameVector& speed =GameVector(0, 0));
-		virtual ~RectBody() {}
+		RotatedRectBody(const GameVector& pos, const GameVector& size =GameVector(1, 1), const GameVector& speed =GameVector(0, 0), float rot=0, float spin=0);
+		virtual ~RotatedRectBody() {}
 		virtual BodyType getBodyType() const override;
 
 		virtual GameRect getWrapper(float timeLeft) const override;
@@ -39,6 +39,8 @@ class RectBody : public Body
 		GameVector position;
 		GameVector size;
 		GameVector speed;
+		float rotation;
+		float spin;
 };
 
 #endif

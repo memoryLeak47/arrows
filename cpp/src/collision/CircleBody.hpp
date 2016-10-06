@@ -8,7 +8,7 @@ class RectBody;
 class CircleBody : public Body
 {
 	public:
-		CircleBody(const GameVector& pos, float rad, const GameVector& speed=GameVector(0,0), bool isRot=false, float rot=0.f, float spin=0.f);
+		CircleBody(const GameVector& pos, float rad, const GameVector& speed=GameVector(0,0), float rot=0.f, float spin=0.f);
 		virtual ~CircleBody() {}
 		virtual BodyType getBodyType() const override;
 
