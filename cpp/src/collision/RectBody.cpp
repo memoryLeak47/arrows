@@ -5,7 +5,7 @@
 
 #include <misc/Debug.hpp>
 
-static const float RANGE = 0.1f;
+static const float RANGE = 0.08f;
 static const float IMPULSE = 0.01f;
 
 RectBody::RectBody(const GameVector& pos, const GameVector& size, const GameVector& speed)
@@ -173,26 +173,26 @@ void RectBody::reactToCollision(float massshare, const GameVector& otherSpeed, c
 	{
 		// Move Out
 		if (collisionPoint.x < position.x) // move right
-			speed.x = std::max(IMPULSE, speed.x);
+			speed.x = std::max(2*IMPULSE + otherSpeed.x, speed.x);
 		else
-			speed.x = std::min(-IMPULSE, speed.x);
+			speed.x = std::min(-2*IMPULSE + otherSpeed.x, speed.x);
 
 		if (collisionPoint.y < position.y)
-			speed.y = std::max(IMPULSE, speed.y);
+			speed.y = std::max(2*IMPULSE + otherSpeed.y, speed.y);
 		else
-			speed.y = std::min(-IMPULSE, speed.y);
+			speed.y = std::min(-2*IMPULSE + otherSpeed.y, speed.y);
 	}
 	else if (x == MID)
 	{
 		if (y == MIN)
 		{
 			// Move Down
-			speed.y = std::max(IMPULSE, speed.y);
+			speed.y = std::max(IMPULSE + otherSpeed.y, speed.y);
 		}
 		else
 		{
 			// Move Up
-			speed.y = std::min(-IMPULSE, speed.y);
+			speed.y = std::min(-IMPULSE + otherSpeed.y, speed.y);
 		}
 	}
 	else if (y == MID)
@@ -200,12 +200,12 @@ void RectBody::reactToCollision(float massshare, const GameVector& otherSpeed, c
 		if (x == MIN)
 		{
 			// Move Right
-			speed.x = std::max(IMPULSE, speed.x);
+			speed.x = std::max(IMPULSE + otherSpeed.x, speed.x);
 		}
 		else
 		{
 			// Move Left
-			speed.x = std::min(-IMPULSE, speed.x);
+			speed.x = std::min(-IMPULSE + otherSpeed.x, speed.x);
 		}
 	}
 }
