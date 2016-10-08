@@ -16,5 +16,5 @@ void ServerGameInterface::handlePacket(Packet*, sf::IpAddress*)
 
 GamePlayer* ServerGameInterface::getLocalPlayer() const
 {
-	return dynamic_cast<GamePlayer*>(mobs[0]);
+	return players[0];
 }

@@ -17,8 +17,7 @@ GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>&
 	tileMap = new GameTileMap(map);
 	for (unsigned int i = 0; i < lobbyPlayers.size(); i++)
 	{
-		Debug::warn("GameInterface::GameInterface(): players in mobs?");
-		mobs.push_back(Avatar::get(lobbyPlayers[i]->getAvatarUserPacket()->getAvatarID())->createGamePlayer(getGameTileMap()->teamToSpawnPosition(lobbyPlayers[i]->getTeamUserPacket()->getTeam()), lobbyPlayers[i]));
+		players.push_back(Avatar::get(lobbyPlayers[i]->getAvatarUserPacket()->getAvatarID())->createGamePlayer(getGameTileMap()->teamToSpawnPosition(lobbyPlayers[i]->getTeamUserPacket()->getTeam()), lobbyPlayers[i]));
 	}
 
 	mobs.push_back(new TestKiste(GameVector(7.5f, 4.5f)));
@@ -28,6 +27,7 @@ GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>&
 GameInterface::~GameInterface()
 {
 	delete tileMap;
+	deleteAndClearVector(players);
 	deleteAndClearVector(mobs);
 	deleteAndClearVector(tiles);
 	deleteAndClearVector(bullets);
@@ -281,6 +281,11 @@ void GameInterface::renderMap() const
 
 void GameInterface::renderBars() const
 {
+	for (unsigned int i = 0; i < players.size(); i++)
+	{
+		players[i]->renderBar(getView());
+	}
+
 	for (unsigned int i = 0; i < mobs.size(); i++)
 	{
 		mobs[i]->renderBar(getView());
@@ -289,6 +294,10 @@ void GameInterface::renderBars() const
 
 void GameInterface::renderEntities() const
 {
+	for (unsigned int i = 0; i < players.size(); i++)
+	{
+		players[i]->render(getView());
+	}
 	for (unsigned int i = 0; i < mobs.size(); i++)
 	{
 		mobs[i]->render(getView());
@@ -311,22 +320,30 @@ const View& GameInterface::getView() const
 
 Entity* GameInterface::getDynamicEntity(unsigned int id)
 {
-	if (id >= mobs.size())
+	if (id >= players.size())
 	{
-		id -= mobs.size();
-		if (id >= bullets.size())
+		id -= players.size();
+		if (id >= mobs.size())
 		{
-			// id -= bullets.size();
-			// return dynamictiles[id];
+			id -= mobs.size();
+			if (id >= bullets.size())
+			{
+				// id -= bullets.size();
+				// return dynamictiles[id];
+			}
+			else
+			{
+				return bullets[id];
+			}
 		}
 		else
 		{
-			return bullets[id];
+			return mobs[id];
 		}
 	}
 	else
 	{
-		return mobs[id];
+		return players[id];
 	}
 	Debug::error("GameInterface::getDynamicEntity(" + Converter::intToString(id) + "): id kinda out of range");
 	return NULL;
@@ -334,5 +351,5 @@ Entity* GameInterface::getDynamicEntity(unsigned int id)
 
 unsigned int GameInterface::getDynamicEntityAmount()
 {
-	return mobs.size() + bullets.size();
+	return mobs.size() + bullets.size() + players.size();
 }

@@ -10,6 +10,7 @@
 
 class LobbyTileMap;
 class LobbyPlayer;
+class GamePlayer;
 class Mob;
 class Tile;
 class Bullet;
@@ -25,6 +26,7 @@ class GameInterface : public Menu, public NetworkInterface
 		virtual void render() const override;
 	protected:
 		virtual GamePlayer* getLocalPlayer() const = 0;
+		std::vector<GamePlayer*> players;
 		std::vector<Mob*> mobs;
 		std::vector<Tile*> tiles;
 		std::vector<Bullet*> bullets;
@@ -56,6 +58,7 @@ class GameInterface : public Menu, public NetworkInterface
 
 #include <tile/map/LobbyTileMap.hpp>
 #include <player/LobbyPlayer.hpp>
+#include <player/GamePlayer.hpp>
 #include <entity/Mob.hpp>
 #include <entity/Tile.hpp>
 #include <entity/Bullet.hpp>
