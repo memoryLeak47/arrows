@@ -26,6 +26,8 @@ class GameInterface : public Menu, public NetworkInterface
 		virtual void render() const override;
 	protected:
 		virtual GamePlayer* getLocalPlayer() const = 0;
+		int ipToID(sf::IpAddress*) const;
+
 		std::vector<GamePlayer*> players;
 		std::vector<Mob*> mobs;
 		std::vector<Tile*> tiles;
@@ -64,5 +66,6 @@ class GameInterface : public Menu, public NetworkInterface
 #include <entity/Bullet.hpp>
 #include <collision/CollisionEvent.hpp>
 #include <player/GamePlayer.hpp>
+#include <network/packets/ActionsUpdatePacket.hpp>
 
 #endif

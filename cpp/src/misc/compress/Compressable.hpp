@@ -26,6 +26,7 @@
 #define TEAM_CID ((CID)119)
 #define TEAM_USER_PACKET_CID ((CID)120)
 #define USER_PACKET_WITH_ID_CID ((CID)121)
+#define ACTIONS_UPDATE_PACKET_CID ((CID)122)
 
 #include <string>
 #include <vector>

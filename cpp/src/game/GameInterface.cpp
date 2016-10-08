@@ -42,6 +42,19 @@ void GameInterface::tick()
 	tickPhysics();
 }
 
+int GameInterface::ipToID(sf::IpAddress* ip) const
+{
+	for (unsigned int i = 0; i < players.size(); i++)
+	{
+		if ((*players[i]->getIP()) == *ip)
+		{
+			return i;
+		}
+	}
+	Debug::error("GameInterface::ipToID(): failed");
+	return -1;
+}
+
 void GameInterface::controlLocalPlayer()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))

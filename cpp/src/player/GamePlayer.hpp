@@ -24,6 +24,7 @@ class GamePlayer : public Mob
 		GamePlayer(Body*, const LobbyPlayer*);
 		~GamePlayer();
 		virtual void renderBar(const View&) const override;
+		sf::IpAddress* getIP() const;
 	private:
 		void setActions(const Actions actions); // Setzt Actions auf das übergebene
 		bool updateActions();
@@ -36,7 +37,8 @@ class GamePlayer : public Mob
 		std::vector<Skill*> skills;
 		std::vector<Item*> items;
 		void setIP(sf::IpAddress*);
-	friend class GameInterface;
+	friend class ServerGameInterface;
+	friend class ClientGameInterface;
 };
 
 #include "LobbyPlayer.hpp"

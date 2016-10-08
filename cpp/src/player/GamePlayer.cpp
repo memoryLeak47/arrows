@@ -41,6 +41,11 @@ void GamePlayer::renderBar(const View&) const
 	// TODO
 }
 
+sf::IpAddress* GamePlayer::getIP() const
+{
+	return ip;
+}
+
 void GamePlayer::setActions(const Actions actions) // Setzt Actions auf das übergebene
 {
 	getController()->setActions(actions);
