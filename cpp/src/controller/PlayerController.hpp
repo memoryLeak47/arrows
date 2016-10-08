@@ -5,6 +5,8 @@
 
 class PlayerController : public Controller
 {
+	public:
+		virtual ~PlayerController() {}
 	private:
 		virtual bool updateActions() override;
 	friend class GameInterface;

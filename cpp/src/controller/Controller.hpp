@@ -11,6 +11,7 @@ typedef char Actions;
 class Controller
 {
 	public:
+		virtual ~Controller() {}
 		Actions getActions() const;
 	protected:
 		bool getAction(Action) const;
