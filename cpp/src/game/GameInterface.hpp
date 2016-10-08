@@ -67,6 +67,7 @@ class GameInterface : public Menu, public NetworkInterface
 #include <entity/Bullet.hpp>
 #include <collision/CollisionEvent.hpp>
 #include <player/GamePlayer.hpp>
-#include <network/packets/ActionsUpdatePacket.hpp>
+#include <network/packets/ActionsUpdateUserPacket.hpp>
+#include <network/packets/UserPacketWithID.hpp>
 
 #endif

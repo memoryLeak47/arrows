@@ -11,7 +11,7 @@
 #include <network/packets/LobbyPlayersPacket.hpp>
 #include <network/packets/MapPacket.hpp>
 #include <network/packets/UserPacketWithID.hpp>
-#include <network/packets/ActionsUpdatePacket.hpp>
+#include <network/packets/ActionsUpdateUserPacket.hpp>
 #include <player/LobbyPlayer.hpp>
 
 CompressBuffer::CompressBuffer(const std::string& s)
@@ -121,8 +121,8 @@ void* CompressBuffer::cutByCID(CID cid)
 			return new TeamUserPacket(this);
 		case USER_PACKET_WITH_ID_CID:
 			return new UserPacketWithID(this);
-		case ACTIONS_UPDATE_PACKET_CID:
-			return new ActionsUpdatePacket(this);
+		case ACTIONS_UPDATE_USER_PACKET_CID:
+			return new ActionsUpdateUserPacket(this);
 		default:
 			Debug::warn("no Compressable with cid " + Converter::intToString((int)cid));
 			return NULL;

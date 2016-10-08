@@ -13,9 +13,9 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 {
 	switch (packet->getCID())
 	{
-		case ACTIONS_UPDATE_PACKET_CID:
+		case ACTIONS_UPDATE_USER_PACKET_CID:
 		{
-			ActionsUpdatePacket* actionsPacket = dynamic_cast<ActionsUpdatePacket*>(packet);
+			ActionsUpdateUserPacket* actionsPacket = dynamic_cast<ActionsUpdateUserPacket*>(packet);
 			int id = ipToID(ip);
 			players[id]->setActions(actionsPacket->getActions());
 			updateOtherGamersExceptFor(id);
@@ -34,17 +34,18 @@ GamePlayer* ServerGameInterface::getLocalPlayer() const
 
 void ServerGameInterface::updateOtherGamers()
 {
-	Packet* packet = new ActionsUpdatePacket(getLocalPlayer()->getActions());
+	UserPacketWithID* packet = new UserPacketWithID(new ActionsUpdateUserPacket(getLocalPlayer()->getActions()), 0);
 	for (unsigned int i = 1 /* player ignores itself ... sad */; i < players.size(); ++i)
 	{
 		send(packet, players[i]->getIP());
 	}
+	delete packet->getPacket();
 	delete packet;
 }
 
 void ServerGameInterface::updateOtherGamersExceptFor(int id)
 {
-	Packet* packet = new ActionsUpdatePacket(players[id]->getActions());
+	UserPacketWithID* packet = new UserPacketWithID(new ActionsUpdateUserPacket(players[id]->getActions()), id);
 	for (unsigned int i = 1 /* player ignores itself ... sad */; i < players.size(); ++i)
 	{
 		if (i != (unsigned int) id)
@@ -52,5 +53,6 @@ void ServerGameInterface::updateOtherGamersExceptFor(int id)
 			send(packet, players[i]->getIP());
 		}
 	}
+	delete packet->getPacket();
 	delete packet;
 }

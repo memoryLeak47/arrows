@@ -15,13 +15,26 @@ ClientGameInterface::~ClientGameInterface()
 
 void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 {
-	// should be an ActionsUpdatePacket
+	// should be an ActionsUpdateUserPacket
 	switch (packet->getCID())
 	{
-		case ACTIONS_UPDATE_PACKET_CID:
+		case USER_PACKET_WITH_ID_CID:
 		{
-			ActionsUpdatePacket* actionsPacket = dynamic_cast<ActionsUpdatePacket*>(packet);
-			players[ipToID(ipAddress)]->setActions(actionsPacket->getActions());
+			
+			UserPacketWithID* packetWithID = dynamic_cast<UserPacketWithID*>(packet);
+			switch (packetWithID->getPacket()->getCID())
+			{
+				case ACTIONS_UPDATE_USER_PACKET_CID:
+				{
+					ActionsUpdateUserPacket* actionsPacket = dynamic_cast<ActionsUpdateUserPacket*>(packetWithID->getPacket());
+					players[packetWithID->getID()]->setActions(actionsPacket->getActions());
+					break;
+				}
+				default:
+				{
+					Debug::error("ClientGameInterface::handlePacket(): UserPacketWithID with unknown UserPacket with CID=" + Converter::intToString((int) packetWithID->getPacket()->getCID()));
+				}
+			}
 			break;
 		}
 		default:
@@ -38,7 +51,7 @@ GamePlayer* ClientGameInterface::getLocalPlayer() const
 
 void ClientGameInterface::updateOtherGamers()
 {
-	Packet* packet = new ActionsUpdatePacket(getLocalPlayer()->getActions());
+	Packet* packet = new ActionsUpdateUserPacket(getLocalPlayer()->getActions());
 	send(packet, serverIP);
 	delete packet;
 }

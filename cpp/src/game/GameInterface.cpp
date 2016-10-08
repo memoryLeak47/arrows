@@ -52,10 +52,15 @@ int GameInterface::ipToID(sf::IpAddress* ip) const
 
 	for (unsigned int i = 0; i < players.size(); i++)
 	{
+		if (players[i]->getIP() == NULL)
+		{
+			Debug::error("GameInterface::ipToID(): ip of player(" + Converter::intToString(i) + ") is NULL");
+		}
+
 		if (players[i] == getLocalPlayer())
 			continue;
 
-		if ((*players[i]->getIP()) == *ip)
+		if (*players[i]->getIP() == *ip)
 		{
 			return i;
 		}
