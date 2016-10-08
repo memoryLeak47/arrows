@@ -38,6 +38,7 @@ void GameInterface::tick()
 	Debug::tickConsole();
 	Menu::tick();
 	NetworkInterface::handleAllPackets();
+	controlLocalPlayer();
 	tickEntities();
 	tickPhysics();
 }
@@ -57,23 +58,9 @@ int GameInterface::ipToID(sf::IpAddress* ip) const
 
 void GameInterface::controlLocalPlayer()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	if (getLocalPlayer()->updateActions())
 	{
-		getLocalPlayer()->actionGoLeft();
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	{
-		getLocalPlayer()->actionGoRight();
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-	{
-		getLocalPlayer()->actionJump();
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::O))
-	{
-		view.setEntity(getLocalPlayer()); // TODO NOT NICE OF YOU ..
-		view.changeFocus();
+		updateOtherGamers();
 	}
 }
 

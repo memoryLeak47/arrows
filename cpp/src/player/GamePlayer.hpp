@@ -23,6 +23,7 @@ class GamePlayer : public Mob
 	public:
 		GamePlayer(Body*, const LobbyPlayer*);
 		~GamePlayer();
+		Actions getActions() const;
 		virtual void renderBar(const View&) const override;
 		sf::IpAddress* getIP() const;
 	private:
@@ -37,6 +38,8 @@ class GamePlayer : public Mob
 		std::vector<Skill*> skills;
 		std::vector<Item*> items;
 		void setIP(sf::IpAddress*);
+
+	friend class GameInterface;
 	friend class ServerGameInterface;
 	friend class ClientGameInterface;
 };

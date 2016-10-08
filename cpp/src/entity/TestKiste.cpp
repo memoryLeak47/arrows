@@ -1,7 +1,7 @@
 #include "TestKiste.hpp"
 
 TestKiste::TestKiste(const GameVector& position)
-	: Mob(new RectBody(position, GameVector(0.7f, 0.5f)))
+	: Mob(new RectBody(position, GameVector(0.7f, 0.5f)), NULL)
 {}
 
 void TestKiste::renderBar(const View&) const

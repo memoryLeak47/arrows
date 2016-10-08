@@ -13,6 +13,7 @@ class ClientGameInterface : public GameInterface
 		void handlePacket(Packet*, sf::IpAddress*) override;
 	protected:
 		virtual GamePlayer* getLocalPlayer() const override;
+		virtual void updateOtherGamers() override;
 	private:
 		sf::IpAddress* serverIP;
 		unsigned int localPlayerID;

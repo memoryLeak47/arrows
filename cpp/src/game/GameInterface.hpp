@@ -25,8 +25,9 @@ class GameInterface : public Menu, public NetworkInterface
 		virtual void tick() override;
 		virtual void render() const override;
 	protected:
-		virtual GamePlayer* getLocalPlayer() const = 0;
 		int ipToID(sf::IpAddress*) const;
+		virtual GamePlayer* getLocalPlayer() const = 0;
+		virtual void updateOtherGamers() = 0;
 
 		std::vector<GamePlayer*> players;
 		std::vector<Mob*> mobs;

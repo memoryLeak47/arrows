@@ -3,9 +3,10 @@
 #include <misc/Debug.hpp>
 #include <collision/RectBody.hpp>
 #include <misc/Converter.hpp>
+#include <controller/PlayerController.hpp>
 
 GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
-	: Mob(body),
+	: Mob(body, new PlayerController()),
 	  name(player->getLoginUserPacket()->getName()),
 	  rank(player->getLoginUserPacket()->getRank()),
 	  avatar(Avatar::get(player->getAvatarUserPacket()->getAvatarID()))
@@ -36,6 +37,11 @@ GamePlayer::~GamePlayer()
 	delete ip;
 }
 
+Actions GamePlayer::getActions() const
+{
+	return getController()->getActions();
+}
+
 void GamePlayer::renderBar(const View&) const
 {
 	// TODO
@@ -53,5 +59,9 @@ void GamePlayer::setActions(const Actions actions) // Setzt Actions auf das übe
 
 bool GamePlayer::updateActions()
 {
+	if (getController() == NULL)
+	{
+		Debug::error("GamePlayer::updateActions(): controller == NULL");
+	}
 	return getController()->updateActions();
 }

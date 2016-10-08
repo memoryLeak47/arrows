@@ -35,3 +35,10 @@ GamePlayer* ClientGameInterface::getLocalPlayer() const
 {
 	return players[localPlayerID];
 }
+
+void ClientGameInterface::updateOtherGamers()
+{
+	Packet* packet = new ActionsUpdatePacket(getLocalPlayer()->getActions());
+	send(packet, serverIP);
+	delete packet;
+}

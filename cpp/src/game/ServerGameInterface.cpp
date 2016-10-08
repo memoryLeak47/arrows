@@ -9,12 +9,48 @@ ServerGameInterface::ServerGameInterface(LobbyTileMap* map, const std::vector<Lo
 ServerGameInterface::~ServerGameInterface()
 {}
 
-void ServerGameInterface::handlePacket(Packet*, sf::IpAddress*)
+void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 {
-	Debug::warn("ServerGameInterface::handlePacket(): TODO");
+	switch (packet->getCID())
+	{
+		case ACTIONS_UPDATE_PACKET_CID:
+		{
+			ActionsUpdatePacket* actionsPacket = dynamic_cast<ActionsUpdatePacket*>(packet);
+			int id = ipToID(ip);
+			players[id]->setActions(actionsPacket->getActions());
+			updateOtherGamersExceptFor(id);
+		}
+		default:
+		{
+			Debug::error("ServerGameInterface::handlePacket(): whats that?");
+		}
+	}
 }
 
 GamePlayer* ServerGameInterface::getLocalPlayer() const
 {
 	return players[0];
+}
+
+void ServerGameInterface::updateOtherGamers()
+{
+	Packet* packet = new ActionsUpdatePacket(getLocalPlayer()->getActions());
+	for (unsigned int i = 1 /* player ignores itself ... sad */; i < players.size(); ++i)
+	{
+		send(packet, players[i]->getIP());
+	}
+	delete packet;
+}
+
+void ServerGameInterface::updateOtherGamersExceptFor(int id)
+{
+	Packet* packet = new ActionsUpdatePacket(players[id]->getActions());
+	for (unsigned int i = 1 /* player ignores itself ... sad */; i < players.size(); ++i)
+	{
+		if (i != (unsigned int) id)
+		{
+			send(packet, players[i]->getIP());
+		}
+	}
+	delete packet;
 }

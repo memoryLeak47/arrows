@@ -2,9 +2,14 @@
 
 #include <misc/Debug.hpp>
 
-Mob::Mob(Body* body)
-	: Entity(body)
+Mob::Mob(Body* body, Controller* controller)
+	: Entity(body), controller(controller)
 {}
+
+Mob::~Mob()
+{
+	delete controller;
+}
 
 EntityType Mob::getEntityType() const
 {
@@ -36,7 +41,7 @@ float Mob::getMaxXSpeed() const
 	return 0.3f;
 }
 
-Controller* Mob::getController()
+Controller* Mob::getController() const
 {
 	return controller;
 }

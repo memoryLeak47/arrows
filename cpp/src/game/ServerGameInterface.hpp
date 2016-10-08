@@ -13,6 +13,8 @@ class ServerGameInterface : public GameInterface
 		void handlePacket(Packet*, sf::IpAddress*) override;
 	protected:
 		virtual GamePlayer* getLocalPlayer() const override;
+		virtual void updateOtherGamers() override;
+		void updateOtherGamersExceptFor(int i);
 };
 
 #include <player/LobbyPlayer.hpp>
