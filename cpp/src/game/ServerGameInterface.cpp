@@ -19,11 +19,10 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 			int id = ipToID(ip);
 			players[id]->setActions(actionsPacket->getActions());
 			updateOtherGamersExceptFor(id);
+			break;
 		}
 		default:
-		{
 			Debug::error("ServerGameInterface::handlePacket(): unknown Packet with CID=" + Converter::intToString((int) packet->getCID()));
-		}
 	}
 }
 
