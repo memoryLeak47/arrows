@@ -20,7 +20,6 @@ void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 	{
 		case USER_PACKET_WITH_ID_CID:
 		{
-			
 			UserPacketWithID* packetWithID = dynamic_cast<UserPacketWithID*>(packet);
 			switch (packetWithID->getPacket()->getCID())
 			{

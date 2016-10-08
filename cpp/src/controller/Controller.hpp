@@ -17,7 +17,7 @@ class Controller
 	protected:
 		void setAction(Action, bool);
 	private:
-		void setActions(const Actions actions); // Setzt Actions auf das übergebene
+		void setActions(const Actions); // Setzt Actions auf das übergebene
 		virtual bool updateActions(); // schaut ob sich etwas verändert hat, und updated diese nach aktuellen Key-Status
 		Actions actions;
 	friend class GameInterface;

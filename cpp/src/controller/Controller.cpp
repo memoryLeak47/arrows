@@ -21,7 +21,7 @@ bool Controller::updateActions()
 	return false;
 }
 
-void Controller::setActions(const Actions actions)
+void Controller::setActions(const Actions acts)
 {
-	this->actions = actions;
+	this->actions = acts;
 }

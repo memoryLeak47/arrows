@@ -6,7 +6,7 @@ ActionsUpdateUserPacket::ActionsUpdateUserPacket(const Actions actions)
 
 ActionsUpdateUserPacket::ActionsUpdateUserPacket(CompressBuffer* buffer)
 {
-	actions = buffer->cutInt();
+	actions = buffer->cutChar();
 }
 
 std::string ActionsUpdateUserPacket::toString() const
