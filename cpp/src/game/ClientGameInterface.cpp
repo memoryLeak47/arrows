@@ -26,7 +26,7 @@ void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 		}
 		default:
 		{
-			Debug::error("ClientGameInterface::handlePacket(): unknownPacket");
+			Debug::error("ClientGameInterface::handlePacket(): unknown Packet with CID=" + Converter::intToString((int) packet->getCID()));
 		}
 	}
 }

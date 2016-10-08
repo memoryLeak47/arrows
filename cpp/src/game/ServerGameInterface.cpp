@@ -22,7 +22,7 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 		}
 		default:
 		{
-			Debug::error("ServerGameInterface::handlePacket(): whats that?");
+			Debug::error("ServerGameInterface::handlePacket(): unknown Packet with CID=" + Converter::intToString((int) packet->getCID()));
 		}
 	}
 }
