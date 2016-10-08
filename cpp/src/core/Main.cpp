@@ -25,8 +25,8 @@ Main::Main()
 	Skill::init();
 	Item::init();
 	GraphicsManager::init();
-	menuList = new MenuList();
 	networkDevice = new NetworkDevice();
+	menuList = new MenuList();
 	run();
 }
 
