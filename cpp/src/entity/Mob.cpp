@@ -35,3 +35,8 @@ float Mob::getMaxXSpeed() const
 {
 	return 0.3f;
 }
+
+Controller* Mob::getController()
+{
+	return controller;
+}

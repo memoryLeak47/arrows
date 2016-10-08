@@ -40,3 +40,13 @@ void GamePlayer::renderBar(const View&) const
 {
 	// TODO
 }
+
+void GamePlayer::setActions(const Actions actions) // Setzt Actions auf das übergebene
+{
+	getController()->setActions(actions);
+}
+
+bool GamePlayer::updateActions()
+{
+	return getController()->updateActions();
+}

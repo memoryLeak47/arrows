@@ -3,6 +3,8 @@
 
 #include "Entity.hpp"
 
+class Controller;
+
 class Mob : public Entity
 {
 	public:
@@ -16,6 +18,11 @@ class Mob : public Entity
 		virtual float getMass() const override;
 	protected:
 		virtual float getMaxXSpeed() const;
+		Controller* getController();
+	private:
+		Controller* controller;
 };
+
+#include <controller/Controller.hpp>
 
 #endif

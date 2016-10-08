@@ -1,12 +1,7 @@
 #include "PlayerController.hpp"
 
-void PlayerController::setAction(Action, bool)
+bool PlayerController::updateActions()
 {
-	Debug::warn("PlayerController::setAction(): TODO");
-}
-
-bool PlayerController::getAction(Action)
-{
-	Debug::warn("PlayerController::getAction(): TODO");
+	Debug::warn("PlayerController::updateActions(): TODO");
 	return false;
 }
