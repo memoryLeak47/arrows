@@ -45,8 +45,16 @@ void GameInterface::tick()
 
 int GameInterface::ipToID(sf::IpAddress* ip) const
 {
+	if (ip == NULL)
+	{
+		Debug::error("GameInterface::ipToID(): ip == NULL");
+	}
+
 	for (unsigned int i = 0; i < players.size(); i++)
 	{
+		if (players[i] == getLocalPlayer())
+			continue;
+
 		if ((*players[i]->getIP()) == *ip)
 		{
 			return i;
