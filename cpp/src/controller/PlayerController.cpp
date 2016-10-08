@@ -19,7 +19,5 @@ bool PlayerController::updateActions()
 		changed = true;
 	}
 
-	Debug::warn("PlayerController::updateActions(): TODO skills are missing");
-
 	return changed;
 }

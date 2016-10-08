@@ -11,6 +11,12 @@ Mob::~Mob()
 	delete controller;
 }
 
+void Mob::tick()
+{
+	Entity::tick();
+	applyActions();
+}
+
 EntityType Mob::getEntityType() const
 {
 	return EntityType::MOB;
@@ -44,4 +50,30 @@ float Mob::getMaxXSpeed() const
 Controller* Mob::getController() const
 {
 	return controller;
+}
+
+void Mob::applyActions()
+{
+	if (getController() == NULL)
+	{
+		return;
+	}
+
+	if (getController()->getAction(GO_LEFT))
+	{
+		actionGoLeft();
+	}
+	if (getController()->getAction(GO_RIGHT))
+	{
+		actionGoRight();
+	}
+	if (getController()->getAction(JUMP))
+	{
+		actionJump();
+	}
+
+	if (getController()->getAction(SKILL1)) Debug::warn("Mob::applyActions(): SKILL NOT SUPPORTED");
+	if (getController()->getAction(SKILL2)) Debug::warn("Mob::applyActions(): SKILL NOT SUPPORTED");
+	if (getController()->getAction(SKILL3)) Debug::warn("Mob::applyActions(): SKILL NOT SUPPORTED");
+	if (getController()->getAction(SKILL4)) Debug::warn("Mob::applyActions(): SKILL NOT SUPPORTED");
 }

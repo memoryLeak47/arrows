@@ -10,6 +10,7 @@ class Mob : public Entity
 	public:
 		Mob(Body*, Controller*);
 		virtual ~Mob();
+		virtual void tick() override;
 		virtual EntityType getEntityType() const override;
 		virtual void renderBar(const View&) const = 0;
 		virtual void actionGoLeft();
@@ -20,6 +21,8 @@ class Mob : public Entity
 		virtual float getMaxXSpeed() const;
 		Controller* getController() const;
 	private:
+		void applyActions();
+
 		Controller* controller;
 };
 

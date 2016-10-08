@@ -13,8 +13,8 @@ class Controller
 	public:
 		virtual ~Controller() {}
 		Actions getActions() const;
-	protected:
 		bool getAction(Action) const;
+	protected:
 		void setAction(Action, bool);
 	private:
 		void setActions(const Actions actions); // Setzt Actions auf das übergebene
