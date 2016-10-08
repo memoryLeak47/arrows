@@ -1,26 +1,22 @@
-#ifndef __NETWORKINGMENU_CLASS__
-#define __NETWORKINGMENU_CLASS__
+#ifndef __NETWORKINTERFACE_CLASS__
+#define __NETWORKINTERFACE_CLASS__
 
 #include <SFML/Network.hpp>
-
-#include "Menu.hpp"
 
 class Packet;
 class PacketAndIP;
 
-class NetworkingMenu : public Menu
+class NetworkInterface
 {
 	public:
-		NetworkingMenu();
-		virtual ~NetworkingMenu();
-		void tick() override;
+		NetworkInterface();
+		virtual ~NetworkInterface();
+		void handleAllPackets();
 		void receivePacket(Packet* p, sf::IpAddress*);
 		virtual void handlePacket(Packet* p, sf::IpAddress*) = 0;
-		virtual bool isNetworkingMenu() const override;
 	protected:
 		void send(Packet*, sf::IpAddress*) const;
 	private:
-		void handleAllPackets();
 		std::vector<PacketAndIP*>& getPackets();
 		std::vector<PacketAndIP*> packets;
 };

@@ -5,9 +5,10 @@
 #define MAX_PACKET_LENGTH 50
 
 #include <SFML/Network.hpp>
+#include <stack>
 
 class Packet;
-class NetworkingMenu;
+class NetworkInterface;
 
 class NetworkDevice
 {
@@ -15,11 +16,17 @@ class NetworkDevice
 		NetworkDevice();
 		void send(Packet*, sf::IpAddress* ip);
 		void receive();
+
+		void pushInterface(NetworkInterface* interface);
+		void popInterface();
 	private:
+		NetworkInterface* getNetworkInterface() const;
+
 		sf::UdpSocket socket;
+		std::stack<NetworkInterface*> interfaceStack;
 };
 
 #include "Packet.hpp"
-#include <menu/NetworkingMenu.hpp>
+#include "NetworkInterface.hpp"
 
 #endif

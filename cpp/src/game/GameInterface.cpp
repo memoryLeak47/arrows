@@ -36,7 +36,8 @@ GameInterface::~GameInterface()
 void GameInterface::tick()
 {
 	Debug::tickConsole();
-	NetworkingMenu::tick();
+	Menu::tick();
+	NetworkInterface::handleAllPackets();
 	tickEntities();
 	tickPhysics();
 }
@@ -269,7 +270,7 @@ void GameInterface::render() const
 	renderMap();
 	renderBars();
 	renderEntities();
-	NetworkingMenu::render();
+	Menu::render();
 	Debug::renderConsole();
 }
 

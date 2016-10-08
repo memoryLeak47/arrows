@@ -15,7 +15,6 @@ class Menu : public ComponentContainer
 		virtual bool isFullscreen();
 		virtual void tick();
 		void onEvent(const sf::Event&);
-		virtual bool isNetworkingMenu() const;
 
 		void render() const override;
 		virtual PixelRect getAbsoluteRect() const override;

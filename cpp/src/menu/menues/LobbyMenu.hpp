@@ -11,7 +11,8 @@
 #include <vector>
 #include <SFML/Network.hpp>
 
-#include <menu/NetworkingMenu.hpp>
+#include <network/NetworkInterface.hpp>
+#include <menu/Menu.hpp>
 
 #include <tile/map/LobbyTileMap.hpp>
 
@@ -32,7 +33,7 @@ class UserPacketWithID;
 class LobbyPlayersPacket;
 class PlayerPropertyUserPacket;
 
-class LobbyMenu : public NetworkingMenu
+class LobbyMenu : public Menu, public NetworkInterface
 {
 	public:
 		LobbyMenu();

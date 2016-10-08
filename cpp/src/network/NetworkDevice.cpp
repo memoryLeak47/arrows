@@ -62,8 +62,27 @@ void NetworkDevice::receive()
 
 	Packet* packet = (Packet*) Compressable::decompress(string);
 
-	if (Main::getMenuList()->getNetworkingMenu() != NULL)
+	if (interfaceStack.empty())
 	{
-		Main::getMenuList()->getNetworkingMenu()->receivePacket(packet, &ip);
+		Debug::warn("NetworkDevice::receive(): interfaceStack is empty");
 	}
+	else
+	{
+		getNetworkInterface()->receivePacket(packet, &ip);
+	}
+}
+
+NetworkInterface* NetworkDevice::getNetworkInterface() const
+{
+	return interfaceStack.top();
+}
+
+void NetworkDevice::pushInterface(NetworkInterface* interface)
+{
+	interfaceStack.push(interface);
+}
+
+void NetworkDevice::popInterface()
+{
+	interfaceStack.pop();
 }

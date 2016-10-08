@@ -7,7 +7,6 @@
 #include <SFML/Window.hpp>
 
 class Menu;
-class NetworkingMenu;
 
 class MenuList
 {
@@ -19,7 +18,6 @@ class MenuList
 		void render();
 		void addMenu(Menu*);
 		void back(); // removes menu
-		NetworkingMenu* getNetworkingMenu();
 	private:
 		std::vector<Menu*> menues;
 		std::vector<Menu*> getMenues(); // TODO correct data type?
@@ -28,6 +26,5 @@ class MenuList
 };
 
 #include "Menu.hpp"
-#include "NetworkingMenu.hpp"
 
 #endif

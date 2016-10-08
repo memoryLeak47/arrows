@@ -55,6 +55,7 @@ void ServerLobbyMenu::mapSelected()
 
 void ServerLobbyMenu::handlePacket(Packet* packet, sf::IpAddress* ip)
 {
+	Debug::note("YUP");
 	if (packet->getCID() == LOCK_USER_PACKET_CID)
 	{
 		handleLockUserPacket((LockUserPacket*) packet, ipToID(ip, getPlayers()));

@@ -74,7 +74,8 @@ int LobbyMenu::getPhase() const
 
 void LobbyMenu::tick()
 {
-	NetworkingMenu::tick();
+	Menu::tick();
+	handleAllPackets();
 	updateLockButton();
 }
 

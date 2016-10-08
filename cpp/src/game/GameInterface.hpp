@@ -3,7 +3,8 @@
 
 #include <vector>
 
-#include <menu/NetworkingMenu.hpp>
+#include <network/NetworkInterface.hpp>
+#include <menu/Menu.hpp>
 #include <tile/map/GameTileMap.hpp>
 #include <view/View.hpp>
 
@@ -15,7 +16,7 @@ class Bullet;
 class CollisionEvent;
 class GamePlayer;
 
-class GameInterface : public NetworkingMenu
+class GameInterface : public Menu, public NetworkInterface
 {
 	public:
 		GameInterface(LobbyTileMap*, const std::vector<LobbyPlayer*>&);
