@@ -1,15 +1,15 @@
 #ifndef __MOB_CLASS__
 #define __MOB_CLASS__
 
-#include "Entity.hpp"
-#include <misc/compress/Compressable.hpp>
+#include "PhysicalEntity.hpp"
 
 class Controller;
 
-class Mob : public Entity, public Compressable
+class Mob : public PhysicalEntity
 {
 	public:
 		Mob(Body*, Controller*);
+
 		// compress
 		std::string getCompressString() const override;
 		virtual ~Mob();

@@ -3,7 +3,7 @@
 #include <misc/Debug.hpp>
 
 Mob::Mob(Body* body, Controller* controller)
-	: Entity(body), controller(controller)
+	: PhysicalEntity(body), controller(controller)
 {}
 
 Mob::~Mob()
@@ -18,7 +18,7 @@ std::string Mob::getCompressString() const
 
 void Mob::tick()
 {
-	Entity::tick();
+	PhysicalEntity::tick();
 	applyActions();
 }
 

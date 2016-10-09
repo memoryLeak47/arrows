@@ -22,10 +22,7 @@ enum CollisionType
 };
 
 class Body;
-class Mob;
 class GameTileMap;
-class Tile;
-class Bullet;
 class GameVector;
 class GameRect;
 class PixelRect;
@@ -108,10 +105,7 @@ class Entity
 };
 
 #include <collision/Body.hpp>
-#include <entity/Mob.hpp>
 #include <tile/map/GameTileMap.hpp>
-#include <entity/Tile.hpp>
-#include <entity/Bullet.hpp>
 #include <math/game/GameVector.hpp>
 #include <math/game/GameRect.hpp>
 #include <math/pixel/PixelRect.hpp>

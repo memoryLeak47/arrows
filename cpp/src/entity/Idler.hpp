@@ -1,10 +1,9 @@
 #ifndef __IDLER_CLASS__
 #define __IDLER_CLASS__
 
-#include "Entity.hpp"
-#include <misc/compress/Compressable.hpp>
+#include "PhysicalEntity.hpp"
 
-class Idler : public Entity, public Compressable
+class Idler : public PhysicalEntity
 {
 	public:
 		Idler(Body*);
