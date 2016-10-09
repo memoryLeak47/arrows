@@ -6,10 +6,22 @@
 #include <misc/Converter.hpp>
 #include <misc/Debug.hpp>
 
-GameVector::GameVector(float x, float y)
+GameVector::GameVector(float x_arg, float y_arg)
+	: x(x_arg), y(y_arg)
+{}
+
+GameVector::GameVector(CompressBuffer* buffer)
+	: x(buffer->cutFloat()), y(buffer->cutFloat())
+{}
+
+CID GameVector::getCID() const
 {
-	this->x = x;
-	this->y = y;
+	return GAME_VECTOR_CID;
+}
+
+std::string GameVector::getCompressString() const
+{
+	return compressFloat(x) + compressFloat(y);
 }
 
 bool GameVector::inRect(const GameRect& r) const
