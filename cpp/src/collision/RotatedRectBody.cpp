@@ -158,7 +158,7 @@ void RotatedRectBody::reactToCollision(float massshare, const GameVector& otherS
 	Debug::warn("RotatedRectBody::reactToCollision(): TODO");
 }
 
-void RotatedRectBody::apply(Body* b)
+void RotatedRectBody::apply(const Body* b)
 {
 	position = b->getPosition();
 	size = b->getSize();

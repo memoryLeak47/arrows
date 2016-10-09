@@ -255,7 +255,7 @@ void RectBody::reactToCollision(float massshare, const GameVector& otherSpeed, c
 	}
 }
 
-void RectBody::apply(Body* b)
+void RectBody::apply(const Body* b)
 {
 	position = b->getPosition();
 	size = b->getSize();

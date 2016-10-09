@@ -72,4 +72,5 @@ bool GamePlayer::updateActions()
 
 void GamePlayer::apply(GamePlayer* player)
 {
+	body->apply(player->getBody());
 }

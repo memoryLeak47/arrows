@@ -64,7 +64,8 @@ class Body : public Compressable
 		virtual GameVector getSpeedAt(const GameVector& where) const; // where is a map-coordinate
 		virtual void reactToCollision(float massshare, const GameVector& speed, const GameVector& collisionPoint) = 0;
 	private:
-		void apply(Body*);
+		virtual void apply(const Body*) = 0;
+	friend class GamePlayer;
 };
 
 #include <math/game/GameRect.hpp>

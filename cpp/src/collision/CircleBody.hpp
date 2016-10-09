@@ -43,7 +43,7 @@ class CircleBody : public Body
 		virtual void setSpeedAt(const GameVector&, const GameVector& where) override; // where is a map-coordinate
 		virtual void reactToCollision(float massshare, const GameVector& speed, const GameVector& collisionPoint) override;
 	private:
-		void apply(Body*);
+		virtual void apply(const Body*) override;
 
 		GameVector position;
 		GameVector speed;

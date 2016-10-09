@@ -154,7 +154,7 @@ void CircleBody::reactToCollision(float massshare, const GameVector& speed, cons
 	Debug::warn("CircleBody::reactToCollision(): TODO");
 }
 
-void CircleBody::apply(Body* b)
+void CircleBody::apply(const Body* b)
 {
 	position = b->getPosition();
 	speed = b->getSpeed();
