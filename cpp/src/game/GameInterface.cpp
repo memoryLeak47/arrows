@@ -36,6 +36,15 @@ GameInterface::~GameInterface()
 
 void GameInterface::tick()
 {
+	struct X {
+		X(GameInterface* gi)
+		{
+			gi->view.setEntity(gi->getLocalPlayer());
+			gi->view.changeFocus();
+		}
+	};
+	static X x(this);
+
 	Debug::tickConsole();
 	Menu::tick();
 	NetworkInterface::handleAllPackets();
