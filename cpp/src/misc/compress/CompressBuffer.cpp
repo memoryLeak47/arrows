@@ -27,6 +27,12 @@ std::string CompressBuffer::cutString()
 	return cut(cutInt());
 }
 
+float CompressBuffer::cutFloat()
+{
+	Debug::warn("CompressBuffer::cutFloat(): TODO");
+	return 0.f;
+}
+
 int CompressBuffer::cutInt()
 {
 	std::string s = cut(4);

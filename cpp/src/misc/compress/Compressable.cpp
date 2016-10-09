@@ -40,6 +40,12 @@ std::string Compressable::compressInt(int i)
 	return s;
 }
 
+std::string Compressable::compressFloat(float)
+{
+	Debug::warn("Compressable::compressFloat(): TODO");
+	return "";
+}
+
 std::string Compressable::compressShort(short i)
 {
 	std::string s;

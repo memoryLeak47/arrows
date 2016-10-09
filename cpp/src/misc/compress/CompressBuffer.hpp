@@ -13,6 +13,7 @@ class CompressBuffer
 		CompressBuffer(const std::string&);
 		std::string cutString();
 		int cutInt();
+		float cutFloat();
 		char cutChar();
 		short cutShort();
 		bool cutBool();

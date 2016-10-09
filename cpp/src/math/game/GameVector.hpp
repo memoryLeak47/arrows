@@ -3,13 +3,19 @@
 
 #include <string>
 
-class GameRect;
+#include <misc/compress/Compressable.hpp>
 
-class GameVector
+class GameRect;
+class CompressBuffer;
+
+class GameVector : public Compressable
 {
 	public:
 		GameVector(float x, float y);
+		GameVector(CompressBuffer*);
 
+		CID getCID() const override;
+		std::string getCompressString() const override;
 		bool inRect(const GameRect&) const;
 		float getMagnitude() const;
 		void setMagnitude(float mag);
@@ -34,5 +40,6 @@ class GameVector
 };
 
 #include "GameRect.hpp"
+#include <misc/compress/CompressBuffer.hpp>
 
 #endif
