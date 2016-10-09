@@ -1,9 +1,12 @@
 #include "ServerGameInterface.hpp"
 
 #include <misc/Debug.hpp>
+#include <network/packets/GameUpdatePacket.hpp>
+
+static const int MAX_UPDATE_COUNTER = 30;
 
 ServerGameInterface::ServerGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players)
-	: GameInterface(map, players)
+	: GameInterface(map, players), updateCounter(MAX_UPDATE_COUNTER)
 {}
 
 ServerGameInterface::~ServerGameInterface()
@@ -23,6 +26,22 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 		}
 		default:
 			Debug::error("ServerGameInterface::handlePacket(): unknown Packet with CID=" + Converter::intToString((int) packet->getCID()));
+	}
+}
+
+void ServerGameInterface::tick()
+{
+	GameInterface::tick();
+	if (updateCounter-- <= 0)
+	{
+		updateCounter = MAX_UPDATE_COUNTER;
+
+		GameUpdatePacket* packet = new GameUpdatePacket(players, mobs, idlers);
+		for (unsigned int i = 1 /* player ignores itself ... sad */; i < players.size(); ++i)
+		{
+			send(packet, players[i]->getIP());
+		}
+		delete packet;
 	}
 }
 
