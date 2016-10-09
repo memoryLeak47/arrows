@@ -20,7 +20,7 @@ class RectBody : public Body
 		virtual bool isCollidingPoint(const GameVector&) const override;
 
 		virtual const GameVector& getPosition() const override;
-		virtual const GameVector& getSize() const;
+		virtual const GameVector getSize() const override;
 		virtual const GameVector& getSpeed() const override;
 		virtual float getRotation() const override;
 		virtual float getSpin() const override;
@@ -42,6 +42,8 @@ class RectBody : public Body
 		virtual GameVector getSpeedAt(const GameVector& where) const override; // where is a map-coordinate
 		virtual void reactToCollision(float massshare, const GameVector&, const GameVector& collisionPoint) override;
 	private:
+		void apply(Body*);
+
 		GameVector position;
 		GameVector size;
 		GameVector speed;

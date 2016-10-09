@@ -72,7 +72,7 @@ const GameVector& RotatedRectBody::getPosition() const
 	return position;
 }
 
-const GameVector& RotatedRectBody::getSize() const
+const GameVector RotatedRectBody::getSize() const
 {
 	return size;
 }
@@ -156,4 +156,13 @@ GameVector RotatedRectBody::getSpeedAt(const GameVector& where) const // where i
 void RotatedRectBody::reactToCollision(float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint)
 {
 	Debug::warn("RotatedRectBody::reactToCollision(): TODO");
+}
+
+void RotatedRectBody::apply(Body* b)
+{
+	position = b->getPosition();
+	size = b->getSize();
+	speed = b->getSpeed();
+	rotation= b->getRotation();
+	spin = b->getSpin();
 }

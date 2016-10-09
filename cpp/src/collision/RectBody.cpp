@@ -77,7 +77,7 @@ const GameVector& RectBody::getPosition() const
 	return position;
 }
 
-const GameVector& RectBody::getSize() const
+const GameVector RectBody::getSize() const
 {
 	return size;
 }
@@ -253,4 +253,11 @@ void RectBody::reactToCollision(float massshare, const GameVector& otherSpeed, c
 			speed.x = std::min(-SPONGE + otherSpeed.x, speed.x);
 		}
 	}
+}
+
+void RectBody::apply(Body* b)
+{
+	position = b->getPosition();
+	size = b->getSize();
+	speed = b->getSpeed();
 }

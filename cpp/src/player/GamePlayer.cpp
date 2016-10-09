@@ -69,3 +69,7 @@ bool GamePlayer::updateActions()
 	}
 	return getController()->updateActions();
 }
+
+void GamePlayer::apply(GamePlayer* player)
+{
+}

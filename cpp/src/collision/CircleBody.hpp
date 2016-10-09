@@ -22,6 +22,7 @@ class CircleBody : public Body
 		virtual bool isCollidingPoint(const GameVector&) const override;
 
 		virtual const GameVector& getPosition() const override;
+		virtual const GameVector getSize() const;
 		virtual const GameVector& getSpeed() const override;
 		virtual float getRotation() const override;
 		virtual float getRadius() const;
@@ -42,6 +43,8 @@ class CircleBody : public Body
 		virtual void setSpeedAt(const GameVector&, const GameVector& where) override; // where is a map-coordinate
 		virtual void reactToCollision(float massshare, const GameVector& speed, const GameVector& collisionPoint) override;
 	private:
+		void apply(Body*);
+
 		GameVector position;
 		GameVector speed;
 		float rotation;

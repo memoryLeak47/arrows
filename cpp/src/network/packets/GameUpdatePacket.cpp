@@ -50,3 +50,18 @@ CID GameUpdatePacket::getCID() const
 {
 	return GAME_UPDATE_PACKET_CID;
 }
+
+const std::vector<GamePlayer*>& GameUpdatePacket::getPlayers() const
+{
+	return players;
+}
+
+const std::vector<Mob*>& GameUpdatePacket::getMobs() const
+{
+	return mobs;
+}
+
+const std::vector<Idler*>& GameUpdatePacket::getIdlers() const
+{
+	return idlers;
+}

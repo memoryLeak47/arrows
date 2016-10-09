@@ -30,6 +30,7 @@ class GamePlayer : public Mob
 	private:
 		void setActions(const Actions actions); // Setzt Actions auf das übergebene
 		bool updateActions();
+		void apply(GamePlayer*); // Wird nur in ClientGameInterface::applyGameUpdate benutzt
 
 		sf::IpAddress* ip;
 		std::string name;

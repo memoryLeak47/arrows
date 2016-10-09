@@ -65,6 +65,11 @@ const GameVector& CircleBody::getPosition() const
 	return position;
 }
 
+const GameVector CircleBody::getSize() const
+{
+	return GameVector(radius, radius);
+}
+
 void CircleBody::setPosition(const GameVector& vec)
 {
 	position = vec;
@@ -147,4 +152,13 @@ void CircleBody::setSpeedAt(const GameVector&, const GameVector& where) // where
 void CircleBody::reactToCollision(float massshare, const GameVector& speed, const GameVector& collisionPoint)
 {
 	Debug::warn("CircleBody::reactToCollision(): TODO");
+}
+
+void CircleBody::apply(Body* b)
+{
+	position = b->getPosition();
+	speed = b->getSpeed();
+	rotation = b->getRotation();
+	radius = b->getSize().x;
+	spin = b->getSpin();
 }

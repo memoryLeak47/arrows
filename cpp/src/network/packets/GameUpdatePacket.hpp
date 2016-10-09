@@ -16,6 +16,10 @@ class GameUpdatePacket : public Packet
 		GameUpdatePacket();
 		std::string getCompressString() const override;
 		CID getCID() const override;
+
+		const std::vector<GamePlayer*>& getPlayers() const;
+		const std::vector<Mob*>& getMobs() const;
+		const std::vector<Idler*>& getIdlers() const;
 	private:
 		std::vector<GamePlayer*> players;
 		std::vector<Mob*> mobs;

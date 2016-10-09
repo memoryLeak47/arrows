@@ -15,6 +15,8 @@ class ClientGameInterface : public GameInterface
 		virtual GamePlayer* getLocalPlayer() const override;
 		virtual void updateOtherGamers() override;
 	private:
+		void applyGameUpdate(const std::vector<GamePlayer*>&, const std::vector<Mob*>&, const std::vector<Idler*>&);
+
 		sf::IpAddress* serverIP;
 		unsigned int localPlayerID;
 };

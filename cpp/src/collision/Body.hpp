@@ -41,8 +41,9 @@ class Body : public Compressable
 		virtual GameRect getWrapper(float timeLeft) const = 0;
 		virtual bool isCollidingPoint(const GameVector&) const = 0;
 
-		virtual const GameVector& getSpeed() const = 0;
 		virtual const GameVector& getPosition() const = 0; // returnt die Position relativ zur Map vom ImageCenter
+		virtual const GameVector getSize() const = 0; // returnt die Position relativ zur Map vom ImageCenter
+		virtual const GameVector& getSpeed() const = 0;
 		virtual float getRotation() const = 0;
 		virtual float getSpin() const = 0;
 
@@ -62,6 +63,8 @@ class Body : public Compressable
 		virtual void setSpeedAt(const GameVector&, const GameVector& where) = 0; // where is a map-coordinate
 		virtual GameVector getSpeedAt(const GameVector& where) const; // where is a map-coordinate
 		virtual void reactToCollision(float massshare, const GameVector& speed, const GameVector& collisionPoint) = 0;
+	private:
+		void apply(Body*);
 };
 
 #include <math/game/GameRect.hpp>
