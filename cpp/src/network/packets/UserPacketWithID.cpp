@@ -7,7 +7,7 @@ UserPacketWithID::UserPacketWithID(UserPacket* packet, int id) : id(id), packet(
 
 UserPacketWithID::UserPacketWithID(CompressBuffer* buffer)
 {
-	packet = static_cast<UserPacket*>(buffer->cutByCID(buffer->cutChar()));
+	packet = static_cast<UserPacket*>(buffer->cutByCID((CID) buffer->cutChar()));
 	id = buffer->cutInt();
 }
 

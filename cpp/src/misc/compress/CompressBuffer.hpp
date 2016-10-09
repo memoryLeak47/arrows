@@ -5,6 +5,7 @@
 #include <vector>
 
 #include <misc/Global.hpp>
+#include <cid.enum>
 
 class CompressBuffer
 {
