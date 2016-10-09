@@ -20,17 +20,18 @@ GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>&
 		players.push_back(Avatar::get(lobbyPlayers[i]->getAvatarUserPacket()->getAvatarID())->createGamePlayer(getGameTileMap()->teamToSpawnPosition(lobbyPlayers[i]->getTeamUserPacket()->getTeam()), lobbyPlayers[i]));
 	}
 
-	mobs.push_back(new TestKiste(GameVector(7.5f, 4.5f)));
-	mobs.push_back(new TestKiste(GameVector(7.5f, 3.5f)));
+	idlers.push_back(new TestKiste(GameVector(7.5f, 4.5f)));
+	idlers.push_back(new TestKiste(GameVector(7.5f, 3.5f)));
 }
 
 GameInterface::~GameInterface()
 {
 	delete tileMap;
 	deleteAndClearVector(players);
+	deleteAndClearVector(idlers);
 	deleteAndClearVector(mobs);
 	deleteAndClearVector(tiles);
-	deleteAndClearVector(bullets);
+	//deleteAndClearVector(bullets);
 }
 
 void GameInterface::tick()
@@ -311,14 +312,20 @@ void GameInterface::renderEntities() const
 	{
 		players[i]->render(getView());
 	}
+	for (unsigned int i = 0; i < idlers.size(); i++)
+	{
+		idlers[i]->render(getView());
+	}
 	for (unsigned int i = 0; i < mobs.size(); i++)
 	{
 		mobs[i]->render(getView());
 	}
+	/*
 	for (unsigned int i = 0; i < bullets.size(); i++)
 	{
 		bullets[i]->render(getView());
 	}
+	*/
 }
 
 GameTileMap* GameInterface::getGameTileMap() const
@@ -339,14 +346,14 @@ Entity* GameInterface::getDynamicEntity(unsigned int id)
 		if (id >= mobs.size())
 		{
 			id -= mobs.size();
-			if (id >= bullets.size())
+			if (id >= idlers.size())
 			{
-				// id -= bullets.size();
-				// return dynamictiles[id];
+				// id -= idlers.size();
+				// return bullets[id];
 			}
 			else
 			{
-				return bullets[id];
+				return idlers[id];
 			}
 		}
 		else
@@ -364,5 +371,5 @@ Entity* GameInterface::getDynamicEntity(unsigned int id)
 
 unsigned int GameInterface::getDynamicEntityAmount()
 {
-	return mobs.size() + bullets.size() + players.size();
+	return mobs.size() + /*bullets.size() +*/ players.size() + idlers.size();
 }

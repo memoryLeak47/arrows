@@ -1,18 +1,17 @@
 #ifndef __TESTKISTE_CLASS__
 #define __TESTKISTE_CLASS__
 
-#include "Mob.hpp"
+#include "Idler.hpp"
 
 class GameVector;
 
-class TestKiste : public Mob
+class TestKiste : public Idler
 {
 	public:
 		TestKiste(const GameVector&);
-		virtual void renderBar(const View&) const;
-		virtual void optGravity() override;
 		virtual sf::Texture* getTexture() const override;
 		virtual std::string toString() const override;
+		virtual float getMass() const override;
 };
 
 #include <math/game/GameVector.hpp>

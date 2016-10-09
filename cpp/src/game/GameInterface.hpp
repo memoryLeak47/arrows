@@ -11,6 +11,7 @@
 class LobbyTileMap;
 class LobbyPlayer;
 class GamePlayer;
+class Idler;
 class Mob;
 class Tile;
 class Bullet;
@@ -30,9 +31,10 @@ class GameInterface : public Menu, public NetworkInterface
 		virtual void updateOtherGamers() = 0;
 
 		std::vector<GamePlayer*> players;
+		std::vector<Idler*> idlers;
+		// std::vector<Bullet*> bullets;
 		std::vector<Mob*> mobs;
 		std::vector<Tile*> tiles;
-		std::vector<Bullet*> bullets;
 	private:
 		// functions
 		void controlLocalPlayer();
@@ -62,6 +64,7 @@ class GameInterface : public Menu, public NetworkInterface
 #include <tile/map/LobbyTileMap.hpp>
 #include <player/LobbyPlayer.hpp>
 #include <player/GamePlayer.hpp>
+#include <entity/Idler.hpp>
 #include <entity/Mob.hpp>
 #include <entity/Tile.hpp>
 #include <entity/Bullet.hpp>

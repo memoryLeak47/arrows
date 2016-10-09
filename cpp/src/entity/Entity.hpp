@@ -9,6 +9,7 @@
 enum EntityType
 {
 	MOB,
+	IDLER,
 	BULLET,
 	TILE,
 	COSMETIC

@@ -1,13 +1,7 @@
 #include "TestKiste.hpp"
 
 TestKiste::TestKiste(const GameVector& position)
-	: Mob(new RectBody(position, GameVector(0.7f, 0.5f)), NULL)
-{}
-
-void TestKiste::renderBar(const View&) const
-{}
-
-void TestKiste::optGravity()
+	: Idler(new RectBody(position, GameVector(0.7f, 0.5f)))
 {}
 
 sf::Texture* TestKiste::getTexture() const
@@ -18,4 +12,9 @@ sf::Texture* TestKiste::getTexture() const
 std::string TestKiste::toString() const
 {
 	return "(TestKiste: body=(" + getBody()->toString() + "))";
+}
+
+float TestKiste::getMass() const
+{
+	return 20.f;
 }
