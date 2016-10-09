@@ -12,6 +12,31 @@ RectBody::RectBody(const GameVector& pos, const GameVector& size, const GameVect
 	: position(pos), size(size), speed(speed)
 {}
 
+RectBody::RectBody(CompressBuffer* buffer)
+{
+	GameVector* p = (GameVector*) buffer->cutByCID(GAME_VECTOR_CID);
+	GameVector* s = (GameVector*) buffer->cutByCID(GAME_VECTOR_CID);
+	GameVector* sp = (GameVector*) buffer->cutByCID(GAME_VECTOR_CID);
+
+	position = *p;
+	size = *s;
+	speed = *sp;
+
+	delete p;
+	delete s;
+	delete sp;
+}
+
+CID RectBody::getCID() const
+{
+	return RECT_BODY_CID;
+}
+
+std::string RectBody::getCompressString() const
+{
+	return position.getCompressString() + size.getCompressString() + speed.getCompressString();
+}
+
 BodyType RectBody::getBodyType() const
 {
 	return RECT;

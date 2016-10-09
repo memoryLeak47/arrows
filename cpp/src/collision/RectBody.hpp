@@ -7,7 +7,13 @@ class RectBody : public Body
 {
 	public:
 		RectBody(const GameVector& pos, const GameVector& size =GameVector(1, 1), const GameVector& speed =GameVector(0, 0));
+		RectBody(CompressBuffer*);
 		virtual ~RectBody() {}
+
+		// compress
+		CID getCID() const override;
+		std::string getCompressString() const override;
+
 		virtual BodyType getBodyType() const override;
 
 		virtual GameRect getWrapper(float timeLeft) const override;

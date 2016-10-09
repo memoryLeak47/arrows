@@ -2,13 +2,16 @@
 #define __MOB_CLASS__
 
 #include "Entity.hpp"
+#include <misc/compress/Compressable.hpp>
 
 class Controller;
 
-class Mob : public Entity
+class Mob : public Entity, public Compressable
 {
 	public:
 		Mob(Body*, Controller*);
+		// compress
+		std::string getCompressString() const override;
 		virtual ~Mob();
 		virtual void tick() override;
 		virtual EntityType getEntityType() const override;

@@ -1,8 +1,18 @@
 #include "Controller.hpp"
 
+Controller::Controller(CompressBuffer* buffer)
+	: actions((CID) buffer->cutChar())
+{}
+
 Actions Controller::getActions() const
 {
 	return actions;
+}
+
+std::string Controller::getCompressString() const
+{
+	std::string s;
+	return s + ((char) actions);
 }
 
 bool Controller::getAction(Action action) const

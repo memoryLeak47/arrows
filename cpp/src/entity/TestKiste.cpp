@@ -4,6 +4,16 @@ TestKiste::TestKiste(const GameVector& position)
 	: Idler(new RectBody(position, GameVector(0.7f, 0.5f)))
 {}
 
+CID TestKiste::getCID() const
+{
+	return TEST_KISTE_CID;
+}
+
+std::string TestKiste::getCompressString() const
+{
+	return Idler::getCompressString();
+}
+
 sf::Texture* TestKiste::getTexture() const
 {
 	return GraphicsManager::getTexture(TESTKISTE_GID);

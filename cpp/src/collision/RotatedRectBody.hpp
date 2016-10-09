@@ -7,7 +7,13 @@ class RotatedRectBody : public Body
 {
 	public:
 		RotatedRectBody(const GameVector& pos, const GameVector& size =GameVector(1, 1), const GameVector& speed =GameVector(0, 0), float rot=0, float spin=0);
+		RotatedRectBody(CompressBuffer*);
 		virtual ~RotatedRectBody() {}
+
+		// compress
+		CID getCID() const override;
+		std::string getCompressString() const override;
+
 		virtual BodyType getBodyType() const override;
 
 		virtual GameRect getWrapper(float timeLeft) const override;

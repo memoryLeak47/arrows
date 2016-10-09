@@ -5,6 +5,10 @@
 #include <misc/Converter.hpp>
 #include <controller/PlayerController.hpp>
 
+GamePlayer::GamePlayer(Body*) // NUR im GameUpdatePacket verwendet, da unvollständig
+	 : Mob(body, NULL)
+{}
+
 GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
 	: Mob(body, new PlayerController()),
 	  name(player->getLoginUserPacket()->getName()),

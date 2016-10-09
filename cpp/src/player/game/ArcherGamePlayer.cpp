@@ -4,6 +4,20 @@ ArcherGamePlayer::ArcherGamePlayer(const GameVector& pos, const LobbyPlayer* pla
 	: GamePlayer(new RectBody(pos, GraphicsManager::getGameSizeOf(ARCHER_GID)), player)
 {}
 
+ArcherGamePlayer::ArcherGamePlayer(CompressBuffer* buffer)
+	: GamePlayer((Body*) buffer->cutCompressable())
+{}
+
+CID ArcherGamePlayer::getCID() const
+{
+	return ARCHER_GAME_PLAYER_CID;
+}
+
+std::string ArcherGamePlayer::getCompressString() const
+{
+	return GamePlayer::getCompressString();
+}
+
 float ArcherGamePlayer::getCollisionPriority(Entity* e)
 {
 	if (e->getEntityType() == getEntityType())

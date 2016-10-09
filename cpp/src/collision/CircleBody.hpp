@@ -9,7 +9,13 @@ class CircleBody : public Body
 {
 	public:
 		CircleBody(const GameVector& pos, float rad, const GameVector& speed=GameVector(0,0), float rot=0.f, float spin=0.f);
+		CircleBody(CompressBuffer*);
 		virtual ~CircleBody() {}
+
+		// compress
+		CID getCID() const override;
+		std::string getCompressString() const override;
+
 		virtual BodyType getBodyType() const override;
 
 		virtual GameRect getWrapper(float timeLeft) const override;

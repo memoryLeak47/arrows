@@ -7,6 +7,8 @@
 #include <misc/Global.hpp>
 #include "Cid.hpp"
 
+class Compressable;
+
 class CompressBuffer
 {
 	public:
@@ -18,7 +20,8 @@ class CompressBuffer
 		short cutShort();
 		bool cutBool();
 		std::vector<std::vector<int>> cutMap();
-		void* cutByCID(CID);
+		Compressable* cutByCID(CID);
+		Compressable* cutCompressable();
 		std::vector<void*> cutVectorByCID(CID);
 		std::string cut(int amount); // removes <amount> chars from <chars> and returns the removed part
 	private:

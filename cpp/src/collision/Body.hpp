@@ -21,18 +21,20 @@
 #define __BODY_CLASS__
 
 #include <misc/Global.hpp>
+#include <misc/compress/Compressable.hpp>
 
 enum BodyType { RECT, CIRCLE, ROTRECT };
 
 class GameRect;
 class GameVector;
 
-class Body
+class Body : public Compressable
 {
 	public:
 		// Konstruktor/Destruktor
 		Body();
 		virtual ~Body() {}
+
 		virtual BodyType getBodyType() const = 0;
 
 		void move(float time);

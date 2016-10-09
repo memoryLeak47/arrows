@@ -6,6 +6,10 @@
 #include <misc/Converter.hpp>
 #include <misc/Debug.hpp>
 
+GameVector::GameVector()
+	: x(0.f), y(0.f)
+{}
+
 GameVector::GameVector(float x_arg, float y_arg)
 	: x(x_arg), y(y_arg)
 {}

@@ -1,5 +1,17 @@
 #include "PlayerController.hpp"
 
+PlayerController::PlayerController(CompressBuffer*) {}
+
+CID PlayerController::getCID() const
+{
+	return PLAYER_CONTROLLER_CID;
+}
+
+std::string PlayerController::getCompressString() const
+{
+	return "";
+}
+
 bool PlayerController::updateActions()
 {
 	bool changed = false;

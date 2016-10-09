@@ -21,6 +21,7 @@ class Item;
 class GamePlayer : public Mob
 {
 	public:
+		GamePlayer(Body*); // NUR im GameUpdatePacket verwendet, da unvollständig
 		GamePlayer(Body*, const LobbyPlayer*);
 		~GamePlayer();
 		Actions getActions() const;

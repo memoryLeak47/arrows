@@ -9,6 +9,31 @@ CircleBody::CircleBody(const GameVector& position, float radius, const GameVecto
 	: position(position), speed(speed), rotation(rotation), radius(radius), spin(spin)
 {}
 
+CircleBody::CircleBody(CompressBuffer* buffer)
+{
+	GameVector* p = (GameVector*) buffer->cutByCID(GAME_VECTOR_CID);
+	GameVector* sp = (GameVector*) buffer->cutByCID(GAME_VECTOR_CID);
+	rotation = buffer->cutFloat();
+	radius = buffer->cutFloat();
+	spin = buffer->cutFloat();
+
+	position = *p;
+	speed = *sp;
+
+	delete p;
+	delete sp;
+}
+
+CID CircleBody::getCID() const
+{
+	return CIRCLE_BODY_CID;
+}
+
+std::string CircleBody::getCompressString() const
+{
+	return position.getCompressString() + speed.getCompressString() + compressFloat(rotation) + compressFloat(radius) + compressFloat(spin);
+}
+
 BodyType CircleBody::getBodyType() const
 {
 	return CIRCLE;

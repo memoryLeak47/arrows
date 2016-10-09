@@ -11,6 +11,11 @@ Mob::~Mob()
 	delete controller;
 }
 
+std::string Mob::getCompressString() const
+{
+	return getBody()->getCompressString() + getController()->getCompressString();
+}
+
 void Mob::tick()
 {
 	Entity::tick();

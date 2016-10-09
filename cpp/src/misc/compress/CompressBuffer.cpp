@@ -13,6 +13,12 @@
 #include <network/packets/UserPacketWithID.hpp>
 #include <network/packets/ActionsUpdateUserPacket.hpp>
 #include <network/packets/GameUpdatePacket.hpp>
+#include <collision/RectBody.hpp>
+#include <collision/CircleBody.hpp>
+#include <collision/RotatedRectBody.hpp>
+#include <controller/PlayerController.hpp>
+#include <entity/TestKiste.hpp>
+#include <player/game/ArcherGamePlayer.hpp>
 
 #include <player/LobbyPlayer.hpp>
 
@@ -77,7 +83,7 @@ std::vector<std::vector<int>> CompressBuffer::cutMap()
 	return map;
 }
 
-void* CompressBuffer::cutByCID(CID cid)
+Compressable* CompressBuffer::cutByCID(CID cid)
 {
 	switch (cid)
 	{
@@ -90,6 +96,11 @@ void* CompressBuffer::cutByCID(CID cid)
 			Debug::warn("no Compressable with cid " + Converter::intToString((int)cid));
 			return NULL;
 	}
+}
+
+Compressable* CompressBuffer::cutCompressable()
+{
+	return cutByCID((CID) cutChar());
 }
 
 std::vector<void*> CompressBuffer::cutVectorByCID(CID cid)

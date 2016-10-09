@@ -11,6 +11,7 @@ class CompressBuffer;
 class GameVector : public Compressable
 {
 	public:
+		GameVector();
 		GameVector(float x, float y);
 		GameVector(CompressBuffer*);
 

@@ -9,6 +9,11 @@ class TestKiste : public Idler
 {
 	public:
 		TestKiste(const GameVector&);
+
+		// compress
+		CID getCID() const override;
+		std::string getCompressString() const override;
+
 		virtual sf::Texture* getTexture() const override;
 		virtual std::string toString() const override;
 		virtual float getMass() const override;

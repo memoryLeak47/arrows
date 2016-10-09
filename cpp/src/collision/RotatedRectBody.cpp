@@ -9,6 +9,34 @@ RotatedRectBody::RotatedRectBody(const GameVector& pos, const GameVector& size, 
 	: position(pos), size(size), speed(speed), rotation(rot), spin(spin)
 {}
 
+RotatedRectBody::RotatedRectBody(CompressBuffer* buffer)
+{
+	GameVector* p = (GameVector*) buffer->cutByCID(GAME_VECTOR_CID);
+	GameVector* s = (GameVector*) buffer->cutByCID(GAME_VECTOR_CID);
+	GameVector* sp = (GameVector*) buffer->cutByCID(GAME_VECTOR_CID);
+
+	rotation = buffer->cutFloat();
+	spin = buffer->cutFloat();
+
+	position = *p;
+	size = *s;
+	speed = *sp;
+
+	delete p;
+	delete s;
+	delete sp;
+}
+
+CID RotatedRectBody::getCID() const
+{
+	return ROTATED_RECT_BODY_CID;
+}
+
+std::string RotatedRectBody::getCompressString() const
+{
+	return position.getCompressString() + size.getCompressString() + speed.getCompressString() + compressFloat(rotation) + compressFloat(spin);
+}
+
 BodyType RotatedRectBody::getBodyType() const
 {
 	return ROTRECT;
