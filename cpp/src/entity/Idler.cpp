@@ -5,7 +5,7 @@ Idler::Idler(Body* b)
 {}
 
 Idler::Idler(CompressBuffer* buffer)
-	: PhysicalEntity((Body*) buffer->cutCompressable())
+	: PhysicalEntity(buffer)
 {}
 
 std::string Idler::getCompressString() const

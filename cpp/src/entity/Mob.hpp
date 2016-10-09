@@ -9,6 +9,7 @@ class Mob : public PhysicalEntity
 {
 	public:
 		Mob(Body*, Controller*);
+		Mob(CompressBuffer*);
 
 		// compress
 		std::string getCompressString() const override;

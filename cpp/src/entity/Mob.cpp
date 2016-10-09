@@ -6,6 +6,10 @@ Mob::Mob(Body* body, Controller* controller)
 	: PhysicalEntity(body), controller(controller)
 {}
 
+Mob::Mob(CompressBuffer* buffer)
+	: PhysicalEntity(buffer)
+{}
+
 Mob::~Mob()
 {
 	delete controller;

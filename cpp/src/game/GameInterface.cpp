@@ -91,9 +91,9 @@ void GameInterface::controlLocalPlayer()
 void GameInterface::tickEntities()
 {
 	controlLocalPlayer();
-	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
+	for (unsigned int i = 0; i < getPhysicalEntityAmount(); i++)
 	{
-		Entity* entity = getDynamicEntity(i);
+		Entity* entity = getPhysicalEntity(i);
 		entity->tick();
 		entity->setChanged(true); // wichtig für tickPhysics()
 	}
@@ -140,9 +140,9 @@ void GameInterface::tickPhysics()
 		{
 			case CHECK:
 				checkCounter++;
-				for (unsigned int i = 0; i < getDynamicEntityAmount(); ++i)
+				for (unsigned int i = 0; i < getPhysicalEntityAmount(); ++i)
 				{
-					getDynamicEntity(i)->checkWrapperPartners();
+					getPhysicalEntity(i)->checkWrapperPartners();
 				}
 				updateChanged(&events, timeLeft);
 				break;
@@ -210,9 +210,9 @@ void GameInterface::moveAllEntities(float time)
 		return;
 	}
 
-	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
+	for (unsigned int i = 0; i < getPhysicalEntityAmount(); i++)
 	{
-		getDynamicEntity(i)->move(time);
+		getPhysicalEntity(i)->move(time);
 	}
 }
 
@@ -224,12 +224,12 @@ void GameInterface::updateChanged(std::vector<CollisionEvent*>* events, float ti
 		return;
 	}
 
-	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
+	for (unsigned int i = 0; i < getPhysicalEntityAmount(); i++)
 	{
-		Entity* e1 = getDynamicEntity(i);
-		for (unsigned int j = i+1; j < getDynamicEntityAmount(); j++)
+		Entity* e1 = getPhysicalEntity(i);
+		for (unsigned int j = i+1; j < getPhysicalEntityAmount(); j++)
 		{
-			Entity* e2 = getDynamicEntity(j);
+			Entity* e2 = getPhysicalEntity(j);
 			if (Entity::areWrapperPartners(e1, e2)) continue;
 			if (e1->hasChanged() || e2->hasChanged())
 			{
@@ -247,9 +247,9 @@ void GameInterface::updateChanged(std::vector<CollisionEvent*>* events, float ti
 		}
 	}
 
-	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
+	for (unsigned int i = 0; i < getPhysicalEntityAmount(); i++)
 	{
-		getDynamicEntity(i)->setChanged(false);
+		getPhysicalEntity(i)->setChanged(false);
 	}
 }
 
@@ -348,7 +348,7 @@ const View& GameInterface::getView() const
 	return view;
 }
 
-Entity* GameInterface::getDynamicEntity(unsigned int id)
+PhysicalEntity* GameInterface::getPhysicalEntity(unsigned int id)
 {
 	if (id >= players.size())
 	{
@@ -375,11 +375,11 @@ Entity* GameInterface::getDynamicEntity(unsigned int id)
 	{
 		return players[id];
 	}
-	Debug::error("GameInterface::getDynamicEntity(" + Converter::intToString(id) + "): id kinda out of range");
+	Debug::error("GameInterface::getPhysicalEntity(" + Converter::intToString(id) + "): id kinda out of range");
 	return NULL;
 }
 
-unsigned int GameInterface::getDynamicEntityAmount()
+unsigned int GameInterface::getPhysicalEntityAmount()
 {
 	return mobs.size() + /*bullets.size() +*/ players.size() + idlers.size();
 }
