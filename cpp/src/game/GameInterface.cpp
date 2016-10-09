@@ -14,6 +14,7 @@ static const float FREQ = 0.2f;
 
 GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers)
 {
+	Debug::note("------------ [ GAME ON ] ------------");
 	tileMap = new GameTileMap(map);
 	for (unsigned int i = 0; i < lobbyPlayers.size(); i++)
 	{
