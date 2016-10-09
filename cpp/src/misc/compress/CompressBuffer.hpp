@@ -5,7 +5,7 @@
 #include <vector>
 
 #include <misc/Global.hpp>
-#include "cid.hpp"
+#include "Cid.hpp"
 
 class CompressBuffer
 {

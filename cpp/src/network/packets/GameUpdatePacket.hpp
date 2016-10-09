@@ -3,10 +3,14 @@
 
 #include <network/Packet.hpp>
 
+class CompressBuffer;
+
 class GameUpdatePacket : public Packet
 {
 	public:
-		CID getCID() const;
+		GameUpdatePacket(CompressBuffer*);
+		std::string toString() const override;
+		CID getCID() const override;
 };
 
 #include <misc/compress/CompressBuffer.hpp>

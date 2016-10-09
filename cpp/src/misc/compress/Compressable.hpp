@@ -3,7 +3,7 @@
 
 #include <misc/Global.hpp>
 
-#include "cid.hpp"
+#include "Cid.hpp"
 
 #include <string>
 #include <vector>
