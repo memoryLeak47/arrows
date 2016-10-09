@@ -10,7 +10,7 @@ class ActionsUpdateUserPacket : public UserPacket
 		ActionsUpdateUserPacket(Actions actions);
 		ActionsUpdateUserPacket(CompressBuffer*);
 		virtual ~ActionsUpdateUserPacket() {}
-		virtual std::string toString() const override;
+		virtual std::string getCompressString() const override;
 		virtual CID getCID() const override;
 		Actions getActions() const;
 	private:

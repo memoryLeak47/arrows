@@ -9,7 +9,7 @@ class GameUpdatePacket : public Packet
 {
 	public:
 		GameUpdatePacket(CompressBuffer*);
-		std::string toString() const override;
+		std::string getCompressString() const override;
 		CID getCID() const override;
 };
 

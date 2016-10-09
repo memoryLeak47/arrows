@@ -12,7 +12,7 @@ class LoginUserPacket : public UserPacket
 	public:
 		LoginUserPacket(const std::string&, int);
 		LoginUserPacket(CompressBuffer*);
-		std::string toString() const override;
+		std::string getCompressString() const override;
 		CID getCID() const override;
 
 		std::string getName() const;

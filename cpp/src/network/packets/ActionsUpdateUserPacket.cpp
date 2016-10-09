@@ -9,7 +9,7 @@ ActionsUpdateUserPacket::ActionsUpdateUserPacket(CompressBuffer* buffer)
 	actions = buffer->cutChar();
 }
 
-std::string ActionsUpdateUserPacket::toString() const
+std::string ActionsUpdateUserPacket::getCompressString() const
 {
 	std::string s;
 	return s + actions;

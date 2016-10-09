@@ -40,7 +40,7 @@ void AvatarUserPacket::setIDs(const std::string& ids)
         avatarID = ids[0];
 }
 
-std::string AvatarUserPacket::toString() const
+std::string AvatarUserPacket::getCompressString() const
 {
 	std::string s;
 	s += avatarID;

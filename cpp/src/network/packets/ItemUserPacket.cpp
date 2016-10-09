@@ -43,7 +43,7 @@ void ItemUserPacket::setIDs(const std::string& ids)
 	itemIDs = ids;
 }
 
-std::string ItemUserPacket::toString() const
+std::string ItemUserPacket::getCompressString() const
 {
 	std::string s;
 	for (int i = 0; i < 3; i++)

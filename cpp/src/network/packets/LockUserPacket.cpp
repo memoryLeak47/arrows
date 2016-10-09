@@ -12,7 +12,7 @@ bool LockUserPacket::isLocked() const
 	return locked;
 }
 
-std::string LockUserPacket::toString() const
+std::string LockUserPacket::getCompressString() const
 {
 	return compressBool(isLocked());
 }

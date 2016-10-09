@@ -13,7 +13,7 @@ LobbyPlayersPacket::LobbyPlayersPacket(CompressBuffer* buffer)
 	}
 }
 
-std::string LobbyPlayersPacket::toString() const
+std::string LobbyPlayersPacket::getCompressString() const
 {
 	std::vector<Compressable*> vec;
 	for (unsigned int i = 0; i < players.size(); i++)

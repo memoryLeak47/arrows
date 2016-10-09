@@ -13,7 +13,7 @@ class TeamUserPacket : public UserPacket
 		TeamUserPacket(CompressBuffer*);
 		virtual ~TeamUserPacket() {}
 		Team* getTeam() const;
-		std::string toString() const override;
+		std::string getCompressString() const override;
 		CID getCID() const override;
 	private:
 		char teamID;

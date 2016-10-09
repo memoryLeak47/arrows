@@ -13,7 +13,7 @@ class LobbyPlayersPacket : public Packet
 		LobbyPlayersPacket(CompressBuffer*);
 		virtual ~LobbyPlayersPacket() {} // don't delete the LobbyPlayers
 		std::vector<LobbyPlayer*> getPlayers() const;
-		virtual std::string toString() const override;
+		virtual std::string getCompressString() const override;
 		virtual CID getCID() const override;
 	private:
 		std::vector<LobbyPlayer*> players;

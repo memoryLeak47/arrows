@@ -12,7 +12,7 @@ class Compressable // represents Compressable.java and Compressor.java
 {
 	public:
 		virtual ~Compressable() {}
-		virtual std::string toString() const = 0; // conversion to chars
+		virtual std::string getCompressString() const = 0; // conversion to chars
 		virtual CID getCID() const = 0;
 		std::string compress() const; // CID + conversion to chars
 		static void* decompress(const std::string&); // creates CompressBuffer -> gets object

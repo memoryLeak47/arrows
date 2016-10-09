@@ -13,7 +13,7 @@ Team* TeamUserPacket::getTeam() const
 	return Team::get(teamID);
 }
 
-std::string TeamUserPacket::toString() const
+std::string TeamUserPacket::getCompressString() const
 {
 	std::string s;
 	s += teamID;

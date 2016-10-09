@@ -24,7 +24,7 @@ UserPacket* UserPacketWithID::getPacket() const
 	return packet;
 }
 
-std::string UserPacketWithID::toString() const
+std::string UserPacketWithID::getCompressString() const
 {
 	std::string packetString = getPacket()->compress(); // yes with CID!
 	std::string idString = compressInt(getID());

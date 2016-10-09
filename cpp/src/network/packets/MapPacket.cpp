@@ -21,7 +21,7 @@ CID MapPacket::getCID() const
 	return MAP_PACKET_CID;
 }
 
-std::string MapPacket::toString() const
+std::string MapPacket::getCompressString() const
 {
 	return compressMap(getInts());
 }

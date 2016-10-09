@@ -19,7 +19,7 @@ class MapPacket : public Packet
 		MapPacket(CompressBuffer*);
 		std::vector<std::vector<int>> getInts() const;
 		virtual CID getCID() const override;
-		virtual std::string toString() const override;
+		virtual std::string getCompressString() const override;
 	private:
 		std::vector<std::vector<int>> map; // Zweidimensionaler Vektor lol
 };

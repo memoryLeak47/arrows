@@ -157,14 +157,14 @@ void LobbyPlayer::applyItemUserPacket(ItemUserPacket* packet)
 	itemPacket = new ItemUserPacket(*packet);
 }
 
-std::string LobbyPlayer::toString() const
+std::string LobbyPlayer::getCompressString() const
 {
 	std::string s;
-	s += getLockUserPacket()->toString();
-	s += getTeamUserPacket()->toString();
-	s += getLoginUserPacket()->toString();
-	s += getAvatarUserPacket()->toString();
-	s += getSkillUserPacket()->toString();
-	s += getItemUserPacket()->toString();
+	s += getLockUserPacket()->getCompressString();
+	s += getTeamUserPacket()->getCompressString();
+	s += getLoginUserPacket()->getCompressString();
+	s += getAvatarUserPacket()->getCompressString();
+	s += getSkillUserPacket()->getCompressString();
+	s += getItemUserPacket()->getCompressString();
 	return s;
 }

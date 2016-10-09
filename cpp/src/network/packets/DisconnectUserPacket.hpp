@@ -11,7 +11,7 @@ class DisconnectUserPacket : public UserPacket
 		DisconnectUserPacket();
 		DisconnectUserPacket(CompressBuffer*);
 		virtual ~DisconnectUserPacket() {}
-		std::string toString() const;
+		std::string getCompressString() const override;
 		CID getCID() const;
 };
 

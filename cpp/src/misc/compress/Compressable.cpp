@@ -5,7 +5,7 @@
 
 std::string Compressable::compress() const
 {
-	return ((char) getCID()) + toString();
+	return ((char) getCID()) + getCompressString();
 }
 
 void* Compressable::decompress(const std::string& string)
@@ -20,7 +20,7 @@ std::string Compressable::compressVector(const std::vector<Compressable*>& vec)
 	std::string s = compressInt(vec.size());
 	for (unsigned int i = 0; i < vec.size(); i++)
 	{
-		s += vec[i]->toString();
+		s += vec[i]->getCompressString();
 	}
 	return s;
 }

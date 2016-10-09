@@ -43,7 +43,7 @@ void SkillUserPacket::setIDs(const std::string& ids)
 	skillIDs = ids;
 }
 
-std::string SkillUserPacket::toString() const
+std::string SkillUserPacket::getCompressString() const
 {
 	// TODO
 	std::string s;

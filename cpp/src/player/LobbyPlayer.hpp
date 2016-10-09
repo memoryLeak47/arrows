@@ -37,7 +37,7 @@ class LobbyPlayer : public Compressable
 		void applyItemUserPacket(ItemUserPacket*);
 
 	private:
-		virtual std::string toString() const override;
+		virtual std::string getCompressString() const override;
 		virtual CID getCID() const override;
 
 		LockUserPacket* lockPacket;
