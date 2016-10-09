@@ -5,8 +5,8 @@
 #include <misc/Converter.hpp>
 #include <controller/PlayerController.hpp>
 
-GamePlayer::GamePlayer(Body*) // NUR im GameUpdatePacket verwendet, da unvollständig
-	 : Mob(body, NULL)
+GamePlayer::GamePlayer(Body* body_arg) // NUR im GameUpdatePacket verwendet, da unvollständig
+	 : Mob(body_arg, NULL)
 {}
 
 GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
@@ -72,5 +72,13 @@ bool GamePlayer::updateActions()
 
 void GamePlayer::apply(GamePlayer* player)
 {
+	if (player == NULL)
+	{
+		Debug::error("GamePlayer::apply(NULL):");
+	}
+	if (player->getBody() == NULL)
+	{
+		Debug::error("GamePlayer::apply(): player->getBody() == NULL");
+	}
 	body->apply(player->getBody());
 }

@@ -9,6 +9,7 @@ class TestKiste : public Idler
 {
 	public:
 		TestKiste(const GameVector&);
+		TestKiste(CompressBuffer*);
 
 		// compress
 		CID getCID() const override;

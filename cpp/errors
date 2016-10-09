@@ -1,9 +1,0 @@
-# errors
-
-1. instanceof GameVector {+-1,0} / {0,+-1}
-
-glitch into TestKiste
-tiles stop you
-segfault
-bleib stehen => glitch over TestKiste[0]
-weird tile glitch[0]

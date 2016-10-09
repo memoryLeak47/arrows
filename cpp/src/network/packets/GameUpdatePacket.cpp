@@ -19,7 +19,8 @@ GameUpdatePacket::GameUpdatePacket(CompressBuffer* buffer)
 	size = buffer->cutInt();
 	for (int i = 0; i < size; i++)
 	{
-		idlers.push_back(dynamic_cast<Idler*>(buffer->cutCompressable()));
+		Idler* idler = dynamic_cast<Idler*>(buffer->cutCompressable());
+		idlers.push_back(idler);
 	}
 }
 

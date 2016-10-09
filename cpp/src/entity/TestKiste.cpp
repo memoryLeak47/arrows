@@ -4,6 +4,10 @@ TestKiste::TestKiste(const GameVector& position)
 	: Idler(new RectBody(position, GameVector(0.7f, 0.5f)))
 {}
 
+TestKiste::TestKiste(CompressBuffer* buffer)
+	: Idler(buffer)
+{}
+
 CID TestKiste::getCID() const
 {
 	return TEST_KISTE_CID;
