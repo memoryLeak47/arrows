@@ -33,6 +33,14 @@ int CompressBuffer::cutInt()
 	return (((unsigned char) s[0]) << 24) + (((unsigned char) s[1]) << 16) + (((unsigned char) s[2]) << 8) + (unsigned char)s[3];
 }
 
+float CompressBuffer::cutFloat()
+{
+	static_assert(sizeof(int) == sizeof(float), "cutFloat() doesn't work");
+
+	int i = cutInt();
+	return *reinterpret_cast<float*>(&i);
+}
+
 char CompressBuffer::cutChar()
 {
 	std::string tmp = cut(1);

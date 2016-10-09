@@ -40,6 +40,12 @@ std::string Compressable::compressInt(int i)
 	return s;
 }
 
+std::string Compressable::compressFloat(float f)
+{
+	static_assert(sizeof(int) == sizeof(float), "compressFloat() doesn't work");
+	return compressInt(*reinterpret_cast<int*>(&f));
+}
+
 std::string Compressable::compressShort(short i)
 {
 	std::string s;
