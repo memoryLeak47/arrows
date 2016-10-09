@@ -13,7 +13,7 @@ Mob::~Mob()
 
 std::string Mob::getCompressString() const
 {
-	return getBody()->getCompressString() + getController()->getCompressString();
+	return getBody()->compress() + getController()->compress();
 }
 
 void Mob::tick()

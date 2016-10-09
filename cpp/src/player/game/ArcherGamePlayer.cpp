@@ -6,7 +6,10 @@ ArcherGamePlayer::ArcherGamePlayer(const GameVector& pos, const LobbyPlayer* pla
 
 ArcherGamePlayer::ArcherGamePlayer(CompressBuffer* buffer)
 	: GamePlayer((Body*) buffer->cutCompressable())
-{}
+{
+	if (not (buffer->cut(1)[0] == PLAYER_CONTROLLER_CID))
+		Debug::warn("ArcherGamePlayer::ArcherGamePlayer(buffer): expected PLAYER_CONTROLLER_CID");
+}
 
 CID ArcherGamePlayer::getCID() const
 {

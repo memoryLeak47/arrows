@@ -28,19 +28,19 @@ std::string GameUpdatePacket::getCompressString() const
 	std::string s = compressInt(players.size());
 	for (unsigned int i = 0; i < players.size(); i++)
 	{
-		s += players[i]->getCompressString();
+		s += players[i]->compress();
 	}
 
 	s += compressInt(mobs.size());
 	for (unsigned int i = 0; i < mobs.size(); i++)
 	{
-		s += mobs[i]->getCompressString();
+		s += mobs[i]->compress();
 	}
 
 	s += compressInt(idlers.size());
 	for (unsigned int i = 0; i < idlers.size(); i++)
 	{
-		s += idlers[i]->getCompressString();
+		s += idlers[i]->compress();
 	}
 
 	return s;

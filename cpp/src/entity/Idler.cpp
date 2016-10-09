@@ -10,7 +10,7 @@ Idler::Idler(CompressBuffer* buffer)
 
 std::string Idler::getCompressString() const
 {
-	return getBody()->getCompressString();
+	return getBody()->compress();
 }
 
 EntityType Idler::getEntityType() const
