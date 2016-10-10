@@ -33,6 +33,10 @@ class Entity
 	public:
 		Entity(Body*);
 		virtual ~Entity();
+
+		virtual bool hasChanged() const = 0;
+		virtual void setChanged(bool) = 0;
+
 		virtual void tick();
 		virtual std::string toString() const = 0;
 
@@ -80,8 +84,6 @@ class Entity
 		static CollisionType getCollisionTypeBetween(Entity* e1, Entity* e2);
 
 		const Body* getBody() const;
-		virtual bool hasChanged() const;
-		void setChanged(bool);
 
 		void dash(const GameVector&, float);
 		bool couldDashTo(const GameVector&) const;
@@ -98,7 +100,6 @@ class Entity
 		PixelRect getRenderRect(const View&) const;
 		Body* body;
 	private:
-		bool changed;
 		int dashCounter;
 };
 

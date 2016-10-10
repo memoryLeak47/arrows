@@ -12,6 +12,9 @@ class DynamicEntity : public Entity
 		void checkWrapperPartners();
 		void updatePartners();
 
+		virtual bool hasChanged() const override;
+		virtual void setChanged(bool b) override;
+
 		virtual void addCollisionPartner(Entity* e) override;
 		virtual void addWrapperPartner(Entity* e) override;
 		virtual void removeCollisionPartner(Entity* e) override;
@@ -21,6 +24,7 @@ class DynamicEntity : public Entity
 		virtual bool hasCollisionPartner(Entity* e) const override;
 		virtual bool hasWrapperPartner(Entity* e) const override;
 	private:
+		bool changed;
 		std::vector<Entity*> collisionPartners;
 		std::vector<Entity*> wrapperPartners;
 };

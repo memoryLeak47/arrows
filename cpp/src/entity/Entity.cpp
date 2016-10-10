@@ -7,7 +7,6 @@
 #include <collision/PhysicsHandler.hpp>
 
 Entity::Entity(Body* bodyArg)
-	: changed(true)
 {
 	body = bodyArg;
 }
@@ -150,16 +149,6 @@ CollisionType Entity::getCollisionTypeBetween(Entity* e1, Entity* e2)
 const Body* Entity::getBody() const
 {
 	return body;
-}
-
-bool Entity::hasChanged() const
-{
-	return changed;
-}
-
-void Entity::setChanged(bool b)
-{
-	changed = b;
 }
 
 void Entity::render(const View& v) const

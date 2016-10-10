@@ -21,6 +21,13 @@ Tile::Tile(const GameVector& pos)
 	: Entity(new RectBody(pos, GameVector(1, 1)))
 {}
 
+bool Tile::hasChanged() const
+{
+	return false;
+}
+
+void Tile::setChanged(bool b) {}
+
 EntityType Tile::getEntityType() const
 {
 	return EntityType::TILE;

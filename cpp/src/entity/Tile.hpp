@@ -13,12 +13,15 @@ class Tile : public Entity
 		Tile(Body*);
 		Tile(const GameVector&);
 		virtual ~Tile() {}
+
+		virtual bool hasChanged() const override;
+		virtual void setChanged(bool b) override;
+
 		virtual EntityType getEntityType() const override;
 		virtual bool isSpawnTeamTile() const;
 		virtual void renderToImage(sf::Image&, int, int) const;
 		virtual bool rendersStatic() const;
 		virtual bool isStatic() const override { return true; }
-		virtual bool hasChanged() const override { return false; }
 		virtual float getMass() const override;
 
 		virtual void addCollisionPartner(Entity*) override;

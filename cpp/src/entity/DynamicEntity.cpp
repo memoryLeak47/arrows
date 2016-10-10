@@ -4,8 +4,18 @@
 #include <collision/PhysicsHandler.hpp>
 
 DynamicEntity::DynamicEntity(Body* body_arg)
-	: Entity(body_arg)
+	: Entity(body_arg), changed(true)
 {}
+
+bool DynamicEntity::hasChanged() const
+{
+	return changed;
+}
+
+void DynamicEntity::setChanged(bool b)
+{
+	changed = b;
+}
 
 void DynamicEntity::checkWrapperPartners()
 {
