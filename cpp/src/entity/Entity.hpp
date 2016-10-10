@@ -55,7 +55,6 @@ class Entity
 		virtual void optDrag();
 
 		// collision
-		void checkWrapperPartners();
 		virtual float getCollisionPriority(Entity* e) { return 1; } // TODO = 0
 		virtual EntityType getEntityType() const = 0;
 		virtual CollisionType getCollisionType() const;
@@ -68,13 +67,14 @@ class Entity
 		void reactToCollision(float massshare, const GameVector& speed, const GameVector& collisionPoint);
 
 		// collisionPartner / WrapperPartners
-		virtual void addCollisionPartner(Entity*);
-		virtual void addWrapperPartner(Entity*);
-		virtual void removeCollisionPartner(Entity*);
-		virtual void removeWrapperPartner(Entity*);
-		std::vector<Entity*> getCollisionPartners();
-		bool hasCollisionPartner(Entity*) const;
-		bool hasWrapperPartner(Entity*) const;
+		virtual void addCollisionPartner(Entity*) = 0;
+		virtual void addWrapperPartner(Entity*) = 0;
+		virtual void removeCollisionPartner(Entity*) = 0;
+		virtual void removeWrapperPartner(Entity*) = 0;
+		virtual std::vector<Entity*> getCollisionPartners() = 0;
+		virtual std::vector<Entity*> getWrapperPartners() = 0;
+		virtual bool hasCollisionPartner(Entity*) const = 0;
+		virtual bool hasWrapperPartner(Entity*) const = 0;
 		static bool areCollisionPartners(Entity*, Entity*);
 		static bool areWrapperPartners(Entity*, Entity*);
 		static CollisionType getCollisionTypeBetween(Entity* e1, Entity* e2);
@@ -100,8 +100,6 @@ class Entity
 	private:
 		bool changed;
 		int dashCounter;
-		std::vector<Entity*> collisionPartners;
-		std::vector<Entity*> wrapperPartners;
 };
 
 #include <collision/Body.hpp>

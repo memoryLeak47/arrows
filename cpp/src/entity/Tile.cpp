@@ -50,6 +50,32 @@ void Tile::addCollisionPartner(Entity*)
 void Tile::removeCollisionPartner(Entity*)
 {}
 
+void Tile::addWrapperPartner(Entity*)
+{}
+
+void Tile::removeWrapperPartner(Entity*)
+{}
+
+std::vector<Entity*> Tile::getCollisionPartners()
+{
+	return {};
+}
+
+std::vector<Entity*> Tile::getWrapperPartners()
+{
+	return {};
+}
+
+bool Tile::hasCollisionPartner(Entity*) const
+{
+	return false;
+}
+
+bool Tile::hasWrapperPartner(Entity*) const
+{
+	return false;
+}
+
 Tile* Tile::createByColorID(const int id, const GameVector& position)
 {
 	if (id == NORMAL_BLOCK_ID)

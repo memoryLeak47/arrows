@@ -1,9 +1,9 @@
 #ifndef __IDLER_CLASS__
 #define __IDLER_CLASS__
 
-#include "PhysicalEntity.hpp"
+#include "ImpactfulDynamicEntity.hpp"
 
-class Idler : public PhysicalEntity
+class Idler : public ImpactfulDynamicEntity
 {
 	public:
 		Idler(Body*);

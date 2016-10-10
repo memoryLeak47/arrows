@@ -1,11 +1,11 @@
 #include "Idler.hpp"
 
 Idler::Idler(Body* b)
-	: PhysicalEntity(b)
+	: ImpactfulDynamicEntity(b)
 {}
 
 Idler::Idler(CompressBuffer* buffer)
-	: PhysicalEntity(buffer)
+	: ImpactfulDynamicEntity(buffer)
 {}
 
 std::string Idler::getCompressString() const

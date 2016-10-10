@@ -97,8 +97,8 @@ void ClientGameInterface::applyGameUpdate(const std::vector<GamePlayer*>& player
 		idlers.push_back(idlers_arg[i]);
 	}
 
-	for (unsigned int i = 0; i < getPhysicalEntityAmount(); i++)
+	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
 	{
-		getPhysicalEntity(i)->updatePartners();
+		getDynamicEntity(i)->updatePartners();
 	}
 }

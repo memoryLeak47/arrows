@@ -17,7 +17,7 @@ class Tile;
 class Bullet;
 class CollisionEvent;
 class GamePlayer;
-class PhysicalEntity;
+class DynamicEntity;
 
 class GameInterface : public Menu, public NetworkInterface
 {
@@ -30,8 +30,8 @@ class GameInterface : public Menu, public NetworkInterface
 		int ipToID(sf::IpAddress*) const;
 		virtual GamePlayer* getLocalPlayer() const = 0;
 		virtual void updateOtherGamers() = 0;
-		unsigned int getPhysicalEntityAmount();
-		PhysicalEntity* getPhysicalEntity(unsigned int);
+		unsigned int getDynamicEntityAmount();
+		DynamicEntity* getDynamicEntity(unsigned int);
 
 		std::vector<GamePlayer*> players;
 		std::vector<Idler*> idlers;
@@ -65,6 +65,7 @@ class GameInterface : public Menu, public NetworkInterface
 #include <tile/map/LobbyTileMap.hpp>
 #include <player/LobbyPlayer.hpp>
 #include <player/GamePlayer.hpp>
+#include <entity/DynamicEntity.hpp>
 #include <entity/Idler.hpp>
 #include <entity/Mob.hpp>
 #include <entity/Tile.hpp>

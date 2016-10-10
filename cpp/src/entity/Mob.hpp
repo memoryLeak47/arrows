@@ -1,11 +1,11 @@
 #ifndef __MOB_CLASS__
 #define __MOB_CLASS__
 
-#include "PhysicalEntity.hpp"
+#include "ImpactfulDynamicEntity.hpp"
 
 class Controller;
 
-class Mob : public PhysicalEntity
+class Mob : public ImpactfulDynamicEntity
 {
 	public:
 		Mob(Body*, Controller*);

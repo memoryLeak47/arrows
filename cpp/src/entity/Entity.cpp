@@ -109,44 +109,6 @@ void Entity::addSpeed(const GameVector& how)
 	setSpeed(how + body->getSpeed());
 }
 
-void Entity::checkWrapperPartners()
-{
-	for (unsigned int i = 0; i < wrapperPartners.size(); ++i)
-	{
-		Entity* p = wrapperPartners[i];
-		if (CollisionTester::areWrapperColliding(this, p))
-		{
-			GameVector collisionPoint(0,0);
-			if (CollisionTester::areColliding(this, p, &collisionPoint))
-			{
-				if (not Entity::areCollisionPartners(this, p))
-				{
-					addCollisionPartner(p);
-					p->addCollisionPartner(this);
-					// TODO throw enter event
-				}
-				PhysicsHandler::handlePhysics(this, p, collisionPoint);
-
-				this->setChanged(true);
-				p->setChanged(true);
-			}
-			else
-			{
-				if (Entity::areCollisionPartners(this, p))
-				{
-					removeCollisionPartner(p);
-					p->removeCollisionPartner(this);
-					// TODO throw exit event
-				}
-			}
-		}
-		else
-		{
-			removeWrapperPartner(p);
-			p->removeWrapperPartner(this);
-		}
-	}
-}
 
 CollisionType Entity::getCollisionType() const
 {
@@ -170,124 +132,14 @@ void Entity::optDrag()
 	push(body->getSpeed() * -0.01f);
 }
 
-void Entity::addCollisionPartner(Entity* e)
-{
-	if (e == this)
-	{
-		Debug::error("Entity::addCollisionPartner(): entity wanted to add itself: " + e->toString());
-	}
-
-	if (! memberOf(e, collisionPartners))
-	{
-		collisionPartners.push_back(e);
-	}
-	else
-	{
-		Debug::warn("Entity::addCollisionPartner(): entity is already in collisionPartners");
-	}
-}
-
-void Entity::addWrapperPartner(Entity* e)
-{
-	if (e == this)
-	{
-		Debug::error("Entity::addWrapperPartner(): entity wanted to add itself: " + e->toString());
-	}
-
-	if (! memberOf(e, wrapperPartners))
-	{
-		wrapperPartners.push_back(e);
-	}
-	else
-	{
-		Debug::warn("Entity::addWrapperPartner(): entity is already in wrapperPartners");
-	}
-}
-
-void Entity::removeCollisionPartner(Entity* e)
-{
-	if (e == this)
-	{
-		Debug::error("Entity::removeCollisionPartner(): entity wanted to remove itself: " + e->toString());
-	}
-
-	bool found = false;
-	for (auto it = collisionPartners.begin(); it != collisionPartners.end(); ++it)
-	{
-		if (*it == e)
-		{
-			found = true;
-			collisionPartners.erase(it);
-			break;
-		}
-	}
-
-	if (not found)
-	{
-		Debug::error("Entity::removeCollisionPartner(): e=" + e->toString() + " was not found in " + toString() + ".collisionPartners");
-	}
-}
-
-void Entity::removeWrapperPartner(Entity* e)
-{
-	if (e == this)
-	{
-		Debug::error("Entity::removeWrapper Partner(): entity wanted to remove itself: " + e->toString());
-	}
-	bool found = false;
-	for (auto it = wrapperPartners.begin(); it != wrapperPartners.end(); ++it)
-	{
-		if (*it == e)
-		{
-			found = true;
-			wrapperPartners.erase(it);
-			break;
-		}
-	}
-
-	if (not found)
-	{
-		Debug::error("Entity::removeWrapperPartner(): e=" + e->toString() + " was not found in " + toString() + ".wrapperPartners");
-	}
-}
-
-std::vector<Entity*> Entity::getCollisionPartners()
-{
-	return collisionPartners;
-}
-
-bool Entity::hasCollisionPartner(Entity* e) const
-{
-	for (unsigned int i = 0; i < collisionPartners.size(); i++)
-	{
-		if (e == collisionPartners[i])
-		{
-			return true;
-		}
-	}
-	return false;
-}
-
-bool Entity::hasWrapperPartner(Entity* e) const
-{
-	for (unsigned int i = 0; i < wrapperPartners.size(); i++)
-	{
-		if (e == wrapperPartners[i])
-		{
-			return true;
-		}
-	}
-	return false;
-}
-
 bool Entity::areCollisionPartners(Entity* e1, Entity* e2)
 {
-	return e1->hasCollisionPartner(e2) or e2->hasCollisionPartner(e1);
+       return e1->hasCollisionPartner(e2) or e2->hasCollisionPartner(e1);
 }
 
 bool Entity::areWrapperPartners(Entity* e1, Entity* e2)
 {
-	return e1->hasWrapperPartner(e2) or e2->hasWrapperPartner(e1);
+       return e1->hasWrapperPartner(e2) or e2->hasWrapperPartner(e1);
 }
 
 CollisionType Entity::getCollisionTypeBetween(Entity* e1, Entity* e2)
