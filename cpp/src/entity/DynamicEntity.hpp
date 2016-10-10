@@ -10,7 +10,6 @@ class DynamicEntity : public Entity
 		virtual ~DynamicEntity() {}
 
 		void checkWrapperPartners();
-		void updatePartners();
 
 		virtual bool hasChanged() const override;
 		virtual void setChanged(bool b) override;
@@ -27,6 +26,8 @@ class DynamicEntity : public Entity
 		bool changed;
 		std::vector<Entity*> collisionPartners;
 		std::vector<Entity*> wrapperPartners;
+
+	friend class ClientGameInterface; // needed to update (w/c)partners on GameUpdatePacket
 };
 
 #endif

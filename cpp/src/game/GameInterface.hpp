@@ -32,6 +32,7 @@ class GameInterface : public Menu, public NetworkInterface
 		virtual void updateOtherGamers() = 0;
 		unsigned int getDynamicEntityAmount();
 		DynamicEntity* getDynamicEntity(unsigned int);
+		GameTileMap* getGameTileMap() const;
 
 		std::vector<GamePlayer*> players;
 		std::vector<Idler*> idlers;
@@ -46,7 +47,6 @@ class GameInterface : public Menu, public NetworkInterface
 		void renderMap() const;
 		void renderBars() const;
 		void renderEntities() const;
-		GameTileMap* getGameTileMap() const;
 		const View& getView() const;
 
 		// physics/collision-system
