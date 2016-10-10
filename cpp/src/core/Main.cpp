@@ -51,13 +51,15 @@ NetworkDevice* Main::getNetworkDevice()
 void Main::run()
 {
 	sf::Clock clock;
+	float time = 0.f;
 	while (running)
 	{
-		if (clock.getElapsedTime().asSeconds() > 1/global::FPS)
+		time += clock.restart().asSeconds();
+		if (time > 1.f/global::FPS)
 		{
+			time -= 1.f/global::FPS;
 			tick();
 			render();
-			clock.restart();
 		}
 	}
 }
