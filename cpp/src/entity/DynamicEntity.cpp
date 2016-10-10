@@ -60,6 +60,7 @@ void DynamicEntity::updatePartners()
 {
 	wrapperPartners.clear();
 	collisionPartners.clear();
+	Debug::warn("DynamicEntity::updatePartners(): TODO");
 }
 
 void DynamicEntity::addCollisionPartner(Entity* e)
