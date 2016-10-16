@@ -25,6 +25,11 @@ void NetworkDevice::send(Packet* packet, sf::IpAddress* ip)
 	}
 	else
 	{
+		if (global::PACKET_SOUND)
+		{
+			system("paplay /usr/share/sounds/ubuntu/notifications/Blip.ogg");
+		}
+
 		if (string.length() > MAX_PACKET_LENGTH)
 		{
 			if (TAG_NETWORK) Debug::note("sent big packet with CID: " + Converter::intToString(string[0]));
@@ -46,6 +51,11 @@ void NetworkDevice::receive()
 	if (socket.receive(sfmlPacket, ip, port) != sf::Socket::Done)
 	{
 		return;
+	}
+
+	if (global::PACKET_SOUND)
+	{
+		system("paplay /usr/share/sounds/ubuntu/stereo/message.ogg");
 	}
 
 	std::string string;

@@ -23,6 +23,7 @@ namespace global
 	float BORDER_SIZE;
 	bool SKIP_LOBBY;
 	std::string SKIP_LOBBY_MAP;
+	bool PACKET_SOUND;
 }
 
 void global::init()
@@ -44,6 +45,7 @@ void global::init()
 	BORDER_SIZE = 0.001f;
 	SKIP_LOBBY = false;
 	SKIP_LOBBY_MAP = "default.png";
+	PACKET_SOUND = false;
 
 	std::ifstream f;
 	f.open(".global", std::ios::in);
@@ -133,6 +135,13 @@ void global::init()
 		{
 			FPS = Converter::stringToFloat(value);
 			Debug::note("setting fps to " + Converter::floatToString(FPS));
+		}
+		else if (key == "packet_sound")
+		{
+			if (value == "true") PACKET_SOUND = true;
+			else if (value == "false") PACKET_SOUND = false;
+			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
+			Debug::note("setting packet_sound to " + Converter::boolToString(PACKET_SOUND));
 		}
 		else
 		{

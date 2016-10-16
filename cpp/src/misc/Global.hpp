@@ -30,6 +30,7 @@ namespace global
 	extern float BORDER_SIZE; // BORDER_SIZE is the size added left, right, top and bot to objects on exit-event detection
 	extern bool SKIP_LOBBY;
 	extern std::string SKIP_LOBBY_MAP;
+	extern bool PACKET_SOUND;
 }
 
 #include "Converter.hpp"
