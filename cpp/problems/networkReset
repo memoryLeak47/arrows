@@ -12,11 +12,24 @@ was:
 	DynamicEntities werden in Position (und Speed ???) zurückgesetzt.
 
 Vermutungen:
-	1.
-		Überbelastung des Netzwerkes
-		BUSTED:
-			Durch PACKET_SOUND konnten wir ermitteln, dass es sich nicht um eine Überbelastung des Netzwerks handelt.
-			Alle Packets kommen mit unhörbarem delay an.
+1.
+	Überbelastung des Netzwerkes
+	BUSTED:
+		Durch PACKET_SOUND konnten wir ermitteln, dass es sich nicht um eine Überbelastung des Netzwerks handelt.
+		Alle Packets kommen mit unhörbarem delay an.
 
-	2.
-		Durch kleine Verzögerungen im ActionsUpdateUserPacket ist der Speed der Entities bis zum nächsten GameUpdatePacket falsch. -> Position verschiebt sich pro Frame
+2.
+	Durch kleine Verzögerungen im ActionsUpdateUserPacket ist der Speed der Entities bis zum nächsten GameUpdatePacket falsch. -> Position verschiebt sich pro Frame
+
+	Mathematischer Gedanke:
+		Wenn das ActionsUpdateUserPacket einen Frame später beim Client ankommt, als der Server es versendet hat, und der Spieler eine Beschleunigung von 0.03 hat, dann
+		ist bei einer GameUpdateRate von 24 Frames eine Positionsverschiebung beim nächsten GameUpdatePacket von 0.72 Tiles plausibel, unter der Bedingung, dass das ActionsUpdateUserPacket
+		kurz nach dem GameUpdatePacket versendet wurde.
+
+		Geschwindigkeits_unterschied = getMaxXSpeed() / mass
+					     = 0.3 / 10
+					     = 0.03
+
+		Geschwindigkeits_unterschied * Anzahl_der_frames_ohne_GameUpdatePacket = Positions_differenz
+		0.03 * 24 = 0.72 Tiles
+
