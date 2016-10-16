@@ -10,6 +10,7 @@ wo:
 
 was:
 	DynamicEntities werden in Position (und Speed ???) zurückgesetzt.
+	Reset-distanzen wurden umso kleiner desto öfter ein GameUpdatePacket vom Server gesendet wurde..
 
 Vermutungen:
 1.
@@ -32,4 +33,3 @@ Vermutungen:
 
 		Geschwindigkeits_unterschied * Anzahl_der_frames_ohne_GameUpdatePacket = Positions_differenz
 		0.03 * 24 = 0.72 Tiles
-
