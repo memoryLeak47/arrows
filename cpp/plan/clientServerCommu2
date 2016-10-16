@@ -1,0 +1,22 @@
+client -> server (on client-key-press):
+	apply key-press (on server side)
+	ActionsUpdateUserPacket
+
+server -> client (on server-key-press):
+	apply key-press
+	EntitiesUpdatePacket(server_local_player.getUpdateEntities())
+
+server -> client (on ActionsUpdateUserPacket(client) with move action):
+	EntitiesUpdatePacket(client_local_player.getUpdateEntities())
+
+server -> client (on ActionsUpdateUserPacket(skill) with skill action):
+	EntitiesUpdatePacket(skill.getUpdateEntities())
+
+server -> client (on FREQUENCY)
+	GameUpdatePacket / EntitiesUpdatePacket(all entities)
+
+getUpdateEntities() returns std::vector of entities which have to be updated
+EntitiesUpdatePacket: updates specific entities (with Actions)
+GameUpdate: updates all entities (with Actions)
+
++ possible client-side prediction
