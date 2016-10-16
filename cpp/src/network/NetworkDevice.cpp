@@ -27,7 +27,7 @@ void NetworkDevice::send(Packet* packet, sf::IpAddress* ip)
 	{
 		if (global::PACKET_SOUND)
 		{
-			system("paplay /usr/share/sounds/ubuntu/notifications/Blip.ogg");
+			system("paplay /usr/share/sounds/ubuntu/notifications/Blip.ogg &");
 		}
 
 		if (string.length() > MAX_PACKET_LENGTH)
@@ -55,7 +55,7 @@ void NetworkDevice::receive()
 
 	if (global::PACKET_SOUND)
 	{
-		system("paplay /usr/share/sounds/ubuntu/stereo/message.ogg");
+		system("paplay /usr/share/sounds/ubuntu/stereo/message.ogg &");
 	}
 
 	std::string string;
