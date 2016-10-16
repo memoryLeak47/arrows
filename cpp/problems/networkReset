@@ -1,0 +1,22 @@
+# networkReset
+
+wer:
+	Alle Entities, die beschleunigen/vor dem letzten GameUpdatePacket beschleunigt wurden
+	Entities, die sich mit einer konstanten Bewegung sind nicht beeinflußt.
+		getestet duch unbeschleunigtes bewegen über Flat-Map -> kein Reset
+
+wo:
+	Nur Client Computer
+
+was:
+	DynamicEntities werden in Position (und Speed ???) zurückgesetzt.
+
+Vermutungen:
+	1.
+		Überbelastung des Netzwerkes
+		BUSTED:
+			Durch PACKET_SOUND konnten wir ermitteln, dass es sich nicht um eine Überbelastung des Netzwerks handelt.
+			Alle Packets kommen mit unhörbarem delay an.
+
+	2.
+		Durch kleine Verzögerungen im ActionsUpdateUserPacket ist der Speed der Entities bis zum nächsten GameUpdatePacket falsch. -> Position verschiebt sich pro Frame
