@@ -22,6 +22,7 @@ namespace global
 	extern bool DEBUG_STEPWISE;
 	extern float GAME_FRAME_TIME;
 	extern int TILESIZE;
+	extern unsigned int MAX_SHOWN_PACKET_SIZE;
 	extern float DRAG_X;
 	extern float DRAG_Y;
 	extern float GRAVITY;

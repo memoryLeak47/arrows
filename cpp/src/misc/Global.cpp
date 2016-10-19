@@ -15,6 +15,7 @@ namespace global
 	bool DEBUG_STEPWISE;
 	float GAME_FRAME_TIME;
 	int TILESIZE;
+	unsigned int MAX_SHOWN_PACKET_SIZE;
 	float DRAG_X;
 	float DRAG_Y;
 	float GRAVITY;
@@ -37,6 +38,7 @@ void global::init()
 	DEBUG_STEPWISE = false;
 	GAME_FRAME_TIME = 1;
 	TILESIZE = 40;
+	MAX_SHOWN_PACKET_SIZE = 500;
 	DRAG_X = 1.9f;
 	DRAG_Y = 1.02f;
 	GRAVITY = 0.04f;
@@ -130,6 +132,11 @@ void global::init()
 		{
 			SKIP_LOBBY_MAP = value;
 			Debug::note("setting skip_lobby.map to " + value);
+		}
+		else if (key == "max_packet_size")
+		{
+			MAX_SHOWN_PACKET_SIZE = Converter::stringToInt(value);
+			Debug::note("setting MAX_SHOWN_PACKET_SIZE to " + Converter::floatToString(MAX_SHOWN_PACKET_SIZE));
 		}
 		else if (key == "fps")
 		{
