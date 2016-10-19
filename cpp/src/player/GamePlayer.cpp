@@ -9,6 +9,10 @@ GamePlayer::GamePlayer(Body* body_arg, Controller* controller) // NUR im GameUpd
 	 : Mob(body_arg, controller)
 {}
 
+GamePlayer::GamePlayer(CompressBuffer *b)
+	: Mob(b)
+{}
+
 GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
 	: Mob(body, new PlayerController()),
 	  name(player->getLoginUserPacket()->getName()),

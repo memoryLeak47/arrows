@@ -5,7 +5,7 @@ ArcherGamePlayer::ArcherGamePlayer(const GameVector& pos, const LobbyPlayer* pla
 {}
 
 ArcherGamePlayer::ArcherGamePlayer(CompressBuffer* buffer)
-	: GamePlayer((Body*) buffer->cutCompressable(), (Controller*) buffer->cutCompressable())
+	: GamePlayer(buffer)
 {}
 
 CID ArcherGamePlayer::getCID() const

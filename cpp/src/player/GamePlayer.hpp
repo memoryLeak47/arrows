@@ -22,6 +22,7 @@ class GamePlayer : public Mob
 {
 	public:
 		GamePlayer(Body*, Controller*); // NUR im GameUpdatePacket verwendet, da unvollständig
+		GamePlayer(CompressBuffer*);
 		GamePlayer(Body*, const LobbyPlayer*);
 		~GamePlayer();
 		Actions getActions() const;
