@@ -21,7 +21,10 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 			ActionsUpdateUserPacket* actionsPacket = dynamic_cast<ActionsUpdateUserPacket*>(packet);
 			int id = ipToID(ip);
 			players[id]->setActions(actionsPacket->getActions());
-			updateOtherGamersExceptFor(id);
+			delete actionsPacket;
+
+			updateClients();
+
 			break;
 		}
 		default:
@@ -32,16 +35,17 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 void ServerGameInterface::tick()
 {
 	GameInterface::tick();
-	if (updateCounter-- <= 0)
+	Actions *a;
+	if ((a = getLocalPlayer()->actionsChanged()))
 	{
-		updateCounter = MAX_UPDATE_COUNTER;
+		getLocalPlayer()->setActions(*a);
+		delete a;
 
-		GameUpdatePacket* packet = new GameUpdatePacket(players, mobs, idlers);
-		for (unsigned int i = 1 /* player ignores itself ... sad */; i < players.size(); ++i)
-		{
-			send(packet, players[i]->getIP());
-		}
-		delete packet;
+		updateClients();
+	}
+	else if (updateCounter-- <= 0)
+	{
+		updateClients();
 	}
 }
 
@@ -50,27 +54,13 @@ GamePlayer* ServerGameInterface::getLocalPlayer() const
 	return players[0];
 }
 
-void ServerGameInterface::updateOtherGamers()
+void ServerGameInterface::updateClients()
 {
-	UserPacketWithID* packet = new UserPacketWithID(new ActionsUpdateUserPacket(getLocalPlayer()->getActions()), 0);
+	updateCounter = MAX_UPDATE_COUNTER;
+	GameUpdatePacket packet(players, mobs, idlers);
 	for (unsigned int i = 1 /* player ignores itself ... sad */; i < players.size(); ++i)
 	{
-		send(packet, players[i]->getIP());
+		send(&packet, players[i]->getIP());
 	}
-	delete packet->getPacket();
-	delete packet;
 }
 
-void ServerGameInterface::updateOtherGamersExceptFor(int id)
-{
-	UserPacketWithID* packet = new UserPacketWithID(new ActionsUpdateUserPacket(players[id]->getActions()), id);
-	for (unsigned int i = 1 /* player ignores itself ... sad */; i < players.size(); ++i)
-	{
-		if (i != (unsigned int) id)
-		{
-			send(packet, players[i]->getIP());
-		}
-	}
-	delete packet->getPacket();
-	delete packet;
-}

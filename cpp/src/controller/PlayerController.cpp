@@ -12,7 +12,7 @@ std::string PlayerController::getCompressString() const
 	return "";
 }
 
-bool PlayerController::updateActions()
+Actions* PlayerController::actionsChanged()
 {
 	bool changed = false;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) != getAction(GO_LEFT))
@@ -31,5 +31,12 @@ bool PlayerController::updateActions()
 		changed = true;
 	}
 
-	return changed;
+	if (changed)
+	{
+		return new Actions(getActions());
+	}
+	else
+	{
+		return NULL;
+	}
 }

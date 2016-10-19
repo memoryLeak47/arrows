@@ -29,7 +29,7 @@ class GamePlayer : public Mob
 		sf::IpAddress* getIP() const;
 	private:
 		void setActions(const Actions actions); // Setzt Actions auf das übergebene
-		bool updateActions();
+		Actions* actionsChanged();
 		void apply(GamePlayer*); // Wird nur in ClientGameInterface::applyGameUpdate benutzt
 
 		sf::IpAddress* ip;

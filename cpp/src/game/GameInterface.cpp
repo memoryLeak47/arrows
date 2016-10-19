@@ -49,7 +49,6 @@ void GameInterface::tick()
 	Debug::tickConsole();
 	Menu::tick();
 	NetworkInterface::handleAllPackets();
-	controlLocalPlayer();
 	tickEntities();
 	tickPhysics();
 }
@@ -80,17 +79,8 @@ int GameInterface::ipToID(sf::IpAddress* ip) const
 	return -1;
 }
 
-void GameInterface::controlLocalPlayer()
-{
-	if (getLocalPlayer()->updateActions())
-	{
-		updateOtherGamers();
-	}
-}
-
 void GameInterface::tickEntities()
 {
-	controlLocalPlayer();
 	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
 	{
 		Entity* entity = getDynamicEntity(i);

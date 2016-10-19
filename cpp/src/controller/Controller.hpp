@@ -27,7 +27,7 @@ class Controller : public Compressable
 		void setAction(Action, bool);
 	private:
 		void setActions(const Actions); // Setzt Actions auf das übergebene
-		virtual bool updateActions(); // schaut ob sich etwas verändert hat, und updated diese nach aktuellen Key-Status
+		virtual Actions* actionsChanged(); // see PlayerController
 		Actions actions;
 	friend class GameInterface;
 	friend class GamePlayer;

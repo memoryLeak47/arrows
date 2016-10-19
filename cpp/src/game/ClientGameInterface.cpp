@@ -51,16 +51,21 @@ void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 	}
 }
 
+void ClientGameInterface::tick()
+{
+	GameInterface::tick();
+	Actions *a;
+	if ((a = getLocalPlayer()->actionsChanged()))
+	{
+		ActionsUpdateUserPacket packet(*a);
+		send(&packet, serverIP);
+		delete a;
+	}
+}
+
 GamePlayer* ClientGameInterface::getLocalPlayer() const
 {
 	return players[localPlayerID];
-}
-
-void ClientGameInterface::updateOtherGamers()
-{
-	Packet* packet = new ActionsUpdateUserPacket(getLocalPlayer()->getActions());
-	send(packet, serverIP);
-	delete packet;
 }
 
 void ClientGameInterface::applyGameUpdate(const std::vector<GamePlayer*>& players_arg, const std::vector<Mob*>& mobs_arg, const std::vector<Idler*>& idlers_arg)

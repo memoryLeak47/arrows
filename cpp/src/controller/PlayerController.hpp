@@ -14,7 +14,7 @@ class PlayerController : public Controller
 		CID getCID() const override;
 		std::string getCompressString() const override;
 	private:
-		virtual bool updateActions() override;
+		virtual Actions* actionsChanged() override; // schaut ob sich etwas verändert hat, return die neuen actions oder NULL; setzt die neuen actions NICHT
 	friend class GameInterface;
 };
 

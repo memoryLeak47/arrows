@@ -25,10 +25,10 @@ void Controller::setAction(Action action, bool value)
 	actions ^= (-value ^ actions) & (1 << action);
 }
 
-bool Controller::updateActions()
+Actions* Controller::actionsChanged()
 {
-	Debug::error("Controller::updateActions(): NOT THIS TIME");
-	return false;
+	Debug::error("Controller::actionsChanged(): NOT THIS TIME");
+	return NULL;
 }
 
 void Controller::setActions(const Actions acts)

@@ -29,7 +29,6 @@ class GameInterface : public Menu, public NetworkInterface
 	protected:
 		int ipToID(sf::IpAddress*) const;
 		virtual GamePlayer* getLocalPlayer() const = 0;
-		virtual void updateOtherGamers() = 0;
 		unsigned int getDynamicEntityAmount();
 		DynamicEntity* getDynamicEntity(unsigned int);
 		GameTileMap* getGameTileMap() const;
@@ -41,7 +40,6 @@ class GameInterface : public Menu, public NetworkInterface
 		std::vector<Tile*> tiles;
 	private:
 		// functions
-		void controlLocalPlayer();
 		void tickEntities();
 		void tickPhysics();
 		void renderMap() const;
