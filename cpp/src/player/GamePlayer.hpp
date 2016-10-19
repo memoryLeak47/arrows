@@ -24,13 +24,15 @@ class GamePlayer : public Mob
 		GamePlayer(Body*, Controller*); // NUR im GameUpdatePacket verwendet, da unvollständig
 		GamePlayer(CompressBuffer*);
 		GamePlayer(Body*, const LobbyPlayer*);
-		~GamePlayer();
+		virtual ~GamePlayer();
+
 		Actions getActions() const;
 		virtual void renderBar(const View&) const override;
 		sf::IpAddress* getIP() const;
 	private:
 		void setActions(const Actions actions); // Setzt Actions auf das übergebene
 		void apply(GamePlayer*); // Wird nur in ClientGameInterface::applyGameUpdate benutzt
+		void setIP(sf::IpAddress*);
 
 		sf::IpAddress* ip;
 		std::string name;
@@ -39,7 +41,6 @@ class GamePlayer : public Mob
 		Avatar* avatar;
 		std::vector<Skill*> skills;
 		std::vector<Item*> items;
-		void setIP(sf::IpAddress*);
 
 	friend class GameInterface;
 	friend class ServerGameInterface;

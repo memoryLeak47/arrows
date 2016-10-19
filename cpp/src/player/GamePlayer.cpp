@@ -75,5 +75,7 @@ void GamePlayer::apply(GamePlayer* player)
 	{
 		Debug::error("GamePlayer::apply(): player->getBody() == NULL");
 	}
+
 	body->apply(player->getBody());
+	controller = player->getController();
 }

@@ -40,6 +40,7 @@ void ClientGameInterface::tick()
 	if (serverActionsStatus != a)
 	{
 		serverActionsStatus = a;
+		getLocalPlayer()->setActions(a);
 		ActionsUpdateUserPacket packet(a);
 		send(&packet, serverIP);
 	}

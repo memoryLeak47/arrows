@@ -24,10 +24,11 @@ class Mob : public ImpactfulDynamicEntity
 	protected:
 		virtual float getMaxXSpeed() const;
 		Controller* getController() const;
+
+		Controller* controller;
 	private:
 		void applyActions();
 
-		Controller* controller;
 };
 
 #include <controller/Controller.hpp>
