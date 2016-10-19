@@ -1,7 +1,7 @@
 #include "Controller.hpp"
 
 Controller::Controller(CompressBuffer* buffer)
-	: actions((CID) buffer->cutChar())
+	: actions((Actions) buffer->cutChar())
 {}
 
 Actions Controller::getActions() const

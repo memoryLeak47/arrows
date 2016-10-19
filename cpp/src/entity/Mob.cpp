@@ -8,7 +8,9 @@ Mob::Mob(Body* body, Controller* controller)
 
 Mob::Mob(CompressBuffer* buffer)
 	: ImpactfulDynamicEntity(buffer)
-{}
+{
+	controller = (Controller*) buffer->cutCompressable();
+}
 
 Mob::~Mob()
 {
