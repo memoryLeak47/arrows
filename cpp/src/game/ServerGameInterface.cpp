@@ -35,12 +35,10 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 void ServerGameInterface::tick()
 {
 	GameInterface::tick();
-	Actions *a;
-	if ((a = getLocalPlayer()->actionsChanged()))
+	Actions a = calcActions();
+	if (getLocalPlayer()->getActions() != a)
 	{
-		getLocalPlayer()->setActions(*a);
-		delete a;
-
+		getLocalPlayer()->setActions(a);
 		updateClients();
 	}
 	else if (updateCounter-- <= 0)

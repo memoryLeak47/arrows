@@ -2,14 +2,10 @@
 #define __CONTROLLER_CLASS__
 
 #include <misc/compress/Compressable.hpp>
+#include "Actions.hpp"
 
 class Mob;
 class CompressBuffer;
-
-enum Action
-{ GO_LEFT, GO_RIGHT, JUMP, SKILL1, SKILL2, SKILL3, SKILL4 };
-
-typedef char Actions;
 
 class Controller : public Compressable
 {
@@ -22,12 +18,8 @@ class Controller : public Compressable
 		std::string getCompressString() const override;
 
 		Actions getActions() const;
-		bool getAction(Action) const;
-	protected:
-		void setAction(Action, bool);
 	private:
 		void setActions(const Actions); // Setzt Actions auf das übergebene
-		virtual Actions* actionsChanged(); // see PlayerController
 		Actions actions;
 	friend class GameInterface;
 	friend class GamePlayer;

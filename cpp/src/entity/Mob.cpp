@@ -68,21 +68,21 @@ void Mob::applyActions()
 		return;
 	}
 
-	if (getController()->getAction(GO_LEFT))
+	if (getAction(getController()->getActions(), GO_LEFT))
 	{
 		actionGoLeft();
 	}
-	if (getController()->getAction(GO_RIGHT))
+	if (getAction(getController()->getActions(), GO_RIGHT))
 	{
 		actionGoRight();
 	}
-	if (getController()->getAction(JUMP))
+	if (getAction(getController()->getActions(), JUMP))
 	{
 		actionJump();
 	}
 
-	if (getController()->getAction(SKILL1)) Debug::warn("Mob::applyActions(): SKILL NOT SUPPORTED");
-	if (getController()->getAction(SKILL2)) Debug::warn("Mob::applyActions(): SKILL NOT SUPPORTED");
-	if (getController()->getAction(SKILL3)) Debug::warn("Mob::applyActions(): SKILL NOT SUPPORTED");
-	if (getController()->getAction(SKILL4)) Debug::warn("Mob::applyActions(): SKILL NOT SUPPORTED");
+	if (getAction(getController()->getActions(), SKILL1)) Debug::warn("Mob::applyActions(): SKILL NOT SUPPORTED");
+	if (getAction(getController()->getActions(), SKILL2)) Debug::warn("Mob::applyActions(): SKILL NOT SUPPORTED");
+	if (getAction(getController()->getActions(), SKILL3)) Debug::warn("Mob::applyActions(): SKILL NOT SUPPORTED");
+	if (getAction(getController()->getActions(), SKILL4)) Debug::warn("Mob::applyActions(): SKILL NOT SUPPORTED");
 }

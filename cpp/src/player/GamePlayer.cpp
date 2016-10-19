@@ -65,15 +65,6 @@ void GamePlayer::setActions(const Actions actions) // Setzt Actions auf das übe
 	getController()->setActions(actions);
 }
 
-Actions* GamePlayer::actionsChanged()
-{
-	if (getController() == NULL)
-	{
-		Debug::error("GamePlayer::updateActions(): controller == NULL");
-	}
-	return getController()->actionsChanged();
-}
-
 void GamePlayer::apply(GamePlayer* player)
 {
 	if (player == NULL)

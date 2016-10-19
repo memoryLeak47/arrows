@@ -17,6 +17,7 @@ class ClientGameInterface : public GameInterface
 	private:
 		void applyGameUpdate(const std::vector<GamePlayer*>&, const std::vector<Mob*>&, const std::vector<Idler*>&);
 
+		Actions serverActionsStatus;
 		sf::IpAddress* serverIP;
 		unsigned int localPlayerID;
 };

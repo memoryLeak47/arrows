@@ -333,6 +333,24 @@ GameTileMap* GameInterface::getGameTileMap() const
 	return tileMap;
 }
 
+Actions GameInterface::calcActions() const
+{
+	Actions actions;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		setAction(&actions, GO_LEFT, true);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		setAction(&actions, GO_RIGHT, true);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		setAction(&actions, JUMP, true);
+	}
+	return actions;
+}
+
 const View& GameInterface::getView() const
 {
 	return view;

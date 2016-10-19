@@ -7,6 +7,7 @@
 #include <menu/Menu.hpp>
 #include <tile/map/GameTileMap.hpp>
 #include <view/View.hpp>
+#include <controller/Actions.hpp>
 
 class LobbyTileMap;
 class LobbyPlayer;
@@ -32,6 +33,7 @@ class GameInterface : public Menu, public NetworkInterface
 		unsigned int getDynamicEntityAmount();
 		DynamicEntity* getDynamicEntity(unsigned int);
 		GameTileMap* getGameTileMap() const;
+		Actions calcActions() const;
 
 		std::vector<GamePlayer*> players;
 		std::vector<Idler*> idlers;

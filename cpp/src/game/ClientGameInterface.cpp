@@ -26,24 +26,6 @@ void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 			applyGameUpdate(gamePacket->getPlayers(), gamePacket->getMobs(), gamePacket->getIdlers());
 			break;
 		}
-		case USER_PACKET_WITH_ID_CID:
-		{
-			UserPacketWithID* packetWithID = dynamic_cast<UserPacketWithID*>(packet);
-			switch (packetWithID->getPacket()->getCID())
-			{
-				case ACTIONS_UPDATE_USER_PACKET_CID:
-				{
-					ActionsUpdateUserPacket* actionsPacket = dynamic_cast<ActionsUpdateUserPacket*>(packetWithID->getPacket());
-					players[packetWithID->getID()]->setActions(actionsPacket->getActions());
-					break;
-				}
-				default:
-				{
-					Debug::error("ClientGameInterface::handlePacket(): UserPacketWithID with unknown UserPacket with CID=" + Converter::intToString((int) packetWithID->getPacket()->getCID()));
-				}
-			}
-			break;
-		}
 		default:
 		{
 			Debug::error("ClientGameInterface::handlePacket(): unknown Packet with CID=" + Converter::intToString((int) packet->getCID()));
@@ -54,12 +36,12 @@ void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 void ClientGameInterface::tick()
 {
 	GameInterface::tick();
-	Actions *a;
-	if ((a = getLocalPlayer()->actionsChanged()))
+	Actions a = calcActions();
+	if (serverActionsStatus != a)
 	{
-		ActionsUpdateUserPacket packet(*a);
+		serverActionsStatus = a;
+		ActionsUpdateUserPacket packet(a);
 		send(&packet, serverIP);
-		delete a;
 	}
 }
 
