@@ -1,5 +1,8 @@
 #include "LobbyPlayersPacket.hpp"
 
+#include <misc/compress/CompressBuffer.hpp>
+#include <player/LobbyPlayer.hpp>
+
 LobbyPlayersPacket::LobbyPlayersPacket(const std::vector<LobbyPlayer*>& players)
 	: players(players)
 {}

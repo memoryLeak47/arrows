@@ -1,5 +1,7 @@
 #include "Controller.hpp"
 
+#include <misc/compress/CompressBuffer.hpp>
+
 Controller::Controller(CompressBuffer* buffer)
 	: actions((Actions) buffer->cutChar())
 {}

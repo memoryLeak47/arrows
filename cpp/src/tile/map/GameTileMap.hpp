@@ -16,16 +16,15 @@
 #ifndef __GAMETILEMAP_CLASS__
 #define __GAMETILEMAP_CLASS__
 
-#include <vector>
-#include <SFML/Graphics.hpp>
-
-#include "LobbyTileMap.hpp"
-
-class Team;
-class GameRect;
-class GameVector;
+class LobbyTileMap;
 class Tile;
+class GameRect;
 class View;
+class GameVector;
+class Team;
+
+#include <vector>
+#include <SFML/Graphics/Image.hpp>
 
 class GameTileMap
 {
@@ -49,11 +48,5 @@ class GameTileMap
 		std::vector<std::vector<Tile*>> tiles;
 		sf::Image staticImage;
 };
-
-#include <player/property/Team.hpp>
-#include <math/game/GameRect.hpp>
-#include <math/game/GameVector.hpp>
-#include <entity/Tile.hpp>
-#include <view/View.hpp>
 
 #endif

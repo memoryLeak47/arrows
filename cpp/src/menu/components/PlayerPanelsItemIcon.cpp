@@ -5,6 +5,9 @@
 #include <menu/MenuList.hpp>
 #include <player/property/item/Item.hpp>
 #include <menu/menues/ChoosePlayerPropertyMenu.hpp>
+#include <menu/menues/LobbyMenu.hpp> // for ITEM_PHASE
+#include <network/packets/ItemUserPacket.hpp>
+#include <player/LobbyPlayer.hpp>
 
 PlayerPanelsItemIcon::PlayerPanelsItemIcon(int n, LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : PlayerPanelsIcon(p, m, c, r), number(n)
 {}

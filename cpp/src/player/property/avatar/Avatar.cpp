@@ -1,8 +1,7 @@
 #include "Avatar.hpp"
 
+#include <misc/Global.hpp>
 #include <core/Main.hpp>
-#include <misc/Converter.hpp>
-#include <misc/Debug.hpp>
 #include "avatars/Archer.hpp"
 #include "avatars/Rogue.hpp"
 

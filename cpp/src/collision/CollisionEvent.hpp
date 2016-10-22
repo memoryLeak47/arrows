@@ -1,10 +1,9 @@
 #ifndef __COLLISIONEVENT_CLASS__
 #define __COLLISIONEVENT_CLASS__
 
-#include <vector>
-#include <string>
-
 class Entity;
+
+#include <string>
 
 class CollisionEvent
 {
@@ -19,7 +18,5 @@ class CollisionEvent
 		Entity* entity2;
 		float timeUntilFrameEnds;
 };
-
-#include <entity/Entity.hpp>
 
 #endif

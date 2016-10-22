@@ -1,5 +1,7 @@
 #include "LockUserPacket.hpp"
 
+#include <misc/compress/CompressBuffer.hpp>
+
 LockUserPacket::LockUserPacket(bool locked) : locked(locked)
 {}
 

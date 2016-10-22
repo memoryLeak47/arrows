@@ -5,19 +5,20 @@
 #ifndef __GAMEPLAYER_CLASS__
 #define __GAMEPLAYER_CLASS__
 
-#include <string>
-#include <vector>
-
-#include <SFML/Network.hpp>
-
-#include <entity/Mob.hpp>
-#include <controller/Actions.hpp>
-
+class CompressBuffer;
+class Body;
 class LobbyPlayer;
+class View;
+class GamePlayer;
 class Team;
 class Avatar;
 class Skill;
 class Item;
+
+#include <entity/Mob.hpp>
+#include <controller/Actions.hpp>
+#include <SFML/Network/IpAddress.hpp>
+#include <string>
 
 class GamePlayer : public Mob
 {

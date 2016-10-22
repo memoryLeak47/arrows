@@ -3,10 +3,15 @@
 #include <core/Main.hpp>
 #include <misc/Global.hpp>
 #include <player/GamePlayer.hpp>
+#include <player/LobbyPlayer.hpp>
 #include <collision/CollisionDetector.hpp>
 #include <collision/CollisionTester.hpp>
 #include <collision/PhysicsHandler.hpp>
 #include <player/property/avatar/Avatar.hpp>
+#include <tile/map/GameTileMap.hpp>
+#include <collision/CollisionEvent.hpp>
+#include <entity/Tile.hpp>
+#include <collision/Body.hpp>
 
 #include <network/packets/TeamUserPacket.hpp>
 #include <network/packets/LoginUserPacket.hpp>

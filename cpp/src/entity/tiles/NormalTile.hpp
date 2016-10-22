@@ -1,7 +1,11 @@
 #ifndef __NORMALTILE_CLASS__
 #define __NORMALTILE_CLASS__
 
+class GameVector;
+
 #include <entity/Tile.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <string>
 
 class NormalTile : public Tile
 {

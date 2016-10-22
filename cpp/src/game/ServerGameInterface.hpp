@@ -1,9 +1,14 @@
 #ifndef __SERVERGAMEINTERFACE_CLASS__
 #define __SERVERGAMEINTERFACE_CLASS__
 
-#include "GameInterface.hpp"
-
+class LobbyTileMap;
 class LobbyPlayer;
+class Packet;
+class GamePlayer;
+
+#include "GameInterface.hpp"
+#include <vector>
+#include <SFML/Network/IpAddress.hpp>
 
 class ServerGameInterface : public GameInterface
 {
@@ -19,7 +24,5 @@ class ServerGameInterface : public GameInterface
 
 		int updateCounter;
 };
-
-#include <player/LobbyPlayer.hpp>
 
 #endif

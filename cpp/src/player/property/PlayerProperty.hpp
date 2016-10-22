@@ -2,8 +2,7 @@
 #define __PLAYERPROPERTY_CLASS__
 
 #include <string>
-
-#include <graphics/GraphicsManager.hpp>
+#include <graphics/TextureID.hpp>
 
 class PlayerProperty
 {

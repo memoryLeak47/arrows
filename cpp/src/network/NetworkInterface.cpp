@@ -3,6 +3,7 @@
 #include <core/Main.hpp>
 #include <misc/Global.hpp>
 #include <network/NetworkDevice.hpp>
+#include <network/PacketAndIP.hpp>
 
 NetworkInterface::NetworkInterface()
 {

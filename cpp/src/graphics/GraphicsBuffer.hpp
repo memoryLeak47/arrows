@@ -1,7 +1,9 @@
 #ifndef __GRAPHICSBUFFER_CLASS__
 #define __GRAPHICSBUFFER_CLASS__
 
-#include <SFML/Graphics.hpp>
+#include <string>
+#include <SFML/Graphics/Texture.hpp>
+#include <vector>
 
 class GraphicsBuffer
 {

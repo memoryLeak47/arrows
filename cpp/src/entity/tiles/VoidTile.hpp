@@ -1,7 +1,11 @@
 #ifndef __VOIDTILE_CLASS__
 #define __VOIDTILE_CLASS__
 
+class GameVector;
+
 #include <entity/Tile.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <string>
 
 class VoidTile : public Tile
 {

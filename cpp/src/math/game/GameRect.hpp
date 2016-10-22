@@ -2,8 +2,7 @@
 #define __GAMERECT_CLASS__
 
 #include <string>
-
-#include "GameVector.hpp"
+#include <math/game/GameVector.hpp>
 
 class GameRect
 {
@@ -34,6 +33,5 @@ class GameRect
 		GameVector position; // left-top edge
 		GameVector size;
 };
-
 
 #endif

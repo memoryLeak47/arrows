@@ -1,7 +1,9 @@
 #include "ServerGameInterface.hpp"
 
+#include <misc/Global.hpp>
 #include <network/packets/ActionsUpdateUserPacket.hpp>
 #include <network/packets/GameUpdatePacket.hpp>
+#include <player/GamePlayer.hpp>
 
 static const int MAX_UPDATE_COUNTER = 30;
 

@@ -2,7 +2,6 @@
 #define __PIXELRECT_CLASS__
 
 #include <string>
-
 #include "PixelVector.hpp"
 
 class PixelRect
@@ -26,6 +25,5 @@ class PixelRect
 		PixelVector position; // left-top edge
 		PixelVector size;
 };
-
 
 #endif

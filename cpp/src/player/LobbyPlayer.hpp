@@ -1,16 +1,19 @@
 #ifndef __LOBBYPLAYER_CLASS__
 #define __LOBBYPLAYER_CLASS__
 
-#include <SFML/Network.hpp>
-#include <misc/compress/Compressable.hpp>
+class LoginUserPacket;
+class CompressBuffer;
 
 class LockUserPacket;
 class TeamUserPacket;
-class LoginUserPacket;
 class AvatarUserPacket;
 class SkillUserPacket;
 class ItemUserPacket;
-class CompressBuffer;
+
+#include <misc/compress/Compressable.hpp>
+#include <SFML/Network/IpAddress.hpp>
+#include <string>
+#include <misc/compress/Cid.hpp>
 
 class LobbyPlayer : public Compressable
 {

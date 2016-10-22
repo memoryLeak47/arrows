@@ -1,9 +1,9 @@
 #ifndef __PACKETANDIP_CLASS__
 #define __PACKETANDIP_CLASS__
 
-#include <SFML/Network.hpp>
-
 class Packet;
+
+#include <SFML/Network/IpAddress.hpp>
 
 class PacketAndIP
 {
@@ -16,7 +16,5 @@ class PacketAndIP
 		Packet* packet;
 		sf::IpAddress* ip;
 };
-
-#include "Packet.hpp"
 
 #endif

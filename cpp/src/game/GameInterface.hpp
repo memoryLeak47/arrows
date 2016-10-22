@@ -1,25 +1,22 @@
 #ifndef __GAMEINTERFACE_CLASS__
 #define __GAMEINTERFACE_CLASS__
 
-#include <vector>
-
-#include <menu/Menu.hpp>
-#include <network/NetworkInterface.hpp>
-
-#include <view/View.hpp>
-#include <controller/Actions.hpp>
-
-class GameTileMap;
 class LobbyTileMap;
-class GamePlayer;
 class LobbyPlayer;
+class GamePlayer;
 class DynamicEntity;
+class GameTileMap;
 class Idler;
 class Mob;
 class Tile;
-class Bullet;
-
 class CollisionEvent;
+
+#include <menu/Menu.hpp>
+#include <network/NetworkInterface.hpp>
+#include <vector>
+#include <SFML/Network/IpAddress.hpp>
+#include <controller/Actions.hpp>
+#include <view/View.hpp>
 
 class GameInterface : public Menu, public NetworkInterface
 {
@@ -62,16 +59,5 @@ class GameInterface : public Menu, public NetworkInterface
 		View view;
 		GameTileMap* tileMap;
 };
-
-#include <tile/map/GameTileMap.hpp>
-#include <tile/map/LobbyTileMap.hpp>
-#include <player/GamePlayer.hpp>
-#include <player/LobbyPlayer.hpp>
-#include <entity/DynamicEntity.hpp>
-#include <entity/Idler.hpp>
-#include <entity/Mob.hpp>
-#include <entity/Tile.hpp>
-#include <entity/Bullet.hpp>
-#include <collision/CollisionEvent.hpp>
 
 #endif

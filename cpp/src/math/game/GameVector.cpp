@@ -1,10 +1,10 @@
 #include "GameVector.hpp"
 
+#include <misc/Global.hpp>
 #include <iostream>
 #include <math.h>
-
-#include <misc/Converter.hpp>
-#include <misc/Debug.hpp>
+#include "GameRect.hpp"
+#include <misc/compress/CompressBuffer.hpp>
 
 GameVector::GameVector()
 	: x(0.f), y(0.f)

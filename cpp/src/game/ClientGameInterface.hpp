@@ -1,9 +1,17 @@
 #ifndef __CLIENTGAMEINTERFACE_CLASS__
 #define __CLIENTGAMEINTERFACE_CLASS__
 
-#include "GameInterface.hpp"
-
+class LobbyTileMap;
 class LobbyPlayer;
+class Packet;
+class GamePlayer;
+class Mob;
+class Idler;
+
+#include "GameInterface.hpp"
+#include <vector>
+#include <SFML/Network/IpAddress.hpp>
+#include <controller/Actions.hpp>
 
 class ClientGameInterface : public GameInterface
 {
@@ -21,7 +29,5 @@ class ClientGameInterface : public GameInterface
 		sf::IpAddress* serverIP;
 		unsigned int localPlayerID;
 };
-
-#include <player/LobbyPlayer.hpp>
 
 #endif

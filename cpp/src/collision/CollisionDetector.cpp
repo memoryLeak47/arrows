@@ -1,7 +1,11 @@
 #include "CollisionDetector.hpp"
 
-#include <misc/Debug.hpp>
+#include <misc/Global.hpp>
 #include <tile/map/GameTileMap.hpp>
+#include "CollisionEvent.hpp"
+#include <entity/Entity.hpp>
+#include <collision/Body.hpp>
+#include <math/game/GameRect.hpp>
 
 // private function
 int getNextIndex(const std::vector<float>& floats)

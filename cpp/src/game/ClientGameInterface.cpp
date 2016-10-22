@@ -1,6 +1,12 @@
 #include "ClientGameInterface.hpp"
 
+#include <misc/Global.hpp>
 #include <collision/CollisionTester.hpp>
+#include <player/GamePlayer.hpp>
+#include <entity/Idler.hpp>
+#include <entity/Tile.hpp>
+#include <tile/map/GameTileMap.hpp>
+#include <collision/Body.hpp>
 
 #include <network/packets/ActionsUpdateUserPacket.hpp>
 #include <network/packets/GameUpdatePacket.hpp>

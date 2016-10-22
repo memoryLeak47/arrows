@@ -1,10 +1,12 @@
 #ifndef __TEAMUSERPACKET_CLASS__
 #define __TEAMUSERPACKET_CLASS__
 
-#include "UserPacket.hpp"
-
-class Team;
 class CompressBuffer;
+class Team;
+
+#include "UserPacket.hpp"
+#include <string>
+#include <misc/compress/Cid.hpp>
 
 class TeamUserPacket : public UserPacket
 {
@@ -18,8 +20,5 @@ class TeamUserPacket : public UserPacket
 	private:
 		char teamID;
 };
-
-#include <player/property/Team.hpp>
-#include <misc/compress/CompressBuffer.hpp>
 
 #endif

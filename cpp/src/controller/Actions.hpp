@@ -1,8 +1,7 @@
-#ifndef __ACTIONS_HPP__
-#define __ACTIONS_HPP__
+#ifndef __ACTIONS_TYPEDEF__
+#define __ACTIONS_TYPEDEF__
 
-enum Action
-{ GO_LEFT, GO_RIGHT, JUMP, SKILL1, SKILL2, SKILL3, SKILL4 };
+#include "Action.hpp"
 
 typedef char Actions;
 

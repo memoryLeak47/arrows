@@ -1,9 +1,13 @@
 #ifndef __ARCHER_CLASS__
 #define __ARCHER_CLASS__
 
-#include <string>
+class GamePlayer;
+class GameVector;
+class LobbyPlayer;
 
 #include <player/property/avatar/Avatar.hpp>
+#include <graphics/TextureID.hpp>
+#include <string>
 
 class Archer : public Avatar
 {

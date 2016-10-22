@@ -1,9 +1,11 @@
 #ifndef __ICON_CLASS__
 #define __ICON_CLASS__
 
-#include <graphics/GraphicsManager.hpp>
+class ComponentContainer;
+class PixelRect;
 
 #include <menu/MenuComponent.hpp>
+#include <graphics/TextureID.hpp>
 
 class Icon : public MenuComponent
 {

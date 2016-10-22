@@ -1,11 +1,11 @@
 #ifndef __COMPONENTCONTAINER_CLASS__
 #define __COMPONENTCONTAINER_CLASS__
 
-#include <vector>
-
-#include <math/pixel/PixelRect.hpp>
-
+class PixelVector;
+class PixelRect;
 class MenuComponent;
+
+#include <vector>
 
 class ComponentContainer
 {

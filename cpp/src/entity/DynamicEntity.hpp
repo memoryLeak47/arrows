@@ -1,7 +1,10 @@
 #ifndef __DYNAMICENTITY_CLASS__
 #define __DYNAMICENTITY_CLASS__
 
+class Body;
+
 #include "Entity.hpp"
+#include <vector>
 
 class DynamicEntity : public Entity
 {

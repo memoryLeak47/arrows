@@ -6,6 +6,21 @@
 #include <core/Screen.hpp>
 #include <misc/Account.hpp>
 #include <game/ServerGameInterface.hpp>
+#include <network/packets/LockUserPacket.hpp>
+#include <network/packets/LoginUserPacket.hpp>
+#include <network/packets/AvatarUserPacket.hpp>
+#include <network/packets/SkillUserPacket.hpp>
+#include <network/packets/ItemUserPacket.hpp>
+#include <network/packets/TeamUserPacket.hpp>
+#include <network/packets/LobbyPlayersPacket.hpp>
+#include <network/packets/DisconnectUserPacket.hpp>
+#include <network/packets/MapPacket.hpp>
+#include <network/packets/UserPacketWithID.hpp>
+#include <player/LobbyPlayer.hpp>
+#include <menu/components/EditField.hpp>
+#include <menu/components/Button.hpp>
+#include <tile/map/LobbyTileMap.hpp>
+#include <player/property/Team.hpp>
 
 ServerLobbyMenu::ServerLobbyMenu()
 {

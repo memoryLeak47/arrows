@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <SFML/Window/WindowStyle.hpp>
 
 namespace global
 {

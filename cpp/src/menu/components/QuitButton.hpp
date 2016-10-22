@@ -1,6 +1,9 @@
 #ifndef __QUITBUTTON_CLASS__
 #define __QUITBUTTON_CLASS__
 
+class ComponentContainer;
+class PixelVector;
+
 #include "Button.hpp"
 
 class QuitButton : public Button

@@ -1,9 +1,12 @@
 #ifndef __SPAWNTEAMTILE_CLASS__
 #define __SPAWNTEAMTILE_CLASS__
 
-#include <entity/Tile.hpp>
-
 class Team;
+class GameVector;
+
+#include <entity/Tile.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <string>
 
 class SpawnTeamTile : public Tile
 {
@@ -18,7 +21,5 @@ class SpawnTeamTile : public Tile
 	private:
 		Team* team;
 };
-
-#include <player/property/Team.hpp>
 
 #endif

@@ -1,9 +1,13 @@
 #ifndef __MOB_CLASS__
 #define __MOB_CLASS__
 
-#include "ImpactfulDynamicEntity.hpp"
-
+class Body;
 class Controller;
+class CompressBuffer;
+class View;
+
+#include "ImpactfulDynamicEntity.hpp"
+#include <string>
 
 class Mob : public ImpactfulDynamicEntity
 {

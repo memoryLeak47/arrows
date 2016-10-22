@@ -2,6 +2,7 @@
 
 #include <misc/Global.hpp>
 #include <core/Main.hpp>
+#include <misc/compress/CompressBuffer.hpp>
 
 #include <network/packets/LockUserPacket.hpp>
 #include <network/packets/TeamUserPacket.hpp>

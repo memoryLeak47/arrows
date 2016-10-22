@@ -1,11 +1,10 @@
 #include "MiniMap.hpp"
 
+#include <misc/Global.hpp>
 #include <graphics/GraphicsManager.hpp>
 
 #include <core/Main.hpp>
 #include <core/Screen.hpp>
-#include <misc/Debug.hpp>
-#include <misc/Converter.hpp>
 
 MiniMap::MiniMap(ComponentContainer* c, const PixelRect& r) : MenuComponent(c, r)
 {

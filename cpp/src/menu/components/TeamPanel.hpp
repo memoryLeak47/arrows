@@ -1,15 +1,15 @@
 #ifndef __TEAMPANEL_CLASS__
 #define __TEAMPANEL_CLASS__
 
-#include <vector>
+class LobbyMenu;
+class TeamListPanel;
+class PixelRect;
+class Team;
+class LobbyPlayer;
+class Button;
 
 #include "Panel.hpp"
-
-class Team;
-class Button;
-class TeamListPanel;
-class LobbyPlayer;
-class LobbyMenu;
+#include <vector>
 
 class TeamPanel : public Panel
 {
@@ -24,11 +24,5 @@ class TeamPanel : public Panel
 		Button* teamButton;
 		Team* team;
 };
-
-#include <player/property/Team.hpp>
-#include "Button.hpp"
-#include "TeamListPanel.hpp"
-#include <player/LobbyPlayer.hpp>
-#include <menu/menues/LobbyMenu.hpp>
 
 #endif

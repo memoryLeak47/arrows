@@ -5,11 +5,12 @@
 #define ITEM_ICON_SIZE 15
 #define AVATAR_ICON_SIZE 45
 
-#include "Panel.hpp"
-
-class TeamPanel;
 class LobbyPlayer;
 class LobbyMenu;
+class TeamPanel;
+class PixelRect;
+
+#include "Panel.hpp"
 
 class PlayerPanel : public Panel
 {
@@ -22,9 +23,5 @@ class PlayerPanel : public Panel
 		LobbyPlayer* player;
 		LobbyMenu* lobby;
 };
-
-#include "TeamPanel.hpp"
-#include <player/LobbyPlayer.hpp>
-#include <menu/menues/LobbyMenu.hpp>
 
 #endif

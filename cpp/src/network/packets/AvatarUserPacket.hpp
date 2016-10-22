@@ -1,9 +1,13 @@
 #ifndef __AVATARUSERPACKET_CLASS__
 #define __AVATARUSERPACKET_CLASS__
 
-#include "PlayerPropertyUserPacket.hpp"
-
 class CompressBuffer;
+class PlayerProperty;
+
+#include "PlayerPropertyUserPacket.hpp"
+#include <vector>
+#include <string>
+#include <misc/compress/Cid.hpp>
 
 class AvatarUserPacket : public PlayerPropertyUserPacket
 {
@@ -21,7 +25,5 @@ class AvatarUserPacket : public PlayerPropertyUserPacket
 		char avatarID;
 
 };
-
-#include <misc/compress/CompressBuffer.hpp>
 
 #endif

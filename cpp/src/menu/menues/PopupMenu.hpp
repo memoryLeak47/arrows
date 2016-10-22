@@ -1,9 +1,8 @@
 #ifndef __POPUPMENU_CLASS__
 #define __POPUPMENU_CLASS__
 
-#include <string>
-
 #include <menu/Menu.hpp>
+#include <string>
 
 class PopupMenu : public Menu
 {

@@ -1,11 +1,6 @@
 #ifndef __ENTITY_CLASS__
 #define __ENTITY_CLASS__
 
-#include <vector>
-#include <SFML/Graphics.hpp>
-
-#include <misc/Global.hpp>
-
 enum EntityType
 {
 	MOB,
@@ -21,11 +16,15 @@ enum CollisionType
 	IGNORE
 };
 
+
 class Body;
-class GameTileMap;
 class GameVector;
-class PixelRect;
 class View;
+class PixelRect;
+
+#include <string>
+#include <vector>
+#include <SFML/Graphics/Texture.hpp>
 
 class Entity
 {
@@ -101,9 +100,5 @@ class Entity
 	private:
 		int dashCounter;
 };
-
-#include <math/game/GameVector.hpp>
-#include <math/pixel/PixelRect.hpp>
-#include <view/View.hpp>
 
 #endif

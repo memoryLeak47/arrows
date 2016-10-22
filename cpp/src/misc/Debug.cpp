@@ -1,5 +1,6 @@
 #include "Debug.hpp"
 
+#include "Global.hpp"
 #include "Converter.hpp"
 #include <core/Main.hpp>
 #include <core/Screen.hpp>

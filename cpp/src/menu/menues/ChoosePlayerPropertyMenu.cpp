@@ -5,6 +5,10 @@
 #include <menu/MenuList.hpp>
 #include <core/Main.hpp>
 #include <menu/components/BackButton.hpp>
+#include <menu/components/PlayerPropertyIcon.hpp>
+#include <menu/menues/LobbyMenu.hpp>
+#include <player/property/PlayerProperty.hpp>
+#include <network/packets/PlayerPropertyUserPacket.hpp>
 
 class SlotIcon : public PlayerPropertyIcon
 {

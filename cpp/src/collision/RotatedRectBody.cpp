@@ -1,9 +1,10 @@
 #include "RotatedRectBody.hpp"
 
+#include <misc/Global.hpp>
+#include <misc/compress/CompressBuffer.hpp>
 #include <cmath>
 #include <algorithm>
 
-#include <misc/Debug.hpp>
 
 RotatedRectBody::RotatedRectBody(const GameVector& pos, const GameVector& size, const GameVector& speed, float rot, float spin)
 	: position(pos), size(size), speed(speed), rotation(rot), spin(spin)

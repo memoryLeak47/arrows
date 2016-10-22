@@ -1,5 +1,7 @@
 #include "ActionsUpdateUserPacket.hpp"
 
+#include <misc/compress/CompressBuffer.hpp>
+
 ActionsUpdateUserPacket::ActionsUpdateUserPacket(const Actions actions)
 	: actions(actions)
 {}

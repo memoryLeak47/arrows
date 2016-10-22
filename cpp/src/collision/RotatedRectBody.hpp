@@ -1,7 +1,13 @@
 #ifndef __ROTATEDECTBODY_CLASS__
 #define __ROTATEDECTBODY_CLASS__
 
+class GameVector;
+class CompressBuffer;
+class GameRect;
+
 #include "Body.hpp"
+#include <misc/compress/Cid.hpp>
+#include <string>
 
 class RotatedRectBody : public Body
 {

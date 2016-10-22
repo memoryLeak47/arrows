@@ -1,10 +1,10 @@
 #ifndef __MENUCOMPONENT_CLASS__
 #define __MENUCOMPONENT_CLASS__
 
-#include <math/pixel/PixelRect.hpp>
-
 class ComponentContainer;
-class PixelPosition;
+class PixelVector;
+
+#include <math/pixel/PixelRect.hpp>
 
 class MenuComponent
 {
@@ -31,8 +31,5 @@ class MenuComponent
 		ComponentContainer* parent;
 		bool enabled;
 };
-
-#include "ComponentContainer.hpp"
-#include <math/pixel/PixelVector.hpp>
 
 #endif

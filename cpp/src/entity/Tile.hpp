@@ -1,11 +1,12 @@
 #ifndef __TILE_CLASS__
 #define __TILE_CLASS__
 
-#include "Entity.hpp"
-
-class RectBody;
+class Body;
 class GameVector;
-class Debug;
+
+#include "Entity.hpp"
+#include <SFML/Graphics/Image.hpp>
+#include <vector>
 
 class Tile : public Entity
 {
@@ -35,9 +36,5 @@ class Tile : public Entity
 
 		static Tile* createByColorID(const int, const GameVector&);
 };
-
-#include <math/game/GameVector.hpp>
-#include <misc/Debug.hpp>
-#include <collision/RectBody.hpp>
 
 #endif

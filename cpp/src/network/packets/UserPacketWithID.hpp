@@ -1,10 +1,12 @@
 #ifndef __USERPACKETWITHID_CLASS__
 #define __USERPACKETWITHID_CLASS__
 
-#include <network/Packet.hpp>
-#include "UserPacket.hpp"
-
+class UserPacket;
 class CompressBuffer;
+
+#include <network/Packet.hpp>
+#include <string>
+#include <misc/compress/Cid.hpp>
 
 class UserPacketWithID : public Packet
 {
@@ -20,7 +22,5 @@ class UserPacketWithID : public Packet
 		int id;
 		UserPacket* packet;
 };
-
-#include <misc/compress/CompressBuffer.hpp>
 
 #endif

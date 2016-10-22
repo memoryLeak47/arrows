@@ -1,6 +1,7 @@
 #include "MapPacket.hpp"
 
-#include <misc/Debug.hpp>
+#include <misc/Global.hpp>
+#include <misc/compress/CompressBuffer.hpp>
 
 MapPacket::MapPacket(const std::vector<std::vector<int>>& map)
 	: map(map)

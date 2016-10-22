@@ -1,10 +1,11 @@
 #ifndef __NETWORKINTERFACE_CLASS__
 #define __NETWORKINTERFACE_CLASS__
 
-#include <SFML/Network.hpp>
-
 class Packet;
 class PacketAndIP;
+
+#include <SFML/Network/IpAddress.hpp>
+#include <vector>
 
 class NetworkInterface
 {
@@ -20,8 +21,5 @@ class NetworkInterface
 		std::vector<PacketAndIP*>& getPackets();
 		std::vector<PacketAndIP*> packets;
 };
-
-#include <network/Packet.hpp>
-#include <network/PacketAndIP.hpp>
 
 #endif

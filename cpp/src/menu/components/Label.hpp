@@ -1,11 +1,11 @@
 #ifndef __LABEL_CLASS__
 #define __LABEL_CLASS__
 
-#include <string>
+class ComponentContainer;
+class PixelRect;
 
 #include <menu/MenuComponent.hpp>
-
-class PixelRect;
+#include <string>
 
 class Label : public MenuComponent
 {
@@ -16,7 +16,5 @@ class Label : public MenuComponent
 		std::string caption;
 	
 };
-
-#include <math/pixel/PixelRect.hpp>
 
 #endif

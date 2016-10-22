@@ -1,13 +1,11 @@
 #ifndef __COMPRESSBUFFER_CLASS__
 #define __COMPRESSBUFFER_CLASS__
 
+class Compressable;
+
 #include <string>
 #include <vector>
-
-#include <misc/Global.hpp>
 #include "Cid.hpp"
-
-class Compressable;
 
 class CompressBuffer
 {
@@ -28,7 +26,5 @@ class CompressBuffer
 		int counter;
 		std::string string;
 };
-
-#include "Compressable.hpp"
 
 #endif

@@ -1,9 +1,13 @@
 #ifndef __SKILLUSERPACKET_CLASS__
 #define __SKILLUSERPACKET_CLASS__
 
-#include "PlayerPropertyUserPacket.hpp"
-
 class CompressBuffer;
+class PlayerProperty;
+
+#include "PlayerPropertyUserPacket.hpp"
+#include <string>
+#include <vector>
+#include <misc/compress/Cid.hpp>
 
 class SkillUserPacket : public PlayerPropertyUserPacket
 {
@@ -19,7 +23,5 @@ class SkillUserPacket : public PlayerPropertyUserPacket
 	private:
 		std::string skillIDs;
 };
-
-#include <misc/compress/CompressBuffer.hpp>
 
 #endif

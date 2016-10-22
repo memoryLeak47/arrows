@@ -1,11 +1,11 @@
 #ifndef __MAIN_CLASS__
 #define __MAIN_CLASS__
 
-#include <string>
-
-class MenuList;
 class NetworkDevice;
 class Account;
+class MenuList;
+
+#include <string>
 
 class Main
 {

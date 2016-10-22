@@ -1,9 +1,11 @@
 #ifndef __DISCONNECTUSERPACKET_CLASS__
 #define __DISCONNECTUSERPACKET_CLASS__
 
-#include "UserPacket.hpp"
-
 class CompressBuffer;
+
+#include "UserPacket.hpp"
+#include <string>
+#include <misc/compress/Cid.hpp>
 
 class DisconnectUserPacket : public UserPacket
 {
@@ -14,7 +16,5 @@ class DisconnectUserPacket : public UserPacket
 		std::string getCompressString() const override;
 		CID getCID() const;
 };
-
-#include <misc/compress/CompressBuffer.hpp>
 
 #endif

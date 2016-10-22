@@ -1,9 +1,9 @@
 #ifndef __HEALTHRING_CLASS__
 #define __HEALTHRING_CLASS__
 
-#include <string>
-
 #include <player/property/item/Item.hpp>
+#include <graphics/TextureID.hpp>
+#include <string>
 
 class HealthRing : public Item
 {

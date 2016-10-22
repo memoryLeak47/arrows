@@ -1,12 +1,24 @@
 #ifndef __SERVERLOBBYMENU_CLASS__
 #define __SERVERLOBBYMENU_CLASS__
 
-#include <SFML/Network.hpp>
-
-#include "LobbyMenu.hpp"
-
+class Packet;
+class LobbyPlayer;
+class Team;
+class LockUserPacket;
+class DisconnectUserPacket;
+class TeamUserPacket;
+class LoginUserPacket;
+class AvatarUserPacket;
+class SkillUserPacket;
+class ItemUserPacket;
+class PlayerPropertyUserPacket;
+class UserPacket;
 class EditField;
 class Button;
+
+#include "LobbyMenu.hpp"
+#include <SFML/Network/IpAddress.hpp>
+#include <vector>
 
 class ServerLobbyMenu : public LobbyMenu
 {
@@ -50,8 +62,5 @@ class ServerLobbyMenu : public LobbyMenu
 		Button* mapSelectButton;
 		std::vector<LobbyPlayer*> updatedPlayers;
 };
-
-#include <menu/components/EditField.hpp>
-#include <menu/components/Button.hpp>
 
 #endif

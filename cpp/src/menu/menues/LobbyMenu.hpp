@@ -8,30 +8,19 @@
 #define PREGAME_PHASE 4
 #define GAME_PHASE 5
 
-#include <vector>
-#include <SFML/Network.hpp>
-
-#include <network/NetworkInterface.hpp>
-#include <menu/Menu.hpp>
-
-#include <tile/map/LobbyTileMap.hpp>
-
-class Button;
-class Team;
-class LobbyMiniMap;
 class LobbyPlayer;
-class TeamListPanel;
-class LockUserPacket;
-class DisconnectUserPacket;
-class TeamUserPacket;
-class LoginUserPacket;
-class AvatarUserPacket;
-class SkillUserPacket;
-class ItemUserPacket;
-class MapPacket;
-class UserPacketWithID;
-class LobbyPlayersPacket;
+class Team;
 class PlayerPropertyUserPacket;
+class LobbyTileMap;
+class Button;
+class LobbyTileMap;
+class LobbyMiniMap;
+class TeamListPanel;
+
+#include <menu/Menu.hpp>
+#include <network/NetworkInterface.hpp>
+#include <vector>
+#include <SFML/Network/IpAddress.hpp>
 
 class LobbyMenu : public Menu, public NetworkInterface
 {
@@ -69,22 +58,5 @@ class LobbyMenu : public Menu, public NetworkInterface
 		std::vector<LobbyPlayer*> players; // Bluemi: protected -> private; added setter
 		TeamListPanel* teamListPanel; // Nicht zwingend nötig, nur einfacherer Zugriff, da nicht über index
 };
-
-#include <menu/components/Button.hpp>
-#include <player/property/Team.hpp>
-#include <menu/components/LobbyMiniMap.hpp>
-#include <player/LobbyPlayer.hpp>
-#include <menu/components/TeamListPanel.hpp>
-#include <network/packets/LockUserPacket.hpp>
-#include <network/packets/DisconnectUserPacket.hpp>
-#include <network/packets/TeamUserPacket.hpp>
-#include <network/packets/LoginUserPacket.hpp>
-#include <network/packets/AvatarUserPacket.hpp>
-#include <network/packets/SkillUserPacket.hpp>
-#include <network/packets/ItemUserPacket.hpp>
-#include <network/packets/MapPacket.hpp>
-#include <network/packets/UserPacketWithID.hpp>
-#include <network/packets/LobbyPlayersPacket.hpp>
-#include <network/packets/PlayerPropertyUserPacket.hpp>
 
 #endif

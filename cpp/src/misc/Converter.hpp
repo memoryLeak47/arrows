@@ -1,7 +1,8 @@
 #ifndef __CONVERTER_CLASS__
 #define __CONVERTER_CLASS__
 
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Color.hpp>
+#include <string>
 
 class Converter
 {

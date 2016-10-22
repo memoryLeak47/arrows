@@ -20,13 +20,13 @@
 #ifndef __BODY_CLASS__
 #define __BODY_CLASS__
 
-#include <misc/Global.hpp>
-#include <misc/compress/Compressable.hpp>
-
 enum BodyType { RECT, CIRCLE, ROTRECT };
 
 class GameRect;
 class GameVector;
+
+#include <misc/compress/Compressable.hpp>
+#include <string>
 
 class Body : public Compressable
 {
@@ -65,6 +65,7 @@ class Body : public Compressable
 		virtual void reactToCollision(float massshare, const GameVector& speed, const GameVector& collisionPoint) = 0;
 	private:
 		virtual void apply(const Body*) = 0;
+
 	friend class GamePlayer;
 };
 

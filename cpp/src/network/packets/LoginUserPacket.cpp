@@ -1,5 +1,7 @@
 #include "LoginUserPacket.hpp"
 
+#include <misc/compress/CompressBuffer.hpp>
+
 LoginUserPacket::LoginUserPacket(const std::string& name, int rank) : name(name), rank(rank)
 {}
 

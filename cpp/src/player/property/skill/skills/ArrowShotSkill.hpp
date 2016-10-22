@@ -2,6 +2,8 @@
 #define __ARROWSHOTSKILL_CLASS__
 
 #include <player/property/skill/Skill.hpp>
+#include <string>
+#include <graphics/TextureID.hpp>
 
 class ArrowShotSkill : public Skill
 {

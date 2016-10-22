@@ -1,6 +1,9 @@
 #ifndef __PANEL_CLASS__
 #define __PANEL_CLASS__
 
+class PixelRect;
+class PixelVector;
+
 #include <menu/MenuComponent.hpp>
 #include <menu/ComponentContainer.hpp>
 

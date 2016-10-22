@@ -2,6 +2,8 @@
 
 #include <misc/Global.hpp>
 #include "GraphicsBuffer.hpp"
+#include <math/pixel/PixelVector.hpp>
+#include <math/game/GameVector.hpp>
 
 std::vector<GraphicsBuffer*> GraphicsManager::buffers;
 

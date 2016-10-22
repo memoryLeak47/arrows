@@ -1,7 +1,8 @@
 #include "SkillUserPacket.hpp"
 
+#include <misc/Global.hpp>
 #include <player/property/skill/Skill.hpp>
-#include <misc/Debug.hpp>
+#include <misc/compress/CompressBuffer.hpp>
 
 SkillUserPacket::SkillUserPacket(const std::string& ids)
 {

@@ -1,9 +1,9 @@
 #include "RectBody.hpp"
 
+#include <misc/Global.hpp>
+#include <misc/compress/CompressBuffer.hpp>
 #include <cmath>
 #include <algorithm>
-
-#include <misc/Debug.hpp>
 
 static const float RANGE = 0.08f;
 static const float SPONGE = 0.f;

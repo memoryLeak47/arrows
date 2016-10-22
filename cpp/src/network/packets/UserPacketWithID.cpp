@@ -1,6 +1,8 @@
 #include "UserPacketWithID.hpp"
 
 #include <core/Main.hpp>
+#include <misc/compress/CompressBuffer.hpp>
+#include "UserPacket.hpp"
 
 UserPacketWithID::UserPacketWithID(UserPacket* packet, int id) : id(id), packet(packet)
 {}

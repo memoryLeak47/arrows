@@ -1,10 +1,10 @@
 #ifndef __MENULIST_CLASS__
 #define __MENULIST_CLASS__
 
-#include <vector>
-#include <SFML/Window.hpp>
-
 class Menu;
+
+#include <SFML/Window/Event.hpp>
+#include <vector>
 
 class MenuList
 {

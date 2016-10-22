@@ -1,9 +1,13 @@
 #ifndef __PLAYERPROPERTYICON_CLASS__
 #define __PLAYERPROPERTYICON_CLASS__
 
-#include "Icon.hpp"
-
+class ComponentContainer;
+class PixelRect;
 class PlayerProperty;
+class PixelVector;
+
+#include "Icon.hpp"
+#include <graphics/TextureID.hpp>
 
 class PlayerPropertyIcon : public Icon
 {
@@ -17,7 +21,5 @@ class PlayerPropertyIcon : public Icon
 	private:
 		PlayerProperty* property; // TODO deleted?
 };
-
-#include <player/property/PlayerProperty.hpp>
 
 #endif

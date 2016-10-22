@@ -1,8 +1,12 @@
 #ifndef __ACTIONSUPDATEUSERPACKET_CLASS__
 #define __ACTIONSUPDATEUSERPACKET_CLASS__
 
+class CompressBuffer;
+
 #include <network/packets/UserPacket.hpp>
-#include <controller/Controller.hpp>
+#include <controller/Actions.hpp>
+#include <string>
+#include <misc/compress/Cid.hpp>
 
 class ActionsUpdateUserPacket : public UserPacket
 {
@@ -17,7 +21,5 @@ class ActionsUpdateUserPacket : public UserPacket
 	private:
 		Actions actions;
 };
-
-#include <misc/compress/CompressBuffer.hpp>
 
 #endif

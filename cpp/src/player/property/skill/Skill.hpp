@@ -2,6 +2,7 @@
 #define __SKILL_CLASS__
 
 #include <player/property/PlayerProperty.hpp>
+#include <vector>
 
 class Skill : public PlayerProperty
 {

@@ -1,10 +1,23 @@
 #ifndef __CLIENTLOBBYMENU_CLASS__
 #define __CLIENTLOBBYMENU_CLASS__
 
-#include <string>
-#include <SFML/Network.hpp>
+class Packet;
+class LobbyPlayer;
+class Team;
+class LockUserPacket;
+class LobbyPlayersPacket;
+class DisconnectUserPacket;
+class TeamUserPacket;
+class LoginUserPacket;
+class AvatarUserPacket;
+class SkillUserPacket;
+class ItemUserPacket;
+class MapPacket;
+class PlayerPropertyUserPacket;
 
 #include "LobbyMenu.hpp"
+#include <string>
+#include <SFML/Network/IpAddress.hpp>
 
 class ClientLobbyMenu : public LobbyMenu
 {

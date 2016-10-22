@@ -1,12 +1,15 @@
 #ifndef __SCREEN_CLASS__
 #define __SCREEN_CLASS__
 
-#include <string>
-#include <SFML/Graphics.hpp>
-#include <graphics/GraphicsManager.hpp>
-
-class PixelRect;
 class PixelVector;
+class PixelRect;
+
+#include <SFML/Graphics/Color.hpp>
+#include <graphics/GraphicsID.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <string>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Text.hpp>
 
 class Screen
 {
@@ -29,7 +32,5 @@ class Screen
 		static sf::RenderWindow *window;
 		static sf::Text text;
 };
-
-#include <math/pixel/PixelVector.hpp>
 
 #endif

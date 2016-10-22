@@ -1,7 +1,11 @@
 #ifndef __LAVATILE_CLASS__
 #define __LAVATILE_CLASS__
 
+class GameVector;
+
 #include <entity/Tile.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <string>
 
 class LavaTile : public Tile
 {

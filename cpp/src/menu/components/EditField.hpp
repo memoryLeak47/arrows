@@ -1,11 +1,11 @@
 #ifndef __EDITFIELD_CLASS__
 #define __EDITFIELD_CLASS__
 
-#include <string>
+class ComponentContainer;
+class PixelRect;
 
 #include <menu/MenuComponent.hpp>
-
-class PixelRect;
+#include <string>
 
 class EditField : public MenuComponent
 {
@@ -19,7 +19,5 @@ class EditField : public MenuComponent
 		std::string text;
 	
 };
-
-#include <math/pixel/PixelRect.hpp>
 
 #endif

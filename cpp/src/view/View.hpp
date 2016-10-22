@@ -8,11 +8,11 @@
 #ifndef __VIEW_CLASS__
 #define __VIEW_CLASS__
 
-#include <math/game/GameVector.hpp>
-
 class GameRect;
-class PixelRect;
 class Entity;
+class PixelRect;
+
+#include <math/game/GameVector.hpp>
 
 class View
 {
@@ -32,9 +32,5 @@ class View
 		Entity* entity;
 		bool focusEntity;
 };
-
-#include <math/game/GameRect.hpp>
-#include <math/pixel/PixelRect.hpp>
-#include <entity/Entity.hpp>
 
 #endif

@@ -1,7 +1,13 @@
 #ifndef __PLAYERPANELSSKILLICON_CLASS__
 #define __PLAYERPANELSSKILLICON_CLASS__
 
+class LobbyPlayer;
+class LobbyMenu;
+class ComponentContainer;
+class PixelRect;
+
 #include "PlayerPanelsIcon.hpp"
+#include <graphics/TextureID.hpp>
 
 class PlayerPanelsSkillIcon : public PlayerPanelsIcon
 {

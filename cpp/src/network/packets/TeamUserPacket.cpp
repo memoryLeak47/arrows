@@ -1,5 +1,8 @@
 #include "TeamUserPacket.hpp"
 
+#include <misc/compress/CompressBuffer.hpp>
+#include <player/property/Team.hpp>
+
 TeamUserPacket::TeamUserPacket(char id)
 	: teamID(id)
 {}

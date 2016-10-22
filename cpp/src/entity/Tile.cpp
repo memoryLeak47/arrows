@@ -1,7 +1,7 @@
 #include "Tile.hpp"
 
-#include <misc/Converter.hpp>
-#include <misc/Debug.hpp>
+#include <misc/Global.hpp>
+#include <collision/RectBody.hpp>
 #include <player/property/Team.hpp>
 #include "tiles/NormalTile.hpp"
 #include "tiles/VoidTile.hpp"

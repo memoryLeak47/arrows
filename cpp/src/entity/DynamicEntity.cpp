@@ -1,7 +1,9 @@
 #include "DynamicEntity.hpp"
 
+#include <misc/Global.hpp>
 #include <collision/CollisionTester.hpp>
 #include <collision/PhysicsHandler.hpp>
+#include <math/game/GameVector.hpp>
 
 DynamicEntity::DynamicEntity(Body* body_arg)
 	: Entity(body_arg), changed(true)

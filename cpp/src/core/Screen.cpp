@@ -3,9 +3,12 @@
 #include <algorithm>
 
 #include <misc/Global.hpp>
+#include <graphics/GraphicsManager.hpp>
 #include <menu/MenuList.hpp>
 #include <math/pixel/PixelRect.hpp>
 #include "Main.hpp"
+#include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 
 PixelVector Screen::cursorPosition = PixelVector(0, 0);
 sf::RenderWindow* Screen::window;

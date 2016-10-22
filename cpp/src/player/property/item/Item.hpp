@@ -2,6 +2,7 @@
 #define __ITEM_CLASS__
 
 #include <player/property/PlayerProperty.hpp>
+#include <vector>
 
 class Item : public PlayerProperty
 {

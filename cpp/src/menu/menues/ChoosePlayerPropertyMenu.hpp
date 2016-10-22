@@ -1,15 +1,13 @@
 #ifndef __CHOOSEPLAYERPROPERTYMENU_CLASS__
 #define __CHOOSEPLAYERPROPERTYMENU_CLASS__
 
-#include <vector>
-
-#include <menu/Menu.hpp>
-
 class LobbyMenu;
 class PlayerPropertyUserPacket;
 class PlayerProperty;
 class PlayerPropertyIcon;
-class ChooseIcon;
+
+#include <menu/Menu.hpp>
+#include <vector>
 
 class ChoosePlayerPropertyMenu : public Menu
 {
@@ -24,13 +22,8 @@ class ChoosePlayerPropertyMenu : public Menu
 	private:
 		LobbyMenu* lobby;
 		PlayerPropertyUserPacket* slotPacket;
-		const std::vector<PlayerProperty*> chooseProperties; // TODO deleted?
+		const std::vector<PlayerProperty*> chooseProperties; // XXX memoryleak?
 		std::vector<PlayerPropertyIcon*> slotIcons;
 };
-
-#include "LobbyMenu.hpp"
-#include <network/packets/PlayerPropertyUserPacket.hpp>
-#include <player/property/PlayerProperty.hpp>
-#include <menu/components/PlayerPropertyIcon.hpp>
 
 #endif

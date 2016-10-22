@@ -1,9 +1,12 @@
 #ifndef __MINIMAP_CLASS__
 #define __MINIMAP_CLASS__
 
-#include <SFML/Graphics.hpp>
+class ComponentContainer;
+class PixelRect;
 
 #include <menu/MenuComponent.hpp>
+#include <vector>
+#include <SFML/Graphics/Texture.hpp>
 
 class MiniMap : public MenuComponent
 {

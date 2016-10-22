@@ -1,9 +1,13 @@
 #ifndef __ITEMUSERPACKET_CLASS__
 #define __ITEMUSERPACKET_CLASS__
 
-#include "PlayerPropertyUserPacket.hpp"
-
 class CompressBuffer;
+class PlayerProperty;
+
+#include <network/packets/PlayerPropertyUserPacket.hpp>
+#include <string>
+#include <vector>
+#include <misc/compress/Cid.hpp>
 
 class ItemUserPacket : public PlayerPropertyUserPacket
 {
@@ -19,7 +23,5 @@ class ItemUserPacket : public PlayerPropertyUserPacket
 	private:
 		std::string itemIDs;
 };
-
-#include <misc/compress/CompressBuffer.hpp>
 
 #endif

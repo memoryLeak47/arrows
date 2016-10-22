@@ -1,6 +1,7 @@
 #ifndef __PHYSICALENTITY_CLASS__
 #define __PHYSICALENTITY_CLASS__
 
+class Body;
 class CompressBuffer;
 
 #include "DynamicEntity.hpp"
@@ -13,7 +14,5 @@ class ImpactfulDynamicEntity : public DynamicEntity, public Compressable
 		ImpactfulDynamicEntity(CompressBuffer*);
 		virtual ~ImpactfulDynamicEntity() {}
 };
-
-#include <misc/compress/CompressBuffer.hpp>
 
 #endif

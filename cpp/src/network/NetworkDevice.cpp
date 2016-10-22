@@ -1,9 +1,10 @@
 #include "NetworkDevice.hpp"
 
+#include <misc/Global.hpp>
 #include "Packet.hpp"
 #include <core/Main.hpp>
-#include <misc/Debug.hpp>
-#include <misc/Converter.hpp>
+#include "NetworkInterface.hpp"
+#include <SFML/Network/Packet.hpp>
 
 NetworkDevice::NetworkDevice()
 {

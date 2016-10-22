@@ -1,9 +1,13 @@
 #ifndef __CIRCLEBODY_CLASS__
 #define __CIRCLEBODY_CLASS__
 
-#include "Body.hpp"
+class GameVector;
+class CompressBuffer;
+class GameRect;
 
-class RectBody;
+#include "Body.hpp"
+#include <string>
+#include <misc/compress/Cid.hpp>
 
 class CircleBody : public Body
 {
@@ -51,7 +55,5 @@ class CircleBody : public Body
 		float radius;
 		float spin;
 };
-
-#include "RectBody.hpp"
 
 #endif

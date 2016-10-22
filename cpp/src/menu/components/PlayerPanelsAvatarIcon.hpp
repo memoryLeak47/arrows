@@ -1,7 +1,13 @@
 #ifndef __PLAYERPANELSAVATARICON_CLASS__
 #define __PLAYERPANELSAVATARICON_CLASS__
 
+class LobbyPlayer;
+class LobbyMenu;
+class ComponentContainer;
+class PixelRect;
+
 #include "PlayerPanelsIcon.hpp"
+#include <graphics/TextureID.hpp>
 
 class PlayerPanelsAvatarIcon : public PlayerPanelsIcon
 {

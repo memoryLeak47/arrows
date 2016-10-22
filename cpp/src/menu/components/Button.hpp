@@ -1,11 +1,11 @@
 #ifndef __BUTTON_CLASS__
 #define __BUTTON_CLASS__
 
-#include <string>
+class ComponentContainer;
+class PixelRect;
 
 #include <menu/MenuComponent.hpp>
-
-class PixelRect;
+#include <string>
 
 class Button : public MenuComponent
 {
@@ -19,7 +19,5 @@ class Button : public MenuComponent
 	private:
 		std::string text;
 };
-
-#include <math/pixel/PixelRect.hpp>
 
 #endif

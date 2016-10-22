@@ -1,9 +1,9 @@
 #ifndef __PIXELVECTOR_CLASS__
 #define __PIXELVECTOR_CLASS__
 
-#include <string>
-
 class PixelRect;
+
+#include <string>
 
 class PixelVector
 {
@@ -20,7 +20,5 @@ class PixelVector
 		std::string toString() const;
 		int x, y;
 };
-
-#include "PixelRect.hpp"
 
 #endif

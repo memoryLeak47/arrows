@@ -11,20 +11,17 @@
 #ifndef __COLLISIONDETECTOR_CLASS__
 #define __COLLISIONDETECTOR_CLASS__
 
-#include <vector>
-
-class CollisionEvent;
-class Entity;
-
 enum CollisionStatus {IN, BORDER, OUT};
+
+class Entity;
+class CollisionEvent;
+
+#include <vector>
 
 class CollisionDetector
 {
 	public:
 		static void addCollisionsBetween(Entity*, Entity*, std::vector<CollisionEvent*>*, float timeLeft);
 };
-
-#include "CollisionEvent.hpp"
-#include <entity/Entity.hpp>
 
 #endif

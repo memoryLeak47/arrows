@@ -1,11 +1,11 @@
 #ifndef __LOCKUSERPACKET_CLASS__
 #define __LOCKUSERPACKET_CLASS__
 
-#include <string>
-
-#include "UserPacket.hpp"
-
 class CompressBuffer;
+
+#include <network/packets/UserPacket.hpp>
+#include <string>
+#include <misc/compress/Cid.hpp>
 
 class LockUserPacket : public UserPacket
 {
@@ -19,7 +19,5 @@ class LockUserPacket : public UserPacket
 	private:
 		bool locked;
 };
-
-#include <misc/compress/CompressBuffer.hpp>
 
 #endif

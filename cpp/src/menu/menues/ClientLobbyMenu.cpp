@@ -2,8 +2,23 @@
 
 #include <misc/Global.hpp>
 #include <menu/MenuList.hpp>
+#include <menu/components/Button.hpp>
 #include <core/Main.hpp>
 #include <game/ClientGameInterface.hpp>
+#include <network/packets/LoginUserPacket.hpp>
+#include <network/packets/SkillUserPacket.hpp>
+#include <network/packets/AvatarUserPacket.hpp>
+#include <network/packets/ItemUserPacket.hpp>
+#include <network/packets/PlayerPropertyUserPacket.hpp>
+#include <network/packets/MapPacket.hpp>
+#include <network/packets/LobbyPlayersPacket.hpp>
+#include <network/packets/TeamUserPacket.hpp>
+#include <network/packets/DisconnectUserPacket.hpp>
+#include <network/packets/LockUserPacket.hpp>
+#include <network/packets/UserPacketWithID.hpp>
+#include <tile/map/LobbyTileMap.hpp>
+#include <player/LobbyPlayer.hpp>
+#include <player/property/Team.hpp>
 
 ClientLobbyMenu::ClientLobbyMenu(const std::string& ip)
 	: localPlayerID(-1)

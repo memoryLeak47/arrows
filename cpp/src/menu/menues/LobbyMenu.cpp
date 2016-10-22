@@ -1,11 +1,16 @@
 #include "LobbyMenu.hpp"
 
+#include <misc/Global.hpp>
 #include <misc/compress/Compressable.hpp>
-#include <menu/components/Label.hpp>
 #include <core/Screen.hpp>
 #include <core/Main.hpp>
-#include <misc/Converter.hpp>
-#include <misc/Debug.hpp>
+#include <network/packets/LockUserPacket.hpp>
+#include <menu/components/Button.hpp>
+#include <menu/components/TeamListPanel.hpp>
+#include <menu/components/Label.hpp>
+#include <menu/components/LobbyMiniMap.hpp>
+#include <player/LobbyPlayer.hpp>
+#include <tile/map/LobbyTileMap.hpp>
 
 LobbyMenu::LobbyMenu()
 {

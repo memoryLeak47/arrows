@@ -1,10 +1,12 @@
 #ifndef __MENU_CLASS__
 #define __MENU_CLASS__
 
-#include <string>
-#include <SFML/Window.hpp>
+class MenuComponent;
 
 #include "ComponentContainer.hpp"
+#include <SFML/Window/Event.hpp>
+#include <string>
+#include <math/pixel/PixelRect.hpp>
 
 class Menu : public ComponentContainer
 {

@@ -1,9 +1,10 @@
 #ifndef __TEAMLISTPANEL_CLASS__
 #define __TEAMLISTPANEL_CLASS__
 
-#include "Panel.hpp"
-
 class LobbyMenu;
+class PixelRect;
+
+#include "Panel.hpp"
 
 class TeamListPanel : public Panel
 {
@@ -15,7 +16,5 @@ class TeamListPanel : public Panel
 	private:
 		LobbyMenu* lobby;
 };
-
-#include <menu/menues/LobbyMenu.hpp>
 
 #endif

@@ -1,6 +1,6 @@
 #include "ComponentContainer.hpp"
 
-#include <misc/Debug.hpp>
+#include <misc/Global.hpp>
 #include <core/Main.hpp>
 #include <core/Screen.hpp>
 #include <math/pixel/PixelVector.hpp>

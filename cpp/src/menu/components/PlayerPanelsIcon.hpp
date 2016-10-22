@@ -1,10 +1,12 @@
 #ifndef __PLAYERPANELSICON_CLASS__
 #define __PLAYERPANELSICON_CLASS__
 
-#include "Icon.hpp"
-
 class LobbyPlayer;
 class LobbyMenu;
+class ComponentContainer;
+class PixelRect;
+
+#include "Icon.hpp"
 
 class PlayerPanelsIcon : public Icon
 {
@@ -21,8 +23,5 @@ class PlayerPanelsIcon : public Icon
 		LobbyMenu* lobby;
 
 };
-
-#include <player/LobbyPlayer.hpp>
-#include <menu/menues/LobbyMenu.hpp>
 
 #endif

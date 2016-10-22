@@ -8,6 +8,8 @@
 #include <menu/components/Button.hpp>
 #include <menu/components/QuitButton.hpp>
 #include <menu/components/Label.hpp>
+#include <menu/components/EditField.hpp>
+#include <menu/components/PasswordField.hpp>
 
 LoginMenu::LoginMenu() : Menu()
 {

@@ -1,7 +1,10 @@
 #ifndef __PLAYERCONTROLLER_CLASS__
 #define __PLAYERCONTROLLER_CLASS__
 
+class CompressBuffer;
+
 #include "Controller.hpp"
+#include <misc/compress/Cid.hpp>
 
 class PlayerController : public Controller
 {

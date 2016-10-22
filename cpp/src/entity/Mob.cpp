@@ -1,7 +1,9 @@
 #include "Mob.hpp"
 
+#include <misc/Global.hpp>
 #include <controller/Controller.hpp>
 #include <collision/Body.hpp>
+#include <misc/compress/CompressBuffer.hpp>
 
 Mob::Mob(Body* body, Controller* controller)
 	: ImpactfulDynamicEntity(body), controller(controller)

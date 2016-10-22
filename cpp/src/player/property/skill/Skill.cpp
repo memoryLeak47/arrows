@@ -1,8 +1,7 @@
 #include "Skill.hpp"
 
+#include <misc/Global.hpp>
 #include <core/Main.hpp>
-#include <misc/Converter.hpp>
-#include <misc/Debug.hpp>
 #include "skills/ArrowShotSkill.hpp"
 
 extern const char ARROWSHOTSKILL_SID = 0;

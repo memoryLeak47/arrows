@@ -1,10 +1,11 @@
 #ifndef __CONTROLLER_CLASS__
 #define __CONTROLLER_CLASS__
 
-#include <misc/compress/Compressable.hpp>
-#include "Actions.hpp"
-
 class CompressBuffer;
+
+#include <misc/compress/Compressable.hpp>
+#include <string>
+#include "Actions.hpp"
 
 class Controller : public Compressable
 {
@@ -27,7 +28,5 @@ class Controller : public Compressable
 	friend class GameInterface;
 	friend class GamePlayer;
 };
-
-#include <misc/compress/CompressBuffer.hpp>
 
 #endif

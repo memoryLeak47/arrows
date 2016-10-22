@@ -1,7 +1,15 @@
 #ifndef __ARCHERGAMEPLAYER_CLASS__
 #define __ARCHERGAMEPLAYER_CLASS__
 
+class CompressBuffer;
+class GameVector;
+class LobbyPlayer;
+class Entity;
+
 #include <player/GamePlayer.hpp>
+#include <misc/compress/Cid.hpp>
+#include <string>
+#include <SFML/Graphics/Texture.hpp>
 
 class ArcherGamePlayer : public GamePlayer
 {

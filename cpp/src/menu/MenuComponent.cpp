@@ -1,6 +1,7 @@
 #include "MenuComponent.hpp"
 
-#include <misc/Debug.hpp>
+#include <misc/Global.hpp>
+#include <menu/ComponentContainer.hpp>
 
 MenuComponent::MenuComponent(ComponentContainer* parent, const PixelRect& rect) : rect(rect), parent(parent)
 {

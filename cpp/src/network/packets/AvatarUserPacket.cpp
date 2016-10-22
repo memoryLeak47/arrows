@@ -1,7 +1,8 @@
 #include "AvatarUserPacket.hpp"
 
+#include <misc/Global.hpp>
 #include <player/property/avatar/Avatar.hpp>
-#include <misc/Debug.hpp>
+#include <misc/compress/CompressBuffer.hpp>
 
 AvatarUserPacket::AvatarUserPacket(char c)
         : avatarID(c)

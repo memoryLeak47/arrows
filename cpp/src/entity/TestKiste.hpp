@@ -1,9 +1,13 @@
 #ifndef __TESTKISTE_CLASS__
 #define __TESTKISTE_CLASS__
 
-#include "Idler.hpp"
-
 class GameVector;
+class CompressBuffer;
+
+#include "Idler.hpp"
+#include <misc/compress/Cid.hpp>
+#include <string>
+#include <SFML/Graphics/Texture.hpp>
 
 class TestKiste : public Idler
 {
@@ -19,7 +23,5 @@ class TestKiste : public Idler
 		virtual std::string toString() const override;
 		virtual float getMass() const override;
 };
-
-#include <math/game/GameVector.hpp>
 
 #endif

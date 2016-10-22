@@ -1,5 +1,6 @@
 #include "PhysicsHandler.hpp"
 
+#include <misc/Global.hpp>
 #include <collision/Body.hpp>
 #include <math/game/GameVector.hpp>
 #include <entity/Entity.hpp>

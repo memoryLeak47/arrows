@@ -1,7 +1,11 @@
 #ifndef __IDLER_CLASS__
 #define __IDLER_CLASS__
 
+class Body;
+class CompressBuffer;
+
 #include "ImpactfulDynamicEntity.hpp"
+#include <string>
 
 class Idler : public ImpactfulDynamicEntity
 {

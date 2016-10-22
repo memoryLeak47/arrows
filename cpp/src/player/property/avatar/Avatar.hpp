@@ -1,11 +1,13 @@
 #ifndef __AVATAR_CLASS__
 #define __AVATAR_CLASS__
 
-#include <player/property/PlayerProperty.hpp>
-
+class Avatar;
 class GamePlayer;
 class GameVector;
 class LobbyPlayer;
+
+#include <player/property/PlayerProperty.hpp>
+#include <vector>
 
 class Avatar : public PlayerProperty
 {
@@ -24,8 +26,5 @@ class Avatar : public PlayerProperty
 	private:
 		static std::vector<Avatar*> avatars;
 };
-
-#include <math/game/GameVector.hpp>
-#include <player/LobbyPlayer.hpp>
 
 #endif

@@ -1,10 +1,10 @@
 #ifndef __PHYSICSHANDLER_CLASS__
 #define __PHYSICSHANDLER_CLASS__
 
-#include <vector>
-
 class Entity;
 class GameVector;
+
+#include <vector>
 
 class PhysicsHandler
 {

@@ -5,8 +5,14 @@
 #include "PlayerPanelsAvatarIcon.hpp"
 #include "PlayerPanelsSkillIcon.hpp"
 #include "PlayerPanelsItemIcon.hpp"
+#include <player/LobbyPlayer.hpp>
+#include <network/packets/LockUserPacket.hpp>
+#include <network/packets/LoginUserPacket.hpp>
+#include <menu/menues/LobbyMenu.hpp>
+#include <menu/components/TeamPanel.hpp>
 
-PlayerPanel::PlayerPanel(LobbyPlayer* p, LobbyMenu* m, TeamPanel* c, const PixelRect& r) : Panel(c, r), player(p), lobby(m)
+PlayerPanel::PlayerPanel(LobbyPlayer* p, LobbyMenu* m, TeamPanel* c, const PixelRect& r)
+	: Panel(c, r), player(p), lobby(m)
 {
 	addComponent(new PlayerPanelsAvatarIcon(getPlayer(), getLobbyMenu(), this, PixelRect(0,0,AVATAR_ICON_SIZE,AVATAR_ICON_SIZE)));
 

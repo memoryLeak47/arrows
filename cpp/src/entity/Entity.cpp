@@ -1,11 +1,13 @@
 #include "Entity.hpp"
 
-#include <core/Main.hpp>
+#include <misc/Global.hpp>
 #include <core/Screen.hpp>
 
 #include <collision/CollisionTester.hpp>
 #include <collision/PhysicsHandler.hpp>
 #include <collision/Body.hpp>
+#include <math/pixel/PixelRect.hpp>
+#include <view/View.hpp>
 
 Entity::Entity(Body* bodyArg)
 {

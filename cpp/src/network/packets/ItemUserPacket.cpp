@@ -1,7 +1,8 @@
 #include "ItemUserPacket.hpp"
 
+#include <misc/Global.hpp>
 #include <player/property/item/Item.hpp>
-#include <misc/Debug.hpp>
+#include <misc/compress/CompressBuffer.hpp>
 
 ItemUserPacket::ItemUserPacket(const std::string& ids)
 {

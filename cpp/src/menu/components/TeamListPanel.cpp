@@ -1,8 +1,9 @@
 #include "TeamListPanel.hpp"
 
+#include <misc/Global.hpp>
 #include "TeamPanel.hpp"
 #include <player/property/Team.hpp>
-#include <misc/Debug.hpp>
+#include <menu/menues/LobbyMenu.hpp>
 
 TeamListPanel::TeamListPanel(LobbyMenu* c, const PixelRect& r) : Panel(c, r), lobby(c)
 {

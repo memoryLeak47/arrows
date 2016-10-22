@@ -1,13 +1,15 @@
 #ifndef __GAMEUPDATEPACKET_CLASS__
 #define __GAMEUPDATEPACKET_CLASS__
 
-#include <network/Packet.hpp>
-
-class CompressBuffer;
-
 class GamePlayer;
 class Mob;
 class Idler;
+class CompressBuffer;
+
+#include <network/Packet.hpp>
+#include <vector>
+#include <string>
+#include <misc/compress/Cid.hpp>
 
 class GameUpdatePacket : public Packet
 {
@@ -27,7 +29,5 @@ class GameUpdatePacket : public Packet
 		std::vector<Mob*> mobs;
 		std::vector<Idler*> idlers;
 };
-
-#include <misc/compress/CompressBuffer.hpp>
 
 #endif

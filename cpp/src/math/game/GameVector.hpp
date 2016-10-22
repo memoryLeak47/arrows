@@ -1,12 +1,12 @@
 #ifndef __GAMEVECTOR_CLASS__
 #define __GAMEVECTOR_CLASS__
 
-#include <string>
+class CompressBuffer;
+class GameRect;
 
 #include <misc/compress/Compressable.hpp>
-
-class GameRect;
-class CompressBuffer;
+#include <misc/compress/Cid.hpp>
+#include <string>
 
 class GameVector : public Compressable
 {
@@ -39,8 +39,5 @@ class GameVector : public Compressable
 		std::string toString() const;
 		float x, y;
 };
-
-#include "GameRect.hpp"
-#include <misc/compress/CompressBuffer.hpp>
 
 #endif

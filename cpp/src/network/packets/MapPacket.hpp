@@ -6,11 +6,12 @@
 #ifndef __MAPPACKET_CLASS__
 #define __MAPPACKET_CLASS__
 
-#include <vector>
+class CompressBuffer;
 
 #include <network/Packet.hpp>
-
-class CompressBuffer;
+#include <vector>
+#include <misc/compress/Cid.hpp>
+#include <string>
 
 class MapPacket : public Packet
 {
@@ -23,7 +24,5 @@ class MapPacket : public Packet
 	private:
 		std::vector<std::vector<int>> map; // Zweidimensionaler Vektor lol
 };
-
-#include <misc/compress/CompressBuffer.hpp>
 
 #endif

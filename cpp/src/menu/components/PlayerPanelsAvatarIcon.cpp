@@ -5,6 +5,9 @@
 #include <menu/MenuList.hpp>
 #include <player/property/avatar/Avatar.hpp>
 #include <menu/menues/ChoosePlayerPropertyMenu.hpp>
+#include <menu/menues/LobbyMenu.hpp> // for AVATAR_PHASE
+#include <network/packets/AvatarUserPacket.hpp>
+#include <player/LobbyPlayer.hpp>
 
 PlayerPanelsAvatarIcon::PlayerPanelsAvatarIcon(LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : PlayerPanelsIcon(p, m, c, r)
 {}

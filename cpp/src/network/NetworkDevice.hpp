@@ -3,11 +3,12 @@
 
 #define PORT 4242
 
-#include <SFML/Network.hpp>
-#include <stack>
-
 class Packet;
 class NetworkInterface;
+
+#include <SFML/Network/IpAddress.hpp>
+#include <SFML/Network/UdpSocket.hpp>
+#include <stack>
 
 class NetworkDevice
 {
@@ -24,8 +25,5 @@ class NetworkDevice
 		sf::UdpSocket socket;
 		std::stack<NetworkInterface*> interfaceStack;
 };
-
-#include "Packet.hpp"
-#include "NetworkInterface.hpp"
 
 #endif

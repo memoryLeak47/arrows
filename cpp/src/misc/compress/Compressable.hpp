@@ -1,11 +1,8 @@
 #ifndef __COMPRESSABLE_CLASS__
 #define __COMPRESSABLE_CLASS__
 
-#include <misc/Global.hpp>
-
-#include "Cid.hpp"
-
 #include <string>
+#include "Cid.hpp"
 #include <vector>
 
 class Compressable // represents Compressable.java and Compressor.java

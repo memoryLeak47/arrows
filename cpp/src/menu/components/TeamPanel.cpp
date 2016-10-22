@@ -2,8 +2,15 @@
 
 #include "PlayerPanel.hpp"
 #include <misc/Debug.hpp>
+#include <menu/components/Button.hpp>
+#include <menu/components/TeamListPanel.hpp>
+#include <menu/menues/LobbyMenu.hpp>
+#include <player/property/Team.hpp>
+#include <player/LobbyPlayer.hpp>
+#include <network/packets/TeamUserPacket.hpp>
 
-TeamPanel::TeamPanel(LobbyMenu* m, TeamListPanel* c, const PixelRect& r, Team* team) : Panel(c, r), lobby(m), team(team)
+TeamPanel::TeamPanel(LobbyMenu* m, TeamListPanel* c, const PixelRect& r, Team* team)
+	: Panel(c, r), lobby(m), team(team)
 {
 	teamButton = NULL; // otherwise the program crashes
 }

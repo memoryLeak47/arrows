@@ -5,6 +5,10 @@
 #include <core/Main.hpp>
 #include <player/property/skill/Skill.hpp>
 #include <menu/menues/ChoosePlayerPropertyMenu.hpp>
+#include <menu/menues/LobbyMenu.hpp> // for SKILL_PHASE
+#include <network/packets/SkillUserPacket.hpp>
+#include <player/LobbyPlayer.hpp>
+#include <network/packets/AvatarUserPacket.hpp>
 
 PlayerPanelsSkillIcon::PlayerPanelsSkillIcon(int n, LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : PlayerPanelsIcon(p, m, c, r), number(n)
 {}

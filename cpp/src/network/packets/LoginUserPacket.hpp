@@ -1,11 +1,11 @@
 #ifndef __LOGINUSERPACKET_CLASS__
 #define __LOGINUSERPACKET_CLASS__
 
-#include <string>
-
-#include "UserPacket.hpp"
-
 class CompressBuffer;
+
+#include <network/packets/UserPacket.hpp>
+#include <string>
+#include <misc/compress/Cid.hpp>
 
 class LoginUserPacket : public UserPacket
 {
@@ -21,7 +21,5 @@ class LoginUserPacket : public UserPacket
 		std::string name;
 		int rank;
 };
-
-#include <misc/compress/CompressBuffer.hpp>
 
 #endif

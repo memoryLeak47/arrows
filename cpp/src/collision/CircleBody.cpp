@@ -1,9 +1,9 @@
 #include "CircleBody.hpp"
 
+#include <misc/Global.hpp>
+#include <misc/compress/CompressBuffer.hpp>
 #include <cmath>
 #include <algorithm>
-
-#include <misc/Debug.hpp>
 
 CircleBody::CircleBody(const GameVector& position, float radius, const GameVector& speed, float rotation, float spin)
 	: position(position), speed(speed), rotation(rotation), radius(radius), spin(spin)

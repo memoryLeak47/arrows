@@ -1,11 +1,11 @@
 #ifndef __PASSWORDFIELD_CLASS__
 #define __PASSWORDFIELD_CLASS__
 
-#include <string>
+class ComponentContainer;
+class PixelRect;
 
 #include <menu/MenuComponent.hpp>
-
-class PixelRect;
+#include <string>
 
 class PasswordField : public MenuComponent
 {
@@ -19,7 +19,5 @@ class PasswordField : public MenuComponent
 		std::string text;
 	
 };
-
-#include <math/pixel/PixelRect.hpp>
 
 #endif

@@ -1,7 +1,7 @@
 #include "PixelVector.hpp"
 
-#include <misc/Debug.hpp>
-#include <misc/Converter.hpp>
+#include <misc/Global.hpp>
+#include "PixelRect.hpp"
 
 PixelVector::PixelVector(int x, int y)
 {
