@@ -1,7 +1,7 @@
 #include "Converter.hpp"
 
 #include <sstream>
-#include <math.h>
+#include <cmath>
 
 #include "Debug.hpp"
 
