@@ -1,8 +1,7 @@
 #include "Team.hpp"
 
 #include <core/Main.hpp>
-#include <misc/Debug.hpp>
-#include <misc/Converter.hpp>
+#include <misc/Global.hpp>
 
 std::vector<Team*> Team::teams;
 

@@ -1,6 +1,7 @@
 #include "MainMenu.hpp"
 
 #include <core/Main.hpp>
+#include <menu/MenuList.hpp>
 #include <menu/components/EditField.hpp>
 #include <menu/components/Button.hpp>
 #include <menu/components/QuitButton.hpp>

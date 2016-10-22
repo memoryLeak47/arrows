@@ -1,9 +1,9 @@
 #include "ChoosePlayerPropertyMenu.hpp"
 
+#include <misc/Global.hpp>
 #include <core/Screen.hpp>
+#include <menu/MenuList.hpp>
 #include <core/Main.hpp>
-#include <misc/Converter.hpp>
-#include <misc/Debug.hpp>
 #include <menu/components/BackButton.hpp>
 
 class SlotIcon : public PlayerPropertyIcon

@@ -1,6 +1,7 @@
 #include "CreateServerMenu.hpp"
 
 #include <core/Main.hpp>
+#include <menu/MenuList.hpp>
 #include <menu/components/Button.hpp>
 #include <menu/components/BackButton.hpp>
 #include <menu/components/Label.hpp>

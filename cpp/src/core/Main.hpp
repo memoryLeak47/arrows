@@ -10,8 +10,9 @@ class Account;
 class Main
 {
 	public:
-		Main();
-		virtual ~Main();
+		Main(); // inits
+		virtual ~Main(); // uninits
+
 		static NetworkDevice* getNetworkDevice();
 		static void setAccount(Account*);
 		static Account* getAccount();
@@ -30,9 +31,5 @@ class Main
 		static void tick();
 		static void render();
 };
-
-#include <menu/MenuList.hpp>
-#include <network/NetworkDevice.hpp>
-#include <misc/Account.hpp>
 
 #endif

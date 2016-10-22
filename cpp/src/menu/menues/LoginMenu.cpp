@@ -1,8 +1,9 @@
 #include "LoginMenu.hpp"
 
+#include <misc/Global.hpp>
 #include "MainMenu.hpp"
+#include <menu/MenuList.hpp>
 #include <misc/Account.hpp>
-#include <misc/Debug.hpp>
 #include <core/Main.hpp>
 #include <menu/components/Button.hpp>
 #include <menu/components/QuitButton.hpp>

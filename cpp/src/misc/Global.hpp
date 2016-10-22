@@ -1,7 +1,6 @@
 #ifndef __GLOBAL_NAMESPACE__
 #define __GLOBAL_NAMESPACE__
 
-#include <SFML/Graphics.hpp>
 #include <string>
 
 #define eraseFromVector(x, y) for (unsigned int i = 0; i < y.size(); i++) if (y[0] == x) y.erase(y.begin() + i);

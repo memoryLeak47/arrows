@@ -1,6 +1,7 @@
 #include "PopupMenu.hpp"
 
 #include <core/Screen.hpp>
+#include <menu/MenuList.hpp>
 #include <menu/components/Panel.hpp>
 #include <menu/components/Label.hpp>
 #include <menu/components/BackButton.hpp>

@@ -1,9 +1,10 @@
 #include "PlayerPanelsAvatarIcon.hpp"
 
-#include <menu/menues/ChoosePlayerPropertyMenu.hpp>
+#include <misc/Global.hpp>
 #include <core/Main.hpp>
-#include <misc/Debug.hpp>
+#include <menu/MenuList.hpp>
 #include <player/property/avatar/Avatar.hpp>
+#include <menu/menues/ChoosePlayerPropertyMenu.hpp>
 
 PlayerPanelsAvatarIcon::PlayerPanelsAvatarIcon(LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : PlayerPanelsIcon(p, m, c, r)
 {}

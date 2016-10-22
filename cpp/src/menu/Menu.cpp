@@ -1,6 +1,7 @@
 #include "Menu.hpp"
 
-#include <misc/Debug.hpp>
+#include <misc/Global.hpp>
+#include <menu/MenuList.hpp>
 #include <core/Screen.hpp>
 #include <core/Main.hpp>
 #include "menues/PopupMenu.hpp"

@@ -1,7 +1,8 @@
 #include "NetworkInterface.hpp"
 
 #include <core/Main.hpp>
-#include <misc/Debug.hpp>
+#include <misc/Global.hpp>
+#include <network/NetworkDevice.hpp>
 
 NetworkInterface::NetworkInterface()
 {

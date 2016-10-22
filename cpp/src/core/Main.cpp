@@ -1,12 +1,15 @@
 #include "Main.hpp"
 
-#include <misc/Debug.hpp>
+#include <misc/Global.hpp>
 #include "Screen.hpp"
 #include <player/property/Team.hpp>
 #include <player/property/avatar/Avatar.hpp>
 #include <player/property/skill/Skill.hpp>
 #include <player/property/item/Item.hpp>
 #include <graphics/GraphicsManager.hpp>
+#include <misc/Account.hpp>
+#include <network/NetworkDevice.hpp>
+#include <menu/MenuList.hpp>
 
 bool Main::running = true;
 MenuList* Main::menuList;

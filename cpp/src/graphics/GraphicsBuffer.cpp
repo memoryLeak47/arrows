@@ -2,8 +2,7 @@
 
 #include <dirent.h>
 
-#include <core/Main.hpp>
-#include <misc/Debug.hpp>
+#include <misc/Global.hpp>
 
 GraphicsBuffer::GraphicsBuffer(const std::string& path, bool isDirectory)
 	: isDirectory(isDirectory), path(path)

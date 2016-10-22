@@ -1,9 +1,10 @@
 #include "PlayerPanelsSkillIcon.hpp"
 
-#include <menu/menues/ChoosePlayerPropertyMenu.hpp>
+#include <misc/Global.hpp>
+#include <menu/MenuList.hpp>
 #include <core/Main.hpp>
-#include <misc/Debug.hpp>
 #include <player/property/skill/Skill.hpp>
+#include <menu/menues/ChoosePlayerPropertyMenu.hpp>
 
 PlayerPanelsSkillIcon::PlayerPanelsSkillIcon(int n, LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : PlayerPanelsIcon(p, m, c, r), number(n)
 {}

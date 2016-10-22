@@ -1,9 +1,10 @@
 #include "ServerLobbyMenu.hpp"
 
+#include <misc/Global.hpp>
+#include <menu/MenuList.hpp>
 #include <core/Main.hpp>
 #include <core/Screen.hpp>
-#include <misc/Converter.hpp>
-#include <misc/Debug.hpp>
+#include <misc/Account.hpp>
 #include <game/ServerGameInterface.hpp>
 
 ServerLobbyMenu::ServerLobbyMenu()

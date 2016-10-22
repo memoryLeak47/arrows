@@ -1,7 +1,7 @@
 #include "ClientLobbyMenu.hpp"
 
-#include <misc/Converter.hpp>
-#include <misc/Debug.hpp>
+#include <misc/Global.hpp>
+#include <menu/MenuList.hpp>
 #include <core/Main.hpp>
 #include <game/ClientGameInterface.hpp>
 
