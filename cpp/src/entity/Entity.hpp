@@ -24,7 +24,6 @@ enum CollisionType
 class Body;
 class GameTileMap;
 class GameVector;
-class GameRect;
 class PixelRect;
 class View;
 
@@ -103,13 +102,8 @@ class Entity
 		int dashCounter;
 };
 
-#include <collision/Body.hpp>
-#include <tile/map/GameTileMap.hpp>
 #include <math/game/GameVector.hpp>
-#include <math/game/GameRect.hpp>
 #include <math/pixel/PixelRect.hpp>
 #include <view/View.hpp>
-
-#include <graphics/GraphicsManager.hpp>
 
 #endif

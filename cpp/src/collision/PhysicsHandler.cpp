@@ -1,5 +1,9 @@
 #include "PhysicsHandler.hpp"
 
+#include <collision/Body.hpp>
+#include <math/game/GameVector.hpp>
+#include <entity/Entity.hpp>
+
 void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2, const GameVector& collisionPoint)
 {
 	Debug::funcOn("PhysicsHandler::handlePhysics(" + e1->toString() + ", " + e2->toString() + ")");

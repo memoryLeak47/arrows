@@ -1,5 +1,7 @@
 #include "NormalTile.hpp"
 
+#include <graphics/GraphicsManager.hpp>
+
 NormalTile::NormalTile(const GameVector& pos)
 	: Tile(new RectBody(pos))
 {}

@@ -8,9 +8,10 @@
 #include <string>
 #include <vector>
 
-#include <entity/Mob.hpp>
 #include <SFML/Network.hpp>
-#include <misc/Debug.hpp>
+
+#include <entity/Mob.hpp>
+#include <controller/Actions.hpp>
 
 class LobbyPlayer;
 class Team;
@@ -22,14 +23,14 @@ class GamePlayer : public Mob
 {
 	public:
 		GamePlayer(CompressBuffer*);
-		GamePlayer(Body*, const LobbyPlayer*);
-		virtual ~GamePlayer();
+		GamePlayer(Body*, const LobbyPlayer*); // used when Game begins in Avatar::createGamePlayer()
+		virtual ~GamePlayer(); // deletes ip
 
-		Actions getActions() const;
+		Actions getActions() const; // => Controller::getActions()
 		virtual void renderBar(const View&) const override;
 		sf::IpAddress* getIP() const;
 	private:
-		void setActions(const Actions actions); // Setzt Actions auf das übergebene
+		void setActions(const Actions actions); // => Controller::setActions(actions); used in {C,G}GameInterface
 		void apply(GamePlayer*); // Wird nur in ClientGameInterface::applyGameUpdate benutzt
 		void setIP(sf::IpAddress*);
 
@@ -41,7 +42,6 @@ class GamePlayer : public Mob
 		std::vector<Skill*> skills;
 		std::vector<Item*> items;
 
-	friend class GameInterface;
 	friend class ServerGameInterface;
 	friend class ClientGameInterface;
 };

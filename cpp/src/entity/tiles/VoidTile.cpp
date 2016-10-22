@@ -1,5 +1,7 @@
 #include "VoidTile.hpp"
 
+#include <graphics/GraphicsManager.hpp>
+
 VoidTile::VoidTile(const GameVector& pos)
 	: Tile(new RectBody(pos))
 {}

@@ -1,5 +1,7 @@
 #include "Idler.hpp"
 
+#include <collision/Body.hpp>
+
 Idler::Idler(Body* b)
 	: ImpactfulDynamicEntity(b)
 {}

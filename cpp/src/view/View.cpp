@@ -1,8 +1,7 @@
 #include "View.hpp"
 
-#include <misc/Converter.hpp>
-#include <misc/Debug.hpp>
 #include <core/Screen.hpp>
+#include <collision/Body.hpp>
 
 View::View()
 	: scale(40), spot(0,0), focusEntity(false)

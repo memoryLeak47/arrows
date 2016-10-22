@@ -1,5 +1,7 @@
 #include "LavaTile.hpp"
 
+#include <graphics/GraphicsManager.hpp>
+
 LavaTile::LavaTile(const GameVector& pos)
 	: Tile(pos)
 {}

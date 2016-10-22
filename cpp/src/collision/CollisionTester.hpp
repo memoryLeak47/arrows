@@ -13,7 +13,4 @@ class CollisionTester
 		static bool areWrapperColliding(Entity*, Entity*);
 };
 
-#include <entity/Entity.hpp>
-#include <math/game/GameVector.hpp>
-
 #endif

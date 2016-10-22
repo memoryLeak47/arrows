@@ -1,6 +1,9 @@
 #include "CollisionTester.hpp"
 
 #include <math/game/GameRect.hpp>
+#include <entity/Entity.hpp>
+#include <collision/Body.hpp>
+#include <math/game/GameVector.hpp>
 
 const float STEPSIZE = 0.05f; // Schrittweite bei der CollisionPoint suche
 

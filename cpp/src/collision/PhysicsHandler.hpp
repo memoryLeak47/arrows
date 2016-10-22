@@ -14,7 +14,4 @@ class PhysicsHandler
 		static std::vector<GameVector> getCollisionPoints(Entity* e1, Entity* e2);
 };
 
-#include <entity/Entity.hpp>
-#include <math/game/GameVector.hpp>
-
 #endif

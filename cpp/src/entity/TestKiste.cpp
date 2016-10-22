@@ -1,5 +1,8 @@
 #include "TestKiste.hpp"
 
+#include <collision/RectBody.hpp>
+#include <graphics/GraphicsManager.hpp>
+
 TestKiste::TestKiste(const GameVector& position)
 	: Idler(new RectBody(position, GameVector(0.7f, 0.5f)))
 {}

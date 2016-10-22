@@ -2,9 +2,10 @@
 
 #include <core/Main.hpp>
 #include <core/Screen.hpp>
-#include <misc/Debug.hpp>
+
 #include <collision/CollisionTester.hpp>
 #include <collision/PhysicsHandler.hpp>
+#include <collision/Body.hpp>
 
 Entity::Entity(Body* bodyArg)
 {

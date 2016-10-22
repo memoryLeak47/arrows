@@ -20,7 +20,7 @@ class Controller : public Compressable
 		Actions getActions() const;
 	private:
 		// setter
-		void setActions(const Actions);
+		void setActions(const Actions); // used in GamePlayer::setActions()
 
 		Actions actions;
 

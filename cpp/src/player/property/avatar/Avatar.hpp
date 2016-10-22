@@ -11,6 +11,7 @@ class Avatar : public PlayerProperty
 {
 	public:
 		virtual ~Avatar() {}
+
 		static void init();
 		static void uninit();
 		static Avatar* get(int);
@@ -19,12 +20,11 @@ class Avatar : public PlayerProperty
 		virtual int getMassStat() const;
 		virtual float getHealthStat() const;
 
-		virtual GamePlayer* createGamePlayer(const GameVector&, const LobbyPlayer*) const = 0;
+		virtual GamePlayer* createGamePlayer(const GameVector&, const LobbyPlayer*) const = 0; // XXX workaround
 	private:
 		static std::vector<Avatar*> avatars;
 };
 
-#include <player/GamePlayer.hpp>
 #include <math/game/GameVector.hpp>
 #include <player/LobbyPlayer.hpp>
 

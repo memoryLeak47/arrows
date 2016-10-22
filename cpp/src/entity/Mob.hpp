@@ -10,7 +10,7 @@ class Mob : public ImpactfulDynamicEntity
 	public:
 		Mob(Body*, Controller*);
 		Mob(CompressBuffer*);
-		virtual ~Mob();
+		virtual ~Mob(); // deletes controller
 
 		// compress
 		std::string getCompressString() const override;
@@ -30,7 +30,5 @@ class Mob : public ImpactfulDynamicEntity
 		void applyActions();
 
 };
-
-#include <controller/Controller.hpp>
 
 #endif

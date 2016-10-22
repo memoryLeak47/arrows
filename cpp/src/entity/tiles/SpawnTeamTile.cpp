@@ -1,5 +1,7 @@
 #include "SpawnTeamTile.hpp"
 
+#include <graphics/GraphicsManager.hpp>
+
 SpawnTeamTile::SpawnTeamTile(Team* team, const GameVector& pos)
 	: Tile(pos), team(team)
 {}

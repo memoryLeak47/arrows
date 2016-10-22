@@ -1,6 +1,7 @@
 #include "Mob.hpp"
 
-#include <misc/Debug.hpp>
+#include <controller/Controller.hpp>
+#include <collision/Body.hpp>
 
 Mob::Mob(Body* body, Controller* controller)
 	: ImpactfulDynamicEntity(body), controller(controller)
