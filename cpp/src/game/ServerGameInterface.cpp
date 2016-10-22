@@ -23,7 +23,7 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 			players[id]->setActions(actionsPacket->getActions());
 			delete actionsPacket;
 
-			updateClients();
+			updateCounter = 0;
 
 			break;
 		}
@@ -39,9 +39,10 @@ void ServerGameInterface::tick()
 	if (getLocalPlayer()->getActions() != a)
 	{
 		getLocalPlayer()->setActions(a);
-		updateClients();
+		updateCounter = 0;
 	}
-	else if (updateCounter-- <= 0)
+
+	if (updateCounter-- <= 0)
 	{
 		updateClients();
 	}
