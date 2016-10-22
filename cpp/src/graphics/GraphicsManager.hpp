@@ -38,7 +38,6 @@ class GraphicsManager
 		static std::vector<GraphicsBuffer*> buffers;
 };
 
-#include "GraphicsBuffer.hpp"
 #include <math/pixel/PixelVector.hpp>
 #include <math/game/GameVector.hpp>
 

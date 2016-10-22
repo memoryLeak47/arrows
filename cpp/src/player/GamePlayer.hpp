@@ -46,10 +46,4 @@ class GamePlayer : public Mob
 	friend class ClientGameInterface;
 };
 
-#include "LobbyPlayer.hpp"
-#include "property/Team.hpp"
-#include "property/avatar/Avatar.hpp"
-#include "property/skill/Skill.hpp"
-#include "property/item/Item.hpp"
-
 #endif

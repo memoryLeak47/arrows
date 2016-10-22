@@ -4,10 +4,10 @@
 #include <core/Main.hpp>
 #include <core/Screen.hpp>
 #include <math/pixel/PixelVector.hpp>
+#include "MenuComponent.hpp"
 
 ComponentContainer::ComponentContainer()
-{
-}
+{}
 
 ComponentContainer::~ComponentContainer()
 {

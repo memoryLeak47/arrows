@@ -4,6 +4,7 @@
 
 #include <misc/Global.hpp>
 #include <menu/MenuList.hpp>
+#include <math/pixel/PixelRect.hpp>
 #include "Main.hpp"
 
 PixelVector Screen::cursorPosition = PixelVector(0, 0);

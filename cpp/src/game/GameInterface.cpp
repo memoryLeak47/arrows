@@ -6,6 +6,13 @@
 #include <collision/CollisionDetector.hpp>
 #include <collision/CollisionTester.hpp>
 #include <collision/PhysicsHandler.hpp>
+#include <player/property/avatar/Avatar.hpp>
+
+#include <network/packets/TeamUserPacket.hpp>
+#include <network/packets/LoginUserPacket.hpp>
+#include <network/packets/AvatarUserPacket.hpp>
+#include <network/packets/SkillUserPacket.hpp>
+#include <network/packets/ItemUserPacket.hpp>
 
 #include <entity/TestKiste.hpp>
 

@@ -1,7 +1,14 @@
 #include "LobbyPlayer.hpp"
 
-#include <misc/Debug.hpp>
+#include <misc/Global.hpp>
 #include <core/Main.hpp>
+
+#include <network/packets/LockUserPacket.hpp>
+#include <network/packets/TeamUserPacket.hpp>
+#include <network/packets/LoginUserPacket.hpp>
+#include <network/packets/AvatarUserPacket.hpp>
+#include <network/packets/SkillUserPacket.hpp>
+#include <network/packets/ItemUserPacket.hpp>
 
 LobbyPlayer::LobbyPlayer(LobbyPlayer* player)
 {

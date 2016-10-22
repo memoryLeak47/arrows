@@ -1,5 +1,9 @@
 #include "GameUpdatePacket.hpp"
 
+#include <player/GamePlayer.hpp>
+#include <entity/Mob.hpp>
+#include <entity/Idler.hpp>
+
 GameUpdatePacket::GameUpdatePacket(const std::vector<GamePlayer*>& players_arg, const std::vector<Mob*>& mobs_arg, const std::vector<Idler*>& idlers_arg)
 	: players(players_arg), mobs(mobs_arg), idlers(idlers_arg)
 {}

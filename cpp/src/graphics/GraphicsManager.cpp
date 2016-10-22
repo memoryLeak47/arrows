@@ -1,8 +1,7 @@
 #include "GraphicsManager.hpp"
 
-#include <core/Main.hpp>
-#include <misc/Debug.hpp>
-#include <misc/Converter.hpp>
+#include <misc/Global.hpp>
+#include "GraphicsBuffer.hpp"
 
 std::vector<GraphicsBuffer*> GraphicsManager::buffers;
 

@@ -25,6 +25,4 @@ class ComponentContainer
 		std::vector<MenuComponent*> components;
 };
 
-#include "MenuComponent.hpp"
-
 #endif

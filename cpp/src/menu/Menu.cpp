@@ -5,6 +5,7 @@
 #include <core/Screen.hpp>
 #include <core/Main.hpp>
 #include "menues/PopupMenu.hpp"
+#include "MenuComponent.hpp"
 
 Menu::Menu(const PixelRect& rect)
 	: focusedComponent(NULL), rect(rect)

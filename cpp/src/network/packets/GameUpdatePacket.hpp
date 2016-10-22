@@ -30,8 +30,4 @@ class GameUpdatePacket : public Packet
 
 #include <misc/compress/CompressBuffer.hpp>
 
-#include <player/GamePlayer.hpp>
-#include <entity/Mob.hpp>
-#include <entity/Idler.hpp>
-
 #endif

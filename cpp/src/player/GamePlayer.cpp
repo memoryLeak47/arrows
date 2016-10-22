@@ -4,6 +4,17 @@
 #include <collision/RectBody.hpp>
 #include <misc/Converter.hpp>
 #include <controller/PlayerController.hpp>
+#include <player/property/avatar/Avatar.hpp>
+#include <player/property/skill/Skill.hpp>
+#include <player/property/item/Item.hpp>
+
+#include <network/packets/TeamUserPacket.hpp>
+#include <network/packets/LoginUserPacket.hpp>
+#include <network/packets/AvatarUserPacket.hpp>
+#include <network/packets/SkillUserPacket.hpp>
+#include <network/packets/ItemUserPacket.hpp>
+
+#include "LobbyPlayer.hpp"
 
 GamePlayer::GamePlayer(CompressBuffer *b)
 	: Mob(b)

@@ -1,9 +1,21 @@
 #include "MenuList.hpp"
 
 #include <misc/Global.hpp>
-#include "menues/LoginMenu.hpp"
-#include <game/ServerGameInterface.hpp>
 #include <core/Main.hpp>
+#include "Menu.hpp"
+#include "menues/LoginMenu.hpp"
+
+// for skip lobby
+#include <game/ServerGameInterface.hpp>
+#include <tile/map/LobbyTileMap.hpp>
+#include <player/LobbyPlayer.hpp>
+
+#include <network/packets/LockUserPacket.hpp>
+#include <network/packets/TeamUserPacket.hpp>
+#include <network/packets/LoginUserPacket.hpp>
+#include <network/packets/AvatarUserPacket.hpp>
+#include <network/packets/SkillUserPacket.hpp>
+#include <network/packets/ItemUserPacket.hpp>
 
 MenuList::MenuList()
 {

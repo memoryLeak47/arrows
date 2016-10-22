@@ -3,6 +3,8 @@
 #include <misc/Converter.hpp>
 #include <misc/Debug.hpp>
 
+#include <network/packets/LoginUserPacket.hpp>
+#include <network/packets/LockUserPacket.hpp>
 #include <network/packets/AvatarUserPacket.hpp>
 #include <network/packets/SkillUserPacket.hpp>
 #include <network/packets/ItemUserPacket.hpp>

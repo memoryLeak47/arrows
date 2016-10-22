@@ -1,6 +1,7 @@
 #include "ArcherGamePlayer.hpp"
 
 #include <collision/RectBody.hpp>
+#include <graphics/GraphicsManager.hpp>
 
 ArcherGamePlayer::ArcherGamePlayer(const GameVector& pos, const LobbyPlayer* player)
 	: GamePlayer(new RectBody(pos, GraphicsManager::getGameSizeOf(ARCHER_GID)), player)

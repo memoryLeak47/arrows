@@ -2,7 +2,6 @@
 #define __MENU_CLASS__
 
 #include <string>
-#include <vector>
 #include <SFML/Window.hpp>
 
 #include "ComponentContainer.hpp"

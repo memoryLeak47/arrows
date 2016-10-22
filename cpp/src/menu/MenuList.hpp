@@ -23,6 +23,4 @@ class MenuList
 		int getTopmostFullscreenMenuIndex() const;
 };
 
-#include "Menu.hpp"
-
 #endif
