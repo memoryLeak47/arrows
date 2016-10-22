@@ -7,14 +7,14 @@ class PlayerController : public Controller
 {
 	public:
 		PlayerController() = default;
-		PlayerController(CompressBuffer*);
+		PlayerController(CompressBuffer*); // => Controller(CompressBuffer*)
 		virtual ~PlayerController() {}
 
 		// compress
 		CID getCID() const override;
+		/* std::string Controller::getCompressString() const */
+
 	friend class GameInterface;
 };
-
-#include <game/GameInterface.hpp>
 
 #endif

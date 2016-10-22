@@ -8,6 +8,7 @@ class ArcherGamePlayer : public GamePlayer
 	public:
 		ArcherGamePlayer(CompressBuffer*);
 		ArcherGamePlayer(const GameVector&, const LobbyPlayer*);
+		virtual ~ArcherGamePlayer() {}
 
 		// compress
 		CID getCID() const override;

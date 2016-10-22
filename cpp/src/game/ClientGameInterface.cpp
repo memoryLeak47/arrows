@@ -31,6 +31,7 @@ void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 			Debug::error("ClientGameInterface::handlePacket(): unknown Packet with CID=" + Converter::intToString((int) packet->getCID()));
 		}
 	}
+	delete packet;
 }
 
 void ClientGameInterface::tick()
@@ -62,6 +63,7 @@ void ClientGameInterface::applyGameUpdate(const std::vector<GamePlayer*>& player
 	for (unsigned int i = 0; i < players.size(); i++)
 	{
 		players[i]->apply(players_arg[i]);
+		// delete players_arg[i]; TODO
 	}
 
 	// mobs
@@ -92,6 +94,7 @@ void ClientGameInterface::applyGameUpdate(const std::vector<GamePlayer*>& player
 		players[i]->collisionPartners.clear();
 	}
 
+	// collision partners are added again
 	unsigned int amount = getDynamicEntityAmount();
 	for (unsigned int i = 0; i < amount; i++)
 	{

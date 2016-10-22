@@ -10,10 +10,10 @@ class Mob : public ImpactfulDynamicEntity
 	public:
 		Mob(Body*, Controller*);
 		Mob(CompressBuffer*);
+		virtual ~Mob();
 
 		// compress
 		std::string getCompressString() const override;
-		virtual ~Mob();
 		virtual void tick() override;
 		virtual EntityType getEntityType() const override;
 		virtual void renderBar(const View&) const = 0;

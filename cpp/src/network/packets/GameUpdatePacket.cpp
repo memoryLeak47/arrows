@@ -11,16 +11,17 @@ GameUpdatePacket::GameUpdatePacket(CompressBuffer* buffer)
 	{
 		players.push_back(dynamic_cast<GamePlayer*>(buffer->cutCompressable()));
 	}
+
 	size = buffer->cutInt();
 	for (int i = 0; i < size; i++)
 	{
 		mobs.push_back(dynamic_cast<Mob*>(buffer->cutCompressable()));
 	}
+
 	size = buffer->cutInt();
 	for (int i = 0; i < size; i++)
 	{
-		Idler* idler = dynamic_cast<Idler*>(buffer->cutCompressable());
-		idlers.push_back(idler);
+		idlers.push_back(dynamic_cast<Idler*>(buffer->cutCompressable()));
 	}
 }
 

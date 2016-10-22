@@ -21,15 +21,15 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 			ActionsUpdateUserPacket* actionsPacket = dynamic_cast<ActionsUpdateUserPacket*>(packet);
 			int id = ipToID(ip);
 			players[id]->setActions(actionsPacket->getActions());
-			delete actionsPacket;
-
 			updateCounter = 0;
-
 			break;
 		}
 		default:
+		{
 			Debug::error("ServerGameInterface::handlePacket(): unknown Packet with CID=" + Converter::intToString((int) packet->getCID()));
+		}
 	}
+	delete packet;
 }
 
 void ServerGameInterface::tick()

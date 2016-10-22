@@ -2,19 +2,21 @@
 #define __GAMEUPDATEPACKET_CLASS__
 
 #include <network/Packet.hpp>
-#include <player/GamePlayer.hpp>
-#include <entity/Mob.hpp>
-#include <entity/Idler.hpp>
 
 class CompressBuffer;
+
+class GamePlayer;
+class Mob;
+class Idler;
 
 class GameUpdatePacket : public Packet
 {
 	public:
 		GameUpdatePacket(const std::vector<GamePlayer*>&, const std::vector<Mob*>&, const std::vector<Idler*>&);
-		GameUpdatePacket(CompressBuffer*);
-		GameUpdatePacket();
-		std::string getCompressString() const override;
+		GameUpdatePacket(CompressBuffer*); // cuts players.size, players, mobs.size, mobs, idlers.size, idlers
+		virtual ~GameUpdatePacket() {}
+
+		std::string getCompressString() const override; // puts players.size, players, mobs.size, mobs, idlers.size, idlers
 		CID getCID() const override;
 
 		const std::vector<GamePlayer*>& getPlayers() const;
@@ -27,5 +29,9 @@ class GameUpdatePacket : public Packet
 };
 
 #include <misc/compress/CompressBuffer.hpp>
+
+#include <player/GamePlayer.hpp>
+#include <entity/Mob.hpp>
+#include <entity/Idler.hpp>
 
 #endif

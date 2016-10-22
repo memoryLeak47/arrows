@@ -5,10 +5,6 @@
 #include <misc/Converter.hpp>
 #include <controller/PlayerController.hpp>
 
-GamePlayer::GamePlayer(Body* body_arg, Controller* controller) // NUR im GameUpdatePacket verwendet, da unvollständig
-	 : Mob(body_arg, controller)
-{}
-
 GamePlayer::GamePlayer(CompressBuffer *b)
 	: Mob(b)
 {}
