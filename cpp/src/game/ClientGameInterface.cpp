@@ -1,7 +1,8 @@
 #include "ClientGameInterface.hpp"
 
 #include <collision/CollisionTester.hpp>
-#include <misc/Debug.hpp>
+
+#include <network/packets/ActionsUpdateUserPacket.hpp>
 #include <network/packets/GameUpdatePacket.hpp>
 
 ClientGameInterface::ClientGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players, int playerID, sf::IpAddress* ip)

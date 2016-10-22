@@ -13,7 +13,10 @@ NetworkDevice::NetworkDevice()
 
 void NetworkDevice::send(Packet* packet, sf::IpAddress* ip)
 {
-	if (packet == NULL) Debug::warn("NetworkDevice::send(): packet is null");
+	if (packet == NULL)
+	{
+		Debug::warn("NetworkDevice::send(): packet is null");
+	}
 
 	sf::Packet sfmlPacket;
 	std::string string = packet->compress();
@@ -27,7 +30,11 @@ void NetworkDevice::send(Packet* packet, sf::IpAddress* ip)
 	{
 		if (global::PACKET_SOUND)
 		{
-			system("paplay /usr/share/sounds/ubuntu/notifications/Blip.ogg &");
+			#ifndef OS_WINDOWS
+				system("paplay /usr/share/sounds/ubuntu/notifications/Blip.ogg &");
+			#else
+				Debug::warn("Your OS doesn't support packet sound");
+			#endif
 		}
 
 		if (string.length() > global::MAX_SHOWN_PACKET_SIZE)
@@ -55,7 +62,11 @@ void NetworkDevice::receive()
 
 	if (global::PACKET_SOUND)
 	{
-		system("paplay /usr/share/sounds/ubuntu/stereo/message.ogg &");
+		#ifndef OS_WINDOWS
+			system("paplay /usr/share/sounds/ubuntu/stereo/message.ogg &");
+		#else
+			Debug::warn("Your OS doesn't support packet sound");
+		#endif
 	}
 
 	std::string string;

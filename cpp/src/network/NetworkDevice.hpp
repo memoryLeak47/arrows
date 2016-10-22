@@ -12,7 +12,7 @@ class NetworkInterface;
 class NetworkDevice
 {
 	public:
-		NetworkDevice();
+		NetworkDevice(); // binds socket
 		void send(Packet*, sf::IpAddress* ip);
 		void receive();
 

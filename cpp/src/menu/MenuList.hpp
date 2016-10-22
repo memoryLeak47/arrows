@@ -1,8 +1,6 @@
 #ifndef __MENULIST_CLASS__
 #define __MENULIST_CLASS__
 
-#define IS_DEBUG_MODE true
-
 #include <vector>
 #include <SFML/Window.hpp>
 
@@ -20,9 +18,9 @@ class MenuList
 		void back(); // removes menu
 	private:
 		std::vector<Menu*> menues;
-		std::vector<Menu*> getMenues(); // TODO correct data type?
+		const std::vector<Menu*>& getMenues() const;
 		Menu* getTopmostMenu();
-		int getTopmostFullscreenMenuIndex();
+		int getTopmostFullscreenMenuIndex() const;
 };
 
 #include "Menu.hpp"

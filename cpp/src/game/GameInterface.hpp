@@ -3,22 +3,23 @@
 
 #include <vector>
 
-#include <network/NetworkInterface.hpp>
 #include <menu/Menu.hpp>
-#include <tile/map/GameTileMap.hpp>
+#include <network/NetworkInterface.hpp>
+
 #include <view/View.hpp>
 #include <controller/Actions.hpp>
 
+class GameTileMap;
 class LobbyTileMap;
-class LobbyPlayer;
 class GamePlayer;
+class LobbyPlayer;
+class DynamicEntity;
 class Idler;
 class Mob;
 class Tile;
 class Bullet;
+
 class CollisionEvent;
-class GamePlayer;
-class DynamicEntity;
 
 class GameInterface : public Menu, public NetworkInterface
 {
@@ -62,17 +63,15 @@ class GameInterface : public Menu, public NetworkInterface
 		GameTileMap* tileMap;
 };
 
+#include <tile/map/GameTileMap.hpp>
 #include <tile/map/LobbyTileMap.hpp>
-#include <player/LobbyPlayer.hpp>
 #include <player/GamePlayer.hpp>
+#include <player/LobbyPlayer.hpp>
 #include <entity/DynamicEntity.hpp>
 #include <entity/Idler.hpp>
 #include <entity/Mob.hpp>
 #include <entity/Tile.hpp>
 #include <entity/Bullet.hpp>
 #include <collision/CollisionEvent.hpp>
-#include <player/GamePlayer.hpp>
-#include <network/packets/ActionsUpdateUserPacket.hpp>
-#include <network/packets/UserPacketWithID.hpp>
 
 #endif

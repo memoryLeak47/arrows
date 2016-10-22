@@ -76,7 +76,7 @@ void MenuList::back()
 	menues.pop_back();
 }
 
-std::vector<Menu*> MenuList::getMenues()
+const std::vector<Menu*>& MenuList::getMenues() const
 {
 	return menues;
 }
@@ -88,7 +88,7 @@ Menu* MenuList::getTopmostMenu()
 }
 
 // returne den index des obersten menues
-int MenuList::getTopmostFullscreenMenuIndex()
+int MenuList::getTopmostFullscreenMenuIndex() const
 {
 	for (int i = getMenues().size()-1; i >= 0; i--) // für alle menues (von hinten nach vorne)
 	{
