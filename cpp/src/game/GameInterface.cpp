@@ -348,6 +348,7 @@ GameTileMap* GameInterface::getGameTileMap() const
 Actions GameInterface::calcActions() const
 {
 	Actions actions;
+	// movement
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		setAction(&actions, GO_LEFT, true);
@@ -359,6 +360,24 @@ Actions GameInterface::calcActions() const
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		setAction(&actions, JUMP, true);
+	}
+
+	// skills
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		setAction(&actions, SKILL1, true);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		setAction(&actions, SKILL2, true);
+	}
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+	{
+		setAction(&actions, SKILL3, true);
+	}
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right))
+	{
+		setAction(&actions, SKILL4, true);
 	}
 	return actions;
 }
