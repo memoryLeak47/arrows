@@ -1,7 +1,7 @@
 #include "ServerGameInterface.hpp"
 
 #include <misc/Global.hpp>
-#include <network/packets/ActionsUpdateUserPacket.hpp>
+#include <network/packets/ActionsUpdatePacket.hpp>
 #include <network/packets/GameUpdatePacket.hpp>
 #include <player/GamePlayer.hpp>
 
@@ -18,9 +18,9 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 {
 	switch (packet->getCompressID())
 	{
-		case ACTIONS_UPDATE_USER_PACKET_CID:
+		case ACTIONS_UPDATE_PACKET_CID:
 		{
-			ActionsUpdateUserPacket* actionsPacket = dynamic_cast<ActionsUpdateUserPacket*>(packet);
+			ActionsUpdatePacket* actionsPacket = dynamic_cast<ActionsUpdatePacket*>(packet);
 			int id = ipToID(ip);
 			players[id]->setActions(actionsPacket->getActions());
 			updateCounter = 0;

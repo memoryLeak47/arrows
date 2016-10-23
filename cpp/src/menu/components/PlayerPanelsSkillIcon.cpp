@@ -6,9 +6,9 @@
 #include <player/property/skill/Skill.hpp>
 #include <menu/menues/ChoosePlayerPropertyMenu.hpp>
 #include <menu/menues/LobbyMenu.hpp> // for SKILL_PHASE
-#include <network/packets/SkillUserPacket.hpp>
+#include <network/packets/SkillPacket.hpp>
 #include <player/LobbyPlayer.hpp>
-#include <network/packets/AvatarUserPacket.hpp>
+#include <network/packets/AvatarPacket.hpp>
 
 PlayerPanelsSkillIcon::PlayerPanelsSkillIcon(int n, LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : PlayerPanelsIcon(p, m, c, r), number(n)
 {}
@@ -22,22 +22,22 @@ void PlayerPanelsSkillIcon::onClick(int mouseButton)
 {
 	if (isChoosable())
 	{
-		const std::vector<Skill*>& skills = Skill::getAllSkillsByAvatarID(getLobbyMenu()->getLocalPlayer()->getAvatarUserPacket()->getAvatarID());
+		const std::vector<Skill*>& skills = Skill::getAllSkillsByAvatarID(getLobbyMenu()->getLocalPlayer()->getAvatarPacket()->getAvatarID());
 		std::vector<PlayerProperty*> tmp;
 		for (unsigned int i = 0; i < skills.size(); i++)
 		{
 			tmp.push_back(skills[i]);
 		}
-		Main::getMenuList()->addMenu(new ChoosePlayerPropertyMenu(getLobbyMenu(), new SkillUserPacket(*getLobbyMenu()->getLocalPlayer()->getSkillUserPacket()), tmp));
+		Main::getMenuList()->addMenu(new ChoosePlayerPropertyMenu(getLobbyMenu(), new SkillPacket(*getLobbyMenu()->getLocalPlayer()->getSkillPacket()), tmp));
 	}
 }
 
 TextureID PlayerPanelsSkillIcon::getTextureID() const
 {
-	if ((getPlayer()->getSkillUserPacket() == NULL) ||
-	    (getPlayer()->getSkillUserPacket()->getPlayerProperties()[number] == NULL))
+	if ((getPlayer()->getSkillPacket() == NULL) ||
+	    (getPlayer()->getSkillPacket()->getPlayerProperties()[number] == NULL))
 	{
 		return VOID_ICON_GID;
 	}
-	return getPlayer()->getSkillUserPacket()->getPlayerProperties()[number]->getIconTextureID();
+	return getPlayer()->getSkillPacket()->getPlayerProperties()[number]->getIconTextureID();
 }

@@ -2,7 +2,7 @@
 #define __CHOOSEPLAYERPROPERTYMENU_CLASS__
 
 class LobbyMenu;
-class PlayerPropertyUserPacket;
+class PlayerPropertyPacket;
 class PlayerProperty;
 class PlayerPropertyIcon;
 
@@ -12,7 +12,7 @@ class PlayerPropertyIcon;
 class ChoosePlayerPropertyMenu : public Menu
 {
 	public:
-		ChoosePlayerPropertyMenu(LobbyMenu*, PlayerPropertyUserPacket*, const std::vector<PlayerProperty*>&);
+		ChoosePlayerPropertyMenu(LobbyMenu*, PlayerPropertyPacket*, const std::vector<PlayerProperty*>&);
 		virtual ~ChoosePlayerPropertyMenu();
 		PlayerPropertyIcon* getFirstVoidSlotIcon() const;
 		std::vector<PlayerPropertyIcon*> getSlotIcons() const;
@@ -21,7 +21,7 @@ class ChoosePlayerPropertyMenu : public Menu
 		void chooseIconPressed(PlayerProperty*);
 	private:
 		LobbyMenu* lobby;
-		PlayerPropertyUserPacket* slotPacket;
+		PlayerPropertyPacket* slotPacket;
 		const std::vector<PlayerProperty*> chooseProperties; // XXX memoryleak?
 		std::vector<PlayerPropertyIcon*> slotIcons;
 };

@@ -6,16 +6,16 @@
 #include <core/Screen.hpp>
 #include <misc/Account.hpp>
 #include <game/ServerGameInterface.hpp>
-#include <network/packets/LockUserPacket.hpp>
-#include <network/packets/LoginUserPacket.hpp>
-#include <network/packets/AvatarUserPacket.hpp>
-#include <network/packets/SkillUserPacket.hpp>
-#include <network/packets/ItemUserPacket.hpp>
-#include <network/packets/TeamUserPacket.hpp>
+#include <network/packets/LockPacket.hpp>
+#include <network/packets/LoginPacket.hpp>
+#include <network/packets/AvatarPacket.hpp>
+#include <network/packets/SkillPacket.hpp>
+#include <network/packets/ItemPacket.hpp>
+#include <network/packets/TeamPacket.hpp>
 #include <network/packets/LobbyPlayersPacket.hpp>
-#include <network/packets/DisconnectUserPacket.hpp>
+#include <network/packets/DisconnectPacket.hpp>
 #include <network/packets/MapPacket.hpp>
-#include <network/packets/UserPacketWithID.hpp>
+#include <network/packets/PacketWithID.hpp>
 #include <player/LobbyPlayer.hpp>
 #include <menu/components/EditField.hpp>
 #include <menu/components/Button.hpp>
@@ -71,33 +71,33 @@ void ServerLobbyMenu::mapSelected()
 
 void ServerLobbyMenu::handlePacket(Packet* packet, sf::IpAddress* ip)
 {
-	if (packet->getCompressID() == LOCK_USER_PACKET_CID)
+	if (packet->getCompressID() == LOCK_PACKET_CID)
 	{
-		handleLockUserPacket((LockUserPacket*) packet, ipToID(ip, getPlayers()));
+		handleLockPacket((LockPacket*) packet, ipToID(ip, getPlayers()));
 	}
-	else if (packet->getCompressID() == DISCONNECT_USER_PACKET_CID)
+	else if (packet->getCompressID() == DISCONNECT_PACKET_CID)
 	{
-		handleDisconnectUserPacket((DisconnectUserPacket*) packet, ipToID(ip, getPlayers()));
+		handleDisconnectPacket((DisconnectPacket*) packet, ipToID(ip, getPlayers()));
 	}
-	else if (packet->getCompressID() == TEAM_USER_PACKET_CID && getPhase() == TEAM_PHASE)
+	else if (packet->getCompressID() == TEAM_PACKET_CID && getPhase() == TEAM_PHASE)
 	{
-		handleTeamUserPacket((TeamUserPacket*) packet, ipToID(ip, getPlayers()));
+		handleTeamPacket((TeamPacket*) packet, ipToID(ip, getPlayers()));
 	}
-	else if (packet->getCompressID() == LOGIN_USER_PACKET_CID && getPhase() == TEAM_PHASE)
+	else if (packet->getCompressID() == LOGIN_PACKET_CID && getPhase() == TEAM_PHASE)
 	{
-		handleLoginUserPacket((LoginUserPacket*) packet, ip);
+		handleLoginPacket((LoginPacket*) packet, ip);
 	}
-	else if (packet->getCompressID() == AVATAR_USER_PACKET_CID && getPhase() == AVATAR_PHASE)
+	else if (packet->getCompressID() == AVATAR_PACKET_CID && getPhase() == AVATAR_PHASE)
 	{
-		handleAvatarUserPacket((AvatarUserPacket*) packet, ipToID(ip, getPlayers()));
+		handleAvatarPacket((AvatarPacket*) packet, ipToID(ip, getPlayers()));
 	}
-	else if (packet->getCompressID() == SKILL_USER_PACKET_CID && getPhase() == SKILL_PHASE)
+	else if (packet->getCompressID() == SKILL_PACKET_CID && getPhase() == SKILL_PHASE)
 	{
-		handleSkillUserPacket((SkillUserPacket*) packet, ipToID(ip, getPlayers()));
+		handleSkillPacket((SkillPacket*) packet, ipToID(ip, getPlayers()));
 	}
-	else if (packet->getCompressID() == ITEM_USER_PACKET_CID && getPhase() == ITEM_PHASE)
+	else if (packet->getCompressID() == ITEM_PACKET_CID && getPhase() == ITEM_PHASE)
 	{
-		handleItemUserPacket((ItemUserPacket*) packet, ipToID(ip, getPlayers()));
+		handleItemPacket((ItemPacket*) packet, ipToID(ip, getPlayers()));
 	}
 	else
 	{
@@ -108,7 +108,7 @@ void ServerLobbyMenu::handlePacket(Packet* packet, sf::IpAddress* ip)
 
 void ServerLobbyMenu::createServerPlayer()
 {
-	LoginUserPacket* packet = new LoginUserPacket(Main::getAccount()->getName(), Main::getAccount()->getRank());
+	LoginPacket* packet = new LoginPacket(Main::getAccount()->getName(), Main::getAccount()->getRank());
 	LobbyPlayer* me = new LobbyPlayer(packet);
 	addPlayer(me);
 	addUpdatedPlayer(me);
@@ -118,7 +118,7 @@ void ServerLobbyMenu::createServerPlayer()
 
 void ServerLobbyMenu::lockPressed()
 {
-	LockUserPacket* l = new LockUserPacket(!getLocalPlayer()->getLockUserPacket()->isLocked());
+	LockPacket* l = new LockPacket(!getLocalPlayer()->getLockPacket()->isLocked());
 	packAndSendToAllClients(l, 0);
 	deleteAndNULL(l);
 	nextPhase();
@@ -126,7 +126,7 @@ void ServerLobbyMenu::lockPressed()
 
 void ServerLobbyMenu::disconnectPressed()
 {
-	DisconnectUserPacket* dis = new DisconnectUserPacket();
+	DisconnectPacket* dis = new DisconnectPacket();
 	packAndSendToAllClients(dis, 0);
 	deleteAndNULL(dis);
 	Main::getMenuList()->back();
@@ -134,9 +134,9 @@ void ServerLobbyMenu::disconnectPressed()
 
 void ServerLobbyMenu::teamPressed(Team* team)
 {
-	TeamUserPacket* packet = new TeamUserPacket(team->getID());
-	getLocalPlayer()->applyTeamUserPacket(packet);
-	getUpdatedLocalPlayer()->applyTeamUserPacket(packet);
+	TeamPacket* packet = new TeamPacket(team->getID());
+	getLocalPlayer()->applyTeamPacket(packet);
+	getUpdatedLocalPlayer()->applyTeamPacket(packet);
 	packAndSendToAllClients(packet, 0);
 	deleteAndNULL(packet);
 
@@ -150,9 +150,9 @@ LobbyPlayer* ServerLobbyMenu::getLocalPlayer() const
 	return getPlayer(0);
 }
 
-void ServerLobbyMenu::packAndSendToAllClients(UserPacket* p, int id) const
+void ServerLobbyMenu::packAndSendToAllClients(Packet* p, int id) const
 {
-	UserPacketWithID* packet = new UserPacketWithID(p, id);
+	PacketWithID* packet = new PacketWithID(p, id);
 	for (unsigned int i = 1; i < getPlayers().size(); i++)
 	{
 		send(packet, getPlayer(i)->getIP());
@@ -160,16 +160,16 @@ void ServerLobbyMenu::packAndSendToAllClients(UserPacket* p, int id) const
 	deleteAndNULL(packet);
 }
 
-void ServerLobbyMenu::packAndSendToFriendsOf(UserPacket* packet, int id) const
+void ServerLobbyMenu::packAndSendToFriendsOf(Packet* packet, int id) const
 {
 	for (unsigned int i = 1; i < getPlayers().size(); i++)
 	{
 		if (id == (int)i) // Client verwaltet sich selbst
 			continue;
 
-		if (getPlayer(id)->getTeamUserPacket()->getTeam()->isFriendlyTeam(getPlayer(i)->getTeamUserPacket()->getTeam()))
+		if (getPlayer(id)->getTeamPacket()->getTeam()->isFriendlyTeam(getPlayer(i)->getTeamPacket()->getTeam()))
 		{
-			UserPacketWithID* upwid = new UserPacketWithID(packet, id);
+			PacketWithID* upwid = new PacketWithID(packet, id);
 			send(upwid, getPlayer(i)->getIP());
 			deleteAndNULL(upwid);
 		}
@@ -184,14 +184,14 @@ void ServerLobbyMenu::sendToAllClients(Packet* packet) const
 	}
 }
 
-void ServerLobbyMenu::handleLockUserPacket(LockUserPacket* packet, int id)
+void ServerLobbyMenu::handleLockPacket(LockPacket* packet, int id)
 {
-	getPlayer(id)->applyLockUserPacket(packet);
-	getUpdatedPlayer(id)->applyLockUserPacket(packet);
+	getPlayer(id)->applyLockPacket(packet);
+	getUpdatedPlayer(id)->applyLockPacket(packet);
 	packAndSendToAllClients(packet, id);
 }
 
-void ServerLobbyMenu::handleDisconnectUserPacket(DisconnectUserPacket* packet, int id)
+void ServerLobbyMenu::handleDisconnectPacket(DisconnectPacket* packet, int id)
 {
 	removePlayer(id);
 	packAndSendToAllClients(packet, id);
@@ -200,22 +200,22 @@ void ServerLobbyMenu::handleDisconnectUserPacket(DisconnectUserPacket* packet, i
 	updatePlayerIcons();
 }
 
-void ServerLobbyMenu::handleTeamUserPacket(TeamUserPacket* packet, int id)
+void ServerLobbyMenu::handleTeamPacket(TeamPacket* packet, int id)
 {
-	getPlayer(id)->applyTeamUserPacket(packet);
-	getUpdatedPlayer(id)->applyTeamUserPacket(packet);
+	getPlayer(id)->applyTeamPacket(packet);
+	getUpdatedPlayer(id)->applyTeamPacket(packet);
 	packAndSendToAllClients(packet, id);
 
 	unlockAll();
 	updatePlayerIcons();
 }
 
-void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, sf::IpAddress* ip)
+void ServerLobbyMenu::handleLoginPacket(LoginPacket* packet, sf::IpAddress* ip)
 {
 	if (ipToID(ip, getPlayers()) == -1) // Wenn es noch keinen Spieler mit dieser IP gibt
 	{
 		LobbyPlayer* player = new LobbyPlayer(packet, ip);
-		if (TAG_STATUS) Debug::note("ServerLobbyMenu.handleLoginUserPacket(): Player \"" + player->getLoginUserPacket()->getName() + "\" joined the Game and is happy :)");
+		if (TAG_STATUS) Debug::note("ServerLobbyMenu.handleLoginPacket(): Player \"" + player->getLoginPacket()->getName() + "\" joined the Game and is happy :)");
 		LobbyPlayersPacket* playersPacket = new LobbyPlayersPacket(getPlayers()); // 
 		send(playersPacket, ip); // liste ohne den Neuen an den Neuen senden.
 		if (getLobbyTileMap()->isValid())
@@ -234,67 +234,67 @@ void ServerLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet, sf::IpAddre
 	}
 	else
 	{
-		Debug::warn("ServerLobbyMenu.handleLoginUserPacket(): Spieler wollte ein zweites mal joinen");
+		Debug::warn("ServerLobbyMenu.handleLoginPacket(): Spieler wollte ein zweites mal joinen");
 	}
 }
 
-void ServerLobbyMenu::handleAvatarUserPacket(AvatarUserPacket* packet, int id)
+void ServerLobbyMenu::handleAvatarPacket(AvatarPacket* packet, int id)
 {
-	if (getPlayer(id) == NULL) Debug::warn("ServerLobbyMenu::handleAvatarUserPacket(): no Player with id " + Converter::intToString(id));
+	if (getPlayer(id) == NULL) Debug::warn("ServerLobbyMenu::handleAvatarPacket(): no Player with id " + Converter::intToString(id));
 
 	// Wenn Spieler sich im gleichen Team befindet, wie Server (ich)
-	if (getPlayer(id)->getTeamUserPacket()->getTeam()->isFriendlyTeam(getLocalPlayer()->getTeamUserPacket()->getTeam()))
+	if (getPlayer(id)->getTeamPacket()->getTeam()->isFriendlyTeam(getLocalPlayer()->getTeamPacket()->getTeam()))
 	{
-		getPlayer(id)->applyAvatarUserPacket(packet);
+		getPlayer(id)->applyAvatarPacket(packet);
 	}
 
 	packAndSendToFriendsOf(packet, id);
-	getUpdatedPlayer(id)->applyAvatarUserPacket(packet);
+	getUpdatedPlayer(id)->applyAvatarPacket(packet);
 }
 
-void ServerLobbyMenu::handleSkillUserPacket(SkillUserPacket* packet, int id)
+void ServerLobbyMenu::handleSkillPacket(SkillPacket* packet, int id)
 {
-	if (getPlayer(id) == NULL) Debug::warn("ServerLobbyMenu::handleSkillUserPacket(): no Player with id " + Converter::intToString(id));
+	if (getPlayer(id) == NULL) Debug::warn("ServerLobbyMenu::handleSkillPacket(): no Player with id " + Converter::intToString(id));
 
 	// Wenn Spieler sich im gleichen Team befindet, wie Server (ich)
-	if (getPlayer(id)->getTeamUserPacket()->getTeam()->isFriendlyTeam(getLocalPlayer()->getTeamUserPacket()->getTeam()))
+	if (getPlayer(id)->getTeamPacket()->getTeam()->isFriendlyTeam(getLocalPlayer()->getTeamPacket()->getTeam()))
 	{
-		getPlayer(id)->applySkillUserPacket(packet);
+		getPlayer(id)->applySkillPacket(packet);
 	}
 
 	packAndSendToFriendsOf(packet, id);
-	getUpdatedPlayer(id)->applySkillUserPacket(packet);
+	getUpdatedPlayer(id)->applySkillPacket(packet);
 }
 
-void ServerLobbyMenu::handleItemUserPacket(ItemUserPacket* packet, int id)
+void ServerLobbyMenu::handleItemPacket(ItemPacket* packet, int id)
 {
-	if (getPlayer(id) == NULL) Debug::warn("ServerLobbyMenu::handleItemUserPacket(): no Player with id " + Converter::intToString(id));
+	if (getPlayer(id) == NULL) Debug::warn("ServerLobbyMenu::handleItemPacket(): no Player with id " + Converter::intToString(id));
 
 	// Wenn Spieler sich im gleichen Team befindet, wie Server (ich)
-	if (getPlayer(id)->getTeamUserPacket()->getTeam()->isFriendlyTeam(getLocalPlayer()->getTeamUserPacket()->getTeam()))
+	if (getPlayer(id)->getTeamPacket()->getTeam()->isFriendlyTeam(getLocalPlayer()->getTeamPacket()->getTeam()))
 	{
-		getPlayer(id)->applyItemUserPacket(packet);
+		getPlayer(id)->applyItemPacket(packet);
 	}
 
 	packAndSendToFriendsOf(packet, id);
-	getUpdatedPlayer(id)->applyItemUserPacket(packet);
+	getUpdatedPlayer(id)->applyItemPacket(packet);
 }
 
-void ServerLobbyMenu::playerPropertySelected(PlayerPropertyUserPacket* packet)
+void ServerLobbyMenu::playerPropertySelected(PlayerPropertyPacket* packet)
 {
 	switch (packet->getCompressID())
 	{
-		case AVATAR_USER_PACKET_CID:
-			getLocalPlayer()->applyAvatarUserPacket(dynamic_cast<AvatarUserPacket*>(packet));
-			getUpdatedLocalPlayer()->applyAvatarUserPacket(dynamic_cast<AvatarUserPacket*>(packet));
+		case AVATAR_PACKET_CID:
+			getLocalPlayer()->applyAvatarPacket(dynamic_cast<AvatarPacket*>(packet));
+			getUpdatedLocalPlayer()->applyAvatarPacket(dynamic_cast<AvatarPacket*>(packet));
 			break;
-		case SKILL_USER_PACKET_CID:
-			getLocalPlayer()->applySkillUserPacket(dynamic_cast<SkillUserPacket*>(packet));
-			getUpdatedLocalPlayer()->applySkillUserPacket(dynamic_cast<SkillUserPacket*>(packet));
+		case SKILL_PACKET_CID:
+			getLocalPlayer()->applySkillPacket(dynamic_cast<SkillPacket*>(packet));
+			getUpdatedLocalPlayer()->applySkillPacket(dynamic_cast<SkillPacket*>(packet));
 			break;
-		case ITEM_USER_PACKET_CID:
-			getLocalPlayer()->applyItemUserPacket(dynamic_cast<ItemUserPacket*>(packet));
-			getUpdatedLocalPlayer()->applyItemUserPacket(dynamic_cast<ItemUserPacket*>(packet));
+		case ITEM_PACKET_CID:
+			getLocalPlayer()->applyItemPacket(dynamic_cast<ItemPacket*>(packet));
+			getUpdatedLocalPlayer()->applyItemPacket(dynamic_cast<ItemPacket*>(packet));
 			break;
 		default:
 			Debug::warn("ServerLobbyMenu::playerPropertySelected(): awkward packet");
@@ -336,13 +336,13 @@ void ServerLobbyMenu::updateLockButton() const
 			lockButton->setEnabled(areAllClientsLocked() && getLobbyTileMap()->isValid());
 		break;
 		case AVATAR_PHASE:
-			lockButton->setEnabled(areAllClientsLocked() && getLocalPlayer()->getAvatarUserPacket()->isValid());
+			lockButton->setEnabled(areAllClientsLocked() && getLocalPlayer()->getAvatarPacket()->isValid());
 		break;
 		case SKILL_PHASE:
-			lockButton->setEnabled(areAllClientsLocked() && getLocalPlayer()->getSkillUserPacket()->isValid());
+			lockButton->setEnabled(areAllClientsLocked() && getLocalPlayer()->getSkillPacket()->isValid());
 		break;
 		case ITEM_PHASE:
-			lockButton->setEnabled(areAllClientsLocked() && getLocalPlayer()->getItemUserPacket()->isValid());
+			lockButton->setEnabled(areAllClientsLocked() && getLocalPlayer()->getItemPacket()->isValid());
 		break;
 		case PREGAME_PHASE:
 			lockButton->setEnabled(areAllClientsLocked());
@@ -380,10 +380,10 @@ void ServerLobbyMenu::nextPhase()
 void ServerLobbyMenu::unlockAll()
 {
 	LobbyMenu::unlockAll();
-	LockUserPacket* packet = new LockUserPacket(false);
+	LockPacket* packet = new LockPacket(false);
 	for (unsigned int i = 0; i < getUpdatedPlayers().size(); i++)
 	{
-		getUpdatedPlayers()[i]->applyLockUserPacket(packet);
+		getUpdatedPlayers()[i]->applyLockPacket(packet);
 	}
 	delete packet;
 }

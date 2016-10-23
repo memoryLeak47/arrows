@@ -8,7 +8,7 @@
 #include <menu/components/PlayerPropertyIcon.hpp>
 #include <menu/menues/LobbyMenu.hpp>
 #include <player/property/PlayerProperty.hpp>
-#include <network/packets/PlayerPropertyUserPacket.hpp>
+#include <network/packets/PlayerPropertyPacket.hpp>
 
 class SlotIcon : public PlayerPropertyIcon
 {
@@ -41,7 +41,7 @@ class OkButton : public Button
 	
 };
 
-ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(LobbyMenu* lobbyMenu, PlayerPropertyUserPacket* packet, const std::vector<PlayerProperty*>& props)
+ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(LobbyMenu* lobbyMenu, PlayerPropertyPacket* packet, const std::vector<PlayerProperty*>& props)
 	: chooseProperties(props)
 {
 	if (lobbyMenu == NULL) Debug::error("ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(): lobbyMenu == NULL");

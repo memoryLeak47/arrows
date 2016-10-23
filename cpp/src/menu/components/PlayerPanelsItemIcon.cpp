@@ -6,7 +6,7 @@
 #include <player/property/item/Item.hpp>
 #include <menu/menues/ChoosePlayerPropertyMenu.hpp>
 #include <menu/menues/LobbyMenu.hpp> // for ITEM_PHASE
-#include <network/packets/ItemUserPacket.hpp>
+#include <network/packets/ItemPacket.hpp>
 #include <player/LobbyPlayer.hpp>
 
 PlayerPanelsItemIcon::PlayerPanelsItemIcon(int n, LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : PlayerPanelsIcon(p, m, c, r), number(n)
@@ -27,16 +27,16 @@ void PlayerPanelsItemIcon::onClick(int mouseButton)
 		{
 			tmp.push_back(items[i]);
 		}
-		Main::getMenuList()->addMenu(new ChoosePlayerPropertyMenu(getLobbyMenu(), new ItemUserPacket(*getLobbyMenu()->getLocalPlayer()->getItemUserPacket()), tmp));
+		Main::getMenuList()->addMenu(new ChoosePlayerPropertyMenu(getLobbyMenu(), new ItemPacket(*getLobbyMenu()->getLocalPlayer()->getItemPacket()), tmp));
 	}
 }
 
 TextureID PlayerPanelsItemIcon::getTextureID() const
 {
-	if ((getPlayer()->getItemUserPacket() == NULL) ||
-	    (getPlayer()->getItemUserPacket()->getPlayerProperties()[number] == NULL))
+	if ((getPlayer()->getItemPacket() == NULL) ||
+	    (getPlayer()->getItemPacket()->getPlayerProperties()[number] == NULL))
 	{
 		return VOID_ICON_GID;
 	}
-	return getPlayer()->getItemUserPacket()->getPlayerProperties()[number]->getIconTextureID();
+	return getPlayer()->getItemPacket()->getPlayerProperties()[number]->getIconTextureID();
 }

@@ -3,7 +3,7 @@
 #include <core/Screen.hpp>
 #include <menu/menues/LobbyMenu.hpp>
 #include <player/LobbyPlayer.hpp>
-#include <network/packets/LockUserPacket.hpp>
+#include <network/packets/LockPacket.hpp>
 
 PlayerPanelsIcon::PlayerPanelsIcon(LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : Icon(c, r), player(p), lobby(m)
 {}
@@ -22,7 +22,7 @@ bool PlayerPanelsIcon::isChoosable() const
 {
 	return getLobbyMenu()->getPhase() == getChoosePhase()
 	    && getLobbyMenu()->getLocalPlayer() == getPlayer()
-	    && !getPlayer()->getLockUserPacket()->isLocked();
+	    && !getPlayer()->getLockPacket()->isLocked();
 }
 
 LobbyMenu* PlayerPanelsIcon::getLobbyMenu() const

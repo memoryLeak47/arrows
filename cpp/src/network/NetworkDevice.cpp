@@ -1,7 +1,7 @@
 #include "NetworkDevice.hpp"
 
 #include <misc/Global.hpp>
-#include "Packet.hpp"
+#include <network/Packet.hpp>
 #include <core/Main.hpp>
 #include "NetworkInterface.hpp"
 #include <SFML/Network/Packet.hpp>

@@ -1,28 +1,28 @@
-#include "SkillUserPacket.hpp"
+#include "SkillPacket.hpp"
 
 #include <misc/Global.hpp>
 #include <player/property/skill/Skill.hpp>
 #include <misc/compress/CompressBuffer.hpp>
 
-SkillUserPacket::SkillUserPacket(const std::string& ids)
+SkillPacket::SkillPacket(const std::string& ids)
 {
 	setIDs(ids);
 }
 
-SkillUserPacket::SkillUserPacket(CompressBuffer* buffer)
+SkillPacket::SkillPacket(CompressBuffer* buffer)
 	: skillIDs(buffer->cut(4))
 {}
 
-SkillUserPacket::SkillUserPacket()
+SkillPacket::SkillPacket()
 	: skillIDs({-1, -1, -1, -1})
 {}
 
-bool SkillUserPacket::isValid() const
+bool SkillPacket::isValid() const
 {
 	return skillIDs[0] != -1 && skillIDs[1] != -1 && skillIDs[2] != -1 && skillIDs[3] != -1;
 }
 
-const std::vector<PlayerProperty*> SkillUserPacket::getPlayerProperties() const
+const std::vector<PlayerProperty*> SkillPacket::getPlayerProperties() const
 {
 	std::vector<PlayerProperty*> props;
 	for (int i = 0; i < 4; i++)
@@ -39,12 +39,12 @@ const std::vector<PlayerProperty*> SkillUserPacket::getPlayerProperties() const
 	return props;
 }
 
-void SkillUserPacket::setIDs(const std::string& ids)
+void SkillPacket::setIDs(const std::string& ids)
 {
 	skillIDs = ids;
 }
 
-std::string SkillUserPacket::getCompressString() const
+std::string SkillPacket::getCompressString() const
 {
 	// TODO
 	std::string s;
@@ -55,7 +55,7 @@ std::string SkillUserPacket::getCompressString() const
 	return s;
 }
 
-CompressID SkillUserPacket::getCompressID() const
+CompressID SkillPacket::getCompressID() const
 {
-	return SKILL_USER_PACKET_CID;
+	return SKILL_PACKET_CID;
 }

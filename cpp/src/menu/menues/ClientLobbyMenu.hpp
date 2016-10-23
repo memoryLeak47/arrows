@@ -4,16 +4,16 @@
 class Packet;
 class LobbyPlayer;
 class Team;
-class LockUserPacket;
+class LockPacket;
 class LobbyPlayersPacket;
-class DisconnectUserPacket;
-class TeamUserPacket;
-class LoginUserPacket;
-class AvatarUserPacket;
-class SkillUserPacket;
-class ItemUserPacket;
+class DisconnectPacket;
+class TeamPacket;
+class LoginPacket;
+class AvatarPacket;
+class SkillPacket;
+class ItemPacket;
 class MapPacket;
-class PlayerPropertyUserPacket;
+class PlayerPropertyPacket;
 
 #include "LobbyMenu.hpp"
 #include <string>
@@ -32,17 +32,17 @@ class ClientLobbyMenu : public LobbyMenu
 		virtual void teamPressed(Team*) override;
 		void sendToServer(Packet*);
 	protected:
-		void handleLockUserPacket(LockUserPacket*, int);
+		void handleLockPacket(LockPacket*, int);
 		void handleLobbyPlayersPacket(LobbyPlayersPacket*);
-		void handleDisconnectUserPacket(DisconnectUserPacket*, int);
-		void handleTeamUserPacket(TeamUserPacket*, int);
-		void handleLoginUserPacket(LoginUserPacket*);
-		void handleAvatarUserPacket(AvatarUserPacket*, int);
-		void handleSkillUserPacket(SkillUserPacket*, int);
-		void handleItemUserPacket(ItemUserPacket*, int);
+		void handleDisconnectPacket(DisconnectPacket*, int);
+		void handleTeamPacket(TeamPacket*, int);
+		void handleLoginPacket(LoginPacket*);
+		void handleAvatarPacket(AvatarPacket*, int);
+		void handleSkillPacket(SkillPacket*, int);
+		void handleItemPacket(ItemPacket*, int);
 		void handleMapPacket(MapPacket*);
 		virtual void updateLockButton() const override;
-		virtual void playerPropertySelected(PlayerPropertyUserPacket*) override;
+		virtual void playerPropertySelected(PlayerPropertyPacket*) override;
 		virtual void createGameInterface() override;
 	private:
 		int localPlayerID;

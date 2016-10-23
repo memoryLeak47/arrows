@@ -1,28 +1,28 @@
-#include "ItemUserPacket.hpp"
+#include "ItemPacket.hpp"
 
 #include <misc/Global.hpp>
 #include <player/property/item/Item.hpp>
 #include <misc/compress/CompressBuffer.hpp>
 
-ItemUserPacket::ItemUserPacket(const std::string& ids)
+ItemPacket::ItemPacket(const std::string& ids)
 {
 	setIDs(ids);
 }
 
-ItemUserPacket::ItemUserPacket(CompressBuffer* buffer)
+ItemPacket::ItemPacket(CompressBuffer* buffer)
 	: itemIDs(buffer->cut(3))
 {}
 
-ItemUserPacket::ItemUserPacket()
+ItemPacket::ItemPacket()
 	: itemIDs({-1, -1, -1})
 {}
 
-bool ItemUserPacket::isValid() const
+bool ItemPacket::isValid() const
 {
 	return itemIDs[0] != -1 && itemIDs[1] != -1 && itemIDs[2] != 1;
 }
 
-const std::vector<PlayerProperty*> ItemUserPacket::getPlayerProperties() const
+const std::vector<PlayerProperty*> ItemPacket::getPlayerProperties() const
 {
 	std::vector<PlayerProperty*> props;
 	for (int i = 0; i < 3; i++)
@@ -39,12 +39,12 @@ const std::vector<PlayerProperty*> ItemUserPacket::getPlayerProperties() const
 	return props;
 }
 
-void ItemUserPacket::setIDs(const std::string& ids)
+void ItemPacket::setIDs(const std::string& ids)
 {
 	itemIDs = ids;
 }
 
-std::string ItemUserPacket::getCompressString() const
+std::string ItemPacket::getCompressString() const
 {
 	std::string s;
 	for (int i = 0; i < 3; i++)
@@ -54,7 +54,7 @@ std::string ItemUserPacket::getCompressString() const
 	return s;
 }
 
-CompressID ItemUserPacket::getCompressID() const
+CompressID ItemPacket::getCompressID() const
 {
-	return ITEM_USER_PACKET_CID;
+	return ITEM_PACKET_CID;
 }

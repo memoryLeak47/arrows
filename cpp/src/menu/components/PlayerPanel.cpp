@@ -6,8 +6,8 @@
 #include "PlayerPanelsSkillIcon.hpp"
 #include "PlayerPanelsItemIcon.hpp"
 #include <player/LobbyPlayer.hpp>
-#include <network/packets/LockUserPacket.hpp>
-#include <network/packets/LoginUserPacket.hpp>
+#include <network/packets/LockPacket.hpp>
+#include <network/packets/LoginPacket.hpp>
 #include <menu/menues/LobbyMenu.hpp>
 #include <menu/components/TeamPanel.hpp>
 
@@ -31,7 +31,7 @@ PlayerPanel::PlayerPanel(LobbyPlayer* p, LobbyMenu* m, TeamPanel* c, const Pixel
 void PlayerPanel::render() const
 {
 	Panel::render();
-	if (getPlayer() != NULL && getPlayer()->getLockUserPacket()->isLocked())
+	if (getPlayer() != NULL && getPlayer()->getLockPacket()->isLocked())
 	{
 		Screen::drawRect(PixelRect(getAbsoluteRect().getPosition().x-2, getAbsoluteRect().getPosition().y-2, getRelativeRect().getSize().x+4, getRelativeRect().getSize().y+4), sf::Color::Yellow);
 	}
@@ -39,8 +39,8 @@ void PlayerPanel::render() const
 	{
 		Screen::drawRect(PixelRect(getAbsoluteRect().getPosition().x-1, getAbsoluteRect().getPosition().y-1, getRelativeRect().getSize().x+2, getRelativeRect().getSize().y+2), sf::Color::Blue);
 	}
-	Screen::drawText(getPlayer()->getLoginUserPacket()->getName(), PixelVector(getAbsoluteRect().getPosition().x, getAbsoluteRect().getPosition().y + 72), sf::Color::White);
-	Screen::drawText("" + getPlayer()->getLoginUserPacket()->getRank(), PixelVector(getAbsoluteRect().getPosition().x, getAbsoluteRect().getPosition().y + 10), sf::Color::White);
+	Screen::drawText(getPlayer()->getLoginPacket()->getName(), PixelVector(getAbsoluteRect().getPosition().x, getAbsoluteRect().getPosition().y + 72), sf::Color::White);
+	Screen::drawText("" + getPlayer()->getLoginPacket()->getRank(), PixelVector(getAbsoluteRect().getPosition().x, getAbsoluteRect().getPosition().y + 10), sf::Color::White);
 }
 
 LobbyPlayer* PlayerPanel::getPlayer() const

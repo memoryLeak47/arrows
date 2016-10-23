@@ -4,22 +4,22 @@
 #include <core/Main.hpp>
 #include <misc/compress/CompressBuffer.hpp>
 
-#include <network/packets/LockUserPacket.hpp>
-#include <network/packets/TeamUserPacket.hpp>
-#include <network/packets/LoginUserPacket.hpp>
-#include <network/packets/AvatarUserPacket.hpp>
-#include <network/packets/SkillUserPacket.hpp>
-#include <network/packets/ItemUserPacket.hpp>
+#include <network/packets/LockPacket.hpp>
+#include <network/packets/TeamPacket.hpp>
+#include <network/packets/LoginPacket.hpp>
+#include <network/packets/AvatarPacket.hpp>
+#include <network/packets/SkillPacket.hpp>
+#include <network/packets/ItemPacket.hpp>
 
 LobbyPlayer::LobbyPlayer(LobbyPlayer* player)
 {
 	ip = new sf::IpAddress(*player->getIP());
-	lockPacket = new LockUserPacket(*player->lockPacket);
-	teamPacket = new TeamUserPacket(*player->teamPacket);
-	loginPacket = new LoginUserPacket(*player->loginPacket);
-	avatarPacket = new AvatarUserPacket(*player->avatarPacket);
-	skillPacket = new SkillUserPacket(*player->skillPacket);
-	itemPacket = new ItemUserPacket(*player->itemPacket);
+	lockPacket = new LockPacket(*player->lockPacket);
+	teamPacket = new TeamPacket(*player->teamPacket);
+	loginPacket = new LoginPacket(*player->loginPacket);
+	avatarPacket = new AvatarPacket(*player->avatarPacket);
+	skillPacket = new SkillPacket(*player->skillPacket);
+	itemPacket = new ItemPacket(*player->itemPacket);
 }
 
 LobbyPlayer::LobbyPlayer(const LobbyPlayer& player)
@@ -27,37 +27,37 @@ LobbyPlayer::LobbyPlayer(const LobbyPlayer& player)
 	Debug::error("DONT USE LobbyPlayer::LobbyPlayer(const LobbyPlayer&); USE THE POINTER STUFF");
 }
 
-LobbyPlayer::LobbyPlayer(LoginUserPacket* login, sf::IpAddress* ipArg)
+LobbyPlayer::LobbyPlayer(LoginPacket* login, sf::IpAddress* ipArg)
 {
 	ip = new sf::IpAddress(*ipArg);
-	lockPacket = new LockUserPacket(false);
-	teamPacket = new TeamUserPacket((char)0);
-	itemPacket = new ItemUserPacket();
-	avatarPacket = new AvatarUserPacket();
-	skillPacket = new SkillUserPacket();
-	loginPacket = new LoginUserPacket(*login);
+	lockPacket = new LockPacket(false);
+	teamPacket = new TeamPacket((char)0);
+	itemPacket = new ItemPacket();
+	avatarPacket = new AvatarPacket();
+	skillPacket = new SkillPacket();
+	loginPacket = new LoginPacket(*login);
 }
 
-LobbyPlayer::LobbyPlayer(LoginUserPacket* login)
+LobbyPlayer::LobbyPlayer(LoginPacket* login)
 {
 	ip = new sf::IpAddress(sf::IpAddress::getLocalAddress());
-	lockPacket = new LockUserPacket(false);
-	teamPacket = new TeamUserPacket((char)0);
-	itemPacket = new ItemUserPacket();
-	avatarPacket = new AvatarUserPacket();
-	skillPacket = new SkillUserPacket();
-	loginPacket = new LoginUserPacket(*login);
+	lockPacket = new LockPacket(false);
+	teamPacket = new TeamPacket((char)0);
+	itemPacket = new ItemPacket();
+	avatarPacket = new AvatarPacket();
+	skillPacket = new SkillPacket();
+	loginPacket = new LoginPacket(*login);
 }
 
 LobbyPlayer::LobbyPlayer(CompressBuffer* buffer)
 {
 	ip = NULL;
-	lockPacket = static_cast<LockUserPacket*>(buffer->cutByCompressID(LOCK_USER_PACKET_CID));
-	teamPacket = static_cast<TeamUserPacket*>(buffer->cutByCompressID(TEAM_USER_PACKET_CID));
-	loginPacket = static_cast<LoginUserPacket*>(buffer->cutByCompressID(LOGIN_USER_PACKET_CID));
-	avatarPacket = static_cast<AvatarUserPacket*>(buffer->cutByCompressID(AVATAR_USER_PACKET_CID));
-	skillPacket = static_cast<SkillUserPacket*>(buffer->cutByCompressID(SKILL_USER_PACKET_CID));
-	itemPacket = static_cast<ItemUserPacket*>(buffer->cutByCompressID(ITEM_USER_PACKET_CID));
+	lockPacket = static_cast<LockPacket*>(buffer->cutByCompressID(LOCK_PACKET_CID));
+	teamPacket = static_cast<TeamPacket*>(buffer->cutByCompressID(TEAM_PACKET_CID));
+	loginPacket = static_cast<LoginPacket*>(buffer->cutByCompressID(LOGIN_PACKET_CID));
+	avatarPacket = static_cast<AvatarPacket*>(buffer->cutByCompressID(AVATAR_PACKET_CID));
+	skillPacket = static_cast<SkillPacket*>(buffer->cutByCompressID(SKILL_PACKET_CID));
+	itemPacket = static_cast<ItemPacket*>(buffer->cutByCompressID(ITEM_PACKET_CID));
 }
 
 LobbyPlayer::~LobbyPlayer()
@@ -81,98 +81,98 @@ CompressID LobbyPlayer::getCompressID() const
 	return LOBBY_PLAYER_CID;
 }
 
-LockUserPacket* LobbyPlayer::getLockUserPacket() const
+LockPacket* LobbyPlayer::getLockPacket() const
 {
 	return lockPacket;
 }
 
-TeamUserPacket* LobbyPlayer::getTeamUserPacket() const
+TeamPacket* LobbyPlayer::getTeamPacket() const
 {
 	return teamPacket;
 }
 
-LoginUserPacket* LobbyPlayer::getLoginUserPacket() const
+LoginPacket* LobbyPlayer::getLoginPacket() const
 {
 	return loginPacket;
 }
 
-AvatarUserPacket* LobbyPlayer::getAvatarUserPacket() const
+AvatarPacket* LobbyPlayer::getAvatarPacket() const
 {
 	return avatarPacket;
 }
 
-SkillUserPacket* LobbyPlayer::getSkillUserPacket() const
+SkillPacket* LobbyPlayer::getSkillPacket() const
 {
 	return skillPacket;
 }
 
-ItemUserPacket* LobbyPlayer::getItemUserPacket() const
+ItemPacket* LobbyPlayer::getItemPacket() const
 {
 	return itemPacket;
 }
 
-void LobbyPlayer::applyLockUserPacket(LockUserPacket* packet)
+void LobbyPlayer::applyLockPacket(LockPacket* packet)
 {
 	if (lockPacket != NULL)
 	{
 		deleteAndNULL(lockPacket);
 	}
-	lockPacket = new LockUserPacket(*packet);
+	lockPacket = new LockPacket(*packet);
 }
 
-void LobbyPlayer::applyTeamUserPacket(TeamUserPacket* packet)
+void LobbyPlayer::applyTeamPacket(TeamPacket* packet)
 {
 	if (teamPacket != NULL)
 	{
 		deleteAndNULL(teamPacket);
 	}
-	teamPacket = new TeamUserPacket(*packet);
+	teamPacket = new TeamPacket(*packet);
 }
 
-void LobbyPlayer::applyLoginUserPacket(LoginUserPacket* packet)
+void LobbyPlayer::applyLoginPacket(LoginPacket* packet)
 {
 	if (loginPacket != NULL)
 	{
 		deleteAndNULL(loginPacket);
 	}
-	loginPacket = new LoginUserPacket(*packet);
+	loginPacket = new LoginPacket(*packet);
 }
 
-void LobbyPlayer::applyAvatarUserPacket(AvatarUserPacket* packet)
+void LobbyPlayer::applyAvatarPacket(AvatarPacket* packet)
 {
 	if (avatarPacket != NULL)
 	{
 		deleteAndNULL(avatarPacket);
 	}
-	avatarPacket = new AvatarUserPacket(*packet);
+	avatarPacket = new AvatarPacket(*packet);
 }
 
-void LobbyPlayer::applySkillUserPacket(SkillUserPacket* packet)
+void LobbyPlayer::applySkillPacket(SkillPacket* packet)
 {
 	if (skillPacket != NULL)
 	{
 		deleteAndNULL(skillPacket);
 	}
-	skillPacket = new SkillUserPacket(*packet);
+	skillPacket = new SkillPacket(*packet);
 }
 
-void LobbyPlayer::applyItemUserPacket(ItemUserPacket* packet)
+void LobbyPlayer::applyItemPacket(ItemPacket* packet)
 {
 	if (itemPacket != NULL)
 	{
 		deleteAndNULL(itemPacket);
 	}
-	itemPacket = new ItemUserPacket(*packet);
+	itemPacket = new ItemPacket(*packet);
 }
 
 std::string LobbyPlayer::getCompressString() const
 {
 	std::string s;
-	s += getLockUserPacket()->getCompressString();
-	s += getTeamUserPacket()->getCompressString();
-	s += getLoginUserPacket()->getCompressString();
-	s += getAvatarUserPacket()->getCompressString();
-	s += getSkillUserPacket()->getCompressString();
-	s += getItemUserPacket()->getCompressString();
+	s += getLockPacket()->getCompressString();
+	s += getTeamPacket()->getCompressString();
+	s += getLoginPacket()->getCompressString();
+	s += getAvatarPacket()->getCompressString();
+	s += getSkillPacket()->getCompressString();
+	s += getItemPacket()->getCompressString();
 	return s;
 }

@@ -10,12 +10,12 @@
 #include <tile/map/LobbyTileMap.hpp>
 #include <player/LobbyPlayer.hpp>
 
-#include <network/packets/LockUserPacket.hpp>
-#include <network/packets/TeamUserPacket.hpp>
-#include <network/packets/LoginUserPacket.hpp>
-#include <network/packets/AvatarUserPacket.hpp>
-#include <network/packets/SkillUserPacket.hpp>
-#include <network/packets/ItemUserPacket.hpp>
+#include <network/packets/LockPacket.hpp>
+#include <network/packets/TeamPacket.hpp>
+#include <network/packets/LoginPacket.hpp>
+#include <network/packets/AvatarPacket.hpp>
+#include <network/packets/SkillPacket.hpp>
+#include <network/packets/ItemPacket.hpp>
 
 MenuList::MenuList()
 {
@@ -23,16 +23,16 @@ MenuList::MenuList()
 	{
 		LobbyTileMap* lobbyTileMap = new LobbyTileMap(LobbyTileMap::getIntsByFile("res/maps/" + global::SKIP_LOBBY_MAP));
 		std::vector<LobbyPlayer*> lobbyPlayers;
-		LobbyPlayer* player = new LobbyPlayer(new LoginUserPacket("myself", 42));
-		player->applyTeamUserPacket(new TeamUserPacket((char)0));
-		player->applyAvatarUserPacket(new AvatarUserPacket((char)0));
+		LobbyPlayer* player = new LobbyPlayer(new LoginPacket("myself", 42));
+		player->applyTeamPacket(new TeamPacket((char)0));
+		player->applyAvatarPacket(new AvatarPacket((char)0));
 		std::string a = "";
 		a += (char)0;
 		a += (char)0;
 		a += (char)0;
-		player->applyItemUserPacket(new ItemUserPacket(a));
+		player->applyItemPacket(new ItemPacket(a));
 		a += (char)0;
-		player->applySkillUserPacket(new SkillUserPacket(a));
+		player->applySkillPacket(new SkillPacket(a));
 
 		lobbyPlayers.push_back(player);
 		menues.push_back(new ServerGameInterface(lobbyTileMap, lobbyPlayers));

@@ -1,17 +1,17 @@
-#ifndef __LOGINUSERPACKET_CLASS__
-#define __LOGINUSERPACKET_CLASS__
+#ifndef __LOGINPACKET_CLASS__
+#define __LOGINPACKET_CLASS__
 
 class CompressBuffer;
 
-#include <network/packets/UserPacket.hpp>
+#include <network/Packet.hpp>
 #include <string>
 #include <misc/compress/CompressID.hpp>
 
-class LoginUserPacket : public UserPacket
+class LoginPacket : public Packet
 {
 	public:
-		LoginUserPacket(const std::string&, int);
-		LoginUserPacket(CompressBuffer*);
+		LoginPacket(const std::string&, int);
+		LoginPacket(CompressBuffer*);
 		std::string getCompressString() const override;
 		CompressID getCompressID() const override;
 

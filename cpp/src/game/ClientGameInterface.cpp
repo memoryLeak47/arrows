@@ -8,7 +8,7 @@
 #include <tile/map/GameTileMap.hpp>
 #include <collision/Body.hpp>
 
-#include <network/packets/ActionsUpdateUserPacket.hpp>
+#include <network/packets/ActionsUpdatePacket.hpp>
 #include <network/packets/GameUpdatePacket.hpp>
 
 ClientGameInterface::ClientGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players, int playerID, sf::IpAddress* ip)
@@ -24,7 +24,7 @@ ClientGameInterface::~ClientGameInterface()
 
 void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 {
-	// should be an ActionsUpdateUserPacket
+	// should be an ActionsUpdatePacket
 	switch (packet->getCompressID())
 	{
 		case GAME_UPDATE_PACKET_CID:
@@ -49,7 +49,7 @@ void ClientGameInterface::tick()
 	{
 		serverActionsStatus = a;
 		getLocalPlayer()->setActions(a);
-		ActionsUpdateUserPacket packet(a);
+		ActionsUpdatePacket packet(a);
 		send(&packet, serverIP);
 	}
 }

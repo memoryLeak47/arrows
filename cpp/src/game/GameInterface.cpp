@@ -13,11 +13,11 @@
 #include <entity/Tile.hpp>
 #include <collision/Body.hpp>
 
-#include <network/packets/TeamUserPacket.hpp>
-#include <network/packets/LoginUserPacket.hpp>
-#include <network/packets/AvatarUserPacket.hpp>
-#include <network/packets/SkillUserPacket.hpp>
-#include <network/packets/ItemUserPacket.hpp>
+#include <network/packets/TeamPacket.hpp>
+#include <network/packets/LoginPacket.hpp>
+#include <network/packets/AvatarPacket.hpp>
+#include <network/packets/SkillPacket.hpp>
+#include <network/packets/ItemPacket.hpp>
 
 #include <entity/TestKiste.hpp>
 
@@ -30,7 +30,7 @@ GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>&
 	tileMap = new GameTileMap(map);
 	for (unsigned int i = 0; i < lobbyPlayers.size(); i++)
 	{
-		players.push_back(Avatar::get(lobbyPlayers[i]->getAvatarUserPacket()->getAvatarID())->createGamePlayer(getGameTileMap()->teamToSpawnPosition(lobbyPlayers[i]->getTeamUserPacket()->getTeam()), lobbyPlayers[i]));
+		players.push_back(Avatar::get(lobbyPlayers[i]->getAvatarPacket()->getAvatarID())->createGamePlayer(getGameTileMap()->teamToSpawnPosition(lobbyPlayers[i]->getTeamPacket()->getTeam()), lobbyPlayers[i]));
 	}
 
 	idlers.push_back(new TestKiste(GameVector(7.5f, 4.5f)));

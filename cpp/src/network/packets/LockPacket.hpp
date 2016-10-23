@@ -1,18 +1,18 @@
-#ifndef __LOCKUSERPACKET_CLASS__
-#define __LOCKUSERPACKET_CLASS__
+#ifndef __LOCKPACKET_CLASS__
+#define __LOCKPACKET_CLASS__
 
 class CompressBuffer;
 
-#include <network/packets/UserPacket.hpp>
+#include <network/Packet.hpp>
 #include <string>
 #include <misc/compress/CompressID.hpp>
 
-class LockUserPacket : public UserPacket
+class LockPacket : public Packet
 {
 	public:
-		LockUserPacket(bool);
-		LockUserPacket(CompressBuffer*);
-		virtual ~LockUserPacket() {}
+		LockPacket(bool);
+		LockPacket(CompressBuffer*);
+		virtual ~LockPacket() {}
 		bool isLocked() const;
 		std::string getCompressString() const override;
 		CompressID getCompressID() const override;

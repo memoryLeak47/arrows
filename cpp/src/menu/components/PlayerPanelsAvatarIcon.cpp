@@ -6,7 +6,7 @@
 #include <player/property/avatar/Avatar.hpp>
 #include <menu/menues/ChoosePlayerPropertyMenu.hpp>
 #include <menu/menues/LobbyMenu.hpp> // for AVATAR_PHASE
-#include <network/packets/AvatarUserPacket.hpp>
+#include <network/packets/AvatarPacket.hpp>
 #include <player/LobbyPlayer.hpp>
 
 PlayerPanelsAvatarIcon::PlayerPanelsAvatarIcon(LobbyPlayer* p, LobbyMenu* m, ComponentContainer* c, const PixelRect& r) : PlayerPanelsIcon(p, m, c, r)
@@ -27,16 +27,16 @@ void PlayerPanelsAvatarIcon::onClick(int mouseButton)
 		{
 			tmp.push_back(avatars[i]);
 		}
-		Main::getMenuList()->addMenu(new ChoosePlayerPropertyMenu(getLobbyMenu(), new AvatarUserPacket(*getLobbyMenu()->getLocalPlayer()->getAvatarUserPacket()), tmp));
+		Main::getMenuList()->addMenu(new ChoosePlayerPropertyMenu(getLobbyMenu(), new AvatarPacket(*getLobbyMenu()->getLocalPlayer()->getAvatarPacket()), tmp));
 	}
 }
 
 TextureID PlayerPanelsAvatarIcon::getTextureID() const
 {
-	if ((getPlayer()->getAvatarUserPacket() == NULL) ||
-	    (getPlayer()->getAvatarUserPacket()->getPlayerProperties()[0] == NULL))
+	if ((getPlayer()->getAvatarPacket() == NULL) ||
+	    (getPlayer()->getAvatarPacket()->getPlayerProperties()[0] == NULL))
 	{
 		return VOID_ICON_GID;
 	}
-	return getPlayer()->getAvatarUserPacket()->getPlayerProperties()[0]->getIconTextureID();
+	return getPlayer()->getAvatarPacket()->getPlayerProperties()[0]->getIconTextureID();
 }

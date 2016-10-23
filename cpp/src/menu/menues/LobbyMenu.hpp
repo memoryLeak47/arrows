@@ -10,7 +10,7 @@
 
 class LobbyPlayer;
 class Team;
-class PlayerPropertyUserPacket;
+class PlayerPropertyPacket;
 class LobbyTileMap;
 class Button;
 class LobbyTileMap;
@@ -34,7 +34,7 @@ class LobbyMenu : public Menu, public NetworkInterface
 		virtual void disconnectPressed() = 0;
 		virtual void teamPressed(Team*) = 0;
 		virtual LobbyPlayer* getLocalPlayer() const = 0;
-		virtual void playerPropertySelected(PlayerPropertyUserPacket*) = 0;
+		virtual void playerPropertySelected(PlayerPropertyPacket*) = 0;
 		LobbyTileMap* getLobbyTileMap() const;
 	protected:
 		bool areAllClientsLocked() const;

@@ -5,17 +5,17 @@
 #include <menu/components/Button.hpp>
 #include <core/Main.hpp>
 #include <game/ClientGameInterface.hpp>
-#include <network/packets/LoginUserPacket.hpp>
-#include <network/packets/SkillUserPacket.hpp>
-#include <network/packets/AvatarUserPacket.hpp>
-#include <network/packets/ItemUserPacket.hpp>
-#include <network/packets/PlayerPropertyUserPacket.hpp>
+#include <network/packets/LoginPacket.hpp>
+#include <network/packets/SkillPacket.hpp>
+#include <network/packets/AvatarPacket.hpp>
+#include <network/packets/ItemPacket.hpp>
+#include <network/packets/PlayerPropertyPacket.hpp>
 #include <network/packets/MapPacket.hpp>
 #include <network/packets/LobbyPlayersPacket.hpp>
-#include <network/packets/TeamUserPacket.hpp>
-#include <network/packets/DisconnectUserPacket.hpp>
-#include <network/packets/LockUserPacket.hpp>
-#include <network/packets/UserPacketWithID.hpp>
+#include <network/packets/TeamPacket.hpp>
+#include <network/packets/DisconnectPacket.hpp>
+#include <network/packets/LockPacket.hpp>
+#include <network/packets/PacketWithID.hpp>
 #include <tile/map/LobbyTileMap.hpp>
 #include <player/LobbyPlayer.hpp>
 #include <player/property/Team.hpp>
@@ -24,7 +24,7 @@ ClientLobbyMenu::ClientLobbyMenu(const std::string& ip)
 	: localPlayerID(-1)
 {
 	serverIP = new sf::IpAddress(ip);
-	LoginUserPacket* p = new LoginUserPacket(Main::getName(), Main::getRank());
+	LoginPacket* p = new LoginPacket(Main::getName(), Main::getRank());
 	sendToServer(p);
 	deleteAndNULL(p);
 }
@@ -56,37 +56,37 @@ void ClientLobbyMenu::handlePacket(Packet* packet, sf::IpAddress* ip)
 
 void ClientLobbyMenu::handlePacketByID(Packet* packet, int id)
 {
-	if (packet->getCompressID() == USER_PACKET_WITH_ID_CID)
+	if (packet->getCompressID() == PACKET_WITH_ID_CID)
 	{
-		handlePacketByID(((UserPacketWithID*) packet)->getPacket(), ((UserPacketWithID*) packet)->getID());
+		handlePacketByID(((PacketWithID*) packet)->getPacket(), ((PacketWithID*) packet)->getID());
 	}
-	else if (packet->getCompressID() == LOCK_USER_PACKET_CID)
+	else if (packet->getCompressID() == LOCK_PACKET_CID)
 	{
-		handleLockUserPacket((LockUserPacket*) packet, id);
+		handleLockPacket((LockPacket*) packet, id);
 	}
-	else if (packet->getCompressID() == DISCONNECT_USER_PACKET_CID)
+	else if (packet->getCompressID() == DISCONNECT_PACKET_CID)
 	{
-		handleDisconnectUserPacket((DisconnectUserPacket*) packet, id);
+		handleDisconnectPacket((DisconnectPacket*) packet, id);
 	}
-	else if (packet->getCompressID() == TEAM_USER_PACKET_CID && getPhase() == TEAM_PHASE)
+	else if (packet->getCompressID() == TEAM_PACKET_CID && getPhase() == TEAM_PHASE)
 	{
-		handleTeamUserPacket((TeamUserPacket*) packet, id);
+		handleTeamPacket((TeamPacket*) packet, id);
 	}
-	else if (packet->getCompressID() == LOGIN_USER_PACKET_CID && getPhase() == TEAM_PHASE)
+	else if (packet->getCompressID() == LOGIN_PACKET_CID && getPhase() == TEAM_PHASE)
 	{
-		handleLoginUserPacket((LoginUserPacket*) packet);
+		handleLoginPacket((LoginPacket*) packet);
 	}
-	else if (packet->getCompressID() == AVATAR_USER_PACKET_CID && getPhase() == AVATAR_PHASE)
+	else if (packet->getCompressID() == AVATAR_PACKET_CID && getPhase() == AVATAR_PHASE)
 	{
-		handleAvatarUserPacket((AvatarUserPacket*) packet, id);
+		handleAvatarPacket((AvatarPacket*) packet, id);
 	}
-	else if (packet->getCompressID() == SKILL_USER_PACKET_CID && getPhase() == SKILL_PHASE)
+	else if (packet->getCompressID() == SKILL_PACKET_CID && getPhase() == SKILL_PHASE)
 	{
-		handleSkillUserPacket((SkillUserPacket*) packet, id);
+		handleSkillPacket((SkillPacket*) packet, id);
 	}
-	else if (packet->getCompressID() == ITEM_USER_PACKET_CID && getPhase() == ITEM_PHASE)
+	else if (packet->getCompressID() == ITEM_PACKET_CID && getPhase() == ITEM_PHASE)
 	{
-		handleItemUserPacket((ItemUserPacket*) packet, id);
+		handleItemPacket((ItemPacket*) packet, id);
 	}
 	else if (packet->getCompressID() == MAP_PACKET_CID && getPhase() == TEAM_PHASE)
 	{
@@ -106,15 +106,15 @@ void ClientLobbyMenu::handlePacketByID(Packet* packet, int id)
 void ClientLobbyMenu::lockPressed()
 {
 	if (getLocalPlayer() == NULL) Debug::warn("ClientLobbyMenu::lockPressed(): getLocalPlayer() == NULL");
-	if (getLocalPlayer()->getLockUserPacket() == NULL) Debug::warn("ClientLobbyMenu::lockPressed(): getLocalPlayer()->getLockUserPacket() == NULL");
-	LockUserPacket* packet = new LockUserPacket(!getLocalPlayer()->getLockUserPacket()->isLocked());
+	if (getLocalPlayer()->getLockPacket() == NULL) Debug::warn("ClientLobbyMenu::lockPressed(): getLocalPlayer()->getLockPacket() == NULL");
+	LockPacket* packet = new LockPacket(!getLocalPlayer()->getLockPacket()->isLocked());
 	sendToServer(packet);
 	deleteAndNULL(packet);
 }
 
 void ClientLobbyMenu::disconnectPressed()
 {
-	DisconnectUserPacket* packet = new DisconnectUserPacket();
+	DisconnectPacket* packet = new DisconnectPacket();
 	sendToServer(packet);
 	deleteAndNULL(packet);
 	Main::getMenuList()->back();
@@ -122,7 +122,7 @@ void ClientLobbyMenu::disconnectPressed()
 
 void ClientLobbyMenu::teamPressed(Team* team)
 {
-	TeamUserPacket* packet = new TeamUserPacket(team->getID());
+	TeamPacket* packet = new TeamPacket(team->getID());
 	sendToServer(packet);
 	deleteAndNULL(packet);
 }
@@ -132,7 +132,7 @@ void ClientLobbyMenu::sendToServer(Packet* p)
 	send(p, serverIP);
 }
 
-void ClientLobbyMenu::handleLoginUserPacket(LoginUserPacket* packet)
+void ClientLobbyMenu::handleLoginPacket(LoginPacket* packet)
 {
 	LobbyPlayer* player = new LobbyPlayer(packet);
 	addPlayer(player);
@@ -157,7 +157,7 @@ void ClientLobbyMenu::handleLobbyPlayersPacket(LobbyPlayersPacket* packet)
 	updatePlayerIcons();
 }
 
-void ClientLobbyMenu::handleLockUserPacket(LockUserPacket* packet, int id)
+void ClientLobbyMenu::handleLockPacket(LockPacket* packet, int id)
 {
 	if (id == 0)
 	{
@@ -165,11 +165,11 @@ void ClientLobbyMenu::handleLockUserPacket(LockUserPacket* packet, int id)
 	}
 	else
 	{
-		getPlayer(id)->applyLockUserPacket(packet);
+		getPlayer(id)->applyLockPacket(packet);
 	}
 }
 
-void ClientLobbyMenu::handleDisconnectUserPacket(DisconnectUserPacket* packet, int id)
+void ClientLobbyMenu::handleDisconnectPacket(DisconnectPacket* packet, int id)
 {
 	removePlayer(id);
 
@@ -177,34 +177,34 @@ void ClientLobbyMenu::handleDisconnectUserPacket(DisconnectUserPacket* packet, i
 	updatePlayerIcons();
 }
 
-void ClientLobbyMenu::handleTeamUserPacket(TeamUserPacket* packet, int id)
+void ClientLobbyMenu::handleTeamPacket(TeamPacket* packet, int id)
 {
-	getPlayer(id)->applyTeamUserPacket(packet);
+	getPlayer(id)->applyTeamPacket(packet);
 
 	unlockAll();
 	updatePlayerIcons();
 }
 
-void ClientLobbyMenu::handleAvatarUserPacket(AvatarUserPacket* packet, int id)
+void ClientLobbyMenu::handleAvatarPacket(AvatarPacket* packet, int id)
 {
 	LobbyPlayer* player = getPlayer(id);
-	if (player == NULL) Debug::warn("ClientLobbyMenu::handleAvatarUserPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
-	player->applyAvatarUserPacket(packet);
+	if (player == NULL) Debug::warn("ClientLobbyMenu::handleAvatarPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
+	player->applyAvatarPacket(packet);
 }
 
-void ClientLobbyMenu::handleSkillUserPacket(SkillUserPacket* packet, int id)
+void ClientLobbyMenu::handleSkillPacket(SkillPacket* packet, int id)
 {
 	LobbyPlayer* player = getPlayer(id);
-	if (player == NULL) Debug::warn("ClientLobbyMenu::handleSkillUserPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
-	player->applySkillUserPacket(packet);
+	if (player == NULL) Debug::warn("ClientLobbyMenu::handleSkillPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
+	player->applySkillPacket(packet);
 }
 
-void ClientLobbyMenu::handleItemUserPacket(ItemUserPacket* packet, int id)
+void ClientLobbyMenu::handleItemPacket(ItemPacket* packet, int id)
 {
 
 	LobbyPlayer* player = getPlayer(id);
-	if (player == NULL) Debug::warn("ClientLobbyMenu::handleItemUserPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
-	player->applyItemUserPacket(packet);
+	if (player == NULL) Debug::warn("ClientLobbyMenu::handleItemPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
+	player->applyItemPacket(packet);
 }
 
 void ClientLobbyMenu::handleMapPacket(MapPacket* packet)
@@ -221,29 +221,29 @@ void ClientLobbyMenu::updateLockButton() const
 			lockButton->setEnabled(getLobbyTileMap()->isValid());
 		break;
 		case AVATAR_PHASE:
-			lockButton->setEnabled(getLocalPlayer()->getAvatarUserPacket()->isValid());
+			lockButton->setEnabled(getLocalPlayer()->getAvatarPacket()->isValid());
 		break;
 		case SKILL_PHASE:
-			lockButton->setEnabled(getLocalPlayer()->getSkillUserPacket()->isValid());
+			lockButton->setEnabled(getLocalPlayer()->getSkillPacket()->isValid());
 		break;
 		case ITEM_PHASE:
-			lockButton->setEnabled(getLocalPlayer()->getItemUserPacket()->isValid());
+			lockButton->setEnabled(getLocalPlayer()->getItemPacket()->isValid());
 		break;
 	}
 }
 
-void ClientLobbyMenu::playerPropertySelected(PlayerPropertyUserPacket* packet)
+void ClientLobbyMenu::playerPropertySelected(PlayerPropertyPacket* packet)
 {
 	switch (packet->getCompressID())
 	{
-		case AVATAR_USER_PACKET_CID:
-			getLocalPlayer()->applyAvatarUserPacket(dynamic_cast<AvatarUserPacket*>(packet));
+		case AVATAR_PACKET_CID:
+			getLocalPlayer()->applyAvatarPacket(dynamic_cast<AvatarPacket*>(packet));
 			break;
-		case SKILL_USER_PACKET_CID:
-			getLocalPlayer()->applySkillUserPacket(dynamic_cast<SkillUserPacket*>(packet));
+		case SKILL_PACKET_CID:
+			getLocalPlayer()->applySkillPacket(dynamic_cast<SkillPacket*>(packet));
 			break;
-		case ITEM_USER_PACKET_CID:
-			getLocalPlayer()->applyItemUserPacket(dynamic_cast<ItemUserPacket*>(packet));
+		case ITEM_PACKET_CID:
+			getLocalPlayer()->applyItemPacket(dynamic_cast<ItemPacket*>(packet));
 			break;
 		default:
 			Debug::warn("ClientLobbyMenu::playerPropertySelected(): awkward packet");

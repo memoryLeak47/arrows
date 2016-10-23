@@ -3,17 +3,17 @@
 #include <misc/Converter.hpp>
 #include <misc/Debug.hpp>
 
-#include <network/packets/LoginUserPacket.hpp>
-#include <network/packets/LockUserPacket.hpp>
-#include <network/packets/AvatarUserPacket.hpp>
-#include <network/packets/SkillUserPacket.hpp>
-#include <network/packets/ItemUserPacket.hpp>
-#include <network/packets/TeamUserPacket.hpp>
-#include <network/packets/DisconnectUserPacket.hpp>
+#include <network/packets/LoginPacket.hpp>
+#include <network/packets/LockPacket.hpp>
+#include <network/packets/AvatarPacket.hpp>
+#include <network/packets/SkillPacket.hpp>
+#include <network/packets/ItemPacket.hpp>
+#include <network/packets/TeamPacket.hpp>
+#include <network/packets/DisconnectPacket.hpp>
 #include <network/packets/LobbyPlayersPacket.hpp>
 #include <network/packets/MapPacket.hpp>
-#include <network/packets/UserPacketWithID.hpp>
-#include <network/packets/ActionsUpdateUserPacket.hpp>
+#include <network/packets/PacketWithID.hpp>
+#include <network/packets/ActionsUpdatePacket.hpp>
 #include <network/packets/GameUpdatePacket.hpp>
 #include <collision/RectBody.hpp>
 #include <collision/CircleBody.hpp>

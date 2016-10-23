@@ -1,14 +1,14 @@
 #ifndef __LOBBYPLAYER_CLASS__
 #define __LOBBYPLAYER_CLASS__
 
-class LoginUserPacket;
+class LoginPacket;
 class CompressBuffer;
 
-class LockUserPacket;
-class TeamUserPacket;
-class AvatarUserPacket;
-class SkillUserPacket;
-class ItemUserPacket;
+class LockPacket;
+class TeamPacket;
+class AvatarPacket;
+class SkillPacket;
+class ItemPacket;
 
 #include <misc/compress/Compressable.hpp>
 #include <SFML/Network/IpAddress.hpp>
@@ -20,35 +20,35 @@ class LobbyPlayer : public Compressable
 	public:
 		LobbyPlayer(LobbyPlayer*);
 		LobbyPlayer(const LobbyPlayer&);
-		LobbyPlayer(LoginUserPacket*, sf::IpAddress*);
-		LobbyPlayer(LoginUserPacket*);
+		LobbyPlayer(LoginPacket*, sf::IpAddress*);
+		LobbyPlayer(LoginPacket*);
 		LobbyPlayer(CompressBuffer*);
 		virtual ~LobbyPlayer();
 		sf::IpAddress* getIP() const;
-		LockUserPacket* getLockUserPacket() const;
-		TeamUserPacket* getTeamUserPacket() const;
-		LoginUserPacket* getLoginUserPacket() const;
-		AvatarUserPacket* getAvatarUserPacket() const;
-		SkillUserPacket* getSkillUserPacket() const;
-		ItemUserPacket* getItemUserPacket() const;
+		LockPacket* getLockPacket() const;
+		TeamPacket* getTeamPacket() const;
+		LoginPacket* getLoginPacket() const;
+		AvatarPacket* getAvatarPacket() const;
+		SkillPacket* getSkillPacket() const;
+		ItemPacket* getItemPacket() const;
 
-		void applyLockUserPacket(LockUserPacket*);
-		void applyTeamUserPacket(TeamUserPacket*);
-		void applyLoginUserPacket(LoginUserPacket*);
-		void applyAvatarUserPacket(AvatarUserPacket*);
-		void applySkillUserPacket(SkillUserPacket*);
-		void applyItemUserPacket(ItemUserPacket*);
+		void applyLockPacket(LockPacket*);
+		void applyTeamPacket(TeamPacket*);
+		void applyLoginPacket(LoginPacket*);
+		void applyAvatarPacket(AvatarPacket*);
+		void applySkillPacket(SkillPacket*);
+		void applyItemPacket(ItemPacket*);
 
 	private:
 		virtual std::string getCompressString() const override;
 		virtual CompressID getCompressID() const override;
 
-		LockUserPacket* lockPacket;
-		TeamUserPacket* teamPacket;
-		LoginUserPacket* loginPacket;
-		AvatarUserPacket* avatarPacket;
-		SkillUserPacket* skillPacket;
-		ItemUserPacket* itemPacket;
+		LockPacket* lockPacket;
+		TeamPacket* teamPacket;
+		LoginPacket* loginPacket;
+		AvatarPacket* avatarPacket;
+		SkillPacket* skillPacket;
+		ItemPacket* itemPacket;
 		sf::IpAddress* ip;
 };
 

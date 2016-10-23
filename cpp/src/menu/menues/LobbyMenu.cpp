@@ -4,7 +4,7 @@
 #include <misc/compress/Compressable.hpp>
 #include <core/Screen.hpp>
 #include <core/Main.hpp>
-#include <network/packets/LockUserPacket.hpp>
+#include <network/packets/LockPacket.hpp>
 #include <menu/components/Button.hpp>
 #include <menu/components/TeamListPanel.hpp>
 #include <menu/components/Label.hpp>
@@ -66,7 +66,7 @@ bool LobbyMenu::areAllClientsLocked() const
 {
 	for (unsigned int i = 1; i < getPlayers().size(); i++)
 	{
-		if (!getPlayer(i)->getLockUserPacket()->isLocked())
+		if (!getPlayer(i)->getLockPacket()->isLocked())
 			return false;
 	}
 	return true;
@@ -121,10 +121,10 @@ void LobbyMenu::updateMap(const std::vector<std::vector<int>>& ints)
 
 void LobbyMenu::unlockAll()
 {
-	LockUserPacket* packet = new LockUserPacket(false);
+	LockPacket* packet = new LockPacket(false);
 	for (unsigned int i = 0; i < getPlayers().size(); i++)
 	{
-		getPlayers()[i]->applyLockUserPacket(packet);
+		getPlayers()[i]->applyLockPacket(packet);
 	}
 	delete packet;
 }

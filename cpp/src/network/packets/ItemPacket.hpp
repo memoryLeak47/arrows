@@ -1,20 +1,20 @@
-#ifndef __ITEMUSERPACKET_CLASS__
-#define __ITEMUSERPACKET_CLASS__
+#ifndef __ITEMPACKET_CLASS__
+#define __ITEMPACKET_CLASS__
 
 class CompressBuffer;
 class PlayerProperty;
 
-#include <network/packets/PlayerPropertyUserPacket.hpp>
+#include <network/packets/PlayerPropertyPacket.hpp>
 #include <string>
 #include <vector>
 #include <misc/compress/CompressID.hpp>
 
-class ItemUserPacket : public PlayerPropertyUserPacket
+class ItemPacket : public PlayerPropertyPacket
 {
 	public:
-		ItemUserPacket(const std::string&);
-		ItemUserPacket(CompressBuffer*);
-		ItemUserPacket();
+		ItemPacket(const std::string&);
+		ItemPacket(CompressBuffer*);
+		ItemPacket();
 		bool isValid() const;
 		virtual const std::vector<PlayerProperty*> getPlayerProperties() const override;
 		virtual void setIDs(const std::string&) override;

@@ -8,11 +8,11 @@
 #include <player/property/skill/Skill.hpp>
 #include <player/property/item/Item.hpp>
 
-#include <network/packets/TeamUserPacket.hpp>
-#include <network/packets/LoginUserPacket.hpp>
-#include <network/packets/AvatarUserPacket.hpp>
-#include <network/packets/SkillUserPacket.hpp>
-#include <network/packets/ItemUserPacket.hpp>
+#include <network/packets/TeamPacket.hpp>
+#include <network/packets/LoginPacket.hpp>
+#include <network/packets/AvatarPacket.hpp>
+#include <network/packets/SkillPacket.hpp>
+#include <network/packets/ItemPacket.hpp>
 
 #include "LobbyPlayer.hpp"
 
@@ -22,9 +22,9 @@ GamePlayer::GamePlayer(CompressBuffer *b)
 
 GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
 	: Mob(body, new PlayerController()),
-	  name(player->getLoginUserPacket()->getName()),
-	  rank(player->getLoginUserPacket()->getRank()),
-	  avatar(Avatar::get(player->getAvatarUserPacket()->getAvatarID()))
+	  name(player->getLoginPacket()->getName()),
+	  rank(player->getLoginPacket()->getRank()),
+	  avatar(Avatar::get(player->getAvatarPacket()->getAvatarID()))
 {
 	if (player->getIP() == NULL)
 	{
@@ -35,15 +35,15 @@ GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
 		ip = new sf::IpAddress(*player->getIP());
 	}
 
-	team = player->getTeamUserPacket()->getTeam();
-	for (unsigned int i = 0; i < player->getSkillUserPacket()->getPlayerProperties().size(); i++)
+	team = player->getTeamPacket()->getTeam();
+	for (unsigned int i = 0; i < player->getSkillPacket()->getPlayerProperties().size(); i++)
 	{
-		skills.push_back(dynamic_cast<Skill*>(player->getSkillUserPacket()->getPlayerProperties()[i])->clone());
+		skills.push_back(dynamic_cast<Skill*>(player->getSkillPacket()->getPlayerProperties()[i])->clone());
 	}
 
-	for (unsigned int i = 0; i < player->getItemUserPacket()->getPlayerProperties().size(); i++)
+	for (unsigned int i = 0; i < player->getItemPacket()->getPlayerProperties().size(); i++)
 	{
-		items.push_back(dynamic_cast<Item*>(player->getItemUserPacket()->getPlayerProperties()[i]));
+		items.push_back(dynamic_cast<Item*>(player->getItemPacket()->getPlayerProperties()[i]));
 	}
 }
 
