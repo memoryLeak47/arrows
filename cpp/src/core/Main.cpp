@@ -3,8 +3,8 @@
 #include <misc/Global.hpp>
 #include "Screen.hpp"
 #include <player/property/Team.hpp>
-#include <player/property/avatar/LobbyAvatar.hpp>
-#include <player/property/skill/LobbySkill.hpp>
+#include <avatar/LobbyAvatar.hpp>
+#include <skill/LobbySkill.hpp>
 #include <player/property/item/Item.hpp>
 #include <graphics/GraphicsManager.hpp>
 #include <misc/Account.hpp>

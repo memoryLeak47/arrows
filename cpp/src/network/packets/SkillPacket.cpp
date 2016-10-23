@@ -1,7 +1,7 @@
 #include "SkillPacket.hpp"
 
 #include <misc/Global.hpp>
-#include <player/property/skill/LobbySkill.hpp>
+#include <skill/LobbySkill.hpp>
 #include <misc/compress/CompressBuffer.hpp>
 
 SkillPacket::SkillPacket(const std::string& ids)

@@ -7,7 +7,7 @@
 #include <collision/CollisionDetector.hpp>
 #include <collision/CollisionTester.hpp>
 #include <collision/PhysicsHandler.hpp>
-#include <player/property/avatar/LobbyAvatar.hpp>
+#include <avatar/LobbyAvatar.hpp>
 #include <tile/map/GameTileMap.hpp>
 #include <collision/CollisionEvent.hpp>
 #include <entity/Tile.hpp>

@@ -3,7 +3,7 @@
 #include <misc/Global.hpp>
 #include <menu/MenuList.hpp>
 #include <core/Main.hpp>
-#include <player/property/skill/LobbySkill.hpp>
+#include <skill/LobbySkill.hpp>
 #include <menu/menues/ChoosePlayerPropertyMenu.hpp>
 #include <menu/menues/LobbyMenu.hpp> // for SKILL_PHASE
 #include <network/packets/SkillPacket.hpp>

@@ -4,8 +4,8 @@
 #include <collision/RectBody.hpp>
 #include <misc/Converter.hpp>
 #include <controller/PlayerController.hpp>
-#include <player/property/avatar/LobbyAvatar.hpp>
-#include <player/property/skill/LobbySkill.hpp>
+#include <avatar/LobbyAvatar.hpp>
+#include <skill/LobbySkill.hpp>
 #include <player/property/item/Item.hpp>
 
 #include <network/packets/TeamPacket.hpp>

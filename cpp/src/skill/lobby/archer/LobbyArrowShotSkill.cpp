@@ -1,7 +1,7 @@
 #include "LobbyArrowShotSkill.hpp"
 
-#include <player/property/avatar/AvatarID.hpp>
-#include <player/property/skill/SkillID.hpp>
+#include <avatar/AvatarID.hpp>
+#include <skill/SkillID.hpp>
 
 char LobbyArrowShotSkill::getID() const
 {

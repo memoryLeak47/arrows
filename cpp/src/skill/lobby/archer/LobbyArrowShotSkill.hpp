@@ -1,7 +1,7 @@
 #ifndef __LOBBYARROWSHOTSKILL_CLASS__
 #define __LOBBYARROWSHOTSKILL_CLASS__
 
-#include <player/property/skill/LobbySkill.hpp>
+#include <skill/LobbySkill.hpp>
 #include <string>
 #include <graphics/TextureID.hpp>
 

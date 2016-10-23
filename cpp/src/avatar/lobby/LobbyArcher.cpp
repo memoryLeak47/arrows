@@ -1,6 +1,6 @@
 #include "LobbyArcher.hpp"
 
-#include <player/property/avatar/AvatarID.hpp>
+#include <avatar/AvatarID.hpp>
 
 TextureID LobbyArcher::getIconTextureID() const
 {

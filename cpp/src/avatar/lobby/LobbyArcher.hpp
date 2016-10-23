@@ -5,7 +5,7 @@ class GamePlayer;
 class GameVector;
 class LobbyPlayer;
 
-#include <player/property/avatar/LobbyAvatar.hpp>
+#include <avatar/LobbyAvatar.hpp>
 #include <graphics/TextureID.hpp>
 #include <string>
 

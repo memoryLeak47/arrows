@@ -1,7 +1,7 @@
 #ifndef __LOBBYROGUE_CLASS__
 #define __LOBBYROGUE_CLASS__
 
-#include <player/property/avatar/LobbyAvatar.hpp>
+#include <avatar/LobbyAvatar.hpp>
 #include <graphics/TextureID.hpp>
 #include <string>
 

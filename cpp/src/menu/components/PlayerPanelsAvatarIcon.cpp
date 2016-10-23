@@ -3,7 +3,7 @@
 #include <misc/Global.hpp>
 #include <core/Main.hpp>
 #include <menu/MenuList.hpp>
-#include <player/property/avatar/LobbyAvatar.hpp>
+#include <avatar/LobbyAvatar.hpp>
 #include <menu/menues/ChoosePlayerPropertyMenu.hpp>
 #include <menu/menues/LobbyMenu.hpp> // for AVATAR_PHASE
 #include <network/packets/AvatarPacket.hpp>

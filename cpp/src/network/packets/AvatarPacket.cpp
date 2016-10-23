@@ -1,7 +1,7 @@
 #include "AvatarPacket.hpp"
 
 #include <misc/Global.hpp>
-#include <player/property/avatar/LobbyAvatar.hpp>
+#include <avatar/LobbyAvatar.hpp>
 #include <misc/compress/CompressBuffer.hpp>
 
 AvatarPacket::AvatarPacket(char c)

@@ -1,6 +1,6 @@
 #include "LobbyRogue.hpp"
 
-#include <player/property/avatar/AvatarID.hpp>
+#include <avatar/AvatarID.hpp>
 
 TextureID LobbyRogue::getIconTextureID() const
 {
