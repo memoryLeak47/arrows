@@ -32,9 +32,25 @@ float Skill::getCharge() const
 	return charge;
 }
 
+float Skill::getRecharge() const
+{
+	return 1.f; // default value. Should be overwritten
+}
+
 void Skill::setCharge(float charge_arg)
 {
-	charge = charge_arg;
+	if (charge_arg >= MAX_CHARGE)
+	{
+		charge = MAX_CHARGE;
+	}
+	else if (charge_arg <= 0.f)
+	{
+		charge = 0.f;
+	}
+	else
+	{
+		charge = charge_arg;
+	}
 }
 
 void Skill::onEnabled() {}

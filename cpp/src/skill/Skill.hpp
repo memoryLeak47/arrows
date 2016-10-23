@@ -1,6 +1,8 @@
 #ifndef __SKILL_CLASS__
 #define __SKILL_CLASS__
 
+const float MAX_CHARGE = 100.f;
+
 class Mob;
 
 class Skill
@@ -12,6 +14,7 @@ class Skill
 		virtual void tick();
 		bool isEnabled() const;
 		float getCharge() const;
+		virtual float getRecharge() const;
 	protected:
 		void setCharge(float);
 		virtual void onEnabled();
