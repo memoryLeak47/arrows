@@ -8,6 +8,7 @@
 #include <skill/LobbySkill.hpp>
 #include <skill/Skill.hpp>
 #include <item/LobbyItem.hpp>
+#include <skill/Skill.hpp>
 
 #include <network/packets/TeamPacket.hpp>
 #include <network/packets/LoginPacket.hpp>
@@ -81,6 +82,18 @@ void GamePlayer::renderBar(const View&) const
 sf::IpAddress* GamePlayer::getIP() const
 {
 	return ip;
+}
+
+void GamePlayer::optSetSkillEnabled(int i, bool b)
+{
+	if (i >= 0 and i <= 3)
+	{
+		skills[i]->setEnabled(b);
+	}
+	else
+	{
+		Debug::error("GamePlayer::optSetSkillEnabled(): i=" + Converter::intToString(i) + " out of range");
+	}
 }
 
 void GamePlayer::setActions(const Actions actions) // Setzt Actions auf das übergebene

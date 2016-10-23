@@ -33,7 +33,8 @@ class GamePlayer : public Mob
 		Actions getActions() const; // => Controller::getActions()
 		virtual void renderBar(const View&) const override;
 		sf::IpAddress* getIP() const;
-
+	protected:
+		virtual void optSetSkillEnabled(int, bool); // called from Mob::applyActions(); updates skills
 	private:
 		void setActions(const Actions actions); // => Controller::setActions(actions); used in {C,G}GameInterface
 		void apply(GamePlayer*); // Wird nur in ClientGameInterface::applyGameUpdate benutzt

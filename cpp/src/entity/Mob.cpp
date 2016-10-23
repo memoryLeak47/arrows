@@ -59,6 +59,9 @@ float Mob::getMaxXSpeed() const
 	return 0.3f;
 }
 
+void Mob::optSetSkillEnabled(int, bool)
+{}
+
 Controller* Mob::getController() const
 {
 	return controller;
@@ -84,8 +87,8 @@ void Mob::applyActions()
 		actionJump();
 	}
 
-	if (getAction(getController()->getActions(), SKILL1)) Debug::warn("Mob::applyActions(): SKILL NOT SUPPORTED");
-	if (getAction(getController()->getActions(), SKILL2)) Debug::warn("Mob::applyActions(): SKILL NOT SUPPORTED");
-	if (getAction(getController()->getActions(), SKILL3)) Debug::warn("Mob::applyActions(): SKILL NOT SUPPORTED");
-	if (getAction(getController()->getActions(), SKILL4)) Debug::warn("Mob::applyActions(): SKILL NOT SUPPORTED");
+	optSetSkillEnabled(0, getAction(getController()->getActions(), SKILL0));
+	optSetSkillEnabled(1, getAction(getController()->getActions(), SKILL1));
+	optSetSkillEnabled(2, getAction(getController()->getActions(), SKILL2));
+	optSetSkillEnabled(3, getAction(getController()->getActions(), SKILL3));
 }

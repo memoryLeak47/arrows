@@ -365,19 +365,19 @@ Actions GameInterface::calcActions() const
 	// skills
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		setAction(&actions, SKILL1, true);
+		setAction(&actions, SKILL0, true);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		setAction(&actions, SKILL2, true);
+		setAction(&actions, SKILL1, true);
 	}
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 	{
-		setAction(&actions, SKILL3, true);
+		setAction(&actions, SKILL2, true);
 	}
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right))
 	{
-		setAction(&actions, SKILL4, true);
+		setAction(&actions, SKILL3, true);
 	}
 	return actions;
 }

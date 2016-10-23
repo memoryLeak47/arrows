@@ -27,6 +27,7 @@ class Mob : public ImpactfulDynamicEntity
 		virtual float getMass() const override;
 	protected:
 		virtual float getMaxXSpeed() const;
+		virtual void optSetSkillEnabled(int, bool); // called from applyActions(); only used in GamePlayer
 		Controller* getController() const;
 
 		Controller* controller;
