@@ -7,7 +7,7 @@
 
 // for skip lobby
 #include <game/ServerGameInterface.hpp>
-#include <tile/map/LobbyTileMap.hpp>
+#include <tilemap/LobbyTileMap.hpp>
 #include <player/LobbyPlayer.hpp>
 
 #include <network/packets/LockPacket.hpp>

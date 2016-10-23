@@ -1,7 +1,7 @@
 #include "CollisionDetector.hpp"
 
 #include <misc/Global.hpp>
-#include <tile/map/GameTileMap.hpp>
+#include <tilemap/GameTileMap.hpp>
 #include "CollisionEvent.hpp"
 #include <entity/Entity.hpp>
 #include <collision/Body.hpp>

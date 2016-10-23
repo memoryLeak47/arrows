@@ -10,7 +10,7 @@
 #include <menu/components/Label.hpp>
 #include <menu/components/LobbyMiniMap.hpp>
 #include <player/LobbyPlayer.hpp>
-#include <tile/map/LobbyTileMap.hpp>
+#include <tilemap/LobbyTileMap.hpp>
 
 LobbyMenu::LobbyMenu()
 {

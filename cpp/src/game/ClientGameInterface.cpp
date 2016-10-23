@@ -5,7 +5,7 @@
 #include <player/GamePlayer.hpp>
 #include <entity/Idler.hpp>
 #include <entity/Tile.hpp>
-#include <tile/map/GameTileMap.hpp>
+#include <tilemap/GameTileMap.hpp>
 #include <collision/Body.hpp>
 
 #include <network/packets/ActionsUpdatePacket.hpp>

@@ -1,7 +1,7 @@
 #ifndef __LOBBYSKILL_CLASS__
 #define __LOBBYSKILL_CLASS__
 
-#include <player/property/PlayerProperty.hpp>
+#include <playerproperty/PlayerProperty.hpp>
 #include <vector>
 
 class Skill;

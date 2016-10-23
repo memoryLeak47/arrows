@@ -2,7 +2,7 @@
 
 #include <misc/Global.hpp>
 #include "Screen.hpp"
-#include <player/property/Team.hpp>
+#include <team/Team.hpp>
 #include <avatar/LobbyAvatar.hpp>
 #include <skill/LobbySkill.hpp>
 #include <item/LobbyItem.hpp>

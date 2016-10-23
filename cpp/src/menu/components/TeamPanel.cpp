@@ -5,7 +5,7 @@
 #include <menu/components/Button.hpp>
 #include <menu/components/TeamListPanel.hpp>
 #include <menu/menues/LobbyMenu.hpp>
-#include <player/property/Team.hpp>
+#include <team/Team.hpp>
 #include <player/LobbyPlayer.hpp>
 #include <network/packets/TeamPacket.hpp>
 

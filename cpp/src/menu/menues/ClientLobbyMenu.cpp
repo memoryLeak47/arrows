@@ -16,9 +16,9 @@
 #include <network/packets/DisconnectPacket.hpp>
 #include <network/packets/LockPacket.hpp>
 #include <network/packets/PacketWithID.hpp>
-#include <tile/map/LobbyTileMap.hpp>
+#include <tilemap/LobbyTileMap.hpp>
 #include <player/LobbyPlayer.hpp>
-#include <player/property/Team.hpp>
+#include <team/Team.hpp>
 
 ClientLobbyMenu::ClientLobbyMenu(const std::string& ip)
 	: localPlayerID(-1)

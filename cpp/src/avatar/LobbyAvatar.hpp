@@ -5,7 +5,7 @@ class GamePlayer;
 class GameVector;
 class LobbyPlayer;
 
-#include <player/property/PlayerProperty.hpp>
+#include <playerproperty/PlayerProperty.hpp>
 #include <vector>
 
 class LobbyAvatar : public PlayerProperty

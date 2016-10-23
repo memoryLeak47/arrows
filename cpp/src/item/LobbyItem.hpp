@@ -3,7 +3,7 @@
 
 class Item;
 
-#include <player/property/PlayerProperty.hpp>
+#include <playerproperty/PlayerProperty.hpp>
 #include <vector>
 
 class LobbyItem : public PlayerProperty

@@ -2,12 +2,12 @@
 
 #include <misc/Global.hpp>
 #include <core/Screen.hpp>
-#include <player/property/Team.hpp>
+#include <team/Team.hpp>
 #include <entity/tiles/SpawnTeamTile.hpp>
 #include <graphics/GraphicsManager.hpp>
 #include <math/game/GameVector.hpp>
 #include <math/game/GameRect.hpp>
-#include <tile/map/LobbyTileMap.hpp>
+#include <tilemap/LobbyTileMap.hpp>
 #include <math/pixel/PixelVector.hpp>
 #include <math/pixel/PixelRect.hpp>
 #include <view/View.hpp>

@@ -1,6 +1,6 @@
 #include "PlayerPropertyIcon.hpp"
 
-#include <player/property/PlayerProperty.hpp>
+#include <playerproperty/PlayerProperty.hpp>
 
 PlayerPropertyIcon::PlayerPropertyIcon(ComponentContainer* c, const PixelRect& r, PlayerProperty* p)
 	: Icon(c, r)

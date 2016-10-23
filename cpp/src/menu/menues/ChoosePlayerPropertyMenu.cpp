@@ -7,7 +7,7 @@
 #include <menu/components/BackButton.hpp>
 #include <menu/components/PlayerPropertyIcon.hpp>
 #include <menu/menues/LobbyMenu.hpp>
-#include <player/property/PlayerProperty.hpp>
+#include <playerproperty/PlayerProperty.hpp>
 #include <network/packets/PlayerPropertyPacket.hpp>
 
 class SlotIcon : public PlayerPropertyIcon

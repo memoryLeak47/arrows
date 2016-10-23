@@ -8,7 +8,7 @@
 #include <collision/CollisionTester.hpp>
 #include <collision/PhysicsHandler.hpp>
 #include <avatar/LobbyAvatar.hpp>
-#include <tile/map/GameTileMap.hpp>
+#include <tilemap/GameTileMap.hpp>
 #include <collision/CollisionEvent.hpp>
 #include <entity/Tile.hpp>
 #include <collision/Body.hpp>

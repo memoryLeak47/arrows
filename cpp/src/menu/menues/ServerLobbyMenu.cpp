@@ -19,8 +19,8 @@
 #include <player/LobbyPlayer.hpp>
 #include <menu/components/EditField.hpp>
 #include <menu/components/Button.hpp>
-#include <tile/map/LobbyTileMap.hpp>
-#include <player/property/Team.hpp>
+#include <tilemap/LobbyTileMap.hpp>
+#include <team/Team.hpp>
 
 ServerLobbyMenu::ServerLobbyMenu()
 {

@@ -2,7 +2,7 @@
 
 #include <misc/Global.hpp>
 #include <collision/RectBody.hpp>
-#include <player/property/Team.hpp>
+#include <team/Team.hpp>
 #include "tiles/NormalTile.hpp"
 #include "tiles/VoidTile.hpp"
 #include "tiles/LavaTile.hpp"
