@@ -22,7 +22,7 @@ class Avatar : public PlayerProperty
 		virtual int getMassStat() const;
 		virtual float getHealthStat() const;
 
-		virtual GamePlayer* createGamePlayer(const GameVector&, const LobbyPlayer*) const = 0; // XXX workaround
+		GamePlayer* createGamePlayer(const GameVector&, const LobbyPlayer*) const;
 	private:
 		static std::vector<Avatar*> avatars;
 };

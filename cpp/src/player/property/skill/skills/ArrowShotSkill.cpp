@@ -1,7 +1,8 @@
 #include "ArrowShotSkill.hpp"
 
+#include <player/property/avatar/AvatarID.hpp>
+
 extern int ARROWSHOTSKILL_SID;
-extern int ARCHER_AID;
 
 char ArrowShotSkill::getID() const
 {

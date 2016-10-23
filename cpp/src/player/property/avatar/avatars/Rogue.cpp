@@ -1,6 +1,6 @@
 #include "Rogue.hpp"
 
-extern int ROGUE_AID;
+#include <player/property/avatar/AvatarID.hpp>
 
 TextureID Rogue::getIconTextureID() const
 {

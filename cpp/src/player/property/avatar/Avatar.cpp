@@ -4,16 +4,20 @@
 #include <core/Main.hpp>
 #include "avatars/Archer.hpp"
 #include "avatars/Rogue.hpp"
+#include <player/game/ArcherGamePlayer.hpp>
+#include <player/game/RogueGamePlayer.hpp>
+#include "avatars/Rogue.hpp"
+#include "AvatarID.hpp"
 
 std::vector<Avatar*> Avatar::avatars;
 
-extern const int ARCHER_AID = 0; // skills can define class of owner with this id
-extern const int ROGUE_AID = 1; // skills can define class of owner with this id
-
 void Avatar::init()
 {
-	avatars.push_back(new Archer());
-//	avatars.push_back(new Rogue());
+	#define X(aid, lobbyname, gamename) avatars.push_back(new lobbyname());
+	#define Y(aid, lobbyname, gamename) avatars.push_back(new lobbyname());
+	#include "AvatarID.list"
+	#undef X
+	#undef Y
 }
 
 void Avatar::uninit()
@@ -45,4 +49,21 @@ int Avatar::getMassStat() const
 float Avatar::getHealthStat() const
 {
 	return 20;
+}
+
+GamePlayer* Avatar::createGamePlayer(const GameVector& vec, const LobbyPlayer* player) const
+{
+	switch (getID())
+	{
+		#define X(aid, lobbyname, gamename) case aid: return new gamename(vec, player);
+		#define Y(aid, lobbyname, gamename) case aid: return new gamename(vec, player);
+		#include "AvatarID.list"
+		#undef X
+		#undef Y
+		default:
+		{
+			Debug::error("Avatar::createGamePlayer() has no result");
+			return nullptr;
+		}
+	}
 }

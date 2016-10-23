@@ -1,8 +1,7 @@
 #include "Archer.hpp"
 
 #include <player/game/ArcherGamePlayer.hpp>
-
-extern int ARCHER_AID;
+#include <player/property/avatar/AvatarID.hpp>
 
 TextureID Archer::getIconTextureID() const
 {
@@ -17,9 +16,4 @@ char Archer::getID() const
 std::string Archer::getDescription() const
 {
 	return "legolas; enough said";
-}
-
-GamePlayer* Archer::createGamePlayer(const GameVector& pos, const LobbyPlayer* player) const
-{
-	return new ArcherGamePlayer(pos, player);
 }
