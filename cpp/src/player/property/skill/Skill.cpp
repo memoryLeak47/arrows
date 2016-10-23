@@ -4,13 +4,15 @@
 #include <core/Main.hpp>
 #include "skills/ArrowShotSkill.hpp"
 
-extern const char ARROWSHOTSKILL_SID = 0;
-
 std::vector<Skill*> Skill::skills;
 
 void Skill::init()
 {
-	skills.push_back(new ArrowShotSkill());
+	#define X(sid, lobbyname, gamename) skills.push_back(new lobbyname());
+	#define Y(sid, lobbyname, gamename) skills.push_back(new lobbyname());
+	#include "SkillID.list"
+	#undef X
+	#undef Y
 }
 
 void Skill::uninit()
