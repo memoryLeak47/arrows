@@ -1,0 +1,54 @@
+
+
+enum EventID { OWNER_COLLIDED_EID, ...  };
+
+class Mob 
+{
+	...
+	std::map<EventID, std::vector<EventListener*>> listeners;
+
+	void addListener(EventListener* l, EventID id)
+	{
+		listeners[id].push_back(l);
+	}
+
+	void tick()
+	{
+		for all effects: tick()
+		for all skills: tick()
+	}
+
+	void oncollide(Entity* e) override
+	{
+		...
+		if (exists listeners[OWNER_COLLIDED_EID])
+			for (int i = 0; i < listeners[OWNER_COLLIDED_EID].size(); i++)
+			{
+				listeners[OWNER_COLLIDED_EID][i]->ownerCollided(e);
+			}
+	}
+};
+
+class EventListener
+{
+	public:
+		virtual tick() { }
+		virtual ownerCollided(Entity*) { Debug::warn("NOOO"); }
+		...
+};
+
+class Skill : public EventListener
+{ ... };
+
+class SkillThatNeedsCollisionInfo : public Skill
+{
+	SkillThatNeedsCollisionInfo(Mob* owner)
+	{
+		owner->addListener(this, OWNER_COLLIDED_EID);
+	}
+
+	public void ownerCollided(Entity*) override
+	{
+		...
+	}
+};
