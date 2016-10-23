@@ -9,7 +9,7 @@ UserPacketWithID::UserPacketWithID(UserPacket* packet, int id) : id(id), packet(
 
 UserPacketWithID::UserPacketWithID(CompressBuffer* buffer)
 {
-	packet = static_cast<UserPacket*>(buffer->cutByCID((CID) buffer->cutChar()));
+	packet = static_cast<UserPacket*>(buffer->cutByCompressID((CompressID) buffer->cutChar()));
 	id = buffer->cutInt();
 }
 
@@ -28,12 +28,12 @@ UserPacket* UserPacketWithID::getPacket() const
 
 std::string UserPacketWithID::getCompressString() const
 {
-	std::string packetString = getPacket()->compress(); // yes with CID!
+	std::string packetString = getPacket()->compress(); // yes with CompressID!
 	std::string idString = compressInt(getID());
 	return packetString + idString;
 }
 
-CID UserPacketWithID::getCID() const
+CompressID UserPacketWithID::getCompressID() const
 {
 	return USER_PACKET_WITH_ID_CID;
 }

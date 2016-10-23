@@ -5,7 +5,7 @@ class Compressable;
 
 #include <string>
 #include <vector>
-#include "Cid.hpp"
+#include "CompressID.hpp"
 
 class CompressBuffer
 {
@@ -18,9 +18,9 @@ class CompressBuffer
 		short cutShort();
 		bool cutBool();
 		std::vector<std::vector<int>> cutMap();
-		Compressable* cutByCID(CID);
+		Compressable* cutByCompressID(CompressID);
 		Compressable* cutCompressable();
-		std::vector<void*> cutVectorByCID(CID);
+		std::vector<void*> cutVectorByCompressID(CompressID);
 		std::string cut(int amount); // removes <amount> chars from <chars> and returns the removed part
 	private:
 		int counter;

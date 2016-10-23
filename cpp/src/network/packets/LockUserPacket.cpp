@@ -19,7 +19,7 @@ std::string LockUserPacket::getCompressString() const
 	return compressBool(isLocked());
 }
 
-CID LockUserPacket::getCID() const
+CompressID LockUserPacket::getCompressID() const
 {
 	return LOCK_USER_PACKET_CID;
 }

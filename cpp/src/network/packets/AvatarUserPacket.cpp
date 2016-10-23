@@ -48,7 +48,7 @@ std::string AvatarUserPacket::getCompressString() const
 	return s;
 }
 
-CID AvatarUserPacket::getCID() const
+CompressID AvatarUserPacket::getCompressID() const
 {
         return AVATAR_USER_PACKET_CID;
 }

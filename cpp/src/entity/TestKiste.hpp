@@ -5,7 +5,7 @@ class GameVector;
 class CompressBuffer;
 
 #include "Idler.hpp"
-#include <misc/compress/Cid.hpp>
+#include <misc/compress/CompressID.hpp>
 #include <string>
 #include <SFML/Graphics/Texture.hpp>
 
@@ -16,7 +16,7 @@ class TestKiste : public Idler
 		TestKiste(CompressBuffer*);
 
 		// compress
-		CID getCID() const override;
+		CompressID getCompressID() const override;
 		std::string getCompressString() const override;
 
 		virtual sf::Texture* getTexture() const override;

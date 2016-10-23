@@ -53,7 +53,7 @@ std::string GameUpdatePacket::getCompressString() const
 	return s;
 }
 
-CID GameUpdatePacket::getCID() const
+CompressID GameUpdatePacket::getCompressID() const
 {
 	return GAME_UPDATE_PACKET_CID;
 }

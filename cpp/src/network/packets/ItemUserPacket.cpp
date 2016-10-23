@@ -54,7 +54,7 @@ std::string ItemUserPacket::getCompressString() const
 	return s;
 }
 
-CID ItemUserPacket::getCID() const
+CompressID ItemUserPacket::getCompressID() const
 {
 	return ITEM_USER_PACKET_CID;
 }

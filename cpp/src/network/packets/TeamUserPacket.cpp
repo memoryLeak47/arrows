@@ -23,7 +23,7 @@ std::string TeamUserPacket::getCompressString() const
 	return s;
 }
 
-CID TeamUserPacket::getCID() const
+CompressID TeamUserPacket::getCompressID() const
 {
 	return TEAM_USER_PACKET_CID;
 }

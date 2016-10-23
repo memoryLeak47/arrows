@@ -11,7 +11,7 @@ std::string DisconnectUserPacket::getCompressString() const
 	return "";
 }
 
-CID DisconnectUserPacket::getCID() const
+CompressID DisconnectUserPacket::getCompressID() const
 {
 	return DISCONNECT_USER_PACKET_CID;
 }

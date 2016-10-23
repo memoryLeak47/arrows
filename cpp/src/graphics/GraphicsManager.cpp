@@ -9,30 +9,11 @@ std::vector<GraphicsBuffer*> GraphicsManager::buffers;
 
 void GraphicsManager::init()
 {
-	// VOID
-	addGraphicsBuffer(VOID_ICON_GID, "res/icons/void.png");
-
-	// Avatar-Icons
-	addGraphicsBuffer(ARCHER_ICON_GID, "res/icons/avatars/archer.png");
-	addGraphicsBuffer(ROGUE_ICON_GID, "res/icons/avatars/rogue.png");
-
-	// Skill-Icons
-	addGraphicsBuffer(ARROWSHOTSKILL_ICON_GID, "res/icons/skills/arrowshot.png");
-
-	// Item-Icons
-	addGraphicsBuffer(HEALTHRING_ICON_GID, "res/icons/items/healthring.png");
-
-	// Tiles
-	addGraphicsBuffer(VOIDTILE_GID, "res/entities/tiles/voidtile.png");
-	addGraphicsBuffer(NORMALTILE_GID, "res/entities/tiles/normaltile.png");
-	addGraphicsBuffer(LAVATILE_GID, "res/entities/tiles/lavatile.png");
-	addGraphicsBuffer(SPAWNTEAMTILE_GID, "res/entities/tiles/spawnteamtile.png");
-
-	// Avatars
-	addGraphicsBuffer(ARCHER_GID, "res/entities/avatars/archer.png");
-
-	// TestKiste
-	addGraphicsBuffer(TESTKISTE_GID, "res/entities/test/testbox.png");
+	#define X(gid, path) addGraphicsBuffer(gid, path);
+	#define Y(gid, path) addGraphicsBuffer(gid, path);
+	#include "GraphicsID.list"
+	#undef X
+	#undef Y
 }
 
 void GraphicsManager::uninit()

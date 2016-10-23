@@ -2,7 +2,7 @@
 #define __COMPRESSABLE_CLASS__
 
 #include <string>
-#include "Cid.hpp"
+#include "CompressID.hpp"
 #include <vector>
 
 class Compressable // represents Compressable.java and Compressor.java
@@ -10,8 +10,8 @@ class Compressable // represents Compressable.java and Compressor.java
 	public:
 		virtual ~Compressable() {}
 		virtual std::string getCompressString() const = 0; // conversion to chars
-		virtual CID getCID() const = 0;
-		std::string compress() const; // CID + conversion to chars
+		virtual CompressID getCompressID() const = 0;
+		std::string compress() const; // CompressID + conversion to chars
 		static void* decompress(const std::string&); // creates CompressBuffer -> gets object
 	protected:
 		static std::string compressVector(const std::vector<Compressable*>&);

@@ -71,37 +71,37 @@ void ServerLobbyMenu::mapSelected()
 
 void ServerLobbyMenu::handlePacket(Packet* packet, sf::IpAddress* ip)
 {
-	if (packet->getCID() == LOCK_USER_PACKET_CID)
+	if (packet->getCompressID() == LOCK_USER_PACKET_CID)
 	{
 		handleLockUserPacket((LockUserPacket*) packet, ipToID(ip, getPlayers()));
 	}
-	else if (packet->getCID() == DISCONNECT_USER_PACKET_CID)
+	else if (packet->getCompressID() == DISCONNECT_USER_PACKET_CID)
 	{
 		handleDisconnectUserPacket((DisconnectUserPacket*) packet, ipToID(ip, getPlayers()));
 	}
-	else if (packet->getCID() == TEAM_USER_PACKET_CID && getPhase() == TEAM_PHASE)
+	else if (packet->getCompressID() == TEAM_USER_PACKET_CID && getPhase() == TEAM_PHASE)
 	{
 		handleTeamUserPacket((TeamUserPacket*) packet, ipToID(ip, getPlayers()));
 	}
-	else if (packet->getCID() == LOGIN_USER_PACKET_CID && getPhase() == TEAM_PHASE)
+	else if (packet->getCompressID() == LOGIN_USER_PACKET_CID && getPhase() == TEAM_PHASE)
 	{
 		handleLoginUserPacket((LoginUserPacket*) packet, ip);
 	}
-	else if (packet->getCID() == AVATAR_USER_PACKET_CID && getPhase() == AVATAR_PHASE)
+	else if (packet->getCompressID() == AVATAR_USER_PACKET_CID && getPhase() == AVATAR_PHASE)
 	{
 		handleAvatarUserPacket((AvatarUserPacket*) packet, ipToID(ip, getPlayers()));
 	}
-	else if (packet->getCID() == SKILL_USER_PACKET_CID && getPhase() == SKILL_PHASE)
+	else if (packet->getCompressID() == SKILL_USER_PACKET_CID && getPhase() == SKILL_PHASE)
 	{
 		handleSkillUserPacket((SkillUserPacket*) packet, ipToID(ip, getPlayers()));
 	}
-	else if (packet->getCID() == ITEM_USER_PACKET_CID && getPhase() == ITEM_PHASE)
+	else if (packet->getCompressID() == ITEM_USER_PACKET_CID && getPhase() == ITEM_PHASE)
 	{
 		handleItemUserPacket((ItemUserPacket*) packet, ipToID(ip, getPlayers()));
 	}
 	else
 	{
-		Debug::warn("ServerLobbyMenu::handlePacket(): awkward packet(" + Converter::intToString((int)packet->getCID()) + ") in awkward phase(" + Converter::intToString(getPhase()) + ")");
+		Debug::warn("ServerLobbyMenu::handlePacket(): awkward packet(" + Converter::intToString((int)packet->getCompressID()) + ") in awkward phase(" + Converter::intToString(getPhase()) + ")");
 	}
 	deleteAndNULL(packet);
 }
@@ -282,7 +282,7 @@ void ServerLobbyMenu::handleItemUserPacket(ItemUserPacket* packet, int id)
 
 void ServerLobbyMenu::playerPropertySelected(PlayerPropertyUserPacket* packet)
 {
-	switch (packet->getCID())
+	switch (packet->getCompressID())
 	{
 		case AVATAR_USER_PACKET_CID:
 			getLocalPlayer()->applyAvatarUserPacket(dynamic_cast<AvatarUserPacket*>(packet));

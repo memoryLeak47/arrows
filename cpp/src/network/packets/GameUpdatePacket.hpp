@@ -9,7 +9,7 @@ class CompressBuffer;
 #include <network/Packet.hpp>
 #include <vector>
 #include <string>
-#include <misc/compress/Cid.hpp>
+#include <misc/compress/CompressID.hpp>
 
 class GameUpdatePacket : public Packet
 {
@@ -19,7 +19,7 @@ class GameUpdatePacket : public Packet
 		virtual ~GameUpdatePacket() {}
 
 		std::string getCompressString() const override; // puts players.size, players, mobs.size, mobs, idlers.size, idlers
-		CID getCID() const override;
+		CompressID getCompressID() const override;
 
 		const std::vector<GamePlayer*>& getPlayers() const;
 		const std::vector<Mob*>& getMobs() const;

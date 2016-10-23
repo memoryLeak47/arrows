@@ -5,7 +5,7 @@ class CompressBuffer;
 class GameRect;
 
 #include <misc/compress/Compressable.hpp>
-#include <misc/compress/Cid.hpp>
+#include <misc/compress/CompressID.hpp>
 #include <string>
 
 class GameVector : public Compressable
@@ -15,7 +15,7 @@ class GameVector : public Compressable
 		GameVector(float x, float y);
 		GameVector(CompressBuffer*);
 
-		CID getCID() const override;
+		CompressID getCompressID() const override;
 		std::string getCompressString() const override;
 		bool inRect(const GameRect&) const;
 		float getMagnitude() const;

@@ -12,9 +12,9 @@ RotatedRectBody::RotatedRectBody(const GameVector& pos, const GameVector& size, 
 
 RotatedRectBody::RotatedRectBody(CompressBuffer* buffer)
 {
-	GameVector* p = (GameVector*) buffer->cutByCID(GAME_VECTOR_CID);
-	GameVector* s = (GameVector*) buffer->cutByCID(GAME_VECTOR_CID);
-	GameVector* sp = (GameVector*) buffer->cutByCID(GAME_VECTOR_CID);
+	GameVector* p = (GameVector*) buffer->cutByCompressID(GAME_VECTOR_CID);
+	GameVector* s = (GameVector*) buffer->cutByCompressID(GAME_VECTOR_CID);
+	GameVector* sp = (GameVector*) buffer->cutByCompressID(GAME_VECTOR_CID);
 
 	rotation = buffer->cutFloat();
 	spin = buffer->cutFloat();
@@ -28,7 +28,7 @@ RotatedRectBody::RotatedRectBody(CompressBuffer* buffer)
 	delete sp;
 }
 
-CID RotatedRectBody::getCID() const
+CompressID RotatedRectBody::getCompressID() const
 {
 	return ROTATED_RECT_BODY_CID;
 }

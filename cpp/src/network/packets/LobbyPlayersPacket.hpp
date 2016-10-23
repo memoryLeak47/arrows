@@ -7,7 +7,7 @@ class CompressBuffer;
 #include <network/Packet.hpp>
 #include <vector>
 #include <string>
-#include <misc/compress/Cid.hpp>
+#include <misc/compress/CompressID.hpp>
 
 class LobbyPlayersPacket : public Packet
 {
@@ -17,7 +17,7 @@ class LobbyPlayersPacket : public Packet
 		virtual ~LobbyPlayersPacket() {} // don't delete the LobbyPlayers
 		std::vector<LobbyPlayer*> getPlayers() const;
 		virtual std::string getCompressString() const override;
-		virtual CID getCID() const override;
+		virtual CompressID getCompressID() const override;
 	private:
 		std::vector<LobbyPlayer*> players;
 };

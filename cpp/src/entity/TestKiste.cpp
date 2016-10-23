@@ -11,7 +11,7 @@ TestKiste::TestKiste(CompressBuffer* buffer)
 	: Idler(buffer)
 {}
 
-CID TestKiste::getCID() const
+CompressID TestKiste::getCompressID() const
 {
 	return TEST_KISTE_CID;
 }

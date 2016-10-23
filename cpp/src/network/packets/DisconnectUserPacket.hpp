@@ -5,7 +5,7 @@ class CompressBuffer;
 
 #include "UserPacket.hpp"
 #include <string>
-#include <misc/compress/Cid.hpp>
+#include <misc/compress/CompressID.hpp>
 
 class DisconnectUserPacket : public UserPacket
 {
@@ -14,7 +14,7 @@ class DisconnectUserPacket : public UserPacket
 		DisconnectUserPacket(CompressBuffer*);
 		virtual ~DisconnectUserPacket() {}
 		std::string getCompressString() const override;
-		CID getCID() const;
+		CompressID getCompressID() const;
 };
 
 #endif

@@ -4,7 +4,7 @@ PlayerController::PlayerController(CompressBuffer *b)
 	: Controller(b)
 {}
 
-CID PlayerController::getCID() const
+CompressID PlayerController::getCompressID() const
 {
 	return PLAYER_CONTROLLER_CID;
 }

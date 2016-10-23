@@ -1,0 +1,16 @@
+X(VOID_ICON_GID, "res/icons/void.png")
+
+X(ARCHER_ICON_GID, "res/icons/avatars/archer.png")
+X(ROGUE_ICON_GID, "res/icons/avatars/rogue.png")
+
+X(ARROWSHOTSKILL_ICON_GID, "res/icons/skills/arrowshot.png")
+
+X(HEALTHRING_ICON_GID, "res/icons/items/healthring.png")
+
+X(VOIDTILE_GID, "res/entities/tiles/voidtile.png")
+X(NORMALTILE_GID, "res/entities/tiles/normaltile.png")
+X(LAVATILE_GID, "res/entities/tiles/lavatile.png")
+X(SPAWNTEAMTILE_GID, "res/entities/tiles/spawnteamtile.png")
+
+X(ARCHER_GID, "res/entities/avatars/archer.png")
+Y(TESTKISTE_GID, "res/entities/test/testbox.png")

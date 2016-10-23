@@ -14,7 +14,7 @@ std::string LoginUserPacket::getCompressString() const
 	return compressString(getName()) + compressInt(getRank());
 }
 
-CID LoginUserPacket::getCID() const
+CompressID LoginUserPacket::getCompressID() const
 {
 	return LOGIN_USER_PACKET_CID;
 }

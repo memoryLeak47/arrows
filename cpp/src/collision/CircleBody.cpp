@@ -11,8 +11,8 @@ CircleBody::CircleBody(const GameVector& position, float radius, const GameVecto
 
 CircleBody::CircleBody(CompressBuffer* buffer)
 {
-	GameVector* p = (GameVector*) buffer->cutByCID(GAME_VECTOR_CID);
-	GameVector* sp = (GameVector*) buffer->cutByCID(GAME_VECTOR_CID);
+	GameVector* p = (GameVector*) buffer->cutByCompressID(GAME_VECTOR_CID);
+	GameVector* sp = (GameVector*) buffer->cutByCompressID(GAME_VECTOR_CID);
 	rotation = buffer->cutFloat();
 	radius = buffer->cutFloat();
 	spin = buffer->cutFloat();
@@ -24,7 +24,7 @@ CircleBody::CircleBody(CompressBuffer* buffer)
 	delete sp;
 }
 
-CID CircleBody::getCID() const
+CompressID CircleBody::getCompressID() const
 {
 	return CIRCLE_BODY_CID;
 }

@@ -7,7 +7,7 @@ class GameRect;
 
 #include "Body.hpp"
 #include <string>
-#include <misc/compress/Cid.hpp>
+#include <misc/compress/CompressID.hpp>
 
 class CircleBody : public Body
 {
@@ -17,7 +17,7 @@ class CircleBody : public Body
 		virtual ~CircleBody() {}
 
 		// compress
-		CID getCID() const override;
+		CompressID getCompressID() const override;
 		std::string getCompressString() const override;
 
 		virtual BodyType getBodyType() const override;

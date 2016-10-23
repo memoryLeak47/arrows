@@ -4,7 +4,7 @@
 class CompressBuffer;
 
 #include "Controller.hpp"
-#include <misc/compress/Cid.hpp>
+#include <misc/compress/CompressID.hpp>
 
 class PlayerController : public Controller
 {
@@ -14,7 +14,7 @@ class PlayerController : public Controller
 		virtual ~PlayerController() {}
 
 		// compress
-		CID getCID() const override;
+		CompressID getCompressID() const override;
 		/* std::string Controller::getCompressString() const */
 
 	friend class GameInterface;

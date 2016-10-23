@@ -56,49 +56,49 @@ void ClientLobbyMenu::handlePacket(Packet* packet, sf::IpAddress* ip)
 
 void ClientLobbyMenu::handlePacketByID(Packet* packet, int id)
 {
-	if (packet->getCID() == USER_PACKET_WITH_ID_CID)
+	if (packet->getCompressID() == USER_PACKET_WITH_ID_CID)
 	{
 		handlePacketByID(((UserPacketWithID*) packet)->getPacket(), ((UserPacketWithID*) packet)->getID());
 	}
-	else if (packet->getCID() == LOCK_USER_PACKET_CID)
+	else if (packet->getCompressID() == LOCK_USER_PACKET_CID)
 	{
 		handleLockUserPacket((LockUserPacket*) packet, id);
 	}
-	else if (packet->getCID() == DISCONNECT_USER_PACKET_CID)
+	else if (packet->getCompressID() == DISCONNECT_USER_PACKET_CID)
 	{
 		handleDisconnectUserPacket((DisconnectUserPacket*) packet, id);
 	}
-	else if (packet->getCID() == TEAM_USER_PACKET_CID && getPhase() == TEAM_PHASE)
+	else if (packet->getCompressID() == TEAM_USER_PACKET_CID && getPhase() == TEAM_PHASE)
 	{
 		handleTeamUserPacket((TeamUserPacket*) packet, id);
 	}
-	else if (packet->getCID() == LOGIN_USER_PACKET_CID && getPhase() == TEAM_PHASE)
+	else if (packet->getCompressID() == LOGIN_USER_PACKET_CID && getPhase() == TEAM_PHASE)
 	{
 		handleLoginUserPacket((LoginUserPacket*) packet);
 	}
-	else if (packet->getCID() == AVATAR_USER_PACKET_CID && getPhase() == AVATAR_PHASE)
+	else if (packet->getCompressID() == AVATAR_USER_PACKET_CID && getPhase() == AVATAR_PHASE)
 	{
 		handleAvatarUserPacket((AvatarUserPacket*) packet, id);
 	}
-	else if (packet->getCID() == SKILL_USER_PACKET_CID && getPhase() == SKILL_PHASE)
+	else if (packet->getCompressID() == SKILL_USER_PACKET_CID && getPhase() == SKILL_PHASE)
 	{
 		handleSkillUserPacket((SkillUserPacket*) packet, id);
 	}
-	else if (packet->getCID() == ITEM_USER_PACKET_CID && getPhase() == ITEM_PHASE)
+	else if (packet->getCompressID() == ITEM_USER_PACKET_CID && getPhase() == ITEM_PHASE)
 	{
 		handleItemUserPacket((ItemUserPacket*) packet, id);
 	}
-	else if (packet->getCID() == MAP_PACKET_CID && getPhase() == TEAM_PHASE)
+	else if (packet->getCompressID() == MAP_PACKET_CID && getPhase() == TEAM_PHASE)
 	{
 		handleMapPacket((MapPacket*) packet);
 	}
-	else if (packet->getCID() == LOBBY_PLAYERS_PACKET_CID)
+	else if (packet->getCompressID() == LOBBY_PLAYERS_PACKET_CID)
 	{
 		handleLobbyPlayersPacket((LobbyPlayersPacket*) packet);
 	}
 	else
 	{
-		Debug::warn("ClientLobbyMenu::handlePacketByID(): awkward packet(" + Converter::intToString((int)packet->getCID()) + ") in awkward phase(" + Converter::intToString(getPhase()) + ")");
+		Debug::warn("ClientLobbyMenu::handlePacketByID(): awkward packet(" + Converter::intToString((int)packet->getCompressID()) + ") in awkward phase(" + Converter::intToString(getPhase()) + ")");
 	}
 	deleteAndNULL(packet);
 }
@@ -234,7 +234,7 @@ void ClientLobbyMenu::updateLockButton() const
 
 void ClientLobbyMenu::playerPropertySelected(PlayerPropertyUserPacket* packet)
 {
-	switch (packet->getCID())
+	switch (packet->getCompressID())
 	{
 		case AVATAR_USER_PACKET_CID:
 			getLocalPlayer()->applyAvatarUserPacket(dynamic_cast<AvatarUserPacket*>(packet));

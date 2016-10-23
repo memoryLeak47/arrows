@@ -5,7 +5,7 @@ class CompressBuffer;
 
 #include <network/packets/UserPacket.hpp>
 #include <string>
-#include <misc/compress/Cid.hpp>
+#include <misc/compress/CompressID.hpp>
 
 class LockUserPacket : public UserPacket
 {
@@ -15,7 +15,7 @@ class LockUserPacket : public UserPacket
 		virtual ~LockUserPacket() {}
 		bool isLocked() const;
 		std::string getCompressString() const override;
-		CID getCID() const override;
+		CompressID getCompressID() const override;
 	private:
 		bool locked;
 };

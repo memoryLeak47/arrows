@@ -85,33 +85,33 @@ std::vector<std::vector<int>> CompressBuffer::cutMap()
 	return map;
 }
 
-Compressable* CompressBuffer::cutByCID(CID cid)
+Compressable* CompressBuffer::cutByCompressID(CompressID cid)
 {
 	switch (cid)
 	{
 		#define X(name, cid) case cid: return new name(this);
 		#define Y(name, cid) case cid: return new name(this);
-		#include "cid.list"
+		#include "CompressID.list"
 		#undef X
 		#undef Y
 		default:
-			Debug::warn("no Compressable with cid " + Converter::intToString((int)cid));
+			Debug::warn("no Compressable with CompressID=" + Converter::intToString((int)cid));
 			return NULL;
 	}
 }
 
 Compressable* CompressBuffer::cutCompressable()
 {
-	return cutByCID((CID) cutChar());
+	return cutByCompressID((CompressID) cutChar());
 }
 
-std::vector<void*> CompressBuffer::cutVectorByCID(CID cid)
+std::vector<void*> CompressBuffer::cutVectorByCompressID(CompressID cid)
 {
 	int size = cutInt();
 	std::vector<void*> vec;
 	for (int i = 0; i < size; i++)
 	{
-		vec.push_back(cutByCID(cid));
+		vec.push_back(cutByCompressID(cid));
 	}
 	return vec;
 }

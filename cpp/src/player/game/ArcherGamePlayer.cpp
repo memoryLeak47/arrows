@@ -11,7 +11,7 @@ ArcherGamePlayer::ArcherGamePlayer(CompressBuffer* buffer)
 	: GamePlayer(buffer)
 {}
 
-CID ArcherGamePlayer::getCID() const
+CompressID ArcherGamePlayer::getCompressID() const
 {
 	return ARCHER_GAME_PLAYER_CID;
 }

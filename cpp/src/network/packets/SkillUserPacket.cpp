@@ -55,7 +55,7 @@ std::string SkillUserPacket::getCompressString() const
 	return s;
 }
 
-CID SkillUserPacket::getCID() const
+CompressID SkillUserPacket::getCompressID() const
 {
 	return SKILL_USER_PACKET_CID;
 }

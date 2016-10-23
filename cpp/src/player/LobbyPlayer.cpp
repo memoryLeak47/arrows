@@ -52,12 +52,12 @@ LobbyPlayer::LobbyPlayer(LoginUserPacket* login)
 LobbyPlayer::LobbyPlayer(CompressBuffer* buffer)
 {
 	ip = NULL;
-	lockPacket = static_cast<LockUserPacket*>(buffer->cutByCID(LOCK_USER_PACKET_CID));
-	teamPacket = static_cast<TeamUserPacket*>(buffer->cutByCID(TEAM_USER_PACKET_CID));
-	loginPacket = static_cast<LoginUserPacket*>(buffer->cutByCID(LOGIN_USER_PACKET_CID));
-	avatarPacket = static_cast<AvatarUserPacket*>(buffer->cutByCID(AVATAR_USER_PACKET_CID));
-	skillPacket = static_cast<SkillUserPacket*>(buffer->cutByCID(SKILL_USER_PACKET_CID));
-	itemPacket = static_cast<ItemUserPacket*>(buffer->cutByCID(ITEM_USER_PACKET_CID));
+	lockPacket = static_cast<LockUserPacket*>(buffer->cutByCompressID(LOCK_USER_PACKET_CID));
+	teamPacket = static_cast<TeamUserPacket*>(buffer->cutByCompressID(TEAM_USER_PACKET_CID));
+	loginPacket = static_cast<LoginUserPacket*>(buffer->cutByCompressID(LOGIN_USER_PACKET_CID));
+	avatarPacket = static_cast<AvatarUserPacket*>(buffer->cutByCompressID(AVATAR_USER_PACKET_CID));
+	skillPacket = static_cast<SkillUserPacket*>(buffer->cutByCompressID(SKILL_USER_PACKET_CID));
+	itemPacket = static_cast<ItemUserPacket*>(buffer->cutByCompressID(ITEM_USER_PACKET_CID));
 }
 
 LobbyPlayer::~LobbyPlayer()
@@ -76,7 +76,7 @@ sf::IpAddress* LobbyPlayer::getIP() const
 	return ip;
 }
 
-CID LobbyPlayer::getCID() const
+CompressID LobbyPlayer::getCompressID() const
 {
 	return LOBBY_PLAYER_CID;
 }

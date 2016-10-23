@@ -9,7 +9,7 @@ LobbyPlayersPacket::LobbyPlayersPacket(const std::vector<LobbyPlayer*>& players)
 
 LobbyPlayersPacket::LobbyPlayersPacket(CompressBuffer* buffer)
 {
-	std::vector<void*> vec(buffer->cutVectorByCID(LOBBY_PLAYER_CID));
+	std::vector<void*> vec(buffer->cutVectorByCompressID(LOBBY_PLAYER_CID));
 	for (unsigned int i = 0; i < vec.size(); i++)
 	{
 		players.push_back(static_cast<LobbyPlayer*>(vec[i]));
@@ -26,7 +26,7 @@ std::string LobbyPlayersPacket::getCompressString() const
 	return compressVector(vec);
 }
 
-CID LobbyPlayersPacket::getCID() const
+CompressID LobbyPlayersPacket::getCompressID() const
 {
 	return LOBBY_PLAYERS_PACKET_CID;
 }

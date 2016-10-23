@@ -5,13 +5,13 @@
 
 std::string Compressable::compress() const
 {
-	return ((char) getCID()) + getCompressString();
+	return ((char) getCompressID()) + getCompressString();
 }
 
 void* Compressable::decompress(const std::string& string)
 {
 	CompressBuffer buffer(string);
-	void* object = buffer.cutByCID((CID) buffer.cutChar());
+	void* object = buffer.cutByCompressID((CompressID) buffer.cutChar());
 	return object;
 }
 

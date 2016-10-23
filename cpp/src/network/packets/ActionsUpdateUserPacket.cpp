@@ -17,7 +17,7 @@ std::string ActionsUpdateUserPacket::getCompressString() const
 	return s + actions;
 }
 
-CID ActionsUpdateUserPacket::getCID() const
+CompressID ActionsUpdateUserPacket::getCompressID() const
 {
 	return ACTIONS_UPDATE_USER_PACKET_CID;
 }

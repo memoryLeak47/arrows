@@ -13,7 +13,7 @@ class ItemUserPacket;
 #include <misc/compress/Compressable.hpp>
 #include <SFML/Network/IpAddress.hpp>
 #include <string>
-#include <misc/compress/Cid.hpp>
+#include <misc/compress/CompressID.hpp>
 
 class LobbyPlayer : public Compressable
 {
@@ -41,7 +41,7 @@ class LobbyPlayer : public Compressable
 
 	private:
 		virtual std::string getCompressString() const override;
-		virtual CID getCID() const override;
+		virtual CompressID getCompressID() const override;
 
 		LockUserPacket* lockPacket;
 		TeamUserPacket* teamPacket;

@@ -7,7 +7,7 @@ class LobbyPlayer;
 class Entity;
 
 #include <player/GamePlayer.hpp>
-#include <misc/compress/Cid.hpp>
+#include <misc/compress/CompressID.hpp>
 #include <string>
 #include <SFML/Graphics/Texture.hpp>
 
@@ -19,7 +19,7 @@ class ArcherGamePlayer : public GamePlayer
 		virtual ~ArcherGamePlayer() {}
 
 		// compress
-		CID getCID() const override;
+		CompressID getCompressID() const override;
 		std::string getCompressString() const override;
 
 		virtual float getCollisionPriority(Entity* e) override;

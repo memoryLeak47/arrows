@@ -10,7 +10,7 @@ class CompressBuffer;
 
 #include <network/Packet.hpp>
 #include <vector>
-#include <misc/compress/Cid.hpp>
+#include <misc/compress/CompressID.hpp>
 #include <string>
 
 class MapPacket : public Packet
@@ -19,7 +19,7 @@ class MapPacket : public Packet
 		MapPacket(const std::vector<std::vector<int>>&);
 		MapPacket(CompressBuffer*);
 		std::vector<std::vector<int>> getInts() const;
-		virtual CID getCID() const override;
+		virtual CompressID getCompressID() const override;
 		virtual std::string getCompressString() const override;
 	private:
 		std::vector<std::vector<int>> map; // Zweidimensionaler Vektor lol

@@ -6,7 +6,7 @@ class Team;
 
 #include "UserPacket.hpp"
 #include <string>
-#include <misc/compress/Cid.hpp>
+#include <misc/compress/CompressID.hpp>
 
 class TeamUserPacket : public UserPacket
 {
@@ -16,7 +16,7 @@ class TeamUserPacket : public UserPacket
 		virtual ~TeamUserPacket() {}
 		Team* getTeam() const;
 		std::string getCompressString() const override;
-		CID getCID() const override;
+		CompressID getCompressID() const override;
 	private:
 		char teamID;
 };

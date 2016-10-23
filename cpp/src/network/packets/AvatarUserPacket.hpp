@@ -7,7 +7,7 @@ class PlayerProperty;
 #include "PlayerPropertyUserPacket.hpp"
 #include <vector>
 #include <string>
-#include <misc/compress/Cid.hpp>
+#include <misc/compress/CompressID.hpp>
 
 class AvatarUserPacket : public PlayerPropertyUserPacket
 {
@@ -19,7 +19,7 @@ class AvatarUserPacket : public PlayerPropertyUserPacket
 		virtual const std::vector<PlayerProperty*> getPlayerProperties() const override;
 		virtual void setIDs(const std::string&) override;
 		virtual std::string getCompressString() const override;
-		virtual CID getCID() const override;
+		virtual CompressID getCompressID() const override;
 		char getAvatarID() const;
 	private:
 		char avatarID;

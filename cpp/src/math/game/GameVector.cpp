@@ -18,7 +18,7 @@ GameVector::GameVector(CompressBuffer* buffer)
 	: x(buffer->cutFloat()), y(buffer->cutFloat())
 {}
 
-CID GameVector::getCID() const
+CompressID GameVector::getCompressID() const
 {
 	return GAME_VECTOR_CID;
 }

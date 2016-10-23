@@ -16,7 +16,7 @@ ServerGameInterface::~ServerGameInterface()
 
 void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 {
-	switch (packet->getCID())
+	switch (packet->getCompressID())
 	{
 		case ACTIONS_UPDATE_USER_PACKET_CID:
 		{
@@ -28,7 +28,7 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 		}
 		default:
 		{
-			Debug::error("ServerGameInterface::handlePacket(): unknown Packet with CID=" + Converter::intToString((int) packet->getCID()));
+			Debug::error("ServerGameInterface::handlePacket(): unknown Packet with CompressID=" + Converter::intToString((int) packet->getCompressID()));
 		}
 	}
 	delete packet;

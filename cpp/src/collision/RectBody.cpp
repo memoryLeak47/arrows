@@ -14,9 +14,9 @@ RectBody::RectBody(const GameVector& pos, const GameVector& size, const GameVect
 
 RectBody::RectBody(CompressBuffer* buffer)
 {
-	GameVector* p = (GameVector*) buffer->cutByCID(GAME_VECTOR_CID);
-	GameVector* s = (GameVector*) buffer->cutByCID(GAME_VECTOR_CID);
-	GameVector* sp = (GameVector*) buffer->cutByCID(GAME_VECTOR_CID);
+	GameVector* p = (GameVector*) buffer->cutByCompressID(GAME_VECTOR_CID);
+	GameVector* s = (GameVector*) buffer->cutByCompressID(GAME_VECTOR_CID);
+	GameVector* sp = (GameVector*) buffer->cutByCompressID(GAME_VECTOR_CID);
 
 	position = *p;
 	size = *s;
@@ -27,7 +27,7 @@ RectBody::RectBody(CompressBuffer* buffer)
 	delete sp;
 }
 
-CID RectBody::getCID() const
+CompressID RectBody::getCompressID() const
 {
 	return RECT_BODY_CID;
 }

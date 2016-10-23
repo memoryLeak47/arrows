@@ -17,7 +17,7 @@ std::vector<std::vector<int>> MapPacket::getInts() const
 	return map;
 }
 
-CID MapPacket::getCID() const
+CompressID MapPacket::getCompressID() const
 {
 	return MAP_PACKET_CID;
 }

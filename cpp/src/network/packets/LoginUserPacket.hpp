@@ -5,7 +5,7 @@ class CompressBuffer;
 
 #include <network/packets/UserPacket.hpp>
 #include <string>
-#include <misc/compress/Cid.hpp>
+#include <misc/compress/CompressID.hpp>
 
 class LoginUserPacket : public UserPacket
 {
@@ -13,7 +13,7 @@ class LoginUserPacket : public UserPacket
 		LoginUserPacket(const std::string&, int);
 		LoginUserPacket(CompressBuffer*);
 		std::string getCompressString() const override;
-		CID getCID() const override;
+		CompressID getCompressID() const override;
 
 		std::string getName() const;
 		int getRank() const;

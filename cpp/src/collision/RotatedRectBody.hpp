@@ -6,7 +6,7 @@ class CompressBuffer;
 class GameRect;
 
 #include "Body.hpp"
-#include <misc/compress/Cid.hpp>
+#include <misc/compress/CompressID.hpp>
 #include <string>
 
 class RotatedRectBody : public Body
@@ -17,7 +17,7 @@ class RotatedRectBody : public Body
 		virtual ~RotatedRectBody() {}
 
 		// compress
-		CID getCID() const override;
+		CompressID getCompressID() const override;
 		std::string getCompressString() const override;
 
 		virtual BodyType getBodyType() const override;
