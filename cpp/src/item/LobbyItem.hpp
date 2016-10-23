@@ -15,9 +15,9 @@ class LobbyItem : public PlayerProperty
 		static LobbyItem* get(int);
 		static int getAmount();
 		static const std::vector<LobbyItem*> getAllLobbyItems();
-		char getID() const override;
 		virtual int getMassStat() const;
 		virtual float getHealthStat() const;
+		virtual char getID() const override final;
 		Item* createGameItem() const;
 	private:
 		void setID(char);

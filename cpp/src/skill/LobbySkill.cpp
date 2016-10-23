@@ -15,6 +15,11 @@ void LobbySkill::init()
 	#include "SkillID.list"
 	#undef X
 	#undef Y
+
+	for (unsigned int i = 0; i < skills.size(); i++)
+	{
+		skills[i]->setID(i);
+	}
 }
 
 void LobbySkill::uninit()
@@ -46,6 +51,11 @@ const std::vector<LobbySkill*> LobbySkill::getAllLobbySkillsByAvatarID(char avat
 	return tmp;
 }
 
+char LobbySkill::getID() const
+{
+	return id;
+}
+
 Skill* LobbySkill::createGameSkill() const
 {
 	switch (getID())
@@ -61,4 +71,9 @@ Skill* LobbySkill::createGameSkill() const
 			return nullptr;
 		}
 	}
+}
+
+void LobbySkill::setID(char id_arg)
+{
+	id = id_arg;
 }

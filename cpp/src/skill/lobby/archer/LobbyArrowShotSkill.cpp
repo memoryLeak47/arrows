@@ -1,12 +1,6 @@
 #include "LobbyArrowShotSkill.hpp"
 
 #include <avatar/AvatarID.hpp>
-#include <skill/SkillID.hpp>
-
-char LobbyArrowShotSkill::getID() const
-{
-	return ARROWSHOTSKILL_SID;
-}
 
 std::string LobbyArrowShotSkill::getDescription() const
 {

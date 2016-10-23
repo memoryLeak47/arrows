@@ -16,6 +16,7 @@ class LobbySkill : public PlayerProperty
 		static int getAmount();
 		static const std::vector<LobbySkill*> getAllLobbySkillsByAvatarID(char);
 		virtual char getAvatarID() const = 0;
+		virtual char getID() const override final;
 
 		// in the lobby-menu every sub-Skill e.g. LobbyArrowShotSkill is exactly the same;
 		// but in the game every sub-Skill has to be handled different (e.g. because of different charges)
@@ -23,7 +24,9 @@ class LobbySkill : public PlayerProperty
 		// when the game starts every skill of the player has to be set to a clone of the original sub-Skill in Skill::skills
 		Skill* createGameSkill() const;
 	private:
+		void setID(char);
 		static std::vector<LobbySkill*> skills;
+		char id;
 		/*
 			float charge;
 			ServerGamePlayer? owner;

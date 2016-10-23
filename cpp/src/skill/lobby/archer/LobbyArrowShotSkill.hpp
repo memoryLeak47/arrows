@@ -8,7 +8,6 @@
 class LobbyArrowShotSkill : public LobbySkill
 {
 	public:
-		char getID() const override;
 		std::string getDescription() const override;
 		char getAvatarID() const override;
 		TextureID getIconTextureID() const override;
