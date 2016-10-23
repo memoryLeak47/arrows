@@ -3,7 +3,7 @@
 #include <misc/Global.hpp>
 #include <core/Main.hpp>
 #include <menu/MenuList.hpp>
-#include <player/property/avatar/Avatar.hpp>
+#include <player/property/avatar/LobbyAvatar.hpp>
 #include <menu/menues/ChoosePlayerPropertyMenu.hpp>
 #include <menu/menues/LobbyMenu.hpp> // for AVATAR_PHASE
 #include <network/packets/AvatarPacket.hpp>
@@ -21,7 +21,7 @@ void PlayerPanelsAvatarIcon::onClick(int mouseButton)
 {
 	if (isChoosable())
 	{
-		const std::vector<Avatar*>& avatars = Avatar::getAllAvatars();
+		const std::vector<LobbyAvatar*>& avatars = LobbyAvatar::getAllLobbyAvatars();
 		std::vector<PlayerProperty*> tmp;
 		for (unsigned int i = 0; i < avatars.size(); i++)
 		{

@@ -22,8 +22,3 @@ TextureID LobbyArrowShotSkill::getIconTextureID() const
 {
 	return ARROWSHOTSKILL_ICON_GID;
 }
-
-Skill* LobbyArrowShotSkill::clone() const
-{
-	return new LobbyArrowShotSkill();
-}

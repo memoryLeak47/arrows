@@ -1,7 +1,7 @@
 #include "AvatarPacket.hpp"
 
 #include <misc/Global.hpp>
-#include <player/property/avatar/Avatar.hpp>
+#include <player/property/avatar/LobbyAvatar.hpp>
 #include <misc/compress/CompressBuffer.hpp>
 
 AvatarPacket::AvatarPacket(char c)
@@ -31,7 +31,7 @@ const std::vector<PlayerProperty*> AvatarPacket::getPlayerProperties() const
 	}
 	else
 	{
-		props.push_back(Avatar::get(avatarID));
+		props.push_back(LobbyAvatar::get(avatarID));
 	}
         return props;
 }

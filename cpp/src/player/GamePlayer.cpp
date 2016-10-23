@@ -4,8 +4,8 @@
 #include <collision/RectBody.hpp>
 #include <misc/Converter.hpp>
 #include <controller/PlayerController.hpp>
-#include <player/property/avatar/Avatar.hpp>
-#include <player/property/skill/Skill.hpp>
+#include <player/property/avatar/LobbyAvatar.hpp>
+#include <player/property/skill/LobbySkill.hpp>
 #include <player/property/item/Item.hpp>
 
 #include <network/packets/TeamPacket.hpp>
@@ -24,7 +24,7 @@ GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
 	: Mob(body, new PlayerController()),
 	  name(player->getLoginPacket()->getName()),
 	  rank(player->getLoginPacket()->getRank()),
-	  avatar(Avatar::get(player->getAvatarPacket()->getAvatarID()))
+	  avatar(LobbyAvatar::get(player->getAvatarPacket()->getAvatarID()))
 {
 	if (player->getIP() == NULL)
 	{
@@ -38,7 +38,7 @@ GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
 	team = player->getTeamPacket()->getTeam();
 	for (unsigned int i = 0; i < player->getSkillPacket()->getPlayerProperties().size(); i++)
 	{
-		skills.push_back(dynamic_cast<Skill*>(player->getSkillPacket()->getPlayerProperties()[i])->clone());
+		skills.push_back(dynamic_cast<LobbySkill*>(player->getSkillPacket()->getPlayerProperties()[i])->createGameSkill());
 	}
 
 	for (unsigned int i = 0; i < player->getItemPacket()->getPlayerProperties().size(); i++)

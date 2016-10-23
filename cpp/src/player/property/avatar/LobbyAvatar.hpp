@@ -1,7 +1,6 @@
-#ifndef __AVATAR_CLASS__
-#define __AVATAR_CLASS__
+#ifndef __LOBBYAVATAR_CLASS__
+#define __LOBBYAVATAR_CLASS__
 
-class Avatar;
 class GamePlayer;
 class GameVector;
 class LobbyPlayer;
@@ -9,22 +8,22 @@ class LobbyPlayer;
 #include <player/property/PlayerProperty.hpp>
 #include <vector>
 
-class Avatar : public PlayerProperty
+class LobbyAvatar : public PlayerProperty
 {
 	public:
-		virtual ~Avatar() {}
+		virtual ~LobbyAvatar() {}
 
 		static void init();
 		static void uninit();
-		static Avatar* get(int);
+		static LobbyAvatar* get(int);
 		static int getAmount();
-		static const std::vector<Avatar*> getAllAvatars();
+		static const std::vector<LobbyAvatar*> getAllLobbyAvatars();
 		virtual int getMassStat() const;
 		virtual float getHealthStat() const;
 
 		GamePlayer* createGamePlayer(const GameVector&, const LobbyPlayer*) const;
 	private:
-		static std::vector<Avatar*> avatars;
+		static std::vector<LobbyAvatar*> avatars;
 };
 
 #endif

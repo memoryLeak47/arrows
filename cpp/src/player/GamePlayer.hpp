@@ -11,7 +11,7 @@ class LobbyPlayer;
 class View;
 class GamePlayer;
 class Team;
-class Avatar;
+class LobbyAvatar;
 class Skill;
 class Item;
 
@@ -39,7 +39,7 @@ class GamePlayer : public Mob
 		std::string name;
 		int rank;
 		Team* team;
-		Avatar* avatar;
+		LobbyAvatar* avatar;
 		std::vector<Skill*> skills;
 		std::vector<Item*> items;
 

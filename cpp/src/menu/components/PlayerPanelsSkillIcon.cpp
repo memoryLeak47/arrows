@@ -3,7 +3,7 @@
 #include <misc/Global.hpp>
 #include <menu/MenuList.hpp>
 #include <core/Main.hpp>
-#include <player/property/skill/Skill.hpp>
+#include <player/property/skill/LobbySkill.hpp>
 #include <menu/menues/ChoosePlayerPropertyMenu.hpp>
 #include <menu/menues/LobbyMenu.hpp> // for SKILL_PHASE
 #include <network/packets/SkillPacket.hpp>
@@ -22,7 +22,7 @@ void PlayerPanelsSkillIcon::onClick(int mouseButton)
 {
 	if (isChoosable())
 	{
-		const std::vector<Skill*>& skills = Skill::getAllSkillsByAvatarID(getLobbyMenu()->getLocalPlayer()->getAvatarPacket()->getAvatarID());
+		const std::vector<LobbySkill*>& skills = LobbySkill::getAllLobbySkillsByAvatarID(getLobbyMenu()->getLocalPlayer()->getAvatarPacket()->getAvatarID());
 		std::vector<PlayerProperty*> tmp;
 		for (unsigned int i = 0; i < skills.size(); i++)
 		{

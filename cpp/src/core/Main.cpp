@@ -3,8 +3,8 @@
 #include <misc/Global.hpp>
 #include "Screen.hpp"
 #include <player/property/Team.hpp>
-#include <player/property/avatar/Avatar.hpp>
-#include <player/property/skill/Skill.hpp>
+#include <player/property/avatar/LobbyAvatar.hpp>
+#include <player/property/skill/LobbySkill.hpp>
 #include <player/property/item/Item.hpp>
 #include <graphics/GraphicsManager.hpp>
 #include <misc/Account.hpp>
@@ -24,8 +24,8 @@ Main::Main()
 	Account::init();
 	Screen::init();
 	Team::init();
-	Avatar::init();
-	Skill::init();
+	LobbyAvatar::init();
+	LobbySkill::init();
 	Item::init();
 	GraphicsManager::init();
 	networkDevice = new NetworkDevice();
@@ -40,8 +40,8 @@ Main::~Main()
 	Account::uninit();
 	Screen::uninit();
 	Team::uninit();
-	Avatar::uninit();
-	Skill::uninit();
+	LobbyAvatar::uninit();
+	LobbySkill::uninit();
 	Item::uninit();
 	GraphicsManager::uninit();
 }

@@ -5,11 +5,11 @@ class GamePlayer;
 class GameVector;
 class LobbyPlayer;
 
-#include <player/property/avatar/Avatar.hpp>
+#include <player/property/avatar/LobbyAvatar.hpp>
 #include <graphics/TextureID.hpp>
 #include <string>
 
-class LobbyArcher : public Avatar
+class LobbyArcher : public LobbyAvatar
 {
 	public:
 		virtual TextureID getIconTextureID() const override;

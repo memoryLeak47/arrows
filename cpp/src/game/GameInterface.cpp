@@ -7,7 +7,7 @@
 #include <collision/CollisionDetector.hpp>
 #include <collision/CollisionTester.hpp>
 #include <collision/PhysicsHandler.hpp>
-#include <player/property/avatar/Avatar.hpp>
+#include <player/property/avatar/LobbyAvatar.hpp>
 #include <tile/map/GameTileMap.hpp>
 #include <collision/CollisionEvent.hpp>
 #include <entity/Tile.hpp>
@@ -30,7 +30,7 @@ GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>&
 	tileMap = new GameTileMap(map);
 	for (unsigned int i = 0; i < lobbyPlayers.size(); i++)
 	{
-		players.push_back(Avatar::get(lobbyPlayers[i]->getAvatarPacket()->getAvatarID())->createGamePlayer(getGameTileMap()->teamToSpawnPosition(lobbyPlayers[i]->getTeamPacket()->getTeam()), lobbyPlayers[i]));
+		players.push_back(LobbyAvatar::get(lobbyPlayers[i]->getAvatarPacket()->getAvatarID())->createGamePlayer(getGameTileMap()->teamToSpawnPosition(lobbyPlayers[i]->getTeamPacket()->getTeam()), lobbyPlayers[i]));
 	}
 
 	idlers.push_back(new TestKiste(GameVector(7.5f, 4.5f)));

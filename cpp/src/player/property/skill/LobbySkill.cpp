@@ -1,0 +1,64 @@
+#include "LobbySkill.hpp"
+
+#include <misc/Global.hpp>
+#include <core/Main.hpp>
+#include "skills/LobbyArrowShotSkill.hpp"
+#include <skill/ArrowShotSkill.hpp>
+#include "SkillID.hpp"
+
+std::vector<LobbySkill*> LobbySkill::skills;
+
+void LobbySkill::init()
+{
+	#define X(sid, lobbyname, gamename) skills.push_back(new lobbyname());
+	#define Y(sid, lobbyname, gamename) skills.push_back(new lobbyname());
+	#include "SkillID.list"
+	#undef X
+	#undef Y
+}
+
+void LobbySkill::uninit()
+{
+	deleteAndClearVector(skills);
+}
+
+LobbySkill* LobbySkill::get(int id)
+{
+	if (id < 0 || id >= getAmount()) Debug::warn("LobbySkill::get(): id(" + Converter::intToString(id) + ") out of range");
+	return skills[id];
+}
+
+int LobbySkill::getAmount()
+{
+	return skills.size();
+}
+
+const std::vector<LobbySkill*> LobbySkill::getAllLobbySkillsByAvatarID(char avatarID)
+{
+	std::vector<LobbySkill*> tmp;
+	for (unsigned int i = 0; i < skills.size(); i++)
+	{
+		if (skills[i]->getAvatarID() == avatarID)
+		{
+			tmp.push_back(skills[i]);
+		}
+	}
+	return tmp;
+}
+
+Skill* LobbySkill::createGameSkill() const
+{
+	switch (getID())
+	{
+		#define X(sid, lobbyname, gamename) case sid: return new gamename();
+		#define Y(sid, lobbyname, gamename) case sid: return new gamename();
+		#include "SkillID.list"
+		#undef X
+		#undef Y
+		default:
+		{
+			Debug::error("LobbySkill::createGameSkill(): nothing found here");
+			return nullptr;
+		}
+	}
+}

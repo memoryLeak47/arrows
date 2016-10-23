@@ -1,7 +1,7 @@
 #include "SkillPacket.hpp"
 
 #include <misc/Global.hpp>
-#include <player/property/skill/Skill.hpp>
+#include <player/property/skill/LobbySkill.hpp>
 #include <misc/compress/CompressBuffer.hpp>
 
 SkillPacket::SkillPacket(const std::string& ids)
@@ -33,7 +33,7 @@ const std::vector<PlayerProperty*> SkillPacket::getPlayerProperties() const
 		}
 		else
 		{
-			props.push_back(Skill::get(skillIDs[i]));
+			props.push_back(LobbySkill::get(skillIDs[i]));
 		}
 	}
 	return props;

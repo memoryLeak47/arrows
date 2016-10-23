@@ -1,4 +1,4 @@
-#include "Avatar.hpp"
+#include "LobbyAvatar.hpp"
 
 #include <misc/Global.hpp>
 #include <core/Main.hpp>
@@ -8,9 +8,9 @@
 #include <player/game/Rogue.hpp>
 #include "AvatarID.hpp"
 
-std::vector<Avatar*> Avatar::avatars;
+std::vector<LobbyAvatar*> LobbyAvatar::avatars;
 
-void Avatar::init()
+void LobbyAvatar::init()
 {
 	#define X(aid, lobbyname, gamename) avatars.push_back(new lobbyname());
 	#define Y(aid, lobbyname, gamename) avatars.push_back(new lobbyname());
@@ -19,38 +19,38 @@ void Avatar::init()
 	#undef Y
 }
 
-void Avatar::uninit()
+void LobbyAvatar::uninit()
 {
 	deleteAndClearVector(avatars);
 }
 
-Avatar* Avatar::get(int id)
+LobbyAvatar* LobbyAvatar::get(int id)
 {
-	if (id < 0 || id >= getAmount()) Debug::warn("Avatar::get(): id(" + Converter::intToString(id) + ") out of range");
+	if (id < 0 || id >= getAmount()) Debug::warn("LobbyAvatar::get(): id(" + Converter::intToString(id) + ") out of range");
 	return avatars[id];
 }
 
-int Avatar::getAmount()
+int LobbyAvatar::getAmount()
 {
 	return avatars.size();
 }
 
-const std::vector<Avatar*> Avatar::getAllAvatars()
+const std::vector<LobbyAvatar*> LobbyAvatar::getAllLobbyAvatars()
 {
 	return avatars;
 }
 
-int Avatar::getMassStat() const
+int LobbyAvatar::getMassStat() const
 {
 	return 20;
 }
 
-float Avatar::getHealthStat() const
+float LobbyAvatar::getHealthStat() const
 {
 	return 20;
 }
 
-GamePlayer* Avatar::createGamePlayer(const GameVector& vec, const LobbyPlayer* player) const
+GamePlayer* LobbyAvatar::createGamePlayer(const GameVector& vec, const LobbyPlayer* player) const
 {
 	switch (getID())
 	{
@@ -61,7 +61,7 @@ GamePlayer* Avatar::createGamePlayer(const GameVector& vec, const LobbyPlayer* p
 		#undef Y
 		default:
 		{
-			Debug::error("Avatar::createGamePlayer() has no result");
+			Debug::error("LobbyAvatar::createGamePlayer() has no result");
 			return nullptr;
 		}
 	}
