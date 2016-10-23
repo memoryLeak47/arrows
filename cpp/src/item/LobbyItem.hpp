@@ -1,24 +1,27 @@
-#ifndef __ITEM_CLASS__
-#define __ITEM_CLASS__
+#ifndef __LOBBYITEM_CLASS__
+#define __LOBBYITEM_CLASS__
+
+class Item;
 
 #include <player/property/PlayerProperty.hpp>
 #include <vector>
 
-class Item : public PlayerProperty
+class LobbyItem : public PlayerProperty
 {
 	public:
-		virtual ~Item() {}
+		virtual ~LobbyItem() {}
 		static void init();
 		static void uninit();
-		static Item* get(int);
+		static LobbyItem* get(int);
 		static int getAmount();
-		static const std::vector<Item*> getAllItems();
+		static const std::vector<LobbyItem*> getAllLobbyItems();
 		char getID() const override;
 		virtual int getMassStat() const;
 		virtual float getHealthStat() const;
+		Item* createGameItem() const;
 	private:
 		void setID(char);
-		static std::vector<Item*> items;
+		static std::vector<LobbyItem*> items;
 		char id;
 };
 

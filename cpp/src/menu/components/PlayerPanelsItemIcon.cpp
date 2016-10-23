@@ -3,7 +3,7 @@
 #include <misc/Global.hpp>
 #include <core/Main.hpp>
 #include <menu/MenuList.hpp>
-#include <player/property/item/Item.hpp>
+#include <item/LobbyItem.hpp>
 #include <menu/menues/ChoosePlayerPropertyMenu.hpp>
 #include <menu/menues/LobbyMenu.hpp> // for ITEM_PHASE
 #include <network/packets/ItemPacket.hpp>
@@ -21,7 +21,7 @@ void PlayerPanelsItemIcon::onClick(int mouseButton)
 {
 	if (isChoosable())
 	{
-		const std::vector<Item*>& items = Item::getAllItems();
+		const std::vector<LobbyItem*>& items = LobbyItem::getAllLobbyItems();
 		std::vector<PlayerProperty*> tmp;
 		for (unsigned int i = 0; i < items.size(); i++)
 		{

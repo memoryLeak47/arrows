@@ -1,12 +1,11 @@
 #include "GamePlayer.hpp"
 
-#include <misc/Debug.hpp>
+#include <misc/Global.hpp>
 #include <collision/RectBody.hpp>
-#include <misc/Converter.hpp>
 #include <controller/PlayerController.hpp>
 #include <avatar/LobbyAvatar.hpp>
 #include <skill/LobbySkill.hpp>
-#include <player/property/item/Item.hpp>
+#include <item/LobbyItem.hpp>
 
 #include <network/packets/TeamPacket.hpp>
 #include <network/packets/LoginPacket.hpp>
@@ -43,7 +42,7 @@ GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
 
 	for (unsigned int i = 0; i < player->getItemPacket()->getPlayerProperties().size(); i++)
 	{
-		items.push_back(dynamic_cast<Item*>(player->getItemPacket()->getPlayerProperties()[i]));
+		items.push_back(dynamic_cast<LobbyItem*>(player->getItemPacket()->getPlayerProperties()[i])->createGameItem());
 	}
 }
 

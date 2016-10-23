@@ -5,7 +5,7 @@
 #include <player/property/Team.hpp>
 #include <avatar/LobbyAvatar.hpp>
 #include <skill/LobbySkill.hpp>
-#include <player/property/item/Item.hpp>
+#include <item/LobbyItem.hpp>
 #include <graphics/GraphicsManager.hpp>
 #include <misc/Account.hpp>
 #include <network/NetworkDevice.hpp>
@@ -26,7 +26,7 @@ Main::Main()
 	Team::init();
 	LobbyAvatar::init();
 	LobbySkill::init();
-	Item::init();
+	LobbyItem::init();
 	GraphicsManager::init();
 	networkDevice = new NetworkDevice();
 	menuList = new MenuList();
@@ -42,7 +42,7 @@ Main::~Main()
 	Team::uninit();
 	LobbyAvatar::uninit();
 	LobbySkill::uninit();
-	Item::uninit();
+	LobbyItem::uninit();
 	GraphicsManager::uninit();
 }
 

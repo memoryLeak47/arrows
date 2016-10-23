@@ -1,7 +1,7 @@
 #include "ItemPacket.hpp"
 
 #include <misc/Global.hpp>
-#include <player/property/item/Item.hpp>
+#include <item/LobbyItem.hpp>
 #include <misc/compress/CompressBuffer.hpp>
 
 ItemPacket::ItemPacket(const std::string& ids)
@@ -33,7 +33,7 @@ const std::vector<PlayerProperty*> ItemPacket::getPlayerProperties() const
 		}
 		else
 		{
-			props.push_back(Item::get(itemIDs[i]));
+			props.push_back(LobbyItem::get(itemIDs[i]));
 		}
 	}
 	return props;
