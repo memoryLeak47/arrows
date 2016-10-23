@@ -1,10 +1,12 @@
 #include "GamePlayer.hpp"
 
+#include <misc/compress/CompressBuffer.hpp>
 #include <misc/Global.hpp>
 #include <collision/RectBody.hpp>
 #include <controller/PlayerController.hpp>
 #include <avatar/LobbyAvatar.hpp>
 #include <skill/LobbySkill.hpp>
+#include <skill/Skill.hpp>
 #include <item/LobbyItem.hpp>
 
 #include <network/packets/TeamPacket.hpp>
@@ -17,7 +19,12 @@
 
 GamePlayer::GamePlayer(CompressBuffer *b)
 	: Mob(b)
-{}
+{
+	for (unsigned int i = 0; i < skills.size(); i++)
+	{
+		skills[i]->setCharge(b->cutFloat());
+	}
+}
 
 GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
 	: Mob(body, new PlayerController()),
@@ -37,7 +44,7 @@ GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
 	team = player->getTeamPacket()->getTeam();
 	for (unsigned int i = 0; i < player->getSkillPacket()->getPlayerProperties().size(); i++)
 	{
-		skills.push_back(dynamic_cast<LobbySkill*>(player->getSkillPacket()->getPlayerProperties()[i])->createGameSkill());
+		skills.push_back(dynamic_cast<LobbySkill*>(player->getSkillPacket()->getPlayerProperties()[i])->createGameSkill(this));
 	}
 
 	for (unsigned int i = 0; i < player->getItemPacket()->getPlayerProperties().size(); i++)
@@ -49,6 +56,16 @@ GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
 GamePlayer::~GamePlayer()
 {
 	delete ip;
+}
+
+std::string GamePlayer::getCompressString() const
+{
+	std::string s = Mob::getCompressString();
+	for (unsigned int i = 0; i < skills.size(); i++)
+	{
+		s += compressFloat(skills[i]->getCharge());
+	}
+	return s;
 }
 
 Actions GamePlayer::getActions() const

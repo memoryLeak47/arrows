@@ -23,13 +23,17 @@ class Item;
 class GamePlayer : public Mob
 {
 	public:
-		GamePlayer(CompressBuffer*);
+		GamePlayer(CompressBuffer*); // => Mob(b), cutCharges(b)
 		GamePlayer(Body*, const LobbyPlayer*); // used when Game begins in Avatar::createGamePlayer()
 		virtual ~GamePlayer(); // deletes ip
+
+		// compress
+		std::string getCompressString() const override; // => Mob.getCompressString() + charges
 
 		Actions getActions() const; // => Controller::getActions()
 		virtual void renderBar(const View&) const override;
 		sf::IpAddress* getIP() const;
+
 	private:
 		void setActions(const Actions actions); // => Controller::setActions(actions); used in {C,G}GameInterface
 		void apply(GamePlayer*); // Wird nur in ClientGameInterface::applyGameUpdate benutzt
