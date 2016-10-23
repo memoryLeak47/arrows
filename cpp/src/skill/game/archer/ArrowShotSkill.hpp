@@ -3,12 +3,14 @@
 
 class Mob;
 
-#include <skill/Skill.hpp>
+#include <skill/game/template/TriggerSkill.hpp>
 
-class ArrowShotSkill : public Skill
+class ArrowShotSkill : public TriggerSkill
 {
 	public:
 		ArrowShotSkill(Mob*);
+	protected:
+		virtual void onTrigger() override;
 };
 
 #endif

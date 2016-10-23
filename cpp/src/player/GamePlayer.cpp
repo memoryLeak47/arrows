@@ -84,6 +84,15 @@ sf::IpAddress* GamePlayer::getIP() const
 	return ip;
 }
 
+void GamePlayer::tick()
+{
+	Mob::tick();
+	for (unsigned int i = 0; i < skills.size(); i++)
+	{
+		skills[i]->tick(); // TODO tick effects
+	}
+}
+
 void GamePlayer::optSetSkillEnabled(int i, bool b)
 {
 	if (i >= 0 and i <= 3)
