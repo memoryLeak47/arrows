@@ -21,9 +21,12 @@ class LobbyAvatar : public PlayerProperty
 		virtual int getMassStat() const;
 		virtual float getHealthStat() const;
 
+		virtual char getID() const override final;
 		GamePlayer* createGamePlayer(const GameVector&, const LobbyPlayer*) const;
 	private:
+		void setID(char);
 		static std::vector<LobbyAvatar*> avatars;
+		char id;
 };
 
 #endif

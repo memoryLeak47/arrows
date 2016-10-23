@@ -17,6 +17,11 @@ void LobbyAvatar::init()
 	#include "AvatarID.list"
 	#undef X
 	#undef Y
+
+	for (unsigned int i = 0; i < avatars.size(); i++)
+	{
+		avatars[i]->setID(i);
+	}
 }
 
 void LobbyAvatar::uninit()
@@ -50,6 +55,11 @@ float LobbyAvatar::getHealthStat() const
 	return 20;
 }
 
+char LobbyAvatar::getID() const
+{
+	return id;
+}
+
 GamePlayer* LobbyAvatar::createGamePlayer(const GameVector& vec, const LobbyPlayer* player) const
 {
 	switch (getID())
@@ -65,4 +75,9 @@ GamePlayer* LobbyAvatar::createGamePlayer(const GameVector& vec, const LobbyPlay
 			return nullptr;
 		}
 	}
+}
+
+void LobbyAvatar::setID(char id_arg)
+{
+	id = id_arg;
 }

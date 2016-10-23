@@ -9,7 +9,6 @@ class LobbyRogue : public LobbyAvatar
 {
 	public:
 		virtual TextureID getIconTextureID() const override;
-		char getID() const override;
 		std::string getDescription() const;
 };
 
