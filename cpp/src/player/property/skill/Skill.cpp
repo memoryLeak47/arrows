@@ -2,7 +2,7 @@
 
 #include <misc/Global.hpp>
 #include <core/Main.hpp>
-#include "skills/ArrowShotSkill.hpp"
+#include "skills/LobbyArrowShotSkill.hpp"
 
 std::vector<Skill*> Skill::skills;
 

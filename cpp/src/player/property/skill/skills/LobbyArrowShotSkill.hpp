@@ -1,11 +1,11 @@
-#ifndef __ARROWSHOTSKILL_CLASS__
-#define __ARROWSHOTSKILL_CLASS__
+#ifndef __LOBBYARROWSHOTSKILL_CLASS__
+#define __LOBBYARROWSHOTSKILL_CLASS__
 
 #include <player/property/skill/Skill.hpp>
 #include <string>
 #include <graphics/TextureID.hpp>
 
-class ArrowShotSkill : public Skill
+class LobbyArrowShotSkill : public Skill
 {
 	public:
 		char getID() const override;

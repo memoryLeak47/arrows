@@ -2,11 +2,10 @@
 
 #include <misc/Global.hpp>
 #include <core/Main.hpp>
-#include "avatars/Archer.hpp"
-#include "avatars/Rogue.hpp"
-#include <player/game/ArcherGamePlayer.hpp>
-#include <player/game/RogueGamePlayer.hpp>
-#include "avatars/Rogue.hpp"
+#include "avatars/LobbyArcher.hpp"
+#include "avatars/LobbyRogue.hpp"
+#include <player/game/Archer.hpp>
+#include <player/game/Rogue.hpp>
 #include "AvatarID.hpp"
 
 std::vector<Avatar*> Avatar::avatars;

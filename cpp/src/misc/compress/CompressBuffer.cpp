@@ -20,8 +20,8 @@
 #include <collision/RotatedRectBody.hpp>
 #include <controller/PlayerController.hpp>
 #include <entity/TestKiste.hpp>
-#include <player/game/ArcherGamePlayer.hpp>
-#include <player/game/RogueGamePlayer.hpp>
+#include <player/game/Archer.hpp>
+#include <player/game/Rogue.hpp>
 
 #include <player/LobbyPlayer.hpp>
 

@@ -15,7 +15,7 @@ class Skill : public PlayerProperty
 		static const std::vector<Skill*> getAllSkillsByAvatarID(char);
 		virtual char getAvatarID() const = 0;
 
-		// in the lobby-menu every sub-Skill e.g. ArrowShotSkill is exactly the same;
+		// in the lobby-menu every sub-Skill e.g. LobbyArrowShotSkill is exactly the same;
 		// but in the game every sub-Skill has to be handled different (e.g. because of different charges)
 		// for getting this: 
 		// when the game starts every skill of the player has to be set to a clone of the original sub-Skill in Skill::skills

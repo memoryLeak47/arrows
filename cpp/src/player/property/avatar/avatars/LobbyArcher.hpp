@@ -1,11 +1,15 @@
-#ifndef __ROGUE_CLASS__
-#define __ROGUE_CLASS__
+#ifndef __LOBBYARCHER_CLASS__
+#define __LOBBYARCHER_CLASS__
+
+class GamePlayer;
+class GameVector;
+class LobbyPlayer;
 
 #include <player/property/avatar/Avatar.hpp>
 #include <graphics/TextureID.hpp>
 #include <string>
 
-class Rogue : public Avatar
+class LobbyArcher : public Avatar
 {
 	public:
 		virtual TextureID getIconTextureID() const override;

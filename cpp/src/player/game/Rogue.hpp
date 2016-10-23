@@ -1,5 +1,5 @@
-#ifndef __ROGUEGAMEPLAYER_CLASS__
-#define __ROGUEGAMEPLAYER_CLASS__
+#ifndef __ROGUE_CLASS__
+#define __ROGUE_CLASS__
 
 class CompressBuffer;
 class GameVector;
@@ -11,12 +11,12 @@ class Entity;
 #include <string>
 #include <SFML/Graphics/Texture.hpp>
 
-class RogueGamePlayer : public GamePlayer
+class Rogue : public GamePlayer
 {
 	public:
-		RogueGamePlayer(CompressBuffer*);
-		RogueGamePlayer(const GameVector&, const LobbyPlayer*);
-		virtual ~RogueGamePlayer() {}
+		Rogue(CompressBuffer*);
+		Rogue(const GameVector&, const LobbyPlayer*);
+		virtual ~Rogue() {}
 
 		// compress
 		CompressID getCompressID() const override;

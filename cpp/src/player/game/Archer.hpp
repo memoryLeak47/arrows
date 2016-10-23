@@ -1,5 +1,5 @@
-#ifndef __ARCHERGAMEPLAYER_CLASS__
-#define __ARCHERGAMEPLAYER_CLASS__
+#ifndef __ARCHER_CLASS__
+#define __ARCHER_CLASS__
 
 class CompressBuffer;
 class GameVector;
@@ -11,12 +11,12 @@ class Entity;
 #include <string>
 #include <SFML/Graphics/Texture.hpp>
 
-class ArcherGamePlayer : public GamePlayer
+class Archer : public GamePlayer
 {
 	public:
-		ArcherGamePlayer(CompressBuffer*);
-		ArcherGamePlayer(const GameVector&, const LobbyPlayer*);
-		virtual ~ArcherGamePlayer() {}
+		Archer(CompressBuffer*);
+		Archer(const GameVector&, const LobbyPlayer*);
+		virtual ~Archer() {}
 
 		// compress
 		CompressID getCompressID() const override;
