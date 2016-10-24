@@ -25,7 +25,7 @@ class TeamListPanel;
 class LobbyMenu : public Menu, public NetworkInterface
 {
 	public:
-		LobbyMenu();
+		LobbyMenu(std::string lockButtonText);
 		virtual ~LobbyMenu();
 		std::vector<LobbyPlayer*> getPlayers() const;
 		int getPhase() const;
@@ -49,6 +49,7 @@ class LobbyMenu : public Menu, public NetworkInterface
 		virtual void removePlayer(int);
 		void clearPlayers();
 		virtual void createGameInterface() = 0;
+
 		Button* lockButton; // Verweiß auf den NextStep/LockIn Button
 	private:
 		void resetLobby();

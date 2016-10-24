@@ -15,7 +15,7 @@
 #include <player/LobbyPlayer.hpp>
 #include <tilemap/LobbyTileMap.hpp>
 
-LobbyMenu::LobbyMenu()
+LobbyMenu::LobbyMenu(std::string lockButtonText)
 {
 	tileMap = new LobbyTileMap();
 
@@ -32,7 +32,7 @@ LobbyMenu::LobbyMenu()
 				((LobbyMenu*)getParent())->lockPressed();
 			}
 	};
-	addComponent(lockButton = new LockButton(this, PixelRect(Screen::getSize().x - 250, 600, 200, 60), "Lock"));
+	addComponent(lockButton = new LockButton(this, PixelRect(Screen::getSize().x - 250, 600, 200, 60), lockButtonText));
 
 	addComponent(miniMap = new LobbyMiniMap(this, PixelRect(Screen::getSize().x - 250, 100, 200, 140)));
 

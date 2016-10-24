@@ -23,6 +23,7 @@
 #include <team/Team.hpp>
 
 ServerLobbyMenu::ServerLobbyMenu()
+	: LobbyMenu("next Phase")
 {
 	addComponent(mapSelectEditField = new EditField(this, PixelRect(Screen::getSize().x-240, 250, 50, 20), "default"));
 

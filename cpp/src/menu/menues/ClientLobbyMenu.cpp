@@ -21,7 +21,7 @@
 #include <team/Team.hpp>
 
 ClientLobbyMenu::ClientLobbyMenu(const std::string& ip)
-	: localPlayerID(-1)
+	: LobbyMenu("Lock"), localPlayerID(-1)
 {
 	serverIP = new sf::IpAddress(ip);
 	LoginPacket* p = new LoginPacket(Main::getName(), Main::getRank());
