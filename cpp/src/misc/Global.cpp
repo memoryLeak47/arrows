@@ -24,6 +24,10 @@ namespace global
 	float STANDART_ACCELERATION;
 	float BORDER_SIZE;
 	bool SKIP_LOBBY;
+	bool AUTO_LOBBY;
+	char AUTO_AVATAR;
+	std::string AUTO_ITEMS;
+	std::string AUTO_SKILLS;
 	std::string SKIP_LOBBY_MAP;
 	bool PACKET_SOUND;
 }
@@ -47,6 +51,10 @@ void global::init()
 	STANDART_ACCELERATION = 0.18f;
 	BORDER_SIZE = 0.001f;
 	SKIP_LOBBY = false;
+	AUTO_LOBBY = false;
+	AUTO_AVATAR = 0;
+	AUTO_SKILLS = std::string({0, 0, 0, 0});
+	AUTO_ITEMS = std::string({0, 0, 0});
 	SKIP_LOBBY_MAP = "default.png";
 	PACKET_SOUND = false;
 
@@ -128,6 +136,28 @@ void global::init()
 			else if (value == "false") SKIP_LOBBY = false;
 			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
 			Debug::note("setting skip_lobby to " + Converter::boolToString(SKIP_LOBBY));
+		}
+		else if (key == "auto_lobby")
+		{
+			if (value == "true") AUTO_LOBBY = true;
+			else if (value == "false") AUTO_LOBBY = false;
+			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
+			Debug::note("setting auto_lobby to " + Converter::boolToString(SKIP_LOBBY));
+		}
+		else if (key == "auto_avatar")
+		{
+			AUTO_AVATAR = value[0];
+			Debug::note("setting auto_avatar to " + value[0]);
+		}
+		else if (key == "auto_skills")
+		{
+			AUTO_SKILLS = value;
+			Debug::note("setting auto_skills to " + value);
+		}
+		else if (key == "auto_items")
+		{
+			AUTO_ITEMS = value;
+			Debug::note("setting auto_items to " + value);
 		}
 		else if (key == "skip_lobby.map")
 		{

@@ -29,6 +29,10 @@ namespace global
 	extern float STANDART_ACCELERATION;
 	extern float BORDER_SIZE; // BORDER_SIZE is the size added left, right, top and bot to objects on exit-event detection
 	extern bool SKIP_LOBBY;
+	extern bool AUTO_LOBBY;
+	extern char AUTO_AVATAR;
+	extern std::string AUTO_ITEMS;
+	extern std::string AUTO_SKILLS;
 	extern std::string SKIP_LOBBY_MAP;
 	extern bool PACKET_SOUND;
 }

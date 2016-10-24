@@ -5,6 +5,9 @@
 #include <core/Screen.hpp>
 #include <core/Main.hpp>
 #include <network/packets/LockPacket.hpp>
+#include <network/packets/AvatarPacket.hpp>
+#include <network/packets/SkillPacket.hpp>
+#include <network/packets/ItemPacket.hpp>
 #include <menu/components/Button.hpp>
 #include <menu/components/TeamListPanel.hpp>
 #include <menu/components/Label.hpp>
@@ -142,6 +145,28 @@ void LobbyMenu::nextPhase()
 		resetLobby();
 	}
 	unlockAll();
+
+	if (global::AUTO_LOBBY)
+	{
+		switch (phase)
+		{
+			case AVATAR_PHASE:
+			{
+				playerPropertySelected(new AvatarPacket(global::AUTO_AVATAR));
+				break;
+			}
+			case SKILL_PHASE:
+			{
+				playerPropertySelected(new SkillPacket(global::AUTO_SKILLS));
+				break;
+			}
+			case ITEM_PHASE:
+			{
+				playerPropertySelected(new ItemPacket(global::AUTO_ITEMS));
+				break;
+			}
+		}
+	}
 }
 
 void LobbyMenu::removePlayer(int id)
