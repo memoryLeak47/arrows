@@ -142,7 +142,7 @@ void global::init()
 			if (value == "true") AUTO_LOBBY = true;
 			else if (value == "false") AUTO_LOBBY = false;
 			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
-			Debug::note("setting auto_lobby to " + Converter::boolToString(SKIP_LOBBY));
+			Debug::note("setting auto_lobby to " + Converter::boolToString(AUTO_LOBBY));
 		}
 		else if (key == "auto_avatar")
 		{
