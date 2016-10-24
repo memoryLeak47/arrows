@@ -30,7 +30,7 @@ void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 		case GAME_UPDATE_PACKET_CID:
 		{
 			GameUpdatePacket* gamePacket = dynamic_cast<GameUpdatePacket*>(packet);
-			applyGameUpdate(gamePacket->getPlayers(), gamePacket->getMobs(), gamePacket->getIdlers());
+			applyGameUpdate(gamePacket->getPlayerStrings(), gamePacket->getMobs(), gamePacket->getIdlers());
 			break;
 		}
 		default:
@@ -59,18 +59,17 @@ GamePlayer* ClientGameInterface::getLocalPlayer() const
 	return players[localPlayerID];
 }
 
-void ClientGameInterface::applyGameUpdate(const std::vector<GamePlayer*>& players_arg, const std::vector<Mob*>& mobs_arg, const std::vector<Idler*>& idlers_arg)
+void ClientGameInterface::applyGameUpdate(const std::vector<std::string>& playerStrings_arg, const std::vector<Mob*>& mobs_arg, const std::vector<Idler*>& idlers_arg)
 {
 	// players
-	if (players.size() != players_arg.size())
+	if (players.size() != playerStrings_arg.size())
 	{
-		Debug::error("ClientGameInterface::applyGameUpdate(): localPlayerListSize=" + Converter::intToString(players.size()) + " receivedPlayerListSize=" + Converter::intToString(players_arg.size()));
+		Debug::error("ClientGameInterface::applyGameUpdate(): localPlayerListSize=" + Converter::intToString(players.size()) + " receivedPlayerListSize=" + Converter::intToString(playerStrings_arg.size()));
 	}
 
 	for (unsigned int i = 0; i < players.size(); i++)
 	{
-		players[i]->apply(players_arg[i]);
-		// delete players_arg[i]; TODO
+		players[i]->apply(playerStrings_arg[i]);
 	}
 
 	// mobs

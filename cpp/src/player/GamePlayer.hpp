@@ -37,10 +37,9 @@ class GamePlayer : public Mob
 		virtual void tick() override;
 	protected:
 		virtual void optSetSkillEnabled(int, bool); // called from Mob::applyActions(); updates skills
+		virtual void apply(const std::string&); // Wird nur in ClientGameInterface::applyGameUpdate benutzt
 	private:
 		void setActions(const Actions actions); // => Controller::setActions(actions); used in {C,G}GameInterface
-		void apply(GamePlayer*); // Wird nur in ClientGameInterface::applyGameUpdate benutzt
-		void setIP(sf::IpAddress*);
 
 		sf::IpAddress* ip;
 		std::string name;

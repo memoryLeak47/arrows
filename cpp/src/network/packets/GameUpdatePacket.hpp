@@ -15,17 +15,17 @@ class GameUpdatePacket : public Packet
 {
 	public:
 		GameUpdatePacket(const std::vector<GamePlayer*>&, const std::vector<Mob*>&, const std::vector<Idler*>&);
-		GameUpdatePacket(CompressBuffer*); // cuts players.size, players, mobs.size, mobs, idlers.size, idlers
+		GameUpdatePacket(CompressBuffer*); // cuts playerStrings.size, playerStrings, mobs.size, mobs, idlers.size, idlers
 		virtual ~GameUpdatePacket() {}
 
-		std::string getCompressString() const override; // puts players.size, players, mobs.size, mobs, idlers.size, idlers
+		std::string getCompressString() const override; // puts playerStrings.size, playerStrings, mobs.size, mobs, idlers.size, idlers
 		CompressID getCompressID() const override;
 
-		const std::vector<GamePlayer*>& getPlayers() const;
+		const std::vector<std::string>& getPlayerStrings() const;
 		const std::vector<Mob*>& getMobs() const;
 		const std::vector<Idler*>& getIdlers() const;
 	private:
-		std::vector<GamePlayer*> players;
+		std::vector<std::string> playerStrings;
 		std::vector<Mob*> mobs;
 		std::vector<Idler*> idlers;
 };

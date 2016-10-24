@@ -21,10 +21,7 @@
 GamePlayer::GamePlayer(CompressBuffer *b)
 	: Mob(b)
 {
-	for (unsigned int i = 0; i < skills.size(); i++)
-	{
-		skills[i]->setCharge(b->cutFloat());
-	}
+	Debug::error("GamePlayer::GamePlayer(): should never be called. Instead use the apply Function!");
 }
 
 GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
@@ -105,22 +102,34 @@ void GamePlayer::optSetSkillEnabled(int i, bool b)
 	}
 }
 
+void GamePlayer::apply(const std::string& s)
+{
+	CompressBuffer buffer(s);
+	if (getBody() != NULL)
+	{
+		delete body;
+	}
+	if ((body = dynamic_cast<Body*> (buffer.cutCompressable())) == NULL)
+	{
+		Debug::error("GamePlayer::apply(): Body-cast returns NULL");
+	}
+
+	if (getController() != NULL)
+	{
+		delete controller;
+	}
+	if ((controller = dynamic_cast<Controller*> (buffer.cutCompressable())) == NULL)
+	{
+		Debug::error("GamePlayer::apply(): Controller-cast returns NULL");
+	}
+
+	for (unsigned int i = 0; i < skills.size(); i++)
+	{
+		skills[i]->setCharge(buffer.cutFloat());
+	}
+}
+
 void GamePlayer::setActions(const Actions actions) // Setzt Actions auf das übergebene
 {
 	getController()->setActions(actions);
-}
-
-void GamePlayer::apply(GamePlayer* player)
-{
-	if (player == NULL)
-	{
-		Debug::error("GamePlayer::apply(NULL):");
-	}
-	if (player->getBody() == NULL)
-	{
-		Debug::error("GamePlayer::apply(): player->getBody() == NULL");
-	}
-
-	body->apply(player->getBody());
-	controller = player->getController();
 }

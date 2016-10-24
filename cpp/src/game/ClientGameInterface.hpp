@@ -23,7 +23,7 @@ class ClientGameInterface : public GameInterface
 	protected:
 		virtual GamePlayer* getLocalPlayer() const override;
 	private:
-		void applyGameUpdate(const std::vector<GamePlayer*>&, const std::vector<Mob*>&, const std::vector<Idler*>&);
+		void applyGameUpdate(const std::vector<std::string>&, const std::vector<Mob*>&, const std::vector<Idler*>&);
 
 		Actions serverActionsStatus;
 		sf::IpAddress* serverIP;

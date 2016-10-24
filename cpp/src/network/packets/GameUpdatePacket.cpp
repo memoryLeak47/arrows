@@ -6,15 +6,20 @@
 #include <misc/compress/CompressBuffer.hpp>
 
 GameUpdatePacket::GameUpdatePacket(const std::vector<GamePlayer*>& players_arg, const std::vector<Mob*>& mobs_arg, const std::vector<Idler*>& idlers_arg)
-	: players(players_arg), mobs(mobs_arg), idlers(idlers_arg)
-{}
+	: mobs(mobs_arg), idlers(idlers_arg)
+{
+	for (unsigned int i = 0; i < players_arg.size(); i++)
+	{
+		playerStrings.push_back(players_arg[i]->getCompressString());	
+	}
+}
 
 GameUpdatePacket::GameUpdatePacket(CompressBuffer* buffer)
 {
 	int size = buffer->cutInt();
 	for (int i = 0; i < size; i++)
 	{
-		players.push_back(dynamic_cast<GamePlayer*>(buffer->cutCompressable()));
+		playerStrings.push_back(buffer->cutString());
 	}
 
 	size = buffer->cutInt();
@@ -32,10 +37,10 @@ GameUpdatePacket::GameUpdatePacket(CompressBuffer* buffer)
 
 std::string GameUpdatePacket::getCompressString() const
 {
-	std::string s = compressInt(players.size());
-	for (unsigned int i = 0; i < players.size(); i++)
+	std::string s = compressInt(playerStrings.size());
+	for (unsigned int i = 0; i < playerStrings.size(); i++)
 	{
-		s += players[i]->compress();
+		s += compressString(playerStrings[i]);
 	}
 
 	s += compressInt(mobs.size());
@@ -58,9 +63,9 @@ CompressID GameUpdatePacket::getCompressID() const
 	return GAME_UPDATE_PACKET_CID;
 }
 
-const std::vector<GamePlayer*>& GameUpdatePacket::getPlayers() const
+const std::vector<std::string>& GameUpdatePacket::getPlayerStrings() const
 {
-	return players;
+	return playerStrings;
 }
 
 const std::vector<Mob*>& GameUpdatePacket::getMobs() const
