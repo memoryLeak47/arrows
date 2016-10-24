@@ -154,6 +154,28 @@ void ClientLobbyMenu::handleLobbyPlayersPacket(LobbyPlayersPacket* packet)
 		addPlayer(players[i]);
 	}
 
+	if (global::AUTO_LOBBY)
+	{
+		switch (getPhase())
+		{
+			case AVATAR_PHASE:
+			{
+				playerPropertySelected(new AvatarPacket(global::AUTO_AVATAR));
+				break;
+			}
+			case SKILL_PHASE:
+			{
+				playerPropertySelected(new SkillPacket(global::AUTO_SKILLS));
+				break;
+			}
+			case ITEM_PHASE:
+			{
+				playerPropertySelected(new ItemPacket(global::AUTO_ITEMS));
+				break;
+			}
+		}
+	}
+
 	updatePlayerIcons();
 }
 

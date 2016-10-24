@@ -23,6 +23,7 @@ class LobbyPlayer : public Compressable
 		LobbyPlayer(LoginPacket*, sf::IpAddress*);
 		LobbyPlayer(LoginPacket*);
 		LobbyPlayer(CompressBuffer*);
+
 		virtual ~LobbyPlayer();
 		sf::IpAddress* getIP() const;
 		LockPacket* getLockPacket() const;
