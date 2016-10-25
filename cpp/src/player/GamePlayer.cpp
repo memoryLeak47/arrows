@@ -28,7 +28,8 @@ GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
 	: Mob(body, new PlayerController()),
 	  name(player->getLoginPacket()->getName()),
 	  rank(player->getLoginPacket()->getRank()),
-	  avatar(LobbyAvatar::get(player->getAvatarPacket()->getAvatarID()))
+	  description(LobbyAvatar::get(player->getAvatarPacket()->getAvatarID())->getDescription()),
+	  iconTextureID(LobbyAvatar::get(player->getAvatarPacket()->getAvatarID())->getIconTextureID())
 {
 	if (player->getIP() == NULL)
 	{

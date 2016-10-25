@@ -19,6 +19,7 @@ class Item;
 #include <controller/Actions.hpp>
 #include <SFML/Network/IpAddress.hpp>
 #include <string>
+#include <graphics/TextureID.hpp>
 
 class GamePlayer : public Mob
 {
@@ -45,9 +46,12 @@ class GamePlayer : public Mob
 		std::string name;
 		int rank;
 		Team* team;
-		LobbyAvatar* avatar;
 		std::vector<Skill*> skills;
 		std::vector<Item*> items;
+
+		// lobby avatar data
+		std::string description;
+		TextureID iconTextureID;
 
 	friend class ServerGameInterface;
 	friend class ClientGameInterface;
