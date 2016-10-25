@@ -16,6 +16,11 @@ enum CollisionType
 	IGNORE
 };
 
+struct Sponge
+{
+	int priority;
+	float value;
+};
 
 class Body;
 class GameVector;
@@ -56,6 +61,9 @@ class Entity
 		virtual void optGravity();
 		virtual void optDrag();
 
+		virtual Sponge getSponge() const;
+		static float getSpongeBetween(Entity* e1, Entity* e2);
+
 		// collision
 		virtual float getCollisionPriority(Entity* e) { return 1; } // TODO = 0
 		virtual EntityType getEntityType() const = 0;
@@ -66,7 +74,7 @@ class Entity
 		// physics
 		virtual float getMass() const = 0;
 		virtual bool isStatic() const { return false; }
-		void reactToCollision(const float massshare, const GameVector& speed, const GameVector& collisionPoint);
+		void reactToCollision(const float massshare, const GameVector& speed, const GameVector& collisionPoint, float sponge);
 
 		// collisionPartner / WrapperPartners
 		virtual void addCollisionPartner(Entity*) = 0;

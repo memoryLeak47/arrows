@@ -118,10 +118,10 @@ CollisionType Entity::getCollisionType() const
 }
 
 // die Parameter beziehen sich auf die Entity mit der kollidiert wird, am collisionPoint
-void Entity::reactToCollision(const float massshare, const GameVector& speed, const GameVector& collisionPoint)
+void Entity::reactToCollision(const float massshare, const GameVector& speed, const GameVector& collisionPoint, float sponge)
 {
 	if (not isStatic())
-		body->reactToCollision(massshare, speed, collisionPoint);
+		body->reactToCollision(massshare, speed, collisionPoint, sponge);
 }
 
 void Entity::optGravity()
@@ -132,6 +132,20 @@ void Entity::optGravity()
 void Entity::optDrag()
 {
 	push(body->getSpeed() * -0.01f);
+}
+
+Sponge Entity::getSponge() const
+{
+	return Sponge{0, 0.f};
+}
+
+float Entity::getSpongeBetween(Entity* e1, Entity* e2)
+{
+	Sponge s1 = e1->getSponge();
+	Sponge s2 = e2->getSponge();
+	if (s1.priority > s2.priority)
+		return s1.value;
+	return s2.value;
 }
 
 bool Entity::areCollisionPartners(Entity* e1, Entity* e2)

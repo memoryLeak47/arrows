@@ -21,6 +21,11 @@ std::string TestKiste::getCompressString() const
 	return Idler::getCompressString();
 }
 
+Sponge TestKiste::getSponge() const
+{
+	return Sponge{1, 0.8f};
+}
+
 sf::Texture* TestKiste::getTexture() const
 {
 	return GraphicsManager::getTexture(TESTKISTE_GID);
@@ -33,5 +38,5 @@ std::string TestKiste::toString() const
 
 float TestKiste::getMass() const
 {
-	return 100.f;
+	return 10.f;
 }

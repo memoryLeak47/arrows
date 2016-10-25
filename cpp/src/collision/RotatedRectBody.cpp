@@ -154,7 +154,7 @@ GameVector RotatedRectBody::getSpeedAt(const GameVector& where) const // where i
 	return Body::getSpeedAt(where);
 }
 
-void RotatedRectBody::reactToCollision(const float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint)
+void RotatedRectBody::reactToCollision(const float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint, float sponge)
 {
 	Debug::warn("RotatedRectBody::reactToCollision(): TODO");
 }

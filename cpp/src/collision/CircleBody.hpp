@@ -45,7 +45,7 @@ class CircleBody : public Body
 		virtual std::string toString() const override;
 
 		virtual void setSpeedAt(const GameVector&, const GameVector& where) override; // where is a map-coordinate
-		virtual void reactToCollision(const float massshare, const GameVector& speed, const GameVector& collisionPoint) override;
+		virtual void reactToCollision(const float massshare, const GameVector& speed, const GameVector& collisionPoint, float sponge) override;
 	private:
 		virtual void apply(const Body*) override;
 

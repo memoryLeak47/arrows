@@ -19,6 +19,8 @@ class TestKiste : public Idler
 		CompressID getCompressID() const override;
 		std::string getCompressString() const override;
 
+		virtual Sponge getSponge() const override;
+
 		virtual sf::Texture* getTexture() const override;
 		virtual std::string toString() const override;
 		virtual float getMass() const override;
