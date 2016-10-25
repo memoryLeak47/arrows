@@ -154,7 +154,7 @@ GameVector RectBody::getSpeedAt(const GameVector& where) const // where is a map
 	return getSpeed();
 }
 
-void RectBody::reactToCollision(const float mass1, const float mass2, const GameVector& otherSpeed, const GameVector& collisionPoint)
+void RectBody::reactToCollision(const float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint)
 {
 	enum Pos { MIN, MID, MAX };
 
@@ -194,18 +194,9 @@ void RectBody::reactToCollision(const float mass1, const float mass2, const Game
 	}
 
 	// react
-
-	const float massshare = mass1 / (mass1 + mass2);
-
 	GameVector v_sum(speed*massshare + otherSpeed*(1-massshare));
-	GameVector sponge_sum(0.f, 0.f);
-	if (mass2 != INFINITY)
-	{
-		sponge_sum = GameVector(v_sum + (otherSpeed - speed)/2 * (1-massshare));
-	}
-
-	float sponge = 2.f;
-
+	GameVector sponge_sum = GameVector(v_sum + (otherSpeed - speed)/2 * (1-massshare));
+	float sponge = 0.f;
 	GameVector speedSum = v_sum * (1.f - sponge) + sponge_sum * sponge;
 
 	if ((x == MID) && (y == MID)) // Wenn der CollisionPoint in der Mitte der Entity liegt

@@ -31,9 +31,8 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2, const GameVector& col
 		}
 	}
 	GameVector v1 = e1->getBody()->getSpeedAt(collisionPoint);
-
-	e1->reactToCollision(e1->getMass(), e2->getMass(), e2->getBody()->getSpeedAt(collisionPoint), collisionPoint);
-	e2->reactToCollision(e2->getMass(), e1->getMass(), v1, collisionPoint);
+	e1->reactToCollision(ms1, e2->getBody()->getSpeedAt(collisionPoint), collisionPoint);
+	e2->reactToCollision(1.f - ms1, v1, collisionPoint);
 
 	Debug::funcOff("PhysicsHandler::handlePhysics(" + e1->toString() + ", " + e2->toString() + ")");
 }
