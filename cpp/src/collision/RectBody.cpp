@@ -195,7 +195,7 @@ void RectBody::reactToCollision(const float massshare, const GameVector& otherSp
 
 	// react
 	GameVector v_sum(speed*massshare + otherSpeed*(1-massshare));
-	GameVector sponge_sum = GameVector(v_sum + (otherSpeed - speed)/2 * (1-massshare));
+	GameVector sponge_sum = GameVector(v_sum + (otherSpeed - speed) * (1-massshare));
 	GameVector speedSum = v_sum * (1.f - sponge) + sponge_sum * sponge;
 
 	if ((x == MID) && (y == MID)) // Wenn der CollisionPoint in der Mitte der Entity liegt
