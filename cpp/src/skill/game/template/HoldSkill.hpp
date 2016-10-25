@@ -6,7 +6,7 @@
 class HoldSkill : public Skill
 {
 	public:
-		HoldSkill(Mob*);
+		HoldSkill(Mob*, const LobbySkill*);
 		virtual void tick() override;
 	protected:
 		virtual float getReduction();

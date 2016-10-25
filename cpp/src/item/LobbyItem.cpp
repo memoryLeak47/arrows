@@ -67,8 +67,8 @@ Item* LobbyItem::createGameItem() const
 {
 	switch (getID())
 	{
-		#define X(iid, lobbyname, gamename) case iid: return new gamename();
-		#define Y(iid, lobbyname, gamename) case iid: return new gamename();
+		#define X(iid, lobbyname, gamename) case iid: return new gamename(this);
+		#define Y(iid, lobbyname, gamename) case iid: return new gamename(this);
 		#include "ItemID.list"
 		#undef X
 		#undef Y

@@ -5,7 +5,8 @@
 
 class HealthRing : public Item
 {
-
+	public:
+		HealthRing(const LobbyItem*);
 };
 
 #endif

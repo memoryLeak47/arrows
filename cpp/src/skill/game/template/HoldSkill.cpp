@@ -1,7 +1,7 @@
 #include "HoldSkill.hpp"
 
-HoldSkill::HoldSkill(Mob* owner_arg)
-	: Skill(owner_arg)
+HoldSkill::HoldSkill(Mob* owner_arg, const LobbySkill* lobbySkill)
+	: Skill(owner_arg, lobbySkill)
 {}
 
 void HoldSkill::tick()

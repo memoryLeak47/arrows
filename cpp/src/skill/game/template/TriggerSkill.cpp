@@ -1,7 +1,7 @@
 #include "TriggerSkill.hpp"
 
-TriggerSkill::TriggerSkill(Mob* owner_arg)
-	: Skill(owner_arg)
+TriggerSkill::TriggerSkill(Mob* owner_arg, const LobbySkill* lobbySkill)
+	: Skill(owner_arg, lobbySkill)
 {}
 
 void TriggerSkill::onEnabled()

@@ -60,8 +60,8 @@ Skill* LobbySkill::createGameSkill(Mob* owner) const
 {
 	switch (getID())
 	{
-		#define X(sid, lobbyname, gamename) case sid: return new gamename(owner);
-		#define Y(sid, lobbyname, gamename) case sid: return new gamename(owner);
+		#define X(sid, lobbyname, gamename) case sid: return new gamename(owner, this);
+		#define Y(sid, lobbyname, gamename) case sid: return new gamename(owner, this);
 		#include "SkillID.list"
 		#undef X
 		#undef Y

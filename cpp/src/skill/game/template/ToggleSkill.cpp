@@ -1,7 +1,7 @@
 #include "ToggleSkill.hpp"
 
-ToggleSkill::ToggleSkill(Mob* owner_arg)
-	: Skill(owner_arg), toggled(false)
+ToggleSkill::ToggleSkill(Mob* owner_arg, const LobbySkill* lobbySkill)
+	: Skill(owner_arg, lobbySkill), toggled(false)
 {}
 
 void ToggleSkill::tick()

@@ -2,8 +2,8 @@
 
 #include <misc/Debug.hpp>
 
-ArrowShotSkill::ArrowShotSkill(Mob* owner_arg)
-	: TriggerSkill(owner_arg)
+ArrowShotSkill::ArrowShotSkill(Mob* owner_arg, const LobbySkill* lobbySkill)
+	: TriggerSkill(owner_arg, lobbySkill)
 {}
 
 void ArrowShotSkill::onTrigger()

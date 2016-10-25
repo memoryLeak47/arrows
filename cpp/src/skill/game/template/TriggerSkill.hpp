@@ -8,7 +8,7 @@ class Mob;
 class TriggerSkill : public Skill
 {
 	public:
-		TriggerSkill(Mob*);
+		TriggerSkill(Mob*, const LobbySkill*);
 		virtual void onEnabled() override;
 		virtual void tick() override;
 	protected:
