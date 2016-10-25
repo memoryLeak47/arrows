@@ -33,5 +33,5 @@ std::string TestKiste::toString() const
 
 float TestKiste::getMass() const
 {
-	return 20.f;
+	return 100.f;
 }

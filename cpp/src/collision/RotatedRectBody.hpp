@@ -46,7 +46,7 @@ class RotatedRectBody : public Body
 
 		virtual void setSpeedAt(const GameVector&, const GameVector& where) override; // where is a map-coordinate
 		virtual GameVector getSpeedAt(const GameVector& where) const override; // where is a map-coordinate
-		virtual void reactToCollision(float massshare, const GameVector&, const GameVector& collisionPoint) override;
+		virtual void reactToCollision(const float mass1, const float mass2, const GameVector&, const GameVector& collisionPoint) override;
 	private:
 		virtual void apply(const Body*) override;
 

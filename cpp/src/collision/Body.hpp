@@ -62,7 +62,7 @@ class Body : public Compressable
 
 		virtual void setSpeedAt(const GameVector&, const GameVector& where) = 0; // where is a map-coordinate
 		virtual GameVector getSpeedAt(const GameVector& where) const; // where is a map-coordinate
-		virtual void reactToCollision(float massshare, const GameVector& speed, const GameVector& collisionPoint) = 0;
+		virtual void reactToCollision(const float mass1, const float mass2, const GameVector& speed, const GameVector& collisionPoint) = 0;
 	private:
 		virtual void apply(const Body*) = 0;
 

@@ -118,10 +118,10 @@ CollisionType Entity::getCollisionType() const
 }
 
 // die Parameter beziehen sich auf die Entity mit der kollidiert wird, am collisionPoint
-void Entity::reactToCollision(float massshare, const GameVector& speed, const GameVector& collisionPoint)
+void Entity::reactToCollision(const float mass1, const float mass2, const GameVector& speed, const GameVector& collisionPoint)
 {
 	if (not isStatic())
-		body->reactToCollision(massshare, speed, collisionPoint);
+		body->reactToCollision(mass1, mass2, speed, collisionPoint);
 }
 
 void Entity::optGravity()

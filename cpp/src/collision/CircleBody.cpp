@@ -149,7 +149,7 @@ void CircleBody::setSpeedAt(const GameVector&, const GameVector& where) // where
 	// TODO
 }
 
-void CircleBody::reactToCollision(float massshare, const GameVector& speed, const GameVector& collisionPoint)
+void CircleBody::reactToCollision(const float mass1, const float mass2, const GameVector& speed, const GameVector& collisionPoint)
 {
 	Debug::warn("CircleBody::reactToCollision(): TODO");
 }
