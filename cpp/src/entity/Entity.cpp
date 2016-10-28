@@ -144,8 +144,13 @@ float Entity::getSpongeBetween(Entity* e1, Entity* e2)
 	Sponge s1 = e1->getSponge();
 	Sponge s2 = e2->getSponge();
 	if (s1.priority > s2.priority)
+	{
 		return s1.value;
-	return s2.value;
+	}
+	else
+	{
+		return s2.value;
+	}
 }
 
 bool Entity::areCollisionPartners(Entity* e1, Entity* e2)

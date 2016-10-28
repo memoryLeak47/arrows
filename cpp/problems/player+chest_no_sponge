@@ -1,0 +1,9 @@
+# player+chest_no_sponge
+
+Wenn eine TestKiste oben auf einem Spieler landet, sieht es auch, als würde eine 0%-Sponge-physik stattfinden.
+
+bis zu getSpongeBetween returnt niemals den Sponge des Spielers, bei einer TestKiste/Player-collision
+
+Wenn ich in RectBody::reactToCollision: die Variable sponge auf 0.8f setze, funktioniert alles.
+
+Wenn ich in Entity::getSponge() den sponge.value auf 0.8f setze funktionert alles.

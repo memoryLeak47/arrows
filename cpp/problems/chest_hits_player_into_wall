@@ -1,0 +1,3 @@
+# chest_hits_player_at_wall
+
+If you stand at a wall, and the chest charges at you, pushing you at the wall, it doesn't have a spongy reaction.

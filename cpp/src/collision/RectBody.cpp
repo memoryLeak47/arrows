@@ -205,37 +205,37 @@ void RectBody::reactToCollision(const float massshare, const GameVector& otherSp
 		{
 			// Move Right
 			position.x += collisionPoint.x - getLeft();
-			speed.x = std::max(2*SPONGE + otherSpeed.x, speed.x);
+			speed.x = std::max(2*SPONGE + speedSum.x, speed.x);
 		}
 		else
 		{
 			// Move Left
 			position.x += collisionPoint.x - getRight();
-			speed.x = std::min(-2*SPONGE + otherSpeed.x, speed.x);
+			speed.x = std::min(-2*SPONGE + speedSum.x, speed.x);
 		}
 
 		if (collisionPoint.y < position.y)
 		{
 			// Move Down
 			position.y += collisionPoint.y - getTop();
-			speed.y = std::max(2*SPONGE + otherSpeed.y, speed.y);
+			speed.y = std::max(2*SPONGE + speedSum.y, speed.y);
 		}
 		else
 		{
 			// Move Up
 			position.y += collisionPoint.y - getBot();
-			speed.y = std::min(-2*SPONGE + otherSpeed.y, speed.y);
+			speed.y = std::min(-2*SPONGE + speedSum.y, speed.y);
 		}
 	}
 	else if (x == MID) // Wenn nur x in der Mitte liegt
 	{
-		if (y == MIN)
+		if (y == MIN) // top-collision
 		{
 			// Move Down
 			position.y += collisionPoint.y - getTop();
 			speed.y = std::max(SPONGE + speedSum.y, speed.y);
 		}
-		else
+		else // bot-collision
 		{
 			// Move Up
 			position.y += collisionPoint.y - getBot();
@@ -244,13 +244,13 @@ void RectBody::reactToCollision(const float massshare, const GameVector& otherSp
 	}
 	else if (y == MID)
 	{
-		if (x == MIN)
+		if (x == MIN) // left-collision
 		{
 			// Move Right
 			position.x += collisionPoint.x - getLeft();
 			speed.x = std::max(SPONGE + speedSum.x, speed.x);
 		}
-		else
+		else // right-collision
 		{
 			// Move Left
 			position.x += collisionPoint.x - getRight();
