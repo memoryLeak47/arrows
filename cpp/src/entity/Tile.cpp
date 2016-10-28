@@ -4,12 +4,14 @@
 #include <collision/RectBody.hpp>
 #include <team/Team.hpp>
 #include "tiles/NormalTile.hpp"
+#include "tiles/RubberTile.hpp"
 #include "tiles/VoidTile.hpp"
 #include "tiles/LavaTile.hpp"
 #include "tiles/SpawnTeamTile.hpp"
 #include <cmath>
 
 static int NORMAL_BLOCK_ID = Converter::colorStringToInt("000000");
+static int RUBBER_BLOCK_ID = Converter::colorStringToInt("005500");
 static int VOID_BLOCK_ID = Converter::colorStringToInt("ffffff");
 static int LAVA_BLOCK_ID = Converter::colorStringToInt("ffbb00");
 
@@ -88,6 +90,10 @@ Tile* Tile::createByColorID(const int id, const GameVector& position)
 	if (id == NORMAL_BLOCK_ID)
 	{
 		return new NormalTile(position);
+	}
+	else if (id == RUBBER_BLOCK_ID)
+	{
+		return new RubberTile(position);
 	}
 	else if (id == VOID_BLOCK_ID)
 	{
