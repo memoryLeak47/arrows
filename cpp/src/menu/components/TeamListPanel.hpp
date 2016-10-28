@@ -13,6 +13,7 @@ class TeamListPanel : public Panel
 	public:
 		TeamListPanel(LobbyMenu*, const PixelRect&);
 		void update();
+		virtual void clearComponents() override;
 		LobbyMenu* getLobbyMenu() const;
 		void disableTeamButtons();
 	private:

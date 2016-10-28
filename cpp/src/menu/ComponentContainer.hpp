@@ -19,7 +19,7 @@ class ComponentContainer
 		const std::vector<MenuComponent*>& getComponents() const;
 	protected:
 		void addComponent(MenuComponent*);
-		void clearComponents();
+		virtual void clearComponents();
 		MenuComponent* getHoveredComponent() const;
 	private:
 		std::vector<MenuComponent*> components;

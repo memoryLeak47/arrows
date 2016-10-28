@@ -33,6 +33,12 @@ void TeamListPanel::update()
 	}
 }
 
+void TeamListPanel::clearComponents()
+{
+	Panel::clearComponents();
+	teamPanels.clear();
+}
+
 LobbyMenu* TeamListPanel::getLobbyMenu() const
 {
 	return lobby;
