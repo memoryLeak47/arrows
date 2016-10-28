@@ -36,12 +36,8 @@ T* CompressBuffer::cutCompressable()
 	if (c == nullptr)
 	{
 		Debug::error("cutCompressable() failed");
-		return nullptr;
 	}
-	else
-	{
-		return c;
-	}
+	return c;
 }
 
 #endif

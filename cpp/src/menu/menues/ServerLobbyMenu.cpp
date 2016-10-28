@@ -31,11 +31,13 @@ ServerLobbyMenu::ServerLobbyMenu()
 	class MapSelectButton : public Button
 	{
 		public:
-			MapSelectButton(ServerLobbyMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
+			MapSelectButton(ServerLobbyMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s), menu(c) {}
 			virtual void onPress() override
 			{
-				dynamic_cast<ServerLobbyMenu*>(getParent())->mapSelected();
+				menu->mapSelected();
 			}
+		private:
+			ServerLobbyMenu* menu;
 	};
 	addComponent(mapSelectButton = new MapSelectButton(this, PixelRect(Screen::getSize().x-180, 250, 50, 20), "Ok"));
 
@@ -286,16 +288,16 @@ void ServerLobbyMenu::playerPropertySelected(PlayerPropertyPacket* packet)
 	switch (packet->getCompressID())
 	{
 		case AVATAR_PACKET_CID:
-			getLocalPlayer()->applyAvatarPacket(dynamic_cast<AvatarPacket*>(packet));
-			getUpdatedLocalPlayer()->applyAvatarPacket(dynamic_cast<AvatarPacket*>(packet));
+			getLocalPlayer()->applyAvatarPacket(packet->unwrap<AvatarPacket>());
+			getUpdatedLocalPlayer()->applyAvatarPacket(packet->unwrap<AvatarPacket>());
 			break;
 		case SKILL_PACKET_CID:
-			getLocalPlayer()->applySkillPacket(dynamic_cast<SkillPacket*>(packet));
-			getUpdatedLocalPlayer()->applySkillPacket(dynamic_cast<SkillPacket*>(packet));
+			getLocalPlayer()->applySkillPacket(packet->unwrap<SkillPacket>());
+			getUpdatedLocalPlayer()->applySkillPacket(packet->unwrap<SkillPacket>());
 			break;
 		case ITEM_PACKET_CID:
-			getLocalPlayer()->applyItemPacket(dynamic_cast<ItemPacket*>(packet));
-			getUpdatedLocalPlayer()->applyItemPacket(dynamic_cast<ItemPacket*>(packet));
+			getLocalPlayer()->applyItemPacket(packet->unwrap<ItemPacket>());
+			getUpdatedLocalPlayer()->applyItemPacket(packet->unwrap<ItemPacket>());
 			break;
 		default:
 			Debug::warn("ServerLobbyMenu::playerPropertySelected(): awkward packet");

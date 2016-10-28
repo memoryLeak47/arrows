@@ -29,7 +29,7 @@ void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 	{
 		case GAME_UPDATE_PACKET_CID:
 		{
-			GameUpdatePacket* gamePacket = dynamic_cast<GameUpdatePacket*>(packet);
+			GameUpdatePacket* gamePacket = packet->unwrap<GameUpdatePacket>();
 			applyGameUpdate(gamePacket->getPlayerStrings(), gamePacket->getMobs(), gamePacket->getIdlers());
 			break;
 		}

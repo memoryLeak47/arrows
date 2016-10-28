@@ -20,7 +20,7 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 	{
 		case ACTIONS_UPDATE_PACKET_CID:
 		{
-			ActionsUpdatePacket* actionsPacket = dynamic_cast<ActionsUpdatePacket*>(packet);
+			ActionsUpdatePacket* actionsPacket = packet->unwrap<ActionsUpdatePacket>();
 			int id = ipToID(ip);
 			players[id]->setActions(actionsPacket->getActions());
 			updateCounter = 0;

@@ -23,7 +23,7 @@ std::string TestKiste::getCompressString() const
 
 Sponge TestKiste::getSponge() const
 {
-	return Sponge{1, 0.8f};
+	return Sponge{1, 0.3f};
 }
 
 sf::Texture* TestKiste::getTexture() const

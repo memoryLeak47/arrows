@@ -259,13 +259,13 @@ void ClientLobbyMenu::playerPropertySelected(PlayerPropertyPacket* packet)
 	switch (packet->getCompressID())
 	{
 		case AVATAR_PACKET_CID:
-			getLocalPlayer()->applyAvatarPacket(dynamic_cast<AvatarPacket*>(packet));
+			getLocalPlayer()->applyAvatarPacket(packet->unwrap<AvatarPacket>());
 			break;
 		case SKILL_PACKET_CID:
-			getLocalPlayer()->applySkillPacket(dynamic_cast<SkillPacket*>(packet));
+			getLocalPlayer()->applySkillPacket(packet->unwrap<SkillPacket>());
 			break;
 		case ITEM_PACKET_CID:
-			getLocalPlayer()->applyItemPacket(dynamic_cast<ItemPacket*>(packet));
+			getLocalPlayer()->applyItemPacket(packet->unwrap<ItemPacket>());
 			break;
 		default:
 			Debug::warn("ClientLobbyMenu::playerPropertySelected(): awkward packet");

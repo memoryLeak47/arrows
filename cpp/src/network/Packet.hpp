@@ -7,6 +7,21 @@ class Packet : public Compressable
 {
 	public:
 		virtual ~Packet() {}
+
+		template <class T> T* unwrap();
 };
+
+#include <misc/Debug.hpp>
+
+template <class T>
+T* Packet::unwrap()
+{
+	T *t = dynamic_cast<T*>(this);
+	if (t == nullptr)
+	{
+		Debug::error("Packet::unwrap() failed");
+	}
+	return t;
+}
 
 #endif
