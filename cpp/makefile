@@ -1,6 +1,8 @@
 start: compile run
 run:
 	@./bam/build/debug/arrows | tee log
+valgrind:
+	@valgrind --leak-check=full --log-file=valgrind.log ./bam/build/debug/arrows | tee log
 getlog:
 	@if [ -f log ]; then cat log | less -R; else echo "no log file"; fi
 gdb:

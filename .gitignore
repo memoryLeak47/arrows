@@ -11,3 +11,4 @@
 /cpp/.global
 /cpp/bam/build
 /cpp/.bam/
+/cpp/valgrind.log
