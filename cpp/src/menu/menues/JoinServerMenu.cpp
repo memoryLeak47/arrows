@@ -18,11 +18,13 @@ JoinServerMenu::JoinServerMenu()
 	class JoinServerButton : public Button
 	{
 		public:
-			JoinServerButton(JoinServerMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
+			JoinServerButton(JoinServerMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s), menu(c) {}
 			virtual void onPress() override
 			{
-				((JoinServerMenu*) getParent())->joinServer();
+				menu->joinServer();
 			}
+		private:
+			JoinServerMenu* menu;
 	};
 	addComponent(new JoinServerButton(this, PixelRect(420, 200, 100, 20), "Join Server"));
 }

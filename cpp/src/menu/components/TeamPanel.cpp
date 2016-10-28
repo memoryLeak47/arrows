@@ -23,11 +23,13 @@ void TeamPanel::update(const std::vector<LobbyPlayer*>& players)
 	class TeamButton : public Button
 	{
 		public:
-			TeamButton(TeamPanel* c, const PixelRect& r, const std::string& h) : Button(c, r, h) {}
+			TeamButton(TeamPanel* c, const PixelRect& r, const std::string& h) : Button(c, r, h), panel(c) {}
 			virtual void onPress() override
 			{
-				((TeamPanel*) getParent())->getLobbyMenu()->teamPressed(((TeamPanel*) getParent())->getTeam()); // Übergabe an LobbyMenu, dass wir Team wechseln
+				panel->getLobbyMenu()->teamPressed(panel->getTeam()); // Übergabe an LobbyMenu, dass wir Team wechseln
 			}
+		private:
+			TeamPanel* panel;
 	};
 	addComponent(teamButton = new TeamButton(this, PixelRect(20, 20, 100, 30), "Team " + team->getName()));
 

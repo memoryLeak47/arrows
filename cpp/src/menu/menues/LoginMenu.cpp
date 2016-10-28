@@ -21,21 +21,25 @@ LoginMenu::LoginMenu() : Menu()
 	class LoginButton : public Button
 	{
 		public:
-			LoginButton(LoginMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
+			LoginButton(LoginMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s), menu(c) {}
 			virtual void onPress() override
 			{
-				((LoginMenu*)getParent())->login();
+				menu->login();
 			}
+		private:
+			LoginMenu* menu;
 	};
 
 	class SigninButton : public Button
 	{
 		public:
-			SigninButton(LoginMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
+			SigninButton(LoginMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s), menu(c) {}
 			virtual void onPress() override
 			{
-				((LoginMenu*)getParent())->signin();
+				menu->signin();
 			}
+		private:
+			LoginMenu* menu;
 	};
 
 	addComponent(new LoginButton(this, PixelRect(350, 260, 40, 20), "Log in"));

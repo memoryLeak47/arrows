@@ -26,11 +26,13 @@ LobbyMenu::LobbyMenu(std::string lockButtonText)
 	class LockButton : public Button
 	{
 		public:
-			LockButton(LobbyMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
+			LockButton(LobbyMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s), menu(c) {}
 			virtual void onPress() override
 			{
-				((LobbyMenu*)getParent())->lockPressed();
+				menu->lockPressed();
 			}
+		private:
+			LobbyMenu* menu;
 	};
 	addComponent(lockButton = new LockButton(this, PixelRect(Screen::getSize().x - 250, 600, 200, 60), lockButtonText));
 
@@ -39,11 +41,13 @@ LobbyMenu::LobbyMenu(std::string lockButtonText)
 	class DisconnectButton : public Button
 	{
 		public:
-			DisconnectButton(LobbyMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
+			DisconnectButton(LobbyMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s), menu(c) {}
 			virtual void onPress() override
 			{
-				((LobbyMenu*)getParent())->disconnectPressed();
+				menu->disconnectPressed();
 			}
+		private:
+			LobbyMenu* menu;
 	};
 	addComponent(new DisconnectButton(this, PixelRect(20, 500, 20, 20), "Disconnect"));
 	addComponent(teamListPanel = new TeamListPanel(this, PixelRect(100, 100, 600, 600)));

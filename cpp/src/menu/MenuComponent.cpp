@@ -28,7 +28,7 @@ void MenuComponent::setEnabled(bool b) { enabled = b; }
 
 MenuComponent* MenuComponent::getHoveredComponentRecursively() const
 {
-	return (MenuComponent*) this;
+	return const_cast<MenuComponent*>(this);
 }
 
 void MenuComponent::setRelativeRect(const PixelRect& r)

@@ -82,16 +82,23 @@ void NetworkDevice::receive()
 		if (TAG_NETWORK) Debug::note("received packet with string: " + Converter::charsToString(string));
 	}
 
-	Packet* packet = (Packet*) Compressable::decompress(string);
+	Packet* packet = (Packet*) Compressable::decompress(string); // XXX choose different cast
+
+	if (packet == nullptr)
+	{
+		delete packet;
+		Debug::error("NetworkDevice::receive(): decompression or conversion to Packet* failed");
+		return;
+	}
 
 	if (interfaceStack.empty())
 	{
+		delete packet;
 		Debug::warn("NetworkDevice::receive(): interfaceStack is empty");
+		return;
 	}
-	else
-	{
-		getNetworkInterface()->receivePacket(packet, &ip);
-	}
+
+	getNetworkInterface()->receivePacket(packet, &ip);
 }
 
 NetworkInterface* NetworkDevice::getNetworkInterface() const
