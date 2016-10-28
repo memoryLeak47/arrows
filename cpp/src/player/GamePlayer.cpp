@@ -110,7 +110,7 @@ void GamePlayer::apply(const std::string& s)
 	{
 		delete body;
 	}
-	if ((body = dynamic_cast<Body*> (buffer.cutCompressable())) == NULL)
+	if ((body = buffer.cutCompressable<Body>()) == NULL)
 	{
 		Debug::error("GamePlayer::apply(): Body-cast returns NULL");
 	}
@@ -119,7 +119,7 @@ void GamePlayer::apply(const std::string& s)
 	{
 		delete controller;
 	}
-	if ((controller = dynamic_cast<Controller*> (buffer.cutCompressable())) == NULL)
+	if ((controller = buffer.cutCompressable<Controller>()) == NULL)
 	{
 		Debug::error("GamePlayer::apply(): Controller-cast returns NULL");
 	}

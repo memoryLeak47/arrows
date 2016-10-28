@@ -83,6 +83,7 @@ ChoosePlayerPropertyMenu::~ChoosePlayerPropertyMenu()
 
 void ChoosePlayerPropertyMenu::tick()
 {
+	Menu::tick();
 	lobby->tick(); // so that lobby networking doesn't stop
 }
 

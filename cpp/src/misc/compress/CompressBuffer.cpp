@@ -23,6 +23,8 @@
 #include <avatar/game/Archer.hpp>
 #include <avatar/game/Rogue.hpp>
 
+#include <collision/Body.hpp>
+
 #include <player/LobbyPlayer.hpp>
 
 CompressBuffer::CompressBuffer(const std::string& s)
@@ -99,11 +101,6 @@ Compressable* CompressBuffer::cutByCompressID(CompressID cid)
 			Debug::warn("no Compressable with CompressID=" + Converter::intToString((int)cid));
 			return NULL;
 	}
-}
-
-Compressable* CompressBuffer::cutCompressable()
-{
-	return cutByCompressID((CompressID) cutChar());
 }
 
 std::vector<void*> CompressBuffer::cutVectorByCompressID(CompressID cid)

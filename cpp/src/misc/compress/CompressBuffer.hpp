@@ -19,12 +19,29 @@ class CompressBuffer
 		bool cutBool();
 		std::vector<std::vector<int>> cutMap();
 		Compressable* cutByCompressID(CompressID);
-		Compressable* cutCompressable();
+		template <class T = Compressable> T* cutCompressable();
 		std::vector<void*> cutVectorByCompressID(CompressID);
 		std::string cut(int amount); // removes <amount> chars from <chars> and returns the removed part
 	private:
 		int counter;
 		std::string string;
 };
+
+#include <misc/Debug.hpp>
+
+template <class T = Compressable>
+T* CompressBuffer::cutCompressable()
+{
+	T* c = dynamic_cast<T*>(cutByCompressID((CompressID) cutChar()));
+	if (c == nullptr)
+	{
+		Debug::error("cutCompressable() failed");
+		return nullptr;
+	}
+	else
+	{
+		return c;
+	}
+}
 
 #endif
