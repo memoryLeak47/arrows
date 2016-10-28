@@ -19,7 +19,7 @@ class CompressBuffer
 		bool cutBool();
 		std::vector<std::vector<int>> cutMap();
 		Compressable* cutByCompressID(CompressID);
-		template <class T = Compressable> T* cutCompressable();
+		template <class T> T* cutCompressable();
 		std::vector<void*> cutVectorByCompressID(CompressID);
 		std::string cut(int amount); // removes <amount> chars from <chars> and returns the removed part
 	private:
@@ -29,7 +29,7 @@ class CompressBuffer
 
 #include <misc/Debug.hpp>
 
-template <class T = Compressable>
+template <class T>
 T* CompressBuffer::cutCompressable()
 {
 	T* c = dynamic_cast<T*>(cutByCompressID((CompressID) cutChar()));
