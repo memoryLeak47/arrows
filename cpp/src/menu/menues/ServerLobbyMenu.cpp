@@ -76,35 +76,35 @@ void ServerLobbyMenu::handlePacket(Packet* packet, sf::IpAddress* ip)
 {
 	if (packet->getCompressID() == LOCK_PACKET_CID)
 	{
-		handleLockPacket((LockPacket*) packet, ipToID(ip, getPlayers()));
+		handleLockPacket(packet->unwrap<LockPacket>(), ipToID(ip, getPlayers()));
 	}
 	else if (packet->getCompressID() == DISCONNECT_PACKET_CID)
 	{
-		handleDisconnectPacket((DisconnectPacket*) packet, ipToID(ip, getPlayers()));
+		handleDisconnectPacket(packet->unwrap<DisconnectPacket>(), ipToID(ip, getPlayers()));
 	}
 	else if (packet->getCompressID() == TEAM_PACKET_CID && getPhase() == TEAM_PHASE)
 	{
-		handleTeamPacket((TeamPacket*) packet, ipToID(ip, getPlayers()));
+		handleTeamPacket(packet->unwrap<TeamPacket>(), ipToID(ip, getPlayers()));
 	}
 	else if (packet->getCompressID() == LOGIN_PACKET_CID && getPhase() == TEAM_PHASE)
 	{
-		handleLoginPacket((LoginPacket*) packet, ip);
+		handleLoginPacket(packet->unwrap<LoginPacket>(), ip);
 	}
 	else if (packet->getCompressID() == AVATAR_PACKET_CID && getPhase() == AVATAR_PHASE)
 	{
-		handleAvatarPacket((AvatarPacket*) packet, ipToID(ip, getPlayers()));
+		handleAvatarPacket(packet->unwrap<AvatarPacket>(), ipToID(ip, getPlayers()));
 	}
 	else if (packet->getCompressID() == SKILL_PACKET_CID && getPhase() == SKILL_PHASE)
 	{
-		handleSkillPacket((SkillPacket*) packet, ipToID(ip, getPlayers()));
+		handleSkillPacket(packet->unwrap<SkillPacket>(), ipToID(ip, getPlayers()));
 	}
 	else if (packet->getCompressID() == ITEM_PACKET_CID && getPhase() == ITEM_PHASE)
 	{
-		handleItemPacket((ItemPacket*) packet, ipToID(ip, getPlayers()));
+		handleItemPacket(packet->unwrap<ItemPacket>(), ipToID(ip, getPlayers()));
 	}
 	else
 	{
-		Debug::warn("ServerLobbyMenu::handlePacket(): awkward packet(" + Converter::intToString((int)packet->getCompressID()) + ") in awkward phase(" + Converter::intToString(getPhase()) + ")");
+		Debug::warn("ServerLobbyMenu::handlePacket(): awkward packet(" + Converter::intToString((int) packet->getCompressID()) + ") in awkward phase(" + Converter::intToString(getPhase()) + ")");
 	}
 	deleteAndNULL(packet);
 }

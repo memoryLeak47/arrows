@@ -58,47 +58,48 @@ void ClientLobbyMenu::handlePacketByID(Packet* packet, int id)
 {
 	if (packet->getCompressID() == PACKET_WITH_ID_CID)
 	{
-		handlePacketByID(((PacketWithID*) packet)->getPacket(), ((PacketWithID*) packet)->getID());
+		PacketWithID* packetWithID = packet->unwrap<PacketWithID>();
+		handlePacketByID(packetWithID->getPacket(), packetWithID->getID());
 	}
 	else if (packet->getCompressID() == LOCK_PACKET_CID)
 	{
-		handleLockPacket((LockPacket*) packet, id);
+		handleLockPacket(packet->unwrap<LockPacket>(), id);
 	}
 	else if (packet->getCompressID() == DISCONNECT_PACKET_CID)
 	{
-		handleDisconnectPacket((DisconnectPacket*) packet, id);
+		handleDisconnectPacket(packet->unwrap<DisconnectPacket>(), id);
 	}
 	else if (packet->getCompressID() == TEAM_PACKET_CID && getPhase() == TEAM_PHASE)
 	{
-		handleTeamPacket((TeamPacket*) packet, id);
+		handleTeamPacket(packet->unwrap<TeamPacket>(), id);
 	}
 	else if (packet->getCompressID() == LOGIN_PACKET_CID && getPhase() == TEAM_PHASE)
 	{
-		handleLoginPacket((LoginPacket*) packet);
+		handleLoginPacket(packet->unwrap<LoginPacket>());
 	}
 	else if (packet->getCompressID() == AVATAR_PACKET_CID && getPhase() == AVATAR_PHASE)
 	{
-		handleAvatarPacket((AvatarPacket*) packet, id);
+		handleAvatarPacket(packet->unwrap<AvatarPacket>(), id);
 	}
 	else if (packet->getCompressID() == SKILL_PACKET_CID && getPhase() == SKILL_PHASE)
 	{
-		handleSkillPacket((SkillPacket*) packet, id);
+		handleSkillPacket(packet->unwrap<SkillPacket>(), id);
 	}
 	else if (packet->getCompressID() == ITEM_PACKET_CID && getPhase() == ITEM_PHASE)
 	{
-		handleItemPacket((ItemPacket*) packet, id);
+		handleItemPacket(packet->unwrap<ItemPacket>(), id);
 	}
 	else if (packet->getCompressID() == MAP_PACKET_CID && getPhase() == TEAM_PHASE)
 	{
-		handleMapPacket((MapPacket*) packet);
+		handleMapPacket(packet->unwrap<MapPacket>());
 	}
 	else if (packet->getCompressID() == LOBBY_PLAYERS_PACKET_CID)
 	{
-		handleLobbyPlayersPacket((LobbyPlayersPacket*) packet);
+		handleLobbyPlayersPacket(packet->unwrap<LobbyPlayersPacket>());
 	}
 	else
 	{
-		Debug::warn("ClientLobbyMenu::handlePacketByID(): awkward packet(" + Converter::intToString((int)packet->getCompressID()) + ") in awkward phase(" + Converter::intToString(getPhase()) + ")");
+		Debug::warn("ClientLobbyMenu::handlePacketByID(): awkward packet(" + Converter::intToString((int) packet->getCompressID()) + ") in awkward phase(" + Converter::intToString(getPhase()) + ")");
 	}
 	deleteAndNULL(packet);
 }
