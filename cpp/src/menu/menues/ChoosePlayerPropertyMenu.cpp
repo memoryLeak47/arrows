@@ -23,21 +23,25 @@ class SlotIcon : public PlayerPropertyIcon
 class ChooseIcon : public PlayerPropertyIcon
 {
 	public:
-		ChooseIcon(ChoosePlayerPropertyMenu* c, const PixelRect& r, PlayerProperty* p) : PlayerPropertyIcon(c, r, p) {}
+		ChooseIcon(ChoosePlayerPropertyMenu* c, const PixelRect& r, PlayerProperty* p) : PlayerPropertyIcon(c, r, p), menu(c) {}
 		virtual void onClick(int mouseButton) override
 		{
-			dynamic_cast<ChoosePlayerPropertyMenu*>(getParent())->chooseIconPressed(getPlayerProperty());
+			menu->chooseIconPressed(getPlayerProperty());
 		}
+	private:
+		ChoosePlayerPropertyMenu* menu;
 };
 
 class OkButton : public Button
 {
 	public:
-		OkButton(ChoosePlayerPropertyMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s) {}
+		OkButton(ChoosePlayerPropertyMenu* c, const PixelRect& r, const std::string& s) : Button(c, r, s), menu(c) {}
 		virtual void onPress() override
 		{
-			dynamic_cast<ChoosePlayerPropertyMenu*>(getParent())->okPressed();
+			menu->okPressed();
 		}
+	private:
+		ChoosePlayerPropertyMenu* menu;
 	
 };
 
@@ -77,6 +81,11 @@ ChoosePlayerPropertyMenu::~ChoosePlayerPropertyMenu()
 	deleteAndNULL(slotPacket);
 }
 
+void ChoosePlayerPropertyMenu::tick()
+{
+	lobby->tick(); // so that lobby networking doesn't stop
+}
+
 PlayerPropertyIcon* ChoosePlayerPropertyMenu::getFirstVoidSlotIcon() const
 {
 	for (unsigned int i = 0; i < slotIcons.size(); i++)
@@ -90,7 +99,7 @@ PlayerPropertyIcon* ChoosePlayerPropertyMenu::getFirstVoidSlotIcon() const
 	return NULL;
 }
 
-std::vector<PlayerPropertyIcon*> ChoosePlayerPropertyMenu::getSlotIcons() const
+const std::vector<PlayerPropertyIcon*>& ChoosePlayerPropertyMenu::getSlotIcons() const
 {
 	return slotIcons;
 }
