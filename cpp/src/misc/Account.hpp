@@ -1,10 +1,10 @@
 #ifndef __ACCOUNT_CLASS__
 #define __ACCOUNT_CLASS__
 
-#define ACCOUNTS_FILENAME ".accounts"
-
 #include <string>
 #include <vector>
+
+const std::string ACCOUNTS_FILENAME = ".accounts";
 
 class Account
 {

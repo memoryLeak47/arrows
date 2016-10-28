@@ -1,7 +1,7 @@
 #ifndef __NETWORKDEVICE_CLASS__
 #define __NETWORKDEVICE_CLASS__
 
-#define PORT 4242
+constexpr int PORT = 4242;
 
 class Packet;
 class NetworkInterface;

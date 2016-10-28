@@ -1,12 +1,7 @@
 #ifndef __LOBBYMENU_CLASS__
 #define __LOBBYMENU_CLASS__
 
-#define TEAM_PHASE 0
-#define AVATAR_PHASE 1
-#define SKILL_PHASE 2
-#define ITEM_PHASE 3
-#define PREGAME_PHASE 4
-#define GAME_PHASE 5
+enum LobbyPhase { TEAM_PHASE, AVATAR_PHASE, SKILL_PHASE, ITEM_PHASE, PREGAME_PHASE, GAME_PHASE };
 
 class LobbyPlayer;
 class Team;

@@ -1,9 +1,9 @@
 #ifndef __PLAYERPANEL_CLASS__
 #define __PLAYERPANEL_CLASS__
 
-#define SKILL_ICON_SIZE 15
-#define ITEM_ICON_SIZE 15
-#define AVATAR_ICON_SIZE 45
+constexpr int SKILL_ICON_SIZE = 15;
+constexpr int ITEM_ICON_SIZE = 15;
+constexpr int AVATAR_ICON_SIZE = 45;
 
 class LobbyPlayer;
 class LobbyMenu;
