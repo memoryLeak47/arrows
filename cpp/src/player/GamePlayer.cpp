@@ -43,12 +43,28 @@ GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
 	team = player->getTeamPacket()->getTeam();
 	for (unsigned int i = 0; i < player->getSkillPacket()->getPlayerProperties().size(); i++)
 	{
-		skills.push_back(dynamic_cast<LobbySkill*>(player->getSkillPacket()->getPlayerProperties()[i])->createGameSkill(this));
+		LobbySkill* lobbySkill = dynamic_cast<LobbySkill*>(player->getSkillPacket()->getPlayerProperties()[i]);
+		if (lobbySkill == nullptr)
+		{
+			Debug::error("GamePlayer::GamePlayer(): cast to LobbySkill failed");
+		}
+		else
+		{
+			skills.push_back(lobbySkill->createGameSkill(this));
+		}
 	}
 
 	for (unsigned int i = 0; i < player->getItemPacket()->getPlayerProperties().size(); i++)
 	{
-		items.push_back(dynamic_cast<LobbyItem*>(player->getItemPacket()->getPlayerProperties()[i])->createGameItem());
+		LobbyItem* lobbyItem = dynamic_cast<LobbyItem*>(player->getItemPacket()->getPlayerProperties()[i]);
+		if (lobbyItem == nullptr)
+		{
+			Debug::error("GamePlayer::GamePlayer(): cast to LobbyItem failed");
+		}
+		else
+		{
+			items.push_back(lobbyItem->createGameItem());
+		}
 	}
 }
 

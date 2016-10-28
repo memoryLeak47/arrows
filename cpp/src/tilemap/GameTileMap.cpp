@@ -41,7 +41,15 @@ void GameTileMap::loadFromLobbyTileMap(LobbyTileMap* lobbyMap)
 			tiles.back().push_back(tile);
 			if (tile->isSpawnTeamTile())
 			{
-				spawnPositions[dynamic_cast<SpawnTeamTile*>(tile)->getTeam()->getID()] = GameVector(x + 0.5f , y + 0.5f);
+				SpawnTeamTile* spawnTeamTile = dynamic_cast<SpawnTeamTile*>(tile);
+				if (tile == nullptr)
+				{
+					Debug::error("GameTileMap::loadFromLobbyTileMap(): SpawnTeamTile cast failed");
+				}
+				else
+				{
+					spawnPositions[spawnTeamTile->getTeam()->getID()] = GameVector(x + 0.5f , y + 0.5f);
+				}
 			}
 		}
 	}
