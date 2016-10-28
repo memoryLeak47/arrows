@@ -3,8 +3,10 @@
 
 class LobbyMenu;
 class PixelRect;
+class TeamPanel;
 
 #include "Panel.hpp"
+#include <vector>
 
 class TeamListPanel : public Panel
 {
@@ -14,6 +16,7 @@ class TeamListPanel : public Panel
 		LobbyMenu* getLobbyMenu() const;
 		void disableTeamButtons();
 	private:
+		std::vector<TeamPanel*> teamPanels;
 		LobbyMenu* lobby;
 };
 

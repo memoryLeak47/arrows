@@ -18,14 +18,18 @@ void TeamListPanel::update()
 	{
 		if (i == 0)
 		{
-			addComponent(new TeamPanel(getLobbyMenu(), this, PixelRect(20, 20+100*i, 140, 60), Team::get(i)));
+			TeamPanel* panel = new TeamPanel(getLobbyMenu(), this, PixelRect(20, 20+100*i, 140, 60), Team::get(i));
+			addComponent(panel);
+			teamPanels.push_back(panel);
 		}
 		else
 		{
-			addComponent(new TeamPanel(getLobbyMenu(), this, PixelRect(20, getComponents()[i-1]->getRelativeRect().getBot() + 20, 140, 60), Team::get(i)));
+			TeamPanel* panel = new TeamPanel(getLobbyMenu(), this, PixelRect(20, teamPanels[i-1]->getRelativeRect().getBot() + 20, 140, 60), Team::get(i));
+			addComponent(panel);
+			teamPanels.push_back(panel);
 		}
-		((TeamPanel*) getComponents()[i])->update(getLobbyMenu()->getPlayers()); // updaten
-		((Panel*) getComponents()[i])->calcSize();
+		teamPanels[i]->update(getLobbyMenu()->getPlayers()); // updaten
+		teamPanels[i]->calcSize();
 	}
 }
 
@@ -36,8 +40,8 @@ LobbyMenu* TeamListPanel::getLobbyMenu() const
 
 void TeamListPanel::disableTeamButtons()
 {
-	for (unsigned int i = 0; i < getComponents().size(); i++)
+	for (unsigned int i = 0; i < teamPanels.size(); i++)
 	{
-		dynamic_cast<TeamPanel*>(getComponents()[i])->disableTeamButton();
+		teamPanels[i]->disableTeamButton();
 	}
 }
