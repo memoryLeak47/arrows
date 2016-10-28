@@ -8,11 +8,11 @@
 #include "MenuComponent.hpp"
 
 Menu::Menu(const PixelRect& rect)
-	: focusedComponent(NULL), rect(rect)
+	: focusedComponent(nullptr), rect(rect)
 {}
 
 Menu::Menu()
-	: focusedComponent(NULL), rect(PixelRect(0, 0, Screen::getSize().x, Screen::getSize().y))
+	: focusedComponent(nullptr), rect(PixelRect(0, 0, Screen::getSize().x, Screen::getSize().y))
 {}
 
 bool Menu::isFullscreen() { return getRelativeRect() == PixelRect(0, 0, Screen::getSize().x, Screen::getSize().y); }
@@ -22,7 +22,7 @@ void Menu::onEvent(const sf::Event& event)
 	if (event.type == sf::Event::MouseMoved) // wenn sich die maus bewegt hat
 	{
 		MenuComponent* hovered = getHoveredComponent(); // Verhinderung einer null-pointer-exception
-		if (hovered != NULL) // und es eine gehoverte MenuComponent gibt
+		if (hovered != nullptr) // und es eine gehoverte MenuComponent gibt
 		{
 			int x = ((const sf::Event::MouseMoveEvent&) event).x;
 			int y = ((const sf::Event::MouseMoveEvent&) event).y;
@@ -36,7 +36,7 @@ void Menu::onEvent(const sf::Event& event)
 	else if (event.type ==  sf::Event::MouseButtonReleased) // wenn die maus losgelassen wurde
 	{
 		MenuComponent* hovered = getHoveredComponent();
-		if (hovered != NULL) // und es eine gehoverte MenuComponent gibt
+		if (hovered != nullptr) // und es eine gehoverte MenuComponent gibt
 		{
 			hovered->onClick(((const sf::Event::MouseButtonEvent&) event).button); // gebe das 
 		}
@@ -44,7 +44,7 @@ void Menu::onEvent(const sf::Event& event)
 	// IMPORTANT-NOTE: the game-intern key-events are handled by sf::Keyboard::isKeyPressed(sf::Keyboard::Key) !!!
 	else if (event.type == sf::Event::TextEntered) // wenn die tastatur gedrückt wurde
 	{
-		if (getFocusedComponent() != NULL) // und es eine fokusierte MenuComponent gibt 
+		if (getFocusedComponent() != nullptr) // und es eine fokusierte MenuComponent gibt 
 		{
 			if (event.text.unicode < 128)
 			{

@@ -31,7 +31,7 @@ PlayerPanel::PlayerPanel(LobbyPlayer* p, LobbyMenu* m, TeamPanel* c, const Pixel
 void PlayerPanel::render() const
 {
 	Panel::render();
-	if (getPlayer() != NULL && getPlayer()->getLockPacket()->isLocked())
+	if (getPlayer() != nullptr && getPlayer()->getLockPacket()->isLocked())
 	{
 		Screen::drawRect(PixelRect(getAbsoluteRect().getPosition().x-2, getAbsoluteRect().getPosition().y-2, getRelativeRect().getSize().x+4, getRelativeRect().getSize().y+4), sf::Color::Yellow);
 	}

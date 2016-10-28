@@ -34,8 +34,8 @@ void PlayerPanelsSkillIcon::onClick(int mouseButton)
 
 TextureID PlayerPanelsSkillIcon::getTextureID() const
 {
-	if ((getPlayer()->getSkillPacket() == NULL) ||
-	    (getPlayer()->getSkillPacket()->getPlayerProperties()[number] == NULL))
+	if ((getPlayer()->getSkillPacket() == nullptr) ||
+	    (getPlayer()->getSkillPacket()->getPlayerProperties()[number] == nullptr))
 	{
 		return VOID_ICON_GID;
 	}

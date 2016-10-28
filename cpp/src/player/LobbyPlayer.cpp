@@ -51,7 +51,7 @@ LobbyPlayer::LobbyPlayer(LoginPacket* login)
 
 LobbyPlayer::LobbyPlayer(CompressBuffer* buffer)
 {
-	ip = NULL;
+	ip = nullptr;
 	lockPacket = static_cast<LockPacket*>(buffer->cutByCompressID(LOCK_PACKET_CID));
 	teamPacket = static_cast<TeamPacket*>(buffer->cutByCompressID(TEAM_PACKET_CID));
 	loginPacket = static_cast<LoginPacket*>(buffer->cutByCompressID(LOGIN_PACKET_CID));
@@ -62,13 +62,13 @@ LobbyPlayer::LobbyPlayer(CompressBuffer* buffer)
 
 LobbyPlayer::~LobbyPlayer()
 {
-	deleteAndNULL(lockPacket);
-	deleteAndNULL(teamPacket);
-	deleteAndNULL(loginPacket);
-	deleteAndNULL(avatarPacket);
-	deleteAndNULL(skillPacket);
-	deleteAndNULL(itemPacket);
-	deleteAndNULL(ip);
+	deleteAndNullptr(lockPacket);
+	deleteAndNullptr(teamPacket);
+	deleteAndNullptr(loginPacket);
+	deleteAndNullptr(avatarPacket);
+	deleteAndNullptr(skillPacket);
+	deleteAndNullptr(itemPacket);
+	deleteAndNullptr(ip);
 }
 
 sf::IpAddress* LobbyPlayer::getIP() const
@@ -113,54 +113,54 @@ ItemPacket* LobbyPlayer::getItemPacket() const
 
 void LobbyPlayer::applyLockPacket(LockPacket* packet)
 {
-	if (lockPacket != NULL)
+	if (lockPacket != nullptr)
 	{
-		deleteAndNULL(lockPacket);
+		deleteAndNullptr(lockPacket);
 	}
 	lockPacket = new LockPacket(*packet);
 }
 
 void LobbyPlayer::applyTeamPacket(TeamPacket* packet)
 {
-	if (teamPacket != NULL)
+	if (teamPacket != nullptr)
 	{
-		deleteAndNULL(teamPacket);
+		deleteAndNullptr(teamPacket);
 	}
 	teamPacket = new TeamPacket(*packet);
 }
 
 void LobbyPlayer::applyLoginPacket(LoginPacket* packet)
 {
-	if (loginPacket != NULL)
+	if (loginPacket != nullptr)
 	{
-		deleteAndNULL(loginPacket);
+		deleteAndNullptr(loginPacket);
 	}
 	loginPacket = new LoginPacket(*packet);
 }
 
 void LobbyPlayer::applyAvatarPacket(AvatarPacket* packet)
 {
-	if (avatarPacket != NULL)
+	if (avatarPacket != nullptr)
 	{
-		deleteAndNULL(avatarPacket);
+		deleteAndNullptr(avatarPacket);
 	}
 	avatarPacket = new AvatarPacket(*packet);
 }
 
 void LobbyPlayer::applySkillPacket(SkillPacket* packet)
 {
-	if (skillPacket != NULL)
+	if (skillPacket != nullptr)
 	{
-		deleteAndNULL(skillPacket);
+		deleteAndNullptr(skillPacket);
 	}
 	skillPacket = new SkillPacket(*packet);
 }
 
 void LobbyPlayer::applyItemPacket(ItemPacket* packet)
 {
-	if (itemPacket != NULL)
+	if (itemPacket != nullptr)
 	{
-		deleteAndNULL(itemPacket);
+		deleteAndNullptr(itemPacket);
 	}
 	itemPacket = new ItemPacket(*packet);
 }

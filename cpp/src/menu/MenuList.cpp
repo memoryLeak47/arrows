@@ -84,7 +84,7 @@ void MenuList::addMenu(Menu* menu)
 
 void MenuList::back()
 {
-	deleteAndNULL(menues[menues.size()-1]);
+	deleteAndNullptr(menues[menues.size()-1]);
 	menues.pop_back();
 }
 

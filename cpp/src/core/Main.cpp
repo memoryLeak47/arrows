@@ -35,8 +35,8 @@ Main::Main()
 
 Main::~Main()
 {
-	deleteAndNULL(menuList);
-	deleteAndNULL(networkDevice);
+	deleteAndNullptr(menuList);
+	deleteAndNullptr(networkDevice);
 	Account::uninit();
 	Screen::uninit();
 	Team::uninit();
@@ -98,13 +98,13 @@ void Main::setAccount(Account* a)
 
 Account* Main::getAccount()
 {
-	if (account == NULL) Debug::warn("Main::getAccount(): account == NULL");
+	if (account == nullptr) Debug::warn("Main::getAccount(): account == nullptr");
 	return account;
 }
 
 void Main::logout()
 {
-	account = NULL;
+	account = nullptr;
 }
 
 MenuList* Main::getMenuList()

@@ -99,7 +99,7 @@ Compressable* CompressBuffer::cutByCompressID(CompressID cid)
 		#undef Y
 		default:
 			Debug::warn("no Compressable with CompressID=" + Converter::intToString((int)cid));
-			return NULL;
+			return nullptr;
 	}
 }
 

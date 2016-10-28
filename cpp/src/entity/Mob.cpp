@@ -69,7 +69,7 @@ Controller* Mob::getController() const
 
 void Mob::applyActions()
 {
-	if (getController() == NULL)
+	if (getController() == nullptr)
 	{
 		return;
 	}

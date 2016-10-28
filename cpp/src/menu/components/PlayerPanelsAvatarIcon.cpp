@@ -33,8 +33,8 @@ void PlayerPanelsAvatarIcon::onClick(int mouseButton)
 
 TextureID PlayerPanelsAvatarIcon::getTextureID() const
 {
-	if ((getPlayer()->getAvatarPacket() == NULL) ||
-	    (getPlayer()->getAvatarPacket()->getPlayerProperties()[0] == NULL))
+	if ((getPlayer()->getAvatarPacket() == nullptr) ||
+	    (getPlayer()->getAvatarPacket()->getPlayerProperties()[0] == nullptr))
 	{
 		return VOID_ICON_GID;
 	}

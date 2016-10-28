@@ -8,17 +8,17 @@
 
 MiniMap::MiniMap(ComponentContainer* c, const PixelRect& r) : MenuComponent(c, r)
 {
-	tileMapTexture = NULL;
+	tileMapTexture = nullptr;
 }
 
 MiniMap::~MiniMap()
 {
-	deleteAndNULL(tileMapTexture);
+	deleteAndNullptr(tileMapTexture);
 }
 
 void MiniMap::render() const
 {
-	if (tileMapTexture == NULL)
+	if (tileMapTexture == nullptr)
 	{
 		Screen::drawGraphicsID(getAbsoluteRect(), VOID_ICON_GID);
 	}
@@ -43,7 +43,7 @@ void MiniMap::updateMap(const std::vector<std::vector<int>>& ints)
 		}
 	}
 
-	if (tileMapTexture == NULL)
+	if (tileMapTexture == nullptr)
 	{
 		tileMapTexture = new sf::Texture();
 	}

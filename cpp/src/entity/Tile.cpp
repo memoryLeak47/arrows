@@ -106,7 +106,7 @@ Tile* Tile::createByColorID(const int id, const GameVector& position)
 		}
 	}
 	Debug::warn("Tile::createByColorID(): No Block_ID = " + Converter::intToString(id));
-	return NULL;
+	return nullptr;
 }
 
 float Tile::getMass() const

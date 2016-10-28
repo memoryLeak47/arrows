@@ -33,9 +33,9 @@ void GraphicsBuffer::load()
 		{
 			DIR *dir;
 			struct dirent *ent;
-			if ((dir = opendir(path.c_str())) != NULL)
+			if ((dir = opendir(path.c_str())) != nullptr)
 			{
-				while ((ent = readdir(dir)) != NULL)
+				while ((ent = readdir(dir)) != nullptr)
 				{
 					sf::Texture* t = new sf::Texture();
 					if (!t->loadFromFile(std::string(ent->d_name)))

@@ -26,7 +26,7 @@ ClientLobbyMenu::ClientLobbyMenu(const std::string& ip)
 	serverIP = new sf::IpAddress(ip);
 	LoginPacket* p = new LoginPacket(Main::getName(), Main::getRank());
 	sendToServer(p);
-	deleteAndNULL(p);
+	deleteAndNullptr(p);
 }
 
 ClientLobbyMenu::~ClientLobbyMenu()
@@ -41,7 +41,7 @@ LobbyPlayer* ClientLobbyMenu::getLocalPlayer() const
 
 void ClientLobbyMenu::handlePacket(Packet* packet, sf::IpAddress* ip)
 {
-	if (packet == NULL) Debug::warn("ClientLobbyMenu::handlePacket(): packet == NULL");
+	if (packet == nullptr) Debug::warn("ClientLobbyMenu::handlePacket(): packet == nullptr");
 
 	if ((*ip) == (*serverIP))
 	{
@@ -50,7 +50,7 @@ void ClientLobbyMenu::handlePacket(Packet* packet, sf::IpAddress* ip)
 	else
 	{
 		Debug::warn("got packet from non-server player");
-		deleteAndNULL(packet);
+		deleteAndNullptr(packet);
 	}
 }
 
@@ -101,23 +101,23 @@ void ClientLobbyMenu::handlePacketByID(Packet* packet, int id)
 	{
 		Debug::warn("ClientLobbyMenu::handlePacketByID(): awkward packet(" + Converter::intToString((int) packet->getCompressID()) + ") in awkward phase(" + Converter::intToString(getPhase()) + ")");
 	}
-	deleteAndNULL(packet);
+	deleteAndNullptr(packet);
 }
 
 void ClientLobbyMenu::lockPressed()
 {
-	if (getLocalPlayer() == NULL) Debug::warn("ClientLobbyMenu::lockPressed(): getLocalPlayer() == NULL");
-	if (getLocalPlayer()->getLockPacket() == NULL) Debug::warn("ClientLobbyMenu::lockPressed(): getLocalPlayer()->getLockPacket() == NULL");
+	if (getLocalPlayer() == nullptr) Debug::warn("ClientLobbyMenu::lockPressed(): getLocalPlayer() == nullptr");
+	if (getLocalPlayer()->getLockPacket() == nullptr) Debug::warn("ClientLobbyMenu::lockPressed(): getLocalPlayer()->getLockPacket() == nullptr");
 	LockPacket* packet = new LockPacket(!getLocalPlayer()->getLockPacket()->isLocked());
 	sendToServer(packet);
-	deleteAndNULL(packet);
+	deleteAndNullptr(packet);
 }
 
 void ClientLobbyMenu::disconnectPressed()
 {
 	DisconnectPacket* packet = new DisconnectPacket();
 	sendToServer(packet);
-	deleteAndNULL(packet);
+	deleteAndNullptr(packet);
 	Main::getMenuList()->back();
 }
 
@@ -125,7 +125,7 @@ void ClientLobbyMenu::teamPressed(Team* team)
 {
 	TeamPacket* packet = new TeamPacket(team->getID());
 	sendToServer(packet);
-	deleteAndNULL(packet);
+	deleteAndNullptr(packet);
 }
 
 void ClientLobbyMenu::sendToServer(Packet* p)
@@ -211,14 +211,14 @@ void ClientLobbyMenu::handleTeamPacket(TeamPacket* packet, int id)
 void ClientLobbyMenu::handleAvatarPacket(AvatarPacket* packet, int id)
 {
 	LobbyPlayer* player = getPlayer(id);
-	if (player == NULL) Debug::warn("ClientLobbyMenu::handleAvatarPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
+	if (player == nullptr) Debug::warn("ClientLobbyMenu::handleAvatarPacket(): getPlayer(" + Converter::intToString(id) + ") == nullptr");
 	player->applyAvatarPacket(packet);
 }
 
 void ClientLobbyMenu::handleSkillPacket(SkillPacket* packet, int id)
 {
 	LobbyPlayer* player = getPlayer(id);
-	if (player == NULL) Debug::warn("ClientLobbyMenu::handleSkillPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
+	if (player == nullptr) Debug::warn("ClientLobbyMenu::handleSkillPacket(): getPlayer(" + Converter::intToString(id) + ") == nullptr");
 	player->applySkillPacket(packet);
 }
 
@@ -226,7 +226,7 @@ void ClientLobbyMenu::handleItemPacket(ItemPacket* packet, int id)
 {
 
 	LobbyPlayer* player = getPlayer(id);
-	if (player == NULL) Debug::warn("ClientLobbyMenu::handleItemPacket(): getPlayer(" + Converter::intToString(id) + ") == NULL");
+	if (player == nullptr) Debug::warn("ClientLobbyMenu::handleItemPacket(): getPlayer(" + Converter::intToString(id) + ") == nullptr");
 	player->applyItemPacket(packet);
 }
 

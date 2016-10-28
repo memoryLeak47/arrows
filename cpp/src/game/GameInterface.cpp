@@ -67,16 +67,16 @@ void GameInterface::tick()
 
 int GameInterface::ipToID(sf::IpAddress* ip) const
 {
-	if (ip == NULL)
+	if (ip == nullptr)
 	{
-		Debug::error("GameInterface::ipToID(): ip == NULL");
+		Debug::error("GameInterface::ipToID(): ip == nullptr");
 	}
 
 	for (unsigned int i = 0; i < players.size(); i++)
 	{
-		if (players[i]->getIP() == NULL)
+		if (players[i]->getIP() == nullptr)
 		{
-			Debug::error("GameInterface::ipToID(): ip of player(" + Converter::intToString(i) + ") is NULL");
+			Debug::error("GameInterface::ipToID(): ip of player(" + Converter::intToString(i) + ") is nullptr");
 		}
 
 		if (players[i] == getLocalPlayer())
@@ -187,7 +187,7 @@ CollisionEvent* GameInterface::cutFirstEvent(std::vector<CollisionEvent*>* event
 	if (events->empty())
 	{
 		Debug::error("GameInterface::cutFirstEvent(): no more events");
-		return NULL;
+		return nullptr;
 	}
 
 	auto big = events->begin();
@@ -416,7 +416,7 @@ DynamicEntity* GameInterface::getDynamicEntity(unsigned int id)
 		return players[id];
 	}
 	Debug::error("GameInterface::getImpactfulDynamic(" + Converter::intToString(id) + "): id kinda out of range");
-	return NULL;
+	return nullptr;
 }
 
 unsigned int GameInterface::getDynamicEntityAmount()

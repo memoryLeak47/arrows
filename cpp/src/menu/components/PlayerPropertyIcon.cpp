@@ -11,7 +11,7 @@ PlayerPropertyIcon::PlayerPropertyIcon(ComponentContainer* c, const PixelRect& r
 PlayerPropertyIcon::PlayerPropertyIcon(ComponentContainer* c, const PixelRect& r)
 	: Icon(c, r)
 {
-	setPlayerProperty(NULL);
+	setPlayerProperty(nullptr);
 }
 
 PixelVector PlayerPropertyIcon::getSize()
@@ -26,7 +26,7 @@ void PlayerPropertyIcon::setPlayerProperty(PlayerProperty* prop)
 
 TextureID PlayerPropertyIcon::getTextureID() const
 {
-	if (getPlayerProperty() == NULL || getPlayerProperty()->getIconTextureID() == -1)
+	if (getPlayerProperty() == nullptr || getPlayerProperty()->getIconTextureID() == -1)
 	{
 		return VOID_ICON_GID;
 	}

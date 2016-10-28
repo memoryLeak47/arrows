@@ -14,7 +14,7 @@ NetworkDevice::NetworkDevice()
 
 void NetworkDevice::send(Packet* packet, sf::IpAddress* ip)
 {
-	if (packet == NULL)
+	if (packet == nullptr)
 	{
 		Debug::warn("NetworkDevice::send(): packet is null");
 	}

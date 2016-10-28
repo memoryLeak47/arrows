@@ -43,10 +43,10 @@ Account* Account::authenticate(const std::string& name, const std::string& pass)
 			if (accounts[i]->getPassword() == pass)
 				return accounts[i];
 			else
-				return NULL;
+				return nullptr;
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 bool Account::isNameFree(const std::string& name)

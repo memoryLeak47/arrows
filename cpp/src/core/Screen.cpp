@@ -34,7 +34,7 @@ void Screen::init()
 void Screen::uninit()
 {
 	window->close();
-	deleteAndNULL(window);
+	deleteAndNullptr(window);
 }
 
 void Screen::tick()

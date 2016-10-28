@@ -54,7 +54,7 @@ LoginMenu::LoginMenu() : Menu()
 void LoginMenu::login()
 {
 	Account* account = Account::authenticate(usernameField->getText(), passwordField->getText());
-	if (account != NULL)
+	if (account != nullptr)
 	{
 		Main::setAccount(account);
 		Main::getMenuList()->addMenu(new MainMenu());

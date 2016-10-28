@@ -111,7 +111,7 @@ void GameTileMap::updateFullImage()
 	{
 		for (unsigned int y = 0; y < getHeight(); y++)
 		{
-			if (tiles[x][y] == NULL) Debug::error("GameTileMap::updateFullImage(): tiles[" + Converter::intToString((int) x) + "][" + Converter::intToString((int) y) + "] == NULL");
+			if (tiles[x][y] == nullptr) Debug::error("GameTileMap::updateFullImage(): tiles[" + Converter::intToString((int) x) + "][" + Converter::intToString((int) y) + "] == nullptr");
 			tiles[x][y]->renderToImage(staticImage, x*global::TILESIZE, y*global::TILESIZE);
 		}
 	}

@@ -31,9 +31,9 @@ GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
 	  description(LobbyAvatar::get(player->getAvatarPacket()->getAvatarID())->getDescription()),
 	  iconTextureID(LobbyAvatar::get(player->getAvatarPacket()->getAvatarID())->getIconTextureID())
 {
-	if (player->getIP() == NULL)
+	if (player->getIP() == nullptr)
 	{
-		ip = NULL;
+		ip = nullptr;
 	}
 	else
 	{
@@ -122,22 +122,22 @@ void GamePlayer::optSetSkillEnabled(int i, bool b)
 void GamePlayer::apply(const std::string& s)
 {
 	CompressBuffer buffer(s);
-	if (getBody() != NULL)
+	if (getBody() != nullptr)
 	{
 		delete body;
 	}
-	if ((body = buffer.cutCompressable<Body>()) == NULL)
+	if ((body = buffer.cutCompressable<Body>()) == nullptr)
 	{
-		Debug::error("GamePlayer::apply(): Body-cast returns NULL");
+		Debug::error("GamePlayer::apply(): Body-cast returns nullptr");
 	}
 
-	if (getController() != NULL)
+	if (getController() != nullptr)
 	{
 		delete controller;
 	}
-	if ((controller = buffer.cutCompressable<Controller>()) == NULL)
+	if ((controller = buffer.cutCompressable<Controller>()) == nullptr)
 	{
-		Debug::error("GamePlayer::apply(): Controller-cast returns NULL");
+		Debug::error("GamePlayer::apply(): Controller-cast returns nullptr");
 	}
 
 	for (unsigned int i = 0; i < skills.size(); i++)

@@ -55,7 +55,7 @@ LobbyMenu::LobbyMenu(std::string lockButtonText)
 
 LobbyMenu::~LobbyMenu()
 {
-	deleteAndNULL(tileMap);
+	deleteAndNullptr(tileMap);
 	deleteAndClearVector(players);
 }
 
@@ -175,7 +175,7 @@ void LobbyMenu::nextPhase()
 
 void LobbyMenu::removePlayer(int id)
 {
-	deleteAndNULL(players[id]);
+	deleteAndNullptr(players[id]);
 	players.erase(players.begin() + id);
 }
 
@@ -187,7 +187,7 @@ void LobbyMenu::clearPlayers()
 void LobbyMenu::resetLobby()
 {
 	unlockAll();
-	deleteAndNULL(tileMap);
+	deleteAndNullptr(tileMap);
 	// TODO more!
 	Debug::warn("LobbyMenu::resetLobby(): TODO");
 }

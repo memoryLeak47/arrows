@@ -29,7 +29,7 @@ const std::vector<PlayerProperty*> ItemPacket::getPlayerProperties() const
 	{
 		if (itemIDs[i] == -1)
 		{
-			props.push_back(NULL);
+			props.push_back(nullptr);
 		}
 		else
 		{

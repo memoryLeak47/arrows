@@ -27,7 +27,7 @@ const std::vector<PlayerProperty*> AvatarPacket::getPlayerProperties() const
         std::vector<PlayerProperty*> props;
 	if (avatarID == -1)
 	{
-		props.push_back(NULL);
+		props.push_back(nullptr);
 	}
 	else
 	{

@@ -87,7 +87,7 @@ void GameInterface::addCollisionsFrom(Entity* e, std::vector<ExpectedCollision*>
 		if (e != entity && e->getCollisionPriority(entity) + entity->getCollisionPriority(e) >= 0) // && ! e in entity->getCollisionPartners())
 		{
 			ExpectedCollision *c = CollisionDetector::expectCollisionBetween(entity, e, timeLeft);
-			if (c != NULL)
+			if (c != nullptr)
 			{
 				collisions->push_back(c);
 			}
@@ -103,7 +103,7 @@ void GameInterface::addCollisionsFrom(Entity* e, std::vector<ExpectedCollision*>
 		if (e != entity && e->getCollisionPriority(entity) + entity->getCollisionPriority(e) >= 0) // && ! e in entity->getCollisionPartners())
 		{
 			ExpectedCollision *c = CollisionDetector::expectCollisionBetween(entity, e, timeLeft);
-			if (c != NULL)
+			if (c != nullptr)
 			{
 				collisions->push_back(c);
 			}

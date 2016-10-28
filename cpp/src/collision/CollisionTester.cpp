@@ -48,7 +48,7 @@ bool CollisionTester::areColliding(Entity* e1, Entity* e2, GameVector* p)
 
 	if (found) // Wenn ein Punkt gefunden, an dem die Entities kollidieren
 	{
-		if (p != NULL) // Wenn Punkt zurück gegeben werden soll
+		if (p != nullptr) // Wenn Punkt zurück gegeben werden soll
 		{
 			(*p).x = ((left+right)/2.f);
 			(*p).y = ((top+bot)/2.f);
@@ -56,7 +56,7 @@ bool CollisionTester::areColliding(Entity* e1, Entity* e2, GameVector* p)
 		return true;
 	}
 
-	if (p != NULL)
+	if (p != nullptr)
 	{
 		(*p).x = -1.f; // Error Value
 		(*p).y = -1.f; // Error Value

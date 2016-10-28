@@ -33,8 +33,8 @@ void PlayerPanelsItemIcon::onClick(int mouseButton)
 
 TextureID PlayerPanelsItemIcon::getTextureID() const
 {
-	if ((getPlayer()->getItemPacket() == NULL) ||
-	    (getPlayer()->getItemPacket()->getPlayerProperties()[number] == NULL))
+	if ((getPlayer()->getItemPacket() == nullptr) ||
+	    (getPlayer()->getItemPacket()->getPlayerProperties()[number] == nullptr))
 	{
 		return VOID_ICON_GID;
 	}

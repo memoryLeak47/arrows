@@ -67,7 +67,7 @@ void ServerLobbyMenu::mapSelected()
 	// sendet neue Map zu allen Clients
 	MapPacket* mapPacket = new MapPacket(ints);
 	sendToAllClients(mapPacket);
-	deleteAndNULL(mapPacket);
+	deleteAndNullptr(mapPacket);
 
 	unlockAll();
 }
@@ -106,7 +106,7 @@ void ServerLobbyMenu::handlePacket(Packet* packet, sf::IpAddress* ip)
 	{
 		Debug::warn("ServerLobbyMenu::handlePacket(): awkward packet(" + Converter::intToString((int) packet->getCompressID()) + ") in awkward phase(" + Converter::intToString(getPhase()) + ")");
 	}
-	deleteAndNULL(packet);
+	deleteAndNullptr(packet);
 }
 
 void ServerLobbyMenu::createServerPlayer()
@@ -115,15 +115,15 @@ void ServerLobbyMenu::createServerPlayer()
 	LobbyPlayer* me = new LobbyPlayer(packet);
 	addPlayer(me);
 	addUpdatedPlayer(me);
-	deleteAndNULL(me);
-	deleteAndNULL(packet);
+	deleteAndNullptr(me);
+	deleteAndNullptr(packet);
 }
 
 void ServerLobbyMenu::lockPressed()
 {
 	LockPacket* l = new LockPacket(!getLocalPlayer()->getLockPacket()->isLocked());
 	packAndSendToAllClients(l, 0);
-	deleteAndNULL(l);
+	deleteAndNullptr(l);
 	nextPhase();
 }
 
@@ -131,7 +131,7 @@ void ServerLobbyMenu::disconnectPressed()
 {
 	DisconnectPacket* dis = new DisconnectPacket();
 	packAndSendToAllClients(dis, 0);
-	deleteAndNULL(dis);
+	deleteAndNullptr(dis);
 	Main::getMenuList()->back();
 }
 
@@ -141,7 +141,7 @@ void ServerLobbyMenu::teamPressed(Team* team)
 	getLocalPlayer()->applyTeamPacket(packet);
 	getUpdatedLocalPlayer()->applyTeamPacket(packet);
 	packAndSendToAllClients(packet, 0);
-	deleteAndNULL(packet);
+	deleteAndNullptr(packet);
 
 	unlockAll();
 	updatePlayerIcons();
@@ -149,7 +149,7 @@ void ServerLobbyMenu::teamPressed(Team* team)
 
 LobbyPlayer* ServerLobbyMenu::getLocalPlayer() const
 {
-	if (getPlayers().size() == 0) Debug::warn("ServerLobbyMenu::getLocalPlayer(): getPlayers().size() == 0 -> is probably NULL");
+	if (getPlayers().size() == 0) Debug::warn("ServerLobbyMenu::getLocalPlayer(): getPlayers().size() == 0 -> is probably nullptr");
 	return getPlayer(0);
 }
 
@@ -160,7 +160,7 @@ void ServerLobbyMenu::packAndSendToAllClients(Packet* p, int id) const
 	{
 		send(packet, getPlayer(i)->getIP());
 	}
-	deleteAndNULL(packet);
+	deleteAndNullptr(packet);
 }
 
 void ServerLobbyMenu::packAndSendToFriendsOf(Packet* packet, int id) const
@@ -174,7 +174,7 @@ void ServerLobbyMenu::packAndSendToFriendsOf(Packet* packet, int id) const
 		{
 			PacketWithID* upwid = new PacketWithID(packet, id);
 			send(upwid, getPlayer(i)->getIP());
-			deleteAndNULL(upwid);
+			deleteAndNullptr(upwid);
 		}
 	}
 }
@@ -225,11 +225,11 @@ void ServerLobbyMenu::handleLoginPacket(LoginPacket* packet, sf::IpAddress* ip)
 		{
 			MapPacket* mapPacket = new MapPacket(getLobbyTileMap()->getInts());
 			send(mapPacket, ip); // Die Map des neuen wird gesetzt
-			deleteAndNULL(mapPacket);
+			deleteAndNullptr(mapPacket);
 		}
 		addPlayer(player);
 		addUpdatedPlayer(player);
-		deleteAndNULL(player);
+		deleteAndNullptr(player);
 		packAndSendToAllClients(packet, ipToID(ip, getPlayers())); // das erhaltene packet wird an alle clients weitergegeben
 
 		unlockAll();
@@ -243,7 +243,7 @@ void ServerLobbyMenu::handleLoginPacket(LoginPacket* packet, sf::IpAddress* ip)
 
 void ServerLobbyMenu::handleAvatarPacket(AvatarPacket* packet, int id)
 {
-	if (getPlayer(id) == NULL) Debug::warn("ServerLobbyMenu::handleAvatarPacket(): no Player with id " + Converter::intToString(id));
+	if (getPlayer(id) == nullptr) Debug::warn("ServerLobbyMenu::handleAvatarPacket(): no Player with id " + Converter::intToString(id));
 
 	// Wenn Spieler sich im gleichen Team befindet, wie Server (ich)
 	if (getPlayer(id)->getTeamPacket()->getTeam()->isFriendlyTeam(getLocalPlayer()->getTeamPacket()->getTeam()))
@@ -257,7 +257,7 @@ void ServerLobbyMenu::handleAvatarPacket(AvatarPacket* packet, int id)
 
 void ServerLobbyMenu::handleSkillPacket(SkillPacket* packet, int id)
 {
-	if (getPlayer(id) == NULL) Debug::warn("ServerLobbyMenu::handleSkillPacket(): no Player with id " + Converter::intToString(id));
+	if (getPlayer(id) == nullptr) Debug::warn("ServerLobbyMenu::handleSkillPacket(): no Player with id " + Converter::intToString(id));
 
 	// Wenn Spieler sich im gleichen Team befindet, wie Server (ich)
 	if (getPlayer(id)->getTeamPacket()->getTeam()->isFriendlyTeam(getLocalPlayer()->getTeamPacket()->getTeam()))
@@ -271,7 +271,7 @@ void ServerLobbyMenu::handleSkillPacket(SkillPacket* packet, int id)
 
 void ServerLobbyMenu::handleItemPacket(ItemPacket* packet, int id)
 {
-	if (getPlayer(id) == NULL) Debug::warn("ServerLobbyMenu::handleItemPacket(): no Player with id " + Converter::intToString(id));
+	if (getPlayer(id) == nullptr) Debug::warn("ServerLobbyMenu::handleItemPacket(): no Player with id " + Converter::intToString(id));
 
 	// Wenn Spieler sich im gleichen Team befindet, wie Server (ich)
 	if (getPlayer(id)->getTeamPacket()->getTeam()->isFriendlyTeam(getLocalPlayer()->getTeamPacket()->getTeam()))
@@ -362,7 +362,7 @@ void ServerLobbyMenu::updatePlayers()
 	}
 	LobbyPlayersPacket* p = new LobbyPlayersPacket(getUpdatedPlayers());
 	sendToAllClients(p);
-	deleteAndNULL(p);
+	deleteAndNullptr(p);
 }
 
 void ServerLobbyMenu::nextPhase()
@@ -394,7 +394,7 @@ void ServerLobbyMenu::unlockAll()
 void ServerLobbyMenu::removePlayer(int id)
 {
 	LobbyMenu::removePlayer(id);
-	deleteAndNULL(updatedPlayers[id]);
+	deleteAndNullptr(updatedPlayers[id]);
 	updatedPlayers.erase(updatedPlayers.begin() + id);
 }
 

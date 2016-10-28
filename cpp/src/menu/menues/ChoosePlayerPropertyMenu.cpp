@@ -16,7 +16,7 @@ class SlotIcon : public PlayerPropertyIcon
 		SlotIcon(ChoosePlayerPropertyMenu* c, PlayerProperty* p, const PixelRect& r) : PlayerPropertyIcon(c, r, p) {}
 		virtual void onClick(int mouseButton) override
 		{
-			setPlayerProperty(NULL);
+			setPlayerProperty(nullptr);
 		}
 };
 
@@ -48,8 +48,8 @@ class OkButton : public Button
 ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(LobbyMenu* lobbyMenu, PlayerPropertyPacket* packet, const std::vector<PlayerProperty*>& props)
 	: chooseProperties(props)
 {
-	if (lobbyMenu == NULL) Debug::error("ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(): lobbyMenu == NULL");
-	if (packet == NULL) Debug::error("ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(): packet == NULL");
+	if (lobbyMenu == nullptr) Debug::error("ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(): lobbyMenu == nullptr");
+	if (packet == nullptr) Debug::error("ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(): packet == nullptr");
 
 	lobby = lobbyMenu;
 	slotPacket = packet; // copy-constructor of packet already used when this constructor is called
@@ -78,7 +78,7 @@ ChoosePlayerPropertyMenu::ChoosePlayerPropertyMenu(LobbyMenu* lobbyMenu, PlayerP
 
 ChoosePlayerPropertyMenu::~ChoosePlayerPropertyMenu()
 {
-	deleteAndNULL(slotPacket);
+	deleteAndNullptr(slotPacket);
 }
 
 void ChoosePlayerPropertyMenu::tick()
@@ -91,13 +91,13 @@ PlayerPropertyIcon* ChoosePlayerPropertyMenu::getFirstVoidSlotIcon() const
 {
 	for (unsigned int i = 0; i < slotIcons.size(); i++)
 	{
-		if (slotIcons[i]->getPlayerProperty() == NULL)
+		if (slotIcons[i]->getPlayerProperty() == nullptr)
 		{
 			return slotIcons[i];
 		}
 	}
 	Debug::note("ChoosePlayerPropertyMenu.getFirstVoidSlotIcon(): no void SlotIcon");
-	return NULL;
+	return nullptr;
 }
 
 const std::vector<PlayerPropertyIcon*>& ChoosePlayerPropertyMenu::getSlotIcons() const
@@ -115,7 +115,7 @@ void ChoosePlayerPropertyMenu::okPressed()
 	std::string ids = "";
 	for (unsigned int i = 0; i < getSlotIcons().size(); i++)
 	{
-		if (getSlotIcons()[i]->getPlayerProperty() != NULL)
+		if (getSlotIcons()[i]->getPlayerProperty() != nullptr)
 		{
 			ids.push_back(getSlotIcons()[i]->getPlayerProperty()->getID());
 		}
@@ -132,7 +132,7 @@ void ChoosePlayerPropertyMenu::okPressed()
 
 void ChoosePlayerPropertyMenu::chooseIconPressed(PlayerProperty* prop)
 {
-	if (getFirstVoidSlotIcon() != NULL)
+	if (getFirstVoidSlotIcon() != nullptr)
 	{
 		getFirstVoidSlotIcon()->setPlayerProperty(prop);
 	}
