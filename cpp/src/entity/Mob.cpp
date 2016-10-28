@@ -46,7 +46,7 @@ void Mob::actionGoRight()
 
 void Mob::actionJump()
 {
-	setSpeed(GameVector(body->getSpeed().x, -0.1f));
+	setSpeed(GameVector(body->getSpeed().x, body->getSpeed().y - 0.04f));
 }
 
 float Mob::getMass() const
