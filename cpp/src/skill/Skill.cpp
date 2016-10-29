@@ -2,8 +2,8 @@
 
 #include <skill/LobbySkill.hpp>
 
-Skill::Skill(Mob* owner_arg, const LobbySkill* skill)
-	: owner(owner_arg), enabled(false), charge(0.f), description(skill->getDescription()), iconTextureID(skill->getIconTextureID())
+Skill::Skill(const SkillGivethrough& gt)
+	: owner(gt.owner), enabled(false), charge(0.f), description(gt.lobbySkill->getDescription()), iconTextureID(gt.lobbySkill->getIconTextureID())
 {}
 
 void Skill::setEnabled(bool b)

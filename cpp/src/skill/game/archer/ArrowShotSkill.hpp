@@ -8,7 +8,7 @@ class Mob;
 class ArrowShotSkill : public TriggerSkill
 {
 	public:
-		ArrowShotSkill(Mob*, const LobbySkill*);
+		ArrowShotSkill(const SkillGivethrough&);
 	protected:
 		virtual void onTrigger() override;
 };

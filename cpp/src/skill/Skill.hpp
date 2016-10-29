@@ -6,13 +6,19 @@ const float MAX_CHARGE = 100.f;
 class Mob;
 class LobbySkill;
 
+struct SkillGivethrough
+{
+	Mob* owner;
+	const LobbySkill* lobbySkill;
+};
+
 #include <string>
 #include <graphics/TextureID.hpp>
 
 class Skill
 {
 	public:
-		Skill(Mob*, const LobbySkill*);
+		Skill(const SkillGivethrough&);
 
 		void setEnabled(bool);
 		virtual void tick();

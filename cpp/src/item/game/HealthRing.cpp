@@ -1,5 +1,5 @@
 #include "HealthRing.hpp"
 
-HealthRing::HealthRing(const LobbyItem* lobbyItem)
-	: Item(lobbyItem)
+HealthRing::HealthRing(const ItemGivethrough& gt)
+	: Item(gt)
 {}

@@ -8,7 +8,7 @@ class Mob;
 class ToggleSkill : public Skill
 {
 	public:
-		ToggleSkill(Mob*, const LobbySkill*);
+		ToggleSkill(const SkillGivethrough&);
 		virtual void tick() override;
 
 		bool isToggled() const;

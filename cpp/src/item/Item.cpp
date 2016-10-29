@@ -2,6 +2,6 @@
 
 #include <item/LobbyItem.hpp>
 
-Item::Item(const LobbyItem* lobbyItem)
-	: description(lobbyItem->getDescription()), iconTextureID(lobbyItem->getIconTextureID())
+Item::Item(const ItemGivethrough& gt)
+	: description(gt.lobbyItem->getDescription()), iconTextureID(gt.lobbyItem->getIconTextureID())
 {}
