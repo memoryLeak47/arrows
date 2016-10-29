@@ -4,6 +4,7 @@
 const float MAX_CHARGE = 100.f;
 
 class Mob;
+class Bullet;
 class LobbySkill;
 class RestrictedGameInterface;
 
@@ -31,6 +32,7 @@ class Skill
 		void setCharge(float);
 		virtual void onEnabled();
 		virtual void onDisabled();
+		void addBullet(Bullet*);
 	private:
 		Mob* owner;
 		bool enabled;
@@ -39,6 +41,7 @@ class Skill
 		// lobby skill
 		std::string description;
 		TextureID iconTextureID;
+		RestrictedGameInterface* restrictedGameInterface;
 
 	friend class GamePlayer; // For setCharge on GameUpdatePacket (ClientSide)
 };

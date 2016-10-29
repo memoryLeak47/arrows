@@ -1,7 +1,7 @@
 #include "Bullet.hpp"
 
 Bullet::Bullet(Body* body, Mob* o)
-	: ImpactfulDynamicEntity(body), owner(o)
+	: Idler(body), owner(o)
 {}
 
 EntityType Bullet::getEntityType() const

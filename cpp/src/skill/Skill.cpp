@@ -1,9 +1,16 @@
 #include "Skill.hpp"
 
+#include <entity/Bullet.hpp>
 #include <skill/LobbySkill.hpp>
+#include <game/RestrictedGameInterface.hpp>
 
 Skill::Skill(const SkillGivethrough& gt)
-	: owner(gt.owner), enabled(false), charge(0.f), description(gt.lobbySkill->getDescription()), iconTextureID(gt.lobbySkill->getIconTextureID())
+	: owner(gt.owner),
+	  enabled(false),
+	  charge(0.f),
+	  description(gt.lobbySkill->getDescription()),
+	  iconTextureID(gt.lobbySkill->getIconTextureID()),
+	  restrictedGameInterface(gt.restrictedGameInterface)
 {}
 
 void Skill::setEnabled(bool b)
@@ -57,3 +64,8 @@ void Skill::setCharge(float charge_arg)
 
 void Skill::onEnabled() {}
 void Skill::onDisabled() {}
+
+void Skill::addBullet(Bullet* b)
+{
+	restrictedGameInterface->addIdler(b);
+}

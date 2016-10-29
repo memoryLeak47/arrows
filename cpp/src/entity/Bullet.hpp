@@ -3,9 +3,9 @@
 
 class Mob;
 
-#include "ImpactfulDynamicEntity.hpp"
+#include "Idler.hpp"
 
-class Bullet : public ImpactfulDynamicEntity
+class Bullet : public Idler
 {
 	public:
 		Bullet(Body*, Mob*);
