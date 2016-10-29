@@ -9,6 +9,11 @@ class SimpleArrow : public Bullet
 {
 	public:
 		SimpleArrow(const GameVector& pos, const GameVector& speed, Mob* owner);
+		SimpleArrow(CompressBuffer*);
+		CompressID getCompressID() const override;
+		virtual std::string toString() const;
+		virtual float getMass() const;
+		virtual sf::Texture* getTexture() const;
 };
 
 #endif

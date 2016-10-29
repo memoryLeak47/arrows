@@ -15,4 +15,5 @@ X(SPAWNTEAMTILE_GID, "res/entities/tiles/spawnteamtile.png")
 
 X(ARCHER_GID, "res/entities/avatars/archer.png")
 X(ROGUE_GID, "res/entities/avatars/rogue.png")
+X(SIMPLE_ARROW_GID, "res/entities/bullets/arrow.png")
 Y(TESTKISTE_GID, "res/entities/test/testbox.png")

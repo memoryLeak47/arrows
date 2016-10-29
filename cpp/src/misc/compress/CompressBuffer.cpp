@@ -22,6 +22,7 @@
 #include <entity/TestKiste.hpp>
 #include <avatar/game/Archer.hpp>
 #include <avatar/game/Rogue.hpp>
+#include <entity/bullets/SimpleArrow.hpp>
 
 #include <collision/Body.hpp>
 

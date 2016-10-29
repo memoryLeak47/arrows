@@ -32,6 +32,7 @@ class Skill
 		void setCharge(float);
 		virtual void onEnabled();
 		virtual void onDisabled();
+		Mob* getOwner() const;
 		void addBullet(Bullet*);
 	private:
 		Mob* owner;

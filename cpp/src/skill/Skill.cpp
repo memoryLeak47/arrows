@@ -65,6 +65,11 @@ void Skill::setCharge(float charge_arg)
 void Skill::onEnabled() {}
 void Skill::onDisabled() {}
 
+Mob* Skill::getOwner() const
+{
+	return owner;
+}
+
 void Skill::addBullet(Bullet* b)
 {
 	restrictedGameInterface->addIdler(b);

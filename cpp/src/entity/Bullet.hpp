@@ -9,6 +9,7 @@ class Bullet : public Idler
 {
 	public:
 		Bullet(Body*, Mob*);
+		Bullet(CompressBuffer*);
 		virtual ~Bullet() {}
 		virtual EntityType getEntityType() const override;
 
