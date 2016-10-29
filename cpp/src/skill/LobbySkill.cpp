@@ -56,12 +56,12 @@ char LobbySkill::getID() const
 	return id;
 }
 
-Skill* LobbySkill::createGameSkill(Mob* owner) const
+Skill* LobbySkill::createGameSkill(Mob* owner, RestrictedGameInterface* rgi) const
 {
 	switch (getID())
 	{
-		#define X(sid, lobbyname, gamename) case sid: return new gamename(SkillGivethrough {owner, this});
-		#define Y(sid, lobbyname, gamename) case sid: return new gamename(SkillGivethrough {owner, this});
+		#define X(sid, lobbyname, gamename) case sid: return new gamename(SkillGivethrough {owner, this, rgi});
+		#define Y(sid, lobbyname, gamename) case sid: return new gamename(SkillGivethrough {owner, this, rgi});
 		#include "SkillID.list"
 		#undef X
 		#undef Y

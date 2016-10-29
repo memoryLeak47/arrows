@@ -3,8 +3,8 @@
 #include <collision/RectBody.hpp>
 #include <graphics/GraphicsManager.hpp>
 
-Archer::Archer(const GameVector& pos, const LobbyPlayer* player)
-	: GamePlayer(new RectBody(pos, GraphicsManager::getGameSizeOf(ARCHER_GID)), player)
+Archer::Archer(const GameVector& pos, const LobbyPlayer* player, RestrictedGameInterface* rgi)
+	: GamePlayer(new RectBody(pos, GraphicsManager::getGameSizeOf(ARCHER_GID)), player, rgi)
 {}
 
 Archer::Archer(CompressBuffer* buffer)

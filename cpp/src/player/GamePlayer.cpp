@@ -24,12 +24,13 @@ GamePlayer::GamePlayer(CompressBuffer *b)
 	Debug::error("GamePlayer::GamePlayer(): should never be called. Instead use the apply Function!");
 }
 
-GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
+GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player, RestrictedGameInterface* rgi)
 	: Mob(body, new PlayerController()),
 	  name(player->getLoginPacket()->getName()),
 	  rank(player->getLoginPacket()->getRank()),
 	  description(LobbyAvatar::get(player->getAvatarPacket()->getAvatarID())->getDescription()),
-	  iconTextureID(LobbyAvatar::get(player->getAvatarPacket()->getAvatarID())->getIconTextureID())
+	  iconTextureID(LobbyAvatar::get(player->getAvatarPacket()->getAvatarID())->getIconTextureID()),
+	  restrictedGameInterface(rgi)
 {
 	if (player->getIP() == nullptr)
 	{
@@ -50,7 +51,7 @@ GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player)
 		}
 		else
 		{
-			skills.push_back(lobbySkill->createGameSkill(this));
+			skills.push_back(lobbySkill->createGameSkill(this, restrictedGameInterface));
 		}
 	}
 

@@ -5,11 +5,13 @@ const float MAX_CHARGE = 100.f;
 
 class Mob;
 class LobbySkill;
+class RestrictedGameInterface;
 
 struct SkillGivethrough
 {
 	Mob* owner;
 	const LobbySkill* lobbySkill;
+	RestrictedGameInterface* restrictedGameInterface;
 };
 
 #include <string>

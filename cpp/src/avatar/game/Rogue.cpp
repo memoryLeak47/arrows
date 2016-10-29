@@ -3,8 +3,8 @@
 #include <collision/RectBody.hpp>
 #include <graphics/GraphicsManager.hpp>
 
-Rogue::Rogue(const GameVector& pos, const LobbyPlayer* player)
-	: GamePlayer(new RectBody(pos, GraphicsManager::getGameSizeOf(ROGUE_GID)), player)
+Rogue::Rogue(const GameVector& pos, const LobbyPlayer* player, RestrictedGameInterface* rgi)
+	: GamePlayer(new RectBody(pos, GraphicsManager::getGameSizeOf(ROGUE_GID)), player, rgi)
 {}
 
 Rogue::Rogue(CompressBuffer* buffer)

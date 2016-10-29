@@ -25,12 +25,14 @@ static const int LOOP_LIMIT = 30;
 static const float FREQ = 0.2f;
 
 GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers)
+	: restrictedGameInterface(this)
 {
 	Debug::note("------------ [ GAME ON ] ------------");
 	tileMap = new GameTileMap(map);
 	for (unsigned int i = 0; i < lobbyPlayers.size(); i++)
 	{
-		players.push_back(LobbyAvatar::get(lobbyPlayers[i]->getAvatarPacket()->getAvatarID())->createGamePlayer(getGameTileMap()->teamToSpawnPosition(lobbyPlayers[i]->getTeamPacket()->getTeam()), lobbyPlayers[i]));
+		players.push_back(LobbyAvatar::get(lobbyPlayers[i]->getAvatarPacket()->getAvatarID())->createGamePlayer(
+			getGameTileMap()->teamToSpawnPosition(lobbyPlayers[i]->getTeamPacket()->getTeam()), lobbyPlayers[i], &restrictedGameInterface));
 	}
 
 	idlers.push_back(new TestKiste(GameVector(7.5f, 4.5f)));

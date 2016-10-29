@@ -6,6 +6,7 @@
 
 class Skill;
 class Mob;
+class RestrictedGameInterface;
 
 class LobbySkill : public PlayerProperty
 {
@@ -23,7 +24,7 @@ class LobbySkill : public PlayerProperty
 		// but in the game every sub-Skill has to be handled different (e.g. because of different charges)
 		// for getting this: 
 		// when the game starts every skill of the player has to be set to a clone of the original sub-Skill in Skill::skills
-		Skill* createGameSkill(Mob*) const;
+		Skill* createGameSkill(Mob*, RestrictedGameInterface*) const;
 	private:
 		void setID(char);
 		static std::vector<LobbySkill*> skills;

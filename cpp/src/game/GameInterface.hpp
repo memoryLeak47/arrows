@@ -17,6 +17,7 @@ class CollisionEvent;
 #include <SFML/Network/IpAddress.hpp>
 #include <controller/Actions.hpp>
 #include <view/View.hpp>
+#include "RestrictedGameInterface.hpp"
 
 class GameInterface : public Menu, public NetworkInterface
 {
@@ -58,6 +59,9 @@ class GameInterface : public Menu, public NetworkInterface
 		// elements
 		View view;
 		GameTileMap* tileMap;
+		RestrictedGameInterface restrictedGameInterface;
+
+	friend class RestrictedGameInterface;
 };
 
 #endif

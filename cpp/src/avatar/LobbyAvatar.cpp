@@ -60,12 +60,12 @@ char LobbyAvatar::getID() const
 	return id;
 }
 
-GamePlayer* LobbyAvatar::createGamePlayer(const GameVector& vec, const LobbyPlayer* player) const
+GamePlayer* LobbyAvatar::createGamePlayer(const GameVector& vec, const LobbyPlayer* player, RestrictedGameInterface* rgi) const
 {
 	switch (getID())
 	{
-		#define X(aid, lobbyname, gamename) case aid: return new gamename(vec, player);
-		#define Y(aid, lobbyname, gamename) case aid: return new gamename(vec, player);
+		#define X(aid, lobbyname, gamename) case aid: return new gamename(vec, player, rgi);
+		#define Y(aid, lobbyname, gamename) case aid: return new gamename(vec, player, rgi);
 		#include "AvatarID.list"
 		#undef X
 		#undef Y
