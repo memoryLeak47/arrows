@@ -1,14 +1,20 @@
 #ifndef __BULLET_CLASS__
 #define __BULLET_CLASS__
 
-#include "Entity.hpp"
+class Mob;
 
-class Bullet : public Entity
+#include "ImpactfulDynamicEntity.hpp"
+
+class Bullet : public ImpactfulDynamicEntity
 {
 	public:
-		Bullet(Body*);
+		Bullet(Body*, Mob*);
 		virtual ~Bullet() {}
 		virtual EntityType getEntityType() const override;
+
+		Mob* getOwner() const;
+	private:
+		Mob* owner;
 };
 
 #endif
