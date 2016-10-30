@@ -1,7 +1,7 @@
 GameRect Classname::getWrapper(float timeLeft) const
 {
-	float deltaX = speed.x * timeLeft;
-	float deltaY = speed.y * timeLeft;
+	float deltaX = getSpeed().x * timeLeft;
+	float deltaY = getSpeed().y * timeLeft;
 
 	float diagonal = 2 * getSize().getMagnitude();
 	float sizeX = diagonal + std::abs(deltaX);
@@ -21,30 +21,30 @@ bool Classname::isCollidingPoint(const GameVector& point) const
 GameRect Classname::getRenderGameRect() const
 {
 	Debug::warn("<RotatedRectBody>::getRenderGameRect(): TODO");
-	return GameRect(position, size);
+	return GameRect(getPosition(), getSize());
 }
 
 float Classname::getLeftest() const
 {
-	Debug::warn("<RotatedRectBody>::getLeft(): TODO");
+	Debug::warn("<RotatedRectBody>::getLeftest(): TODO");
 	return 0.f;
 }
 
 float Classname::getRightest() const
 {
-	Debug::warn("<RotatedRectBody>::getRight(): TODO");
+	Debug::warn("<RotatedRectBody>::getRightest(): TODO");
 	return 0.f;
 }
 
 float Classname::getToppest() const
 {
-	Debug::warn("<RotatedRectBody>::getTop(): TODO");
+	Debug::warn("<RotatedRectBody>::getToppest(): TODO");
 	return 0.f;
 }
 
 float Classname::getBottest() const
 {
-	Debug::warn("<RotatedRectBody>::getBot(): TODO");
+	Debug::warn("<RotatedRectBody>::getBottest(): TODO");
 	return 0.f;
 }
 

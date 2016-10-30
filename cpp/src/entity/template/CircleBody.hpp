@@ -1,7 +1,7 @@
 GameRect Classname::getWrapper(float timeLeft) const
 {
-	float deltaX = speed.x * timeLeft;
-	float deltaY = speed.y * timeLeft;
+	float deltaX = getSpeed().x * timeLeft;
+	float deltaY = getSpeed().y * timeLeft;
 
 	float diagonal = 2 * getSize().x; // getSize().x == radius
 	float sizeX = diagonal + std::abs(deltaX);
@@ -25,24 +25,24 @@ GameRect Classname::getRenderGameRect() const
 
 float Classname::getLeftest() const
 {
-	Debug::warn("<CircleBody>::getLeft(): TODO");
+	Debug::warn("<CircleBody>::getLeftest(): TODO");
 	return 0.f;
 }
 
 float Classname::getRightest() const
 {
-	Debug::warn("<CircleBody>::getRight(): TODO");
+	Debug::warn("<CircleBody>::getRightest(): TODO");
 	return 0.f;
 }
 
 float Classname::getToppest() const
 {
-	Debug::warn("<CircleBody>::getTop(): TODO");
+	Debug::warn("<CircleBody>::getToppest() TODO");
 	return 0.f;
 }
 
 float Classname::getBottest() const
 {
-	Debug::warn("<CircleBody>::getBot(): TODO");
+	Debug::warn("<CircleBody>::getBottest(): TODO");
 	return 0.f;
 }

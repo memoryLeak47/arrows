@@ -1,9 +1,7 @@
 #include "Idler.hpp"
 
-#include <collision/Body.hpp>
-
-Idler::Idler(Body* b)
-	: ImpactfulDynamicEntity(b)
+Idler::Idler(const EntityGivethrough& gt)
+	: ImpactfulDynamicEntity(gt)
 {}
 
 Idler::Idler(CompressBuffer* buffer)
@@ -12,7 +10,7 @@ Idler::Idler(CompressBuffer* buffer)
 
 std::string Idler::getCompressString() const
 {
-	return getBody()->compress();
+	return ImpactfulDynamicEntity::getCompressString();
 }
 
 EntityType Idler::getEntityType() const

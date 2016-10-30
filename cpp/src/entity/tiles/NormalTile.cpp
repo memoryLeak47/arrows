@@ -1,10 +1,9 @@
 #include "NormalTile.hpp"
 
 #include <graphics/GraphicsManager.hpp>
-#include <collision/RectBody.hpp>
 
 NormalTile::NormalTile(const GameVector& pos)
-	: Tile(new RectBody(pos))
+	: Tile(pos)
 {}
 
 sf::Texture* NormalTile::getTexture() const
@@ -14,5 +13,5 @@ sf::Texture* NormalTile::getTexture() const
 
 std::string NormalTile::toString() const
 {
-	return "NormalTile: " + getBody()->getPosition().toString();
+	return "NormalTile: " + getPosition().toString();
 }

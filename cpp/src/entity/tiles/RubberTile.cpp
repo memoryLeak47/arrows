@@ -1,10 +1,9 @@
 #include "RubberTile.hpp"
 
 #include <graphics/GraphicsManager.hpp>
-#include <collision/RectBody.hpp>
 
 RubberTile::RubberTile(const GameVector& pos)
-	: Tile(new RectBody(pos))
+	: Tile(pos)
 {}
 
 Sponge RubberTile::getSponge() const
@@ -19,5 +18,5 @@ sf::Texture* RubberTile::getTexture() const
 
 std::string RubberTile::toString() const
 {
-	return "RubberTile: " + getBody()->getPosition().toString();
+	return "RubberTile: " + getPosition().toString();
 }

@@ -1,7 +1,6 @@
 #ifndef __IDLER_CLASS__
 #define __IDLER_CLASS__
 
-class Body;
 class CompressBuffer;
 
 #include "ImpactfulDynamicEntity.hpp"
@@ -10,7 +9,7 @@ class CompressBuffer;
 class Idler : public ImpactfulDynamicEntity
 {
 	public:
-		Idler(Body*);
+		Idler(const EntityGivethrough&);
 		Idler(CompressBuffer*);
 		virtual ~Idler() {}
 

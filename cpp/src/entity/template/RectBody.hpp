@@ -1,10 +1,12 @@
+#include <math/game/GameRect.hpp>
+
 GameRect Classname::getWrapper(float timeLeft) const
 {
-	float deltaX = speed.x * timeLeft;
-	float deltaY = speed.y * timeLeft;
+	float deltaX = getSpeed().x * timeLeft;
+	float deltaY = getSpeed().y * timeLeft;
 
-	float sizeX = size.x + std::abs(deltaX);
-	float sizeY = size.y + std::abs(deltaY);
+	float sizeX = getSize().x + std::abs(deltaX);
+	float sizeY = getSize().y + std::abs(deltaY);
 	float posX = getPosition().x + deltaX/2 - sizeX/2;
 	float posY = getPosition().y + deltaY/2 - sizeY/2;
 
@@ -13,9 +15,9 @@ GameRect Classname::getWrapper(float timeLeft) const
 
 bool Classname::isCollidingPoint(const GameVector& point) const
 {
-	if ((point.x >= getLeft()) && (point.x <= getRight()))
+	if ((point.x >= getLeftest()) && (point.x <= getRightest()))
 	{
-		if ((point.y >= getTop()) && (point.y <= getBot()))
+		if ((point.y >= getToppest()) && (point.y <= getBottest()))
 		{
 			return true;
 		}
@@ -25,7 +27,7 @@ bool Classname::isCollidingPoint(const GameVector& point) const
 
 GameRect Classname::getRenderGameRect() const
 {
-	return GameRect(position, size);
+	return GameRect(getPosition(), getSize());
 }
 
 float Classname::getLeftest() const

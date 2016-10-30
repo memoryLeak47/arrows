@@ -11,7 +11,7 @@
 #include <tilemap/GameTileMap.hpp>
 #include <collision/CollisionEvent.hpp>
 #include <entity/Tile.hpp>
-#include <collision/Body.hpp>
+#include <math/game/GameRect.hpp>
 
 #include <network/packets/TeamPacket.hpp>
 #include <network/packets/LoginPacket.hpp>
@@ -242,7 +242,7 @@ void GameInterface::updateChanged(std::vector<CollisionEvent*>* events, float ti
 		}
 		if (e1->hasChanged())
 		{
-			std::vector<Tile*> intersectionTiles = getGameTileMap()->getIntersectionTiles(e1->getBody()->getWrapper(timeLeft));
+			std::vector<Tile*> intersectionTiles = getGameTileMap()->getIntersectionTiles(e1->getWrapper(timeLeft));
 			for (auto iter = intersectionTiles.begin(); iter != intersectionTiles.end(); ++iter)
 			{
 				if (Entity::areWrapperPartners(e1, *iter)) continue;

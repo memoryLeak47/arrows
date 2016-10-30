@@ -5,8 +5,8 @@
 #include <collision/PhysicsHandler.hpp>
 #include <math/game/GameVector.hpp>
 
-DynamicEntity::DynamicEntity(Body* body_arg)
-	: Entity(body_arg), changed(true)
+DynamicEntity::DynamicEntity(const EntityGivethrough& gt)
+	: Entity(gt), changed(true)
 {}
 
 bool DynamicEntity::hasChanged() const

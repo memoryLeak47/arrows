@@ -3,12 +3,14 @@
 #include <misc/Global.hpp>
 #include <core/Screen.hpp>
 
+#include "EntityGivethrough.hpp"
 #include <collision/CollisionTester.hpp>
 #include <collision/PhysicsHandler.hpp>
 #include <math/pixel/PixelRect.hpp>
+#include <math/game/GameRect.hpp>
 #include <view/View.hpp>
 
-Entity::Entity(EntityGivethrough& gt)
+Entity::Entity(const EntityGivethrough& gt)
 	: position(gt.position), size(gt.size), speed(gt.speed), rotation(gt.rotation), spin(gt.spin)
 {}
 
@@ -37,11 +39,6 @@ void Entity::move(float time)
 	{
 		move(time);
 	}
-}
-
-GameVector Entity::getSpeed() const
-{
-	return speed;
 }
 
 void Entity::setSpeed(const GameVector& speed_arg)
@@ -111,6 +108,31 @@ void Entity::addSpeed(const GameVector& how)
 CollisionType Entity::getCollisionType() const
 {
 	return CollisionType::SOLID;
+}
+
+const GameVector& Entity::getPosition() const
+{
+	return position;
+}
+
+const GameVector& Entity::getSize() const
+{
+	return size;
+}
+
+const GameVector& Entity::getSpeed() const
+{
+	return speed;
+}
+
+float Entity::getRotation() const
+{
+	return rotation;
+}
+
+float Entity::getSpin() const
+{
+	return spin;
 }
 
 void Entity::optGravity()

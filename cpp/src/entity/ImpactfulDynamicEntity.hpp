@@ -1,7 +1,6 @@
 #ifndef __PHYSICALENTITY_CLASS__
 #define __PHYSICALENTITY_CLASS__
 
-class Body;
 class CompressBuffer;
 
 #include "DynamicEntity.hpp"
@@ -10,7 +9,7 @@ class CompressBuffer;
 class ImpactfulDynamicEntity : public DynamicEntity, public Compressable
 {
 	public:
-		ImpactfulDynamicEntity(Body*);
+		ImpactfulDynamicEntity(const EntityGivethrough&);
 		ImpactfulDynamicEntity(CompressBuffer*);
 		virtual ~ImpactfulDynamicEntity() {}
 };

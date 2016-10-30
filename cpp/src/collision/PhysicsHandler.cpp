@@ -1,7 +1,6 @@
 #include "PhysicsHandler.hpp"
 
 #include <misc/Global.hpp>
-#include <collision/Body.hpp>
 #include <math/game/GameVector.hpp>
 #include <entity/Entity.hpp>
 
@@ -30,11 +29,11 @@ void PhysicsHandler::handlePhysics(Entity* e1, Entity* e2, const GameVector& col
 			ms1 = e1->getMass() / (e1->getMass() + e2->getMass());
 		}
 	}
-	GameVector v1 = e1->getBody()->getSpeedAt(collisionPoint);
+	GameVector v1 = e1->getSpeedAt(collisionPoint);
 
 	float sponge = Entity::getSpongeBetween(e1, e2);
 
-	e1->reactToCollision(ms1, e2->getBody()->getSpeedAt(collisionPoint), collisionPoint, sponge);
+	e1->reactToCollision(ms1, e2->getSpeedAt(collisionPoint), collisionPoint, sponge);
 	e2->reactToCollision(1.f - ms1, v1, collisionPoint, sponge);
 
 	Debug::funcOff("PhysicsHandler::handlePhysics(" + e1->toString() + ", " + e2->toString() + ")");

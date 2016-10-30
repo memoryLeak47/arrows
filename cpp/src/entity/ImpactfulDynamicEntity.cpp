@@ -1,12 +1,12 @@
 #include "ImpactfulDynamicEntity.hpp"
 
 #include <misc/compress/CompressBuffer.hpp>
-#include <collision/Body.hpp>
+#include <entity/EntityGivethrough.hpp>
 
-ImpactfulDynamicEntity::ImpactfulDynamicEntity(Body* body_arg)
-	: DynamicEntity(body_arg)
+ImpactfulDynamicEntity::ImpactfulDynamicEntity(const EntityGivethrough& gt)
+	: DynamicEntity(gt)
 {}
 
 ImpactfulDynamicEntity::ImpactfulDynamicEntity(CompressBuffer* buffer)
-	: DynamicEntity(buffer->cutCompressable<Body>())
+	: DynamicEntity(*buffer->cutCompressable<EntityGivethrough>()) // XXX memoryleak
 {}

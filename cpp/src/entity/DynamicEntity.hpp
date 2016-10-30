@@ -1,15 +1,13 @@
 #ifndef __DYNAMICENTITY_CLASS__
 #define __DYNAMICENTITY_CLASS__
 
-class Body;
-
 #include "Entity.hpp"
 #include <vector>
 
 class DynamicEntity : public Entity
 {
 	public:
-		DynamicEntity(Body*);
+		DynamicEntity(const EntityGivethrough&);
 		virtual ~DynamicEntity() {}
 
 		void checkWrapperPartners();

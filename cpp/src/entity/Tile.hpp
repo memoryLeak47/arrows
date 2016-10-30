@@ -1,7 +1,6 @@
 #ifndef __TILE_CLASS__
 #define __TILE_CLASS__
 
-class Body;
 class GameVector;
 
 #include "Entity.hpp"
@@ -11,7 +10,7 @@ class GameVector;
 class Tile : public Entity
 {
 	public:
-		Tile(Body*);
+		Tile(const EntityGivethrough&);
 		Tile(const GameVector&);
 		virtual ~Tile() {}
 
@@ -35,6 +34,8 @@ class Tile : public Entity
 		bool hasWrapperPartner(Entity*) const override;
 
 		static Tile* createByColorID(const int, const GameVector&);
+
+		#include <entity/template/Body.hpp>
 };
 
 #endif

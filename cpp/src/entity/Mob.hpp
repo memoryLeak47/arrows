@@ -1,7 +1,6 @@
 #ifndef __MOB_CLASS__
 #define __MOB_CLASS__
 
-class Body;
 class Controller;
 class CompressBuffer;
 class View;
@@ -12,7 +11,7 @@ class View;
 class Mob : public ImpactfulDynamicEntity
 {
 	public:
-		Mob(Body*, Controller*);
+		Mob(const EntityGivethrough&, Controller*);
 		Mob(CompressBuffer*);
 		virtual ~Mob(); // deletes controller
 

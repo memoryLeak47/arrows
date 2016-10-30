@@ -2,14 +2,13 @@
 
 #include <math/game/GameRect.hpp>
 #include <entity/Entity.hpp>
-#include <collision/Body.hpp>
 #include <math/game/GameVector.hpp>
 
 const float STEPSIZE = 0.05f; // Schrittweite bei der CollisionPoint suche
 
 bool CollisionTester::areColliding(Entity* e1, Entity* e2, GameVector* p)
 {
-	GameRect intersectionRect = GameRect::getIntersectionRect(e1->getBody()->getWrapper(0), e2->getBody()->getWrapper(0));
+	GameRect intersectionRect = GameRect::getIntersectionRect(e1->getWrapper(0), e2->getWrapper(0));
 
 	 // nicht wundern. Stimmt so ;)
 	float left = intersectionRect.getRight(); // mit Wert initialisieren, der definitiv weiter rechts liegt, als der gesuchte wert
@@ -26,7 +25,7 @@ bool CollisionTester::areColliding(Entity* e1, Entity* e2, GameVector* p)
 	{
 		while (point.x <= intersectionRect.getRight())
 		{
-			if (e1->getBody()->isCollidingPoint(point) && e2->getBody()->isCollidingPoint(point))
+			if (e1->isCollidingPoint(point) && e2->isCollidingPoint(point))
 			{
 				// left usw. updaten
 				if (point.x < left)
@@ -67,8 +66,8 @@ bool CollisionTester::areColliding(Entity* e1, Entity* e2, GameVector* p)
 
 bool CollisionTester::areWrapperColliding(Entity* e1, Entity* e2)
 {
-	const GameRect r1 = e1->getBody()->getWrapper(0);
-	const GameRect r2 = e2->getBody()->getWrapper(0);
+	const GameRect r1 = e1->getWrapper(0);
+	const GameRect r2 = e2->getWrapper(0);
 
 	if ((r1.getLeft() <= r2.getRight()) && (r1.getRight() >= r2.getLeft()))
 	{

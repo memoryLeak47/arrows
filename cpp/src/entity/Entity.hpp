@@ -22,23 +22,15 @@ struct Sponge
 	float value;
 };
 
-struct EntityGivethrough
-{
-	EntityGivethrough(const GameVector& position_arg, const GameVector& size_arg, const GameVector& speed_arg=GameVector(0.f,0.f), float rotation_arg=0, float spin_arg=0)
-		: position(position_arg), size(size_arg), speed(speed_arg), rotation(rotation_arg), spin(spin_arg)
-	{}
-
-	GameVector position, size, speed;
-	float rotation, spin;
-};
-
-class GameVector;
+class EntityGivethrough;
+class GameRect;
 class View;
 class PixelRect;
 
 #include <string>
 #include <vector>
 #include <SFML/Graphics/Texture.hpp>
+#include <math/game/GameVector.hpp>
 
 class Entity
 {
@@ -54,7 +46,6 @@ class Entity
 
 		// physics
 		void move(float time);
-		GameVector getSpeed() const;
 		void setSpeed(const GameVector& speed);
 		void setPosition(const GameVector& position);
 		void setRotation(float rotation);
@@ -79,11 +70,24 @@ class Entity
 		virtual CollisionType getCollisionType() const;
 		virtual void onCollide(Entity*) {}
 		virtual void offCollide(Entity*) {}
+		virtual bool isCollidingPoint(const GameVector&) const = 0;
+
+		virtual float getLeftest() const = 0;
+		virtual float getRightest() const = 0;
+		virtual float getToppest() const = 0;
+		virtual float getBottest() const = 0;
+
+		const GameVector& getPosition() const;
+		const GameVector& getSize() const;
+		const GameVector& getSpeed() const;
+		float getRotation() const;
+		float getSpin() const;
 
 		// physics
 		virtual float getMass() const = 0;
 		virtual bool isStatic() const { return false; }
-		void reactToCollision(const float massshare, const GameVector& speed, const GameVector& collisionPoint, float sponge);
+		virtual void reactToCollision(const float massshare, const GameVector& speed, const GameVector& collisionPoint, float sponge) = 0;
+		virtual GameRect getWrapper(float) const = 0;
 
 		// collisionPartner / WrapperPartners
 		virtual void addCollisionPartner(Entity*) = 0;
@@ -108,10 +112,15 @@ class Entity
 		virtual void render(const View&) const;
 		virtual sf::Texture* getTexture() const = 0;
 		void stop();
+		virtual GameRect getRenderGameRect() const = 0;
+
+		virtual GameVector getSpeedAt(const GameVector&) const = 0;
+
 	protected:
 		void basicRender(const View&) const;
 		PixelRect getRenderRect(const View&) const;
-	private:
+
+		// should not be protected: XXX
 		GameVector position, size, speed;
 		float rotation, spin;
 		int dashCounter;

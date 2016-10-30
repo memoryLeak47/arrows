@@ -1,7 +1,7 @@
 #include "Bullet.hpp"
 
-Bullet::Bullet(Body* body, Mob* o)
-	: Idler(body), owner(o)
+Bullet::Bullet(const EntityGivethrough& gt, Mob* o)
+	: Idler(gt), owner(o)
 {}
 
 Bullet::Bullet(CompressBuffer* buffer)

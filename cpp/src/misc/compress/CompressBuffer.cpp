@@ -15,16 +15,12 @@
 #include <network/packets/PacketWithID.hpp>
 #include <network/packets/ActionsUpdatePacket.hpp>
 #include <network/packets/GameUpdatePacket.hpp>
-#include <collision/RectBody.hpp>
-#include <collision/CircleBody.hpp>
-#include <collision/RotatedRectBody.hpp>
 #include <controller/PlayerController.hpp>
 #include <entity/TestKiste.hpp>
 #include <avatar/game/Archer.hpp>
 #include <avatar/game/Rogue.hpp>
 #include <entity/bullets/SimpleArrow.hpp>
-
-#include <collision/Body.hpp>
+#include <entity/EntityGivethrough.hpp>
 
 #include <player/LobbyPlayer.hpp>
 

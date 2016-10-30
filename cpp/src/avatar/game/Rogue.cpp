@@ -1,10 +1,10 @@
 #include "Rogue.hpp"
 
-#include <collision/RectBody.hpp>
+#include <entity/EntityGivethrough.hpp>
 #include <graphics/GraphicsManager.hpp>
 
 Rogue::Rogue(const GameVector& pos, const LobbyPlayer* player, RestrictedGameInterface* rgi)
-	: GamePlayer(new RectBody(pos, GraphicsManager::getGameSizeOf(ROGUE_GID)), player, rgi)
+	: GamePlayer(EntityGivethrough(pos, GraphicsManager::getGameSizeOf(ROGUE_GID)), player, rgi)
 {}
 
 Rogue::Rogue(CompressBuffer* buffer)
@@ -37,5 +37,5 @@ sf::Texture* Rogue::getTexture() const
 
 std::string Rogue::toString() const
 {
-	return "(Rogue: body=(" + getBody()->toString() + "))";
+	return "(Rogue)";
 }

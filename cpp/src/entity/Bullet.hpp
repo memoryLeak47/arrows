@@ -8,7 +8,7 @@ class Mob;
 class Bullet : public Idler
 {
 	public:
-		Bullet(Body*, Mob*);
+		Bullet(const EntityGivethrough&, Mob*);
 		Bullet(CompressBuffer*);
 		virtual ~Bullet() {}
 		virtual EntityType getEntityType() const override;

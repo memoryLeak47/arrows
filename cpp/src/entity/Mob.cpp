@@ -2,11 +2,10 @@
 
 #include <misc/Global.hpp>
 #include <controller/Controller.hpp>
-#include <collision/Body.hpp>
 #include <misc/compress/CompressBuffer.hpp>
 
-Mob::Mob(Body* body, Controller* controller)
-	: ImpactfulDynamicEntity(body), controller(controller)
+Mob::Mob(const EntityGivethrough& gt, Controller* controller)
+	: ImpactfulDynamicEntity(gt), controller(controller)
 {}
 
 Mob::Mob(CompressBuffer* buffer)
@@ -20,7 +19,7 @@ Mob::~Mob()
 
 std::string Mob::getCompressString() const
 {
-	return getBody()->compress() + getController()->compress();
+	return ImpactfulDynamicEntity::getCompressString() + getController()->compress();
 }
 
 void Mob::tick()
@@ -46,7 +45,7 @@ void Mob::actionGoRight()
 
 void Mob::actionJump()
 {
-	setSpeed(GameVector(body->getSpeed().x, body->getSpeed().y - 0.04f));
+	setSpeed(GameVector(getSpeed().x, getSpeed().y - 0.04f));
 }
 
 float Mob::getMass() const

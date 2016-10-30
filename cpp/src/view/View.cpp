@@ -1,10 +1,10 @@
 #include "View.hpp"
 
 #include <core/Screen.hpp>
-#include <collision/Body.hpp>
 #include <math/pixel/PixelVector.hpp>
 #include <math/pixel/PixelRect.hpp>
 #include <entity/Entity.hpp>
+#include <math/game/GameRect.hpp>
 
 View::View()
 	: scale(40), spot(0,0), focusEntity(false)
@@ -48,7 +48,7 @@ GameVector View::getFocus() const
 {
 	if (focusEntity)
 	{
-		return entity->getBody()->getPosition();
+		return entity->getPosition();
 	}
 	else
 	{

@@ -2,7 +2,6 @@
 
 #include <misc/compress/CompressBuffer.hpp>
 #include <misc/Global.hpp>
-#include <collision/RectBody.hpp>
 #include <controller/PlayerController.hpp>
 #include <avatar/LobbyAvatar.hpp>
 #include <skill/LobbySkill.hpp>
@@ -24,8 +23,8 @@ GamePlayer::GamePlayer(CompressBuffer *b)
 	Debug::error("GamePlayer::GamePlayer(): should never be called. Instead use the apply Function!");
 }
 
-GamePlayer::GamePlayer(Body* body, const LobbyPlayer* player, RestrictedGameInterface* rgi)
-	: Mob(body, new PlayerController()),
+GamePlayer::GamePlayer(const EntityGivethrough& gt, const LobbyPlayer* player, RestrictedGameInterface* rgi)
+	: Mob(gt, new PlayerController()),
 	  name(player->getLoginPacket()->getName()),
 	  rank(player->getLoginPacket()->getRank()),
 	  description(LobbyAvatar::get(player->getAvatarPacket()->getAvatarID())->getDescription()),
@@ -122,6 +121,8 @@ void GamePlayer::optSetSkillEnabled(int i, bool b)
 
 void GamePlayer::apply(const std::string& s)
 {
+	Debug::warn("GamePlayer::apply(): TODO");
+	/*
 	CompressBuffer buffer(s);
 	if (getBody() != nullptr)
 	{
@@ -145,9 +146,15 @@ void GamePlayer::apply(const std::string& s)
 	{
 		skills[i]->setCharge(buffer.cutFloat());
 	}
+*/
 }
 
 void GamePlayer::setActions(const Actions actions) // Setzt Actions auf das übergebene
 {
 	getController()->setActions(actions);
 }
+
+#define Classname GamePlayer
+#include <entity/template/RectBody.hpp>
+#include <entity/template/ReactRectBody.hpp>
+#undef Classname

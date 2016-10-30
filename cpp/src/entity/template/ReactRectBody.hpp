@@ -1,4 +1,4 @@
-void Classname::reactToCollision(const float massshare, const GameVector& speed, const GameVector& collisionPoint, float sponge)
+void Classname::reactToCollision(const float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint, float sponge)
 {
 	constexpr float RANGE = 0.08f;
 	constexpr float SPONGE = 0.f;
@@ -7,9 +7,9 @@ void Classname::reactToCollision(const float massshare, const GameVector& speed,
 
 	Pos x, y;
 	// set x
-	if (collisionPoint.x > getLeft() + RANGE)
+	if (collisionPoint.x > getLeftest() + RANGE)
 	{
-		if ((collisionPoint.x < getRight() - RANGE))
+		if ((collisionPoint.x < getRightest() - RANGE))
 		{
 			x = MID;
 		}
@@ -24,9 +24,9 @@ void Classname::reactToCollision(const float massshare, const GameVector& speed,
 	}
 
 	// set y
-	if (collisionPoint.y > getTop() + RANGE)
+	if (collisionPoint.y > getToppest() + RANGE)
 	{
-		if ((collisionPoint.y < getBot() - RANGE))
+		if ((collisionPoint.y < getBottest() - RANGE))
 		{
 			y = MID;
 		}
@@ -51,26 +51,26 @@ void Classname::reactToCollision(const float massshare, const GameVector& speed,
 		if (collisionPoint.x < position.x)
 		{
 			// Move Right
-			position.x += collisionPoint.x - getLeft();
+			position.x += collisionPoint.x - getLeftest();
 			speed.x = std::max(2*SPONGE + speedSum.x, speed.x);
 		}
 		else
 		{
 			// Move Left
-			position.x += collisionPoint.x - getRight();
+			position.x += collisionPoint.x - getRightest();
 			speed.x = std::min(-2*SPONGE + speedSum.x, speed.x);
 		}
 
 		if (collisionPoint.y < position.y)
 		{
 			// Move Down
-			position.y += collisionPoint.y - getTop();
+			position.y += collisionPoint.y - getToppest();
 			speed.y = std::max(2*SPONGE + speedSum.y, speed.y);
 		}
 		else
 		{
 			// Move Up
-			position.y += collisionPoint.y - getBot();
+			position.y += collisionPoint.y - getBottest();
 			speed.y = std::min(-2*SPONGE + speedSum.y, speed.y);
 		}
 	}
@@ -79,13 +79,13 @@ void Classname::reactToCollision(const float massshare, const GameVector& speed,
 		if (y == MIN) // top-collision
 		{
 			// Move Down
-			position.y += collisionPoint.y - getTop();
+			position.y += collisionPoint.y - getToppest();
 			speed.y = std::max(SPONGE + speedSum.y, speed.y);
 		}
 		else // bot-collision
 		{
 			// Move Up
-			position.y += collisionPoint.y - getBot();
+			position.y += collisionPoint.y - getBottest();
 			speed.y = std::min(-SPONGE + speedSum.y, speed.y);
 		}
 	}
@@ -94,13 +94,13 @@ void Classname::reactToCollision(const float massshare, const GameVector& speed,
 		if (x == MIN) // left-collision
 		{
 			// Move Right
-			position.x += collisionPoint.x - getLeft();
+			position.x += collisionPoint.x - getLeftest();
 			speed.x = std::max(SPONGE + speedSum.x, speed.x);
 		}
 		else // right-collision
 		{
 			// Move Left
-			position.x += collisionPoint.x - getRight();
+			position.x += collisionPoint.x - getRightest();
 			speed.x = std::min(-SPONGE + speedSum.x, speed.x);
 		}
 	}

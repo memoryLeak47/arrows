@@ -1,10 +1,10 @@
 #include "Archer.hpp"
 
-#include <collision/RectBody.hpp>
 #include <graphics/GraphicsManager.hpp>
+#include <entity/EntityGivethrough.hpp>
 
 Archer::Archer(const GameVector& pos, const LobbyPlayer* player, RestrictedGameInterface* rgi)
-	: GamePlayer(new RectBody(pos, GraphicsManager::getGameSizeOf(ARCHER_GID)), player, rgi)
+	: GamePlayer(EntityGivethrough(pos, GraphicsManager::getGameSizeOf(ARCHER_GID)), player, rgi)
 {}
 
 Archer::Archer(CompressBuffer* buffer)
@@ -37,5 +37,5 @@ sf::Texture* Archer::getTexture() const
 
 std::string Archer::toString() const
 {
-	return "(Archer: body=(" + getBody()->toString() + "))";
+	return "(Archer)";
 }

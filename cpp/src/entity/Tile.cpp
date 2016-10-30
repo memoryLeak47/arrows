@@ -1,7 +1,7 @@
 #include "Tile.hpp"
 
+#include <entity/EntityGivethrough.hpp>
 #include <misc/Global.hpp>
-#include <collision/RectBody.hpp>
 #include <team/Team.hpp>
 #include "tiles/NormalTile.hpp"
 #include "tiles/RubberTile.hpp"
@@ -15,12 +15,12 @@ static int RUBBER_BLOCK_ID = Converter::colorStringToInt("005500");
 static int VOID_BLOCK_ID = Converter::colorStringToInt("ffffff");
 static int LAVA_BLOCK_ID = Converter::colorStringToInt("ffbb00");
 
-Tile::Tile(Body* body)
-	: Entity(body)
+Tile::Tile(const EntityGivethrough& gt)
+	: Entity(gt)
 {}
 
 Tile::Tile(const GameVector& pos)
-	: Entity(new RectBody(pos, GameVector(1, 1)))
+	: Entity(EntityGivethrough(pos, GameVector(1.f, 1.f)))
 {}
 
 bool Tile::hasChanged() const
@@ -119,3 +119,10 @@ float Tile::getMass() const
 {
 	return INFINITY;
 }
+
+void Tile::reactToCollision(const float, const GameVector&, const GameVector&, float)
+{}
+
+#define Classname Tile
+#include <entity/template/RectBody.hpp>
+#undef Classname

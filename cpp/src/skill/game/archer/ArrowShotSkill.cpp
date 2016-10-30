@@ -3,7 +3,6 @@
 #include <misc/Debug.hpp>
 #include <entity/bullets/SimpleArrow.hpp>
 #include <entity/Mob.hpp>
-#include <collision/Body.hpp>
 
 ArrowShotSkill::ArrowShotSkill(const SkillGivethrough& gt)
 	: TriggerSkill(gt)
@@ -11,5 +10,5 @@ ArrowShotSkill::ArrowShotSkill(const SkillGivethrough& gt)
 
 void ArrowShotSkill::onTrigger()
 {
-	addBullet(new SimpleArrow(getOwner()->getBody()->getPosition(), GameVector(0.4f, 0.f), getOwner()));
+	addBullet(new SimpleArrow(getOwner()->getPosition(), GameVector(0.4f, 0.f), getOwner()));
 }

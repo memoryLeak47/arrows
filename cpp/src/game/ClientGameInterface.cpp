@@ -6,7 +6,7 @@
 #include <entity/Idler.hpp>
 #include <entity/Tile.hpp>
 #include <tilemap/GameTileMap.hpp>
-#include <collision/Body.hpp>
+#include <math/game/GameRect.hpp>
 
 #include <network/packets/ActionsUpdatePacket.hpp>
 #include <network/packets/GameUpdatePacket.hpp>
@@ -106,7 +106,7 @@ void ClientGameInterface::applyGameUpdate(const std::vector<std::string>& player
 	{
 		DynamicEntity* e1 = getDynamicEntity(i);
 
-		const std::vector<Tile*> tiles = getGameTileMap()->getIntersectionTiles(e1->getBody()->getWrapper(0.f));
+		const std::vector<Tile*> tiles = getGameTileMap()->getIntersectionTiles(e1->getWrapper(0.f));
 		for (unsigned int j = 0; j < tiles.size(); j++)
 		{
 			if (e1->getCollisionPriority(tiles[j]) + tiles[j]->getCollisionPriority(e1) <= 0) continue;

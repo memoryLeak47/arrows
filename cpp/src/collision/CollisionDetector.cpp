@@ -4,7 +4,6 @@
 #include <tilemap/GameTileMap.hpp>
 #include "CollisionEvent.hpp"
 #include <entity/Entity.hpp>
-#include <collision/Body.hpp>
 #include <math/game/GameRect.hpp>
 
 // private function
@@ -78,25 +77,22 @@ void CollisionDetector::addCollisionsBetween(Entity* e1, Entity* e2, std::vector
 		Debug::warn(std::string(__PRETTY_FUNCTION__) + ": between collision partners");
 	}
 
-	const Body* b1 = e1->getBody();
-	const Body* b2 = e2->getBody();
+	const GameRect wrapper1 = e1->getWrapper(0.f); // TODO make getWrapper more beautiful
+	const GameRect wrapper2 = e2->getWrapper(0.f);
 
-	const GameRect wrapper1 = b1->getWrapper(0.f); // TODO make getWrapper more beautiful
-	const GameRect wrapper2 = b2->getWrapper(0.f);
-
-	const float posX1 = b1->getPosition().x;
-	const float posY1 = b1->getPosition().y;
+	const float posX1 = e1->getPosition().x;
+	const float posY1 = e1->getPosition().y;
 	const float sizeX1 = wrapper1.getSize().x;
 	const float sizeY1 = wrapper1.getSize().y;
 
-	const float posX2 = b2->getPosition().x;
-	const float posY2 = b2->getPosition().y;
+	const float posX2 = e2->getPosition().x;
+	const float posY2 = e2->getPosition().y;
 	const float sizeX2 = wrapper2.getSize().x;
 	const float sizeY2 = wrapper2.getSize().y;
 
 	// speed subtraction
-	const float speedX = b1->getSpeed().x - b2->getSpeed().x;
-	const float speedY = b1->getSpeed().y - b2->getSpeed().y;
+	const float speedX = e1->getSpeed().x - e2->getSpeed().x;
+	const float speedY = e1->getSpeed().y - e2->getSpeed().y;
 
 	// getestet
 	CollisionStatus xCol, yCol;

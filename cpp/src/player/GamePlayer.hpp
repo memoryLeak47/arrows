@@ -6,7 +6,6 @@
 #define __GAMEPLAYER_CLASS__
 
 class CompressBuffer;
-class Body;
 class LobbyPlayer;
 class View;
 class GamePlayer;
@@ -26,7 +25,7 @@ class GamePlayer : public Mob
 {
 	public:
 		GamePlayer(CompressBuffer*); // => Mob(b), cutCharges(b)
-		GamePlayer(Body*, const LobbyPlayer*, RestrictedGameInterface*); // used when Game begins in Avatar::createGamePlayer()
+		GamePlayer(const EntityGivethrough&, const LobbyPlayer*, RestrictedGameInterface*); // used when Game begins in Avatar::createGamePlayer()
 		virtual ~GamePlayer(); // deletes ip
 
 		// compress
@@ -37,6 +36,8 @@ class GamePlayer : public Mob
 		sf::IpAddress* getIP() const;
 
 		virtual void tick() override;
+
+		#include <entity/template/Body.hpp>
 	protected:
 		virtual void optSetSkillEnabled(int, bool); // called from Mob::applyActions(); updates skills
 		virtual void apply(const std::string&); // Wird nur in ClientGameInterface::applyGameUpdate benutzt
