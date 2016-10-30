@@ -6,12 +6,13 @@
 #include "EntityGivethrough.hpp"
 #include <collision/CollisionTester.hpp>
 #include <collision/PhysicsHandler.hpp>
+#include <collision/Shape.hpp>
 #include <math/pixel/PixelRect.hpp>
 #include <math/game/GameRect.hpp>
 #include <view/View.hpp>
 
 Entity::Entity(const EntityGivethrough& gt)
-	: position(gt.position), size(gt.size), speed(gt.speed), rotation(gt.rotation), spin(gt.spin)
+	: shape(gt.shape), position(gt.position), size(gt.size), speed(gt.speed), rotation(gt.rotation), spin(gt.spin)
 {}
 
 Entity::~Entity()
@@ -226,4 +227,50 @@ bool Entity::couldFlashTo(const GameVector&) const
 void Entity::stop()
 {
 	setSpeed(GameVector(0.f, 0.f));
+}
+
+// for Shape
+bool Entity::isCollidingPoint(const GameVector& point) const
+{
+	return shape->isCollidingPoint(point);
+}
+
+float Entity::getLeftest() const
+{
+	return shape->getLeftest();
+}
+
+float Entity::getRightest() const
+{
+	return shape->getRightest();
+}
+
+float Entity::getToppest() const
+{
+	return shape->getToppest();
+}
+
+float Entity::getBottest() const
+{
+	return shape->getBottest();
+}
+
+void Entity::reactToCollision(const float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint, float sponge)
+{
+	shape->reactToCollision(massshare, otherSpeed, collisionPoint, sponge);
+}
+
+GameRect Entity::getWrapper(float time) const
+{
+	return shape->getWrapper(time);
+}
+
+GameRect Entity::getRenderGameRect() const
+{
+	return shape->getRenderGameRect();
+}
+
+GameVector Entity::getSpeedAt(const GameVector& here) const
+{
+	return shape->getSpeedAt(here);
 }

@@ -2,9 +2,10 @@
 
 #include <graphics/GraphicsManager.hpp>
 #include <entity/EntityGivethrough.hpp>
+#include <collision/RectShape.hpp>
 
 Archer::Archer(const GameVector& pos, const LobbyPlayer* player, RestrictedGameInterface* rgi)
-	: GamePlayer(EntityGivethrough(pos, GraphicsManager::getGameSizeOf(ARCHER_GID)), player, rgi)
+	: GamePlayer(EntityGivethrough(new RectShape(this), pos, GraphicsManager::getGameSizeOf(ARCHER_GID)), player, rgi)
 {}
 
 Archer::Archer(CompressBuffer* buffer)

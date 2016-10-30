@@ -24,8 +24,6 @@ class TestKiste : public Idler
 		virtual sf::Texture* getTexture() const override;
 		virtual std::string toString() const override;
 		virtual float getMass() const override;
-
-		#include <entity/template/Body.hpp>
 };
 
 #endif

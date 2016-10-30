@@ -36,8 +36,6 @@ class GamePlayer : public Mob
 		sf::IpAddress* getIP() const;
 
 		virtual void tick() override;
-
-		#include <entity/template/Body.hpp>
 	protected:
 		virtual void optSetSkillEnabled(int, bool); // called from Mob::applyActions(); updates skills
 		virtual void apply(const std::string&); // Wird nur in ClientGameInterface::applyGameUpdate benutzt

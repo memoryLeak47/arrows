@@ -34,8 +34,6 @@ class Tile : public Entity
 		bool hasWrapperPartner(Entity*) const override;
 
 		static Tile* createByColorID(const int, const GameVector&);
-
-		#include <entity/template/Body.hpp>
 };
 
 #endif

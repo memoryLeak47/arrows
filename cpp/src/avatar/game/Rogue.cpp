@@ -2,9 +2,10 @@
 
 #include <entity/EntityGivethrough.hpp>
 #include <graphics/GraphicsManager.hpp>
+#include <collision/RectShape.hpp>
 
 Rogue::Rogue(const GameVector& pos, const LobbyPlayer* player, RestrictedGameInterface* rgi)
-	: GamePlayer(EntityGivethrough(pos, GraphicsManager::getGameSizeOf(ROGUE_GID)), player, rgi)
+	: GamePlayer(EntityGivethrough(new RectShape(this), pos, GraphicsManager::getGameSizeOf(ROGUE_GID)), player, rgi)
 {}
 
 Rogue::Rogue(CompressBuffer* buffer)

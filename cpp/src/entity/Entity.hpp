@@ -26,6 +26,7 @@ class EntityGivethrough;
 class GameRect;
 class View;
 class PixelRect;
+class Shape;
 
 #include <string>
 #include <vector>
@@ -70,12 +71,17 @@ class Entity
 		virtual CollisionType getCollisionType() const;
 		virtual void onCollide(Entity*) {}
 		virtual void offCollide(Entity*) {}
-		virtual bool isCollidingPoint(const GameVector&) const = 0;
 
-		virtual float getLeftest() const = 0;
-		virtual float getRightest() const = 0;
-		virtual float getToppest() const = 0;
-		virtual float getBottest() const = 0;
+		// for Shape
+		bool isCollidingPoint(const GameVector&) const;
+		float getLeftest() const;
+		float getRightest() const;
+		float getToppest() const;
+		float getBottest() const;
+		void reactToCollision(const float massshare, const GameVector& speed, const GameVector& collisionPoint, float sponge);
+		GameRect getWrapper(float) const;
+		GameRect getRenderGameRect() const;
+		GameVector getSpeedAt(const GameVector&) const;
 
 		const GameVector& getPosition() const;
 		const GameVector& getSize() const;
@@ -86,8 +92,6 @@ class Entity
 		// physics
 		virtual float getMass() const = 0;
 		virtual bool isStatic() const { return false; }
-		virtual void reactToCollision(const float massshare, const GameVector& speed, const GameVector& collisionPoint, float sponge) = 0;
-		virtual GameRect getWrapper(float) const = 0;
 
 		// collisionPartner / WrapperPartners
 		virtual void addCollisionPartner(Entity*) = 0;
@@ -112,18 +116,18 @@ class Entity
 		virtual void render(const View&) const;
 		virtual sf::Texture* getTexture() const = 0;
 		void stop();
-		virtual GameRect getRenderGameRect() const = 0;
-
-		virtual GameVector getSpeedAt(const GameVector&) const = 0;
 
 	protected:
 		void basicRender(const View&) const;
 		PixelRect getRenderRect(const View&) const;
 
 		// should not be protected: XXX
+		Shape* shape;
 		GameVector position, size, speed;
 		float rotation, spin;
 		int dashCounter;
+
+	friend class RectShape;
 };
 
 #endif

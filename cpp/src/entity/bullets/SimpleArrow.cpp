@@ -3,9 +3,10 @@
 #include <graphics/GraphicsManager.hpp>
 #include <misc/Debug.hpp>
 #include <entity/EntityGivethrough.hpp>
+#include <collision/RectShape.hpp>
 
 SimpleArrow::SimpleArrow(const GameVector& pos, const GameVector& speed, Mob* owner)
-	: Bullet(EntityGivethrough(pos, GameVector(0.5f, 0.3f), speed), owner)
+	: Bullet(EntityGivethrough(new RectShape(this) /* XXX Rotated */, pos, GameVector(0.5f, 0.3f), speed), owner)
 {}
 
 SimpleArrow::SimpleArrow(CompressBuffer* buffer)
@@ -19,7 +20,7 @@ CompressID SimpleArrow::getCompressID() const
 
 std::string SimpleArrow::toString() const
 {
-	return "(SimpleArrow)";
+	return "SimpleArrow";
 }
 
 float SimpleArrow::getMass() const
@@ -30,14 +31,4 @@ float SimpleArrow::getMass() const
 sf::Texture* SimpleArrow::getTexture() const
 {
 	return GraphicsManager::getTexture(SIMPLE_ARROW_GID);
-	//return SIMPLE_ARROW_GID;
 }
-
-void SimpleArrow::reactToCollision(const float, const GameVector&, const GameVector&, float)
-{
-	Debug::warn("SimpleArrow::reactToCollision(): TODO");
-}
-
-#define Classname SimpleArrow
-#include <entity/template/RectBody.hpp>
-#undef Classname

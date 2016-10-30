@@ -13,6 +13,6 @@ ImpactfulDynamicEntity::ImpactfulDynamicEntity(CompressBuffer* buffer)
 
 std::string ImpactfulDynamicEntity::getCompressString() const
 {
-	EntityGivethrough tmp(position, size, speed, rotation, spin);
+	EntityGivethrough tmp(shape, position, size, speed, rotation, spin);
 	return tmp.getCompressString();
 }

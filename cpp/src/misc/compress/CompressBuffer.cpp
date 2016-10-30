@@ -21,6 +21,7 @@
 #include <avatar/game/Rogue.hpp>
 #include <entity/bullets/SimpleArrow.hpp>
 #include <entity/EntityGivethrough.hpp>
+#include <collision/RectShape.hpp>
 
 #include <player/LobbyPlayer.hpp>
 

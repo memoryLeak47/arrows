@@ -153,8 +153,3 @@ void GamePlayer::setActions(const Actions actions) // Setzt Actions auf das übe
 {
 	getController()->setActions(actions);
 }
-
-#define Classname GamePlayer
-#include <entity/template/RectBody.hpp>
-#include <entity/template/ReactRectBody.hpp>
-#undef Classname

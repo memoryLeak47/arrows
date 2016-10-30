@@ -15,8 +15,6 @@ class SimpleArrow : public Bullet
 		virtual std::string toString() const;
 		virtual float getMass() const;
 		virtual sf::Texture* getTexture() const;
-
-		#include <entity/template/Body.hpp>
 };
 
 #endif

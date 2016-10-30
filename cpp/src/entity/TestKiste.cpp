@@ -1,10 +1,11 @@
 #include "TestKiste.hpp"
 
+#include <collision/RectShape.hpp>
 #include <graphics/GraphicsManager.hpp>
 #include <entity/EntityGivethrough.hpp>
 
 TestKiste::TestKiste(const GameVector& position)
-	: Idler(EntityGivethrough(position, GameVector(0.7f, 0.5f)))
+	: Idler(EntityGivethrough(new RectShape(this), position, GameVector(0.7f, 0.5f)))
 {}
 
 TestKiste::TestKiste(CompressBuffer* buffer)
@@ -40,8 +41,3 @@ float TestKiste::getMass() const
 {
 	return 10.f;
 }
-
-#define Classname TestKiste
-#include <entity/template/RectBody.hpp>
-#include <entity/template/ReactRectBody.hpp>
-#undef Classname

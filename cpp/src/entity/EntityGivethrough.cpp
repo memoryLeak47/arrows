@@ -1,13 +1,16 @@
 #include "EntityGivethrough.hpp"
 
 #include <misc/compress/CompressBuffer.hpp>
+#include <collision/Shape.hpp>
 
-EntityGivethrough::EntityGivethrough(const GameVector& position_arg, const GameVector& size_arg, const GameVector& speed_arg, float rotation_arg, float spin_arg)
-	: position(position_arg), size(size_arg), speed(speed_arg), rotation(rotation_arg), spin(spin_arg)
+EntityGivethrough::EntityGivethrough(Shape* shape_arg, const GameVector& position_arg, const GameVector& size_arg, const GameVector& speed_arg, float rotation_arg, float spin_arg)
+	: shape(shape_arg), position(position_arg), size(size_arg), speed(speed_arg), rotation(rotation_arg), spin(spin_arg)
 {}
 
 EntityGivethrough::EntityGivethrough(CompressBuffer* buffer)
 {
+	shape = buffer->cutCompressable<Shape>();
+
 	GameVector* position_ = buffer->cutCompressable<GameVector>();
 	GameVector* size_ = buffer->cutCompressable<GameVector>();
 	GameVector* speed_ = buffer->cutCompressable<GameVector>();
@@ -31,5 +34,5 @@ CompressID EntityGivethrough::getCompressID() const
 
 std::string EntityGivethrough::getCompressString() const
 {
-	return position.getCompressString() + size.getCompressString() + speed.getCompressString() + compressFloat(rotation) + compressFloat(spin);
+	return shape->compress() + position.getCompressString() + size.getCompressString() + speed.getCompressString() + compressFloat(rotation) + compressFloat(spin);
 }

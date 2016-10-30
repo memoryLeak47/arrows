@@ -1,6 +1,7 @@
 #include "Tile.hpp"
 
 #include <entity/EntityGivethrough.hpp>
+#include <collision/RectShape.hpp>
 #include <misc/Global.hpp>
 #include <team/Team.hpp>
 #include "tiles/NormalTile.hpp"
@@ -20,7 +21,7 @@ Tile::Tile(const EntityGivethrough& gt)
 {}
 
 Tile::Tile(const GameVector& pos)
-	: Entity(EntityGivethrough(pos, GameVector(1.f, 1.f)))
+	: Entity(EntityGivethrough(new RectShape(this), pos, GameVector(1.f, 1.f)))
 {}
 
 bool Tile::hasChanged() const
@@ -119,10 +120,3 @@ float Tile::getMass() const
 {
 	return INFINITY;
 }
-
-void Tile::reactToCollision(const float, const GameVector&, const GameVector&, float)
-{}
-
-#define Classname Tile
-#include <entity/template/RectBody.hpp>
-#undef Classname
