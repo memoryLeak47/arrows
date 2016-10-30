@@ -1,4 +1,5 @@
 #include <math/game/GameRect.hpp>
+#include <cmath>
 
 GameRect Classname::getWrapper(float timeLeft) const
 {

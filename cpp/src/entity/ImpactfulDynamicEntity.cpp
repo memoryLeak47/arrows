@@ -10,3 +10,9 @@ ImpactfulDynamicEntity::ImpactfulDynamicEntity(const EntityGivethrough& gt)
 ImpactfulDynamicEntity::ImpactfulDynamicEntity(CompressBuffer* buffer)
 	: DynamicEntity(*buffer->cutCompressable<EntityGivethrough>()) // XXX memoryleak
 {}
+
+std::string ImpactfulDynamicEntity::getCompressString() const
+{
+	EntityGivethrough tmp(position, size, speed, rotation, spin);
+	return tmp.getCompressString();
+}

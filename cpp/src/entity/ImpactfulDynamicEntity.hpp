@@ -12,6 +12,8 @@ class ImpactfulDynamicEntity : public DynamicEntity, public Compressable
 		ImpactfulDynamicEntity(const EntityGivethrough&);
 		ImpactfulDynamicEntity(CompressBuffer*);
 		virtual ~ImpactfulDynamicEntity() {}
+
+		virtual std::string getCompressString() const override;
 };
 
 #endif
