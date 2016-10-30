@@ -242,7 +242,10 @@ float Entity::getBottest() const
 
 void Entity::reactToCollision(const float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint, float sponge)
 {
-	shape->reactToCollision(massshare, otherSpeed, collisionPoint, sponge);
+	if (not isStatic())
+	{
+		shape->reactToCollision(massshare, otherSpeed, collisionPoint, sponge);
+	}
 }
 
 GameRect Entity::getWrapper(float time) const
