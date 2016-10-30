@@ -16,7 +16,9 @@ Entity::Entity(const EntityGivethrough& gt)
 {}
 
 Entity::~Entity()
-{}
+{
+	delete shape;
+}
 
 void Entity::tick()
 {
