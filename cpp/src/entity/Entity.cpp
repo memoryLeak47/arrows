@@ -5,19 +5,15 @@
 
 #include <collision/CollisionTester.hpp>
 #include <collision/PhysicsHandler.hpp>
-#include <collision/Body.hpp>
 #include <math/pixel/PixelRect.hpp>
 #include <view/View.hpp>
 
-Entity::Entity(Body* bodyArg)
-{
-	body = bodyArg;
-}
+Entity::Entity(EntityGivethrough& gt)
+	: position(gt.position), size(gt.size), speed(gt.speed), rotation(gt.rotation), spin(gt.spin)
+{}
 
 Entity::~Entity()
-{
-	delete body;
-}
+{}
 
 void Entity::tick()
 {
@@ -39,43 +35,43 @@ void Entity::move(float time)
 {
 	if (!isStatic())
 	{
-		body->move(time);
+		move(time);
 	}
 }
 
 GameVector Entity::getSpeed() const
 {
-	return body->getSpeed();
+	return speed;
 }
 
-void Entity::setSpeed(const GameVector& speed)
+void Entity::setSpeed(const GameVector& speed_arg)
 {
-	if (speed != body->getSpeed())
+	if (speed != speed_arg)
 	{
-		body->setSpeed(speed);
+		speed = speed_arg;
 		setChanged(true);
 	}
 }
 
-void Entity::setPosition(const GameVector& position)
+void Entity::setPosition(const GameVector& position_arg)
 {
-	if (position != body->getPosition())
+	if (position != position_arg)
 	{
-		body->setPosition(position);
+		position = position_arg;
 		setChanged(true);
 	}
 	// TODO reload collision partners
 }
 
-void Entity::setRotation(float rotation)
+void Entity::setRotation(float rotation_arg)
 {
-	body->setRotation(rotation);
+	rotation = rotation_arg;
 	setChanged(true);
 }
 
-void Entity::setSpin(float spin)
+void Entity::setSpin(float spin_arg)
 {
-	body->setSpin(spin);
+	spin = spin_arg;
 	setChanged(true);
 }
 
@@ -86,42 +82,35 @@ void Entity::push(const GameVector& how, const GameVector& where)
 
 void Entity::push(const GameVector& how)
 {
-	push(how, body->getPosition());
+	push(how, position);
 }
 
 void Entity::addPosition(const GameVector& how)
 {
-	setPosition(body->getPosition() + how);
+	setPosition(position + how);
 }
 
 void Entity::setSpeedAt(const GameVector& how, const GameVector& where)
 {
-	body->setSpeedAt(how, where);
+	setSpeedAt(how, where);
 	setChanged(true);
 }
 
 void Entity::addSpeedAt(const GameVector& how, const GameVector& where)
 {
-	setSpeedAt(body->getSpeedAt(where) + how, where);
+	setSpeedAt(getSpeedAt(where) + how, where);
 	setChanged(true);
 }
 
 void Entity::addSpeed(const GameVector& how)
 {
-	setSpeed(how + body->getSpeed());
+	setSpeed(how + getSpeed());
 }
 
 
 CollisionType Entity::getCollisionType() const
 {
 	return CollisionType::SOLID;
-}
-
-// die Parameter beziehen sich auf die Entity mit der kollidiert wird, am collisionPoint
-void Entity::reactToCollision(const float massshare, const GameVector& speed, const GameVector& collisionPoint, float sponge)
-{
-	if (not isStatic())
-		body->reactToCollision(massshare, speed, collisionPoint, sponge);
 }
 
 void Entity::optGravity()
@@ -131,7 +120,7 @@ void Entity::optGravity()
 
 void Entity::optDrag()
 {
-	push(body->getSpeed() * -0.01f);
+	push(getSpeed() * -0.01f);
 }
 
 Sponge Entity::getSponge() const
@@ -168,11 +157,6 @@ CollisionType Entity::getCollisionTypeBetween(Entity* e1, Entity* e2)
 	return std::max(e1->getCollisionType(), e2->getCollisionType());
 }
 
-const Body* Entity::getBody() const
-{
-	return body;
-}
-
 void Entity::render(const View& v) const
 {
 	basicRender(v);
@@ -180,19 +164,19 @@ void Entity::render(const View& v) const
 
 void Entity::basicRender(const View& v) const
 {
-	Screen::drawTexture(getTexture(), getRenderRect(v), getBody()->getRotation());
+	Screen::drawTexture(getTexture(), getRenderRect(v), getRotation());
 }
 
 PixelRect Entity::getRenderRect(const View& v) const
 {
-	GameRect r = getBody()->getRenderGameRect();
+	GameRect r = getRenderGameRect();
 	r = GameRect(r.getPosition() - r.getSize()/2, r.getSize());
 	return v.gameRectToPixelRect(r);
 }
 
 void Entity::dash(const GameVector& targetPosition, float duration)
 {
-	body->setSpeed((targetPosition - getBody()->getPosition())/duration);
+	setSpeed((targetPosition - getPosition())/duration);
 	dashCounter = duration;
 }
 
@@ -204,7 +188,7 @@ bool Entity::couldDashTo(const GameVector&) const
 
 void Entity::flash(const GameVector& target)
 {
-	body->setPosition(target);
+	setPosition(target);
 	setChanged(true);
 	// clear collisionpartners
 	// recalculate collisionpartners

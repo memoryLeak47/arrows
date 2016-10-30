@@ -22,7 +22,16 @@ struct Sponge
 	float value;
 };
 
-class Body;
+struct EntityGivethrough
+{
+	EntityGivethrough(const GameVector& position_arg, const GameVector& size_arg, const GameVector& speed_arg=GameVector(0.f,0.f), float rotation_arg=0, float spin_arg=0)
+		: position(position_arg), size(size_arg), speed(speed_arg), rotation(rotation_arg), spin(spin_arg)
+	{}
+
+	GameVector position, size, speed;
+	float rotation, spin;
+};
+
 class GameVector;
 class View;
 class PixelRect;
@@ -34,7 +43,7 @@ class PixelRect;
 class Entity
 {
 	public:
-		Entity(Body*);
+		Entity(const EntityGivethrough&);
 		virtual ~Entity();
 
 		virtual bool hasChanged() const = 0;
@@ -43,7 +52,7 @@ class Entity
 		virtual void tick();
 		virtual std::string toString() const = 0;
 
-		// for body
+		// physics
 		void move(float time);
 		GameVector getSpeed() const;
 		void setSpeed(const GameVector& speed);
@@ -89,8 +98,6 @@ class Entity
 		static bool areWrapperPartners(Entity*, Entity*);
 		static CollisionType getCollisionTypeBetween(Entity* e1, Entity* e2);
 
-		const Body* getBody() const;
-
 		void dash(const GameVector&, float);
 		bool couldDashTo(const GameVector&) const;
 
@@ -104,8 +111,9 @@ class Entity
 	protected:
 		void basicRender(const View&) const;
 		PixelRect getRenderRect(const View&) const;
-		Body* body;
 	private:
+		GameVector position, size, speed;
+		float rotation, spin;
 		int dashCounter;
 };
 

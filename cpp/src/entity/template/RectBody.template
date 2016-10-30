@@ -1,0 +1,54 @@
+GameRect Classname::getWrapper(float timeLeft) const
+{
+	float deltaX = speed.x * timeLeft;
+	float deltaY = speed.y * timeLeft;
+
+	float sizeX = size.x + std::abs(deltaX);
+	float sizeY = size.y + std::abs(deltaY);
+	float posX = getPosition().x + deltaX/2 - sizeX/2;
+	float posY = getPosition().y + deltaY/2 - sizeY/2;
+
+	return GameRect(GameVector(posX, posY), GameVector(sizeX, sizeY));
+}
+
+bool Classname::isCollidingPoint(const GameVector& point) const
+{
+	if ((point.x >= getLeft()) && (point.x <= getRight()))
+	{
+		if ((point.y >= getTop()) && (point.y <= getBot()))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+GameRect Classname::getRenderGameRect() const
+{
+	return GameRect(position, size);
+}
+
+float Classname::getLeftest() const
+{
+	return getPosition().x - getSize().x/2.f;
+}
+
+float Classname::getRightest() const
+{
+	return getPosition().x + getSize().x/2.f;
+}
+
+float Classname::getToppest() const
+{
+	return getPosition().y - getSize().y/2.f;
+}
+
+float Classname::getBottest() const
+{
+	return getPosition().y + getSize().y/2.f;
+}
+
+GameVector Classname::getSpeedAt(const GameVector& where) const // where is a map-coordinate
+{
+	return getSpeed();
+}

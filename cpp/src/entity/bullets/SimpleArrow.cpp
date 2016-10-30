@@ -5,7 +5,7 @@
 #include <graphics/GraphicsManager.hpp>
 
 SimpleArrow::SimpleArrow(const GameVector& pos, const GameVector& speed, Mob* owner)
-	: Bullet(new RotatedRectBody(pos, GameVector(0.5f, 0.3f), speed), owner)
+	: Bullet(EntityGivethrough(pos, GameVector(0.5f, 0.3f), speed), owner)
 {}
 
 SimpleArrow::SimpleArrow(CompressBuffer* buffer)
@@ -32,3 +32,7 @@ sf::Texture* SimpleArrow::getTexture() const
 	return GraphicsManager::getTexture(SIMPLE_ARROW_GID);
 	//return SIMPLE_ARROW_GID;
 }
+
+#define Classname SimpleArrow
+#include <entity/template/RectBody.template>
+#undef Classname

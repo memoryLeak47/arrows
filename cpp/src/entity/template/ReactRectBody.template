@@ -1,0 +1,107 @@
+void Classname::reactToCollision(const float massshare, const GameVector& speed, const GameVector& collisionPoint, float sponge)
+{
+	constexpr float RANGE = 0.08f;
+	constexpr float SPONGE = 0.f;
+
+	enum Pos { MIN, MID, MAX };
+
+	Pos x, y;
+	// set x
+	if (collisionPoint.x > getLeft() + RANGE)
+	{
+		if ((collisionPoint.x < getRight() - RANGE))
+		{
+			x = MID;
+		}
+		else
+		{
+			x = MAX;
+		}
+	}
+	else
+	{
+		x = MIN;
+	}
+
+	// set y
+	if (collisionPoint.y > getTop() + RANGE)
+	{
+		if ((collisionPoint.y < getBot() - RANGE))
+		{
+			y = MID;
+		}
+		else
+		{
+			y = MAX;
+		}
+	}
+	else
+	{
+		y = MIN;
+	}
+
+	// react
+	GameVector v_sum(speed*massshare + otherSpeed*(1-massshare));
+	GameVector sponge_sum = GameVector(v_sum + (otherSpeed - speed) * (1-massshare));
+	GameVector speedSum = v_sum * (1.f - sponge) + sponge_sum * sponge;
+
+	if ((x == MID) && (y == MID)) // Wenn der CollisionPoint in der Mitte der Entity liegt
+	{
+		// Move Out
+		if (collisionPoint.x < position.x)
+		{
+			// Move Right
+			position.x += collisionPoint.x - getLeft();
+			speed.x = std::max(2*SPONGE + speedSum.x, speed.x);
+		}
+		else
+		{
+			// Move Left
+			position.x += collisionPoint.x - getRight();
+			speed.x = std::min(-2*SPONGE + speedSum.x, speed.x);
+		}
+
+		if (collisionPoint.y < position.y)
+		{
+			// Move Down
+			position.y += collisionPoint.y - getTop();
+			speed.y = std::max(2*SPONGE + speedSum.y, speed.y);
+		}
+		else
+		{
+			// Move Up
+			position.y += collisionPoint.y - getBot();
+			speed.y = std::min(-2*SPONGE + speedSum.y, speed.y);
+		}
+	}
+	else if (x == MID) // Wenn nur x in der Mitte liegt
+	{
+		if (y == MIN) // top-collision
+		{
+			// Move Down
+			position.y += collisionPoint.y - getTop();
+			speed.y = std::max(SPONGE + speedSum.y, speed.y);
+		}
+		else // bot-collision
+		{
+			// Move Up
+			position.y += collisionPoint.y - getBot();
+			speed.y = std::min(-SPONGE + speedSum.y, speed.y);
+		}
+	}
+	else if (y == MID)
+	{
+		if (x == MIN) // left-collision
+		{
+			// Move Right
+			position.x += collisionPoint.x - getLeft();
+			speed.x = std::max(SPONGE + speedSum.x, speed.x);
+		}
+		else // right-collision
+		{
+			// Move Left
+			position.x += collisionPoint.x - getRight();
+			speed.x = std::min(-SPONGE + speedSum.x, speed.x);
+		}
+	}
+}

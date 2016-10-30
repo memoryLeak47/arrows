@@ -33,7 +33,7 @@ sf::Texture* TestKiste::getTexture() const
 
 std::string TestKiste::toString() const
 {
-	return "(TestKiste: body=(" + getBody()->toString() + "))";
+	return "TestKiste";
 }
 
 float TestKiste::getMass() const
