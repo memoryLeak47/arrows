@@ -55,3 +55,8 @@ GameVector Classname::getSpeedAt(const GameVector& where) const // where is a ma
 {
 	return getSpeed();
 }
+
+void Classname::setSpeedAt(const GameVector& how, const GameVector& where) // where is a map-coordinate
+{
+	speed = how;
+}

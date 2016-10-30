@@ -122,7 +122,7 @@ void GameInterface::tickPhysics()
 		{
 			static TimeStruct getFirst(TimeStruct t1, TimeStruct t2, TimeStruct t3)
 			{
-				if (t1.time >= t2.time && t1.time >= t3.time) return t1; /* XXX not sure about this */
+				if (t1.time >= t2.time && t1.time >= t3.time) return t1;
 				if (t2.time >= t3.time && t2.time >= t1.time) return t2;
 				return t3;
 			}

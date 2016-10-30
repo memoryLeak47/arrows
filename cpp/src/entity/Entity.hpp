@@ -54,7 +54,7 @@ class Entity
 		void push(const GameVector& how, const GameVector& where);
 
 		void addPosition(const GameVector& how);
-		void setSpeedAt(const GameVector& how, const GameVector& where);
+		virtual void setSpeedAt(const GameVector& how, const GameVector& where);
 		void addSpeedAt(const GameVector& how, const GameVector& where);
 		void addSpeed(const GameVector& how);
 

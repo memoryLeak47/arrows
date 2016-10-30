@@ -37,7 +37,8 @@ void Entity::move(float time)
 {
 	if (!isStatic())
 	{
-		move(time);
+		position += getSpeed() * time;
+		// TODO rotation, spin
 	}
 }
 

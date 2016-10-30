@@ -6,4 +6,5 @@ virtual float getRightest() const override;
 virtual float getToppest() const override;
 virtual float getBottest() const override;
 virtual GameVector getSpeedAt(const GameVector&) const override;
+virtual void setSpeedAt(const GameVector&, const GameVector&) override;
 virtual GameRect getRenderGameRect() const override;

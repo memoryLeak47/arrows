@@ -49,3 +49,8 @@ float Classname::getBottest() const
 	Debug::warn("<CircleBody>::getBottest(): TODO");
 	return 0.f;
 }
+
+void Classname::setSpeedAt(const GameVector& how, const GameVector& where) // where is a map-coordinate
+{
+	Debug::warn("<CircleBody>::setSpeedAt(): TODO");
+}
