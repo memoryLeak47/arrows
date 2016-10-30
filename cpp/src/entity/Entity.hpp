@@ -52,11 +52,8 @@ class Entity
 		void setRotation(float rotation);
 		void setSpin(float spin);
 		void push(const GameVector& how);
-		void push(const GameVector& how, const GameVector& where);
 
 		void addPosition(const GameVector& how);
-		virtual void setSpeedAt(const GameVector& how, const GameVector& where);
-		void addSpeedAt(const GameVector& how, const GameVector& where);
 		void addSpeed(const GameVector& how);
 
 		virtual void optGravity();

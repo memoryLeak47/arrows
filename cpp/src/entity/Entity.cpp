@@ -76,31 +76,14 @@ void Entity::setSpin(float spin_arg)
 	setChanged(true);
 }
 
-void Entity::push(const GameVector& how, const GameVector& where)
-{
-	addSpeedAt(how/getMass(), where);
-}
-
 void Entity::push(const GameVector& how)
 {
-	push(how, position);
+	addSpeed(how/getMass());
 }
 
 void Entity::addPosition(const GameVector& how)
 {
 	setPosition(position + how);
-}
-
-void Entity::setSpeedAt(const GameVector& how, const GameVector& where)
-{
-	setSpeedAt(how, where);
-	setChanged(true);
-}
-
-void Entity::addSpeedAt(const GameVector& how, const GameVector& where)
-{
-	setSpeedAt(getSpeedAt(where) + how, where);
-	setChanged(true);
 }
 
 void Entity::addSpeed(const GameVector& how)
