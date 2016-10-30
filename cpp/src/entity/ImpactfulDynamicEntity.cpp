@@ -1,5 +1,6 @@
 #include "ImpactfulDynamicEntity.hpp"
 
+#include <collision/Shape.hpp>
 #include <misc/compress/CompressBuffer.hpp>
 #include <entity/EntityGivethrough.hpp>
 
@@ -9,7 +10,9 @@ ImpactfulDynamicEntity::ImpactfulDynamicEntity(const EntityGivethrough& gt)
 
 ImpactfulDynamicEntity::ImpactfulDynamicEntity(CompressBuffer* buffer)
 	: DynamicEntity(*buffer->cutCompressable<EntityGivethrough>()) // XXX memoryleak
-{}
+{
+	shape->entity = this;
+}
 
 std::string ImpactfulDynamicEntity::getCompressString() const
 {

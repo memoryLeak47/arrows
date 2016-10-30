@@ -8,6 +8,8 @@
 #include <skill/Skill.hpp>
 #include <item/LobbyItem.hpp>
 #include <skill/Skill.hpp>
+#include <collision/Shape.hpp>
+#include <entity/EntityGivethrough.hpp>
 
 #include <network/packets/TeamPacket.hpp>
 #include <network/packets/LoginPacket.hpp>
@@ -121,17 +123,24 @@ void GamePlayer::optSetSkillEnabled(int i, bool b)
 
 void GamePlayer::apply(const std::string& s)
 {
-	Debug::warn("GamePlayer::apply(): TODO");
-	/*
 	CompressBuffer buffer(s);
-	if (getBody() != nullptr)
+	if (shape != nullptr)
 	{
-		delete body;
+		delete shape;
 	}
-	if ((body = buffer.cutCompressable<Body>()) == nullptr)
+	EntityGivethrough* gt;
+	if ((gt = buffer.cutCompressable<EntityGivethrough>()) == nullptr)
 	{
-		Debug::error("GamePlayer::apply(): Body-cast returns nullptr");
+		Debug::error("GamePlayer::apply(): gt-cast returns nullptr");
 	}
+
+	shape = gt->shape;
+	position = gt->position;
+	speed = gt->speed;
+	size = gt->size;
+	rotation = gt->rotation;
+	spin = gt->spin;
+	delete gt;
 
 	if (getController() != nullptr)
 	{
@@ -146,7 +155,7 @@ void GamePlayer::apply(const std::string& s)
 	{
 		skills[i]->setCharge(buffer.cutFloat());
 	}
-*/
+
 }
 
 void GamePlayer::setActions(const Actions actions) // Setzt Actions auf das übergebene

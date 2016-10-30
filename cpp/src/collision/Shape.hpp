@@ -31,6 +31,8 @@ class Shape : public Compressable
 		virtual void reactToCollision(const float, const GameVector&, const GameVector&, float) = 0;
 	protected:
 		Entity* entity;
+
+	friend class ImpactfulDynamicEntity;
 };
 
 #endif

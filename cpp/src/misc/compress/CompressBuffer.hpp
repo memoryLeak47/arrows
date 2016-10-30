@@ -27,15 +27,16 @@ class CompressBuffer
 		std::string string;
 };
 
-#include <misc/Debug.hpp>
+#include <misc/Global.hpp>
 
 template <class T>
 T* CompressBuffer::cutCompressable()
 {
-	T* c = dynamic_cast<T*>(cutByCompressID((CompressID) cutChar()));
+	CompressID cid = (CompressID) cutChar();
+	T* c = dynamic_cast<T*>(cutByCompressID(cid));
 	if (c == nullptr)
 	{
-		Debug::error("cutCompressable() failed");
+		Debug::error("cutCompressable() failed, CompressID=" + Converter::intToString(cid));
 	}
 	return c;
 }

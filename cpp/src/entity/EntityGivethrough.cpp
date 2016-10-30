@@ -9,11 +9,14 @@ EntityGivethrough::EntityGivethrough(Shape* shape_arg, const GameVector& positio
 
 EntityGivethrough::EntityGivethrough(CompressBuffer* buffer)
 {
-	shape = buffer->cutCompressable<Shape>();
+	if ((shape = buffer->cutCompressable<Shape>()) == nullptr)
+	{
+		Debug::error("EntityGivethrough::EntityGivethrough(buffer); could not cut Shape");
+	}
 
-	GameVector* position_ = buffer->cutCompressable<GameVector>();
-	GameVector* size_ = buffer->cutCompressable<GameVector>();
-	GameVector* speed_ = buffer->cutCompressable<GameVector>();
+	GameVector* position_ = (GameVector*) buffer->cutByCompressID(GAME_VECTOR_CID);
+	GameVector* size_ = (GameVector*) buffer->cutByCompressID(GAME_VECTOR_CID);
+	GameVector* speed_ = (GameVector*) buffer->cutByCompressID(GAME_VECTOR_CID);
 
 	position = *position_;
 	size = *size_;
