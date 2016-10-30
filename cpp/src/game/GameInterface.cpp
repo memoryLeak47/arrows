@@ -35,8 +35,8 @@ GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>&
 			getGameTileMap()->teamToSpawnPosition(lobbyPlayers[i]->getTeamPacket()->getTeam()), lobbyPlayers[i], &restrictedGameInterface));
 	}
 
-	//idlers.push_back(new TestKiste(GameVector(7.5f, 4.5f)));
-	//idlers.push_back(new TestKiste(GameVector(7.5f, 3.5f)));
+	idlers.push_back(new TestKiste(GameVector(7.5f, 4.5f)));
+	idlers.push_back(new TestKiste(GameVector(7.5f, 3.5f)));
 }
 
 GameInterface::~GameInterface()
