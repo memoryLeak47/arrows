@@ -25,3 +25,8 @@ std::string SpawnTeamTile::toString() const
 {
 	return "SpawnTeamTile";
 }
+
+float SpawnTeamTile::getCollisionPriority(Entity* e) const
+{
+	return -1000;
+}

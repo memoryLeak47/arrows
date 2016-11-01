@@ -12,7 +12,7 @@ class VoidTile : public Tile
 	public:
 		VoidTile(const GameVector&);
 		virtual sf::Texture* getTexture() const override;
-		virtual float getCollisionPriority(Entity* e) { return -100; }
+		virtual float getCollisionPriority(Entity* e) const override;
 		virtual std::string toString() const override;
 };
 

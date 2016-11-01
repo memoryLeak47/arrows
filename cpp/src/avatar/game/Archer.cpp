@@ -22,7 +22,7 @@ std::string Archer::getCompressString() const
 	return GamePlayer::getCompressString();
 }
 
-float Archer::getCollisionPriority(Entity* e)
+float Archer::getCollisionPriority(Entity* e) const
 {
 	if (e->getEntityType() == getEntityType())
 	{

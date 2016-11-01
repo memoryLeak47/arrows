@@ -22,7 +22,7 @@ std::string Rogue::getCompressString() const
 	return GamePlayer::getCompressString();
 }
 
-float Rogue::getCollisionPriority(Entity* e)
+float Rogue::getCollisionPriority(Entity* e) const
 {
 	if (e->getEntityType() == getEntityType())
 	{

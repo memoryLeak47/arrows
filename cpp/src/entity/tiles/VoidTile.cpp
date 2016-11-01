@@ -15,3 +15,8 @@ std::string VoidTile::toString() const
 {
 	return "VoidTile";
 }
+
+float VoidTile::getCollisionPriority(Entity* e) const
+{
+	return -1000;
+}

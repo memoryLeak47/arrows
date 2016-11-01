@@ -70,7 +70,7 @@ class Entity
 		static float getSpongeBetween(Entity* e1, Entity* e2);
 
 		// collision
-		virtual float getCollisionPriority(Entity* e) { return 1; } // TODO = 0
+		virtual float getCollisionPriority(Entity* e) const { return 1; } // TODO = 0
 		virtual EntityType getEntityType() const = 0;
 		virtual CollisionType getCollisionType() const;
 		static CollisionTypeID getCollisionTypeIDBetween(Entity* e1, Entity* e2);

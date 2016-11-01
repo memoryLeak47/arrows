@@ -14,7 +14,7 @@ class SpawnTeamTile : public Tile
 		SpawnTeamTile(Team*, const GameVector&);
 		virtual ~SpawnTeamTile() {}
 		virtual sf::Texture* getTexture() const override;
-		virtual float getCollisionPriority(Entity* e) { return -100; }
+		virtual float getCollisionPriority(Entity* e) const override;
 		virtual bool isSpawnTeamTile() const override;
 		Team* getTeam() const;
 		virtual std::string toString() const override;

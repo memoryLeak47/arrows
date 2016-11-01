@@ -23,7 +23,7 @@ class Archer : public GamePlayer
 		CompressID getCompressID() const override;
 		std::string getCompressString() const override;
 
-		virtual float getCollisionPriority(Entity* e) override;
+		virtual float getCollisionPriority(Entity* e) const override;
 		virtual sf::Texture* getTexture() const override;
 		virtual std::string toString() const override;
 };

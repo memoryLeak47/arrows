@@ -18,6 +18,15 @@ CompressID SimpleArrow::getCompressID() const
 	return SIMPLE_ARROW_CID;
 }
 
+float SimpleArrow::getCollisionPriority(Entity* e) const
+{
+	if (e == (Entity*) getOwner())
+	{
+		return -1000.f;
+	}
+	return Entity::getCollisionPriority(e);
+}
+
 std::string SimpleArrow::toString() const
 {
 	return "SimpleArrow";
