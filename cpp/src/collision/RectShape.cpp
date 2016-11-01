@@ -64,7 +64,7 @@ GameVector RectShape::getSpeedAt(const GameVector& where) const // where is a ma
 	return entity->getSpeed();
 }
 
-void RectShape::reactToCollision(const float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint, float sponge)
+void RectShape::reactToCollision_solid(const float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint, float sponge)
 {
 	constexpr float RANGE = 0.08f;
 	constexpr float SPONGE = 0.f;

@@ -19,7 +19,7 @@ class RotatedRectShape : public Shape
 		virtual GameVector getSpeedAt(const GameVector&) const override;
 		virtual GameRect getRenderGameRect() const override;
 
-		virtual void reactToCollision(const float, const GameVector&, const GameVector&, float) override;
+		virtual void reactToCollision_solid(const float, const GameVector&, const GameVector&, float) override;
 };
 
 #endif

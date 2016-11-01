@@ -28,7 +28,8 @@ class Shape : public Compressable
 		virtual GameVector getSpeedAt(const GameVector&) const = 0;
 		virtual GameRect getRenderGameRect() const = 0;
 
-		virtual void reactToCollision(const float, const GameVector&, const GameVector&, float) = 0;
+		virtual void reactToCollision_solid(const float, const GameVector&, const GameVector&, float) = 0;
+		virtual void reactToCollision_sticky(const float, const GameVector&, const GameVector&);
 	protected:
 		Entity* entity;
 

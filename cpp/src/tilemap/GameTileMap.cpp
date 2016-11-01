@@ -94,7 +94,7 @@ bool GameTileMap::obstacleAt(unsigned int x, unsigned int y) const
 		Debug::error("GameTileMap::obstacleAt(" + Converter::intToString((int) x) + ", " + Converter::intToString((int) y) + "): invalid index");
 		return false;
 	}
-	return tiles[x][y]->getCollisionType() == CollisionType::SOLID;
+	return tiles[x][y]->getCollisionType().id == CollisionTypeID::SOLID;
 
 }
 

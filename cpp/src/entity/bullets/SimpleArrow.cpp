@@ -32,3 +32,8 @@ sf::Texture* SimpleArrow::getTexture() const
 {
 	return GraphicsManager::getTexture(SIMPLE_ARROW_GID);
 }
+
+CollisionType SimpleArrow::getCollisionType() const
+{
+	return CollisionType{1000, CollisionTypeID::STICKY};
+}

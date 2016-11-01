@@ -59,7 +59,7 @@ GameVector CircleShape::getSpeedAt(const GameVector& where) const // where is a 
 	return entity->getSpeed();
 }
 
-void CircleShape::reactToCollision(const float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint, float sponge)
+void CircleShape::reactToCollision_solid(const float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint, float sponge)
 {
-	Debug::warn("CircleShape::reactToCollision(): TODO");
+	Debug::warn("CircleShape::reactToCollision_solid(): TODO");
 }

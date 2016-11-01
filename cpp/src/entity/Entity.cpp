@@ -94,7 +94,7 @@ void Entity::addSpeed(const GameVector& how)
 
 CollisionType Entity::getCollisionType() const
 {
-	return CollisionType::SOLID;
+	return CollisionType{0, SOLID};
 }
 
 const GameVector& Entity::getPosition() const
@@ -161,9 +161,15 @@ bool Entity::areWrapperPartners(Entity* e1, Entity* e2)
        return e1->hasWrapperPartner(e2) or e2->hasWrapperPartner(e1);
 }
 
-CollisionType Entity::getCollisionTypeBetween(Entity* e1, Entity* e2)
+CollisionTypeID Entity::getCollisionTypeIDBetween(Entity* e1, Entity* e2)
 {
-	return std::max(e1->getCollisionType(), e2->getCollisionType());
+	CollisionType t1 = e1->getCollisionType();
+	CollisionType t2 = e2->getCollisionType();
+	if (t1.priority > t2.priority)
+	{
+		return t1.id;
+	}
+	return t2.id;
 }
 
 void Entity::render(const View& v) const
@@ -240,11 +246,19 @@ float Entity::getBottest() const
 	return shape->getBottest();
 }
 
-void Entity::reactToCollision(const float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint, float sponge)
+void Entity::reactToCollision_solid(const float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint, float sponge)
 {
 	if (not isStatic())
 	{
-		shape->reactToCollision(massshare, otherSpeed, collisionPoint, sponge);
+		shape->reactToCollision_solid(massshare, otherSpeed, collisionPoint, sponge);
+	}
+}
+
+void Entity::reactToCollision_sticky(const float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint)
+{
+	if (not isStatic())
+	{
+		shape->reactToCollision_sticky(massshare, otherSpeed, collisionPoint);
 	}
 }
 

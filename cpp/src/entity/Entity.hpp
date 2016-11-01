@@ -10,10 +10,17 @@ enum EntityType
 	COSMETIC
 };
 
-enum CollisionType
+enum CollisionTypeID
 {
 	SOLID,
+	STICKY,
 	IGNORE
+};
+
+struct CollisionType
+{
+	int priority;
+	CollisionTypeID id;
 };
 
 struct Sponge
@@ -66,6 +73,7 @@ class Entity
 		virtual float getCollisionPriority(Entity* e) { return 1; } // TODO = 0
 		virtual EntityType getEntityType() const = 0;
 		virtual CollisionType getCollisionType() const;
+		static CollisionTypeID getCollisionTypeIDBetween(Entity* e1, Entity* e2);
 		virtual void onCollide(Entity*) {}
 		virtual void offCollide(Entity*) {}
 
@@ -75,7 +83,9 @@ class Entity
 		float getRightest() const;
 		float getToppest() const;
 		float getBottest() const;
-		void reactToCollision(const float massshare, const GameVector& speed, const GameVector& collisionPoint, float sponge);
+		void reactToCollision_solid(const float massshare, const GameVector& speed, const GameVector& collisionPoint, float sponge);
+		void reactToCollision_sticky(const float massshare, const GameVector& speed, const GameVector& collisionPoint);
+
 		GameRect getWrapper(float) const;
 		GameRect getRenderGameRect() const;
 		GameVector getSpeedAt(const GameVector&) const;
@@ -101,7 +111,6 @@ class Entity
 		virtual bool hasWrapperPartner(Entity*) const = 0;
 		static bool areCollisionPartners(Entity*, Entity*);
 		static bool areWrapperPartners(Entity*, Entity*);
-		static CollisionType getCollisionTypeBetween(Entity* e1, Entity* e2);
 
 		void dash(const GameVector&, float);
 		bool couldDashTo(const GameVector&) const;
@@ -124,7 +133,10 @@ class Entity
 		float rotation, spin;
 		int dashCounter;
 
+	friend class Shape;
 	friend class RectShape;
+	friend class RotatedRectShape;
+	friend class CircleShape;
 };
 
 #endif

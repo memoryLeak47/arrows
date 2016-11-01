@@ -72,7 +72,7 @@ GameVector RotatedRectShape::getSpeedAt(const GameVector& where) const // where 
 	return entity->getSpeed();
 }
 
-void RotatedRectShape::reactToCollision(const float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint, float sponge)
+void RotatedRectShape::reactToCollision_solid(const float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint, float sponge)
 {
-	Debug::warn("RotatedRectShape::reactToCollision(): TODO");
+	Debug::warn("RotatedRectShape::reactToCollision_solid(): TODO");
 }

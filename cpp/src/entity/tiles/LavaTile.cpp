@@ -18,5 +18,5 @@ std::string LavaTile::toString() const
 
 CollisionType LavaTile::getCollisionType() const
 {
-	return CollisionType::IGNORE;
+	return CollisionType{100, IGNORE};
 }
