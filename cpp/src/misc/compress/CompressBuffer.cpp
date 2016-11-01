@@ -22,6 +22,8 @@
 #include <entity/bullets/SimpleArrow.hpp>
 #include <entity/EntityGivethrough.hpp>
 #include <collision/RectShape.hpp>
+#include <collision/RotatedRectShape.hpp>
+#include <collision/CircleShape.hpp>
 
 #include <player/LobbyPlayer.hpp>
 
