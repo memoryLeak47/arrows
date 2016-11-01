@@ -43,7 +43,7 @@ float Skill::getCharge() const
 
 float Skill::getRecharge() const
 {
-	return 1.f; // default value. Should be overwritten
+	return 10.f; // default value. Should be overwritten
 }
 
 void Skill::setCharge(float charge_arg)

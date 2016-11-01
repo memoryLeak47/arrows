@@ -10,5 +10,12 @@ ArrowShotSkill::ArrowShotSkill(const SkillGivethrough& gt)
 
 void ArrowShotSkill::onTrigger()
 {
-	addBullet(new SimpleArrow(getOwner()->getPosition(), GameVector(0.4f, 0.f), getOwner()));
+	if (getOwner()->getSpeed().x > 0.f)
+	{
+		addBullet(new SimpleArrow(getOwner()->getPosition(), getOwner()->getSpeed() + GameVector(0.4f, 0.f), getOwner()));
+	}
+	else
+	{
+		addBullet(new SimpleArrow(getOwner()->getPosition(), getOwner()->getSpeed() + GameVector(-0.4f, 0.f), getOwner()));
+	}
 }

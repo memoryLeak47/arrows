@@ -6,7 +6,7 @@
 #include <collision/RectShape.hpp>
 
 SimpleArrow::SimpleArrow(const GameVector& pos, const GameVector& speed, Mob* owner)
-	: Bullet(EntityGivethrough(new RectShape(this) /* XXX Rotated */, pos, GameVector(0.5f, 0.3f), speed), owner)
+	: Bullet(EntityGivethrough(new RectShape(this) /* XXX Rotated */, pos, GameVector(0.7f, 0.1f), speed), owner)
 {}
 
 SimpleArrow::SimpleArrow(CompressBuffer* buffer)
@@ -34,7 +34,7 @@ std::string SimpleArrow::toString() const
 
 float SimpleArrow::getMass() const
 {
-	return 1.f;
+	return 10.f;
 }
 
 sf::Texture* SimpleArrow::getTexture() const
