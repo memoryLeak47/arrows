@@ -22,7 +22,7 @@
 #include <entity/TestKiste.hpp>
 
 static const int LOOP_LIMIT = 300;
-static const float FREQ = 0.2f;
+static const float FREQ = 10.f;
 
 GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers)
 	: restrictedGameInterface(this)
@@ -119,7 +119,7 @@ void GameInterface::tickPhysics()
 	{
 		enum : char {CHECK, EVENT, END} id;
 		float times[3]; /* times until frame ends */
-		times[CHECK] = global::GAME_FRAME_TIME-(checkCounter*FREQ);
+		times[CHECK] = global::GAME_FRAME_TIME - (checkCounter * 1.f / FREQ);
 		times[EVENT] = -1;
 		times[END] = 0;
 
