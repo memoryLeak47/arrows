@@ -21,7 +21,7 @@
 
 #include <entity/TestKiste.hpp>
 
-static const int LOOP_LIMIT = 30;
+static const int LOOP_LIMIT = 300;
 static const float FREQ = 0.2f;
 
 GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers)
@@ -117,30 +117,34 @@ void GameInterface::tickPhysics()
 
 	while (true)
 	{
-		enum Id {CHECK, END, EVENT};
-		struct TimeStruct
-		{
-			static TimeStruct getFirst(TimeStruct t1, TimeStruct t2, TimeStruct t3)
-			{
-				if (t1.time >= t2.time && t1.time >= t3.time) return t1;
-				if (t2.time >= t3.time && t2.time >= t1.time) return t2;
-				return t3;
-			}
-			Id id;
-			float time; /* until frame ends */
-		};
+		enum : char {CHECK, EVENT, END} id;
+		float times[3]; /* times until frame ends */
+		times[CHECK] = global::GAME_FRAME_TIME-(checkCounter*FREQ);
+		times[EVENT] = -1;
+		times[END] = 0;
 
-		float eventTime = -1.f;
 		if (events.size() > 0)
 		{
-			eventTime = events[0]->getTimeUntilFrameEnds();
+			times[EVENT] = events[0]->getTimeUntilFrameEnds();
 		}
 
-		// suche ersten Zeitpunkt, um dann zu ihm zu gehen
-		TimeStruct first = TimeStruct::getFirst({CHECK, global::GAME_FRAME_TIME-(checkCounter*FREQ)}, {END, 0}, {EVENT, eventTime});
-		moveAllEntities(timeLeft - first.time); // bewege die Entities um die Zeitänderung
-		timeLeft = first.time;
-		switch (first.id)
+		if (times[CHECK] >= times[END] && times[CHECK] >= times[EVENT])
+		{
+			id = CHECK;
+		}
+		else if (times[EVENT] >= times[END])
+		{
+			id = EVENT;
+		}
+		else
+		{
+			id = END;
+		}
+
+		moveAllEntities(timeLeft - times[id]); // bewege die Entities um die Zeitänderung
+		timeLeft = times[id];
+
+		switch (id)
 		{
 			case CHECK:
 				checkCounter++;
