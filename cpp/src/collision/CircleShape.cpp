@@ -35,26 +35,22 @@ GameRect CircleShape::getRenderGameRect() const
 
 float CircleShape::getLeftest() const
 {
-	Debug::warn("CircleShape::getLeftest(): TODO");
-	return 0;
+	return entity->getPosition().x - entity->getSize().x/2;
 }
 
 float CircleShape::getRightest() const
 {
-	Debug::warn("CircleShape::getRightest(): TODO");
-	return 0;
+	return entity->getPosition().x + entity->getSize().x/2;
 }
 
 float CircleShape::getToppest() const
 {
-	Debug::warn("CircleShape::getToppest(): TODO");
-	return 0;
+	return entity->getPosition().y - entity->getSize().y/2;
 }
 
 float CircleShape::getBottest() const
 {
-	Debug::warn("CircleShape::getBottest(): TODO");
-	return 0;
+	return entity->getPosition().y + entity->getSize().y/2;
 }
 
 GameVector CircleShape::getSpeedAt(const GameVector& where) const // where is a map-coordinate
