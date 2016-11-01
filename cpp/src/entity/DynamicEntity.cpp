@@ -140,12 +140,12 @@ void DynamicEntity::removeWrapperPartner(Entity* e)
        }
 }
 
-std::vector<Entity*> DynamicEntity::getCollisionPartners()
+const std::vector<Entity*>& DynamicEntity::getCollisionPartners() const
 {
        return collisionPartners;
 }
 
-std::vector<Entity*> DynamicEntity::getWrapperPartners()
+const std::vector<Entity*>& DynamicEntity::getWrapperPartners() const
 {
        return wrapperPartners;
 }

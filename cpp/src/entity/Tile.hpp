@@ -28,8 +28,8 @@ class Tile : public Entity
 		virtual void addWrapperPartner(Entity*) override;
 		virtual void removeCollisionPartner(Entity*) override;
 		virtual void removeWrapperPartner(Entity*) override;
-		virtual std::vector<Entity*> getCollisionPartners() override;
-		virtual std::vector<Entity*> getWrapperPartners() override;
+		virtual const std::vector<Entity*>& getCollisionPartners() const override;
+		virtual const std::vector<Entity*>& getWrapperPartners() const override;
 		bool hasCollisionPartner(Entity*) const override;
 		bool hasWrapperPartner(Entity*) const override;
 

@@ -66,14 +66,16 @@ void Tile::addWrapperPartner(Entity*)
 void Tile::removeWrapperPartner(Entity*)
 {}
 
-std::vector<Entity*> Tile::getCollisionPartners()
+const std::vector<Entity*>& Tile::getCollisionPartners() const
 {
-	return {};
+	static const std::vector<Entity*> v;
+	return v;
 }
 
-std::vector<Entity*> Tile::getWrapperPartners()
+const std::vector<Entity*>& Tile::getWrapperPartners() const
 {
-	return {};
+	static const std::vector<Entity*> v;
+	return v;
 }
 
 bool Tile::hasCollisionPartner(Entity*) const

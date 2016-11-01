@@ -95,8 +95,8 @@ class Entity
 		virtual void addWrapperPartner(Entity*) = 0;
 		virtual void removeCollisionPartner(Entity*) = 0;
 		virtual void removeWrapperPartner(Entity*) = 0;
-		virtual std::vector<Entity*> getCollisionPartners() = 0;
-		virtual std::vector<Entity*> getWrapperPartners() = 0;
+		virtual const std::vector<Entity*>& getCollisionPartners() const = 0;
+		virtual const std::vector<Entity*>& getWrapperPartners() const = 0;
 		virtual bool hasCollisionPartner(Entity*) const = 0;
 		virtual bool hasWrapperPartner(Entity*) const = 0;
 		static bool areCollisionPartners(Entity*, Entity*);
