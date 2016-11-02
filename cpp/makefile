@@ -11,4 +11,6 @@ line-counter:
 	wc -l `find -name "*.cpp" -o -name "*.hpp" -o -name "*.list"` | sort -g
 compile:
 	@bam -j `nproc`
+perf:
+	@sudo perf stat ./bam/build/debug/arrows | tee log
 .PHONY: run getlog gdb line-counter compile start
