@@ -1,0 +1,23 @@
+# Packet protocol
+# 'comment'
+
+Packet => PacketContent
+PacketContent =>
+	0:Indexes 'deprecated' |
+	1:Indexes:Data 'new' |
+	2:Indexes:CompressID:Data 'apply' |
+	3:ListId 'set last ListId' |
+	PacketContent:PacketContent 'recursion'
+
+ListId => char
+
+switch (last ListId)
+	case 0: # game players
+		Indexes => char
+	case 1: # idlers
+		Indexes => short
+	case 2: # mobs
+		Indexes => short
+	case 3: # tile
+		Indexes => short:short
+
