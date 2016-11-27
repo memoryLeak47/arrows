@@ -1,13 +1,13 @@
 # Packet protocol
 # 'comment'
 
-Packet => PacketContent
-PacketContent =>
+GameUpdatePacket => Update
+Update =>
 	0:Indexes 'deprecated' |
 	1:Indexes:Data 'new' |
 	2:Indexes:CompressID:Data 'apply' |
 	3:ListId 'set last ListId' |
-	PacketContent:PacketContent 'recursion'
+	Update:Update 'recursion'
 
 ListId => char
 
@@ -21,3 +21,4 @@ switch (last ListId)
 	case 3: # tile
 		Indexes => short:short
 
+ActionsUpdatePacket => char
