@@ -1,6 +1,7 @@
 #include "Main.hpp"
 
 #include <misc/Global.hpp>
+#include <chrono>
 #include "Screen.hpp"
 #include <team/Team.hpp>
 #include <avatar/LobbyAvatar.hpp>
@@ -10,6 +11,7 @@
 #include <misc/Account.hpp>
 #include <network/NetworkDevice.hpp>
 #include <menu/MenuList.hpp>
+#include <SFML/System.hpp>
 
 bool Main::running = true;
 MenuList* Main::menuList;
@@ -53,17 +55,14 @@ NetworkDevice* Main::getNetworkDevice()
 
 void Main::run()
 {
-	sf::Clock clock;
-	float time = 0.f;
+	using namespace std::chrono;
+	long int frame_time_microseconds = (long int) (1000000.f / global::FPS);
 	while (running)
 	{
-		time += clock.restart().asSeconds();
-		if (time > 1.f/global::FPS)
-		{
-			time -= 1.f/global::FPS;
-			tick();
-			render();
-		}
+		long int unix_time_microseconds = duration_cast<microseconds>(system_clock::now().time_since_epoch()).count();
+		sf::sleep(sf::microseconds(frame_time_microseconds - (unix_time_microseconds % frame_time_microseconds)));
+		tick();
+		render();
 	}
 }
 
