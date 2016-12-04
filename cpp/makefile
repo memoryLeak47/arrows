@@ -1,16 +1,20 @@
 start: compile run
 run:
 	@./bam/build/debug/arrows | tee log
+run_release:
+	@./bam/build/release/arrows | tee log
+compile:
+	@bam -j `nproc`
+compile_release:
+	@bam -j `nproc` conf=release
+line-counter:
+	@wc -l `find -name "*.cpp" -o -name "*.hpp" -o -name "*.list"` | sort -g
 valgrind:
 	@valgrind --leak-check=full --log-file=valgrind.log ./bam/build/debug/arrows | tee log
 getlog:
 	@if [ -f log ]; then cat log | less -R; else echo "no log file"; fi
 gdb:
 	@if [ -f core ]; then gdb ./bam/build/debug/arrows core; else echo no core; fi
-line-counter:
-	@wc -l `find -name "*.cpp" -o -name "*.hpp" -o -name "*.list"` | sort -g
-compile:
-	@bam -j `nproc`
 perf:
 	@sudo perf stat ./bam/build/debug/arrows | tee log
-.PHONY: run getlog gdb line-counter compile start
+.PHONY: run getlog gdb line-counter compile start run_release compile_release
