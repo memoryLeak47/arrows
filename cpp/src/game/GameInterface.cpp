@@ -186,6 +186,16 @@ void GameInterface::tickPhysics()
 	}
 }
 
+void GameInterface::applyCalendar()
+{
+	std::vector<Calendar::Entry> entries = calendar.cutEntries(frameCounter);
+	for (auto i = entries.begin(); i != entries.end(); i++)
+	{
+		Calendar::Entry entry = *i;
+		players[entry.playerID]->setActions(entry.actions);
+	}
+}
+
 CollisionEvent* GameInterface::cutFirstEvent(std::vector<CollisionEvent*>* events)
 {
 	if (events->empty())

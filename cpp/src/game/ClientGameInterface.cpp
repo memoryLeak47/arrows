@@ -8,7 +8,7 @@
 #include <tilemap/GameTileMap.hpp>
 #include <math/game/GameRect.hpp>
 #include <network/packets/ChangeActionsPacket.hpp>
-#include <network/packets/PacketWithID.hpp>
+#include <network/packets/ChangeActionsResponsePacket.hpp>
 
 // #include <network/packets/GameUpdatePacket.hpp>
 
@@ -27,10 +27,17 @@ void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 {
 	switch (packet->getCompressID())
 	{
-		case PACKET_WITH_ID_CID:
+		case CHANGE_ACTIONS_RESPONSE_PACKET_CID:
 		{
-			PacketWithID* pwi = packet->unwrap<PacketWithID>();
-			// TODO add calendar entry
+			ChangeActionsResponsePacket* carp = packet->unwrap<ChangeActionsResponsePacket>();
+			if (carp->getFrame() < frameCounter)
+			{
+				Debug::warn("None can change what happened.");
+			}
+			else
+			{
+				calendar.addEntry(carp->getFrame(), carp->getPlayerID(), carp->getActions());
+			}
 			break;
 		}
 		default:
@@ -50,7 +57,8 @@ void ClientGameInterface::tick()
 	GameInterface::tick();
 
 	handleAllPackets();
-	// TODO check calendar
+
+	applyCalendar();
 
 	tickEntities();
 	tickPhysics();

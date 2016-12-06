@@ -56,6 +56,7 @@ class GamePlayer : public Mob
 
 	friend class ServerGameInterface;
 	friend class ClientGameInterface;
+	friend class GameInterface;
 };
 
 #endif

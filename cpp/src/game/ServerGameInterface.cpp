@@ -2,7 +2,7 @@
 
 #include <misc/Global.hpp>
 #include <network/packets/ChangeActionsPacket.hpp>
-#include <network/packets/PacketWithID.hpp>
+#include <network/packets/ChangeActionsResponsePacket.hpp>
 #include <player/GamePlayer.hpp>
 
 constexpr int ACTIONS_FRAME_OFFSET = 2;
@@ -25,10 +25,10 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 
 			calendar.addEntry(frameCounter + ACTIONS_FRAME_OFFSET, id, changePacket->getActions());
 
-			PacketWithID* pwi = new PacketWithID(changePacket, id);
+			ChangeActionsResponsePacket *carp = new ChangeActionsResponsePacket(frameCounter + ACTIONS_FRAME_OFFSET, id, changePacket->getActions());
 			for (unsigned int i = 1; i < players.size(); i++)
 			{
-				send(pwi, players[i]->getIP());
+				send(carp, players[i]->getIP());
 			}
 			break;
 		}
@@ -52,17 +52,17 @@ void ServerGameInterface::tick()
 	if (getLocalPlayer()->getActions() != a)
 	{
 		calendar.addEntry(frameCounter + ACTIONS_FRAME_OFFSET, 0, a);
-		ChangeActionsPacket* changePacket = new ChangeActionsPacket(a);
+		ChangeActionsResponsePacket* p = new ChangeActionsResponsePacket(frameCounter + ACTIONS_FRAME_OFFSET, 0, a);
 
-		PacketWithID* pwi = new PacketWithID(changePacket, 0);
 		for (unsigned int i = 1; i < players.size(); i++)
 		{
-			send(pwi, players[i]->getIP());
+			send(p, players[i]->getIP());
 		}
+		delete p;
 	}
 	handleAllPackets();
 
-	// TODO cal
+	applyCalendar();
 
 	tickEntities();
 	tickPhysics();

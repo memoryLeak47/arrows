@@ -36,6 +36,7 @@ class GameInterface : public Menu, public NetworkInterface
 		Actions calcActions() const;
 		void tickEntities();
 		void tickPhysics();
+		void applyCalendar();
 
 		std::vector<GamePlayer*> players;
 		std::vector<Idler*> idlers;
