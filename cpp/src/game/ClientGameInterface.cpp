@@ -43,6 +43,10 @@ void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 
 void ClientGameInterface::tick()
 {
+	if (startTime > global::unix_millis())
+	{
+		return;
+	}
 	GameInterface::tick();
 
 	handleAllPackets();

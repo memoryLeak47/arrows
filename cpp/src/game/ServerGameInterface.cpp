@@ -40,6 +40,10 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 
 void ServerGameInterface::tick()
 {
+	if (startTime > global::unix_millis())
+	{
+		return;
+	}
 	GameInterface::tick();
 
 	Actions a = calcActions();

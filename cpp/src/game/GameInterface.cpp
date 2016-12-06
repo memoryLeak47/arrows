@@ -51,10 +51,6 @@ GameInterface::~GameInterface()
 
 void GameInterface::tick()
 {
-	if (startTime > global::unix_millis())
-	{
-		return;
-	}
 	frameCounter++;
 	struct X {
 		X(GameInterface* gi)

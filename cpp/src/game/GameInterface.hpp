@@ -42,6 +42,7 @@ class GameInterface : public Menu, public NetworkInterface
 		std::vector<Mob*> mobs;
 		std::vector<Tile*> tiles;
 		int frameCounter;
+		const long int startTime;
 	private:
 		// functions
 		void renderMap() const;
@@ -58,7 +59,6 @@ class GameInterface : public Menu, public NetworkInterface
 		void removeEventsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events);
 
 		// elements
-		long int startTime;
 		View view;
 		GameTileMap* tileMap;
 		RestrictedGameInterface restrictedGameInterface;
