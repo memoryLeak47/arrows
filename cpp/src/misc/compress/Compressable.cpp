@@ -43,12 +43,15 @@ std::string Compressable::compressInt(int i)
 
 std::string Compressable::compressLong(long l)
 {
-	// std::string s = (((long) compressInt((int) l)) << 32) + compressInt((int) l);
-
-	char *array = reinterpret_cast<char*>(&l);
-	char array2[8];
-	std::strncpy(array2, array, 8);
-	std::string s = array2;
+	std::string s;
+	s += (l >> 56);
+	s += ((l << 8) >> 56);
+	s += ((l << 16) >> 56);
+	s += ((l << 24) >> 56);
+	s += ((l << 32) >> 56);
+	s += ((l << 40) >> 56);
+	s += ((l << 48) >> 56);
+	s += ((l << 56) >> 56);
 	return s;
 }
 
