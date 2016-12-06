@@ -167,6 +167,6 @@ void Debug::screen(const std::string& text, int time)
 {
 	Message m;
 	m.text = text;
-	m.counter = time;
+	m.counter = time+1;
 	messages.push_back(m);
 }
