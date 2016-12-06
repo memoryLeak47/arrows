@@ -17,6 +17,7 @@ class Compressable // represents Compressable.java and Compressor.java
 		static std::string compressVector(const std::vector<Compressable*>&);
 		static std::string compressBool(bool);
 		static std::string compressInt(int);
+		static std::string compressLong(long);
 		static std::string compressChar(char);
 		static std::string compressFloat(float);
 		static std::string compressShort(short);

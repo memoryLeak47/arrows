@@ -2,6 +2,7 @@
 
 #include "CompressBuffer.hpp"
 #include <misc/Debug.hpp>
+#include <cstring>
 
 std::string Compressable::compress() const
 {
@@ -37,6 +38,17 @@ std::string Compressable::compressInt(int i)
 	s += ((i << 8) >> 24);
 	s += ((i << 16) >> 24);
 	s += ((i << 24) >> 24);
+	return s;
+}
+
+std::string Compressable::compressLong(long l)
+{
+	// std::string s = (((long) compressInt((int) l)) << 32) + compressInt((int) l);
+
+	char *array = reinterpret_cast<char*>(&l);
+	char array2[8];
+	std::strncpy(array2, array, 8);
+	std::string s = array2;
 	return s;
 }
 

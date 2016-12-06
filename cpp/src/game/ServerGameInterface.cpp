@@ -1,14 +1,12 @@
 #include "ServerGameInterface.hpp"
 
 #include <misc/Global.hpp>
-#include <network/packets/ActionsUpdatePacket.hpp>
-#include <network/packets/GameUpdatePacket.hpp>
+#include <network/packets/ChangeActionsPacket.hpp>
+#include <network/packets/PacketWithID.hpp>
 #include <player/GamePlayer.hpp>
 
-static const int MAX_UPDATE_COUNTER = 30;
-
 ServerGameInterface::ServerGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players)
-	: GameInterface(map, players), updateCounter(MAX_UPDATE_COUNTER)
+	: GameInterface(map, players)
 {}
 
 ServerGameInterface::~ServerGameInterface()
@@ -18,12 +16,18 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 {
 	switch (packet->getCompressID())
 	{
-		case ACTIONS_UPDATE_PACKET_CID:
+		case CHANGE_ACTIONS_PACKET_CID:
 		{
-			ActionsUpdatePacket* actionsPacket = packet->unwrap<ActionsUpdatePacket>();
+			ChangeActionsPacket* changePacket = packet->unwrap<ChangeActionsPacket>();
 			int id = ipToID(ip);
-			players[id]->setActions(actionsPacket->getActions());
-			updateCounter = 0;
+
+			// TODO make calendar entry
+
+			PacketWithID* pwi = new PacketWithID(changePacket, id);
+			for (unsigned int i = 1; i < players.size(); i++)
+			{
+				send(pwi, players[i]->getIP());
+			}
 			break;
 		}
 		default:
@@ -37,31 +41,28 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 void ServerGameInterface::tick()
 {
 	GameInterface::tick();
+
 	Actions a = calcActions();
 	if (getLocalPlayer()->getActions() != a)
 	{
-		getLocalPlayer()->setActions(a);
-		updateCounter = 0;
-	}
+		// TODO make calendar entry
+		ChangeActionsPacket* changePacket = new ChangeActionsPacket(a);
 
-	if (updateCounter-- <= 0)
-	{
-		updateClients();
+		PacketWithID* pwi = new PacketWithID(changePacket, 0);
+		for (unsigned int i = 1; i < players.size(); i++)
+		{
+			send(pwi, players[i]->getIP());
+		}
 	}
+	handleAllPackets();
+
+	// TODO cal
+
+	tickEntities();
+	tickPhysics();
 }
 
 GamePlayer* ServerGameInterface::getLocalPlayer() const
 {
 	return players[0];
 }
-
-void ServerGameInterface::updateClients()
-{
-	updateCounter = MAX_UPDATE_COUNTER;
-	GameUpdatePacket packet(players, mobs, idlers);
-	for (unsigned int i = 1 /* player ignores itself ... sad */; i < players.size(); ++i)
-	{
-		send(&packet, players[i]->getIP());
-	}
-}
-

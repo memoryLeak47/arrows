@@ -7,9 +7,10 @@
 #include <entity/Tile.hpp>
 #include <tilemap/GameTileMap.hpp>
 #include <math/game/GameRect.hpp>
+#include <network/packets/ChangeActionsPacket.hpp>
+#include <network/packets/PacketWithID.hpp>
 
-#include <network/packets/ActionsUpdatePacket.hpp>
-#include <network/packets/GameUpdatePacket.hpp>
+// #include <network/packets/GameUpdatePacket.hpp>
 
 ClientGameInterface::ClientGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players, int playerID, sf::IpAddress* ip)
 	: GameInterface(map, players), localPlayerID(playerID)
@@ -24,13 +25,12 @@ ClientGameInterface::~ClientGameInterface()
 
 void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 {
-	// should be an ActionsUpdatePacket
 	switch (packet->getCompressID())
 	{
-		case GAME_UPDATE_PACKET_CID:
+		case PACKET_WITH_ID_CID:
 		{
-			GameUpdatePacket* gamePacket = packet->unwrap<GameUpdatePacket>();
-			applyGameUpdate(gamePacket->getPlayerStrings(), gamePacket->getMobs(), gamePacket->getIdlers());
+			PacketWithID* pwi = packet->unwrap<PacketWithID>();
+			// TODO add calendar entry
 			break;
 		}
 		default:
@@ -44,12 +44,18 @@ void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 void ClientGameInterface::tick()
 {
 	GameInterface::tick();
+
+	handleAllPackets();
+	// TODO check calendar
+
+	tickEntities();
+	tickPhysics();
+
 	Actions a = calcActions();
 	if (serverActionsStatus != a)
 	{
 		serverActionsStatus = a;
-		getLocalPlayer()->setActions(a);
-		ActionsUpdatePacket packet(a);
+		ChangeActionsPacket packet(a);
 		send(&packet, serverIP);
 	}
 }

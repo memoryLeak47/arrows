@@ -1,5 +1,5 @@
-#ifndef __ACTIONSUPDATEPACKET_CLASS__
-#define __ACTIONSUPDATEPACKET_CLASS__
+#ifndef __CHANGEACTIONSPACKET_CLASS__
+#define __CHANGEACTIONSPACKET_CLASS__
 
 class CompressBuffer;
 
@@ -8,12 +8,12 @@ class CompressBuffer;
 #include <string>
 #include <misc/compress/CompressID.hpp>
 
-class ActionsUpdatePacket : public Packet
+class ChangeActionsPacket : public Packet
 {
 	public:
-		ActionsUpdatePacket(Actions actions);
-		ActionsUpdatePacket(CompressBuffer*);
-		virtual ~ActionsUpdatePacket() {}
+		ChangeActionsPacket(Actions actions);
+		ChangeActionsPacket(CompressBuffer*);
+		virtual ~ChangeActionsPacket() {}
 
 		virtual std::string getCompressString() const override;
 		virtual CompressID getCompressID() const override;

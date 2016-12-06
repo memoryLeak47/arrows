@@ -16,11 +16,13 @@
 #include <network/packets/DisconnectPacket.hpp>
 #include <network/packets/MapPacket.hpp>
 #include <network/packets/PacketWithID.hpp>
+#include <network/packets/GameStartPacket.hpp>
 #include <player/LobbyPlayer.hpp>
 #include <menu/components/EditField.hpp>
 #include <menu/components/Button.hpp>
 #include <tilemap/LobbyTileMap.hpp>
 #include <team/Team.hpp>
+#include <chrono>
 
 ServerLobbyMenu::ServerLobbyMenu()
 	: LobbyMenu("next Phase")
@@ -121,9 +123,19 @@ void ServerLobbyMenu::createServerPlayer()
 
 void ServerLobbyMenu::lockPressed()
 {
-	LockPacket* l = new LockPacket(!getLocalPlayer()->getLockPacket()->isLocked());
-	packAndSendToAllClients(l, 0);
-	deleteAndNullptr(l);
+	Packet* p;
+	if (getPhase() != GAME_PHASE)
+	{
+		p = new LockPacket(!getLocalPlayer()->getLockPacket()->isLocked());
+	}
+	else
+	{
+		using namespace std::chrono;
+		long int unix_millis = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+		p = new GameStartPacket(unix_millis + 250);
+	}
+	packAndSendToAllClients(p, 0);
+	deleteAndNullptr(p);
 	nextPhase();
 }
 

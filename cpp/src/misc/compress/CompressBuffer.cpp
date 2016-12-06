@@ -13,8 +13,9 @@
 #include <network/packets/LobbyPlayersPacket.hpp>
 #include <network/packets/MapPacket.hpp>
 #include <network/packets/PacketWithID.hpp>
-#include <network/packets/ActionsUpdatePacket.hpp>
-#include <network/packets/GameUpdatePacket.hpp>
+//#include <network/packets/GameUpdatePacket.hpp>
+#include <network/packets/ChangeActionsPacket.hpp>
+#include <network/packets/GameStartPacket.hpp>
 #include <controller/PlayerController.hpp>
 #include <entity/TestKiste.hpp>
 #include <avatar/game/Archer.hpp>
@@ -68,6 +69,12 @@ bool CompressBuffer::cutBool()
 {
 	std::string tmp = cut(1);
 	return tmp[0] == '1';
+}
+
+long CompressBuffer::cutLong()
+{
+	long tmp = (((long) cutInt()) << 32) + cutInt();
+	return tmp;
 }
 
 std::vector<std::vector<int>> CompressBuffer::cutMap()

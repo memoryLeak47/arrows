@@ -1,4 +1,4 @@
-#include "GameUpdatePacket.hpp"
+/*#include "GameUpdatePacket.hpp"
 
 #include <player/GamePlayer.hpp>
 #include <entity/Mob.hpp>
@@ -77,3 +77,4 @@ const std::vector<Idler*>& GameUpdatePacket::getIdlers() const
 {
 	return idlers;
 }
+*/

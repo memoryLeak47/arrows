@@ -1,4 +1,4 @@
-#ifndef __GAMEUPDATEPACKET_CLASS__
+/*#ifndef __GAMEUPDATEPACKET_CLASS__
 #define __GAMEUPDATEPACKET_CLASS__
 
 class GamePlayer;
@@ -31,3 +31,4 @@ class GameUpdatePacket : public Packet
 };
 
 #endif
+*/

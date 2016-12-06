@@ -10,7 +10,6 @@ X(MapPacket, MAP_PACKET_CID)
 X(SkillPacket, SKILL_PACKET_CID)
 X(TeamPacket, TEAM_PACKET_CID)
 X(PacketWithID, PACKET_WITH_ID_CID)
-X(ActionsUpdatePacket, ACTIONS_UPDATE_PACKET_CID)
 X(PlayerController, PLAYER_CONTROLLER_CID)
 X(TestKiste, TEST_KISTE_CID)
 X(SimpleArrow, SIMPLE_ARROW_CID)
@@ -23,4 +22,8 @@ X(RectShape, RECT_SHAPE_CID)
 X(RotatedRectShape, ROTATED_RECT_SHAPE_CID)
 X(CircleShape, CIRCLE_SHAPE_CID)
 
-Y(GameUpdatePacket, GAME_UPDATE_PACKET_CID)
+// X(GameUpdatePacket, GAME_UPDATE_PACKET_CID)
+
+X(GameStartPacket, GAME_START_PACKET_CID)
+Y(ChangeActionsPacket, CHANGE_ACTIONS_PACKET_CID)
+

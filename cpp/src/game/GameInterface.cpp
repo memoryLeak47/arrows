@@ -51,6 +51,7 @@ GameInterface::~GameInterface()
 
 void GameInterface::tick()
 {
+	frameCounter++;
 	struct X {
 		X(GameInterface* gi)
 		{
@@ -62,9 +63,6 @@ void GameInterface::tick()
 
 	Debug::tickConsole();
 	Menu::tick();
-	NetworkInterface::handleAllPackets();
-	tickEntities();
-	tickPhysics();
 }
 
 int GameInterface::ipToID(sf::IpAddress* ip) const

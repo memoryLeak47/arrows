@@ -19,10 +19,6 @@ class ServerGameInterface : public GameInterface
 		virtual void tick() override;
 	protected:
 		virtual GamePlayer* getLocalPlayer() const override;
-	private:
-		void updateClients();
-
-		int updateCounter;
 };
 
 #endif

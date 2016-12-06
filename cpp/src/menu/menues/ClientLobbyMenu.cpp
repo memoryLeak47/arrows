@@ -16,6 +16,7 @@
 #include <network/packets/DisconnectPacket.hpp>
 #include <network/packets/LockPacket.hpp>
 #include <network/packets/PacketWithID.hpp>
+#include <network/packets/GameStartPacket.hpp>
 #include <tilemap/LobbyTileMap.hpp>
 #include <player/LobbyPlayer.hpp>
 #include <team/Team.hpp>
@@ -96,6 +97,10 @@ void ClientLobbyMenu::handlePacketByID(Packet* packet, int id)
 	else if (packet->getCompressID() == LOBBY_PLAYERS_PACKET_CID)
 	{
 		handleLobbyPlayersPacket(packet->unwrap<LobbyPlayersPacket>());
+	}
+	else if (packet->getCompressID() == GAME_START_PACKET_CID)
+	{
+		handleGameStartPacket(packet->unwrap<GameStartPacket>());
 	}
 	else
 	{
@@ -234,6 +239,11 @@ void ClientLobbyMenu::handleMapPacket(MapPacket* packet)
 {
 	unlockAll();
 	updateMap(packet->getInts());
+}
+
+void ClientLobbyMenu::handleGameStartPacket(GameStartPacket* packet)
+{
+	
 }
 
 void ClientLobbyMenu::updateLockButton() const

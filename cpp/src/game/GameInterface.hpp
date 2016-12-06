@@ -33,16 +33,17 @@ class GameInterface : public Menu, public NetworkInterface
 		DynamicEntity* getDynamicEntity(unsigned int);
 		GameTileMap* getGameTileMap() const;
 		Actions calcActions() const;
+		void tickEntities();
+		void tickPhysics();
 
 		std::vector<GamePlayer*> players;
 		std::vector<Idler*> idlers;
 		// std::vector<Bullet*> bullets;
 		std::vector<Mob*> mobs;
 		std::vector<Tile*> tiles;
+		int frameCounter;
 	private:
 		// functions
-		void tickEntities();
-		void tickPhysics();
 		void renderMap() const;
 		void renderBars() const;
 		void renderEntities() const;

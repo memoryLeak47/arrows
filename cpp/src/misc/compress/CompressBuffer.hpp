@@ -17,6 +17,7 @@ class CompressBuffer
 		char cutChar();
 		short cutShort();
 		bool cutBool();
+		long cutLong();
 		std::vector<std::vector<int>> cutMap();
 		Compressable* cutByCompressID(CompressID);
 		template <class T> T* cutCompressable();

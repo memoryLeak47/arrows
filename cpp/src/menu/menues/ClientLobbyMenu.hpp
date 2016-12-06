@@ -13,6 +13,7 @@ class AvatarPacket;
 class SkillPacket;
 class ItemPacket;
 class MapPacket;
+class GameStartPacket;
 class PlayerPropertyPacket;
 
 #include "LobbyMenu.hpp"
@@ -41,6 +42,7 @@ class ClientLobbyMenu : public LobbyMenu
 		void handleSkillPacket(SkillPacket*, int);
 		void handleItemPacket(ItemPacket*, int);
 		void handleMapPacket(MapPacket*);
+		void handleGameStartPacket(GameStartPacket*);
 		virtual void updateLockButton() const override;
 		virtual void playerPropertySelected(PlayerPropertyPacket*) override;
 		virtual void createGameInterface() override;
