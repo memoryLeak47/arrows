@@ -12,8 +12,8 @@
 
 // #include <network/packets/GameUpdatePacket.hpp>
 
-ClientGameInterface::ClientGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players, int playerID, sf::IpAddress* ip)
-	: GameInterface(map, players), localPlayerID(playerID)
+ClientGameInterface::ClientGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players, int playerID, sf::IpAddress* ip, long int unixTime_arg)
+	: GameInterface(map, players, unixTime_arg), localPlayerID(playerID)
 {
 	serverIP = new sf::IpAddress(*ip);
 }

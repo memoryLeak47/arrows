@@ -35,7 +35,7 @@ MenuList::MenuList()
 		player->applySkillPacket(new SkillPacket(a));
 
 		lobbyPlayers.push_back(player);
-		menues.push_back(new ServerGameInterface(lobbyTileMap, lobbyPlayers));
+		menues.push_back(new ServerGameInterface(lobbyTileMap, lobbyPlayers, 0));
 	}
 	else
 	{

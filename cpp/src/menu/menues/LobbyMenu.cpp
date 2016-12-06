@@ -145,8 +145,7 @@ void LobbyMenu::nextPhase()
 	}
 	else if (phase == GAME_PHASE)
 	{
-		createGameInterface();
-		resetLobby();
+		Debug::error("LobbyMenu::nextPhase(): should not be called in GAME_PHASE.");
 	}
 	unlockAll();
 

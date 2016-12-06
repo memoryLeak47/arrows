@@ -45,7 +45,6 @@ class ClientLobbyMenu : public LobbyMenu
 		void handleGameStartPacket(GameStartPacket*);
 		virtual void updateLockButton() const override;
 		virtual void playerPropertySelected(PlayerPropertyPacket*) override;
-		virtual void createGameInterface() override;
 	private:
 		int localPlayerID;
 		sf::IpAddress* serverIP;

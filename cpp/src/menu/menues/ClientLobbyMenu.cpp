@@ -111,8 +111,11 @@ void ClientLobbyMenu::handlePacketByID(Packet* packet, int id)
 
 void ClientLobbyMenu::lockPressed()
 {
+	// Error-Handling
 	if (getLocalPlayer() == nullptr) Debug::warn("ClientLobbyMenu::lockPressed(): getLocalPlayer() == nullptr");
 	if (getLocalPlayer()->getLockPacket() == nullptr) Debug::warn("ClientLobbyMenu::lockPressed(): getLocalPlayer()->getLockPacket() == nullptr");
+
+	// send changed lock status to server (not applied here)
 	LockPacket* packet = new LockPacket(!getLocalPlayer()->getLockPacket()->isLocked());
 	sendToServer(packet);
 	deleteAndNullptr(packet);
@@ -243,7 +246,8 @@ void ClientLobbyMenu::handleMapPacket(MapPacket* packet)
 
 void ClientLobbyMenu::handleGameStartPacket(GameStartPacket* packet)
 {
-	
+	Main::getMenuList()->addMenu(new ClientGameInterface(getLobbyTileMap(), getPlayers(), localPlayerID, serverIP, packet->getUnixBeginTime()));
+	resetLobby();
 }
 
 void ClientLobbyMenu::updateLockButton() const
@@ -282,9 +286,4 @@ void ClientLobbyMenu::playerPropertySelected(PlayerPropertyPacket* packet)
 			Debug::warn("ClientLobbyMenu::playerPropertySelected(): awkward packet");
 	}
 	sendToServer(packet);
-}
-
-void ClientLobbyMenu::createGameInterface()
-{
-	Main::getMenuList()->addMenu(new ClientGameInterface(getLobbyTileMap(), getPlayers(), localPlayerID, serverIP));
 }

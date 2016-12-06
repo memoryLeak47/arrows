@@ -5,8 +5,8 @@
 #include <network/packets/PacketWithID.hpp>
 #include <player/GamePlayer.hpp>
 
-ServerGameInterface::ServerGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players)
-	: GameInterface(map, players)
+ServerGameInterface::ServerGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players, long int startTime_arg)
+	: GameInterface(map, players, startTime_arg)
 {}
 
 ServerGameInterface::~ServerGameInterface()

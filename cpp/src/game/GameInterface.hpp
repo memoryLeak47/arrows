@@ -22,7 +22,7 @@ class CollisionEvent;
 class GameInterface : public Menu, public NetworkInterface
 {
 	public:
-		GameInterface(LobbyTileMap*, const std::vector<LobbyPlayer*>&);
+		GameInterface(LobbyTileMap*, const std::vector<LobbyPlayer*>&, long int startTime_arg);
 		virtual ~GameInterface();
 		virtual void tick() override;
 		virtual void render() const override;
@@ -58,6 +58,7 @@ class GameInterface : public Menu, public NetworkInterface
 		void removeEventsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events);
 
 		// elements
+		long int startTime;
 		View view;
 		GameTileMap* tileMap;
 		RestrictedGameInterface restrictedGameInterface;

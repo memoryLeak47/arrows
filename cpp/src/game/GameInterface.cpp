@@ -24,8 +24,8 @@
 static const int LOOP_LIMIT = 300;
 static const float FREQ = 10.f;
 
-GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers)
-	: restrictedGameInterface(this)
+GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers, long int startTime_arg)
+	: startTime(startTime_arg), restrictedGameInterface(this)
 {
 	Debug::note("------------ [ GAME ON ] ------------");
 	tileMap = new GameTileMap(map);
@@ -51,6 +51,10 @@ GameInterface::~GameInterface()
 
 void GameInterface::tick()
 {
+	if (startTime > global::unix_millis())
+	{
+		return;
+	}
 	frameCounter++;
 	struct X {
 		X(GameInterface* gi)
@@ -297,6 +301,10 @@ void GameInterface::removeEventsBetween(Entity* e1, Entity* e2, std::vector<Coll
 
 void GameInterface::render() const
 {
+	if (startTime > global::unix_millis())
+	{
+		return;
+	}
 	renderMap();
 	renderBars();
 	renderEntities();

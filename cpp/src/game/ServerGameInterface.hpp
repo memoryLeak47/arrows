@@ -13,7 +13,7 @@ class GamePlayer;
 class ServerGameInterface : public GameInterface
 {
 	public:
-		ServerGameInterface(LobbyTileMap*, const std::vector<LobbyPlayer*>&);
+		ServerGameInterface(LobbyTileMap*, const std::vector<LobbyPlayer*>&, long int startTime_arg);
 		virtual ~ServerGameInterface();
 		void handlePacket(Packet*, sf::IpAddress*) override;
 		virtual void tick() override;

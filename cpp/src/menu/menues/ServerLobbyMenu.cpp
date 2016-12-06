@@ -22,7 +22,6 @@
 #include <menu/components/Button.hpp>
 #include <tilemap/LobbyTileMap.hpp>
 #include <team/Team.hpp>
-#include <chrono>
 
 ServerLobbyMenu::ServerLobbyMenu()
 	: LobbyMenu("next Phase")
@@ -123,20 +122,22 @@ void ServerLobbyMenu::createServerPlayer()
 
 void ServerLobbyMenu::lockPressed()
 {
-	Packet* p;
-	if (getPhase() != GAME_PHASE)
+	if (getPhase() != GAME_PHASE-1)
 	{
-		p = new LockPacket(!getLocalPlayer()->getLockPacket()->isLocked());
+		Packet *p = new LockPacket(!getLocalPlayer()->getLockPacket()->isLocked());
+		packAndSendToAllClients(p, 0);
+		deleteAndNullptr(p);
+		nextPhase();
 	}
-	else
+	else // in GAME_PHASE
 	{
-		using namespace std::chrono;
-		long int unix_millis = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
-		p = new GameStartPacket(unix_millis + 250);
+		long int startTime = global::unix_millis() + 250;
+
+		Packet* p = new GameStartPacket(startTime);
+		sendToAllClients(p);
+		Main::getMenuList()->addMenu(new ServerGameInterface(getLobbyTileMap(), getPlayers(), startTime));
+		resetLobby();
 	}
-	packAndSendToAllClients(p, 0);
-	deleteAndNullptr(p);
-	nextPhase();
 }
 
 void ServerLobbyMenu::disconnectPressed()
@@ -379,6 +380,10 @@ void ServerLobbyMenu::updatePlayers()
 
 void ServerLobbyMenu::nextPhase()
 {
+	if (getPhase() == GAME_PHASE)
+	{
+		Debug::warn("ServerLobbyMenu::nextPhase(): called nextPhase in GamePhase");
+	}
 	if (getPhase() == TEAM_PHASE)
 	{
 		mapSelectButton->setEnabled(false);
@@ -408,9 +413,4 @@ void ServerLobbyMenu::removePlayer(int id)
 	LobbyMenu::removePlayer(id);
 	deleteAndNullptr(updatedPlayers[id]);
 	updatedPlayers.erase(updatedPlayers.begin() + id);
-}
-
-void ServerLobbyMenu::createGameInterface()
-{
-	Main::getMenuList()->addMenu(new ServerGameInterface(getLobbyTileMap(), getPlayers()));
 }

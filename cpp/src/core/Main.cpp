@@ -1,7 +1,6 @@
 #include "Main.hpp"
 
 #include <misc/Global.hpp>
-#include <chrono>
 #include "Screen.hpp"
 #include <team/Team.hpp>
 #include <avatar/LobbyAvatar.hpp>
@@ -55,11 +54,10 @@ NetworkDevice* Main::getNetworkDevice()
 
 void Main::run()
 {
-	using namespace std::chrono;
 	long int frame_time_microseconds = (long int) (1000000.f / global::FPS);
 	while (running)
 	{
-		long int unix_time_microseconds = duration_cast<microseconds>(system_clock::now().time_since_epoch()).count();
+		long int unix_time_microseconds = global::unix_micros();
 		sf::sleep(sf::microseconds(frame_time_microseconds - (unix_time_microseconds % frame_time_microseconds)));
 		tick();
 		render();

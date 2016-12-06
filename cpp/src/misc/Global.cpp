@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <chrono>
 #include <SFML/Window/WindowStyle.hpp>
 
 namespace global
@@ -187,4 +188,16 @@ void global::init()
 		}
 	}
 	f.close();
+}
+
+long int global::unix_micros()
+{
+	using namespace std::chrono;
+	return duration_cast<microseconds>(system_clock::now().time_since_epoch()).count();
+}
+
+long int global::unix_millis()
+{
+	using namespace std::chrono;
+	return duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
 }

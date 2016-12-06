@@ -43,11 +43,10 @@ class LobbyMenu : public Menu, public NetworkInterface
 		virtual void nextPhase();
 		virtual void removePlayer(int);
 		void clearPlayers();
-		virtual void createGameInterface() = 0;
+		void resetLobby();
 
 		Button* lockButton; // Verweiß auf den NextStep/LockIn Button
 	private:
-		void resetLobby();
 		int phase;
 		LobbyTileMap* tileMap;
 		LobbyMiniMap* miniMap;
