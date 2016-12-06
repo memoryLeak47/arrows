@@ -43,7 +43,10 @@ std::string CompressBuffer::cutString()
 int CompressBuffer::cutInt()
 {
 	std::string s = cut(4);
-	return (((unsigned char) s[0]) << 24) + (((unsigned char) s[1]) << 16) + (((unsigned char) s[2]) << 8) + (unsigned char)s[3];
+	return (((unsigned char) s[0]) << 24)
+		+ (((unsigned char) s[1]) << 16)
+		+ (((unsigned char) s[2]) << 8)
+		+ (unsigned char)s[3];
 }
 
 float CompressBuffer::cutFloat()
@@ -74,8 +77,17 @@ bool CompressBuffer::cutBool()
 
 long CompressBuffer::cutLong()
 {
-	long tmp = (((long) cutInt()) << 32) + cutInt();
-	return tmp;
+	union
+	{
+		char b[sizeof(long)];
+		long l;
+	} tmp;
+	std::string s = cut(sizeof(long));
+	for (unsigned int i = 0; i < sizeof(long); i++)
+	{
+		tmp.b[i] = s.c_str()[i];
+	}
+	return tmp.l;
 }
 
 std::vector<std::vector<int>> CompressBuffer::cutMap()

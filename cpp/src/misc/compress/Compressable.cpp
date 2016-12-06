@@ -43,15 +43,13 @@ std::string Compressable::compressInt(int i)
 
 std::string Compressable::compressLong(long l)
 {
-	std::string s;
-	s += (l >> 56);
-	s += ((l << 8) >> 56);
-	s += ((l << 16) >> 56);
-	s += ((l << 24) >> 56);
-	s += ((l << 32) >> 56);
-	s += ((l << 40) >> 56);
-	s += ((l << 48) >> 56);
-	s += ((l << 56) >> 56);
+	union
+	{
+		char b[sizeof(long)];
+		long l;
+	} tmp;
+	tmp.l = l;
+	std::string s = tmp.b;
 	return s;
 }
 

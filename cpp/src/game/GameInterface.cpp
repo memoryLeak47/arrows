@@ -51,7 +51,11 @@ GameInterface::~GameInterface()
 
 void GameInterface::tick()
 {
-	frameCounter++;
+	if (frameCounter++ % 100 == 0)
+	{
+		system("paplay /usr/share/sounds/ubuntu/notifications/Blip.ogg &");
+	}
+
 	struct X {
 		X(GameInterface* gi)
 		{
