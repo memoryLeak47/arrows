@@ -54,13 +54,25 @@ NetworkDevice* Main::getNetworkDevice()
 
 void Main::run()
 {
-	long int frame_time_microseconds = (long int) (1000000.f / global::FPS);
+	const long int frame_time_microseconds = (long int) (1000000.f / global::FPS);
 	while (running)
 	{
 		long int unix_time_microseconds = global::unix_micros();
 		sf::sleep(sf::microseconds(frame_time_microseconds - (unix_time_microseconds % frame_time_microseconds)));
+		long int tmp = global::unix_micros();
 		tick();
 		render();
+		tmp -= global::unix_micros();
+		tmp = std::abs(tmp);
+
+		if (tmp > frame_time_microseconds * 0.9f)
+		{
+			Debug::warn("90% workload");
+			if (tmp > frame_time_microseconds)
+			{
+				Debug::warn("frame skip");
+			}
+		}
 	}
 }
 
