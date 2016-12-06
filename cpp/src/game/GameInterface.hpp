@@ -18,6 +18,7 @@ class CollisionEvent;
 #include <controller/Actions.hpp>
 #include <view/View.hpp>
 #include "RestrictedGameInterface.hpp"
+#include "Calendar.hpp"
 
 class GameInterface : public Menu, public NetworkInterface
 {
@@ -43,6 +44,7 @@ class GameInterface : public Menu, public NetworkInterface
 		std::vector<Tile*> tiles;
 		int frameCounter;
 		const long int startTime;
+		Calendar calendar;
 	private:
 		// functions
 		void renderMap() const;

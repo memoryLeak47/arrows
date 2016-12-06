@@ -5,6 +5,8 @@
 #include <network/packets/PacketWithID.hpp>
 #include <player/GamePlayer.hpp>
 
+constexpr int ACTIONS_FRAME_OFFSET = 2;
+
 ServerGameInterface::ServerGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players, long int startTime_arg)
 	: GameInterface(map, players, startTime_arg)
 {}
@@ -21,7 +23,7 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 			ChangeActionsPacket* changePacket = packet->unwrap<ChangeActionsPacket>();
 			int id = ipToID(ip);
 
-			// TODO make calendar entry
+			calendar.addEntry(frameCounter + ACTIONS_FRAME_OFFSET, id, changePacket->getActions());
 
 			PacketWithID* pwi = new PacketWithID(changePacket, id);
 			for (unsigned int i = 1; i < players.size(); i++)
@@ -49,7 +51,7 @@ void ServerGameInterface::tick()
 	Actions a = calcActions();
 	if (getLocalPlayer()->getActions() != a)
 	{
-		// TODO make calendar entry
+		calendar.addEntry(frameCounter + ACTIONS_FRAME_OFFSET, 0, a);
 		ChangeActionsPacket* changePacket = new ChangeActionsPacket(a);
 
 		PacketWithID* pwi = new PacketWithID(changePacket, 0);

@@ -15,6 +15,7 @@
 #include <network/packets/PacketWithID.hpp>
 //#include <network/packets/GameUpdatePacket.hpp>
 #include <network/packets/ChangeActionsPacket.hpp>
+#include <network/packets/ChangeActionsResponsePacket.hpp>
 #include <network/packets/GameStartPacket.hpp>
 #include <controller/PlayerController.hpp>
 #include <entity/TestKiste.hpp>
