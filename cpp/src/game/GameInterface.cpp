@@ -25,7 +25,7 @@ static const int LOOP_LIMIT = 300;
 static const float FREQ = 10.f;
 
 GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers, long int startTime_arg)
-	: startTime(startTime_arg), restrictedGameInterface(this)
+	: frameCounter(0), startTime(startTime_arg), restrictedGameInterface(this)
 {
 	Debug::note("------------ [ GAME ON ] ------------");
 	tileMap = new GameTileMap(map);

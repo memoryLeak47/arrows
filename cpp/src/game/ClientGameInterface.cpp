@@ -33,6 +33,8 @@ void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 			if (carp->getFrame() < frameCounter)
 			{
 				Debug::warn("None can change what happened.");
+				whatIs(carp->getFrame());
+				whatIs(frameCounter);
 			}
 			else
 			{
