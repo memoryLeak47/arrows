@@ -4,6 +4,7 @@
 #include <string>
 #include "CompressID.hpp"
 #include <vector>
+#include <entity/TileID.hpp>
 
 class Compressable // represents Compressable.java and Compressor.java
 {
@@ -21,7 +22,7 @@ class Compressable // represents Compressable.java and Compressor.java
 		static std::string compressFloat(float);
 		static std::string compressShort(short);
 		static std::string compressString(const std::string&);
-		static std::string compressMap(const std::vector<std::vector<int>>& map);
+		static std::string compressMap(const std::vector<std::vector<TileID>>& map);
 };
 
 #endif

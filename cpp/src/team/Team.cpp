@@ -5,18 +5,18 @@
 
 std::vector<Team*> Team::teams;
 
-Team::Team(char id, const std::string& name, const std::string& color)
-	: id(id), name(name), colorID(Converter::colorStringToInt(color)) // TODO define color id
+Team::Team(TeamID id, const std::string& name, const std::string& color)
+	: id(id), name(name), color(color)
 {}
 
 void Team::init()
 {
 	if (teams.size() != 0) Debug::warn("Team::init() was already called");
-	teams.push_back(new Team(0, "None", "666666"));
-	teams.push_back(new Team(1, "Red", "ff0000"));
-	teams.push_back(new Team(2, "Blue", "0000ff"));
-	teams.push_back(new Team(3, "Green", "00ff00"));
-	teams.push_back(new Team(4, "Yellow", "ffff00"));
+	#define X(teamID, name, color) teams.push_back(new Team(teamID, name, (#color)));
+	#define Y(teamID, name, color) teams.push_back(new Team(teamID, name, (#color)));
+	#include "TeamID.list"
+	#undef X
+	#undef Y
 }
 
 void Team::uninit()
@@ -41,14 +41,14 @@ std::string Team::getName() const
 	return name;
 }
 
-char Team::getID() const
+TeamID Team::getID() const
 {
 	return id;
 }
 
-int Team::getColorID() const
+const std::string& Team::getColor() const
 {
-	return colorID;
+	return color;
 }
 
 bool Team::isFriendlyTeam(Team* team) const

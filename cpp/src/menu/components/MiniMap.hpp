@@ -7,6 +7,7 @@ class PixelRect;
 #include <menu/MenuComponent.hpp>
 #include <vector>
 #include <SFML/Graphics/Texture.hpp>
+#include <entity/TileID.hpp>
 
 class MiniMap : public MenuComponent
 {
@@ -14,9 +15,9 @@ class MiniMap : public MenuComponent
 		MiniMap(ComponentContainer*, const PixelRect&);
 		virtual ~MiniMap();
 		virtual void render() const override;
-		void updateMap(const std::vector<std::vector<int>>&);
+		void updateMap(const std::vector<std::vector<TileID>>&);
 	private:
-		std::vector<std::vector<int>> ints;
+		std::vector<std::vector<TileID>> tileIDs;
 		sf::Texture* tileMapTexture;
 };
 

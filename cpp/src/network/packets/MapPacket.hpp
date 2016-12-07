@@ -12,17 +12,18 @@ class CompressBuffer;
 #include <vector>
 #include <misc/compress/CompressID.hpp>
 #include <string>
+#include <entity/TileID.hpp>
 
 class MapPacket : public Packet
 {
 	public:
-		MapPacket(const std::vector<std::vector<int>>&);
+		MapPacket(const std::vector<std::vector<TileID>>&);
 		MapPacket(CompressBuffer*);
-		std::vector<std::vector<int>> getInts() const;
+		std::vector<std::vector<TileID>> getTileIDs() const;
 		virtual CompressID getCompressID() const override;
 		virtual std::string getCompressString() const override;
 	private:
-		std::vector<std::vector<int>> map; // Zweidimensionaler Vektor lol
+		std::vector<std::vector<TileID>> map; // Zweidimensionaler Vektor lol
 };
 
 #endif

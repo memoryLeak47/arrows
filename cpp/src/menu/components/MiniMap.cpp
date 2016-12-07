@@ -2,6 +2,7 @@
 
 #include <misc/Global.hpp>
 #include <graphics/GraphicsManager.hpp>
+#include <entity/Tile.hpp>
 
 #include <core/Main.hpp>
 #include <core/Screen.hpp>
@@ -28,18 +29,18 @@ void MiniMap::render() const
 	}
 }
 
-void MiniMap::updateMap(const std::vector<std::vector<int>>& ints)
+void MiniMap::updateMap(const std::vector<std::vector<TileID>>& tileIDs_arg)
 {
-	this->ints = ints;
+	tileIDs = tileIDs_arg;
 
 	sf::Image image;
-	image.create((int)ints.size(), (int)ints[0].size(), sf::Color::Green); // random color :D
+	image.create((int) tileIDs.size(), (int) tileIDs[0].size(), sf::Color::Green); // random color :D
 
-	for (unsigned int x = 0; x < ints.size(); x++)
+	for (unsigned int x = 0; x < tileIDs.size(); x++)
 	{
-		for (unsigned int y = 0; y < ints[0].size(); y++)
+		for (unsigned int y = 0; y < tileIDs[0].size(); y++)
 		{
-			image.setPixel(x, y, Converter::intToColor(ints[x][y])); // drittes Argument: int -> Color
+			image.setPixel(x, y, Converter::colorStringToColor(Tile::colorStringByTileID(tileIDs[x][y]))); // drittes Argument: TileID -> Color
 		}
 	}
 

@@ -6,6 +6,7 @@ class GameVector;
 #include "Entity.hpp"
 #include <SFML/Graphics/Image.hpp>
 #include <vector>
+#include "TileID.hpp"
 
 class Tile : public Entity
 {
@@ -33,7 +34,9 @@ class Tile : public Entity
 		bool hasCollisionPartner(Entity*) const override;
 		bool hasWrapperPartner(Entity*) const override;
 
-		static Tile* createByColorID(const int, const GameVector&);
+		static Tile* createByTileID(const TileID, const GameVector&);
+		static TileID colorStringToTileID(std::string);
+		static std::string colorStringByTileID(TileID);
 };
 
 #endif

@@ -2,32 +2,49 @@
 
 #include <sstream>
 #include <cmath>
+#include <assert.h>
+#include <iostream>
+#include <string.h>
 
 #include "Debug.hpp"
 
-int Converter::colorToInt(const sf::Color& color)
+std::string Converter::colorToColorString(const sf::Color& color)
 {
-	return ((color.a << 24) | (color.r << 16) |
-                    (color.g << 8)  | (color.b << 0));
+	assert(color.a == 255);
+
+	std::string s;
+	char tmp[2];
+
+	sprintf(tmp, "%.2X", (int) color.r);
+	s += tmp;
+	sprintf(tmp, "%.2X", (int) color.g);
+	s += tmp;
+	sprintf(tmp, "%.2X", (int) color.b);
+	s += tmp;
+
+	return s;
 }
 
-int Converter::hexaStringToInt(const std::string& hexa)
+sf::Color Converter::colorStringToColor(const std::string& string)
 {
-	int x;
+	assert(string.size() == 6);
+
+	int r, g, b;
 	std::stringstream ss;
-	ss << std::hex << hexa;
-	ss >> x;
-	return x;
-}
 
-int Converter::colorStringToInt(const std::string& colorString)
-{
-	if (colorString.size() != 6) Debug::error("Converter::colorStringToInt(): colorString of size " + intToString(colorString.size()));
+	ss << std::hex << string.substr(0, 2);
+	ss >> r;
+	ss.clear();
 
-	int red = hexaStringToInt(colorString.substr(0, 2));
-	int green = hexaStringToInt(colorString.substr(2, 2));
-	int blue = hexaStringToInt(colorString.substr(4, 2));
-	return colorToInt(sf::Color(red, green, blue));
+	ss << std::hex << string.substr(2, 2);
+	ss >> g;
+	ss.clear();
+
+	ss << std::hex << string.substr(4, 2);
+	ss >> b;
+	ss.clear();
+
+	return sf::Color(r, g, b);
 }
 
 int Converter::stringToInt(const std::string& s)
@@ -38,15 +55,6 @@ int Converter::stringToInt(const std::string& s)
 float Converter::stringToFloat(const std::string& s)
 {
 	return std::stof(s);
-}
-
-sf::Color Converter::intToColor(int i)
-{
-	sf::Uint8 a = (sf::Uint8)(i >> 24);
-	sf::Uint8 r = (sf::Uint8)(i >> 16);
-	sf::Uint8 g = (sf::Uint8)(i >> 8);
-	sf::Uint8 b = (sf::Uint8)(i >> 0);
-	return sf::Color(r, g, b, a);
 }
 
 std::string Converter::intToString(int i)

@@ -16,6 +16,7 @@ class TeamListPanel;
 #include <network/NetworkInterface.hpp>
 #include <vector>
 #include <SFML/Network/IpAddress.hpp>
+#include <entity/TileID.hpp>
 
 class LobbyMenu : public Menu, public NetworkInterface
 {
@@ -38,7 +39,7 @@ class LobbyMenu : public Menu, public NetworkInterface
 		LobbyPlayer* getPlayer(int) const;
 		virtual void addPlayer(LobbyPlayer*);
 		virtual void updateLockButton() const = 0;
-		void updateMap(const std::vector<std::vector<int>>&);
+		void updateMap(const std::vector<std::vector<TileID>>&);
         	virtual void unlockAll();
 		virtual void nextPhase();
 		virtual void removePlayer(int);

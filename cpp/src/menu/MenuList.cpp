@@ -21,7 +21,7 @@ MenuList::MenuList()
 {
 	if (global::SKIP_LOBBY)
 	{
-		LobbyTileMap* lobbyTileMap = new LobbyTileMap(LobbyTileMap::getIntsByFile("res/maps/" + global::SKIP_LOBBY_MAP));
+		LobbyTileMap* lobbyTileMap = new LobbyTileMap(LobbyTileMap::getTileIDsByFile("res/maps/" + global::SKIP_LOBBY_MAP));
 		std::vector<LobbyPlayer*> lobbyPlayers;
 		LobbyPlayer* player = new LobbyPlayer(new LoginPacket("myself", 42));
 		player->applyTeamPacket(new TeamPacket((char)0));

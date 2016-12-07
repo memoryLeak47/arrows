@@ -11,11 +11,6 @@
 #include "tiles/SpawnTeamTile.hpp"
 #include <cmath>
 
-static int NORMAL_BLOCK_ID = Converter::colorStringToInt("000000");
-static int RUBBER_BLOCK_ID = Converter::colorStringToInt("005500");
-static int VOID_BLOCK_ID = Converter::colorStringToInt("ffffff");
-static int LAVA_BLOCK_ID = Converter::colorStringToInt("ffbb00");
-
 Tile::Tile(const EntityGivethrough& gt)
 	: Entity(gt)
 {}
@@ -88,34 +83,63 @@ bool Tile::hasWrapperPartner(Entity*) const
 	return false;
 }
 
-Tile* Tile::createByColorID(const int id, const GameVector& position)
+Tile* Tile::createByTileID(const TileID tid, const GameVector& position)
 {
-	if (id == NORMAL_BLOCK_ID)
+	switch (tid)
 	{
-		return new NormalTile(position);
-	}
-	else if (id == RUBBER_BLOCK_ID)
-	{
-		return new RubberTile(position);
-	}
-	else if (id == VOID_BLOCK_ID)
-	{
-		return new VoidTile(position);
-	}
-	else if (id == LAVA_BLOCK_ID)
-	{
-		return new LavaTile(position);
-	}
+		#define X(name, tid, color) case tid: return new name(position);
+		#define Y(name, tid, color) case tid: return new name(position);
+		#include "TileID.list"
+		#undef X
+		#undef Y
 
-	for (unsigned int i = 0; i < Team::getAmount(); i++)
-	{
-		if (Team::get(i)->getColorID() == id)
-		{
-			return new SpawnTeamTile(Team::get(i), position);
-		}
+		#define X(teamID, name, color) case SPAWN_TEAM_TILE_##teamID: return new SpawnTeamTile(Team::get(teamID), position);
+		#define Y(teamID, name, color) case SPAWN_TEAM_TILE_##teamID: return new SpawnTeamTile(Team::get(teamID), position);
+		#include <team/TeamID.list>
+		#undef X
+		#undef Y
+		default:
+			Debug::warn("no Tile with TileID=" + Converter::intToString((int) tid));
+			return nullptr;
 	}
-	Debug::warn("Tile::createByColorID(): No Block_ID = " + Converter::intToString(id));
-	return nullptr;
+}
+
+TileID Tile::colorStringToTileID(std::string color_arg)
+{
+	#define X(name, tid, color) if ((#color) == color_arg) return tid;
+	#define Y(name, tid, color) if ((#color) == color_arg) return tid;
+	#include "TileID.list"
+	#undef X
+	#undef Y
+
+	#define X(teamID, name, color) if ((#color) == color_arg) return SPAWN_TEAM_TILE_##teamID;
+	#define Y(teamID, name, color) if ((#color) == color_arg) return SPAWN_TEAM_TILE_##teamID;
+	#include <team/TeamID.list>
+	#undef X
+	#undef Y
+	Debug::warn("no TileID with color=" + color_arg);
+	return (TileID) 0;
+}
+
+std::string Tile::colorStringByTileID(const TileID tid)
+{
+	switch (tid)
+	{
+		#define X(name, tid, color) case tid: return (#color);
+		#define Y(name, tid, color) case tid: return (#color);
+		#include "TileID.list"
+		#undef X
+		#undef Y
+
+		#define X(teamID, name, color) case SPAWN_TEAM_TILE_##teamID: return (#color);
+		#define Y(teamID, name, color) case SPAWN_TEAM_TILE_##teamID: return (#color);
+		#include <team/TeamID.list>
+		#undef X
+		#undef Y
+		default:
+			Debug::warn("no colorString by TileID=" + Converter::intToString((int) tid));
+			return nullptr;
+	}
 }
 
 float Tile::getMass() const

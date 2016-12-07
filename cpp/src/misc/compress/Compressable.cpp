@@ -80,7 +80,7 @@ std::string Compressable::compressString(const std::string& s)
 
 */
 
-std::string Compressable::compressMap(const std::vector<std::vector<int>>& map)
+std::string Compressable::compressMap(const std::vector<std::vector<TileID>>& map)
 {
 	unsigned int height = map.size();
 	unsigned int width = map[0].size();
@@ -93,7 +93,7 @@ std::string Compressable::compressMap(const std::vector<std::vector<int>>& map)
 	{
 		for (unsigned int x = 0; x < width; x++)
 		{
-			s += compressInt(map[y][x]);
+			s += (char) map[y][x];
 		}
 	}
 

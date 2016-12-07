@@ -54,19 +54,19 @@ ServerLobbyMenu::~ServerLobbyMenu()
 void ServerLobbyMenu::mapSelected()
 {
 	std::string path = "res/maps/" + mapSelectEditField->getText() + ".png";
-	std::vector<std::vector<int>> ints = LobbyTileMap::getIntsByFile(path);
+	std::vector<std::vector<TileID>> tileIDs = LobbyTileMap::getTileIDsByFile(path);
 
-	if (ints.size() == 0)
+	if (tileIDs.size() == 0)
 	{
 		popup("can't load '" + path + "'");
-		Debug::warn("ServerLobbyMenu::mapSelected(): ints.size() == 0");
+		Debug::warn("ServerLobbyMenu::mapSelected(): tileIDs.size() == 0");
 		return;
 	}
 
-	updateMap(ints);
+	updateMap(tileIDs);
 
 	// sendet neue Map zu allen Clients
-	MapPacket* mapPacket = new MapPacket(ints);
+	MapPacket* mapPacket = new MapPacket(tileIDs);
 	sendToAllClients(mapPacket);
 	deleteAndNullptr(mapPacket);
 
@@ -236,7 +236,7 @@ void ServerLobbyMenu::handleLoginPacket(LoginPacket* packet, sf::IpAddress* ip)
 		send(playersPacket, ip); // liste ohne den Neuen an den Neuen senden.
 		if (getLobbyTileMap()->isValid())
 		{
-			MapPacket* mapPacket = new MapPacket(getLobbyTileMap()->getInts());
+			MapPacket* mapPacket = new MapPacket(getLobbyTileMap()->getTileIDs());
 			send(mapPacket, ip); // Die Map des neuen wird gesetzt
 			deleteAndNullptr(mapPacket);
 		}

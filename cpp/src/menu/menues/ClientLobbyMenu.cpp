@@ -241,7 +241,7 @@ void ClientLobbyMenu::handleItemPacket(ItemPacket* packet, int id)
 void ClientLobbyMenu::handleMapPacket(MapPacket* packet)
 {
 	unlockAll();
-	updateMap(packet->getInts());
+	updateMap(packet->getTileIDs());
 }
 
 void ClientLobbyMenu::handleGameStartPacket(GameStartPacket* packet)

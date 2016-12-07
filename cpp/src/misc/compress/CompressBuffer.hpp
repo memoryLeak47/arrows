@@ -6,6 +6,7 @@ class Compressable;
 #include <string>
 #include <vector>
 #include "CompressID.hpp"
+#include <entity/TileID.hpp>
 
 class CompressBuffer
 {
@@ -18,7 +19,7 @@ class CompressBuffer
 		short cutShort();
 		bool cutBool();
 		long cutLong();
-		std::vector<std::vector<int>> cutMap();
+		std::vector<std::vector<TileID>> cutMap();
 		Compressable* cutByCompressID(CompressID);
 		template <class T> T* cutCompressable();
 		std::vector<void*> cutVectorByCompressID(CompressID);

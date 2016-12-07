@@ -3,24 +3,25 @@
 
 #include <string>
 #include <vector>
+#include "TeamID.hpp"
 
 class Team
 {
 	public:
-		Team(char, const std::string&, const std::string&);
+		Team(TeamID, const std::string&, const std::string&);
 		static void init();
 		static void uninit();
 		static Team* get(int);
 		static unsigned int getAmount();
 		std::string getName() const;
-		char getID() const;
-		int getColorID() const;
+		TeamID getID() const;
+		const std::string& getColor() const;
 		bool isFriendlyTeam(Team*) const;
 	private:
 		static std::vector<Team*> teams;
-		char id;
+		TeamID id;
 		std::string name;
-		int colorID;
+		std::string color;
 };
 
 #endif

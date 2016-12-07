@@ -120,7 +120,7 @@ void LobbyMenu::addPlayer(LobbyPlayer* p)
 	players.push_back(p);
 }
 
-void LobbyMenu::updateMap(const std::vector<std::vector<int>>& ints)
+void LobbyMenu::updateMap(const std::vector<std::vector<TileID>>& ints)
 {
 	miniMap->updateMap(ints);
 	tileMap->updateMap(ints);

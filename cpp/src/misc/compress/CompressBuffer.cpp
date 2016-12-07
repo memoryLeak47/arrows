@@ -90,19 +90,19 @@ long CompressBuffer::cutLong()
 	return tmp.l;
 }
 
-std::vector<std::vector<int>> CompressBuffer::cutMap()
+std::vector<std::vector<TileID>> CompressBuffer::cutMap()
 {
 	int width = cutInt();
 	int height = cutInt();
 
-	std::vector<std::vector<int>> map;
+	std::vector<std::vector<TileID>> map;
 
 	for (int y = 0; y < height; y++)
 	{
-		map.push_back(std::vector<int>());
+		map.push_back(std::vector<TileID>());
 		for (int x = 0; x < width; x++)
 		{
-			map.back().push_back(cutInt());
+			map.back().push_back((TileID) cutChar());
 		}
 	}
 	return map;
