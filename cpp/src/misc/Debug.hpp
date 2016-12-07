@@ -41,8 +41,14 @@
 #include <stdio.h>
 #include <iostream>
 #include <vector>
+#include <SFML/System.hpp>
 
 #define whatIs(x) std::cout << (#x) << "=" << (x) << std::endl
+#define whatTime(x) \
+		{ sf::Clock whatTime_clock; \
+		  x; \
+		  std::cout << "'" << (#x) << "' took " << whatTime_clock.restart().asMilliseconds() << " ms" << std::endl; \
+		}
 
 struct Message
 {
