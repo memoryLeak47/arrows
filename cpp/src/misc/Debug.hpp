@@ -47,7 +47,8 @@
 #define whatTime(x) \
 		{ sf::Clock whatTime_clock; \
 		  x; \
-		  std::cout << "'" << (#x) << "' took " << whatTime_clock.restart().asMilliseconds() << " ms" << std::endl; \
+		  float whatTime_time = ((float) whatTime_clock.restart().asMicroseconds()) / 1000.f; \
+		  std::cout << "'" << (#x) << "' took " << whatTime_time << " ms" << std::endl; \
 		}
 
 struct Message
