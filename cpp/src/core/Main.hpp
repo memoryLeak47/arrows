@@ -30,6 +30,7 @@ class Main
 		static void run();
 		static void tick();
 		static void render();
+		static int frameCounter;
 };
 
 #endif

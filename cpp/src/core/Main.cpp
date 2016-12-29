@@ -16,10 +16,10 @@ bool Main::running = true;
 MenuList* Main::menuList;
 NetworkDevice* Main::networkDevice;
 Account* Main::account;
+int Main::frameCounter = 0;
 
 Main::Main()
 {
-	running = true;
 	global::init();
 	Debug::init();
 	Account::init();
@@ -54,25 +54,30 @@ NetworkDevice* Main::getNetworkDevice()
 
 void Main::run()
 {
-	const long int frame_time_microseconds = (long int) (1000000.f / global::FPS);
+	const long int frame_time_micros = (long int) (1000000.f / global::FPS);
+	long int first_frame_unix_micros;
+
+	{
+		const long int pre_begin_micros = global::unix_micros();
+		first_frame_unix_micros = pre_begin_micros - (pre_begin_micros % frame_time_micros) + frame_time_micros;
+		sf::sleep(sf::microseconds(first_frame_unix_micros - pre_begin_micros));
+	}
+
 	while (running)
 	{
-		long int unix_time_microseconds = global::unix_micros();
-		sf::sleep(sf::microseconds(frame_time_microseconds - (unix_time_microseconds % frame_time_microseconds)));
-		long int tmp = global::unix_micros();
+		const long int current_time = global::unix_micros();
+		if (frameCounter * frame_time_micros + first_frame_unix_micros > current_time)
+		{
+			sf::sleep(sf::microseconds(frameCounter * frame_time_micros + first_frame_unix_micros - current_time));
+		}
+		else
+		{
+			Debug::warn("frame overload");
+		}
+
 		tick();
 		render();
-		tmp -= global::unix_micros();
-		tmp = std::abs(tmp);
-
-		if (tmp > frame_time_microseconds * 0.9f)
-		{
-			Debug::warn("90% workload");
-			if (tmp > frame_time_microseconds)
-			{
-				Debug::warn("frame skip");
-			}
-		}
+		frameCounter++;
 	}
 }
 
