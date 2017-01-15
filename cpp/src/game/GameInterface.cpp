@@ -34,6 +34,7 @@ GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>&
 GameInterface::~GameInterface()
 {
 	delete tileMap;
+	calendar.printString();
 }
 
 void GameInterface::tick()
@@ -85,7 +86,7 @@ int GameInterface::ipToID(sf::IpAddress* ip) const
 
 void GameInterface::applyCalendar()
 {
-	std::vector<Calendar::Entry> entries = calendar.cutEntries(frameCounter);
+	std::vector<Calendar::Entry> entries = calendar.getEntries(frameCounter);
 	for (auto i = entries.begin(); i != entries.end(); i++)
 	{
 		Calendar::Entry entry = *i;

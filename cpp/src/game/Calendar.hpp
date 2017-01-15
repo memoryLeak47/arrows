@@ -2,6 +2,7 @@
 #define __CALENDAR_CLASS__
 
 #include <vector>
+#include <string>
 
 #include <controller/Actions.hpp>
 
@@ -17,7 +18,8 @@ class Calendar
 
 		Calendar();
 		void addEntry(int frame, char playerID, Actions actions);
-		std::vector<Entry> cutEntries(int frame);
+		std::vector<Entry> getEntries(int frame) const;
+		void printString() const;
 	private:
 		std::vector<Entry> entries;
 };
