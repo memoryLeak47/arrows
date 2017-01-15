@@ -32,7 +32,7 @@ void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 			{
 				case CHANGE_ACTIONS_PACKET_CID:
 				{
-					ChangeActionsPacket* cap = packet->unwrap<ChangeActionsPacket>();
+					ChangeActionsPacket* cap = pwid->getPacket()->unwrap<ChangeActionsPacket>();
 					calendar.addEntry(cap->getFrameNumber(), pwid->getID(), cap->getActions());
 					// TODO maybe call backtracking thread
 					delete cap;
