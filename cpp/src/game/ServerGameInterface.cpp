@@ -22,7 +22,10 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 			int id = ipToID(ip);
 
 			calendar.addEntry(cap->getFrameNumber(), id, cap->getActions());
-			// TODO maybe call backtracking thread
+			if (cap->getFrameNumber() <= frameCounter)
+			{
+				Debug::warn("ServerGameInterface::handlePacket(): should backtrack " + Converter::intToString(std::abs(cap->getFrameNumber() - frameCounter)) + " frames now");
+			}
 
 			PacketWithID pwid(cap, id);
 			for (unsigned int i = 1; i < mainFrame.players.size(); i++)

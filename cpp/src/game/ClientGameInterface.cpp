@@ -34,7 +34,10 @@ void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 				{
 					ChangeActionsPacket* cap = pwid->getPacket()->unwrap<ChangeActionsPacket>();
 					calendar.addEntry(cap->getFrameNumber(), pwid->getID(), cap->getActions());
-					// TODO maybe call backtracking thread
+					if (cap->getFrameNumber() <= frameCounter)
+					{
+						Debug::warn("ClientGameInterface::handlePacket(): should backtrack " + Converter::intToString(std::abs(cap->getFrameNumber() - frameCounter)) + " frames now");
+					}
 					delete cap;
 					break;
 				}
