@@ -8,9 +8,7 @@
 #include <tilemap/GameTileMap.hpp>
 #include <math/game/GameRect.hpp>
 #include <network/packets/ChangeActionsPacket.hpp>
-#include <network/packets/ChangeActionsResponsePacket.hpp>
-
-// #include <network/packets/GameUpdatePacket.hpp>
+#include <network/packets/PacketWithID.hpp>
 
 ClientGameInterface::ClientGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players, int playerID, sf::IpAddress* ip, long int unixTime_arg)
 	: GameInterface(map, players, unixTime_arg), localPlayerID(playerID)
@@ -27,18 +25,23 @@ void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 {
 	switch (packet->getCompressID())
 	{
-		case CHANGE_ACTIONS_RESPONSE_PACKET_CID:
+		case PACKET_WITH_ID_CID:
 		{
-			ChangeActionsResponsePacket* carp = packet->unwrap<ChangeActionsResponsePacket>();
-			if (carp->getFrame() < frameCounter)
+			PacketWithID* pwid = packet->unwrap<PacketWithID>();
+			switch (pwid->getPacket()->getCompressID())
 			{
-				Debug::warn("None can change what happened.");
-				whatIs(carp->getFrame());
-				whatIs(frameCounter);
-			}
-			else
-			{
-				calendar.addEntry(carp->getFrame(), carp->getPlayerID(), carp->getActions());
+				case CHANGE_ACTIONS_PACKET_CID:
+				{
+					ChangeActionsPacket* cap = packet->unwrap<ChangeActionsPacket>();
+					calendar.addEntry(cap->getFrameNumber(), pwid->getID(), cap->getActions());
+					// TODO maybe call backtracking thread
+					delete cap;
+					break;
+				}
+				default:
+				{
+					Debug::error("ClientGameInterface::handlePacket(): unknown Packet (in PacketWithID) with CompressID=" + Converter::intToString((int) pwid->getPacket()->getCompressID()));
+				}
 			}
 			break;
 		}
@@ -69,7 +72,7 @@ void ClientGameInterface::tick()
 	if (serverActionsStatus != a)
 	{
 		serverActionsStatus = a;
-		ChangeActionsPacket packet(a);
+		ChangeActionsPacket packet(a, frameCounter);
 		send(&packet, serverIP);
 	}
 }

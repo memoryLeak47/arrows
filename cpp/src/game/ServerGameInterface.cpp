@@ -2,10 +2,8 @@
 
 #include <misc/Global.hpp>
 #include <network/packets/ChangeActionsPacket.hpp>
-#include <network/packets/ChangeActionsResponsePacket.hpp>
+#include <network/packets/PacketWithID.hpp>
 #include <player/GamePlayer.hpp>
-
-constexpr int ACTIONS_FRAME_OFFSET = 2;
 
 ServerGameInterface::ServerGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players, long int startTime_arg)
 	: GameInterface(map, players, startTime_arg)
@@ -20,15 +18,16 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 	{
 		case CHANGE_ACTIONS_PACKET_CID:
 		{
-			ChangeActionsPacket* changePacket = packet->unwrap<ChangeActionsPacket>();
+			ChangeActionsPacket* cap = packet->unwrap<ChangeActionsPacket>();
 			int id = ipToID(ip);
 
-			calendar.addEntry(frameCounter + ACTIONS_FRAME_OFFSET, id, changePacket->getActions());
+			calendar.addEntry(cap->getFrameNumber(), id, cap->getActions());
+			// TODO maybe call backtracking thread
 
-			ChangeActionsResponsePacket *carp = new ChangeActionsResponsePacket(frameCounter + ACTIONS_FRAME_OFFSET, id, changePacket->getActions());
+			PacketWithID pwid(cap, id);
 			for (unsigned int i = 1; i < mainFrame.players.size(); i++)
 			{
-				send(carp, mainFrame.players[i]->getIP());
+				send(&pwid, mainFrame.players[i]->getIP());
 			}
 			break;
 		}
@@ -51,12 +50,13 @@ void ServerGameInterface::tick()
 	Actions a = calcActions();
 	if (getLocalPlayer()->getActions() != a)
 	{
-		calendar.addEntry(frameCounter + ACTIONS_FRAME_OFFSET, 0, a);
-		ChangeActionsResponsePacket* p = new ChangeActionsResponsePacket(frameCounter + ACTIONS_FRAME_OFFSET, 0, a);
+		calendar.addEntry(frameCounter, 0, a);
+		ChangeActionsPacket* p = new ChangeActionsPacket(frameCounter, a);
+		PacketWithID pwid(p, 0);
 
 		for (unsigned int i = 1; i < mainFrame.players.size(); i++)
 		{
-			send(p, mainFrame.players[i]->getIP());
+			send(&pwid, mainFrame.players[i]->getIP());
 		}
 		delete p;
 	}

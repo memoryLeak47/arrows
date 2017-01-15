@@ -11,15 +11,17 @@ class CompressBuffer;
 class ChangeActionsPacket : public Packet
 {
 	public:
-		ChangeActionsPacket(Actions actions);
+		ChangeActionsPacket(Actions actions, int frameNumber);
 		ChangeActionsPacket(CompressBuffer*);
 		virtual ~ChangeActionsPacket() {}
 
 		virtual std::string getCompressString() const override;
 		virtual CompressID getCompressID() const override;
 		Actions getActions() const;
+		int getFrameNumber() const;
 	private:
 		Actions actions;
+		int frameNumber;
 };
 
 #endif
