@@ -27,7 +27,10 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 			PacketWithID pwid(cap, id);
 			for (unsigned int i = 1; i < mainFrame.players.size(); i++)
 			{
-				send(&pwid, mainFrame.players[i]->getIP());
+				if ((int) i != id)
+				{
+					send(&pwid, mainFrame.players[i]->getIP());
+				}
 			}
 			break;
 		}
