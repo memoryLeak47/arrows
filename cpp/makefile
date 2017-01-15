@@ -4,6 +4,7 @@ run:
 run_release:
 	@./bam/build/release/arrows | tee log
 compile:
+	@tput reset
 	@bam -j `nproc`
 compile_release:
 	@bam -j `nproc` conf=release

@@ -26,9 +26,9 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 			calendar.addEntry(frameCounter + ACTIONS_FRAME_OFFSET, id, changePacket->getActions());
 
 			ChangeActionsResponsePacket *carp = new ChangeActionsResponsePacket(frameCounter + ACTIONS_FRAME_OFFSET, id, changePacket->getActions());
-			for (unsigned int i = 1; i < players.size(); i++)
+			for (unsigned int i = 1; i < mainFrame.players.size(); i++)
 			{
-				send(carp, players[i]->getIP());
+				send(carp, mainFrame.players[i]->getIP());
 			}
 			break;
 		}
@@ -54,9 +54,9 @@ void ServerGameInterface::tick()
 		calendar.addEntry(frameCounter + ACTIONS_FRAME_OFFSET, 0, a);
 		ChangeActionsResponsePacket* p = new ChangeActionsResponsePacket(frameCounter + ACTIONS_FRAME_OFFSET, 0, a);
 
-		for (unsigned int i = 1; i < players.size(); i++)
+		for (unsigned int i = 1; i < mainFrame.players.size(); i++)
 		{
-			send(p, players[i]->getIP());
+			send(p, mainFrame.players[i]->getIP());
 		}
 		delete p;
 	}
@@ -64,11 +64,11 @@ void ServerGameInterface::tick()
 
 	applyCalendar();
 
-	tickEntities();
-	tickPhysics();
+	mainFrame.tickEntities();
+	mainFrame.tickPhysics();
 }
 
 GamePlayer* ServerGameInterface::getLocalPlayer() const
 {
-	return players[0];
+	return mainFrame.players[0];
 }
