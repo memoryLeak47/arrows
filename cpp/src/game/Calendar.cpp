@@ -30,6 +30,6 @@ void Calendar::printString() const
 	std::cout << "entries.size()=" << entries.size() << std::endl;
 	for (unsigned int i = 0; i < entries.size(); i++)
 	{
-		std::cout << "" << i << ": frame=" << entries[i].frame << " playerID=" << entries[i].playerID << " actions=" << (int)entries[i].actions << std::endl;
+		std::cout << "" << i << ": frame=" << entries[i].frame << " playerID=" << (int)entries[i].playerID << " actions=" << (int)entries[i].actions << std::endl;
 	}
 }

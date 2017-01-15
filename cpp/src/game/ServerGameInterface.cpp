@@ -54,7 +54,7 @@ void ServerGameInterface::tick()
 	if (getLocalPlayer()->getActions() != a)
 	{
 		calendar.addEntry(frameCounter, 0, a);
-		ChangeActionsPacket* p = new ChangeActionsPacket(frameCounter, a);
+		ChangeActionsPacket* p = new ChangeActionsPacket(a, frameCounter);
 		PacketWithID pwid(p, 0);
 
 		for (unsigned int i = 1; i < mainFrame.players.size(); i++)

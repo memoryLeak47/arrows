@@ -71,9 +71,12 @@ void ClientGameInterface::tick()
 	Actions a = calcActions();
 	if (serverActionsStatus != a)
 	{
+		// Send
 		serverActionsStatus = a;
 		ChangeActionsPacket packet(a, frameCounter);
 		send(&packet, serverIP);
+		// add to Calendar
+		calendar.addEntry(frameCounter, localPlayerID, a);
 	}
 }
 
