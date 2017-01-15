@@ -66,11 +66,6 @@ void ClientGameInterface::tick()
 
 	handleAllPackets();
 
-	applyCalendar();
-
-	mainFrame.tickEntities();
-	mainFrame.tickPhysics();
-
 	Actions a = calcActions();
 	if (serverActionsStatus != a)
 	{
@@ -81,6 +76,11 @@ void ClientGameInterface::tick()
 		// add to Calendar
 		calendar.addEntry(frameCounter, localPlayerID, a);
 	}
+
+	applyCalendar();
+
+	mainFrame.tickEntities();
+	mainFrame.tickPhysics();
 }
 
 GamePlayer* ClientGameInterface::getLocalPlayer() const
