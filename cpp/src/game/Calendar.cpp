@@ -9,27 +9,35 @@ Calendar::Calendar()
 
 void Calendar::addEntry(int frame, char playerID, Actions actions)
 {
-	entries.push_back(Calendar::Entry{frame, playerID, actions});
+	unsigned int index = 0;
+	while (index < entries.size() && frame < entries[index].frame)
+	{
+		index++;
+	}
+
+	entries.insert(entries.begin() + index, Calendar::Entry{frame, playerID, actions});
 }
 
 std::vector<Calendar::Entry> Calendar::getEntries(int frame) const
 {
 	std::vector<Calendar::Entry> tmp;
-	for (auto i = entries.begin(); i != entries.end(); i++)
+	unsigned int index = 0;
+	while (frame < entries[index].frame)
 	{
-		if ((*i).frame == frame)
-		{
-			tmp.push_back(*i);
-		}
+		index++;
+	}
+	while (frame == entries[index].frame)
+	{
+		tmp.push_back(entries[index++]);
 	}
 	return tmp;
 }
 
 void Calendar::printString() const
 {
-	std::cout << "entries.size()=" << entries.size() << std::endl;
+	whatIs(entries.size());
 	for (unsigned int i = 0; i < entries.size(); i++)
 	{
-		std::cout << "" << i << ": frame=" << entries[i].frame << " playerID=" << (int)entries[i].playerID << " actions=" << (int)entries[i].actions << std::endl;
+		std::cout << "" << i << ": frame=" << entries[i].frame << " playerID=" << (int) entries[i].playerID << " actions=" << (int) entries[i].actions << std::endl;
 	}
 }

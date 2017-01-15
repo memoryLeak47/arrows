@@ -1,6 +1,7 @@
 #ifndef __CALENDAR_CLASS__
 #define __CALENDAR_CLASS__
 
+#include <deque>
 #include <vector>
 #include <string>
 
@@ -21,7 +22,7 @@ class Calendar
 		std::vector<Entry> getEntries(int frame) const;
 		void printString() const;
 	private:
-		std::vector<Entry> entries;
+		std::deque<Entry> entries;
 };
 
 #endif
