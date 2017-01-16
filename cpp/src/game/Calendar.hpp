@@ -20,7 +20,6 @@ class Calendar
 		Calendar();
 		void addEntry(int frame, char playerID, Actions actions);
 		std::vector<Entry> getEntries(int frame) const;
-		void printString() const;
 	private:
 		std::deque<Entry> entries;
 };

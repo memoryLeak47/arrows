@@ -36,7 +36,7 @@ namespace global
 void global::init()
 {
 	WINDOW_STYLE = sf::Style::Fullscreen;
-	FPS = 40;
+	FPS = 24;
 	DEBUG_FUNC = true; DEBUG_FUNC_TO_SCREEN = false;
 	DEBUG_NOTE = true; DEBUG_NOTE_TO_SCREEN = false;
 	DEBUG_TEST = true; DEBUG_TEST_TO_SCREEN = false;

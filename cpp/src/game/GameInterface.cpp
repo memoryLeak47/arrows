@@ -34,7 +34,6 @@ GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>&
 GameInterface::~GameInterface()
 {
 	delete tileMap;
-	calendar.printString();
 }
 
 void GameInterface::tick()

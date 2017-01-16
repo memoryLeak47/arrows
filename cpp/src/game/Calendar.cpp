@@ -32,12 +32,3 @@ std::vector<Calendar::Entry> Calendar::getEntries(int frame) const
 	}
 	return tmp;
 }
-
-void Calendar::printString() const
-{
-	whatIs(entries.size());
-	for (unsigned int i = 0; i < entries.size(); i++)
-	{
-		std::cout << "" << i << ": frame=" << entries[i].frame << " playerID=" << (int) entries[i].playerID << " actions=" << (int) entries[i].actions << std::endl;
-	}
-}
