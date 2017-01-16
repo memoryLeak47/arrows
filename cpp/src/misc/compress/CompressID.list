@@ -23,4 +23,4 @@ X(RotatedRectShape, ROTATED_RECT_SHAPE_CID)
 X(CircleShape, CIRCLE_SHAPE_CID)
 
 X(GameStartPacket, GAME_START_PACKET_CID)
-X(ChangeActionsPacket, CHANGE_ACTIONS_PACKET_CID)
+Y(ChangeActionsPacket, CHANGE_ACTIONS_PACKET_CID)
