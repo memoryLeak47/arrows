@@ -47,7 +47,7 @@ void Frame::tickEntities()
 		entity->setChanged(true); // wichtig für tickPhysics()
 	}
 	// TODO tick tiles?
-	}
+}
 
 void Frame::tickPhysics()
 {
@@ -58,7 +58,7 @@ void Frame::tickPhysics()
 	float timeLeft = global::GAME_FRAME_TIME;
 	std::vector<CollisionEvent*> events;
 
-	whatTime(updateChanged(&events, timeLeft));
+	updateChanged(&events, timeLeft);
 
 	while (true)
 	{
