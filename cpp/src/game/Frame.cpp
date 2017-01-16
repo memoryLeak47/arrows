@@ -40,97 +40,97 @@ Frame::~Frame()
 
 void Frame::tickEntities()
 {
-       for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
-       {
-               Entity* entity = getDynamicEntity(i);
-               entity->tick();
-               entity->setChanged(true); // wichtig für tickPhysics()
-       }
-       // TODO tick tiles?
-}
+	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
+	{
+		Entity* entity = getDynamicEntity(i);
+		entity->tick();
+		entity->setChanged(true); // wichtig für tickPhysics()
+	}
+	// TODO tick tiles?
+	}
 
 void Frame::tickPhysics()
 {
-       Debug::funcOn("Frame::tickPhysics()");
+	Debug::funcOn("Frame::tickPhysics()");
 
-       int c = 0;
-       int checkCounter = 1;
-       float timeLeft = global::GAME_FRAME_TIME;
-       std::vector<CollisionEvent*> events;
+	int c = 0;
+	int checkCounter = 1;
+	float timeLeft = global::GAME_FRAME_TIME;
+	std::vector<CollisionEvent*> events;
 
-       updateChanged(&events, timeLeft);
+	whatTime(updateChanged(&events, timeLeft));
 
-       while (true)
-       {
-               enum : char {CHECK, EVENT, END} id;
-               float times[3]; /* times until frame ends */
-               times[CHECK] = global::GAME_FRAME_TIME - (checkCounter * 1.f / FREQ);
-               times[EVENT] = -1;
-               times[END] = 0;
+	while (true)
+	{
+		enum : char {CHECK, EVENT, END} id;
+		float times[3]; /* times until frame ends */
+		times[CHECK] = global::GAME_FRAME_TIME - (checkCounter * 1.f / FREQ);
+		times[EVENT] = -1;
+		times[END] = 0;
 
-               if (events.size() > 0)
-               {
-                       times[EVENT] = events[0]->getTimeUntilFrameEnds();
-               }
+		if (events.size() > 0)
+		{
+			times[EVENT] = events[0]->getTimeUntilFrameEnds();
+		}
 
-               if (times[CHECK] >= times[END] && times[CHECK] >= times[EVENT])
-               {
-                       id = CHECK;
-               }
-               else if (times[EVENT] >= times[END])
-               {
-                       id = EVENT;
-               }
-               else
-               {
-                       id = END;
-               }
+		if (times[CHECK] >= times[END] && times[CHECK] >= times[EVENT])
+		{
+			id = CHECK;
+		}
+		else if (times[EVENT] >= times[END])
+		{
+			id = EVENT;
+		}
+		else
+		{
+			id = END;
+		}
 
-               moveAllEntities(timeLeft - times[id]); // bewege die Entities um die Zeitänderung
-               timeLeft = times[id];
+		moveAllEntities(timeLeft - times[id]); // bewege die Entities um die Zeitänderung
+		timeLeft = times[id];
 
-               switch (id)
-               {
-                       case CHECK:
-                               checkCounter++;
-                               for (unsigned int i = 0; i < getDynamicEntityAmount(); ++i)
-                               {
-                                       getDynamicEntity(i)->checkWrapperPartners();
-                               }
-                               updateChanged(&events, timeLeft);
-                               break;
-                       case END:
-                               Debug::funcOff("Frame::tickPhysics()");
-                               return;
-                       case EVENT:
-                               if (events.size() == 0)
-                               {
-                                       Debug::error("Frame::tickPhysics(): events.size() == 0");
-                                       return;
-                               }
-                               // add Wrapper Partners
-                               if (Entity::areWrapperPartners(events[0]->getEntity1(), events[0]->getEntity2()))
-                               {
-                                       Debug::warn("collision detected between wrapper partners:\n\t" + events[0]->getEntity1()->toString() + "\n\t" + events[0]->getEntity2()->toString());
-                               }
-                               else
-                               {
-                                       events[0]->getEntity1()->addWrapperPartner(events[0]->getEntity2());
-                                       events[0]->getEntity2()->addWrapperPartner(events[0]->getEntity1());
-                               }
+		switch (id)
+		{
+			case CHECK:
+				checkCounter++;
+				for (unsigned int i = 0; i < getDynamicEntityAmount(); ++i)
+				{
+					getDynamicEntity(i)->checkWrapperPartners();
+				}
+				updateChanged(&events, timeLeft);
+				break;
+			case END:
+				Debug::funcOff("Frame::tickPhysics()");
+				return;
+			case EVENT:
+				if (events.size() == 0)
+				{
+					Debug::error("Frame::tickPhysics(): events.size() == 0");
+					return;
+				}
+				// add Wrapper Partners
+				if (Entity::areWrapperPartners(events[0]->getEntity1(), events[0]->getEntity2()))
+				{
+					Debug::warn("collision detected between wrapper partners:\n\t" + events[0]->getEntity1()->toString() + "\n\t" + events[0]->getEntity2()->toString());
+				}
+				else
+				{
+					events[0]->getEntity1()->addWrapperPartner(events[0]->getEntity2());
+					events[0]->getEntity2()->addWrapperPartner(events[0]->getEntity1());
+				}
 
-                               events[0]->getEntity1()->setChanged(true);
-                               events[0]->getEntity2()->setChanged(true);
+				events[0]->getEntity1()->setChanged(true);
+				events[0]->getEntity2()->setChanged(true);
 
-                               removeEventsBetween(events[0]->getEntity1(), events[0]->getEntity2(), &events);
-               }
+				removeEventsBetween(events[0]->getEntity1(), events[0]->getEntity2(), &events);
+		}
 
-               if (c++ > LOOP_LIMIT)
-               {
-                       Debug::error("Frame::tickPhysics(): infinite loop");
-                       break;
-               }
-       }
+		if (c++ > LOOP_LIMIT)
+		{
+			Debug::error("Frame::tickPhysics(): infinite loop");
+			break;
+		}
+	}
 }
 
 
