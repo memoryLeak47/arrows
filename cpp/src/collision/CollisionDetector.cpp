@@ -77,6 +77,9 @@ void CollisionDetector::addCollisionsBetween(Entity* e1, Entity* e2, std::vector
 		Debug::warn(std::string(__PRETTY_FUNCTION__) + ": between collision partners");
 	}
 
+	if ((e1->getPosition() - e2->getPosition()).getMagnitude() > e1->getSize().getMagnitude() + e2->getSize().getMagnitude() + timeLeft*(e1->getSpeed().getMagnitude() + e2->getSpeed().getMagnitude()))
+		return;
+
 	const GameRect wrapper1 = e1->getWrapper(0.f); // TODO make getWrapper more beautiful
 	const GameRect wrapper2 = e2->getWrapper(0.f);
 
