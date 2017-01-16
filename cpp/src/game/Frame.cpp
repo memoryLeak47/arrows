@@ -253,9 +253,7 @@ DynamicEntity* Frame::getDynamicEntity(unsigned int id)
 			id -= mobs.size();
 			if (id >= idlers.size())
 			{
-				// id -= idlers.size();
-				// return bullets[id];
-				// and then cosmetics
+				Debug::warn("Frame::getDynamicEntity(" + Converter::intToString(id) + "): id too high");
 			}
 			else
 			{
@@ -271,13 +269,13 @@ DynamicEntity* Frame::getDynamicEntity(unsigned int id)
 	{
 		return players[id];
 	}
-	Debug::error("Frame::getImpactfulDynamic(" + Converter::intToString(id) + "): id kinda out of range");
+	Debug::error("Frame::getDynamicEntity(" + Converter::intToString(id) + "): id kinda out of range");
 	return nullptr;
 }
 
 unsigned int Frame::getDynamicEntityAmount()
 {
-	return mobs.size() + /* bullets.size() +*/ players.size() + idlers.size() /*+ cosmetics.size() */;
+	return mobs.size() + players.size() + idlers.size() /*+ cosmetics.size() */;
 }
 
 const GameTileMap* Frame::getGameTileMap() const
