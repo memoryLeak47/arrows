@@ -15,14 +15,14 @@ void ArrowSalveSkill::onTrigger()
 	{
 		for (int i = 0; i < ARROW_COUNT; i++)
 		{
-			addBullet(new SimpleArrow(getOwner()->getPosition(), getOwner()->getSpeed() + GameVector(1.4f, 0.f), getOwner()));
+			addBullet(new SimpleArrow(getOwner()->getPosition() + GameVector(i, 0), getOwner()->getSpeed() + GameVector(1.4f, 0.f), getOwner()));
 		}
 	}
 	else
 	{
 		for (int i = 0; i < ARROW_COUNT; i++)
 		{
-			addBullet(new SimpleArrow(getOwner()->getPosition(), getOwner()->getSpeed() + GameVector(-1.4f, 0.f), getOwner()));
+			addBullet(new SimpleArrow(getOwner()->getPosition() + GameVector(i, 0), getOwner()->getSpeed() + GameVector(-1.4f, 0.f), getOwner()));
 		}
 	}
 }
