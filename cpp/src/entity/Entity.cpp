@@ -1,5 +1,5 @@
 #include "Entity.hpp"
-
+ 
 #include <misc/Global.hpp>
 #include <core/Screen.hpp>
 
@@ -153,12 +153,12 @@ float Entity::getSpongeBetween(Entity* e1, Entity* e2)
 
 bool Entity::areCollisionPartners(Entity* e1, Entity* e2)
 {
-       return e1->hasCollisionPartner(e2) or e2->hasCollisionPartner(e1);
+	return e1->hasCollisionPartner(e2) or e2->hasCollisionPartner(e1);
 }
 
 bool Entity::areWrapperPartners(Entity* e1, Entity* e2)
 {
-       return e1->hasWrapperPartner(e2) or e2->hasWrapperPartner(e1);
+	return e1->hasWrapperPartner(e2) or e2->hasWrapperPartner(e1);
 }
 
 CollisionTypeID Entity::getCollisionTypeIDBetween(Entity* e1, Entity* e2)
