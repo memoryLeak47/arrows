@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <entity/Tile.hpp>
-#include <misc/Converter.hpp>
+#include <misc/Global.hpp>
 
 LobbyTileMap::LobbyTileMap()
 {}
@@ -30,10 +30,12 @@ std::vector<std::vector<TileID>> LobbyTileMap::getTileIDsByFile(const std::strin
 		tileIDs.back().reserve(image.getSize().y);
 		for (unsigned int y = 0; y < image.getSize().y; y++)
 		{
-			tileIDs[x].push_back(Tile::colorStringToTileID(Converter::colorToColorString(image.getPixel(x, y)))); // Einzelne Werte werden in die jeweilige Spalte geschrieben
+			sf::Color c = image.getPixel(x, y);
+			std::string s = Converter::colorToColorString(c);
+			TileID t = Tile::colorStringToTileID(s);
+			tileIDs[x].push_back(t); // Einzelne Werte werden in die jeweilige Spalte geschrieben
 		}
 	}
-
 	return tileIDs;
 }
 

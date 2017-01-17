@@ -13,13 +13,13 @@ std::string Converter::colorToColorString(const sf::Color& color)
 	assert(color.a == 255);
 
 	std::string s;
-	char tmp[2];
+	char tmp[3]; // third char for '\0'
 
-	sprintf(tmp, "%.2X", (int) color.r);
+	snprintf(tmp, 3, "%.2X", (int) color.r);
 	s += tmp;
-	sprintf(tmp, "%.2X", (int) color.g);
+	snprintf(tmp, 3, "%.2X", (int) color.g);
 	s += tmp;
-	sprintf(tmp, "%.2X", (int) color.b);
+	snprintf(tmp, 3, "%.2X", (int) color.b);
 	s += tmp;
 
 	return s;
