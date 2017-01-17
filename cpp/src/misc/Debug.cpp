@@ -37,6 +37,7 @@ void Timer::clearAndPrint()
 	average = sum/times.size();
 
 	std::cout << "Timer \"" << function << "\": " << sum << " = " << average << " * " << times.size() << " (max=" << max << ")" << std::endl;
+	times.clear();
 }
 
 TimerInstance::TimerInstance(Timer* t)
