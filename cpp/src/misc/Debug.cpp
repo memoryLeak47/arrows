@@ -8,6 +8,45 @@
 
 int Debug::indentCounter;
 std::vector<Message> Debug::messages;
+std::vector<Timer*> Debug::timers;
+
+Timer::Timer(std::string function)
+	: function(function)
+{
+	Debug::timers.push_back(this);
+}
+
+Timer::~Timer()
+{
+	Debug::timers.pop_back();
+}
+
+void Timer::clearAndPrint()
+{
+	float average = 0;
+	float max = 0;
+	float sum = 0;
+	for (unsigned int i = 0; i < times.size(); i++)
+	{
+		sum += times[i];
+		if (times[i] > max)
+		{
+			max = times[i];
+		}
+	}
+	average = sum/times.size();
+
+	std::cout << "Timer \"" << function << "\": " << sum << " = " << average << " * " << times.size() << " (max=" << max << ")" << std::endl;
+}
+
+TimerInstance::TimerInstance(Timer* t)
+	: t(t)
+{}
+
+TimerInstance::~TimerInstance()
+{
+	t->times.push_back(((float) c.restart().asMicroseconds()) / 1000.f);
+}
 
 void Debug::init()
 {
@@ -25,6 +64,11 @@ void Debug::tickConsole()
 			messages.erase(messages.begin() + i);
 			i--;
 		}
+	}
+
+	for (unsigned int i = 0; i < timers.size(); i++)
+	{
+		timers[i]->clearAndPrint();
 	}
 }
 

@@ -51,6 +51,33 @@
 		  std::cout << "'" << (#x) << "' took " << whatTime_time << " ms" << std::endl; \
 		}
 
+// Timer
+
+#define debug_timer static Timer debug_timer(__PRETTY_FUNCTION__); TimerInstance debug_timer_instance(&debug_timer);
+#define debug_timer_tag(x) static Timer debug_timer_x(x); TimerInstance debug_timer_instance_x(&debug_timer_x);
+class Timer
+{
+	public:
+		Timer(std::string function);
+		~Timer();
+
+		void clearAndPrint();
+
+		std::string function;
+		std::vector<float> times;
+};
+
+class TimerInstance
+{
+	public:
+		TimerInstance(Timer* t);
+		~TimerInstance();
+	private:
+		Timer* t;
+		sf::Clock c;
+};
+
+
 struct Message
 {
 	std::string text;
@@ -73,6 +100,8 @@ class Debug
 		static void funcOn(const std::string&);
 		static void funcOff(const std::string&);
 		static void screen(const std::string&, int time=1);
+
+		static std::vector<Timer*> timers;
 	private:
 		static int indentCounter;
 		static std::vector<Message> messages;
