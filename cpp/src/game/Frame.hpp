@@ -20,8 +20,8 @@ class Frame
 	public:
 		Frame(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers, RestrictedGameInterface* restrictedGameInterface);
 		~Frame();
-		void tickEntities();
-		void tickPhysics();
+
+		void tick();
 
 		unsigned int getDynamicEntityAmount();
 		DynamicEntity* getDynamicEntity(unsigned int);
@@ -34,6 +34,9 @@ class Frame
 		void addEventsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft);
 		void removeEventsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events);
 	private:
+		void tickEntities();
+		void tickPhysics();
+
 		std::vector<GamePlayer*> players;
 		std::vector<Idler*> idlers;
 		std::vector<Mob*> mobs;

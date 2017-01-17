@@ -38,6 +38,12 @@ Frame::~Frame()
 	deleteAndClearVector(tiles);
 }
 
+void Frame::tick()
+{
+	tickEntities();
+	tickPhysics();
+}
+
 void Frame::tickEntities()
 {
 	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)

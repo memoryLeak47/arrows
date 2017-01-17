@@ -79,8 +79,7 @@ void ClientGameInterface::tick()
 
 	applyCalendar();
 
-	mainFrame.tickEntities();
-	mainFrame.tickPhysics();
+	mainFrame.tick();
 }
 
 GamePlayer* ClientGameInterface::getLocalPlayer() const
