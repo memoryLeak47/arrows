@@ -1,5 +1,6 @@
 #include "CollisionTester.hpp"
 
+#include <misc/Global.hpp>
 #include <math/game/GameRect.hpp>
 #include <entity/Entity.hpp>
 #include <math/game/GameVector.hpp>

@@ -119,25 +119,25 @@ void DynamicEntity::removeCollisionPartner(Entity* e)
 
 void DynamicEntity::removeWrapperPartner(Entity* e)
 {
-       if (e == this)
-       {
-               Debug::error("DynamicEntity::removeWrapper Partner(): entity wanted to remove itself: " + e->toString());
-       }
-       bool found = false;
-       for (auto it = wrapperPartners.begin(); it != wrapperPartners.end(); ++it)
-       {
-               if (*it == e)
-               {
-                       found = true;
-                       wrapperPartners.erase(it);
-                       break;
-               }
-       }
+	if (e == this)
+	{
+		Debug::error("DynamicEntity::removeWrapper Partner(): entity wanted to remove itself: " + e->toString());
+	}
+	bool found = false;
+	for (auto it = wrapperPartners.begin(); it != wrapperPartners.end(); ++it)
+	{
+		if (*it == e)
+		{
+			found = true;
+			wrapperPartners.erase(it);
+			break;
+		}
+	}
 
-       if (not found)
-       {
-               Debug::error("DynamicEntity::removeWrapperPartner(): e=" + e->toString() + " was not found in " + toString() + ".wrapperPartners");
-       }
+	if (not found)
+	{
+		Debug::error("DynamicEntity::removeWrapperPartner(): e=" + e->toString() + " was not found in " + toString() + ".wrapperPartners");
+	}
 }
 
 const std::vector<Entity*>& DynamicEntity::getCollisionPartners() const
@@ -164,12 +164,12 @@ bool DynamicEntity::hasCollisionPartner(Entity* e) const
 
 bool DynamicEntity::hasWrapperPartner(Entity* e) const
 {
-       for (unsigned int i = 0; i < wrapperPartners.size(); i++)
-       {
-               if (e == wrapperPartners[i])
-               {
-                       return true;
-               }
-       }
-       return false;
+	for (unsigned int i = 0; i < wrapperPartners.size(); i++)
+	{
+		if (e == wrapperPartners[i])
+		{
+			return true;
+		}
+	}
+	return false;
 }
