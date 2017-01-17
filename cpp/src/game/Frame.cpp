@@ -62,7 +62,7 @@ void Frame::tickPhysics()
 	int c = 0;
 	int checkCounter = 1;
 	float timeLeft = global::GAME_FRAME_TIME;
-	std::vector<CollisionEvent*> events;
+	std::deque<CollisionEvent*> events;
 
 	updateChanged(&events, timeLeft);
 
@@ -74,9 +74,9 @@ void Frame::tickPhysics()
 		times[EVENT] = -1;
 		times[END] = 0;
 
-		if (events.size() > 0)
+		if (! events.empty())
 		{
-			times[EVENT] = events[0]->getTimeUntilFrameEnds();
+			times[EVENT] = events.front()->getTimeUntilFrameEnds();
 		}
 
 		if (times[CHECK] >= times[END] && times[CHECK] >= times[EVENT])
@@ -109,26 +109,28 @@ void Frame::tickPhysics()
 				Debug::funcOff("Frame::tickPhysics()");
 				return;
 			case EVENT:
-				if (events.size() == 0)
+				if (events.empty())
 				{
 					Debug::error("Frame::tickPhysics(): events.size() == 0");
 					return;
 				}
 				// add Wrapper Partners
-				if (Entity::areWrapperPartners(events[0]->getEntity1(), events[0]->getEntity2()))
+				if (Entity::areWrapperPartners(events.front()->getEntity1(), events.front()->getEntity2()))
 				{
-					Debug::warn("collision detected between wrapper partners:\n\t" + events[0]->getEntity1()->toString() + "\n\t" + events[0]->getEntity2()->toString());
+					Debug::warn("collision detected between wrapper partners:\n\t"
+						+ events.front()->getEntity1()->toString()
+						+ "\n\t" + events.front()->getEntity2()->toString());
 				}
 				else
 				{
-					events[0]->getEntity1()->addWrapperPartner(events[0]->getEntity2());
-					events[0]->getEntity2()->addWrapperPartner(events[0]->getEntity1());
+					events.front()->getEntity1()->addWrapperPartner(events.front()->getEntity2());
+					events.front()->getEntity2()->addWrapperPartner(events.front()->getEntity1());
 				}
 
-				events[0]->getEntity1()->setChanged(true);
-				events[0]->getEntity2()->setChanged(true);
+				events.front()->getEntity1()->setChanged(true);
+				events.front()->getEntity2()->setChanged(true);
 
-				removeEventsBetween(events[0]->getEntity1(), events[0]->getEntity2(), &events);
+				removeEventsBetween(events.front()->getEntity1(), events.front()->getEntity2(), &events);
 		}
 
 		if (c++ > LOOP_LIMIT)
@@ -137,28 +139,6 @@ void Frame::tickPhysics()
 			break;
 		}
 	}
-}
-
-
-CollisionEvent* Frame::cutFirstEvent(std::vector<CollisionEvent*>* events)
-{
-	if (events->empty())
-	{
-		Debug::error("Frame::cutFirstEvent(): no more events");
-		return nullptr;
-	}
-
-	auto big = events->begin();
-	for (auto i = events->begin()+1; i != events->end(); i++)
-	{
-		if ((*big)->getTimeUntilFrameEnds() < (*i)->getTimeUntilFrameEnds())
-		{
-			big = i;
-		}
-	}
-	CollisionEvent* ret = *big;
-	events->erase(big);
-	return ret;
 }
 
 void Frame::moveAllEntities(float time)
@@ -176,7 +156,7 @@ void Frame::moveAllEntities(float time)
 	}
 }
 
-void Frame::updateChanged(std::vector<CollisionEvent*>* events, float timeLeft)
+void Frame::updateChanged(std::deque<CollisionEvent*>* events, float timeLeft)
 {
 	if (timeLeft < 0)
 	{
@@ -213,7 +193,7 @@ void Frame::updateChanged(std::vector<CollisionEvent*>* events, float timeLeft)
 	}
 }
 
-void Frame::update(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
+void Frame::update(Entity* e1, Entity* e2, std::deque<CollisionEvent*>* events, float timeLeft)
 {
 	if (Entity::areWrapperPartners(e1, e2))
 	{
@@ -226,7 +206,7 @@ void Frame::update(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events,
 	}
 }
 
-void Frame::addEventsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
+void Frame::addEventsBetween(Entity* e1, Entity* e2, std::deque<CollisionEvent*>* events, float timeLeft)
 {
 	if (e1->getCollisionPriority(e2) + e2->getCollisionPriority(e1) > 0)
 	{
@@ -234,7 +214,7 @@ void Frame::addEventsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*
 	}
 }
 
-void Frame::removeEventsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events)
+void Frame::removeEventsBetween(Entity* e1, Entity* e2, std::deque<CollisionEvent*>* events)
 {
 	for (unsigned int i = 0; i < events->size(); i++)
 	{

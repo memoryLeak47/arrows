@@ -16,12 +16,12 @@ enum CollisionStatus {IN, BORDER, OUT};
 class Entity;
 class CollisionEvent;
 
-#include <vector>
+#include <deque>
 
 class CollisionDetector
 {
 	public:
-		static void addCollisionsBetween(Entity*, Entity*, std::vector<CollisionEvent*>*, float timeLeft);
+		static void addCollisionsBetween(Entity*, Entity*, std::deque<CollisionEvent*>*, float timeLeft);
 };
 
 #endif

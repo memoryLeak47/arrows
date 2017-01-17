@@ -20,7 +20,7 @@ int getNextIndex(const std::vector<float>& floats)
 	return spot;
 }
 
-void addEvent(std::vector<CollisionEvent*>* events, CollisionEvent* event)
+void addEvent(std::deque<CollisionEvent*>* events, CollisionEvent* event)
 {
 	for (unsigned int i = 0; i < events->size(); i++)
 	{
@@ -70,7 +70,7 @@ std::pair<std::vector<float>, std::vector<bool>> getPair(float posX1, float posY
 	return std::pair<std::vector<float>, std::vector<bool>>(floats, bools);
 }
 
-void CollisionDetector::addCollisionsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft)
+void CollisionDetector::addCollisionsBetween(Entity* e1, Entity* e2, std::deque<CollisionEvent*>* events, float timeLeft)
 {
 	if (Entity::areWrapperPartners(e1, e2))
 	{
@@ -149,7 +149,7 @@ void CollisionDetector::addCollisionsBetween(Entity* e1, Entity* e2, std::vector
 	std::vector<float> floats = pair.first;
 	std::vector<bool> bools = pair.second;
 
-	while (floats.size() > 0)
+	while (! floats.empty())
 	{
 		int index = getNextIndex(floats);
 		float time = floats[index];

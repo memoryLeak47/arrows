@@ -2,6 +2,7 @@
 #define __FRAME_CLASS__
 
 #include <vector>
+#include <deque>
 
 class GameTileMap;
 class DynamicEntity;
@@ -27,12 +28,11 @@ class Frame
 		DynamicEntity* getDynamicEntity(unsigned int);
 		const GameTileMap* getGameTileMap() const;
 
-		CollisionEvent* cutFirstEvent(std::vector<CollisionEvent*>* events);
 		void moveAllEntities(float time);
-		void updateChanged(std::vector<CollisionEvent*>* events, float timeLeft);
-		void update(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft);
-		void addEventsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events, float timeLeft);
-		void removeEventsBetween(Entity* e1, Entity* e2, std::vector<CollisionEvent*>* events);
+		void updateChanged(std::deque<CollisionEvent*>* events, float timeLeft);
+		void update(Entity* e1, Entity* e2, std::deque<CollisionEvent*>* events, float timeLeft);
+		void addEventsBetween(Entity* e1, Entity* e2, std::deque<CollisionEvent*>* events, float timeLeft);
+		void removeEventsBetween(Entity* e1, Entity* e2, std::deque<CollisionEvent*>* events);
 	private:
 		void tickEntities();
 		void tickPhysics();
