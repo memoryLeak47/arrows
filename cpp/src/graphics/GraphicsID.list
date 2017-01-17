@@ -4,6 +4,7 @@ X(ARCHER_ICON_GID, "res/icons/avatars/archer.png")
 X(ROGUE_ICON_GID, "res/icons/avatars/rogue.png")
 
 X(ARROWSHOTSKILL_ICON_GID, "res/icons/skills/arrowshot.png")
+X(ARROWSALVESKILL_ICON_GID, "res/icons/skills/arrowshot.png")
 
 X(HEALTHRING_ICON_GID, "res/icons/items/healthring.png")
 

@@ -3,7 +3,9 @@
 #include <misc/Global.hpp>
 #include <core/Main.hpp>
 #include <skill/lobby/archer/LobbyArrowShotSkill.hpp>
+#include <skill/lobby/archer/LobbyArrowSalveSkill.hpp>
 #include <skill/game/archer/ArrowShotSkill.hpp>
+#include <skill/game/archer/ArrowSalveSkill.hpp>
 #include "SkillID.hpp"
 
 std::vector<LobbySkill*> LobbySkill::skills;
