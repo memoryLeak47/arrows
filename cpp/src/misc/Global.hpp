@@ -9,7 +9,6 @@
 #define deleteAndClearVector(x) for (unsigned int i = 0; i < x.size(); i++) { delete x[i]; } x.clear();
 #define memberOf(x, y) (std::find(y.begin(), y.end(), x) != y.end())
 
-
 namespace global
 {
 	void init();

@@ -23,6 +23,7 @@ function GenerateGeneralSettings(settings)
 	if conf == "debug" then
 		settings.debug = 1
 		settings.optimize = 0
+		settings.cc.flags:Add("-D DEBUG")
 	elseif conf == "release" then
 		settings.debug = 0
 		settings.optimize = 1
