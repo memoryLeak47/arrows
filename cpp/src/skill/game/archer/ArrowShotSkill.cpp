@@ -1,6 +1,6 @@
 #include "ArrowShotSkill.hpp"
 
-#include <misc/Debug.hpp>
+#include <misc/Global.hpp>
 #include <entity/bullets/SimpleArrow.hpp>
 #include <entity/Mob.hpp>
 
