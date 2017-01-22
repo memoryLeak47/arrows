@@ -19,6 +19,8 @@ class Archer : public GamePlayer
 		Archer(const GameVector&, const LobbyPlayer*, RestrictedGameInterface*);
 		virtual ~Archer() {}
 
+		CREATE_GETMEMSIZE(Archer)
+
 		// compress
 		CompressID getCompressID() const override;
 		std::string getCompressString() const override;

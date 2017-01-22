@@ -10,6 +10,8 @@ class DynamicEntity : public Entity
 		DynamicEntity(const EntityGivethrough&);
 		virtual ~DynamicEntity() {}
 
+		virtual bool hasToBeCloned() const override;
+
 		void checkWrapperPartners();
 
 		virtual bool hasChanged() const override;

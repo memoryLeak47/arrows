@@ -19,6 +19,16 @@ Tile::Tile(const GameVector& pos)
 	: Entity(EntityGivethrough(new RectShape(this), pos, GameVector(1.f, 1.f)))
 {}
 
+bool Tile::hasToBeCloned() const
+{
+	return false;
+}
+
+std::vector<FrameCloneable**> Tile::getClonePointers() const
+{
+	return {};
+}
+
 bool Tile::hasChanged() const
 {
 	return false;

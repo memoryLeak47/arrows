@@ -9,6 +9,11 @@ DynamicEntity::DynamicEntity(const EntityGivethrough& gt)
 	: Entity(gt), changed(true)
 {}
 
+bool DynamicEntity::hasToBeCloned() const
+{
+	return true;
+}
+
 bool DynamicEntity::hasChanged() const
 {
 	return changed;

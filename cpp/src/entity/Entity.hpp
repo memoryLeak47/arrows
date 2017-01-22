@@ -39,8 +39,9 @@ class Shape;
 #include <vector>
 #include <SFML/Graphics/Texture.hpp>
 #include <math/game/GameVector.hpp>
+#include <game/FrameCloneable.hpp>
 
-class Entity
+class Entity : public FrameCloneable
 {
 	public:
 		Entity(const EntityGivethrough&);
@@ -51,6 +52,8 @@ class Entity
 
 		virtual void tick();
 		virtual std::string toString() const = 0;
+
+		virtual std::vector<FrameCloneable**> getClonePointers() const override;
 
 		// physics
 		void move(float time);

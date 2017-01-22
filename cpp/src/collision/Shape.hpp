@@ -2,6 +2,7 @@
 #define __SHAPE_CLASS__
 
 #include <misc/compress/Compressable.hpp>
+#include <game/FrameCloneable.hpp>
 #include <string>
 
 class Entity;
@@ -9,13 +10,16 @@ class CompressBuffer;
 class GameRect;
 class GameVector;
 
-class Shape : public Compressable
+class Shape : public Compressable, public FrameCloneable
 {
 	public:
 		Shape(Entity*);
 		Shape(CompressBuffer*);
 
 		virtual ~Shape() {}
+
+		virtual std::vector<FrameCloneable**> getClonePointers() const override;
+		virtual bool hasToBeCloned() const override;
 	
 		virtual std::string getCompressString() const override;
 

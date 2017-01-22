@@ -13,6 +13,7 @@ class RubberTile : public Tile
 		RubberTile(const GameVector&);
 		virtual ~RubberTile() {}
 
+		CREATE_GETMEMSIZE(RubberTile)
 		virtual Sponge getSponge() const override;
 		virtual sf::Texture* getTexture() const override;
 		virtual std::string toString() const override;

@@ -18,6 +18,8 @@ class Rogue : public GamePlayer
 		Rogue(const GameVector&, const LobbyPlayer*, RestrictedGameInterface*);
 		virtual ~Rogue() {}
 
+		CREATE_GETMEMSIZE(Rogue)
+
 		// compress
 		CompressID getCompressID() const override;
 		std::string getCompressString() const override;

@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <deque>
+#include "FrameCloneable.hpp"
 
 class GameTileMap;
 class DynamicEntity;
@@ -16,15 +17,17 @@ class LobbyTileMap;
 class LobbyPlayer;
 class RestrictedGameInterface;
 
-class Frame
+class Frame : public FrameCloneable
 {
 	public:
 		Frame(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers, RestrictedGameInterface* restrictedGameInterface);
 		~Frame();
 
+		Frame* clone() const;
+
 		void tick();
 
-		unsigned int getDynamicEntityAmount();
+		unsigned int getDynamicEntityAmount() const;
 		DynamicEntity* getDynamicEntity(unsigned int);
 		const GameTileMap* getGameTileMap() const;
 
@@ -33,6 +36,10 @@ class Frame
 		void update(Entity* e1, Entity* e2, std::deque<CollisionEvent*>* events, float timeLeft);
 		void addEventsBetween(Entity* e1, Entity* e2, std::deque<CollisionEvent*>* events, float timeLeft);
 		void removeEventsBetween(Entity* e1, Entity* e2, std::deque<CollisionEvent*>* events);
+	protected:
+		virtual std::vector<FrameCloneable**> getClonePointers() const override;
+		virtual unsigned int getMemSize() const override;
+		virtual bool hasToBeCloned() const override;
 	private:
 		void tickEntities();
 		void tickPhysics();
@@ -40,7 +47,6 @@ class Frame
 		std::vector<GamePlayer*> players;
 		std::vector<Idler*> idlers;
 		std::vector<Mob*> mobs;
-		std::vector<Tile*> tiles;
 		GameTileMap* tileMap;
 
 	friend class GameInterface;

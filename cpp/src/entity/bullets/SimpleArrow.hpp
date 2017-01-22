@@ -11,6 +11,9 @@ class SimpleArrow : public Bullet
 	public:
 		SimpleArrow(const GameVector& pos, const GameVector& speed, Mob* owner);
 		SimpleArrow(CompressBuffer*);
+
+		CREATE_GETMEMSIZE(SimpleArrow)
+
 		CompressID getCompressID() const override;
 
 		virtual float getCollisionPriority(Entity*) const;
