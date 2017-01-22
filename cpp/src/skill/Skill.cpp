@@ -29,6 +29,16 @@ void Skill::setEnabled(bool b)
 	enabled = b;
 }
 
+std::vector<FrameCloneable**> Skill::getClonePointers() const
+{
+	return std::vector<FrameCloneable**>();
+}
+
+bool Skill::hasToBeCloned() const
+{
+	return true;
+}
+
 void Skill::tick() {}
 
 bool Skill::isEnabled() const

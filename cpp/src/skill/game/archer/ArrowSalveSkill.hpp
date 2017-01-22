@@ -9,6 +9,8 @@ class ArrowSalveSkill : public TriggerSkill
 {
 	public:
 		ArrowSalveSkill(const SkillGivethrough&);
+
+		CREATE_GETMEMSIZE(ArrowSalveSkill)
 	protected:
 		virtual void onTrigger() override;
 };

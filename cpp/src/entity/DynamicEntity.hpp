@@ -10,6 +10,7 @@ class DynamicEntity : public Entity
 		DynamicEntity(const EntityGivethrough&);
 		virtual ~DynamicEntity() {}
 
+		virtual std::vector<FrameCloneable**> getClonePointers() const override;
 		virtual bool hasToBeCloned() const override;
 
 		void checkWrapperPartners();

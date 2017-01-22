@@ -16,12 +16,17 @@ struct SkillGivethrough
 };
 
 #include <string>
+#include <vector>
 #include <graphics/TextureID.hpp>
+#include <game/FrameCloneable.hpp>
 
-class Skill
+class Skill : public FrameCloneable
 {
 	public:
 		Skill(const SkillGivethrough&);
+
+		virtual std::vector<FrameCloneable**> getClonePointers() const override;
+		virtual bool hasToBeCloned() const override;
 
 		void setEnabled(bool);
 		virtual void tick();

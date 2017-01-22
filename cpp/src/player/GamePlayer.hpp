@@ -28,6 +28,8 @@ class GamePlayer : public Mob
 		GamePlayer(const EntityGivethrough&, const LobbyPlayer*, RestrictedGameInterface*); // used when Game begins in Avatar::createGamePlayer()
 		virtual ~GamePlayer(); // deletes ip
 
+		virtual std::vector<FrameCloneable**> getClonePointers() const override;
+
 		// compress
 		std::string getCompressString() const override; // => Mob.getCompressString() + charges
 

@@ -17,6 +17,13 @@ Mob::~Mob()
 	delete controller;
 }
 
+std::vector<FrameCloneable**> Mob::getClonePointers() const
+{
+	std::vector<FrameCloneable**> tmp = ImpactfulDynamicEntity::getClonePointers();
+	tmp.push_back((FrameCloneable**) controller);
+	return tmp;
+}
+
 std::string Mob::getCompressString() const
 {
 	return ImpactfulDynamicEntity::getCompressString() + getController()->compress();

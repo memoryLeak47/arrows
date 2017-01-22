@@ -8,6 +8,13 @@ Bullet::Bullet(CompressBuffer* buffer)
 	: Idler(buffer)
 {}
 
+std::vector<FrameCloneable**> Bullet::getClonePointers() const
+{
+	std::vector<FrameCloneable**> tmp = Idler::getClonePointers();
+	tmp.push_back((FrameCloneable**) &owner);
+	return tmp;
+}
+
 EntityType Bullet::getEntityType() const
 {
 	return EntityType::BULLET;
