@@ -40,7 +40,7 @@ Frame::~Frame()
 
 Frame* Frame::clone() const
 {
-	Frame* clone = (Frame*) ::operator new(sizeof(Frame));
+	Frame* clone = new Frame();
 
 	std::map<FrameCloneable*, FrameCloneable*> map;
 

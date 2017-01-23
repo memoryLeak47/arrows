@@ -21,6 +21,7 @@ class Frame : public FrameCloneable
 {
 	public:
 		Frame(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers, RestrictedGameInterface* restrictedGameInterface);
+		Frame() = default;
 		~Frame();
 
 		Frame* clone() const;
