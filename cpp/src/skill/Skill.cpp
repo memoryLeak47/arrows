@@ -31,7 +31,9 @@ void Skill::setEnabled(bool b)
 
 std::vector<FrameCloneable**> Skill::getClonePointers() const
 {
-	return std::vector<FrameCloneable**>();
+	std::vector<FrameCloneable**> tmp;
+	tmp.push_back((FrameCloneable**) &owner);
+	return tmp;
 }
 
 bool Skill::hasToBeCloned() const
