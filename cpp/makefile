@@ -1,5 +1,5 @@
 start: compile run
-release: compile_release run_release
+start_release: compile_release run_release
 run:
 	@./bam/build/debug/arrows | tee log
 run_release:
