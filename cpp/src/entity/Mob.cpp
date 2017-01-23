@@ -20,7 +20,7 @@ Mob::~Mob()
 std::vector<FrameCloneable**> Mob::getClonePointers() const
 {
 	std::vector<FrameCloneable**> tmp = ImpactfulDynamicEntity::getClonePointers();
-	tmp.push_back((FrameCloneable**) controller);
+	tmp.push_back((FrameCloneable**) &controller);
 	return tmp;
 }
 
