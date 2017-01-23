@@ -19,4 +19,4 @@ gdb:
 	@if [ -f core ]; then gdb ./bam/build/debug/arrows core; else echo no core; fi
 perf:
 	@sudo perf stat ./bam/build/debug/arrows | tee log
-.PHONY: run getlog gdb line-counter compile start run_release compile_release
+.PHONY: start start_release run run_release compile compile_release line-counter valgrind getlog gdb perf
