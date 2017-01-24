@@ -16,7 +16,7 @@ valgrind:
 getlog:
 	@if [ -f log ]; then cat log | less -R; else echo "no log file"; fi
 gdb:
-	@if [ -f core ]; then gdb ./bam/build/debug/arrows core; else echo no core; fi
+	@if [ -f core ]; then gdb ./bam/build/debug/arrows core; else echo running with no core; echo; gdb ./bam/build/debug/arrows; fi
 perf:
 	@sudo perf stat ./bam/build/debug/arrows | tee log
 .PHONY: start start_release run run_release compile compile_release line-counter valgrind getlog gdb perf
