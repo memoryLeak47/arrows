@@ -38,18 +38,6 @@ GameInterface::~GameInterface()
 
 void GameInterface::tick()
 {
-	/* XXX <tmp> XXX */
-	Frame* clony = mainFrame.clone();
-
-	deleteAndClearVector(mainFrame.players);
-	deleteAndClearVector(mainFrame.mobs);
-	deleteAndClearVector(mainFrame.idlers);
-
-	mainFrame.players = clony->players;
-	mainFrame.mobs = clony->mobs;
-	mainFrame.idlers = clony->idlers;
-	/* XXX </tmp> XXX */
-
 	if (frameCounter++ % 100 == 0)
 	{
 		system("paplay /usr/share/sounds/ubuntu/notifications/Blip.ogg &");
