@@ -17,6 +17,7 @@
 #include <player/GamePlayer.hpp>
 #include <collision/CollisionDetector.hpp>
 #include <map>
+#include <assert.h>
 
 static const int LOOP_LIMIT = 300;
 static const float FREQ = 10.f;
@@ -47,6 +48,17 @@ Frame* Frame::clone() const
 	clone->players = players;
 	clone->idlers = idlers;
 	clone->mobs = mobs;
+
+	assert(players.size() == clone->players.size());
+	assert(idlers.size() == clone->idlers.size());
+	assert(mobs.size() == clone->mobs.size());
+	unsigned int i;
+	for (i = 0; i < players.size(); i++)
+		assert(players[i] == clone->players[i]);
+	for (i = 0; i < idlers.size(); i++)
+		assert(idlers[i] == clone->idlers[i]);
+	for (i = 0; i < mobs.size(); i++)
+		assert(mobs[i] == clone->mobs[i]);
 
 	clone->cloneMembers(&map);
 
@@ -295,11 +307,11 @@ std::vector<FrameCloneable**> Frame::getClonePointers() const
 
 	unsigned int i;
 	for (i = 0; i < players.size(); i++)
-		clonePointers.push_back((FrameCloneable**) &players.at(i));
+		clonePointers.push_back((FrameCloneable**) &players[i]);
 	for (i = 0; i < mobs.size(); i++)
-		clonePointers.push_back((FrameCloneable**) &mobs.at(i));
+		clonePointers.push_back((FrameCloneable**) &mobs[i]);
 	for (i = 0; i < idlers.size(); i++)
-		clonePointers.push_back((FrameCloneable**) &idlers.at(i));
+		clonePointers.push_back((FrameCloneable**) &idlers[i]);
 	return clonePointers;
 }
 
