@@ -10,56 +10,66 @@ else
 fi
 
 [[ ! -d build ]] && mkdir build
-[[ ! -d build/prec ]] && mkdir build/prec
-[[ ! -d build/prec_buf ]] && mkdir build/prec_buf
 [[ ! -d build/debug ]] && mkdir build/debug
+[[ ! -d build/debug/obj ]] && mkdir build/debug/obj
+[[ ! -d build/debug/prec ]] && mkdir build/debug/prec
+[[ ! -d build/debug/prec_buf ]] && mkdir build/debug/prec_buf
 [[ ! -d build/release ]] && mkdir build/release
+[[ ! -d build/release/obj ]] && mkdir build/release/obj
+[[ ! -d build/release/prec ]] && mkdir build/release/prec
+[[ ! -d build/release/prec_buf ]] && mkdir build/release/prec_buf
 
-rm -rf build/prec_buf/*
-[[ ! -z "$(ls build/prec)" ]] && mv build/prec/* build/prec_buf
-cp -r src/* build/prec
+rm -rf "build/$mode/prec_buf"/*
+[[ ! -z "$(ls "build/$mode/prec")" ]] && mv "build/$mode/prec"/* "build/$mode/prec_buf"
+cp -r src/* "build/$mode/prec"
 
 # fix prec & prec_buf mismatches:
-for file in $(cd build/prec_buf; find -type f -name "*.cpp")
+for file in $(cd "build/$mode/prec_buf"; find -type f -name "*.cpp")
 do
 	file=${file#./}
-	if [ ! -f "build/prec/$file" ]; then
-		rm "build/prec_buf/$file"
-		rm -f "build/debug/${file%.cpp}.o"
-		rm -f "build/release/${file%.cpp}.o"
+	if [ ! -f "build/$mode/prec/$file" ]; then
+		rm "build/$mode/prec_buf/$file"
+		rm -f "build/$mode/obj/${file%.cpp}.o"
 	fi
 done
 
-echo "Calling the Precompiler ..."
+echo "Precompiling ..."
 ./precompiler.py build/prec
 
-tmp_files=$(cd build/prec; find -name "*.cpp" -type f)
+tmp_files=$(cd "build/$mode/prec"; find -name "*.cpp" -type f)
 for file in $tmp_files
 do
 	file=${file#./}
-	files="$files ${file#"./build/prec/"}"
+	files="$files ${file#"./build/$mode/prec/"}"
 done
+
+if [ "$mode" == debug ]; then
+	debuglabel="-D DEBUG"
+else
+	debuglabel=""
+fi
 
 # compilation
 for file in $files
 do
-	outputfile="build/$mode/${file%.cpp}.o"
+	outputfile="build/$mode/obj/${file%.cpp}.o"
 	if [ ! -f "$outputfile" ]; then # always compile
 		buf_sum="-1"
-	elif [ -f "build/prec_buf/$file" ]; then
-		buf_sum="$(md5sum "build/prec_buf/$file" | cut -d " " -f 1)"
+	elif [ -f "build/$mode/prec_buf/$file" ]; then
+		buf_sum="$(md5sum "build/$mode/prec_buf/$file" | cut -d " " -f 1)"
 	else
 		buf_sum="-1"
 	fi
-	new_sum="$(md5sum "build/prec/$file" | cut -d " " -f 1)"
+	new_sum="$(md5sum "build/$mode/prec/$file" | cut -d " " -f 1)"
 	if [ ! "$buf_sum" == "$new_sum" ]; then
 		echo "Compiling '$file' ..."
 		dir=$(dirname "$outputfile")
 		[[ ! -d "$dir" ]] && mkdir -p "$dir"
-		g++ "build/prec/$file" -c -o "$outputfile" -I src
+		g++ "build/$mode/prec/$file" -c -o "$outputfile" -I src $debuglabel
 	fi
 done
 
 # linking
-obj_files=$(find -wholename "./build/$mode/*.o")
-g++ $obj_files -o arrows -lm -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window
+echo "Linking ..."
+obj_files=$(find -wholename "./build/$mode/obj/*.o")
+g++ $obj_files -o arrows -lm -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window $debuglabel

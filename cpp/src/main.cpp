@@ -5,7 +5,6 @@
 int main()
 {
 	// Main main;
-
 	Frame f;
 	f.idlers.push_back(new TestKiste(GameVector(0,0)));
 	f.clone();
