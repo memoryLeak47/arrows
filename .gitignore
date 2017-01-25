@@ -5,10 +5,9 @@
 /java/.accounts
 /java/.debug
 
-/cpp/exe
+/cpp/arrows
 /cpp/.accounts
 /cpp/core
 /cpp/.global
-/cpp/bam/build
-/cpp/.bam/
+/cpp/build/
 /cpp/valgrind.log

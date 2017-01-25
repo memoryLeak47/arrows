@@ -1,22 +1,43 @@
+.PHONY: start
 start: compile run
+
+.PHONY: start_release
 start_release: compile_release run_release
+
+.PHONY: run
 run:
-	@./bam/build/debug/arrows | tee log
+	@./arrows | tee log
+
+.PHONY: run_release
 run_release:
-	@./bam/build/release/arrows | tee log
+	@./arrows | tee log
+
+.PHONY: compile
 compile:
 	@tput reset
-	@bam -j `nproc`
+	@./compile.sh debug
+
+.PHONY: compile_release
 compile_release:
-	@bam -j `nproc` conf=release
+	@tput reset
+	@./compile.sh release
+
+.PHONY: line-counter
 line-counter:
 	@wc -l `find -name "*.cpp" -o -name "*.hpp" -o -name "*.list"` | sort -g
+
+.PHONY: valgrind
 valgrind:
-	@valgrind --leak-check=full --log-file=valgrind.log ./bam/build/debug/arrows | tee log
+	@valgrind --leak-check=full --log-file=valgrind.log ./arrows | tee log
+
+.PHONY: getlog
 getlog:
 	@if [ -f log ]; then cat log | less -R; else echo "no log file"; fi
+
+.PHONY: gdb
 gdb:
-	@if [ -f core ]; then gdb ./bam/build/debug/arrows core; else echo running with no core; echo; gdb ./bam/build/debug/arrows; fi
+	@if [ -f core ]; then gdb ./arrows core; else echo running with no core; echo; gdb ./arrows; fi
+
+.PHONY: perf
 perf:
-	@sudo perf stat ./bam/build/debug/arrows | tee log
-.PHONY: start start_release run run_release compile compile_release line-counter valgrind getlog gdb perf
+	@sudo perf stat ./arrows | tee log
