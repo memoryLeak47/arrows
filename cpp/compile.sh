@@ -38,7 +38,7 @@ do
 done
 
 echo "Precompiling ..."
-./precompiler.py build/prec
+./precompiler.py "build/$mode/prec"
 
 tmp_files=$(cd "build/$mode/prec"; find -name "*.cpp" -type f)
 for file in $tmp_files
