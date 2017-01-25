@@ -1,9 +1,13 @@
 #!/bin/bash
 
+FLAGS="--std=c++14 -Wall -lm -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window"
+
 if [ "$1" == debug ]; then
 	mode=debug
+	FLAGS+=" -D DEBUG"
 elif [ "$1" == release ]; then
 	mode=release
+	FLAGS+=" -O3"
 else
 	echo "debug or release?"
 	exit 1
@@ -43,12 +47,6 @@ do
 	files="$files ${file#"./build/$mode/prec/"}"
 done
 
-if [ "$mode" == debug ]; then
-	debuglabel="-D DEBUG"
-else
-	debuglabel=""
-fi
-
 # compilation
 for file in $files
 do
@@ -65,11 +63,11 @@ do
 		echo "Compiling '$file' ..."
 		dir=$(dirname "$outputfile")
 		[[ ! -d "$dir" ]] && mkdir -p "$dir"
-		g++ "build/$mode/prec/$file" -c -o "$outputfile" -I src $debuglabel
+		g++ "build/$mode/prec/$file" -c -o "$outputfile" -I src $FLAGS
 	fi
 done
 
 # linking
 echo "Linking ..."
 obj_files=$(find -wholename "./build/$mode/obj/*.o")
-g++ $obj_files -o arrows -lm -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window $debuglabel
+g++ $obj_files -o arrows $FLAGS
