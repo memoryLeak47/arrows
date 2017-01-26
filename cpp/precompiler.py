@@ -25,7 +25,7 @@ class Files:
 			with open(file, "r") as f:
 				lines = ""
 				try:
-					lines = "\n".join(f.readlines())
+					lines = "".join(f.readlines())
 				except:
 					print("Files::__init__(): Could not read file: '" + file + "'")
 			self.filedict[file.replace(dir, "").strip("/")] = lines
@@ -35,13 +35,13 @@ class Files:
 			lines = ""
 			with open(file, "r") as f:
 				try:
-					lines = "\n".join(f.readlines())
+					lines = "".join(f.readlines())
 				except:
 					print("Files::writeback(): Could not read file: '" + file + "'")
 			if lines != self.filedict[file.replace(dir, "").strip("/")]:
 				with open(file, "w") as wf:
 					try:
-						wf.writelines(self.filedict[file.replace(dir, "").strip("/")].split("\n"))
+						wf.write(self.filedict[file.replace(dir, "").strip("/")])
 					except:
 						print("Files::writeback(): Could not write to file: '" + file + "'")
 
@@ -135,6 +135,15 @@ def walk_to(pattern, filestr, index): # => index
 			if index >= len(filestr):
 				return E
 
+def add_to_class_def(classname, content, files):
+	file, index = find_class_def(classname, files)
+	if file == E or index == E:
+		return E
+	files.filedict[file] = files[file][:index+1] + content + files[file][index+1:]
+
+def add_to_file(file, content, files):
+	files.filedict[file] += content
+
 def find_class_def(classname, files): # (file, index)
 	for file in files.filenames():
 		filestr = files[file]
@@ -161,7 +170,8 @@ def find_class_def(classname, files): # (file, index)
 
 def main():
 	files = Files()
-	print(find_class_def("Main", files))
+	add_to_class_def("Main", "\nint counterhino;\n", files)
+	add_to_file("core/Main.hpp", "/* just a comment */", files)
 	files.writeback()
 
 main()
