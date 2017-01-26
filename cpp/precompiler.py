@@ -179,10 +179,10 @@ def find_class_def(classname, files): # (file, index)
 					continue
 				assert(index != E)
 				_, index = walk_blank(filestr, index)
-				index = walk_to("{", filestr, index)
-				if index == E:
-					return E, E
-				return file, index
+				index_tmp = walk_to("{", filestr, index)
+				if index_tmp == E:
+					continue
+				return file, index_tmp
 	return E, E
 
 def get_direct_subclasses(classname, files):
@@ -240,8 +240,17 @@ def get_subclasses(classname, files):
 
 def main():
 	files = Files()
-	add_to_class_def("Main", "\nint counterhino;\n", files)
-	add_to_file("core/Main.hpp", "/* just a comment */", files)
+
+	"""
+	add_to_class_def("FrameCloneable", "public: virtual std::string to_string() const = 0; private:", files)
+	for subcloneable in get_subclasses("FrameCloneable", files):
+		add_to_class_def(subcloneable, "public: virtual std::string to_string() const override; private:", files)
+		file, _ = find_class_def(subcloneable, files)
+		if file == E:
+			die("Could not load " + subcloneable)
+		add_to_file(file, "std::string " + subcloneable + "::to_string() const { return \"" + subcloneable + "\"; }", files)
+	"""
+
 	files.writeback()
 
 main()

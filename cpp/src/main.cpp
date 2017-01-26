@@ -5,8 +5,10 @@
 int main()
 {
 	// Main main;
+	TestKiste* tk = new TestKiste(GameVector(0,0));
+
 	Frame f;
-	f.idlers.push_back(new TestKiste(GameVector(0,0)));
+	f.idlers.push_back(tk);
 	f.clone();
 
 	return 0;
