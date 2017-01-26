@@ -32,7 +32,7 @@ for file in $(cd "build/$mode/prec_buf"; find -type f -name "*.cpp")
 do
 	file=${file#./}
 	if [ ! -f "build/$mode/prec/$file" ]; then
-		rm "build/$mode/prec_buf/$file"
+		rm -f "build/$mode/prec_buf/$file"
 		rm -f "build/$mode/obj/${file%.cpp}.o"
 	fi
 done
@@ -63,7 +63,7 @@ do
 		echo "Compiling '$file' ..."
 		dir=$(dirname "$outputfile")
 		[[ ! -d "$dir" ]] && mkdir -p "$dir"
-		rm "$outputfile"
+		rm -f "$outputfile"
 		g++ "build/$mode/prec/$file" -c -o "$outputfile" -I "build/$mode/prec/" $FLAGS
 	fi
 done
@@ -71,5 +71,5 @@ done
 # linking
 echo "Linking ..."
 obj_files=$(find -wholename "./build/$mode/obj/*.o")
-rm arrows
+rm -f arrows
 g++ $obj_files -o arrows $FLAGS
