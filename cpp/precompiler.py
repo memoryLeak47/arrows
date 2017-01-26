@@ -27,7 +27,7 @@ class Files:
 				try:
 					lines = "".join(f.readlines())
 				except:
-					print("Files::__init__(): Could not read file: '" + file + "'")
+					die("Files::__init__(): Could not read file: '" + file + "'")
 			self.filedict[file.replace(dir, "").strip("/")] = lines
 
 	def writeback(self):
@@ -37,13 +37,13 @@ class Files:
 				try:
 					lines = "".join(f.readlines())
 				except:
-					print("Files::writeback(): Could not read file: '" + file + "'")
+					die("Files::writeback(): Could not read file: '" + file + "'")
 			if lines != self.filedict[file.replace(dir, "").strip("/")]:
 				with open(file, "w") as wf:
 					try:
 						wf.write(self.filedict[file.replace(dir, "").strip("/")])
 					except:
-						print("Files::writeback(): Could not write to file: '" + file + "'")
+						die("Files::writeback(): Could not write to file: '" + file + "'")
 
 	def __getitem__(self, filename):
 		return self.filedict[filename]
@@ -174,15 +174,22 @@ def find_class_def(classname, files): # (file, index)
 				blank, index = walk_blank(filestr, index)
 				if blank == "":
 					continue
-				typename, index = walk_typename(filestr, index)
-				if typename != classname:
-					continue
-				assert(index != E)
-				_, index = walk_blank(filestr, index)
-				index_tmp = walk_to("{", filestr, index)
+				typename, index_tmp = walk_typename(filestr, index)
 				if index_tmp == E:
 					continue
-				return file, index_tmp
+				else:
+					index = index_tmp
+
+				if typename != classname:
+					continue
+
+				_, index = walk_blank(filestr, index)
+				if filestr[index] == ";":
+					continue
+				index = walk_to("{", filestr, index)
+				if index == E:
+					continue
+				return file, index
 	return E, E
 
 def get_direct_subclasses(classname, files):
@@ -241,15 +248,13 @@ def get_subclasses(classname, files):
 def main():
 	files = Files()
 
-	"""
 	add_to_class_def("FrameCloneable", "public: virtual std::string to_string() const = 0; private:", files)
 	for subcloneable in get_subclasses("FrameCloneable", files):
 		add_to_class_def(subcloneable, "public: virtual std::string to_string() const override; private:", files)
 		file, _ = find_class_def(subcloneable, files)
 		if file == E:
 			die("Could not load " + subcloneable)
-		add_to_file(file, "std::string " + subcloneable + "::to_string() const { return \"" + subcloneable + "\"; }", files)
-	"""
+		add_to_file(file.replace(".hpp", ".cpp"), "std::string " + subcloneable + "::to_string() const { return \"" + subcloneable + "\"; }", files)
 
 	files.writeback()
 

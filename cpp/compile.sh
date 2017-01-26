@@ -63,11 +63,13 @@ do
 		echo "Compiling '$file' ..."
 		dir=$(dirname "$outputfile")
 		[[ ! -d "$dir" ]] && mkdir -p "$dir"
-		g++ "build/$mode/prec/$file" -c -o "$outputfile" -I src $FLAGS
+		rm "$outputfile"
+		g++ "build/$mode/prec/$file" -c -o "$outputfile" -I "build/$mode/prec/" $FLAGS
 	fi
 done
 
 # linking
 echo "Linking ..."
 obj_files=$(find -wholename "./build/$mode/obj/*.o")
+rm arrows
 g++ $obj_files -o arrows $FLAGS
