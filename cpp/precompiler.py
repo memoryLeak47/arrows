@@ -53,10 +53,27 @@ class Files:
 
 def walk_blank(filestr, index): # => (blank, index)
 	# allowes blank == ""
+	start_index = index
 	blank=""
-	while filestr[index] in [" ", "\n", "\t"]:
-		blank += filestr[index]
-		index += 1
+	while True:
+		if filestr[index] in [" ", "\n", "\t"]:
+			blank += filestr[index]
+			index += 1
+		elif filestr[index:].startswith("/*"):
+			index = walk_to(filestr, "*/", index)
+			if index == E:
+				return filestr[start_index:], len(filestr)-1
+			index += 2
+		elif filestr[index:].startswith("//"):
+			index = walk_to(filestr, "\n", index)
+			if index == E:
+				return filestr[start_index:], len(filestr)-1
+			index += 1
+		else:
+			break
+
+		if index >= len(filestr):
+			return E, E
 	return blank, index
 
 def walk_simple_typename(filestr, index): # => (typename, index)
@@ -113,11 +130,11 @@ def walk_typename(filestr, index): # => (typename, index)
 	return typename + "<" + ",".join(typenames) + ">", index
 
 def walk_modifier(filestr, index):  # => (modifier, index)
-	if filestr[index].startswith("public"):
+	if filestr[index:].startswith("public"):
 		return "public", index + 6
-	elif filestr[index].startswith("protected"):
+	elif filestr[index:].startswith("protected"):
 		return "protected", index + 9
-	elif filestr[index].startswith("private"):
+	elif filestr[index:].startswith("private"):
 		return "private", index + 7
 	else:
 		return E, E
@@ -167,6 +184,59 @@ def find_class_def(classname, files): # (file, index)
 					return E, E
 				return file, index
 	return E, E
+
+def get_direct_subclasses(classname, files):
+	l = list()
+	for file in files.filenames():
+		filestr = files[file]
+		index = -1
+		while True:
+			index = filestr.find("class", index+1)
+			if index == -1:
+				break
+			else:
+				index += 5
+				blank, index = walk_blank(filestr, index)
+				if blank == "":
+					continue
+				sub_typename, index = walk_typename(filestr, index)
+				if sub_typename == E or index == E:
+					continue
+				_, index = walk_blank(filestr, index)
+				if filestr[index] != ":":
+					continue
+				index += 1
+				while True:
+					_, index = walk_blank(filestr, index)
+					_, index_tmp = walk_modifier(filestr, index)
+					if index_tmp != E:
+						index = index_tmp
+					_, index = walk_blank(filestr, index)
+
+					typename, index_tmp = walk_typename(filestr, index)
+
+					if typename == classname:
+						l.append(sub_typename)
+						break
+
+					if index_tmp != E:
+						index = index_tmp
+					_, index = walk_blank(filestr, index)
+
+					if filestr[index] != ",":
+						break
+					else:
+						index += 1
+				continue # with finding class definitions in this file
+	return l
+
+def get_subclasses(classname, files):
+	l = get_direct_subclasses(classname, files)
+	for subclass in l:
+		for subby in get_direct_subclasses(subclass, files):
+			if subby not in l:
+				l.append(subby)
+	return l
 
 def main():
 	files = Files()
