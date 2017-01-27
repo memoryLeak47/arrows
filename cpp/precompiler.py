@@ -29,9 +29,9 @@ class Structure:
 class Files:
 	def __init__(self):
 		self.filedict = dict()
-		self.structures = list()
+		self.structuredict = dict()
 		self.init_filedict()
-		self.init_structures()
+		self.init_structuredict()
 
 	def init_filedict(self):
 		for file in get_src_files():
@@ -43,7 +43,7 @@ class Files:
 					die("Files::__init__(): Could not read file: '" + file + "'")
 			self.filedict[file.replace(dir, "").strip("/")] = lines
 
-	def init_structures(self):
+	def init_structuredict(self):
 		for file in self.filenames():
 			filestr = self.filedict[file]
 			index = -1
@@ -79,7 +79,7 @@ class Files:
 						if filestr[index] == "{":
 							s = Structure(typename, file, index, supertypes, list())
 							self.add_members_to_structure(s)
-							self.structures.append(s)
+							self.structuredict[typename] = s
 							break
 						elif filestr[index] == ",":
 							continue
@@ -89,7 +89,7 @@ class Files:
 				elif filestr[index] == "{":
 					s = Structure(typename, file, index, list(), list())
 					self.add_members_to_structure(s)
-					self.structures.append(s)
+					self.structuredict[typename] = s
 					continue
 				else:
 					continue
