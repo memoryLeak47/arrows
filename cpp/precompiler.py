@@ -220,88 +220,19 @@ def walk_to(pattern, filestr, index): # => index
 				return E
 
 def add_to_class_def(classname, content, files):
-	file, index = find_class_def(classname, files)
-	if file == E or index == E:
+	s = files.structuredict[classname]
+	if s.file == E or s.index == E:
 		return E
-	files.filedict[file] = files[file][:index+1] + content + files[file][index+1:]
+	files.filedict[s.file] = files[s.file][:s.index+1] + content + files[s.file][s.index+1:]
 
 def add_to_file(file, content, files):
 	files.filedict[file] += content
 
-def find_class_def(classname, files): # (file, index)
-	for file in files.filenames():
-		filestr = files[file]
-		index = -1 # because of index+1
-		while True:
-			index = filestr.find("class", index+1)
-			if index == -1:
-				break
-			else:
-				index += 5
-				blank, index = walk_blank(filestr, index)
-				if blank == "":
-					continue
-				typename, index_tmp = walk_typename(filestr, index)
-				if index_tmp == E:
-					continue
-				else:
-					index = index_tmp
-
-				if typename != classname:
-					continue
-
-				_, index = walk_blank(filestr, index)
-				if filestr[index] == ";":
-					continue
-				index = walk_to("{", filestr, index)
-				if index == E:
-					continue
-				return file, index
-	return E, E
-
 def get_direct_subclasses(classname, files):
 	l = list()
-	for file in files.filenames():
-		filestr = files[file]
-		index = -1
-		while True:
-			index = filestr.find("class", index+1)
-			if index == -1:
-				break
-			else:
-				index += 5
-				blank, index = walk_blank(filestr, index)
-				if blank == "":
-					continue
-				sub_typename, index = walk_typename(filestr, index)
-				if sub_typename == E or index == E:
-					continue
-				_, index = walk_blank(filestr, index)
-				if filestr[index] != ":":
-					continue
-				index += 1
-				while True:
-					_, index = walk_blank(filestr, index)
-					_, index_tmp = walk_modifier(filestr, index)
-					if index_tmp != E:
-						index = index_tmp
-					_, index = walk_blank(filestr, index)
-
-					typename, index_tmp = walk_typename(filestr, index)
-
-					if typename == classname:
-						l.append(sub_typename)
-						break
-
-					if index_tmp != E:
-						index = index_tmp
-					_, index = walk_blank(filestr, index)
-
-					if filestr[index] != ",":
-						break
-					else:
-						index += 1
-				continue # with finding class definitions in this file
+	for s in files.structuredict.values():
+		if classname in s.superstructures:
+			l.append(s.name)
 	return l
 
 def get_subclasses(classname, files):
@@ -315,15 +246,13 @@ def get_subclasses(classname, files):
 def main():
 	files = Files()
 
-	"""
 	add_to_class_def("FrameCloneable", "public: virtual std::string to_string() const = 0; private:", files)
 	for subcloneable in get_subclasses("FrameCloneable", files):
 		add_to_class_def(subcloneable, "public: virtual std::string to_string() const override; private:", files)
-		file, _ = find_class_def(subcloneable, files)
-		if file == E:
+		s = files.structuredict[subcloneable]
+		if s.file == E:
 			die("Could not load " + subcloneable)
-		add_to_file(file.replace(".hpp", ".cpp"), "std::string " + subcloneable + "::to_string() const { return \"" + subcloneable + "\"; }", files)
-	"""
+		add_to_file(s.file.replace(".hpp", ".cpp"), "std::string " + subcloneable + "::to_string() const { return \"" + subcloneable + "\"; }", files)
 
 	files.writeback()
 
