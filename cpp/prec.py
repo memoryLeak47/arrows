@@ -44,6 +44,17 @@ class Structure:
 
 		self.end_index = index_end
 
+	def get_member_markers(self, files):
+		x = dict() # markername => list of (begin, end)
+		for markername in files.markerdict[self.file].keys():
+			l = files.markerdict[self.file][markername]
+			for (begin, end) in l:
+				if begin > self.index and end < self.end_index:
+					if markername not in x.keys():
+						x[markername] = list()
+					x[markername].append((begin, end))
+		return x
+
 class Files:
 	def __init__(self):
 		self.filedict = dict() # filename => content of file
@@ -95,8 +106,6 @@ class Files:
 				filestr = filestr[:index2] + "*/" + filestr[index2+2:]
 				filestr = filestr[:index3] + "/*" + filestr[index3+2:]
 				filestr = filestr[:index4] + "*/" + filestr[index4+2:]
-
-		print(self.markerdict)
 				
 
 	def init_structuredict(self):
@@ -203,6 +212,8 @@ def main():
 		if s.file == E:
 			die("Could not load " + subcloneable)
 		add_to_file(s.file.replace(".hpp", ".cpp"), "std::string " + subcloneable + "::to_string() const { return \"" + subcloneable + "\"; }", files)
+
+	print(files.structuredict["Main"].get_member_markers(files))
 
 	files.writeback()
 
