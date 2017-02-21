@@ -16,12 +16,12 @@ def get_src_files():
 	return glob.glob(pattern, recursive=True)
 
 class Structure:
-	def __init__(self, name, file, index, superstructures, members):
+	def __init__(self, name, file, index, superstructures, markers):
 		self.name = name
 		self.file = file
 		self.index = index
 		self.superstructures = superstructures
-		self.members = members
+		self.markers = markers # dict, key = Markername (Bsp: Clone), value = Die Liste von Index Anfang und Endpaaren des Markercontent
 
 class Files:
 	def __init__(self):
@@ -74,8 +74,8 @@ class Files:
 						supertypes.append(supertypename)
 						_, index = walk_blank(filestr, index)
 						if filestr[index] == "{":
-							s = Structure(typename, file, index, supertypes, list())
-							self.add_members_to_structure(s)
+							s = Structure(typename, file, index, supertypes, dict())
+							self.add_markers_to_structure(s)
 							self.structuredict[typename] = s
 							break
 						elif filestr[index] == ",":
@@ -85,14 +85,45 @@ class Files:
 					continue
 				elif filestr[index] == "{":
 					s = Structure(typename, file, index, list(), list())
-					self.add_members_to_structure(s)
+					self.add_markers_to_structure(s)
 					self.structuredict[typename] = s
 					continue
 				else:
 					continue
 
-	def add_members_to_structure(self, structure):
-		pass
+	def add_markers_to_structure(self, structure):
+		filestr = self.filedict[structure.file]
+
+		index_end = structure.index
+		parens = 1
+
+		# determine index_end
+		while True:
+			left_find = filestr.find("{", index_end+1)
+			right_find = filestr.find("}", index_end+1)
+			if left_find == -1 and right_find == -1:
+				die("shit")
+			elif right_find != -1 and ((right_find < left_find) or left_find == -1):
+				index_end = right_find
+				parens -= 1
+			else:
+				index_end = left_find
+				parens += 1
+
+			if parens == 0:
+				break
+
+
+		index = structure.index	
+		tmp = ""
+		while index < index_end:
+			index = filestr.find("$$", index+1)
+			if index == -1:
+				break
+			marker_end = filestr.find("$$", index+2)
+			marker = filestr[index+2:marker_end]
+			print(marker)
+			#TODO
 
 	def writeback(self):
 		for file in get_src_files():
