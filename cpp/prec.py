@@ -79,21 +79,18 @@ class Files:
 			self.markerdict[filename] = dict()
 
 			filestr = self.filedict[filename]
-			index = -1
 			while True:
-				index = filestr.find("$$", index+1)
+				index1 = filestr.find("$$")
 
 				# $$a$$ abc $!a$$
 				# 1   2     3  4
 
-				# index = index1
-
-				if index == -1:
+				if index1 == -1:
 					break
-				index2 = filestr.find("$$", index+2)
+				index2 = filestr.find("$$", index1+2)
 				if index2 == -1:
 					die("index2 invalid")
-				markername = filestr[index+2:index2]
+				markername = filestr[index1+2:index2]
 				index3 = filestr.find("$!" + markername + "$$", index2)
 				index4 = index3 + len(markername) + 2
 
@@ -102,10 +99,11 @@ class Files:
 
 				self.markerdict[filename][markername].append((index2+2, index3))
 
-				filestr = filestr[:index] + "/*" + filestr[index+2:]
+				filestr = filestr[:index1] + "/*" + filestr[index1+2:]
 				filestr = filestr[:index2] + "*/" + filestr[index2+2:]
 				filestr = filestr[:index3] + "/*" + filestr[index3+2:]
 				filestr = filestr[:index4] + "*/" + filestr[index4+2:]
+				self.filedict[filename] = filestr
 				
 
 	def init_structuredict(self):
