@@ -40,32 +40,69 @@ done
 echo "Precompiling ..."
 ./prec.py "build/$mode/prec"
 
-tmp_files=$(cd "build/$mode/prec"; find -name "*.cpp" -type f)
-for file in $tmp_files
+echo "Determining Changes ..."
+# find changed_cpp_files
+changed_cpp_files=""
+for x in $(cd "build/$mode/prec"; find -type f -name "*.cpp")
 do
-	file=${file#./}
-	files="$files ${file#"./build/$mode/prec/"}"
+	x=${x#./}
+	if [[ ! -f "build/$mode/prec_buf/$x" ]] || [[ ! $(md5sum "build/$mode/prec/$x" | cut -d " " -f 1) == $(md5sum "build/$mode/prec_buf/$x" | cut -d " " -f 1) ]]; then
+		changed_cpp_files+=" $x"
+	fi
+done
+
+# find changed_header_files
+changed_hpp_files=""
+for x in $(cd "build/$mode/prec"; find -type f -not -name "*.cpp")
+do
+	x=${x#./}
+	if [[ ! -f "build/$mode/prec_buf/$x" ]] || [[ ! $(md5sum "build/$mode/prec/$x" | cut -d " " -f 1) == $(md5sum "build/$mode/prec_buf/$x" | cut -d " " -f 1) ]]; then
+		changed_hpp_files+=" $x"
+	fi
+done
+
+# add cpp files, which depend on changed header-files to changed_cpp
+checked_headers=""
+incgrep="$(sed 's/	//g' <<< "$(sed 's/ //g' <<< "$(cd build/$mode/prec; grep "#include" -r --with-filename)")")"
+
+unchecked_headers="$changed_hpp_files"
+while true
+do
+	new_unchecked_headers=""
+	for hpp in $unchecked_headers
+	do
+		hpp=${hpp##*/}
+
+		# XXX if "Controller" is ment, also "PlayerController" will trigger
+
+		for target in $(sed 's/ //g' <<< "$(echo "$incgrep" | grep "$hpp")")
+		do
+			target=${target%%:*}
+			if [[ $target =~ .*".cpp" ]]; then
+				if [[ ! $changed_cpp_files =~ $target ]]; then
+					changed_cpp_files+=" $target"
+				fi
+			elif [[ ! $checked_headers =~ $target ]] && [[ ! $new_unchecked_headers =~ $target ]] && [[ ! $unchecked_headers =~ $target ]]; then
+				new_unchecked_headers+=" $target"
+			fi
+		done
+	done
+	if [ -z "$new_unchecked_headers" ]; then
+		break
+	fi
+	checked_headers+=" $unchecked_headers"
+	unchecked_headers="$new_unchecked_headers"
 done
 
 # compilation
-for file in $files
+for file in $changed_cpp_files
 do
 	outputfile="build/$mode/obj/${file%.cpp}.o"
-	if [ ! -f "$outputfile" ]; then # always compile
-		buf_sum="-1"
-	elif [ -f "build/$mode/prec_buf/$file" ]; then
-		buf_sum="$(md5sum "build/$mode/prec_buf/$file" | cut -d " " -f 1)"
-	else
-		buf_sum="-1"
-	fi
-	new_sum="$(md5sum "build/$mode/prec/$file" | cut -d " " -f 1)"
-	if [ ! "$buf_sum" == "$new_sum" ]; then
-		echo "Compiling '$file' ..."
-		dir=$(dirname "$outputfile")
-		[[ ! -d "$dir" ]] && mkdir -p "$dir"
-		rm -f "$outputfile"
-		g++ "build/$mode/prec/$file" -c -o "$outputfile" -I "build/$mode/prec/" $FLAGS
-	fi
+	echo "Compiling '$file' ..."
+	dir=$(dirname "$outputfile")
+	[[ ! -d "$dir" ]] && mkdir -p "$dir"
+	rm -f "$outputfile"
+	g++ "build/$mode/prec/$file" -c -o "$outputfile" -I "build/$mode/prec/" $FLAGS
 done
 
 # linking
