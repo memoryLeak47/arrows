@@ -65,30 +65,24 @@ do
 	fi
 done
 
-# find changed_cpp_files
+# find changed_cpp_files & changed_hpp_files
 changed_cpp_files=""
-for x in $(cd "build/$mode/prec"; find -type f -name "*.cpp")
+for file in $(cd "build/$mode/prec"; find -type f)
 do
-	x=${x#./}
-	check_file="build/$mode/check/${namehashes["$x"]}"
-	if [ ! -f "$check_file" ] || [ ! "$(cat "$check_file")" == "${filehashes["$x"]}" ]; then
-		changed_cpp_files+=" $x"
-	fi
-done
-
-# find changed_header_files
-changed_hpp_files=""
-for x in $(cd "build/$mode/prec"; find -type f -not -name "*.cpp")
-do
-	x=${x#./}
-	check_file="build/$mode/check/${namehashes["$x"]}"
-	if [ ! -f "$check_file" ] || [ ! "$(cat "$check_file")" == "${filehashes["$x"]}" ]; then
-		changed_hpp_files+=" $x"
+	file=${file#./}
+	check_file="build/$mode/check/${namehashes["$file"]}"
+	if [ ! -f "$check_file" ] || [ ! "$(cat "$check_file")" == "${filehashes["$file"]}" ]; then
+		if [[ "$file" =~ *.cpp ]]; then
+			changed_cpp_files+=" $file"
+		else
+			changed_hpp_files+=" $file"
+		fi
 	fi
 done
 
 # update check
 rm -rf "build/$mode/check"/*
+
 for file in $(cd "build/$mode/prec"; find -type f)
 do
 	file="${file#./}"
