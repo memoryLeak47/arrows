@@ -16,37 +16,52 @@ fi
 [[ ! -d build ]] && mkdir build
 [[ ! -d build/debug ]] && mkdir build/debug
 [[ ! -d build/debug/obj ]] && mkdir build/debug/obj
-[[ ! -d build/debug/prec ]] && mkdir build/debug/prec
-[[ ! -d build/debug/prec_buf ]] && mkdir build/debug/prec_buf
+[[ ! -d build/debug/check ]] && mkdir build/debug/check
 [[ ! -d build/release ]] && mkdir build/release
 [[ ! -d build/release/obj ]] && mkdir build/release/obj
-[[ ! -d build/release/prec ]] && mkdir build/release/prec
-[[ ! -d build/release/prec_buf ]] && mkdir build/release/prec_buf
+[[ ! -d build/release/check ]] && mkdir build/release/check
 
-rm -rf "build/$mode/prec_buf"/*
-[[ ! -z "$(ls "build/$mode/prec")" ]] && mv "build/$mode/prec"/* "build/$mode/prec_buf"
-cp -r src/* "build/$mode/prec"
-
-# fix prec & prec_buf mismatches:
-for file in $(cd "build/$mode/prec_buf"; find -type f -name "*.cpp")
-do
-	file=${file#./}
-	if [ ! -f "build/$mode/prec/$file" ]; then
-		rm -f "build/$mode/prec_buf/$file"
-		rm -f "build/$mode/obj/${file%.cpp}.o"
-	fi
-done
+cp -r src/ "build/$mode/prec"
 
 echo "Precompiling ..."
 ./prec.py "build/$mode/prec"
 
 echo "Determining Changes ..."
+# rm obsolete checks
+checks=$(ls "build/$mode/check")
+for file in $(cd "build/$mode/prec"; find -type f)
+do
+	file=${file#./}
+	sum="$(md5sum <<< "$file" | cut -d " " -f 1)"
+	if [[ "$checks" =~ "$sum" ]]; then
+		checks="$(sed "s/$sum//g" <<< "$checks")"
+	fi
+done
+
+for check in $checks
+do
+	if [ -z "$check" ]; then
+		die "-z check :/"
+	fi
+	rm "build/$mode/check/$check"
+done
+
+# rm obsolete objs
+for obj in $(cd "build/$mode/obj"; find -type f)
+do
+	obj="${obj#./}"
+	if [ -n "$obj" ] && [ ! -f "build/$mode/prec/${obj%.o}.cpp" ]; then
+		rm "build/$mode/obj/$obj"
+	fi
+done
+
 # find changed_cpp_files
 changed_cpp_files=""
 for x in $(cd "build/$mode/prec"; find -type f -name "*.cpp")
 do
 	x=${x#./}
-	if [[ ! -f "build/$mode/prec_buf/$x" ]] || [[ ! $(md5sum "build/$mode/prec/$x" | cut -d " " -f 1) == $(md5sum "build/$mode/prec_buf/$x" | cut -d " " -f 1) ]]; then
+	check_file="build/$mode/check/$(md5sum <<< "$x" | cut -d " " -f 1)"
+	if [ ! -f "$check_file" ] || [ ! "$(cat "$check_file")" == "$(md5sum "build/$mode/prec/$x" | cut -d " " -f 1)" ]; then
 		changed_cpp_files+=" $x"
 	fi
 done
@@ -56,14 +71,23 @@ changed_hpp_files=""
 for x in $(cd "build/$mode/prec"; find -type f -not -name "*.cpp")
 do
 	x=${x#./}
-	if [[ ! -f "build/$mode/prec_buf/$x" ]] || [[ ! $(md5sum "build/$mode/prec/$x" | cut -d " " -f 1) == $(md5sum "build/$mode/prec_buf/$x" | cut -d " " -f 1) ]]; then
+	check_file="build/$mode/check/$(md5sum <<< "$x" | cut -d " " -f 1)"
+	if [ ! -f "$check_file" ] || [ ! "$(cat "$check_file")" == "$(md5sum "build/$mode/prec/$x" | cut -d " " -f 1)" ]; then
 		changed_hpp_files+=" $x"
 	fi
 done
 
+# update check
+rm -rf "build/$mode/check"/*
+for file in $(cd "build/$mode/prec"; find -type f)
+do
+	file="${file#./}"
+        echo "$(md5sum "build/$mode/prec/$file" | cut -d " " -f 1)" > "build/$mode/check/$(md5sum <<< "$file" | cut -d " " -f 1)"
+done
+
 # add cpp files, which depend on changed header-files to changed_cpp
 checked_headers=""
-incgrep="$(sed 's/	//g' <<< "$(sed 's/ //g' <<< "$(cd build/$mode/prec; grep "#include" -r --with-filename)")")"
+incgrep="$(sed 's/	//g' <<< "$(sed 's/ //g' <<< "$(cd "build/$mode/prec"; grep "#include" -r --with-filename)")")"
 
 unchecked_headers="$changed_hpp_files"
 while true
@@ -104,6 +128,8 @@ do
 	rm -f "$outputfile"
 	g++ "build/$mode/prec/$file" -c -o "$outputfile" -I "build/$mode/prec/" $FLAGS
 done
+
+rm -rf "build/$mode/prec"
 
 # linking
 echo "Linking ..."
