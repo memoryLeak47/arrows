@@ -27,14 +27,24 @@ echo "Precompiling ..."
 ./prec.py "build/$mode/prec"
 
 echo "Determining Changes ..."
+# create namehashes, filehashes
+declare -A namehashes
+declare -A filehashes
+
+for file in $(cd "build/$mode/prec"; find -type f)
+do
+	file="${file#./}"
+	namehashes[$file]="$(md5sum <<< "$file" | cut -d " " -f 1)"
+	filehashes[$file]="$(md5sum "build/$mode/prec/$file" | cut -d " " -f 1)"
+done
+
 # rm obsolete checks
 checks=$(ls "build/$mode/check")
 for file in $(cd "build/$mode/prec"; find -type f)
 do
 	file=${file#./}
-	sum="$(md5sum <<< "$file" | cut -d " " -f 1)"
-	if [[ "$checks" =~ "$sum" ]]; then
-		checks="$(sed "s/$sum//g" <<< "$checks")"
+	if [[ "$checks" =~ "${namehashes["$file"]}" ]]; then
+		checks="$(sed "s/${namehashes["$file"]}//g" <<< "$checks")"
 	fi
 done
 
@@ -60,8 +70,8 @@ changed_cpp_files=""
 for x in $(cd "build/$mode/prec"; find -type f -name "*.cpp")
 do
 	x=${x#./}
-	check_file="build/$mode/check/$(md5sum <<< "$x" | cut -d " " -f 1)"
-	if [ ! -f "$check_file" ] || [ ! "$(cat "$check_file")" == "$(md5sum "build/$mode/prec/$x" | cut -d " " -f 1)" ]; then
+	check_file="build/$mode/check/${namehashes["$x"]}"
+	if [ ! -f "$check_file" ] || [ ! "$(cat "$check_file")" == "${filehashes["$x"]}" ]; then
 		changed_cpp_files+=" $x"
 	fi
 done
@@ -71,8 +81,8 @@ changed_hpp_files=""
 for x in $(cd "build/$mode/prec"; find -type f -not -name "*.cpp")
 do
 	x=${x#./}
-	check_file="build/$mode/check/$(md5sum <<< "$x" | cut -d " " -f 1)"
-	if [ ! -f "$check_file" ] || [ ! "$(cat "$check_file")" == "$(md5sum "build/$mode/prec/$x" | cut -d " " -f 1)" ]; then
+	check_file="build/$mode/check/${namehashes["$x"]}"
+	if [ ! -f "$check_file" ] || [ ! "$(cat "$check_file")" == "${filehashes["$x"]}" ]; then
 		changed_hpp_files+=" $x"
 	fi
 done
@@ -82,7 +92,7 @@ rm -rf "build/$mode/check"/*
 for file in $(cd "build/$mode/prec"; find -type f)
 do
 	file="${file#./}"
-        echo "$(md5sum "build/$mode/prec/$file" | cut -d " " -f 1)" > "build/$mode/check/$(md5sum <<< "$file" | cut -d " " -f 1)"
+        echo "${filehashes["$file"]}" > "build/$mode/check/${namehashes["$file"]}"
 done
 
 # add cpp files, which depend on changed header-files to changed_cpp
