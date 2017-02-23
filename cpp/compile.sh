@@ -38,33 +38,6 @@ do
 	filehashes[$file]="$(md5sum "build/$mode/prec/$file" | cut -d " " -f 1)"
 done
 
-# rm obsolete checks
-checks=$(ls "build/$mode/check")
-for file in $(cd "build/$mode/prec"; find -type f)
-do
-	file=${file#./}
-	if [[ "$checks" =~ "${namehashes["$file"]}" ]]; then
-		checks="$(sed "s/${namehashes["$file"]}//g" <<< "$checks")"
-	fi
-done
-
-for check in $checks
-do
-	if [ -z "$check" ]; then
-		die "-z check :/"
-	fi
-	rm "build/$mode/check/$check"
-done
-
-# rm obsolete objs
-for obj in $(cd "build/$mode/obj"; find -type f)
-do
-	obj="${obj#./}"
-	if [ -n "$obj" ] && [ ! -f "build/$mode/prec/${obj%.o}.cpp" ]; then
-		rm "build/$mode/obj/$obj"
-	fi
-done
-
 # find changed_cpp_files & changed_hpp_files
 changed_cpp_files=""
 for file in $(cd "build/$mode/prec"; find -type f)
