@@ -95,6 +95,8 @@ do
 	unchecked_headers="$new_unchecked_headers"
 done
 
+has_failed="false"
+
 # compilation
 for file in $changed_cpp_files
 do
@@ -103,10 +105,17 @@ do
 	dir=$(dirname "$outputfile")
 	[[ ! -d "$dir" ]] && mkdir -p "$dir"
 	rm -f "$outputfile"
-	g++ "build/$mode/prec/$file" -c -o "$outputfile" -I "build/$mode/prec/" $FLAGS
+	if ! g++ "build/$mode/prec/$file" -c -o "$outputfile" -I "build/$mode/prec/" $FLAGS; then
+		has_failed="true"
+	fi
 done
 
 rm -rf "build/$mode/prec"
+
+if [ "$has_failed" == "true" ]; then
+	echo -e "\nCompilation Failure!"
+	exit
+fi
 
 # linking
 echo "Linking ..."
