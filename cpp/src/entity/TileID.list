@@ -1,5 +1,5 @@
 // Does not contain the SpawnTeamTile!
-X(NormalTile, NORMAL_TILE_TID, 000000)
-X(RubberTile, RUBBER_TILE_TID, 005500)
-X(VoidTile, VOID_TILE_TID, FFFFFF)
-Y(LavaTile, LAVA_TILE_TID, FFBB00)
+X(NormalTile, NORMAL_TILE, 000000)
+X(RubberTile, RUBBER_TILE, 005500)
+X(VoidTile, VOID_TILE, FFFFFF)
+Y(LavaTile, LAVA_TILE, FFBB00)

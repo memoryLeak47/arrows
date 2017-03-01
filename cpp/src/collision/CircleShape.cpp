@@ -7,7 +7,7 @@
 
 CompressID CircleShape::getCompressID() const
 {
-	return CIRCLE_SHAPE_CID;
+	return CompressIDs::CIRCLE_SHAPE;
 }
 
 GameRect CircleShape::getWrapper(float timeLeft) const

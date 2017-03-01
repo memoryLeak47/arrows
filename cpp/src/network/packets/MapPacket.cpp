@@ -19,7 +19,7 @@ std::vector<std::vector<TileID>> MapPacket::getTileIDs() const
 
 CompressID MapPacket::getCompressID() const
 {
-	return MAP_PACKET_CID;
+	return CompressIDs::MAP_PACKET;
 }
 
 std::string MapPacket::getCompressString() const

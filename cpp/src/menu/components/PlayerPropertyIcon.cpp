@@ -28,7 +28,7 @@ TextureID PlayerPropertyIcon::getTextureID() const
 {
 	if (getPlayerProperty() == nullptr || getPlayerProperty()->getIconTextureID() == -1)
 	{
-		return VOID_ICON_GID;
+		return GraphicsIDs::VOID_ICON;
 	}
 	return getPlayerProperty()->getIconTextureID();
 }

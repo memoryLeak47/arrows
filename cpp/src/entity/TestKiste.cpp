@@ -14,7 +14,7 @@ TestKiste::TestKiste(CompressBuffer* buffer)
 
 CompressID TestKiste::getCompressID() const
 {
-	return TEST_KISTE_CID;
+	return CompressIDs::TEST_KISTE;
 }
 
 std::string TestKiste::getCompressString() const
@@ -29,7 +29,7 @@ Sponge TestKiste::getSponge() const
 
 sf::Texture* TestKiste::getTexture() const
 {
-	return GraphicsManager::getTexture(TESTKISTE_GID);
+	return GraphicsManager::getTexture(GraphicsIDs::TESTKISTE);
 }
 
 std::string TestKiste::toString() const

@@ -13,7 +13,7 @@ Sponge RubberTile::getSponge() const
 
 sf::Texture* RubberTile::getTexture() const
 {
-	return GraphicsManager::getTexture(RUBBERTILE_GID);
+	return GraphicsManager::getTexture(GraphicsIDs::RUBBERTILE);
 }
 
 std::string RubberTile::toString() const

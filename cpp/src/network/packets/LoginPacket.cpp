@@ -16,7 +16,7 @@ std::string LoginPacket::getCompressString() const
 
 CompressID LoginPacket::getCompressID() const
 {
-	return LOGIN_PACKET_CID;
+	return CompressIDs::LOGIN_PACKET;
 }
 
 std::string LoginPacket::getName() const

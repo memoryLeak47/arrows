@@ -20,7 +20,7 @@ GameVector::GameVector(CompressBuffer* buffer)
 
 CompressID GameVector::getCompressID() const
 {
-	return GAME_VECTOR_CID;
+	return CompressIDs::GAME_VECTOR;
 }
 
 std::string GameVector::getCompressString() const

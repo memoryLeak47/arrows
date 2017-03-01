@@ -21,7 +21,7 @@ void MiniMap::render() const
 {
 	if (tileMapTexture == nullptr)
 	{
-		Screen::drawGraphicsID(getAbsoluteRect(), VOID_ICON_GID);
+		Screen::drawGraphicsID(getAbsoluteRect(), GraphicsIDs::VOID_ICON);
 	}
 	else
 	{

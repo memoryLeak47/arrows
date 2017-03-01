@@ -50,7 +50,7 @@ std::string AvatarPacket::getCompressString() const
 
 CompressID AvatarPacket::getCompressID() const
 {
-        return AVATAR_PACKET_CID;
+        return CompressIDs::AVATAR_PACKET;
 }
 
 char AvatarPacket::getAvatarID() const

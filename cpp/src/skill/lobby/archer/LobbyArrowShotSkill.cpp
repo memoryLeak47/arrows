@@ -9,10 +9,10 @@ std::string LobbyArrowShotSkill::getDescription() const
 
 char LobbyArrowShotSkill::getAvatarID() const
 {
-	return ARCHER_AID;
+	return AvatarIDs::ARCHER;
 }
 
 TextureID LobbyArrowShotSkill::getIconTextureID() const
 {
-	return ARROWSHOTSKILL_ICON_GID;
+	return GraphicsIDs::ARROWSHOTSKILL_ICON;
 }

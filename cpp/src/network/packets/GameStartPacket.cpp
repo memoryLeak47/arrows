@@ -17,7 +17,7 @@ std::string GameStartPacket::getCompressString() const
 
 CompressID GameStartPacket::getCompressID() const
 {
-	return GAME_START_PACKET_CID;
+	return CompressIDs::GAME_START_PACKET;
 }
 
 long GameStartPacket::getUnixBeginTime() const

@@ -15,7 +15,7 @@ SimpleArrow::SimpleArrow(CompressBuffer* buffer)
 
 CompressID SimpleArrow::getCompressID() const
 {
-	return SIMPLE_ARROW_CID;
+	return CompressIDs::SIMPLE_ARROW;
 }
 
 float SimpleArrow::getCollisionPriority(Entity* e) const
@@ -39,7 +39,7 @@ float SimpleArrow::getMass() const
 
 sf::Texture* SimpleArrow::getTexture() const
 {
-	return GraphicsManager::getTexture(SIMPLE_ARROW_GID);
+	return GraphicsManager::getTexture(GraphicsIDs::SIMPLE_ARROW);
 }
 
 CollisionType SimpleArrow::getCollisionType() const

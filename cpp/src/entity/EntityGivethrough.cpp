@@ -14,9 +14,9 @@ EntityGivethrough::EntityGivethrough(CompressBuffer* buffer)
 		Debug::error("EntityGivethrough::EntityGivethrough(buffer); could not cut Shape");
 	}
 
-	GameVector* position_ = (GameVector*) buffer->cutByCompressID(GAME_VECTOR_CID);
-	GameVector* size_ = (GameVector*) buffer->cutByCompressID(GAME_VECTOR_CID);
-	GameVector* speed_ = (GameVector*) buffer->cutByCompressID(GAME_VECTOR_CID);
+	GameVector* position_ = (GameVector*) buffer->cutByCompressID(CompressIDs::GAME_VECTOR);
+	GameVector* size_ = (GameVector*) buffer->cutByCompressID(CompressIDs::GAME_VECTOR);
+	GameVector* speed_ = (GameVector*) buffer->cutByCompressID(CompressIDs::GAME_VECTOR);
 
 	position = *position_;
 	size = *size_;
@@ -32,7 +32,7 @@ EntityGivethrough::EntityGivethrough(CompressBuffer* buffer)
 
 CompressID EntityGivethrough::getCompressID() const
 {
-	return ENTITY_GIVETHROUGH_CID;
+	return CompressIDs::ENTITY_GIVETHROUGH;
 }
 
 std::string EntityGivethrough::getCompressString() const

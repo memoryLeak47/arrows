@@ -20,7 +20,7 @@ std::string ChangeActionsPacket::getCompressString() const
 
 CompressID ChangeActionsPacket::getCompressID() const
 {
-	return CHANGE_ACTIONS_PACKET_CID;
+	return CompressIDs::CHANGE_ACTIONS_PACKET;
 }
 
 Actions ChangeActionsPacket::getActions() const

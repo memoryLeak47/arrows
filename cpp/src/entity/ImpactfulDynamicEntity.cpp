@@ -9,7 +9,7 @@ ImpactfulDynamicEntity::ImpactfulDynamicEntity(const EntityGivethrough& gt)
 {}
 
 ImpactfulDynamicEntity::ImpactfulDynamicEntity(CompressBuffer* buffer)
-	: DynamicEntity(*(EntityGivethrough*) buffer->cutByCompressID(ENTITY_GIVETHROUGH_CID)) // XXX memoryleak
+	: DynamicEntity(*(EntityGivethrough*) buffer->cutByCompressID(CompressIDs::ENTITY_GIVETHROUGH)) // XXX memoryleak
 {
 	shape->entity = this;
 }

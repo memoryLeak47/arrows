@@ -34,5 +34,5 @@ std::string PacketWithID::getCompressString() const
 
 CompressID PacketWithID::getCompressID() const
 {
-	return PACKET_WITH_ID_CID;
+	return CompressIDs::PACKET_WITH_ID;
 }

@@ -8,7 +8,7 @@ SpawnTeamTile::SpawnTeamTile(Team* team, const GameVector& pos)
 
 sf::Texture* SpawnTeamTile::getTexture() const
 {
-	return GraphicsManager::getTexture(SPAWNTEAMTILE_GID);
+	return GraphicsManager::getTexture(GraphicsIDs::SPAWNTEAMTILE);
 }
 
 bool SpawnTeamTile::isSpawnTeamTile() const

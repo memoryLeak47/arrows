@@ -8,7 +8,7 @@ VoidTile::VoidTile(const GameVector& pos)
 
 sf::Texture* VoidTile::getTexture() const
 {
-	return GraphicsManager::getTexture(VOIDTILE_GID);
+	return GraphicsManager::getTexture(GraphicsIDs::VOIDTILE);
 }
 
 std::string VoidTile::toString() const

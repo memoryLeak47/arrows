@@ -110,8 +110,8 @@ Compressable* CompressBuffer::cutByCompressID(CompressID cid)
 {
 	switch (cid)
 	{
-		#define X(name, cid) case cid: return new name(this);
-		#define Y(name, cid) case cid: return new name(this);
+		#define X(name, cid) case CompressIDs::cid: return new name(this);
+		#define Y(name, cid) case CompressIDs::cid: return new name(this);
 		#include "CompressID.list"
 		#undef X
 		#undef Y

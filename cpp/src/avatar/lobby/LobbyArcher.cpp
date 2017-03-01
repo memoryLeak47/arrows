@@ -2,7 +2,7 @@
 
 TextureID LobbyArcher::getIconTextureID() const
 {
-	return ARCHER_ICON_GID;
+	return GraphicsIDs::ARCHER_ICON;
 }
 
 std::string LobbyArcher::getDescription() const

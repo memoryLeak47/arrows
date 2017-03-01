@@ -2,7 +2,7 @@
 
 TextureID LobbyRogue::getIconTextureID() const
 {
-	return ROGUE_ICON_GID;
+	return GraphicsIDs::ROGUE_ICON;
 }
 
 std::string LobbyRogue::getDescription() const

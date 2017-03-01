@@ -6,5 +6,5 @@ PlayerController::PlayerController(CompressBuffer *b)
 
 CompressID PlayerController::getCompressID() const
 {
-	return PLAYER_CONTROLLER_CID;
+	return CompressIDs::PLAYER_CONTROLLER;
 }

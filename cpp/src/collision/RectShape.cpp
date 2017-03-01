@@ -6,7 +6,7 @@
 
 CompressID RectShape::getCompressID() const
 {
-	return RECT_SHAPE_CID;
+	return CompressIDs::RECT_SHAPE;
 }
 
 GameRect RectShape::getWrapper(float timeLeft) const

@@ -97,14 +97,14 @@ Tile* Tile::createByTileID(const TileID tid, const GameVector& position)
 {
 	switch (tid)
 	{
-		#define X(name, tid, color) case tid: return new name(position);
-		#define Y(name, tid, color) case tid: return new name(position);
+		#define X(name, tid, color) case TileIDs::tid: return new name(position);
+		#define Y(name, tid, color) case TileIDs::tid: return new name(position);
 		#include "TileID.list"
 		#undef X
 		#undef Y
 
-		#define X(teamID, name, color) case SPAWN_TEAM_TILE_##teamID: return new SpawnTeamTile(Team::get(teamID), position);
-		#define Y(teamID, name, color) case SPAWN_TEAM_TILE_##teamID: return new SpawnTeamTile(Team::get(teamID), position);
+		#define X(teamID, name, color) case TileIDs::SPAWN_TEAM_TILE_##teamID: return new SpawnTeamTile(Team::get(TeamIDs::teamID), position);
+		#define Y(teamID, name, color) case TileIDs::SPAWN_TEAM_TILE_##teamID: return new SpawnTeamTile(Team::get(TeamIDs::teamID), position);
 		#include <team/TeamID.list>
 		#undef X
 		#undef Y
@@ -116,14 +116,14 @@ Tile* Tile::createByTileID(const TileID tid, const GameVector& position)
 
 TileID Tile::colorStringToTileID(std::string color_arg)
 {
-	#define X(name, tid, color) if ((#color) == color_arg) return tid;
-	#define Y(name, tid, color) if ((#color) == color_arg) return tid;
+	#define X(name, tid, color) if ((#color) == color_arg) return TileIDs::tid;
+	#define Y(name, tid, color) if ((#color) == color_arg) return TileIDs::tid;
 	#include "TileID.list"
 	#undef X
 	#undef Y
 
-	#define X(teamID, name, color) if ((#color) == color_arg) return SPAWN_TEAM_TILE_##teamID;
-	#define Y(teamID, name, color) if ((#color) == color_arg) return SPAWN_TEAM_TILE_##teamID;
+	#define X(teamID, name, color) if ((#color) == color_arg) return TileIDs::SPAWN_TEAM_TILE_##teamID;
+	#define Y(teamID, name, color) if ((#color) == color_arg) return TileIDs::SPAWN_TEAM_TILE_##teamID;
 	#include <team/TeamID.list>
 	#undef X
 	#undef Y
@@ -135,14 +135,14 @@ std::string Tile::colorStringByTileID(const TileID tid)
 {
 	switch (tid)
 	{
-		#define X(name, tid, color) case tid: return (#color);
-		#define Y(name, tid, color) case tid: return (#color);
+		#define X(name, tid, color) case TileIDs::tid: return (#color);
+		#define Y(name, tid, color) case TileIDs::tid: return (#color);
 		#include "TileID.list"
 		#undef X
 		#undef Y
 
-		#define X(teamID, name, color) case SPAWN_TEAM_TILE_##teamID: return (#color);
-		#define Y(teamID, name, color) case SPAWN_TEAM_TILE_##teamID: return (#color);
+		#define X(teamID, name, color) case TileIDs::SPAWN_TEAM_TILE_##teamID: return (#color);
+		#define Y(teamID, name, color) case TileIDs::SPAWN_TEAM_TILE_##teamID: return (#color);
 		#include <team/TeamID.list>
 		#undef X
 		#undef Y

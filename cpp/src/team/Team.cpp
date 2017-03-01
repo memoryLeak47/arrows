@@ -12,8 +12,8 @@ Team::Team(TeamID id, const std::string& name, const std::string& color)
 void Team::init()
 {
 	if (teams.size() != 0) Debug::warn("Team::init() was already called");
-	#define X(teamID, name, color) teams.push_back(new Team(teamID, name, (#color)));
-	#define Y(teamID, name, color) teams.push_back(new Team(teamID, name, (#color)));
+	#define X(teamID, name, color) teams.push_back(new Team(TeamIDs::teamID, name, (#color)));
+	#define Y(teamID, name, color) teams.push_back(new Team(TeamIDs::teamID, name, (#color)));
 	#include "TeamID.list"
 	#undef X
 	#undef Y

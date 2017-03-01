@@ -21,5 +21,5 @@ std::string LockPacket::getCompressString() const
 
 CompressID LockPacket::getCompressID() const
 {
-	return LOCK_PACKET_CID;
+	return CompressIDs::LOCK_PACKET;
 }

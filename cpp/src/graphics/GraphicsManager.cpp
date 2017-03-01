@@ -9,8 +9,8 @@ std::vector<GraphicsBuffer*> GraphicsManager::buffers;
 
 void GraphicsManager::init()
 {
-	#define X(gid, path) addGraphicsBuffer(gid, path);
-	#define Y(gid, path) addGraphicsBuffer(gid, path);
+	#define X(gid, path) addGraphicsBuffer(GraphicsIDs::gid, path);
+	#define Y(gid, path) addGraphicsBuffer(GraphicsIDs::gid, path);
 	#include "GraphicsID.list"
 	#undef X
 	#undef Y

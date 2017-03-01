@@ -62,8 +62,8 @@ Skill* LobbySkill::createGameSkill(Mob* owner, RestrictedGameInterface* rgi) con
 {
 	switch (getID())
 	{
-		#define X(sid, lobbyname, gamename) case sid: return new gamename(SkillGivethrough {owner, this, rgi});
-		#define Y(sid, lobbyname, gamename) case sid: return new gamename(SkillGivethrough {owner, this, rgi});
+		#define X(sid, lobbyname, gamename) case SkillIDs::sid: return new gamename(SkillGivethrough {owner, this, rgi});
+		#define Y(sid, lobbyname, gamename) case SkillIDs::sid: return new gamename(SkillGivethrough {owner, this, rgi});
 		#include "SkillID.list"
 		#undef X
 		#undef Y

@@ -25,5 +25,5 @@ std::string TeamPacket::getCompressString() const
 
 CompressID TeamPacket::getCompressID() const
 {
-	return TEAM_PACKET_CID;
+	return CompressIDs::TEAM_PACKET;
 }

@@ -137,7 +137,7 @@ void GamePlayer::apply(const std::string& s)
 		delete shape;
 	}
 	EntityGivethrough* gt;
-	if ((gt = (EntityGivethrough*) buffer.cutByCompressID(ENTITY_GIVETHROUGH_CID)) == nullptr)
+	if ((gt = (EntityGivethrough*) buffer.cutByCompressID(CompressIDs::ENTITY_GIVETHROUGH)) == nullptr)
 	{
 		Debug::error("GamePlayer::apply(): gt-cast returns nullptr");
 	}

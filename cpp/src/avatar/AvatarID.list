@@ -1,2 +1,2 @@
-X(ARCHER_AID, LobbyArcher, Archer)
-Y(ROGUE_AID, LobbyRogue, Rogue)
+X(ARCHER, LobbyArcher, Archer)
+Y(ROGUE, LobbyRogue, Rogue)

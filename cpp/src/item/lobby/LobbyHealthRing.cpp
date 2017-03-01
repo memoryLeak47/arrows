@@ -2,7 +2,7 @@
 
 TextureID LobbyHealthRing::getIconTextureID() const
 {
-	return HEALTHRING_ICON_GID;
+	return GraphicsIDs::HEALTHRING_ICON;
 }
 
 float LobbyHealthRing::getHealthStat() const

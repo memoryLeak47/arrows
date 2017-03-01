@@ -16,7 +16,7 @@ void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
 {
 	switch (packet->getCompressID())
 	{
-		case CHANGE_ACTIONS_PACKET_CID:
+		case CompressIDs::CHANGE_ACTIONS_PACKET:
 		{
 			ChangeActionsPacket* cap = packet->unwrap<ChangeActionsPacket>();
 			int id = ipToID(ip);

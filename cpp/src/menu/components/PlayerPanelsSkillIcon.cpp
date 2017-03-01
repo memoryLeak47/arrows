@@ -37,7 +37,7 @@ TextureID PlayerPanelsSkillIcon::getTextureID() const
 	if ((getPlayer()->getSkillPacket() == nullptr) ||
 	    (getPlayer()->getSkillPacket()->getPlayerProperties()[number] == nullptr))
 	{
-		return VOID_ICON_GID;
+		return GraphicsIDs::VOID_ICON;
 	}
 	return getPlayer()->getSkillPacket()->getPlayerProperties()[number]->getIconTextureID();
 }

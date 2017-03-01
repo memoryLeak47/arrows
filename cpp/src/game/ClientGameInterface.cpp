@@ -25,12 +25,12 @@ void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
 {
 	switch (packet->getCompressID())
 	{
-		case PACKET_WITH_ID_CID:
+		case CompressIDs::PACKET_WITH_ID:
 		{
 			PacketWithID* pwid = packet->unwrap<PacketWithID>();
 			switch (pwid->getPacket()->getCompressID())
 			{
-				case CHANGE_ACTIONS_PACKET_CID:
+				case CompressIDs::CHANGE_ACTIONS_PACKET:
 				{
 					ChangeActionsPacket* cap = pwid->getPacket()->unwrap<ChangeActionsPacket>();
 					calendar.addEntry(cap->getFrameNumber(), pwid->getID(), cap->getActions());

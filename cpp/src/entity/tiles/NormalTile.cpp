@@ -8,7 +8,7 @@ NormalTile::NormalTile(const GameVector& pos)
 
 sf::Texture* NormalTile::getTexture() const
 {
-	return GraphicsManager::getTexture(NORMALTILE_GID);
+	return GraphicsManager::getTexture(GraphicsIDs::NORMALTILE);
 }
 
 std::string NormalTile::toString() const

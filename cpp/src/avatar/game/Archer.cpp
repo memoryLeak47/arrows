@@ -5,7 +5,7 @@
 #include <collision/RectShape.hpp>
 
 Archer::Archer(const GameVector& pos, const LobbyPlayer* player, RestrictedGameInterface* rgi)
-	: GamePlayer(EntityGivethrough(new RectShape(this), pos, GraphicsManager::getGameSizeOf(ARCHER_GID)), player, rgi)
+	: GamePlayer(EntityGivethrough(new RectShape(this), pos, GraphicsManager::getGameSizeOf(GraphicsIDs::ARCHER)), player, rgi)
 {}
 
 Archer::Archer(CompressBuffer* buffer)
@@ -14,7 +14,7 @@ Archer::Archer(CompressBuffer* buffer)
 
 CompressID Archer::getCompressID() const
 {
-	return ARCHER_CID;
+	return CompressIDs::ARCHER;
 }
 
 std::string Archer::getCompressString() const
@@ -33,7 +33,7 @@ float Archer::getCollisionPriority(Entity* e) const
 
 sf::Texture* Archer::getTexture() const
 {
-	return GraphicsManager::getTexture(ARCHER_GID);
+	return GraphicsManager::getTexture(GraphicsIDs::ARCHER);
 }
 
 std::string Archer::toString() const

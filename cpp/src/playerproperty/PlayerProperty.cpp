@@ -2,5 +2,5 @@
 
 TextureID PlayerProperty::getIconTextureID() const
 {
-	return VOID_ICON_GID;
+	return GraphicsIDs::VOID_ICON;
 }

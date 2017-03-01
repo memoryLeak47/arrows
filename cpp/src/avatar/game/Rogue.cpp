@@ -5,7 +5,7 @@
 #include <collision/RectShape.hpp>
 
 Rogue::Rogue(const GameVector& pos, const LobbyPlayer* player, RestrictedGameInterface* rgi)
-	: GamePlayer(EntityGivethrough(new RectShape(this), pos, GraphicsManager::getGameSizeOf(ROGUE_GID)), player, rgi)
+	: GamePlayer(EntityGivethrough(new RectShape(this), pos, GraphicsManager::getGameSizeOf(GraphicsIDs::ROGUE)), player, rgi)
 {}
 
 Rogue::Rogue(CompressBuffer* buffer)
@@ -14,7 +14,7 @@ Rogue::Rogue(CompressBuffer* buffer)
 
 CompressID Rogue::getCompressID() const
 {
-	return ROGUE_CID;
+	return CompressIDs::ROGUE;
 }
 
 std::string Rogue::getCompressString() const
@@ -33,7 +33,7 @@ float Rogue::getCollisionPriority(Entity* e) const
 
 sf::Texture* Rogue::getTexture() const
 {
-	return GraphicsManager::getTexture(ROGUE_GID);
+	return GraphicsManager::getTexture(GraphicsIDs::ROGUE);
 }
 
 std::string Rogue::toString() const

@@ -57,5 +57,5 @@ std::string SkillPacket::getCompressString() const
 
 CompressID SkillPacket::getCompressID() const
 {
-	return SKILL_PACKET_CID;
+	return CompressIDs::SKILL_PACKET;
 }

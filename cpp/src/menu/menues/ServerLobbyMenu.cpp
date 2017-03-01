@@ -75,31 +75,31 @@ void ServerLobbyMenu::mapSelected()
 
 void ServerLobbyMenu::handlePacket(Packet* packet, sf::IpAddress* ip)
 {
-	if (packet->getCompressID() == LOCK_PACKET_CID)
+	if (packet->getCompressID() == CompressIDs::LOCK_PACKET)
 	{
 		handleLockPacket(packet->unwrap<LockPacket>(), ipToID(ip, getPlayers()));
 	}
-	else if (packet->getCompressID() == DISCONNECT_PACKET_CID)
+	else if (packet->getCompressID() == CompressIDs::DISCONNECT_PACKET)
 	{
 		handleDisconnectPacket(packet->unwrap<DisconnectPacket>(), ipToID(ip, getPlayers()));
 	}
-	else if (packet->getCompressID() == TEAM_PACKET_CID && getPhase() == TEAM_PHASE)
+	else if (packet->getCompressID() == CompressIDs::TEAM_PACKET && getPhase() == TEAM_PHASE)
 	{
 		handleTeamPacket(packet->unwrap<TeamPacket>(), ipToID(ip, getPlayers()));
 	}
-	else if (packet->getCompressID() == LOGIN_PACKET_CID && getPhase() == TEAM_PHASE)
+	else if (packet->getCompressID() == CompressIDs::LOGIN_PACKET && getPhase() == TEAM_PHASE)
 	{
 		handleLoginPacket(packet->unwrap<LoginPacket>(), ip);
 	}
-	else if (packet->getCompressID() == AVATAR_PACKET_CID && getPhase() == AVATAR_PHASE)
+	else if (packet->getCompressID() == CompressIDs::AVATAR_PACKET && getPhase() == AVATAR_PHASE)
 	{
 		handleAvatarPacket(packet->unwrap<AvatarPacket>(), ipToID(ip, getPlayers()));
 	}
-	else if (packet->getCompressID() == SKILL_PACKET_CID && getPhase() == SKILL_PHASE)
+	else if (packet->getCompressID() == CompressIDs::SKILL_PACKET && getPhase() == SKILL_PHASE)
 	{
 		handleSkillPacket(packet->unwrap<SkillPacket>(), ipToID(ip, getPlayers()));
 	}
-	else if (packet->getCompressID() == ITEM_PACKET_CID && getPhase() == ITEM_PHASE)
+	else if (packet->getCompressID() == CompressIDs::ITEM_PACKET && getPhase() == ITEM_PHASE)
 	{
 		handleItemPacket(packet->unwrap<ItemPacket>(), ipToID(ip, getPlayers()));
 	}
@@ -300,15 +300,15 @@ void ServerLobbyMenu::playerPropertySelected(PlayerPropertyPacket* packet)
 {
 	switch (packet->getCompressID())
 	{
-		case AVATAR_PACKET_CID:
+		case CompressIDs::AVATAR_PACKET:
 			getLocalPlayer()->applyAvatarPacket(packet->unwrap<AvatarPacket>());
 			getUpdatedLocalPlayer()->applyAvatarPacket(packet->unwrap<AvatarPacket>());
 			break;
-		case SKILL_PACKET_CID:
+		case CompressIDs::SKILL_PACKET:
 			getLocalPlayer()->applySkillPacket(packet->unwrap<SkillPacket>());
 			getUpdatedLocalPlayer()->applySkillPacket(packet->unwrap<SkillPacket>());
 			break;
-		case ITEM_PACKET_CID:
+		case CompressIDs::ITEM_PACKET:
 			getLocalPlayer()->applyItemPacket(packet->unwrap<ItemPacket>());
 			getUpdatedLocalPlayer()->applyItemPacket(packet->unwrap<ItemPacket>());
 			break;

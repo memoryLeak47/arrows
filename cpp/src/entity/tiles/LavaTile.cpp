@@ -8,7 +8,7 @@ LavaTile::LavaTile(const GameVector& pos)
 
 sf::Texture* LavaTile::getTexture() const
 {
-	return GraphicsManager::getTexture(LAVATILE_GID);
+	return GraphicsManager::getTexture(GraphicsIDs::LAVATILE);
 }
 
 std::string LavaTile::toString() const
