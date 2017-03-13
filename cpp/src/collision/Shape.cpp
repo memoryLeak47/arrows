@@ -10,18 +10,6 @@ Shape::Shape(Entity* entity_arg)
 Shape::Shape(CompressBuffer*)
 {}
 
-std::vector<FrameCloneable**> Shape::getClonePointers() const
-{
-	std::vector<FrameCloneable**> tmp;
-	tmp.push_back((FrameCloneable**) &entity);
-	return tmp;
-}
-
-bool Shape::hasToBeCloned() const
-{
-	return true;
-}
-
 std::string Shape::getCompressString() const
 {
 	return "";

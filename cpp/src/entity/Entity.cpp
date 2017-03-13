@@ -36,13 +36,6 @@ void Entity::tick()
 	}
 }
 
-std::vector<FrameCloneable**> Entity::getClonePointers() const
-{
-	std::vector<FrameCloneable**> tmp;
-	tmp.push_back((FrameCloneable**) &shape);
-	return tmp;
-}
-
 void Entity::move(float time)
 {
 	if (!isStatic())

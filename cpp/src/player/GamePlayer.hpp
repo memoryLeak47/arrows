@@ -28,8 +28,6 @@ class GamePlayer : public Mob
 		GamePlayer(const EntityGivethrough&, const LobbyPlayer*, RestrictedGameInterface*); // used when Game begins in Avatar::createGamePlayer()
 		virtual ~GamePlayer(); // deletes ip
 
-		virtual std::vector<FrameCloneable**> getClonePointers() const override;
-
 		// compress
 		std::string getCompressString() const override; // => Mob.getCompressString() + charges
 
@@ -48,8 +46,8 @@ class GamePlayer : public Mob
 		std::string name;
 		int rank;
 		Team* team;
-		std::vector<Skill*> skills;
-		std::vector<Item*> items;
+		std::vector<Skill*> $$clone_pointer_list$$ skills $!clone_pointer_list$$;
+		std::vector<Item*> $$clone_pointer_list$$ items $!clone_pointer_list$$;
 
 		// lobby avatar data
 		std::string description;

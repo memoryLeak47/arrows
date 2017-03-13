@@ -25,9 +25,6 @@ class Skill : public FrameCloneable
 	public:
 		Skill(const SkillGivethrough&);
 
-		virtual std::vector<FrameCloneable**> getClonePointers() const override;
-		virtual bool hasToBeCloned() const override;
-
 		void setEnabled(bool);
 		virtual void tick();
 		bool isEnabled() const;
@@ -40,7 +37,7 @@ class Skill : public FrameCloneable
 		Mob* getOwner() const;
 		void addBullet(Bullet*);
 	private:
-		Mob* owner;
+		Mob* $$clone_pointer_list$$ owner $!clone_pointer_list$$;
 		bool enabled;
 		float charge;
 

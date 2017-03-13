@@ -15,9 +15,6 @@ class Tile : public Entity
 		Tile(const GameVector&);
 		virtual ~Tile() {}
 
-		virtual bool hasToBeCloned() const override;
-		virtual std::vector<FrameCloneable**> getClonePointers() const override;
-
 		virtual bool hasChanged() const override;
 		virtual void setChanged(bool b) override;
 

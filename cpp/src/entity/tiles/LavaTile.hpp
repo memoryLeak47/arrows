@@ -12,7 +12,6 @@ class LavaTile : public Tile
 	public:
 		LavaTile(const GameVector&);
 
-		CREATE_GETMEMSIZE(LavaTile)
 		virtual ~LavaTile() {}
 		virtual sf::Texture* getTexture() const override;
 		virtual std::string toString() const override;

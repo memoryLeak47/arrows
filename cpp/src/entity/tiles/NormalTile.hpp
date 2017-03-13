@@ -11,7 +11,6 @@ class NormalTile : public Tile
 {
 	public:
 		NormalTile(const GameVector&);
-		CREATE_GETMEMSIZE(NormalTile)
 		virtual sf::Texture* getTexture() const override;
 		virtual std::string toString() const override;
 };

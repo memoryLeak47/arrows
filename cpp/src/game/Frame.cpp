@@ -16,6 +16,7 @@
 #include <entity/Mob.hpp>
 #include <player/GamePlayer.hpp>
 #include <collision/CollisionDetector.hpp>
+#include "FrameCloneable.hpp"
 #include <map>
 #include <assert.h>
 
@@ -41,27 +42,9 @@ Frame::~Frame()
 
 Frame* Frame::clone() const
 {
-	Frame* clone = new Frame();
-
+	Frame* clone = new Frame(*this);
 	std::map<FrameCloneable*, FrameCloneable*> map;
-
-	clone->players = players;
-	clone->idlers = idlers;
-	clone->mobs = mobs;
-
-	assert(players.size() == clone->players.size());
-	assert(idlers.size() == clone->idlers.size());
-	assert(mobs.size() == clone->mobs.size());
-	unsigned int i;
-	for (i = 0; i < players.size(); i++)
-		assert(players[i] == clone->players[i]);
-	for (i = 0; i < idlers.size(); i++)
-		assert(idlers[i] == clone->idlers[i]);
-	for (i = 0; i < mobs.size(); i++)
-		assert(mobs[i] == clone->mobs[i]);
-
 	clone->cloneMembers(&map);
-
 	return clone;
 }
 
@@ -294,33 +277,4 @@ unsigned int Frame::getDynamicEntityAmount() const
 const GameTileMap* Frame::getGameTileMap() const
 {
 	return tileMap;
-}
-
-std::vector<FrameCloneable**> Frame::getClonePointers() const
-{
-	std::vector<FrameCloneable**> clonePointers;
-	const unsigned int amount = getDynamicEntityAmount();
-	if (amount > clonePointers.capacity())
-	{
-		clonePointers.reserve(amount - clonePointers.capacity());
-	}
-
-	unsigned int i;
-	for (i = 0; i < players.size(); i++)
-		clonePointers.push_back((FrameCloneable**) &players[i]);
-	for (i = 0; i < mobs.size(); i++)
-		clonePointers.push_back((FrameCloneable**) &mobs[i]);
-	for (i = 0; i < idlers.size(); i++)
-		clonePointers.push_back((FrameCloneable**) &idlers[i]);
-	return clonePointers;
-}
-
-unsigned int Frame::getMemSize() const
-{
-	return sizeof(Frame);
-}
-
-bool Frame::hasToBeCloned() const
-{
-	return true;
 }

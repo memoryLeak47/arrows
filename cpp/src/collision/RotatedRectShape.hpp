@@ -8,8 +8,6 @@ class RotatedRectShape : public Shape
 	public:
 		using Shape::Shape;
 
-		CREATE_GETMEMSIZE(RotatedRectShape)
-
 		virtual CompressID getCompressID() const override;
 
 		virtual GameRect getWrapper(float) const override;

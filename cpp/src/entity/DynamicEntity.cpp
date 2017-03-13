@@ -9,21 +9,6 @@ DynamicEntity::DynamicEntity(const EntityGivethrough& gt)
 	: Entity(gt), changed(true)
 {}
 
-std::vector<FrameCloneable**> DynamicEntity::getClonePointers() const
-{
-	std::vector<FrameCloneable**> tmp = Entity::getClonePointers();
-	for (Entity* e : collisionPartners)
-		tmp.push_back((FrameCloneable**) &e);
-	for (Entity* e : wrapperPartners)
-		tmp.push_back((FrameCloneable**) &e);
-	return tmp;
-}
-
-bool DynamicEntity::hasToBeCloned() const
-{
-	return true;
-}
-
 bool DynamicEntity::hasChanged() const
 {
 	return changed;

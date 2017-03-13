@@ -12,7 +12,6 @@ class VoidTile : public Tile
 	public:
 		VoidTile(const GameVector&);
 
-		CREATE_GETMEMSIZE(VoidTile)
 		virtual sf::Texture* getTexture() const override;
 		virtual float getCollisionPriority(Entity* e) const override;
 		virtual std::string toString() const override;

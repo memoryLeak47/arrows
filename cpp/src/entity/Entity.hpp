@@ -53,8 +53,6 @@ class Entity : public FrameCloneable
 		virtual void tick();
 		virtual std::string toString() const = 0;
 
-		virtual std::vector<FrameCloneable**> getClonePointers() const override;
-
 		// physics
 		void move(float time);
 		void setSpeed(const GameVector& speed);
@@ -131,7 +129,7 @@ class Entity : public FrameCloneable
 		PixelRect getRenderRect(const View&) const;
 
 		// should not be protected: XXX
-		Shape* shape;
+		Shape* $$clone_pointer$$ shape $!clone_pointer$$;
 		GameVector position, size, speed;
 		float rotation, spin;
 		int dashCounter;

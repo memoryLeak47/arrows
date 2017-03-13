@@ -13,8 +13,6 @@ class PlayerController : public Controller
 		PlayerController(CompressBuffer*); // => Controller(CompressBuffer*)
 		virtual ~PlayerController() {}
 
-		CREATE_GETMEMSIZE(PlayerController)
-
 		// compress
 		CompressID getCompressID() const override;
 		/* std::string Controller::getCompressString() const */

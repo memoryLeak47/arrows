@@ -10,9 +10,6 @@ class DynamicEntity : public Entity
 		DynamicEntity(const EntityGivethrough&);
 		virtual ~DynamicEntity() {}
 
-		virtual std::vector<FrameCloneable**> getClonePointers() const override;
-		virtual bool hasToBeCloned() const override;
-
 		void checkWrapperPartners();
 
 		virtual bool hasChanged() const override;
@@ -28,8 +25,8 @@ class DynamicEntity : public Entity
 		virtual bool hasWrapperPartner(Entity* e) const override;
 	private:
 		bool changed;
-		std::vector<Entity*> collisionPartners;
-		std::vector<Entity*> wrapperPartners;
+		std::vector<Entity*> $$clone_pointer_list$$ collisionPartners $!clone_pointer_list$$;
+		std::vector<Entity*> $$clone_pointer_list$$ wrapperPartners $!clone_pointer_list$$;
 
 	friend class ClientGameInterface; // needed to update (w/c)partners on GameUpdatePacket
 };

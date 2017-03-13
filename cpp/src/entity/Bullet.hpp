@@ -12,12 +12,11 @@ class Bullet : public Idler
 		Bullet(CompressBuffer*);
 		virtual ~Bullet() {}
 
-		virtual std::vector<FrameCloneable**> getClonePointers() const override;
 		virtual EntityType getEntityType() const override;
 
 		Mob* getOwner() const;
 	private:
-		Mob* owner;
+		Mob* $$clone_pointer_list$$ owner $!clone_pointer_list$$;
 };
 
 #endif

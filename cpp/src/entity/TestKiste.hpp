@@ -15,7 +15,6 @@ class TestKiste : public Idler
 		TestKiste(const GameVector&);
 		TestKiste(CompressBuffer*);
 
-		CREATE_GETMEMSIZE(TestKiste)
 		// compress
 		CompressID getCompressID() const override;
 		std::string getCompressString() const override;

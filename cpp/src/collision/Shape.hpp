@@ -18,9 +18,6 @@ class Shape : public Compressable, public FrameCloneable
 
 		virtual ~Shape() {}
 
-		virtual std::vector<FrameCloneable**> getClonePointers() const override;
-		virtual bool hasToBeCloned() const override;
-	
 		virtual std::string getCompressString() const override;
 
 		virtual GameRect getWrapper(float) const = 0;
@@ -35,7 +32,7 @@ class Shape : public Compressable, public FrameCloneable
 		virtual void reactToCollision_solid(const float, const GameVector&, const GameVector&, float) = 0;
 		virtual void reactToCollision_sticky(const float, const GameVector&, const GameVector&);
 	protected:
-		Entity* entity;
+		Entity* $$clone_pointer$$ entity $!clone_pointer$$;
 
 	friend class ImpactfulDynamicEntity;
 };

@@ -13,7 +13,6 @@ class SpawnTeamTile : public Tile
 	public:
 		SpawnTeamTile(Team*, const GameVector&);
 		virtual ~SpawnTeamTile() {}
-		CREATE_GETMEMSIZE(SpawnTeamTile)
 		virtual sf::Texture* getTexture() const override;
 		virtual float getCollisionPriority(Entity* e) const override;
 		virtual bool isSpawnTeamTile() const override;

@@ -75,14 +75,6 @@ GamePlayer::~GamePlayer()
 	delete ip;
 }
 
-std::vector<FrameCloneable**> GamePlayer::getClonePointers() const
-{
-	std::vector<FrameCloneable**> tmp = Mob::getClonePointers();
-	for (Skill* s : skills)
-		tmp.push_back((FrameCloneable**) &s);
-	return tmp;
-}
-
 std::string GamePlayer::getCompressString() const
 {
 	std::string s = Mob::getCompressString();

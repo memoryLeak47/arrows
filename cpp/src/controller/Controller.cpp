@@ -6,16 +6,6 @@ Controller::Controller(CompressBuffer* buffer)
 	: actions((Actions) buffer->cutChar())
 {}
 
-bool Controller::hasToBeCloned() const
-{
-	return true;
-}
-
-std::vector<FrameCloneable**> Controller::getClonePointers() const
-{
-	return std::vector<FrameCloneable**>();
-}
-
 Actions Controller::getActions() const
 {
 	return actions;

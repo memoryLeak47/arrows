@@ -15,8 +15,6 @@ class Mob : public ImpactfulDynamicEntity
 		Mob(CompressBuffer*);
 		virtual ~Mob(); // deletes controller
 
-		virtual std::vector<FrameCloneable**> getClonePointers() const override;
-
 		// compress
 		std::string getCompressString() const override;
 		virtual void tick() override;
@@ -31,7 +29,7 @@ class Mob : public ImpactfulDynamicEntity
 		virtual void optSetSkillEnabled(int, bool); // called from applyActions(); only used in GamePlayer
 		Controller* getController() const;
 
-		Controller* controller;
+		Controller* $$clone_pointer$$ controller $!clone_pointer$$;
 	private:
 		void applyActions();
 

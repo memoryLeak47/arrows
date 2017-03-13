@@ -8,8 +8,6 @@ class CircleShape : public Shape
 	public:
 		using Shape::Shape;
 
-		CREATE_GETMEMSIZE(CircleShape)
-
 		virtual CompressID getCompressID() const override;
 
 		virtual GameRect getWrapper(float) const override;

@@ -10,8 +10,6 @@ class RectShape : public Shape
 
 		virtual CompressID getCompressID() const override;
 
-		CREATE_GETMEMSIZE(RectShape)
-
 		virtual GameRect getWrapper(float) const override;
 		virtual bool isCollidingPoint(const GameVector&) const override;
 		virtual float getLeftest() const override;
