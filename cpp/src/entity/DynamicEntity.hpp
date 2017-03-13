@@ -4,6 +4,7 @@
 #include "Entity.hpp"
 #include <vector>
 
+$$abstract$$
 class DynamicEntity : public Entity
 {
 	public:
@@ -30,5 +31,6 @@ class DynamicEntity : public Entity
 
 	friend class ClientGameInterface; // needed to update (w/c)partners on GameUpdatePacket
 };
+$!abstract$$
 
 #endif

@@ -6,6 +6,7 @@ class CompressBuffer;
 #include "ImpactfulDynamicEntity.hpp"
 #include <string>
 
+$$abstract$$
 class Idler : public ImpactfulDynamicEntity
 {
 	public:
@@ -17,5 +18,6 @@ class Idler : public ImpactfulDynamicEntity
 		std::string getCompressString() const override;
 		virtual EntityType getEntityType() const override;
 };
+$!abstract$$
 
 #endif

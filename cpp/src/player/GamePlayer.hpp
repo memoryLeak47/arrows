@@ -21,6 +21,7 @@ class RestrictedGameInterface;
 #include <string>
 #include <graphics/TextureID.hpp>
 
+$$abstract$$
 class GamePlayer : public Mob
 {
 	public:
@@ -58,5 +59,6 @@ class GamePlayer : public Mob
 	friend class ClientGameInterface;
 	friend class GameInterface;
 };
+$!abstract$$
 
 #endif

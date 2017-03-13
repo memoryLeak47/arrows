@@ -2,6 +2,7 @@
 #define __PLAYERCONTROLLER_CLASS__
 
 class CompressBuffer;
+class FrameCloneable;
 
 #include "Controller.hpp"
 #include <misc/compress/CompressID.hpp>

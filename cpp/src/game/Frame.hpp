@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <deque>
+#include <map>
+#include "FrameCloneable.hpp"
 
 class GameTileMap;
 class DynamicEntity;

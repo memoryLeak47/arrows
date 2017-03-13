@@ -41,6 +41,7 @@ class Shape;
 #include <math/game/GameVector.hpp>
 #include <game/FrameCloneable.hpp>
 
+$$abstract$$
 class Entity : public FrameCloneable
 {
 	public:
@@ -139,5 +140,6 @@ class Entity : public FrameCloneable
 	friend class RotatedRectShape;
 	friend class CircleShape;
 };
+$!abstract$$
 
 #endif

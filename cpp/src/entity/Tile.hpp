@@ -8,6 +8,7 @@ class GameVector;
 #include <vector>
 #include "TileID.hpp"
 
+$$abstract$$
 class Tile : public Entity
 {
 	public:
@@ -38,5 +39,6 @@ class Tile : public Entity
 		static TileID colorStringToTileID(std::string);
 		static std::string colorStringByTileID(TileID);
 };
+$!abstract$$
 
 #endif

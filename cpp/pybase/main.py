@@ -189,7 +189,7 @@ def insert_into_file(filename, content, index, files):
 				l += len(content)
 				r += len(content)
 			elif r > index:
-				die("insert_into_file: left side of marker is not affected by insertion, right side of marker is affected by insertion")
+				r += len(content)
 			if markername in files.markerdict[filename]:
 				files.markerdict[filename][markername].append((l, r))
 			else:
@@ -206,6 +206,19 @@ def get_marker_content(marker, filename, files):
 	(l, r) = marker
 	filestr = files.filedict[filename]
 	return filestr[l:r]
+
+def get_surrounding_markernames(index, filename, files):
+	l = list()
+	for markername, marker_list in files.markerdict[filename].items():
+		for marker in marker_list:
+			left, right = marker
+			if left <= index and right >= index:
+				l.append(markername)
+				break
+	return l
+
+def is_surrounded_by_markername(index, filename, markername, files):
+	return markername in get_surrounding_markernames(index, filename, files)
 
 def add_to_file(file, content, files):
 	files.filedict[file] += content

@@ -8,6 +8,7 @@ class View;
 #include "ImpactfulDynamicEntity.hpp"
 #include <string>
 
+$$abstract$$
 class Mob : public ImpactfulDynamicEntity
 {
 	public:
@@ -34,5 +35,6 @@ class Mob : public ImpactfulDynamicEntity
 		void applyActions();
 
 };
+$!abstract$$
 
 #endif

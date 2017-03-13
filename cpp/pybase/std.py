@@ -1,5 +1,7 @@
 #!/usr/bin/python3 -B
 
+import sys
+
 class Error: pass
 E=Error()
 

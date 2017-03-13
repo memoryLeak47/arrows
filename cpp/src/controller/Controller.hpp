@@ -8,7 +8,8 @@ class CompressBuffer;
 #include <string>
 #include "Actions.hpp"
 
-class Controller : public Compressable, FrameCloneable
+$$abstract$$
+class Controller : public Compressable, public FrameCloneable
 {
 	public:
 		Controller() = default;
@@ -29,5 +30,6 @@ class Controller : public Compressable, FrameCloneable
 	friend class GameInterface;
 	friend class GamePlayer;
 };
+$!abstract$$
 
 #endif

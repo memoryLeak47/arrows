@@ -10,6 +10,7 @@ class CompressBuffer;
 class GameRect;
 class GameVector;
 
+$$abstract$$
 class Shape : public Compressable, public FrameCloneable
 {
 	public:
@@ -36,5 +37,6 @@ class Shape : public Compressable, public FrameCloneable
 
 	friend class ImpactfulDynamicEntity;
 };
+$!abstract$$
 
 #endif

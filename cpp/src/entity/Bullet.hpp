@@ -5,6 +5,7 @@ class Mob;
 
 #include "Idler.hpp"
 
+$$abstract$$
 class Bullet : public Idler
 {
 	public:
@@ -18,5 +19,6 @@ class Bullet : public Idler
 	private:
 		Mob* $$clone_pointer_list$$ owner $!clone_pointer_list$$;
 };
+$!abstract$$
 
 #endif
