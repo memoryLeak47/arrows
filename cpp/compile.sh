@@ -17,9 +17,13 @@ fi
 [[ ! -d build/debug ]] && mkdir build/debug
 [[ ! -d build/debug/obj ]] && mkdir build/debug/obj
 [[ ! -d build/debug/check ]] && mkdir build/debug/check
+[[ -f build/debug/failure ]] && rm build/debug/failure
+[[ -d build/debug/lock ]] && rm -r build/debug/lock
 [[ ! -d build/release ]] && mkdir build/release
 [[ ! -d build/release/obj ]] && mkdir build/release/obj
 [[ ! -d build/release/check ]] && mkdir build/release/check
+[[ -f build/release/failure ]] && rm -r build/release/failure
+[[ -d build/release/lock ]] && rm -r build/release/lock
 
 cp -r src/ "build/$mode/prec"
 
@@ -93,24 +97,46 @@ do
 	unchecked_headers="$new_unchecked_headers"
 done
 
-has_failed="false"
-
 # compilation
+fun() {
+	while true
+	do
+		[[ ! -s build/$mode/to_compile ]] && break
+		if mkdir build/$mode/lock 2>/dev/null; then
+			file="$(head build/$mode/to_compile -n 1)"
+			sed '1d' -i "build/$mode/to_compile"
+			rm -r build/$mode/lock
+		else
+			sleep 0.01
+			continue
+		fi
+		outputfile="build/$mode/obj/${file%.cpp}.o"
+		echo "[$1] Compiling '$file' ..."
+		dir=$(dirname "$outputfile")
+		[[ ! -d "$dir" ]] && mkdir -p "$dir"
+		rm -f "$outputfile"
+		if ! g++ "build/$mode/prec/$file" -c -o "$outputfile" -I "build/$mode/prec/" $FLAGS; then
+			echo 'yup' > "build/$mode/failure"
+		fi
+	done
+}
+
 for file in $changed_cpp_files
 do
-	outputfile="build/$mode/obj/${file%.cpp}.o"
-	echo "Compiling '$file' ..."
-	dir=$(dirname "$outputfile")
-	[[ ! -d "$dir" ]] && mkdir -p "$dir"
-	rm -f "$outputfile"
-	if ! g++ "build/$mode/prec/$file" -c -o "$outputfile" -I "build/$mode/prec/" $FLAGS; then
-		has_failed="true"
-	fi
+	echo $file >> "build/$mode/to_compile"
 done
+
+cores=$(nproc)
+for ((i=0;i<$cores;i++)) do
+	fun $i &
+	# sleep 0.01
+done
+
+wait
 
 rm -rf "build/$mode/prec"
 
-if [ "$has_failed" == "true" ]; then
+if [ -f "build/$mode/failure" ]; then
 	echo -e "\nCompilation Failure!"
 	exit
 fi
