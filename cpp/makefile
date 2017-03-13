@@ -6,21 +6,21 @@ start_release: compile_release run_release
 
 .PHONY: run
 run:
-	@./arrows | tee log
+	@./arrows | tee program.log
 
 .PHONY: run_release
 run_release:
-	@./arrows | tee log
+	@./arrows | tee program.log
 
 .PHONY: compile
 compile:
 	@tput reset
-	@./compile.sh debug
+	@script -q -c "./compile.sh debug" build.log
 
 .PHONY: compile_release
 compile_release:
 	@tput reset
-	@./compile.sh release
+	@script -q -c "./compile.sh release" build.log
 
 .PHONY: line-counter
 line-counter:
@@ -30,9 +30,13 @@ line-counter:
 valgrind:
 	@valgrind --leak-check=full --log-file=valgrind.log ./arrows | tee log
 
-.PHONY: getlog
-getlog:
-	@if [ -f log ]; then cat log | less -R; else echo "no log file"; fi
+.PHONY: program_log
+program_log:
+	@if [ -f log ]; then less -R program.log ; else echo "no log file"; fi
+
+.PHONY: build_log
+build_log:
+	@if [ -f build.log ]; then less -R build.log; else echo "no build.log"; fi
 
 .PHONY: gdb
 gdb:

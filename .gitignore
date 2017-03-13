@@ -10,4 +10,4 @@
 /cpp/core
 /cpp/.global
 /cpp/build/
-/cpp/valgrind.log
+/cpp/*.log

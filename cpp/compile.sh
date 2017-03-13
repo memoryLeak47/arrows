@@ -135,7 +135,6 @@ done
 cores=$(nproc)
 for ((i=0;i<$cores;i++)) do
 	fun $i &
-	# sleep 0.01
 done
 
 wait
