@@ -104,7 +104,7 @@ class Files:
 				filestr = filestr[:index3] + "/*" + filestr[index3+2:]
 				filestr = filestr[:index4] + "*/" + filestr[index4+2:]
 				self.filedict[filename] = filestr
-				
+
 
 	def init_structuredict(self):
 		for file in self.filenames():
@@ -176,11 +176,36 @@ class Files:
 	def filenames(self):
 		return self.filedict.keys()
 
+def insert_into_file(filename, content, index, files):
+	filestr = files.filedict[filename]
+	files.filedict[filename] = filestr[:index+1] + content + filestr[index+1:]
+
+	items = files.markerdict[filename].items()
+	files.markerdict[filename] = dict()
+	for markername, marker_list in items:
+		for marker in marker_list:
+			l, r = marker
+			if l > index:
+				l += len(content)
+				r += len(content)
+			elif r > index:
+				die("insert_into_file: left side of marker is not affected by insertion, right side of marker is affected by insertion")
+			if markername in files.markerdict[filename]:
+				files.markerdict[filename][markername].append((l, r))
+			else:
+				files.markerdict[filename][markername] = [(l, r)]
+
+
 def add_to_class_def(classname, content, files):
 	s = files.structuredict[classname]
 	if s.file == E or s.index == E:
 		return E
-	files.filedict[s.file] = files[s.file][:s.index+1] + content + files[s.file][s.index+1:]
+	insert_into_file(s.file, content, s.index, files)
+
+def get_marker_content(marker, filename, files):
+	(l, r) = marker
+	filestr = files.filedict[filename]
+	return filestr[l:r]
 
 def add_to_file(file, content, files):
 	files.filedict[file] += content

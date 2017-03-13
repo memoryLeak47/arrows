@@ -16,7 +16,7 @@ class LobbyTileMap;
 class LobbyPlayer;
 class RestrictedGameInterface;
 
-class Frame : public Framecloneable
+class Frame : public FrameCloneable
 {
 	public:
 		Frame(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers, RestrictedGameInterface* restrictedGameInterface);

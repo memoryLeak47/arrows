@@ -7,7 +7,7 @@
 class FrameCloneable
 {
 	public:
-		virtual FrameCloneable* clone(std::map<FrameCloneable*, FrameCloneable*>*>) const = 0;
+		virtual FrameCloneable* clone(std::map<FrameCloneable*, FrameCloneable*>*) const = 0;
 	friend class Frame;
 };
 

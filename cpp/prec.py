@@ -16,22 +16,25 @@ files = Files()
 # add code here
 
 for subclass in get_subclasses("FrameCloneable", files):
-	add_to_class_def(subclass.name, "public: " + subclass.name + "(const" + subclass.name + "&) = default; private: ")
-	add_to_class_def(subclass.name, "public: FrameCloneable* clone(std::map<FrameCloneable*, FrameCloneable*>*); private: ")
-	add_to_class_def(subclass.name, "private: void cloneMembers(std::map<FrameCloneable*, FrameCloneable*>*); private: ")
-	cpp = subclass.name.replace(".hpp", ".cpp")
-	string = "FrameCloneable* " + subclass.name + "::clone(std::map<FrameCloneable*, FrameCloneable*>* map) const { " + subclass.name + " *c = new " + subclass.name + "(*this); c->cloneMembers(map); return c; }"
+	s = files.structuredict[subclass]
+	add_to_class_def(subclass, "public: " + subclass + "(const " + subclass + "&) = default; private: ", files)
+	add_to_class_def(subclass, "public: FrameCloneable* clone(std::map<FrameCloneable*, FrameCloneable*>*) const override; private: ", files)
+	add_to_class_def(subclass, "private: void cloneMembers(std::map<FrameCloneable*, FrameCloneable*>*); private: ", files)
+	cpp = s.file.replace(".hpp", ".cpp")
+	string = "FrameCloneable* " + subclass + "::clone(std::map<FrameCloneable*, FrameCloneable*>* map) const { " + subclass + " *c = new " + subclass + "(*this); c->cloneMembers(map); return c; }"
 	add_to_file(cpp, string, files)
 
-	string = "void " + subclass.name + "::cloneMembers(std::map<FrameCloneable*, FrameCloneable*>* map) {"
-	l = subclass.get_member_markers()
+	string = "void " + subclass + "::cloneMembers(std::map<FrameCloneable*, FrameCloneable*>* map) {"
+	l = s.get_member_markers(files)
 
-	for marker in l["pointer_clone"]:
-		content = marker.?
-		string += "if (map->find(" + content + ") == map->end()) { map[" + content + "] = " + content + ".clone(); } " + content + " = map[" + content + "]; "
-	for marker in l["pointer_list_clone"]:
-		content = marker.?
-		string += "for (unsigned int i = 0; i < " + content ".size(); i++) { if (map->find(" + content + "[i]) == map->end()) { map[" + content + "[i]] = " + content + "[i].clone(); } " + content + "[i] = map[" + content + "[i]]; }"
+	if "pointer_clone" in l:
+		for marker in l["pointer_clone"]:
+			content = get_marker_content(marker, s.file, files)
+			string += "if (map->find(" + content + ") == map->end()) { map[" + content + "] = " + content + "->clone(); } " + content + " = map[" + content + "]; "
+	if "pointer_list_clone" in l:
+		for marker in l["pointer_list_clone"]:
+			content = get_marker_content(marker, s.file, files)
+			string += "for (unsigned int i = 0; i < " + content + ".size(); i++) { if (map->find(" + content + "[i]) == map->end()) { map[" + content + "[i]] = " + content + "[i]->clone(); } " + content + "[i] = map[" + content + "[i]]; }"
 
 	string += "}"
 	add_to_file(cpp, string, files)
