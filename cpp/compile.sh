@@ -48,12 +48,18 @@ for file in $(cd "build/$mode/prec"; find -type f)
 do
 	file=${file#./}
 	check_file="build/$mode/check/${namehashes["$file"]}"
-	if [ ! -f "$check_file" ] || [ ! "$(cat "$check_file")" == "${filehashes["$file"]}" ]; then
-		if [[ "$file" =~ *.cpp ]]; then
-			changed_cpp_files+=" $file"
-		else
-			changed_hpp_files+=" $file"
+	# if the check file exists and matches
+	if [ -f "$check_file" ] && [ "$(cat "$check_file")" == "${filehashes["$file"]}" ]; then
+		# and the file is not a .cpp, which didn't compile last time
+		if [[ ! $file =~ .*".cpp" ]] || [[ -f build/$mode/obj/${file%.cpp}.o ]]; then
+			continue
 		fi
+	fi
+
+	if [[ "$file" =~ *.cpp ]]; then
+		changed_cpp_files+=" $file"
+	else
+		changed_hpp_files+=" $file"
 	fi
 done
 

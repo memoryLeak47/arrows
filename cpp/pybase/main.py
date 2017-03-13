@@ -199,20 +199,3 @@ def get_subclasses(classname, files):
 			if subby not in l:
 				l.append(subby)
 	return l
-
-def main():
-	files = Files()
-
-	add_to_class_def("FrameCloneable", "public: virtual std::string to_string() const = 0; private:", files)
-	for subcloneable in get_subclasses("FrameCloneable", files):
-		add_to_class_def(subcloneable, "public: virtual std::string to_string() const override; private:", files)
-		s = files.structuredict[subcloneable]
-		if s.file == E:
-			die("Could not load " + subcloneable)
-		add_to_file(s.file.replace(".hpp", ".cpp"), "std::string " + subcloneable + "::to_string() const { return \"" + subcloneable + "\"; }", files)
-
-	print(files.structuredict["Main"].get_member_markers(files))
-
-	files.writeback()
-
-main()
