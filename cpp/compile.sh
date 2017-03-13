@@ -74,9 +74,7 @@ do
 	do
 		hpp=${hpp##*/}
 
-		# XXX if "Controller" is ment, also "PlayerController" will trigger
-
-		for target in $(sed 's/ //g' <<< "$(echo "$incgrep" | grep "$hpp")")
+		for target in $(sed 's/ //g' <<< "$(echo "$incgrep" | grep "[</\"]$hpp")")
 		do
 			target=${target%%:*}
 			if [[ $target =~ .*".cpp" ]]; then
