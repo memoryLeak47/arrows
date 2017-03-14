@@ -29,6 +29,7 @@ cp -r src/ "build/$mode/prec"
 
 echo "Precompiling ..."
 ./prec.py "build/$mode/prec"
+cpp_files=$(cd ./build/$mode/prec; find -name "*.cpp") # later used to detect obsolete obj files
 
 echo "Determining Changes ..."
 # create namehashes, filehashes
@@ -145,6 +146,15 @@ if [ -f "build/$mode/failure" ]; then
 	echo -e "\nCompilation Failure!"
 	exit
 fi
+
+# removing old .obj-files
+for obj in $(cd ./build/$mode/obj; find -name "*.o")
+do
+	if [[ ! $cpp_files =~ ${obj%.o}.cpp ]]; then
+		echo "removing obsolete $obj"
+		rm build/$mode/obj/$obj
+	fi
+done
 
 # linking
 echo "Linking ..."

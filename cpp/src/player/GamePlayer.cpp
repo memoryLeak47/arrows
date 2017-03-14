@@ -72,7 +72,7 @@ GamePlayer::GamePlayer(const EntityGivethrough& gt, const LobbyPlayer* player, R
 
 GamePlayer::~GamePlayer()
 {
-	delete ip;
+	delete ip; // XXX probabbly causes double free or corruption error & other problems on Frame::~Frame() of multiple Frames
 }
 
 std::string GamePlayer::getCompressString() const
