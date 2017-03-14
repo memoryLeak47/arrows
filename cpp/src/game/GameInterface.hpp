@@ -19,7 +19,8 @@ class CollisionEvent;
 #include <view/View.hpp>
 #include "RestrictedGameInterface.hpp"
 #include "Calendar.hpp"
-#include "Frame.hpp"
+#include "frame/Frame.hpp"
+#include "frame/FrameHistory.hpp"
 
 class GameInterface : public Menu, public NetworkInterface
 {
@@ -44,6 +45,8 @@ class GameInterface : public Menu, public NetworkInterface
 		Frame mainFrame;
 		Calendar calendar;
 	private:
+		FrameHistory history;
+
 		// functions
 		void renderMap() const;
 		void renderBars() const;

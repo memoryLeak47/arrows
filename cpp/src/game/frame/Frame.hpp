@@ -43,8 +43,7 @@ class Frame : public FrameCloneable
 		void tickPhysics();
 
 		std::vector<GamePlayer*> players;
-		public: // XXX remove public XXX
-			std::vector<Idler*> $$clone_pointer_list$$ idlers $!clone_pointer_list$$;
+		std::vector<Idler*> $$clone_pointer_list$$ idlers $!clone_pointer_list$$;
 		std::vector<Mob*> $$clone_pointer_list$$ mobs $!clone_pointer_list$$;
 		GameTileMap* tileMap;
 

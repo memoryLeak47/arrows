@@ -39,7 +39,7 @@ class Shape;
 #include <vector>
 #include <SFML/Graphics/Texture.hpp>
 #include <math/game/GameVector.hpp>
-#include <game/FrameCloneable.hpp>
+#include <game/frame/FrameCloneable.hpp>
 
 $$abstract$$
 class Entity : public FrameCloneable

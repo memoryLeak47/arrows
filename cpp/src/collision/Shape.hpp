@@ -2,7 +2,7 @@
 #define __SHAPE_CLASS__
 
 #include <misc/compress/Compressable.hpp>
-#include <game/FrameCloneable.hpp>
+#include <game/frame/FrameCloneable.hpp>
 #include <string>
 
 class Entity;

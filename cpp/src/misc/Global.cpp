@@ -31,6 +31,7 @@ namespace global
 	std::string AUTO_SKILLS;
 	std::string SKIP_LOBBY_MAP;
 	bool PACKET_SOUND;
+	int FRAME_HISTORY_SIZE;
 }
 
 void global::init()
@@ -58,6 +59,7 @@ void global::init()
 	AUTO_ITEMS = std::string({0, 0, 0});
 	SKIP_LOBBY_MAP = "default.png";
 	PACKET_SOUND = false;
+	FRAME_HISTORY_SIZE = 200;
 
 	std::ifstream f;
 	f.open(".global", std::ios::in);
@@ -168,7 +170,7 @@ void global::init()
 		else if (key == "max_packet_size")
 		{
 			MAX_SHOWN_PACKET_SIZE = Converter::stringToInt(value);
-			Debug::note("setting MAX_SHOWN_PACKET_SIZE to " + Converter::floatToString(MAX_SHOWN_PACKET_SIZE));
+			Debug::note("setting MAX_SHOWN_PACKET_SIZE to " + Converter::intToString(MAX_SHOWN_PACKET_SIZE));
 		}
 		else if (key == "fps")
 		{
@@ -181,6 +183,11 @@ void global::init()
 			else if (value == "false") PACKET_SOUND = false;
 			else Debug::error("global::init(): unknown value '" + value + "' for key '" + key + "'");
 			Debug::note("setting packet_sound to " + Converter::boolToString(PACKET_SOUND));
+		}
+		else if (key == "frame_history_size")
+		{
+			FRAME_HISTORY_SIZE = Converter::stringToInt(value);
+			Debug::note("setting FRAME_HISTORY_SIZE to " + Converter::intToString(FRAME_HISTORY_SIZE));
 		}
 		else
 		{

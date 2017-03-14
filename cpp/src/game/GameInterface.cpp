@@ -22,7 +22,7 @@
 #include <entity/TestKiste.hpp>
 
 GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers, long int startTime_arg)
-	: frameCounter(0), startTime(startTime_arg), restrictedGameInterface(this), mainFrame(map, lobbyPlayers, &restrictedGameInterface)
+	: frameCounter(0), startTime(startTime_arg), restrictedGameInterface(this), mainFrame(map, lobbyPlayers, &restrictedGameInterface), history(global::FRAME_HISTORY_SIZE)
 {
 	Debug::note("------------ [ GAME ON ] ------------");
 	tileMap = mainFrame.tileMap;
@@ -38,6 +38,8 @@ GameInterface::~GameInterface()
 
 void GameInterface::tick()
 {
+	history.add(mainFrame.clone());
+
 	if (frameCounter++ % 100 == 0)
 	{
 		system("paplay /usr/share/sounds/ubuntu/notifications/Blip.ogg &");

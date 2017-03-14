@@ -4,7 +4,7 @@
 class CompressBuffer;
 
 #include <misc/compress/Compressable.hpp>
-#include <game/FrameCloneable.hpp>
+#include <game/frame/FrameCloneable.hpp>
 #include <string>
 #include "Actions.hpp"
 

@@ -35,6 +35,7 @@ namespace global
 	extern std::string AUTO_SKILLS;
 	extern std::string SKIP_LOBBY_MAP;
 	extern bool PACKET_SOUND;
+	extern int FRAME_HISTORY_SIZE;
 
 	extern long int unix_micros();
 	extern long int unix_millis();
