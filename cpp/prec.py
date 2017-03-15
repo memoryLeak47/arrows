@@ -15,7 +15,8 @@ dir = sys.argv[1].strip("/") + "/"
 files = Files()
 # add code here
 
-for subclass in get_subclasses("FrameCloneable", files):
+frame_cloneables = get_subclasses("FrameCloneable", files)
+for subclass in frame_cloneables:
 	s = files.structuredict[subclass]
 	cpp = s.file.replace(".hpp", ".cpp")
 
@@ -29,8 +30,12 @@ for subclass in get_subclasses("FrameCloneable", files):
 		add_to_file(cpp, string, files)
 
 	# add cloneMembers()
-	add_to_class_def(subclass, "private: void cloneMembers(std::map<FrameCloneable*, FrameCloneable*>*); private: ", files)
+	add_to_class_def(subclass, "protected: void cloneMembers(std::map<FrameCloneable*, FrameCloneable*>*); private: ", files)
 	string = "void " + subclass + "::cloneMembers(std::map<FrameCloneable*, FrameCloneable*>* map) {"
+	for supername in s.superstructures:
+		superstructure = files.structuredict[supername]
+		if superstructure.name in frame_cloneables:
+			string += superstructure.name + "::cloneMembers(map);"
 	l = s.get_member_markers(files)
 	if "pointer_clone" in l:
 		for marker in l["pointer_clone"]:

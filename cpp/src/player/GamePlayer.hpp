@@ -43,7 +43,7 @@ class GamePlayer : public Mob
 	private:
 		void setActions(const Actions actions); // => Controller::setActions(actions); used in {C,G}GameInterface
 
-		sf::IpAddress* ip;
+		sf::IpAddress* $$clone_pointer$$ ip $!clone_pointer$$;
 		std::string name;
 		int rank;
 		Team* team;

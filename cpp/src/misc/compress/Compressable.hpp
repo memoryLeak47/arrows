@@ -6,7 +6,7 @@
 #include <vector>
 #include <entity/TileID.hpp>
 
-class Compressable // represents Compressable.java and Compressor.java
+class Compressable
 {
 	public:
 		virtual ~Compressable() {}
