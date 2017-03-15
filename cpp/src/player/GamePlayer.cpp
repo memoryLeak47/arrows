@@ -71,9 +71,7 @@ GamePlayer::GamePlayer(const EntityGivethrough& gt, const LobbyPlayer* player, R
 }
 
 GamePlayer::~GamePlayer()
-{
-	delete ip;
-}
+{}
 
 std::string GamePlayer::getCompressString() const
 {
