@@ -40,11 +40,11 @@ for subclass in frame_cloneables:
 	if "clone" in l:
 		for marker in l["clone"]:
 			content = get_marker_content(marker, s.file, files)
-			string += "if (map->find(" + content + ") == map->end()) { (*map)[" + content + "] = " + content + "->clone(map); } " + content + " = (*map)[" + content + "]; "
+			string += "if (map->find(" + content + ") == map->end()) { (*map)[" + content + "] = " + content + "->clone(map); } " + content + " = static_cast<decltype(" + content + ")>((*map)[" + content + "]); "
 	if "clone_list" in l:
 		for marker in l["clone_list"]:
 			content = get_marker_content(marker, s.file, files)
-			string += "for (unsigned int i = 0; i < " + content + ".size(); i++) { if (map->find(" + content + "[i]) == map->end()) { (*map)[" + content + "[i]] = " + content + "[i]->clone(map); } " + content + "[i] = (*map)[" + content + "[i]]; }"
+			string += "for (unsigned int i = 0; i < " + content + ".size(); i++) { if (map->find(" + content + "[i]) == map->end()) { (*map)[" + content + "[i]] = " + content + "[i]->clone(map); } " + content + "[i] = static_cast<decltype(" + content + ")::value_type>((*map)[" + content + "[i]]); }"
 
 	string += "}"
 	add_to_file(cpp, string, files)

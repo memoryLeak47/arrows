@@ -3,6 +3,7 @@
 #include <entity/Bullet.hpp>
 #include <skill/LobbySkill.hpp>
 #include <game/RestrictedGameInterface.hpp>
+#include <entity/Mob.hpp>
 
 Skill::Skill(const SkillGivethrough& gt)
 	: owner(gt.owner),

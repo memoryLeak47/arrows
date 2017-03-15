@@ -43,12 +43,12 @@ class GamePlayer : public Mob
 	private:
 		void setActions(const Actions actions); // => Controller::setActions(actions); used in {C,G}GameInterface
 
-		sf::IpAddress* $$clone$$ ip $!clone$$;
+		sf::IpAddress* ip;
 		std::string name;
 		int rank;
 		Team* team;
 		std::vector<Skill*> $$clone_list$$ skills $!clone_list$$;
-		std::vector<Item*> $$clone_list$$ items $!clone_list$$;
+		std::vector<Item*> items; // TODO clone_list
 
 		// lobby avatar data
 		std::string description;

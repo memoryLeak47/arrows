@@ -37,7 +37,7 @@ class Skill : public FrameCloneable
 		Mob* getOwner() const;
 		void addBullet(Bullet*);
 	private:
-		Mob* $$clone_list$$ owner $!clone_list$$;
+		Mob* $$clone$$ owner $!clone$$;
 		bool enabled;
 		float charge;
 

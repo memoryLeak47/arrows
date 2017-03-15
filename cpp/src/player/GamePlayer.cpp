@@ -4,10 +4,10 @@
 #include <misc/Global.hpp>
 #include <controller/PlayerController.hpp>
 #include <avatar/LobbyAvatar.hpp>
+#include <skill/Skill.hpp>
 #include <skill/LobbySkill.hpp>
-#include <skill/Skill.hpp>
 #include <item/LobbyItem.hpp>
-#include <skill/Skill.hpp>
+#include <item/Item.hpp>
 #include <collision/Shape.hpp>
 #include <entity/EntityGivethrough.hpp>
 
