@@ -48,7 +48,7 @@ class GamePlayer : public Mob
 		int rank;
 		Team* team;
 		std::vector<Skill*> $$clone_list$$ skills $!clone_list$$;
-		std::vector<Item*> items; // TODO clone_list
+		std::vector<Item*> $$clone_list$$ items $!clone_list$$;
 
 		// lobby avatar data
 		std::string description;

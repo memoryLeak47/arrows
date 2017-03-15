@@ -10,8 +10,9 @@ struct ItemGivethrough
 
 #include <string>
 #include <graphics/TextureID.hpp>
+#include <game/frame/FrameCloneable.hpp>
 
-class Item
+class Item : public FrameCloneable
 {
 	public:
 		Item(const ItemGivethrough&);
