@@ -4,7 +4,7 @@ FLAGS="--std=c++14 -Wall -lm -lsfml-graphics -lsfml-system -lsfml-network -lsfml
 
 if [ "$1" == debug ]; then
 	mode=debug
-	FLAGS+=" -D DEBUG"
+	FLAGS+=" -D DEBUG -O0 -g"
 elif [ "$1" == release ]; then
 	mode=release
 	FLAGS+=" -O3"
