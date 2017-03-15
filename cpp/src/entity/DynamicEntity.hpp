@@ -26,8 +26,8 @@ class DynamicEntity : public Entity
 		virtual bool hasWrapperPartner(Entity* e) const override;
 	private:
 		bool changed;
-		std::vector<Entity*> $$clone_pointer_list$$ collisionPartners $!clone_pointer_list$$;
-		std::vector<Entity*> $$clone_pointer_list$$ wrapperPartners $!clone_pointer_list$$;
+		std::vector<Entity*> $$clone_list$$ collisionPartners $!clone_list$$;
+		std::vector<Entity*> $$clone_list$$ wrapperPartners $!clone_list$$;
 
 	friend class ClientGameInterface; // needed to update (w/c)partners on GameUpdatePacket
 };

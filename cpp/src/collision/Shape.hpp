@@ -33,7 +33,7 @@ class Shape : public Compressable, public FrameCloneable
 		virtual void reactToCollision_solid(const float, const GameVector&, const GameVector&, float) = 0;
 		virtual void reactToCollision_sticky(const float, const GameVector&, const GameVector&);
 	protected:
-		Entity* $$clone_pointer$$ entity $!clone_pointer$$;
+		Entity* $$clone$$ entity $!clone$$;
 
 	friend class ImpactfulDynamicEntity;
 };

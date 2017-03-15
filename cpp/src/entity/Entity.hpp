@@ -130,7 +130,7 @@ class Entity : public FrameCloneable
 		PixelRect getRenderRect(const View&) const;
 
 		// should not be protected: XXX
-		Shape* $$clone_pointer$$ shape $!clone_pointer$$;
+		Shape* $$clone$$ shape $!clone$$;
 		GameVector position, size, speed;
 		float rotation, spin;
 		int dashCounter;

@@ -30,7 +30,7 @@ class Mob : public ImpactfulDynamicEntity
 		virtual void optSetSkillEnabled(int, bool); // called from applyActions(); only used in GamePlayer
 		Controller* getController() const;
 
-		Controller* $$clone_pointer$$ controller $!clone_pointer$$;
+		Controller* $$clone$$ controller $!clone$$;
 	private:
 		void applyActions();
 

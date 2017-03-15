@@ -17,7 +17,7 @@ class Bullet : public Idler
 
 		Mob* getOwner() const;
 	private:
-		Mob* $$clone_pointer_list$$ owner $!clone_pointer_list$$;
+		Mob* $$clone_list$$ owner $!clone_list$$;
 };
 $!abstract$$
 

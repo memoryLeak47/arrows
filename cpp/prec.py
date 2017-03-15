@@ -37,17 +37,16 @@ for subclass in frame_cloneables:
 		if superstructure.name in frame_cloneables:
 			string += superstructure.name + "::cloneMembers(map);"
 	l = s.get_member_markers(files)
-	if "pointer_clone" in l:
-		for marker in l["pointer_clone"]:
+	if "clone" in l:
+		for marker in l["clone"]:
 			content = get_marker_content(marker, s.file, files)
-			string += "if (map->find(" + content + ") == map->end()) { map[" + content + "] = " + content + "->clone(); } " + content + " = map[" + content + "]; "
-	if "pointer_list_clone" in l:
-		for marker in l["pointer_list_clone"]:
+			string += "if (map->find(" + content + ") == map->end()) { (*map)[" + content + "] = " + content + "->clone(map); } " + content + " = (*map)[" + content + "]; "
+	if "clone_list" in l:
+		for marker in l["clone_list"]:
 			content = get_marker_content(marker, s.file, files)
-			string += "for (unsigned int i = 0; i < " + content + ".size(); i++) { if (map->find(" + content + "[i]) == map->end()) { map[" + content + "[i]] = " + content + "[i]->clone(); } " + content + "[i] = map[" + content + "[i]]; }"
+			string += "for (unsigned int i = 0; i < " + content + ".size(); i++) { if (map->find(" + content + "[i]) == map->end()) { (*map)[" + content + "[i]] = " + content + "[i]->clone(map); } " + content + "[i] = (*map)[" + content + "[i]]; }"
 
 	string += "}"
 	add_to_file(cpp, string, files)
-		
 # 
 files.writeback()

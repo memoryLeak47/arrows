@@ -41,9 +41,9 @@ class Frame : public FrameCloneable
 		void tickEntities();
 		void tickPhysics();
 
-		std::vector<GamePlayer*> $$clone_pointer_list$$ players $!clone_pointer_list$$;
-		std::vector<Idler*> $$clone_pointer_list$$ idlers $!clone_pointer_list$$;
-		std::vector<Mob*> $$clone_pointer_list$$ mobs $!clone_pointer_list$$;
+		std::vector<GamePlayer*> $$clone_list$$ players $!clone_list$$;
+		std::vector<Idler*> $$clone_list$$ idlers $!clone_list$$;
+		std::vector<Mob*> $$clone_list$$ mobs $!clone_list$$;
 		GameTileMap* tileMap;
 
 	friend class GameInterface;
