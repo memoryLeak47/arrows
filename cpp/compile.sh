@@ -151,7 +151,6 @@ fi
 for obj in $(cd ./build/$mode/obj; find -name "*.o")
 do
 	if [[ ! $cpp_files =~ ${obj%.o}.cpp ]]; then
-		echo "removing obsolete $obj"
 		rm build/$mode/obj/$obj
 	fi
 done
