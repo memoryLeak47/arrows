@@ -52,12 +52,12 @@ do
 	# if the check file exists and matches
 	if [ -f "$check_file" ] && [ "$(cat "$check_file")" == "${filehashes["$file"]}" ]; then
 		# and the file is not a .cpp, which didn't compile last time
-		if [[ ! $file =~ .*".cpp" ]] || [[ -f build/$mode/obj/${file%.cpp}.o ]]; then
+		if [[ ! "$file" =~ .cpp ]] || [[ -f build/$mode/obj/${file%.cpp}.o ]]; then
 			continue
 		fi
 	fi
 
-	if [[ "$file" =~ *.cpp ]]; then
+	if [[ "$file" =~ .cpp ]]; then
 		changed_cpp_files+=" $file"
 	else
 		changed_hpp_files+=" $file"
@@ -88,7 +88,7 @@ do
 		for target in $(sed 's/ //g' <<< "$(echo "$incgrep" | grep "[</\"]$hpp")")
 		do
 			target=${target%%:*}
-			if [[ $target =~ .*".cpp" ]]; then
+			if [[ "$target" =~ .cpp ]]; then
 				if [[ ! $changed_cpp_files =~ $target ]]; then
 					changed_cpp_files+=" $target"
 				fi
