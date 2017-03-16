@@ -1,5 +1,7 @@
 #include "Bullet.hpp"
 
+#include <entity/Mob.hpp>
+
 Bullet::Bullet(const EntityGivethrough& gt, Mob* o)
 	: Idler(gt), owner(o)
 {}

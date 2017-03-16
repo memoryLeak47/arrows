@@ -195,6 +195,20 @@ def insert_into_file(filename, content, index, files):
 			else:
 				files.markerdict[filename][markername] = [(l, r)]
 
+	for structurename in get_structurenames_from_filename(filename, files):
+		s = files.structuredict[structurename]
+		if s.index > index:
+			s.index += len(content)
+			s.end_index += len(content)
+		elif s.end_index > index:
+			s.end_index += len(content)
+
+def get_structurenames_from_filename(filename, files):
+	x = list()
+	for s in files.structuredict.values():
+		if s.file == filename:
+			x.append(s.name)
+	return x
 
 def add_to_class_def(classname, content, files):
 	s = files.structuredict[classname]
