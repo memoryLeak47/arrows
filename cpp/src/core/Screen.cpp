@@ -129,6 +129,6 @@ void Screen::drawText(const std::string& str, const PixelVector& position, const
 {
 	text.setString(str);
 	text.setPosition(position.x, position.y);
-	text.setColor(color);
+	text.setFillColor(color);
 	window->draw(text);
 }
