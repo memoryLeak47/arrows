@@ -14,7 +14,7 @@ class NetworkDevice
 {
 	public:
 		NetworkDevice(); // binds socket
-		void send(Packet*, sf::IpAddress* ip);
+		void send(Packet*, const sf::IpAddress& ip);
 		void receive();
 
 		void pushInterface(NetworkInterface* interface);

@@ -33,14 +33,7 @@ GamePlayer::GamePlayer(const EntityGivethrough& gt, const LobbyPlayer* player, R
 	  iconTextureID(LobbyAvatar::get(player->getAvatarPacket()->getAvatarID())->getIconTextureID()),
 	  restrictedGameInterface(rgi)
 {
-	if (player->getIP() == nullptr)
-	{
-		ip = nullptr;
-	}
-	else
-	{
-		ip = new sf::IpAddress(*player->getIP());
-	}
+	ip = player->getIP();
 
 	team = player->getTeamPacket()->getTeam();
 	for (unsigned int i = 0; i < player->getSkillPacket()->getPlayerProperties().size(); i++)
@@ -93,7 +86,7 @@ void GamePlayer::renderBar(const View&) const
 	// TODO
 }
 
-sf::IpAddress* GamePlayer::getIP() const
+const sf::IpAddress& GamePlayer::getIP() const
 {
 	return ip;
 }

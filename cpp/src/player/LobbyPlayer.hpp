@@ -20,12 +20,12 @@ class LobbyPlayer : public Compressable
 	public:
 		LobbyPlayer(LobbyPlayer*);
 		LobbyPlayer(const LobbyPlayer&);
-		LobbyPlayer(LoginPacket*, sf::IpAddress*);
+		LobbyPlayer(LoginPacket*, const sf::IpAddress&);
 		LobbyPlayer(LoginPacket*);
 		LobbyPlayer(CompressBuffer*);
 
 		virtual ~LobbyPlayer();
-		sf::IpAddress* getIP() const;
+		const sf::IpAddress& getIP() const;
 		LockPacket* getLockPacket() const;
 		TeamPacket* getTeamPacket() const;
 		LoginPacket* getLoginPacket() const;
@@ -50,7 +50,7 @@ class LobbyPlayer : public Compressable
 		AvatarPacket* avatarPacket;
 		SkillPacket* skillPacket;
 		ItemPacket* itemPacket;
-		sf::IpAddress* ip;
+		sf::IpAddress ip;
 };
 
 #endif

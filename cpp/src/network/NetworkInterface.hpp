@@ -13,10 +13,10 @@ class NetworkInterface
 		NetworkInterface();
 		virtual ~NetworkInterface();
 		void handleAllPackets();
-		void receivePacket(Packet* p, sf::IpAddress*);
-		virtual void handlePacket(Packet* p, sf::IpAddress*) = 0;
+		void receivePacket(Packet* p, const sf::IpAddress&);
+		virtual void handlePacket(Packet* p, const sf::IpAddress&) = 0;
 	protected:
-		void send(Packet*, sf::IpAddress*) const;
+		void send(Packet*, const sf::IpAddress&) const;
 	private:
 		std::vector<PacketAndIP*>& getPackets();
 		std::vector<PacketAndIP*> packets;

@@ -58,7 +58,7 @@ void GameInterface::tick()
 	Menu::tick();
 }
 
-int GameInterface::ipToID(sf::IpAddress* ip) const
+int GameInterface::ipToID(const sf::IpAddress& ip) const
 {
 	if (ip == nullptr)
 	{
@@ -75,7 +75,7 @@ int GameInterface::ipToID(sf::IpAddress* ip) const
 		if (mainFrame.players[i] == getLocalPlayer())
 			continue;
 
-		if (*(mainFrame.players[i])->getIP() == *ip)
+		if (mainFrame.players[i]->getIP() == ip)
 		{
 			return i;
 		}

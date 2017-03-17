@@ -16,9 +16,9 @@ class Idler;
 class ClientGameInterface : public GameInterface
 {
 	public:
-		ClientGameInterface(LobbyTileMap*, const std::vector<LobbyPlayer*>&, int playerID, sf::IpAddress*, long int unixTime_arg);
+		ClientGameInterface(LobbyTileMap*, const std::vector<LobbyPlayer*>&, int playerID, const sf::IpAddress&, long int unixTime_arg);
 		virtual ~ClientGameInterface();
-		void handlePacket(Packet*, sf::IpAddress*) override;
+		void handlePacket(Packet*, const sf::IpAddress&) override;
 		virtual void tick() override;
 	protected:
 		virtual GamePlayer* getLocalPlayer() const override;
@@ -26,7 +26,7 @@ class ClientGameInterface : public GameInterface
 		void applyGameUpdate(const std::vector<std::string>&, const std::vector<Mob*>&, const std::vector<Idler*>&);
 
 		Actions serverActionsStatus;
-		sf::IpAddress* serverIP;
+		sf::IpAddress serverIP;
 		unsigned int localPlayerID;
 };
 

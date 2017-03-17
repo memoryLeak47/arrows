@@ -1,21 +1,19 @@
 #include "PacketAndIP.hpp"
 
-PacketAndIP::PacketAndIP(Packet* packet, sf::IpAddress* ipArg) : packet(packet)
+PacketAndIP::PacketAndIP(Packet* packet, const sf::IpAddress& ipArg) : packet(packet)
 {
-	ip = new sf::IpAddress(*ipArg);
+	ip = ipArg;
 }
 
 PacketAndIP::~PacketAndIP()
-{
-	delete ip;
-} // should not delete packet
+{} // should not delete packet
 
 Packet* PacketAndIP::getPacket()
 {
 	return packet;
 }
 
-sf::IpAddress* PacketAndIP::getIP()
+const sf::IpAddress& PacketAndIP::getIP()
 {
 	return ip;
 }

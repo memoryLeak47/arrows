@@ -8,13 +8,13 @@ class Packet;
 class PacketAndIP
 {
 	public:
-		PacketAndIP(Packet*, sf::IpAddress*);
+		PacketAndIP(Packet*, const sf::IpAddress&);
 		virtual ~PacketAndIP();
 		Packet* getPacket();
-		sf::IpAddress* getIP();
+		const sf::IpAddress& getIP();
 	private:
 		Packet* packet;
-		sf::IpAddress* ip;
+		sf::IpAddress ip;
 };
 
 #endif

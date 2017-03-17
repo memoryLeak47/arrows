@@ -73,7 +73,7 @@ void ServerLobbyMenu::mapSelected()
 	unlockAll();
 }
 
-void ServerLobbyMenu::handlePacket(Packet* packet, sf::IpAddress* ip)
+void ServerLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
 {
 	if (packet->getCompressID() == CompressIDs::LOCK_PACKET)
 	{
@@ -226,7 +226,7 @@ void ServerLobbyMenu::handleTeamPacket(TeamPacket* packet, int id)
 	updatePlayerIcons();
 }
 
-void ServerLobbyMenu::handleLoginPacket(LoginPacket* packet, sf::IpAddress* ip)
+void ServerLobbyMenu::handleLoginPacket(LoginPacket* packet, const sf::IpAddress& ip)
 {
 	if (ipToID(ip, getPlayers()) == -1) // Wenn es noch keinen Spieler mit dieser IP gibt
 	{

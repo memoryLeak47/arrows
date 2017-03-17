@@ -34,7 +34,7 @@ class GamePlayer : public Mob
 
 		Actions getActions() const; // => Controller::getActions()
 		virtual void renderBar(const View&) const override;
-		sf::IpAddress* getIP() const;
+		const sf::IpAddress& getIP() const;
 
 		virtual void tick() override;
 	protected:
@@ -43,7 +43,7 @@ class GamePlayer : public Mob
 	private:
 		void setActions(const Actions actions); // => Controller::setActions(actions); used in {C,G}GameInterface
 
-		sf::IpAddress* ip; // XXX memoryleak
+		sf::IpAddress ip;
 		std::string name;
 		int rank;
 		Team* team;

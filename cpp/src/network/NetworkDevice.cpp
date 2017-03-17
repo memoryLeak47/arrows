@@ -12,7 +12,7 @@ NetworkDevice::NetworkDevice()
 	socket.bind(PORT);
 }
 
-void NetworkDevice::send(Packet* packet, sf::IpAddress* ip)
+void NetworkDevice::send(Packet* packet, const sf::IpAddress& ip)
 {
 	if (packet == nullptr)
 	{
@@ -23,7 +23,7 @@ void NetworkDevice::send(Packet* packet, sf::IpAddress* ip)
 	std::string string = packet->compress();
 	sfmlPacket << string;
 
-	if (socket.send(sfmlPacket, *ip, PORT) != sf::Socket::Done) // send
+	if (socket.send(sfmlPacket, ip, PORT) != sf::Socket::Done) // send
 	{
 		Debug::warn("NetworkDevice::send() failed");
 	}
@@ -98,7 +98,7 @@ void NetworkDevice::receive()
 		return;
 	}
 
-	getNetworkInterface()->receivePacket(packet, &ip);
+	getNetworkInterface()->receivePacket(packet, ip);
 }
 
 NetworkInterface* NetworkDevice::getNetworkInterface() const

@@ -91,16 +91,16 @@ void LobbyMenu::tick()
 	updateLockButton();
 }
 
-int LobbyMenu::ipToID(sf::IpAddress* ip, const std::vector<LobbyPlayer*>& players) const
+int LobbyMenu::ipToID(const sf::IpAddress& ip, const std::vector<LobbyPlayer*>& players) const
 {
 	for (unsigned int i = 0; i < players.size(); i++)
 	{
-		if ((*players[i]->getIP()) == (*ip))
+		if (players[i]->getIP() == ip)
 		{
 			return i;
 		}
 	}
-	Debug::warn("LobbyMenu::ipToID(): no Player with this ip: " + ip->toString());
+	Debug::warn("LobbyMenu::ipToID(): no Player with this ip: " + ip.toString());
 	return -1;
 }
 

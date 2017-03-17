@@ -25,7 +25,7 @@ class ClientLobbyMenu : public LobbyMenu
 	public:
 		ClientLobbyMenu(const std::string&);
 		~ClientLobbyMenu();
-		virtual void handlePacket(Packet*, sf::IpAddress*) override;
+		virtual void handlePacket(Packet*, const sf::IpAddress&) override;
 		void handlePacketByID(Packet*, int);
 		virtual LobbyPlayer* getLocalPlayer() const override;
 		virtual void lockPressed() override;
@@ -47,7 +47,7 @@ class ClientLobbyMenu : public LobbyMenu
 		virtual void playerPropertySelected(PlayerPropertyPacket*) override;
 	private:
 		int localPlayerID;
-		sf::IpAddress* serverIP;
+		sf::IpAddress serverIP;
 };
 
 #endif

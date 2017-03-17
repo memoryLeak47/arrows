@@ -25,7 +25,7 @@ class ServerLobbyMenu : public LobbyMenu
 	public:
 		ServerLobbyMenu();
 		virtual ~ServerLobbyMenu();
-		virtual void handlePacket(Packet*, sf::IpAddress*) override;
+		virtual void handlePacket(Packet*, const sf::IpAddress&) override;
 		virtual LobbyPlayer* getLocalPlayer() const override;
 		virtual void lockPressed() override;
 		virtual void disconnectPressed() override;
@@ -34,7 +34,7 @@ class ServerLobbyMenu : public LobbyMenu
 		void handleLockPacket(LockPacket*, int);
 		void handleDisconnectPacket(DisconnectPacket*, int);
 		void handleTeamPacket(TeamPacket*, int);
-		void handleLoginPacket(LoginPacket*, sf::IpAddress*);
+		void handleLoginPacket(LoginPacket*, const sf::IpAddress&);
 		void handleAvatarPacket(AvatarPacket*, int);
 		void handleSkillPacket(SkillPacket*, int);
 		void handleItemPacket(ItemPacket*, int);

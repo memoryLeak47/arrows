@@ -31,7 +31,7 @@ class GameInterface : public Menu, public NetworkInterface
 		virtual void render() const override;
 
 	protected:
-		int ipToID(sf::IpAddress*) const;
+		int ipToID(const sf::IpAddress&) const;
 		virtual GamePlayer* getLocalPlayer() const = 0;
 		GameTileMap* getGameTileMap() const;
 		Actions calcActions() const;

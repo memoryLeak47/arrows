@@ -25,12 +25,12 @@ void NetworkInterface::handleAllPackets()
 	deleteAndClearVector(packets);
 }
 
-void NetworkInterface::send(Packet* packet, sf::IpAddress* ip) const
+void NetworkInterface::send(Packet* packet, const sf::IpAddress& ip) const
 {
 	Main::getNetworkDevice()->send(packet, ip);
 }
 
-void NetworkInterface::receivePacket(Packet* packet, sf::IpAddress* ip)
+void NetworkInterface::receivePacket(Packet* packet, const sf::IpAddress& ip)
 {
 	packets.push_back(new PacketAndIP(packet, ip));
 }

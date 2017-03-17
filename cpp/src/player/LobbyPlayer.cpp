@@ -13,7 +13,7 @@
 
 LobbyPlayer::LobbyPlayer(LobbyPlayer* player)
 {
-	ip = new sf::IpAddress(*player->getIP());
+	ip = player->getIP();
 	lockPacket = new LockPacket(*player->lockPacket);
 	teamPacket = new TeamPacket(*player->teamPacket);
 	loginPacket = new LoginPacket(*player->loginPacket);
@@ -27,9 +27,9 @@ LobbyPlayer::LobbyPlayer(const LobbyPlayer& player)
 	Debug::error("DONT USE LobbyPlayer::LobbyPlayer(const LobbyPlayer&); USE THE POINTER STUFF");
 }
 
-LobbyPlayer::LobbyPlayer(LoginPacket* login, sf::IpAddress* ipArg)
+LobbyPlayer::LobbyPlayer(LoginPacket* login, const sf::IpAddress& ipArg)
 {
-	ip = new sf::IpAddress(*ipArg);
+	ip = ipArg;
 	lockPacket = new LockPacket(false);
 	teamPacket = new TeamPacket((char)0);
 	itemPacket = new ItemPacket();
@@ -40,7 +40,7 @@ LobbyPlayer::LobbyPlayer(LoginPacket* login, sf::IpAddress* ipArg)
 
 LobbyPlayer::LobbyPlayer(LoginPacket* login)
 {
-	ip = new sf::IpAddress(sf::IpAddress::getLocalAddress());
+	ip = sf::IpAddress::getLocalAddress();
 	lockPacket = new LockPacket(false);
 	teamPacket = new TeamPacket((char)0);
 	itemPacket = new ItemPacket();
@@ -68,10 +68,9 @@ LobbyPlayer::~LobbyPlayer()
 	deleteAndNullptr(avatarPacket);
 	deleteAndNullptr(skillPacket);
 	deleteAndNullptr(itemPacket);
-	deleteAndNullptr(ip);
 }
 
-sf::IpAddress* LobbyPlayer::getIP() const
+const sf::IpAddress& LobbyPlayer::getIP() const
 {
 	return ip;
 }

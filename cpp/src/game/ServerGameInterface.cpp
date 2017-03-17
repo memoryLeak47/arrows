@@ -12,7 +12,7 @@ ServerGameInterface::ServerGameInterface(LobbyTileMap* map, const std::vector<Lo
 ServerGameInterface::~ServerGameInterface()
 {}
 
-void ServerGameInterface::handlePacket(Packet* packet, sf::IpAddress* ip)
+void ServerGameInterface::handlePacket(Packet* packet, const sf::IpAddress& ip)
 {
 	switch (packet->getCompressID())
 	{

@@ -10,19 +10,23 @@
 #include <network/packets/ChangeActionsPacket.hpp>
 #include <network/packets/PacketWithID.hpp>
 
-ClientGameInterface::ClientGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players, int playerID, sf::IpAddress* ip, long int unixTime_arg)
+ClientGameInterface::ClientGameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& players, int playerID, const sf::IpAddress& ip, long int unixTime_arg)
 	: GameInterface(map, players, unixTime_arg), localPlayerID(playerID)
 {
-	serverIP = new sf::IpAddress(*ip);
+	serverIP = ip;
 }
 
 ClientGameInterface::~ClientGameInterface()
-{
-	delete serverIP;
-}
+{}
 
-void ClientGameInterface::handlePacket(Packet* packet, sf::IpAddress* ipAddress)
+void ClientGameInterface::handlePacket(Packet* packet, const sf::IpAddress& ipAddress)
 {
+	if (ipAddress != serverIP) {
+		Debug::warn("received packet, not coming from server");
+		delete packet;
+		return;
+	}
+
 	switch (packet->getCompressID())
 	{
 		case CompressIDs::PACKET_WITH_ID:

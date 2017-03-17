@@ -24,27 +24,25 @@
 ClientLobbyMenu::ClientLobbyMenu(const std::string& ip)
 	: LobbyMenu("Lock"), localPlayerID(-1)
 {
-	serverIP = new sf::IpAddress(ip);
+	serverIP = ip;
 	LoginPacket* p = new LoginPacket(Main::getName(), Main::getRank());
 	sendToServer(p);
 	deleteAndNullptr(p);
 }
 
 ClientLobbyMenu::~ClientLobbyMenu()
-{
-	delete serverIP;
-}
+{}
 
 LobbyPlayer* ClientLobbyMenu::getLocalPlayer() const
 {
 	return getPlayer(localPlayerID);
 }
 
-void ClientLobbyMenu::handlePacket(Packet* packet, sf::IpAddress* ip)
+void ClientLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
 {
 	if (packet == nullptr) Debug::warn("ClientLobbyMenu::handlePacket(): packet == nullptr");
 
-	if ((*ip) == (*serverIP))
+	if (ip == serverIP)
 	{
 		handlePacketByID(packet, 0);
 	}
