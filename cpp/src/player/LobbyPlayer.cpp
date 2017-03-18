@@ -51,7 +51,7 @@ LobbyPlayer::LobbyPlayer(LoginPacket* login)
 
 LobbyPlayer::LobbyPlayer(CompressBuffer* buffer)
 {
-	ip = nullptr;
+	ip = sf::IpAddress::None;
 	lockPacket = static_cast<LockPacket*>(buffer->cutByCompressID(CompressIDs::LOCK_PACKET));
 	teamPacket = static_cast<TeamPacket*>(buffer->cutByCompressID(CompressIDs::TEAM_PACKET));
 	loginPacket = static_cast<LoginPacket*>(buffer->cutByCompressID(CompressIDs::LOGIN_PACKET));

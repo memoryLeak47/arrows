@@ -60,16 +60,16 @@ void GameInterface::tick()
 
 int GameInterface::ipToID(const sf::IpAddress& ip) const
 {
-	if (ip == nullptr)
+	if (ip == sf::IpAddress::None)
 	{
-		Debug::error("GameInterface::ipToID(): ip == nullptr");
+		Debug::error("GameInterface::ipToID(): ip is none");
 	}
 
 	for (unsigned int i = 0; i < mainFrame.players.size(); i++)
 	{
-		if (mainFrame.players[i]->getIP() == nullptr)
+		if (mainFrame.players[i]->getIP() == sf::IpAddress::None)
 		{
-			Debug::error("GameInterface::ipToID(): ip of player(" + Converter::intToString(i) + ") is nullptr");
+			Debug::error("GameInterface::ipToID(): ip of player(" + Converter::intToString(i) + ") is none");
 		}
 
 		if (mainFrame.players[i] == getLocalPlayer())
