@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FLAGS="--std=c++14 -Wall -lm -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window"
+FLAGS="--std=c++14 -Wall -lm -lsfml-graphics -lsfml-system -lsfml-network -lsfml-window -pthread"
 
 if [ "$1" == debug ]; then
 	mode=debug

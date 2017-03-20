@@ -1,5 +1,7 @@
 #include "FrameHistory.hpp"
 
+#include <misc/Debug.hpp>
+
 unsigned int modulo(int n, const unsigned int m)
 {
 	n %= m;
@@ -44,6 +46,11 @@ void FrameHistory::add(Frame* f)
 
 Frame* FrameHistory::getFrameSince(const unsigned int since) const
 {
+	if (size < since)
+	{
+		Debug::warn("FrameHistory::getFrameSince(): size < since");
+		return nullptr;
+	}
 	const unsigned int index = modulo((counter-1)-since, size);
 	return history[index];
 }
