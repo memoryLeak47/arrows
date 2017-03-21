@@ -16,7 +16,7 @@ class ServerGameInterface : public GameInterface
 		ServerGameInterface(LobbyTileMap*, const std::vector<LobbyPlayer*>&, long int startTime_arg);
 		virtual ~ServerGameInterface();
 		void handlePacket(Packet*, const sf::IpAddress&) override;
-		virtual void tick() override;
+		virtual void subTick() override;
 	protected:
 		virtual GamePlayer* getLocalPlayer() const override;
 };

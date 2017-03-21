@@ -19,7 +19,7 @@ class ClientGameInterface : public GameInterface
 		ClientGameInterface(LobbyTileMap*, const std::vector<LobbyPlayer*>&, int playerID, const sf::IpAddress&, long int unixTime_arg);
 		virtual ~ClientGameInterface();
 		void handlePacket(Packet*, const sf::IpAddress&) override;
-		virtual void tick() override;
+		virtual void subTick() override;
 	protected:
 		virtual GamePlayer* getLocalPlayer() const override;
 	private:

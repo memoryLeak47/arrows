@@ -21,13 +21,14 @@ class CollisionEvent;
 #include "Calendar.hpp"
 #include "frame/Frame.hpp"
 #include "frame/FrameHistory.hpp"
+#include "frame/FrameHistorian.hpp"
 
 class GameInterface : public Menu, public NetworkInterface
 {
 	public:
 		GameInterface(LobbyTileMap*, const std::vector<LobbyPlayer*>&, long int startTime_arg);
 		virtual ~GameInterface();
-		virtual void tick() override;
+		virtual void tick() override final;
 		virtual void render() const override;
 
 	protected:
@@ -35,17 +36,16 @@ class GameInterface : public Menu, public NetworkInterface
 		virtual GamePlayer* getLocalPlayer() const = 0;
 		GameTileMap* getGameTileMap() const;
 		Actions calcActions() const;
+		void addCalendarEntry(int frame, char playerID, Actions);
+		void backtrack();
+		int getFrameCounter() const;
 		void applyCalendar();
+		virtual void subTick() = 0;
 
-		int frameCounter;
-		const long int startTime;
 	private:
 		RestrictedGameInterface restrictedGameInterface;
 	protected:
 		Frame mainFrame;
-		Calendar calendar;
-	private:
-		FrameHistory history;
 
 		// functions
 		void renderMap() const;
@@ -54,8 +54,11 @@ class GameInterface : public Menu, public NetworkInterface
 		const View& getView() const;
 
 		// elements
+		FrameHistory history;
+		FrameHistorian historian;
 		View view;
 		GameTileMap* tileMap;
+		const long int startTime;
 
 	friend class RestrictedGameInterface;
 };

@@ -37,11 +37,8 @@ void ClientGameInterface::handlePacket(Packet* packet, const sf::IpAddress& ipAd
 				case CompressIDs::CHANGE_ACTIONS_PACKET:
 				{
 					ChangeActionsPacket* cap = pwid->getPacket()->unwrap<ChangeActionsPacket>();
-					calendar.addEntry(cap->getFrameNumber(), pwid->getID(), cap->getActions());
-					if (cap->getFrameNumber() <= frameCounter)
-					{
-						Debug::warn("ClientGameInterface::handlePacket(): should backtrack " + Converter::intToString(std::abs(cap->getFrameNumber() - frameCounter)) + " frames now");
-					}
+					addCalendarEntry(cap->getFrameNumber(), pwid->getID(), cap->getActions());
+					backtrack();
 					delete cap;
 					break;
 				}
@@ -60,14 +57,8 @@ void ClientGameInterface::handlePacket(Packet* packet, const sf::IpAddress& ipAd
 	delete packet;
 }
 
-void ClientGameInterface::tick()
+void ClientGameInterface::subTick()
 {
-	if (startTime > global::unix_millis())
-	{
-		return;
-	}
-	GameInterface::tick();
-
 	handleAllPackets();
 
 	Actions a = calcActions();
@@ -75,10 +66,10 @@ void ClientGameInterface::tick()
 	{
 		// Send
 		serverActionsStatus = a;
-		ChangeActionsPacket packet(a, frameCounter);
+		ChangeActionsPacket packet(a, getFrameCounter());
 		send(&packet, serverIP);
 		// add to Calendar
-		calendar.addEntry(frameCounter, localPlayerID, a);
+		addCalendarEntry(getFrameCounter(), localPlayerID, a);
 	}
 
 	applyCalendar();

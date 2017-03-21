@@ -21,11 +21,8 @@ void ServerGameInterface::handlePacket(Packet* packet, const sf::IpAddress& ip)
 			ChangeActionsPacket* cap = packet->unwrap<ChangeActionsPacket>();
 			int id = ipToID(ip);
 
-			calendar.addEntry(cap->getFrameNumber(), id, cap->getActions());
-			if (cap->getFrameNumber() <= frameCounter)
-			{
-				Debug::warn("ServerGameInterface::handlePacket(): should backtrack " + Converter::intToString(std::abs(cap->getFrameNumber() - frameCounter)) + " frames now");
-			}
+			addCalendarEntry(cap->getFrameNumber(), id, cap->getActions());
+			backtrack();
 
 			PacketWithID pwid(cap, id);
 			for (unsigned int i = 1; i < mainFrame.players.size(); i++)
@@ -45,19 +42,13 @@ void ServerGameInterface::handlePacket(Packet* packet, const sf::IpAddress& ip)
 	delete packet;
 }
 
-void ServerGameInterface::tick()
+void ServerGameInterface::subTick()
 {
-	if (startTime > global::unix_millis())
-	{
-		return;
-	}
-	GameInterface::tick();
-
 	Actions a = calcActions();
 	if (getLocalPlayer()->getActions() != a)
 	{
-		calendar.addEntry(frameCounter, 0, a);
-		ChangeActionsPacket* p = new ChangeActionsPacket(a, frameCounter);
+		addCalendarEntry(getFrameCounter(), 0, a);
+		ChangeActionsPacket* p = new ChangeActionsPacket(a, getFrameCounter());
 		PacketWithID pwid(p, 0);
 
 		for (unsigned int i = 1; i < mainFrame.players.size(); i++)

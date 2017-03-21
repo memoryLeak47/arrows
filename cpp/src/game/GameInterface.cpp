@@ -22,7 +22,7 @@
 #include <entity/TestKiste.hpp>
 
 GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers, long int startTime_arg)
-	: frameCounter(0), startTime(startTime_arg), restrictedGameInterface(this), mainFrame(map, lobbyPlayers, &restrictedGameInterface), history(global::FRAME_HISTORY_SIZE)
+	: restrictedGameInterface(this), mainFrame(map, lobbyPlayers, &restrictedGameInterface), startTime(startTime_arg)
 {
 	Debug::note("------------ [ GAME ON ] ------------");
 	tileMap = mainFrame.tileMap;
@@ -38,11 +38,9 @@ GameInterface::~GameInterface()
 
 void GameInterface::tick()
 {
-	history.add(mainFrame.clone());
-
-	if (frameCounter++ % 100 == 0)
+	if (startTime > global::unix_millis())
 	{
-		system("paplay /usr/share/sounds/ubuntu/notifications/Blip.ogg &");
+		return;
 	}
 
 	struct X {
@@ -52,7 +50,11 @@ void GameInterface::tick()
 			gi->view.changeFocus();
 		}
 	};
-	static X x(this);
+	static X x(this); // XXX make pretty pls
+
+	historian.updateIfReady(mainFrame, &history);
+	subTick();
+	history.add(mainFrame.clone());
 
 	Debug::tickConsole();
 	Menu::tick();
@@ -82,17 +84,6 @@ int GameInterface::ipToID(const sf::IpAddress& ip) const
 	}
 	Debug::error("GameInterface::ipToID(): failed");
 	return -1;
-}
-
-
-void GameInterface::applyCalendar()
-{
-	std::vector<Calendar::Entry> entries = calendar.getEntries(frameCounter);
-	for (auto i = entries.begin(); i != entries.end(); i++)
-	{
-		Calendar::Entry entry = *i;
-		mainFrame.players[entry.playerID]->setActions(entry.actions);
-	}
 }
 
 void GameInterface::render() const
@@ -182,6 +173,26 @@ Actions GameInterface::calcActions() const
 		setAction(&actions, SKILL3, true);
 	}
 	return actions;
+}
+
+void GameInterface::addCalendarEntry(int frame, char playerID, Actions actions)
+{
+	historian.addCalendarEntry(frame, playerID, actions);
+}
+
+void GameInterface::backtrack()
+{
+	historian.backtrack(&history);
+}
+
+int GameInterface::getFrameCounter() const
+{
+	return history.getFrameCounter();
+}
+
+void GameInterface::applyCalendar()
+{
+	mainFrame.applyEntries(historian.getCalendarEntries(getFrameCounter()));
 }
 
 const View& GameInterface::getView() const

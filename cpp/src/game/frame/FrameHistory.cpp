@@ -1,9 +1,9 @@
 #include "FrameHistory.hpp"
 
-#include <misc/Debug.hpp>
+#include <misc/Global.hpp>
 
-FrameHistory::FrameHistory(const unsigned int size_arg)
-	: size(size_arg), addTargetSlot(0), frameCounter(-1)
+FrameHistory::FrameHistory()
+	: size(global::FRAME_HISTORY_SIZE), addTargetSlot(0), frameCounter(-1)
 {
 	history = (Frame**) ::operator new(size*sizeof(Frame*));
 	for (unsigned int i = 0; i < size; i++)
@@ -50,7 +50,7 @@ Frame* FrameHistory::getFrameSince(const unsigned int since) const
 
 FrameHistory* FrameHistory::branch(int branchPoint) const
 {
-	FrameHistory *result = new FrameHistory(size);
+	FrameHistory *result = new FrameHistory();
 
 	for (int i = addTargetSlot; i != frameCounterToIndex(branchPoint); i++)
 	{

@@ -8,7 +8,7 @@
 class FrameHistory
 {
 	public:
-		FrameHistory(const unsigned int size);
+		FrameHistory();
 		~FrameHistory();
 		void add(Frame*);
 		Frame* getFrameSince(const unsigned int offset) const;
