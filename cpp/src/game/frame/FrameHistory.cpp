@@ -26,14 +26,12 @@ FrameHistory::~FrameHistory()
 
 void FrameHistory::add(Frame* f)
 {
-	Frame* item = history[addTargetSlot];
-	if (item != nullptr)
+	if (history[addTargetSlot] != nullptr)
 	{
-		delete item;
+		deleteAndNullptr(history[addTargetSlot]);
 	}
 	history[addTargetSlot] = f;
-	addTargetSlot++;
-	addTargetSlot %= size;
+	addTargetSlot = toIndex(addTargetSlot + 1);
 	frameCounter++;
 }
 
@@ -44,7 +42,7 @@ Frame* FrameHistory::getFrameSince(const unsigned int since) const
 		Debug::warn("FrameHistory::getFrameSince(): size < since");
 		return nullptr;
 	}
-	const unsigned int index = toIndex(getNewestFrameSlot()-since);
+	const unsigned int index = toIndex(getNewestFrameSlot() - since);
 	return history[index];
 }
 
@@ -68,10 +66,12 @@ void FrameHistory::merge(int branchPoint, FrameHistory* sourceHistory)
 {
 	int c = sourceHistory->frameCounterToIndex(branchPoint);
 	// deleting old Frames
-	for (unsigned int i = frameCounterToIndex(branchPoint); i != addTargetSlot; i = toIndex(i+1))
+	for (unsigned int i = frameCounterToIndex(branchPoint); i != addTargetSlot; i = toIndex(i + 1))
 	{
 		if (history[i] != nullptr)
-			delete history[i];
+		{
+			deleteAndNullptr(history[i]);
+		}
 
 		history[i] = sourceHistory->history[toIndex(c)];
 		c++;
