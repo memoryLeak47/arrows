@@ -26,7 +26,7 @@ for subclass in frame_cloneables:
 	# add clone()
 	if not is_surrounded_by_markername(s.index, s.file, "abstract", files):
 		add_to_class_def(subclass, "public:\nFrameCloneable* clone(std::map<FrameCloneable*, FrameCloneable*>*) const override;\nprivate:\n", files)
-		string = "FrameCloneable* " + subclass + "::clone(std::map<FrameCloneable*, FrameCloneable*>* map) const\n{\n" + subclass + " *c = new " + subclass + "(*this);\nc->cloneMembers(map);\nreturn c;\n}\n"
+		string = "FrameCloneable* " + subclass + "::clone(std::map<FrameCloneable*, FrameCloneable*>* map) const\n{\n" + subclass + " *c = new " + subclass + "(*this);\n(*map)[const_cast<FrameCloneable*>(static_cast<const FrameCloneable*>(this))] = c;\nc->cloneMembers(map);\nreturn c;\n}\n"
 		add_to_file(cpp, string, files)
 
 	# add cloneMembers()
@@ -40,11 +40,11 @@ for subclass in frame_cloneables:
 	if "clone" in l:
 		for marker in l["clone"]:
 			content = get_marker_content(marker, s.file, files)
-			string += "if (map->find(" + content + ") == map->end())\n{\n(*map)[" + content + "] = " + content + "->clone(map);\n}\n" + content + " = static_cast<decltype(" + content + ")>((*map)[" + content + "]);\n"
+			string += "if (map->find(" + content + ") == map->end())\n{\n" + content + "->clone(map);\n}\n" + content + " = static_cast<decltype(" + content + ")>((*map)[" + content + "]);\n"
 	if "clone_list" in l:
 		for marker in l["clone_list"]:
 			content = get_marker_content(marker, s.file, files)
-			string += "for (unsigned int i = 0; i < " + content + ".size(); i++)\n{\nif (map->find(" + content + "[i]) == map->end())\n{\n(*map)[" + content + "[i]] = " + content + "[i]->clone(map);\n}\n" + content + "[i] = static_cast<decltype(" + content + ")::value_type>((*map)[" + content + "[i]]);\n}\n"
+			string += "for (unsigned int i = 0; i < " + content + ".size(); i++)\n{\nif (map->find(" + content + "[i]) == map->end())\n{\n" + content + "[i]->clone(map);\n}\n" + content + "[i] = static_cast<decltype(" + content + ")::value_type>((*map)[" + content + "[i]]);\n}\n"
 
 	string += "}\n"
 	add_to_file(cpp, string, files)
