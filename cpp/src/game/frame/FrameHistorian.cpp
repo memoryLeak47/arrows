@@ -9,7 +9,7 @@ FrameHistorian::FrameHistorian()
 void FrameHistorian::addCalendarEntry(int frame, char playerID, Actions actions)
 {
 	calendar.addEntry(frame, playerID, actions);
-	if ((oldestChangePoint == -1 || oldestChangePoint > frame) && (!isBacktracking() || getBacktrackFrameCounter() >= frame))
+	if ((oldestChangePoint == -1 || oldestChangePoint > frame) && (backtrackHistory == nullptr || getBacktrackFrameCounter() >= frame))
 	{
 		oldestChangePoint = frame;
 	}
@@ -85,14 +85,9 @@ void FrameHistorian::updateHistory(FrameHistory* mainFrameHistory)
 	deleteAndNullptr(backtrackHistory);
 }
 
-bool FrameHistorian::isBacktracking() const
-{
-	return branchPoint != -1;
-}
-
 bool FrameHistorian::readyForMerge() const
 {
-	if (!isBacktracking())
+	if (backtrackHistory == nullptr)
 	{
 		return false;
 	}

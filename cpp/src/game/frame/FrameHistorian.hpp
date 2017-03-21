@@ -28,7 +28,6 @@ class FrameHistorian
 		void run();
 
 		void updateHistory(FrameHistory*);
-		bool isBacktracking() const;
 		bool readyForMerge() const;
 		void setNewestMainThreadFrameCounter(int);
 
