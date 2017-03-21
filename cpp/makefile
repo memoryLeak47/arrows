@@ -32,7 +32,7 @@ valgrind:
 
 .PHONY: program_log
 program_log:
-	@if [ -f log ]; then less -R program.log ; else echo "no log file"; fi
+	@if [ -f program.log ]; then less -R program.log ; else echo "no log file"; fi
 
 .PHONY: build_log
 build_log:
