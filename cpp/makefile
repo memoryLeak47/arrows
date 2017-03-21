@@ -1,8 +1,8 @@
 .PHONY: start
-start: compile run
+start: build run
 
 .PHONY: start_release
-start_release: compile_release run_release
+start_release: build_release run_release
 
 .PHONY: run
 run:
@@ -12,13 +12,13 @@ run:
 run_release:
 	@./arrows | tee program.log
 
-.PHONY: compile
-compile:
+.PHONY: build
+build:
 	@tput reset
 	@script -q -c "./compile.sh compile debug" build.log
 
-.PHONY: compile_release
-compile_release:
+.PHONY: build_release
+build_release:
 	@tput reset
 	@script -q -c "./compile.sh compile release" build.log
 
@@ -49,3 +49,15 @@ gdb:
 .PHONY: perf
 perf:
 	@sudo perf stat ./arrows | tee log
+
+.PHONY: create_prec
+create_prec:
+	@./compile.sh unlock debug
+	@cp -r build/debug/buf prec
+	@./compile.sh lock debug
+
+.PHONY: create_prec_release
+create_prec_release:
+	@./compile.sh unlock release
+	@cp -r build/release/buf prec
+	@./compile.sh lock release
