@@ -15,12 +15,12 @@ run_release:
 .PHONY: compile
 compile:
 	@tput reset
-	@script -q -c "./compile.sh debug" build.log
+	@script -q -c "./compile.sh compile debug" build.log
 
 .PHONY: compile_release
 compile_release:
 	@tput reset
-	@script -q -c "./compile.sh release" build.log
+	@script -q -c "./compile.sh compile release" build.log
 
 .PHONY: line-counter
 line-counter:
@@ -40,7 +40,11 @@ build_log:
 
 .PHONY: gdb
 gdb:
+	@./compile.sh unlock debug
+	@./compile.sh unlock release
 	@if [ -f core ]; then gdb ./arrows core; else echo running with no core; echo; gdb ./arrows; fi
+	@./compile.sh lock debug
+	@./compile.sh lock release
 
 .PHONY: perf
 perf:
