@@ -55,8 +55,7 @@ class GamePlayer : public Mob
 		TextureID iconTextureID;
 		RestrictedGameInterface* restrictedGameInterface;
 
-	friend class ServerGameInterface;
-	friend class ClientGameInterface;
+	friend class Frame;
 	friend class GameInterface;
 };
 $!abstract$$

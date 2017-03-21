@@ -54,6 +54,15 @@ void Frame::tick()
 	tickPhysics();
 }
 
+void Frame::applyEntries(std::vector<Calendar::Entry> entries)
+{
+	for (auto i = entries.begin(); i != entries.end(); ++i)
+	{
+		Calendar::Entry entry = *i;
+		players[entry.playerID]->setActions(entry.actions);
+	}
+}
+
 void Frame::tickEntities()
 {
 	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)

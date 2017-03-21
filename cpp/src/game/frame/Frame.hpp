@@ -5,6 +5,7 @@
 #include <deque>
 #include <map>
 #include "FrameCloneable.hpp"
+#include <game/Calendar.hpp>
 
 class GameTileMap;
 class DynamicEntity;
@@ -37,6 +38,7 @@ class Frame : public FrameCloneable
 		void update(Entity* e1, Entity* e2, std::deque<CollisionEvent*>* events, float timeLeft);
 		void addEventsBetween(Entity* e1, Entity* e2, std::deque<CollisionEvent*>* events, float timeLeft);
 		void removeEventsBetween(Entity* e1, Entity* e2, std::deque<CollisionEvent*>* events);
+		void applyEntries(std::vector<Calendar::Entry>);
 	private:
 		void tickEntities();
 		void tickPhysics();
