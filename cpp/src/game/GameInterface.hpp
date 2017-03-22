@@ -45,7 +45,7 @@ class GameInterface : public Menu, public NetworkInterface
 	private:
 		RestrictedGameInterface restrictedGameInterface;
 	protected:
-		Frame mainFrame;
+		Frame *mainFrame;
 
 		// functions
 		void renderMap() const;

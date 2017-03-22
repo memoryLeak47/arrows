@@ -8,5 +8,5 @@ RestrictedGameInterface::RestrictedGameInterface(GameInterface* gi)
 
 void RestrictedGameInterface::addIdler(Idler* i)
 {
-	gameInterface->mainFrame.idlers.push_back(i);
+	gameInterface->mainFrame->idlers.push_back(i);
 }

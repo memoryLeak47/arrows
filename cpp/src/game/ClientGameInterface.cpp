@@ -74,10 +74,10 @@ void ClientGameInterface::subTick()
 
 	applyCalendar();
 
-	mainFrame.tick();
+	mainFrame->tick();
 }
 
 GamePlayer* ClientGameInterface::getLocalPlayer() const
 {
-	return mainFrame.players[localPlayerID];
+	return mainFrame->players[localPlayerID];
 }

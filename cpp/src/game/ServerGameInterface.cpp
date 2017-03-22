@@ -25,11 +25,11 @@ void ServerGameInterface::handlePacket(Packet* packet, const sf::IpAddress& ip)
 			backtrack();
 
 			PacketWithID pwid(cap, id);
-			for (unsigned int i = 1; i < mainFrame.players.size(); i++)
+			for (unsigned int i = 1; i < mainFrame->players.size(); i++)
 			{
 				if ((int) i != id)
 				{
-					send(&pwid, mainFrame.players[i]->getIP());
+					send(&pwid, mainFrame->players[i]->getIP());
 				}
 			}
 			break;
@@ -51,9 +51,9 @@ void ServerGameInterface::subTick()
 		ChangeActionsPacket* p = new ChangeActionsPacket(a, getFrameCounter());
 		PacketWithID pwid(p, 0);
 
-		for (unsigned int i = 1; i < mainFrame.players.size(); i++)
+		for (unsigned int i = 1; i < mainFrame->players.size(); i++)
 		{
-			send(&pwid, mainFrame.players[i]->getIP());
+			send(&pwid, mainFrame->players[i]->getIP());
 		}
 		delete p;
 	}
@@ -61,10 +61,10 @@ void ServerGameInterface::subTick()
 
 	applyCalendar();
 
-	mainFrame.tick();
+	mainFrame->tick();
 }
 
 GamePlayer* ServerGameInterface::getLocalPlayer() const
 {
-	return mainFrame.players[0];
+	return mainFrame->players[0];
 }

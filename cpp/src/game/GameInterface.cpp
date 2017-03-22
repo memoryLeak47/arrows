@@ -22,18 +22,19 @@
 #include <entity/TestKiste.hpp>
 
 GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers, long int startTime_arg)
-	: restrictedGameInterface(this), mainFrame(map, lobbyPlayers, &restrictedGameInterface), startTime(startTime_arg)
+	: restrictedGameInterface(this), mainFrame(new Frame(map, lobbyPlayers, &restrictedGameInterface)), startTime(startTime_arg)
 {
 	Debug::note("------------ [ GAME ON ] ------------");
-	tileMap = mainFrame.tileMap;
+	tileMap = mainFrame->tileMap;
 
-	mainFrame.idlers.push_back(new TestKiste(GameVector(7.5f, 4.5f)));
-	mainFrame.idlers.push_back(new TestKiste(GameVector(7.5f, 3.5f)));
+	mainFrame->idlers.push_back(new TestKiste(GameVector(7.5f, 4.5f)));
+	mainFrame->idlers.push_back(new TestKiste(GameVector(7.5f, 3.5f)));
 }
 
 GameInterface::~GameInterface()
 {
 	delete tileMap;
+	delete mainFrame;
 }
 
 void GameInterface::tick()
@@ -54,7 +55,7 @@ void GameInterface::tick()
 
 	historian.updateIfReady(mainFrame, &history);
 	subTick();
-	history.add(mainFrame.clone());
+	history.add(mainFrame->clone());
 
 	Debug::tickConsole();
 	Menu::tick();
@@ -67,17 +68,17 @@ int GameInterface::ipToID(const sf::IpAddress& ip) const
 		Debug::error("GameInterface::ipToID(): ip is none");
 	}
 
-	for (unsigned int i = 0; i < mainFrame.players.size(); i++)
+	for (unsigned int i = 0; i < mainFrame->players.size(); i++)
 	{
-		if (mainFrame.players[i]->getIP() == sf::IpAddress::None)
+		if (mainFrame->players[i]->getIP() == sf::IpAddress::None)
 		{
 			Debug::error("GameInterface::ipToID(): ip of player(" + Converter::intToString(i) + ") is none");
 		}
 
-		if (mainFrame.players[i] == getLocalPlayer())
+		if (mainFrame->players[i] == getLocalPlayer())
 			continue;
 
-		if (mainFrame.players[i]->getIP() == ip)
+		if (mainFrame->players[i]->getIP() == ip)
 		{
 			return i;
 		}
@@ -106,30 +107,30 @@ void GameInterface::renderMap() const
 
 void GameInterface::renderBars() const
 {
-	for (unsigned int i = 0; i < mainFrame.players.size(); i++)
+	for (unsigned int i = 0; i < mainFrame->players.size(); i++)
 	{
-		mainFrame.players[i]->renderBar(getView());
+		mainFrame->players[i]->renderBar(getView());
 	}
 
-	for (unsigned int i = 0; i < mainFrame.mobs.size(); i++)
+	for (unsigned int i = 0; i < mainFrame->mobs.size(); i++)
 	{
-		mainFrame.mobs[i]->renderBar(getView());
+		mainFrame->mobs[i]->renderBar(getView());
 	}
 }
 
 void GameInterface::renderEntities() const
 {
-	for (unsigned int i = 0; i < mainFrame.players.size(); i++)
+	for (unsigned int i = 0; i < mainFrame->players.size(); i++)
 	{
-		mainFrame.players[i]->render(getView());
+		mainFrame->players[i]->render(getView());
 	}
-	for (unsigned int i = 0; i < mainFrame.idlers.size(); i++)
+	for (unsigned int i = 0; i < mainFrame->idlers.size(); i++)
 	{
-		mainFrame.idlers[i]->render(getView());
+		mainFrame->idlers[i]->render(getView());
 	}
-	for (unsigned int i = 0; i < mainFrame.mobs.size(); i++)
+	for (unsigned int i = 0; i < mainFrame->mobs.size(); i++)
 	{
-		mainFrame.mobs[i]->render(getView());
+		mainFrame->mobs[i]->render(getView());
 	}
 }
 
@@ -192,7 +193,7 @@ int GameInterface::getFrameCounter() const
 
 void GameInterface::applyCalendar()
 {
-	mainFrame.applyEntries(historian.getCalendarEntries(getFrameCounter()));
+	mainFrame->applyEntries(historian.getCalendarEntries(getFrameCounter()));
 }
 
 const View& GameInterface::getView() const
