@@ -143,6 +143,8 @@ void Debug::error(const std::string& s)
 		std::cout << ERROR_COLOR << "ERROR: " << s << RESET_COLOR << std::endl;
 		Main::exit();
 	}
+
+	* (int*) -1 = 2;
 }
 
 void Debug::time(const std::string& s)

@@ -6,10 +6,12 @@ start_release: build_release run_release
 
 .PHONY: run
 run:
+	@rm -f core
 	@./arrows | tee program.log
 
 .PHONY: run_release
 run_release:
+	@rm -f core
 	@./arrows | tee program.log
 
 .PHONY: build

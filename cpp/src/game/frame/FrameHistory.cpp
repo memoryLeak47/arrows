@@ -44,7 +44,8 @@ FrameHistory* FrameHistory::branch(int branchPoint) const
 {
 	FrameHistory *result = new FrameHistory();
 
-	for (int i = addTargetSlot; i != frameCounterToIndex(branchPoint); i = toIndex(i + 1))
+	int end = frameCounterToIndex(branchPoint);
+	for (int i = addTargetSlot; i != end; i = toIndex(i + 1))
 	{
 		Frame* f = history[i];
 		if (f != nullptr)
