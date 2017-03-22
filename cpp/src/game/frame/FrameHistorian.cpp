@@ -69,7 +69,13 @@ void FrameHistorian::updateIfReady(Frame* mainFrame, FrameHistory* mainFrameHist
 
 void FrameHistorian::run()
 {
-	Frame *frame = backtrackHistory->getFrameSince(0)->clone();
+	Frame *src = backtrackHistory->getFrameSince(0);
+	if (src == nullptr)
+	{
+		Debug::error("FrameHistorian::run(): backtrackHistory->getFrameSince(0) has returned nullptr");
+		return;
+	}
+	Frame *frame = src->clone();
 	while (!readyForMerge())
 	{
 		frame->applyEntries(calendar.getEntries(getBacktrackFrameCounter() + 1));
