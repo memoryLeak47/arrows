@@ -69,13 +69,14 @@ void FrameHistorian::updateIfReady(Frame& mainFrame, FrameHistory* mainFrameHist
 
 void FrameHistorian::run()
 {
-	Frame mainFrame = *(backtrackHistory->getFrameSince(0)->clone());
+	Frame *frame = backtrackHistory->getFrameSince(0)->clone();
 	while (!readyForMerge())
 	{
-		mainFrame.applyEntries(calendar.getEntries(getBacktrackFrameCounter()));
-		mainFrame.tick();
-		addHistoryEntry(mainFrame.clone());
+		frame->applyEntries(calendar.getEntries(getBacktrackFrameCounter()));
+		frame->tick();
+		addHistoryEntry(frame->clone());
 	}
+	delete frame;
 }
 
 void FrameHistorian::updateHistory(FrameHistory* mainFrameHistory)
