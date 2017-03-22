@@ -14,13 +14,7 @@ FrameHistory::FrameHistory()
 
 FrameHistory::~FrameHistory()
 {
-	for (unsigned int i = 0; i < size; i++)
-	{
-		if (history[i] != nullptr)
-		{
-			delete history[i];
-		}
-	}
+	deleteAll();
 	delete history;
 }
 
@@ -39,7 +33,7 @@ Frame* FrameHistory::getFrameSince(const unsigned int since) const
 {
 	if (size < since)
 	{
-		Debug::warn("FrameHistory::getFrameSince(): size < since");
+		Debug::warn("FrameHistory::getFrameSince(): size < since: size = " + Converter::intToString(size) + "; since = " + Converter::intToString(since));
 		return nullptr;
 	}
 	const unsigned int index = toIndex(getNewestFrameSlot() - since);
@@ -52,7 +46,7 @@ FrameHistory* FrameHistory::branch(int branchPoint) const
 
 	for (int i = addTargetSlot; i != frameCounterToIndex(branchPoint); i = toIndex(i + 1))
 	{
-		Frame* f = history[i];
+		Frame* f = history[i]->clone();
 		if (f != nullptr)
 			result->add(f);
 	}
@@ -62,20 +56,15 @@ FrameHistory* FrameHistory::branch(int branchPoint) const
 }
 
 // will delete Frames, beginning by the frame pointed to by branchPoint up to the newest frame
-void FrameHistory::merge(int branchPoint, FrameHistory* sourceHistory)
+void FrameHistory::merge(FrameHistory* sourceHistory)
 {
-	int c = sourceHistory->frameCounterToIndex(branchPoint);
-	// deleting old Frames
-	for (unsigned int i = frameCounterToIndex(branchPoint); i != addTargetSlot; i = toIndex(i + 1))
-	{
-		if (history[i] != nullptr)
-		{
-			deleteAndNullptr(history[i]);
-		}
+	deleteAll();
 
-		history[i] = sourceHistory->history[toIndex(c)];
-		c++;
+	for (unsigned int i = 0; i < sourceHistory->size; i++)
+	{
+		history[i] = sourceHistory->history[i];
 	}
+	this->frameCounter = sourceHistory->frameCounter;
 }
 
 void FrameHistory::clear()
@@ -124,4 +113,16 @@ int FrameHistory::getNewestFrameSlot() const
 Frame* FrameHistory::getFrame(const int c) const
 {
 	return history[frameCounterToIndex(c)];
+}
+
+void FrameHistory::deleteAll()
+{
+	for (unsigned int i = 0; i < size; i++)
+	{
+		if (history[i] != nullptr)
+		{
+			delete history[i];
+			history[i] = nullptr;
+		}
+	}
 }

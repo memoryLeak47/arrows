@@ -72,7 +72,7 @@ void FrameHistorian::run()
 	Frame *frame = backtrackHistory->getFrameSince(0)->clone();
 	while (!readyForMerge())
 	{
-		frame->applyEntries(calendar.getEntries(getBacktrackFrameCounter()));
+		frame->applyEntries(calendar.getEntries(getBacktrackFrameCounter() + 1));
 		frame->tick();
 		addHistoryEntry(frame->clone());
 	}
@@ -81,7 +81,7 @@ void FrameHistorian::run()
 
 void FrameHistorian::updateHistory(FrameHistory* mainFrameHistory)
 {
-	mainFrameHistory->merge(branchPoint, backtrackHistory);
+	mainFrameHistory->merge(backtrackHistory);
 	backtrackHistory->clear();
 	deleteAndNullptr(backtrackHistory);
 }

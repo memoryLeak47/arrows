@@ -14,10 +14,10 @@ class FrameHistory
 		Frame* getFrameSince(const unsigned int offset) const;
 
 		// the frame pointed by branchPoint will not be copied
-		FrameHistory* branch(int branchPoint) const;
+		FrameHistory* branch(int branchPoint) const; // XXX current implementation is not efficient (clones all frames)
 
 		// will delete Frames, beginning by the frame pointed to by branchPoint up to the newest frame
-		void merge(int branchPoint, FrameHistory* sourceHistory);
+		void merge(FrameHistory* sourceHistory);
 
 		// does not delete anything
 		void clear();
@@ -35,6 +35,9 @@ class FrameHistory
 
 		// getFrame pointed by c
 		Frame* getFrame(const int c) const;
+
+		// deletes all Frames in this History
+		void deleteAll();
 
 		Frame** history;
 		const unsigned int size;
