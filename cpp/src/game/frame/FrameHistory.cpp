@@ -46,9 +46,9 @@ FrameHistory* FrameHistory::branch(int branchPoint) const
 
 	for (int i = addTargetSlot; i != frameCounterToIndex(branchPoint); i = toIndex(i + 1))
 	{
-		Frame* f = history[i]->clone();
+		Frame* f = history[i];
 		if (f != nullptr)
-			result->add(f);
+			result->add(f->clone());
 	}
 
 	result->frameCounter = branchPoint-1;
@@ -87,11 +87,11 @@ int FrameHistory::frameCounterToIndex(const int c) const
 	const int targetDif = frameCounter - c;
 	if (targetDif < 0)
 	{
-		Debug::error("FrameHistory::frameCounterToIndex(): targetDif < 0");
+		Debug::error("FrameHistory::frameCounterToIndex(): targetDif < 0: frameCounter=" + Converter::intToString(frameCounter) + ", c=" + Converter::intToString(c));
 	}
 	if (targetDif > (int) size)
 	{
-		Debug::error("FrameHistory::frameCounterToIndex(): targetDif > size");
+		Debug::error("FrameHistory::frameCounterToIndex(): targetDif > size: frameCounter=" + Converter::intToString(frameCounter) + ", c=" + Converter::intToString(c));
 	}
 	return toIndex(getNewestFrameSlot() - targetDif);
 }
