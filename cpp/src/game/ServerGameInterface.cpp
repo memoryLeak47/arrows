@@ -21,8 +21,7 @@ void ServerGameInterface::handlePacket(Packet* packet, const sf::IpAddress& ip)
 			ChangeActionsPacket* cap = packet->unwrap<ChangeActionsPacket>();
 			int id = ipToID(ip);
 
-			addCalendarEntry(cap->getFrameNumber(), id, cap->getActions());
-			backtrack();
+			addForeignCalendarEntry(cap->getFrameNumber(), id, cap->getActions());
 
 			PacketWithID pwid(cap, id);
 			for (unsigned int i = 1; i < mainFrame->players.size(); i++)
@@ -47,7 +46,7 @@ void ServerGameInterface::subTick()
 	Actions a = calcActions();
 	if (getLocalPlayer()->getActions() != a)
 	{
-		addCalendarEntry(getFrameCounter(), 0, a);
+		addOwnCalendarEntry(getFrameCounter(), a);
 		ChangeActionsPacket* p = new ChangeActionsPacket(a, getFrameCounter());
 		PacketWithID pwid(p, 0);
 
@@ -64,7 +63,7 @@ void ServerGameInterface::subTick()
 	mainFrame->tick();
 }
 
-GamePlayer* ServerGameInterface::getLocalPlayer() const
+unsigned int ServerGameInterface::getLocalPlayerID() const
 {
-	return mainFrame->players[0];
+	return 0;
 }

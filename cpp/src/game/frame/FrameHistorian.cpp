@@ -6,10 +6,10 @@ FrameHistorian::FrameHistorian()
 	: newestMainThreadFrameCounter(0), backtrackHistory(nullptr), oldestChangePoint(-1), branchPoint(-1), thread(nullptr)
 {}
 
-void FrameHistorian::addCalendarEntry(int frame, char playerID, Actions actions)
+void FrameHistorian::addCalendarEntry(int frame, char playerID, Actions actions, bool needsBacktrack)
 {
 	calendar.addEntry(frame, playerID, actions);
-	if ((oldestChangePoint == -1 || oldestChangePoint > frame) && (backtrackHistory == nullptr || getBacktrackFrameCounter() >= frame))
+	if (needsBacktrack && (oldestChangePoint == -1 || oldestChangePoint > frame) && (backtrackHistory == nullptr || getBacktrackFrameCounter() >= frame))
 	{
 		oldestChangePoint = frame;
 	}

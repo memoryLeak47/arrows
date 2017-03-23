@@ -21,7 +21,7 @@ class ClientGameInterface : public GameInterface
 		void handlePacket(Packet*, const sf::IpAddress&) override;
 		virtual void subTick() override;
 	protected:
-		virtual GamePlayer* getLocalPlayer() const override;
+		virtual unsigned int getLocalPlayerID() const override;
 	private:
 		void applyGameUpdate(const std::vector<std::string>&, const std::vector<Mob*>&, const std::vector<Idler*>&);
 

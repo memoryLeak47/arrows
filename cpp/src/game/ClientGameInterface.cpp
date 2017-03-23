@@ -37,8 +37,7 @@ void ClientGameInterface::handlePacket(Packet* packet, const sf::IpAddress& ipAd
 				case CompressIDs::CHANGE_ACTIONS_PACKET:
 				{
 					ChangeActionsPacket* cap = pwid->getPacket()->unwrap<ChangeActionsPacket>();
-					addCalendarEntry(cap->getFrameNumber(), pwid->getID(), cap->getActions());
-					backtrack();
+					addForeignCalendarEntry(cap->getFrameNumber(), pwid->getID(), cap->getActions());
 					delete cap;
 					break;
 				}
@@ -69,7 +68,7 @@ void ClientGameInterface::subTick()
 		ChangeActionsPacket packet(a, getFrameCounter());
 		send(&packet, serverIP);
 		// add to Calendar
-		addCalendarEntry(getFrameCounter(), localPlayerID, a);
+		addOwnCalendarEntry(getFrameCounter(), a);
 	}
 
 	applyCalendar();
@@ -77,7 +76,7 @@ void ClientGameInterface::subTick()
 	mainFrame->tick();
 }
 
-GamePlayer* ClientGameInterface::getLocalPlayer() const
+unsigned int ClientGameInterface::getLocalPlayerID() const
 {
-	return mainFrame->players[localPlayerID];
+	return localPlayerID;
 }

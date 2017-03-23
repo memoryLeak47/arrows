@@ -33,11 +33,14 @@ class GameInterface : public Menu, public NetworkInterface
 
 	protected:
 		int ipToID(const sf::IpAddress&) const;
-		virtual GamePlayer* getLocalPlayer() const = 0;
+		GamePlayer* getLocalPlayer() const;
+		virtual unsigned int getLocalPlayerID() const = 0;
 		GameTileMap* getGameTileMap() const;
 		Actions calcActions() const;
-		void addCalendarEntry(int frame, char playerID, Actions);
-		void backtrack();
+
+		void addForeignCalendarEntry(int frame, char playerID, Actions actions);
+		void addOwnCalendarEntry(int frame, Actions actions);
+
 		int getFrameCounter() const;
 		void applyCalendar();
 		virtual void subTick() = 0;

@@ -89,6 +89,11 @@ int GameInterface::ipToID(const sf::IpAddress& ip) const
 	return -1;
 }
 
+GamePlayer* GameInterface::getLocalPlayer() const
+{
+	return mainFrame->players[getLocalPlayerID()];
+}
+
 void GameInterface::render() const
 {
 	if (startTime > global::unix_millis())
@@ -178,14 +183,15 @@ Actions GameInterface::calcActions() const
 	return actions;
 }
 
-void GameInterface::addCalendarEntry(int frame, char playerID, Actions actions)
+void GameInterface::addForeignCalendarEntry(int frame, char playerID, Actions actions)
 {
-	historian.addCalendarEntry(frame, playerID, actions);
+	historian.addCalendarEntry(frame, playerID, actions, true);
+	historian.backtrack(&history);
 }
 
-void GameInterface::backtrack()
+void GameInterface::addOwnCalendarEntry(int frame, Actions actions)
 {
-	historian.backtrack(&history);
+	historian.addCalendarEntry(frame, getLocalPlayerID(), actions, false);
 }
 
 int GameInterface::getFrameCounter() const

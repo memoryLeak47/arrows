@@ -12,7 +12,7 @@ class FrameHistorian
 {
 	public:
 		FrameHistorian();
-		void addCalendarEntry(int frame, char playerID, Actions actions);
+		void addCalendarEntry(int frame, char playerID, Actions actions, bool needsBacktrack);
 		std::vector<Calendar::Entry> getCalendarEntries(int) const;
 
 		// backtracks if backtracking is necessary: (oldestChangePoint != -1)
