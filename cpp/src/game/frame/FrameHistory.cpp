@@ -40,6 +40,16 @@ Frame* FrameHistory::getFrameSince(const unsigned int since) const
 	return history[index];
 }
 
+Frame* FrameHistory::getNewestFrame() const
+{
+	Frame* f = history[getNewestFrameSlot()];
+	if (f == nullptr)
+	{
+		Debug::error("FrameHistory::getNewestFrame(): no frame yet (should not happen)");
+	}
+	return f;
+}
+
 FrameHistory* FrameHistory::branch(int branchPoint) const
 {
 	FrameHistory *result = new FrameHistory();

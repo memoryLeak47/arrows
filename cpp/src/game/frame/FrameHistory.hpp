@@ -12,6 +12,7 @@ class FrameHistory
 		~FrameHistory();
 		void add(Frame*);
 		Frame* getFrameSince(const unsigned int offset) const;
+		Frame* getNewestFrame() const;
 
 		// the frame pointed by branchPoint will not be copied
 		FrameHistory* branch(int branchPoint) const; // XXX current implementation is not efficient (clones all frames)

@@ -61,7 +61,7 @@ void FrameHistorian::updateIfReady(Frame* mainFrame, FrameHistory* mainFrameHist
 		thread->join();
 		deleteAndNullptr(thread); 
 		updateHistory(mainFrameHistory);
-		mainFrame = mainFrameHistory->getFrameSince(0)->clone();
+		mainFrame = mainFrameHistory->getNewestFrame()->clone();
 		backtrack(mainFrameHistory);
 	}
 	setNewestMainThreadFrameCounter(mainFrameHistory->getFrameCounter() + 1);
@@ -69,12 +69,7 @@ void FrameHistorian::updateIfReady(Frame* mainFrame, FrameHistory* mainFrameHist
 
 void FrameHistorian::run()
 {
-	Frame *src = backtrackHistory->getFrameSince(0);
-	if (src == nullptr)
-	{
-		Debug::error("FrameHistorian::run(): backtrackHistory->getFrameSince(0) has returned nullptr");
-		return;
-	}
+	Frame *src = backtrackHistory->getNewestFrame();
 	Frame *frame = src->clone();
 	while (!readyForMerge())
 	{
