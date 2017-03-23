@@ -6,20 +6,20 @@ FrameHistorian::FrameHistorian()
 	: newestMainThreadFrameCounter(1), backtrackHistory(nullptr), oldestChangePoint(-1), branchPoint(-1), thread(nullptr)
 {}
 
-void FrameHistorian::addCalendarEntry(int frame, char playerID, Actions actions, bool needsBacktrack)
+void FrameHistorian::addCalendarEntry(int frameIndex, char playerID, Actions actions, bool needsBacktrack)
 {
-	Debug::test("FrameHistorian::addCalendarEntry(): frame = " + Converter::intToString(frame));
-	calendar.addEntry(frame, playerID, actions);
-	if (needsBacktrack && (oldestChangePoint == -1 || oldestChangePoint > frame) && (backtrackHistory == nullptr || getBacktrackFrameCounter() >= frame))
+	Debug::test("FrameHistorian::addCalendarEntry(): frameIndex = " + Converter::intToString(frameIndex));
+	calendar.addEntry(frameIndex, playerID, actions);
+	if (needsBacktrack && (oldestChangePoint == -1 || oldestChangePoint > frameIndex) && (backtrackHistory == nullptr || getBacktrackFrameCounter() >= frameIndex))
 	{
-		oldestChangePoint = frame;
+		oldestChangePoint = frameIndex;
 		Debug::test("FrameHistorian::addCalendarEntry(): oldestChangePoint is set to " + Converter::intToString(oldestChangePoint));
 	}
 }
 
-std::vector<Calendar::Entry> FrameHistorian::getCalendarEntries(int frame) const
+std::vector<Calendar::Entry> FrameHistorian::getCalendarEntries(int frameIndex) const
 {
-	return calendar.getEntries(frame);
+	return calendar.getEntries(frameIndex);
 }
 
 void FrameHistorian::backtrack(FrameHistory *mainHistory)
