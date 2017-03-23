@@ -29,6 +29,8 @@ GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>&
 
 	mainFrame->idlers.push_back(new TestKiste(GameVector(7.5f, 4.5f)));
 	mainFrame->idlers.push_back(new TestKiste(GameVector(7.5f, 3.5f)));
+
+	history.add(mainFrame->clone());
 }
 
 GameInterface::~GameInterface()

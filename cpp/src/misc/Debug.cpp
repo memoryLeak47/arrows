@@ -56,8 +56,6 @@ void Debug::init()
 
 void Debug::tickConsole()
 {
-	Debug::note("new frame");
-
 	// alte Messages aussortieren
 	for (unsigned int i = 0; i < messages.size(); i++)
 	{
