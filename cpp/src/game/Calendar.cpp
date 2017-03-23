@@ -7,26 +7,26 @@
 Calendar::Calendar()
 {}
 
-void Calendar::addEntry(int frame, char playerID, Actions actions)
+void Calendar::addEntry(int frameIndex, char playerID, Actions actions)
 {
 	unsigned int index = 0;
-	while (index < entries.size() && frame < entries[index].frame)
+	while (index < entries.size() && frameIndex < entries[index].frameIndex)
 	{
 		index++;
 	}
 
-	entries.insert(entries.begin() + index, Calendar::Entry{frame, playerID, actions});
+	entries.insert(entries.begin() + index, Calendar::Entry{frameIndex, playerID, actions});
 }
 
-std::vector<Calendar::Entry> Calendar::getEntries(int frame) const
+std::vector<Calendar::Entry> Calendar::getEntries(int frameIndex) const
 {
 	std::vector<Calendar::Entry> tmp;
 	unsigned int index = 0;
-	while (frame < entries[index].frame)
+	while (frameIndex < entries[index].frameIndex)
 	{
 		index++;
 	}
-	while (frame == entries[index].frame)
+	while (frameIndex == entries[index].frameIndex)
 	{
 		tmp.push_back(entries[index++]);
 	}

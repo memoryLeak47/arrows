@@ -3,15 +3,17 @@
 #include <misc/Global.hpp>
 
 FrameHistorian::FrameHistorian()
-	: newestMainThreadFrameCounter(0), backtrackHistory(nullptr), oldestChangePoint(-1), branchPoint(-1), thread(nullptr)
+	: newestMainThreadFrameCounter(1), backtrackHistory(nullptr), oldestChangePoint(-1), branchPoint(-1), thread(nullptr)
 {}
 
 void FrameHistorian::addCalendarEntry(int frame, char playerID, Actions actions, bool needsBacktrack)
 {
+	Debug::test("FrameHistorian::addCalendarEntry(): frame = " + Converter::intToString(frame));
 	calendar.addEntry(frame, playerID, actions);
 	if (needsBacktrack && (oldestChangePoint == -1 || oldestChangePoint > frame) && (backtrackHistory == nullptr || getBacktrackFrameCounter() >= frame))
 	{
 		oldestChangePoint = frame;
+		Debug::test("FrameHistorian::addCalendarEntry(): oldestChangePoint is set to " + Converter::intToString(oldestChangePoint));
 	}
 }
 
@@ -73,7 +75,7 @@ void FrameHistorian::run()
 	Frame *frame = src->clone();
 	while (!readyForMerge())
 	{
-		frame->applyEntries(calendar.getEntries(getBacktrackFrameCounter() + 1));
+		frame->applyEntries(calendar.getEntries(getBacktrackFrameCounter()));
 		frame->tick();
 		addHistoryEntry(frame->clone());
 	}

@@ -185,12 +185,20 @@ Actions GameInterface::calcActions() const
 
 void GameInterface::addForeignCalendarEntry(int frame, char playerID, Actions actions)
 {
+	if (frame > getFrameCounter())
+	{
+		Debug::warn("GameInterface::addForeignCalendarEntry(): frame(" + Converter::intToString(frame) + ") > frameCounter(" + Converter::intToString(getFrameCounter()));
+	}
 	historian.addCalendarEntry(frame, playerID, actions, true);
 	historian.backtrack(&history);
 }
 
 void GameInterface::addOwnCalendarEntry(int frame, Actions actions)
 {
+	if (frame > getFrameCounter())
+	{
+		Debug::warn("GameInterface::addOwnCalendarEntry(): frame(" + Converter::intToString(frame) + ") > frameCounter(" + Converter::intToString(getFrameCounter()));
+	}
 	historian.addCalendarEntry(frame, getLocalPlayerID(), actions, false);
 }
 

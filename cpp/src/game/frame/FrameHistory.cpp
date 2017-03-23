@@ -3,7 +3,7 @@
 #include <misc/Global.hpp>
 
 FrameHistory::FrameHistory()
-	: size(global::FRAME_HISTORY_SIZE), addTargetSlot(0), frameCounter(-1)
+	: size(global::FRAME_HISTORY_SIZE), addTargetSlot(0), frameCounter(0)
 {
 	history = (Frame**) ::operator new(size*sizeof(Frame*));
 	for (unsigned int i = 0; i < size; i++)
@@ -52,9 +52,13 @@ Frame* FrameHistory::getNewestFrame() const
 
 FrameHistory* FrameHistory::branch(int branchPoint) const
 {
+	if (branchPoint < 1)
+	{
+		Debug::error("FrameHistory::branch(): branchPoint < 1");
+	}
 	FrameHistory *result = new FrameHistory();
 
-	int end = frameCounterToIndex(branchPoint);
+	int end = frameIndexToSlotIndex(branchPoint);
 	for (int i = addTargetSlot; i != end; i = toIndex(i + 1))
 	{
 		Frame* f = history[i];
@@ -62,19 +66,24 @@ FrameHistory* FrameHistory::branch(int branchPoint) const
 			result->add(f->clone());
 	}
 
-	result->frameCounter = branchPoint-1;
+	result->frameCounter = branchPoint;
 	return result;
 }
 
 // will delete Frames, beginning by the frame pointed to by branchPoint up to the newest frame
 void FrameHistory::merge(FrameHistory* sourceHistory)
 {
+	if (this->size != sourceHistory->size)
+	{
+		Debug::error("FrameHistory::merge(): this->size != sourceHistory->size");
+	}
 	deleteAll();
 
 	for (unsigned int i = 0; i < sourceHistory->size; i++)
 	{
 		history[i] = sourceHistory->history[i];
 	}
+	this->addTargetSlot = sourceHistory->addTargetSlot;
 	this->frameCounter = sourceHistory->frameCounter;
 }
 
@@ -85,7 +94,7 @@ void FrameHistory::clear()
 		history[i] = nullptr;
 	}
 	addTargetSlot = 0;
-	frameCounter = -1;
+	frameCounter = 0;
 }
 
 int FrameHistory::getFrameCounter() const
@@ -93,18 +102,17 @@ int FrameHistory::getFrameCounter() const
 	return frameCounter;
 }
 
-int FrameHistory::frameCounterToIndex(const int c) const
+int FrameHistory::frameIndexToSlotIndex(const int frameIndex) const
 {
-	const int targetDif = frameCounter - c;
-	if (targetDif < 0)
+	if (frameIndex >= getFrameCounter())
 	{
-		Debug::error("FrameHistory::frameCounterToIndex(): targetDif < 0: frameCounter=" + Converter::intToString(frameCounter) + ", c=" + Converter::intToString(c));
+		Debug::error("FrameHistory::frameIndexToSlotIndex(): frameIndex(" + Converter::intToString(frameIndex) + ") too high, frameCounter(" + Converter::intToString(getFrameCounter()) + ")");
 	}
-	if (targetDif > (int) size)
+	if (frameIndex < (int) (getFrameCounter() - size))
 	{
-		Debug::error("FrameHistory::frameCounterToIndex(): targetDif > size: frameCounter=" + Converter::intToString(frameCounter) + ", c=" + Converter::intToString(c));
+		Debug::error("FrameHistory::frameIndexToSlotIndex(): frameIndex(" + Converter::intToString(frameIndex) + ") too small, frameCounter(" + Converter::intToString(getFrameCounter()) + ")");
 	}
-	return toIndex(getNewestFrameSlot() - targetDif);
+	return toIndex(getNewestFrameSlot() - frameCounter + frameIndex);
 }
 
 unsigned int FrameHistory::toIndex(int n) const
@@ -123,7 +131,7 @@ int FrameHistory::getNewestFrameSlot() const
 
 Frame* FrameHistory::getFrame(const int c) const
 {
-	return history[frameCounterToIndex(c)];
+	return history[frameIndexToSlotIndex(c)];
 }
 
 void FrameHistory::deleteAll()

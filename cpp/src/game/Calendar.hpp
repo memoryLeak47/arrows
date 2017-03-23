@@ -12,14 +12,14 @@ class Calendar
 	public:
 		struct Entry
 		{
-			int frame;
+			int frameIndex;
 			char playerID;
 			Actions actions;
 		};
 
 		Calendar();
-		void addEntry(int frame, char playerID, Actions actions);
-		std::vector<Entry> getEntries(int frame) const;
+		void addEntry(int frameIndex, char playerID, Actions actions);
+		std::vector<Entry> getEntries(int frameIndex) const;
 	private:
 		std::deque<Entry> entries;
 };

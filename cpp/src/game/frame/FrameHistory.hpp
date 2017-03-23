@@ -1,6 +1,13 @@
 #ifndef __FRAMEHISTORY_CLASS__
 #define __FRAMEHISTORY_CLASS__
 
+/*
+	FrameHistory::frameCounter gives the number of add()ed Frames in this History
+
+	frameIndex == 0 refers to the first frame
+	FrameIndex X refers to the Frame ticked when frameCounter was X, for X > 0
+*/
+
 #include "Frame.hpp"
 
 #include <vector>
@@ -25,10 +32,10 @@ class FrameHistory
 
 		int getFrameCounter() const;
 	private:
-		// converts frameCounter to slot-index
-		int frameCounterToIndex(const int c) const;
+		// converts frameIndex to slot-index
+		int frameIndexToSlotIndex(const int) const;
 
-		// correct invalid slot-indexes to valid valid slot-indexes
+		// correct invalid slot-indexes
 		unsigned int toIndex(int) const;
 
 		// points to the slot, where the newest Frame is
@@ -46,8 +53,8 @@ class FrameHistory
 		// points to the history-slot which is going to be overwritten by next add-Function
 		unsigned int addTargetSlot;
 
-		// the frameCounter of the newest Entry
-		// if history is empty this will be -1
+		// if history is empty this will be 0
+		// the number of added frames
 		int frameCounter;
 };
 
