@@ -129,6 +129,10 @@ void Screen::drawText(const std::string& str, const PixelVector& position, const
 {
 	text.setString(str);
 	text.setPosition(position.x, position.y);
-	text.setFillColor(color);
+	#if SFML_VERSION_MINOR <= 3
+		text.setColor(color);
+	#else
+		text.setFillColor(color);
+	#endif
 	window->draw(text);
 }

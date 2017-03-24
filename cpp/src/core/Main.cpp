@@ -12,6 +12,10 @@
 #include <menu/MenuList.hpp>
 #include <SFML/System.hpp>
 
+#if SFML_VERSION_MAJOR != 2
+	#error "unsupported sfml version"
+#endif
+
 bool Main::running = true;
 MenuList* Main::menuList;
 NetworkDevice* Main::networkDevice;
