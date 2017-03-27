@@ -28,8 +28,6 @@ class DynamicEntity : public Entity
 		bool changed;
 		std::vector<Entity*> $$clone_list$$ collisionPartners $!clone_list$$;
 		std::vector<Entity*> $$clone_list$$ wrapperPartners $!clone_list$$;
-
-	friend class ClientGameInterface; // needed to update (w/c)partners on GameUpdatePacket
 };
 $!abstract$$
 
