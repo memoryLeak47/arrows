@@ -60,7 +60,7 @@ void GameInterface::tick()
 	};
 	static X x(this); // XXX make pretty pls
 
-	historian.updateIfReady(mainFrame, &history);
+	historian.updateIfReady(&mainFrame, &history);
 	subTick();
 	history.add(mainFrame->clone());
 

@@ -23,7 +23,7 @@ class FrameHistorian
 		int getBacktrackFrameCounter();
 
 		// updates mainFrame and mainFrameHistory if we recently finished backtracking, reinitializes new backtrack
-		void updateIfReady(Frame* mainFrame, FrameHistory* mainFrameHistory);
+		void updateIfReady(Frame** mainFrame, FrameHistory* mainFrameHistory);
 	private:
 		// the functions which is ran in thread
 		void run();

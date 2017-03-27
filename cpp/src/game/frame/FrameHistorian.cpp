@@ -33,7 +33,7 @@ int FrameHistorian::getBacktrackFrameCounter()
 	return backtrackHistory->getFrameCounter();
 }
 
-void FrameHistorian::updateIfReady(Frame* mainFrame, FrameHistory* mainFrameHistory)
+void FrameHistorian::updateIfReady(Frame** mainFrame, FrameHistory* mainFrameHistory)
 {
 	std::lock_guard<std::mutex> lock(mutex);
 	if (readyForMerge())
@@ -45,7 +45,8 @@ void FrameHistorian::updateIfReady(Frame* mainFrame, FrameHistory* mainFrameHist
 		backtrackHistory->clear();
 		deleteAndNullptr(backtrackHistory);
 
-		mainFrame = mainFrameHistory->getNewestFrame()->clone();
+		delete *mainFrame;
+		*mainFrame = mainFrameHistory->getNewestFrame()->clone();
 
 		backtrack(mainFrameHistory);
 	}
