@@ -38,8 +38,8 @@ class GameInterface : public Menu, public NetworkInterface
 		GameTileMap* getGameTileMap() const;
 		Actions calcActions() const;
 
-		void addForeignCalendarEntry(int frame, char playerID, Actions actions);
-		void addOwnCalendarEntry(int frame, Actions actions);
+		void addForeignCalendarEntry(int frameIndex, char playerID, Actions actions);
+		void addOwnCalendarEntry(int frameIndex, Actions actions);
 
 		int getFrameCounter() const;
 		void applyCalendar();

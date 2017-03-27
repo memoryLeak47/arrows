@@ -6,15 +6,16 @@ FrameHistorian::FrameHistorian()
 	: newestMainThreadFrameCounter(1), backtrackHistory(nullptr), oldestChangePoint(-1), branchPoint(-1), thread(nullptr)
 {}
 
-void FrameHistorian::addCalendarEntry(int frameIndex, char playerID, Actions actions, bool needsBacktrack)
+void FrameHistorian::executeCalendarEntry(int frameIndex, char playerID, Actions actions, const FrameHistory* mainHistory)
 {
-	Debug::test("FrameHistorian::addCalendarEntry(): frameIndex = " + Converter::intToString(frameIndex));
 	calendar.addEntry(frameIndex, playerID, actions);
-	if (needsBacktrack && (oldestChangePoint == -1 || oldestChangePoint > frameIndex) && (backtrackHistory == nullptr || getBacktrackFrameCounter() >= frameIndex))
-	{
-		oldestChangePoint = frameIndex;
-		Debug::test("FrameHistorian::addCalendarEntry(): oldestChangePoint is set to " + Converter::intToString(oldestChangePoint));
-	}
+
+	if (oldestChangePoint != -1 && oldestChangePoint < frameIndex) return;
+	if (mainHistory->getFrameCounter() <= frameIndex) return;
+	if (backtrackHistory != nullptr && getBacktrackFrameCounter() <= frameIndex) return;
+
+	oldestChangePoint = frameIndex;
+	backtrack(mainHistory);
 }
 
 std::vector<Calendar::Entry> FrameHistorian::getCalendarEntries(int frameIndex) const
@@ -22,30 +23,7 @@ std::vector<Calendar::Entry> FrameHistorian::getCalendarEntries(int frameIndex) 
 	return calendar.getEntries(frameIndex);
 }
 
-void FrameHistorian::backtrack(FrameHistory *mainHistory)
-{
-	if (oldestChangePoint == -1 || branchPoint != -1)
-	{
-		return;
-	}
-
-	if (thread != nullptr)
-	{
-		Debug::error("FrameHistorian::backtrack(): thread is not nullptr");
-	}
-
-	if (backtrackHistory != nullptr)
-	{
-		Debug::error("FrameHistorian::backtrack(): backtrackHistory is not nullptr");
-	}
-
-	branchPoint = oldestChangePoint;
-	oldestChangePoint = -1;
-	backtrackHistory = mainHistory->branch(branchPoint);
-	thread = new std::thread(&FrameHistorian::run, this);
-}
-
-int FrameHistorian::getBacktrackFrameCounter() const
+int FrameHistorian::getBacktrackFrameCounter()
 {
 	if (backtrackHistory == nullptr)
 	{
@@ -62,8 +40,13 @@ void FrameHistorian::updateIfReady(Frame* mainFrame, FrameHistory* mainFrameHist
 	{
 		thread->join();
 		deleteAndNullptr(thread); 
-		updateHistory(mainFrameHistory);
+
+		mainFrameHistory->merge(backtrackHistory);
+		backtrackHistory->clear();
+		deleteAndNullptr(backtrackHistory);
+
 		mainFrame = mainFrameHistory->getNewestFrame()->clone();
+
 		backtrack(mainFrameHistory);
 	}
 	setNewestMainThreadFrameCounter(mainFrameHistory->getFrameCounter() + 1);
@@ -82,14 +65,7 @@ void FrameHistorian::run()
 	delete frame;
 }
 
-void FrameHistorian::updateHistory(FrameHistory* mainFrameHistory)
-{
-	mainFrameHistory->merge(backtrackHistory);
-	backtrackHistory->clear();
-	deleteAndNullptr(backtrackHistory);
-}
-
-bool FrameHistorian::readyForMerge() const
+bool FrameHistorian::readyForMerge()
 {
 	if (backtrackHistory == nullptr)
 	{
@@ -107,4 +83,15 @@ void FrameHistorian::addHistoryEntry(Frame* f)
 void FrameHistorian::setNewestMainThreadFrameCounter(int frame)
 {
 	newestMainThreadFrameCounter = frame;
+}
+
+void FrameHistorian::backtrack(const FrameHistory *mainHistory)
+{
+	if (backtrackHistory != nullptr) return;
+	if (oldestChangePoint == -1) return;
+
+	branchPoint = oldestChangePoint;
+	oldestChangePoint = -1;
+	backtrackHistory = mainHistory->branch(branchPoint);
+	thread = new std::thread(&FrameHistorian::run, this);
 }

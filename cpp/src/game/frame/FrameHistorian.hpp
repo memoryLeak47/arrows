@@ -3,6 +3,7 @@
 
 #include <mutex>
 #include <thread>
+#include <atomic>
 
 #include <game/Calendar.hpp>
 #include "FrameHistory.hpp"
@@ -12,14 +13,14 @@ class FrameHistorian
 {
 	public:
 		FrameHistorian();
-		void addCalendarEntry(int frameIndex, char playerID, Actions actions, bool needsBacktrack);
+
+		// adds the calendar entry and backtracks if necessary
+		void executeCalendarEntry(int frameIndex, char playerID, Actions actions, const FrameHistory* mainHistory);
+
 		std::vector<Calendar::Entry> getCalendarEntries(int frameIndex) const;
 
-		// backtracks if backtracking is necessary: (oldestChangePoint != -1)
-		void backtrack(FrameHistory *mainHistory);
-
 		// returns backtrackHistories frameCounter
-		int getBacktrackFrameCounter() const;
+		int getBacktrackFrameCounter();
 
 		// updates mainFrame and mainFrameHistory if we recently finished backtracking, reinitializes new backtrack
 		void updateIfReady(Frame* mainFrame, FrameHistory* mainFrameHistory);
@@ -27,9 +28,11 @@ class FrameHistorian
 		// the functions which is ran in thread
 		void run();
 
-		void updateHistory(FrameHistory*);
-		bool readyForMerge() const;
+		bool readyForMerge();
 		void setNewestMainThreadFrameCounter(int);
+
+		// backtracks if necessary (eg. oldestChangePoint != -1)
+		void backtrack(const FrameHistory *mainHistory);
 
 		// uses mutex to add history entry
 		void addHistoryEntry(Frame*);
@@ -41,6 +44,7 @@ class FrameHistorian
 		int branchPoint;
 		std::thread *thread;
 		std::mutex mutex;
+		std::mutex bactrackHistoryMutex;
 };
 
 #endif
