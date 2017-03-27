@@ -15,7 +15,14 @@ dir = sys.argv[1].strip("/") + "/"
 files = Files()
 # add code here
 
-frame_cloneables = get_subclasses("FrameCloneable", files)
+frame_cloneables = list()
+
+frame_cloneables_with_tiles = get_subclasses("FrameCloneable", files)
+for fc in frame_cloneables_with_tiles:
+	s = files.structuredict[fc]
+	if "Tile" not in s.superstructures:
+		frame_cloneables.append(fc)
+
 for subclass in frame_cloneables:
 	s = files.structuredict[subclass]
 	cpp = s.file.replace(".hpp", ".cpp")

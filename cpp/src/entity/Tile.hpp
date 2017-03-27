@@ -19,6 +19,8 @@ class Tile : public Entity
 		virtual bool hasChanged() const override;
 		virtual void setChanged(bool b) override;
 
+		virtual FrameCloneable* clone(std::map<FrameCloneable*, FrameCloneable*>*) const override final;
+
 		virtual EntityType getEntityType() const override;
 		virtual bool isSpawnTeamTile() const;
 		virtual void renderToImage(sf::Image&, int, int) const;

@@ -33,13 +33,13 @@ class Frame : public FrameCloneable
 		DynamicEntity* getDynamicEntity(unsigned int);
 		const GameTileMap* getGameTileMap() const;
 
+		void applyEntries(std::vector<Calendar::Entry>);
+	private:
 		void moveAllEntities(float time);
 		void updateChanged(std::deque<CollisionEvent*>* events, float timeLeft);
 		void update(Entity* e1, Entity* e2, std::deque<CollisionEvent*>* events, float timeLeft);
 		void addEventsBetween(Entity* e1, Entity* e2, std::deque<CollisionEvent*>* events, float timeLeft);
 		void removeEventsBetween(Entity* e1, Entity* e2, std::deque<CollisionEvent*>* events);
-		void applyEntries(std::vector<Calendar::Entry>);
-	private:
 		void tickEntities();
 		void tickPhysics();
 
