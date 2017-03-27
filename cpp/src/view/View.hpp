@@ -20,17 +20,13 @@ class View
 		View();
 		virtual ~View() {}
 		GameRect getVisionRect() const;
-		void updateSpot(const GameVector&);
-		void changeFocus();
-		void setEntity(Entity*);
+		void setSpot(const GameVector&);
 		PixelRect gameRectToPixelRect(const GameRect&) const;
 	private:
-		GameVector getFocus() const;
+		GameVector getSpot() const;
 		GameVector getGameViewRoot() const;
 		float scale;
 		GameVector spot;
-		Entity* entity;
-		bool focusEntity;
 };
 
 #endif

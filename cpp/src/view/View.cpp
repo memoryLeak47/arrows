@@ -3,11 +3,10 @@
 #include <core/Screen.hpp>
 #include <math/pixel/PixelVector.hpp>
 #include <math/pixel/PixelRect.hpp>
-#include <entity/Entity.hpp>
 #include <math/game/GameRect.hpp>
 
 View::View()
-	: scale(40), spot(0,0), focusEntity(false)
+	: scale(40), spot(0,0)
 {}
 
 GameRect View::getVisionRect() const
@@ -16,19 +15,9 @@ GameRect View::getVisionRect() const
 	return GameRect(getGameViewRoot(), screenSize);
 }
 
-void View::updateSpot(const GameVector& s)
+void View::setSpot(const GameVector& s)
 {
 	spot = s;
-}
-
-void View::changeFocus()
-{
-	focusEntity = !focusEntity;
-}
-
-void View::setEntity(Entity* e)
-{
-	entity = e;
 }
 
 PixelRect View::gameRectToPixelRect(const GameRect& r) const
@@ -41,17 +30,10 @@ PixelRect View::gameRectToPixelRect(const GameRect& r) const
 GameVector View::getGameViewRoot() const
 {
 	GameVector screenSize(((float) Screen::getSize().x) / scale, ((float) Screen::getSize().y) / scale);
-	return GameVector(getFocus() - screenSize/2);
+	return GameVector(getSpot() - screenSize/2);
 }
 
-GameVector View::getFocus() const
+GameVector View::getSpot() const
 {
-	if (focusEntity)
-	{
-		return entity->getPosition();
-	}
-	else
-	{
-		return spot;
-	}
+	return spot;
 }

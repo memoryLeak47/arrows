@@ -51,18 +51,11 @@ void GameInterface::tick()
 		system("paplay /usr/share/sounds/ubuntu/notifications/Blip.ogg &");
 	} */
 
-	struct X {
-		X(GameInterface* gi)
-		{
-			gi->view.setEntity(gi->getLocalPlayer());
-			gi->view.changeFocus();
-		}
-	};
-	static X x(this); // XXX make pretty pls
-
 	historian.updateIfReady(&mainFrame, &history);
 	subTick();
 	history.add(mainFrame->clone());
+
+	view.setSpot(getLocalPlayer()->getPosition());
 
 	Debug::tickConsole();
 	Menu::tick();
