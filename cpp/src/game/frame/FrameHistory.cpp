@@ -5,7 +5,7 @@
 FrameHistory::FrameHistory()
 	: addTargetSlot(0), frameCounter(0)
 {
-	for (unsigned int i = 0; i < FRAME_HISTORY_SIZE; i++)
+	for (int i = 0; i < FRAME_HISTORY_SIZE; i++)
 	{
 		history[i] = nullptr;
 	}
@@ -31,14 +31,14 @@ void FrameHistory::add(const Frame* f)
 	frameCounter++;
 }
 
-const Frame* FrameHistory::getFrameSince(const unsigned int since) const
+const Frame* FrameHistory::getFrameSince(const int since) const
 {
 	if (FRAME_HISTORY_SIZE < since)
 	{
 		Debug::warn("FrameHistory::getFrameSince(): FRAME_HISTORY_SIZE < since: FRAME_HISTORY_SIZE = " + Converter::intToString(FRAME_HISTORY_SIZE) + "; since = " + Converter::intToString(since));
 		return nullptr;
 	}
-	const unsigned int index = toIndex(getNewestFrameSlot() - since);
+	const int index = toIndex(getNewestFrameSlot() - since);
 	return history[index]->get();
 }
 
@@ -52,7 +52,7 @@ const Frame* FrameHistory::getNewestFrame() const
 	return w->get();
 }
 
-FrameHistory* FrameHistory::branch(const unsigned int branchPoint) const
+FrameHistory* FrameHistory::branch(const int branchPoint) const
 {
 	if (branchPoint < 1)
 	{
@@ -60,8 +60,8 @@ FrameHistory* FrameHistory::branch(const unsigned int branchPoint) const
 	}
 	FrameHistory *result = new FrameHistory();
 
-	const unsigned int end = frameIndexToSlotIndex(branchPoint);
-	for (unsigned int i = addTargetSlot; i != end; i = toIndex(i + 1))
+	const int end = frameIndexToSlotIndex(branchPoint);
+	for (int i = addTargetSlot; i != end; i = toIndex(i + 1))
 	{
 		FrameWrapper* w = history[i];
 		if (w != nullptr)
@@ -75,15 +75,15 @@ FrameHistory* FrameHistory::branch(const unsigned int branchPoint) const
 }
 
 // will delete Frames, beginning by the frame pointed to by branchPoint up to the newest frame
-void FrameHistory::merge(FrameHistory* sourceHistory, const unsigned int branchPoint)
+void FrameHistory::merge(FrameHistory* sourceHistory, const int branchPoint)
 {
 	if (sourceHistory->getFrameCounter() != getFrameCounter())
 	{
 		Debug::error("FrameHistory::merge(): different frameCounters");
 	}
-	unsigned int ownSlot = 0;
-	unsigned int sourceSlot = 0;
-	for (unsigned int fIndex = branchPoint; fIndex < getFrameCounter(); fIndex++)
+	int ownSlot = 0;
+	int sourceSlot = 0;
+	for (int fIndex = branchPoint; fIndex < getFrameCounter(); fIndex++)
 	{
 		ownSlot = frameIndexToSlotIndex(fIndex);
 		sourceSlot = sourceHistory->frameIndexToSlotIndex(fIndex);
@@ -98,13 +98,13 @@ void FrameHistory::merge(FrameHistory* sourceHistory, const unsigned int branchP
 		history[ownSlot] = sourceHistory->history[sourceSlot];
 		sourceHistory->history[sourceSlot]->incReferenceCount();
 	}
-	if (sourceSlot + 1 != sourceHistory->addTargetSlot)
+	if (toIndex(sourceSlot + 1) != sourceHistory->addTargetSlot)
 	{
 		Debug::warn("FrameHistory::merge(): (sourceSlot + 1) != sourceHistory->addTargetSlot()");
 	}
 }
 
-unsigned int FrameHistory::getFrameCounter() const
+int FrameHistory::getFrameCounter() const
 {
 	return frameCounter;
 }
@@ -125,7 +125,7 @@ void FrameHistory::addWrapper(FrameWrapper* w)
 	w->incReferenceCount();
 }
 
-unsigned int FrameHistory::frameIndexToSlotIndex(const unsigned int frameIndex) const
+int FrameHistory::frameIndexToSlotIndex(const int frameIndex) const
 {
 	if (frameIndex >= getFrameCounter())
 	{
@@ -138,7 +138,7 @@ unsigned int FrameHistory::frameIndexToSlotIndex(const unsigned int frameIndex) 
 	return toIndex(getNewestFrameSlot() - frameCounter + frameIndex);
 }
 
-unsigned int FrameHistory::toIndex(unsigned int n) const
+int FrameHistory::toIndex(int n) const
 {
 	while (n < 0)
 		n += FRAME_HISTORY_SIZE;
@@ -147,19 +147,19 @@ unsigned int FrameHistory::toIndex(unsigned int n) const
 	return n;
 }
 
-unsigned int FrameHistory::getNewestFrameSlot() const
+int FrameHistory::getNewestFrameSlot() const
 {
 	return toIndex(addTargetSlot-1);
 }
 
-const Frame* FrameHistory::getFrame(const unsigned int c) const
+const Frame* FrameHistory::getFrame(const int c) const
 {
 	return history[frameIndexToSlotIndex(c)]->get();
 }
 
 void FrameHistory::deleteAll()
 {
-	for (unsigned int i = 0; i < FRAME_HISTORY_SIZE; i++)
+	for (int i = 0; i < FRAME_HISTORY_SIZE; i++)
 	{
 		if (history[i] != nullptr)
 		{

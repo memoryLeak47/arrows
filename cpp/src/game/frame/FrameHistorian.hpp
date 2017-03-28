@@ -15,12 +15,12 @@ class FrameHistorian
 		FrameHistorian();
 
 		// adds the calendar entry and backtracks if necessary
-		void executeCalendarEntry(const unsigned int frameIndex, const char playerID, const Actions actions, const FrameHistory* mainHistory);
+		void executeCalendarEntry(const int frameIndex, const char playerID, const Actions actions, const FrameHistory* mainHistory);
 
-		std::vector<Calendar::Entry> getCalendarEntries(const unsigned int frameIndex) const;
+		std::vector<Calendar::Entry> getCalendarEntries(const int frameIndex) const;
 
 		// returns backtrackHistories frameCounter
-		unsigned int getBacktrackFrameCounter();
+		int getBacktrackFrameCounter();
 
 		// updates mainFrame and mainFrameHistory if we recently finished backtracking, reinitializes new backtrack
 		void updateIfReady(Frame** mainFrame, FrameHistory* mainFrameHistory);
@@ -29,7 +29,7 @@ class FrameHistorian
 		void run();
 
 		bool readyForMerge();
-		void setNewestMainThreadFrameCounter(const unsigned int);
+		void setNewestMainThreadFrameCounter(const int);
 
 		// backtracks if necessary (eg. oldestChangePoint != -1)
 		void backtrack(const FrameHistory *mainHistory);
@@ -37,7 +37,7 @@ class FrameHistorian
 		// uses mutex to add history entry
 		void addHistoryEntry(Frame*);
 
-		unsigned int newestMainThreadFrameCounter;
+		int newestMainThreadFrameCounter;
 		Calendar calendar;
 		FrameHistory* backtrackHistory;
 		int oldestChangePoint;

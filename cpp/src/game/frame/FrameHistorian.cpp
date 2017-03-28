@@ -6,7 +6,7 @@ FrameHistorian::FrameHistorian()
 	: newestMainThreadFrameCounter(1), backtrackHistory(nullptr), oldestChangePoint(-1), branchPoint(-1), thread(nullptr)
 {}
 
-void FrameHistorian::executeCalendarEntry(const unsigned int frameIndex, const char playerID, const Actions actions, const FrameHistory* mainHistory)
+void FrameHistorian::executeCalendarEntry(const int frameIndex, const char playerID, const Actions actions, const FrameHistory* mainHistory)
 {
 	calendar.addEntry(frameIndex, playerID, actions);
 
@@ -18,12 +18,12 @@ void FrameHistorian::executeCalendarEntry(const unsigned int frameIndex, const c
 	backtrack(mainHistory);
 }
 
-std::vector<Calendar::Entry> FrameHistorian::getCalendarEntries(const unsigned int frameIndex) const
+std::vector<Calendar::Entry> FrameHistorian::getCalendarEntries(const int frameIndex) const
 {
 	return calendar.getEntries(frameIndex);
 }
 
-unsigned int FrameHistorian::getBacktrackFrameCounter()
+int FrameHistorian::getBacktrackFrameCounter()
 {
 	if (backtrackHistory == nullptr)
 	{
@@ -41,7 +41,7 @@ void FrameHistorian::updateIfReady(Frame** mainFrame, FrameHistory* mainFrameHis
 		thread->join();
 		deleteAndNullptr(thread); 
 
-		mainFrameHistory->merge(backtrackHistory, (unsigned) branchPoint);
+		mainFrameHistory->merge(backtrackHistory, branchPoint);
 		deleteAndNullptr(backtrackHistory);
 
 		delete *mainFrame;
@@ -80,7 +80,7 @@ void FrameHistorian::addHistoryEntry(Frame* f)
 	backtrackHistory->add(f);
 }
 
-void FrameHistorian::setNewestMainThreadFrameCounter(const unsigned int frame)
+void FrameHistorian::setNewestMainThreadFrameCounter(const int frame)
 {
 	newestMainThreadFrameCounter = frame;
 }

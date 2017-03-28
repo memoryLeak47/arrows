@@ -12,7 +12,7 @@
 
 #include <vector>
 
-constexpr unsigned int FRAME_HISTORY_SIZE = 200;
+constexpr int FRAME_HISTORY_SIZE = 200;
 
 class FrameHistory
 {
@@ -26,7 +26,7 @@ class FrameHistory
 			void incReferenceCount();
 			bool del();
 		private:
-			unsigned int referenceCount;
+			int referenceCount;
 			const Frame* frame;
 	};
 
@@ -34,31 +34,31 @@ class FrameHistory
 		FrameHistory();
 		~FrameHistory();
 		void add(const Frame*);
-		const Frame* getFrameSince(const unsigned int offset) const;
+		const Frame* getFrameSince(const int offset) const;
 		const Frame* getNewestFrame() const;
 
 		// the frame pointed by branchPoint will not be copied
-		FrameHistory* branch(const unsigned int branchPoint) const;
+		FrameHistory* branch(const int branchPoint) const;
 
 		// will delete Frames, beginning by the frame pointed to by branchPoint up to the newest frame
-		void merge(FrameHistory* sourceHistory, const unsigned int branchPoint);
+		void merge(FrameHistory* sourceHistory, const int branchPoint);
 
-		unsigned int getFrameCounter() const;
+		int getFrameCounter() const;
 	private:
 		// increases the wrappers referenceCount
 		void addWrapper(FrameWrapper*);
 
 		// converts frameIndex to slot-index
-		unsigned int frameIndexToSlotIndex(const unsigned int) const;
+		int frameIndexToSlotIndex(const int) const;
 
 		// correct invalid slot-indexes
-		unsigned int toIndex(unsigned int) const;
+		int toIndex(int) const;
 
 		// points to the slot, where the newest Frame is
-		unsigned int getNewestFrameSlot() const;
+		int getNewestFrameSlot() const;
 
 		// getFrame pointed by c
-		const Frame* getFrame(const unsigned int c) const;
+		const Frame* getFrame(const int c) const;
 
 		// deletes all Frames in this History
 		void deleteAll();
@@ -66,11 +66,11 @@ class FrameHistory
 		FrameWrapper* history[FRAME_HISTORY_SIZE];
 
 		// points to the history-slot which is going to be overwritten by next add-Function
-		unsigned int addTargetSlot;
+		int addTargetSlot;
 
 		// if history is empty this will be 0
 		// the number of added frames
-		unsigned int frameCounter;
+		int frameCounter;
 };
 
 #endif
