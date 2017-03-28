@@ -27,9 +27,14 @@ bool Tile::hasChanged() const
 void Tile::setChanged(bool b) {}
 
 
-FrameCloneable* Tile::clone(std::map<FrameCloneable*, FrameCloneable*>*) const
+FrameCloneable* Tile::clone(std::map<FrameCloneable*, FrameCloneable*>* map) const
 {
-	return const_cast<Tile*>(this);
+	FrameCloneable* t = const_cast<Tile*>(this);
+	if (map->find(t) == map->end())
+	{
+		(*map)[t] = t;
+	}
+	return t;
 }
 
 EntityType Tile::getEntityType() const
