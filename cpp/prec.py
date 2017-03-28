@@ -36,12 +36,19 @@ for subclass in frame_cloneables:
 	# add clone()
 	if not is_surrounded_by_markername(s.index, s.file, "abstract", files):
 		add_to_class_def(subclass, "\n\tpublic:\n\t\tFrameCloneable* clone(std::map<FrameCloneable*, FrameCloneable*>*) const override;\n\tprivate:\n", files)
-		string = "\nFrameCloneable* " + subclass + "::clone(std::map<FrameCloneable*, FrameCloneable*>* map) const\n{\n\t" + subclass + " *c = new " + subclass + "(*this);\n\t(*map)[const_cast<FrameCloneable*>(static_cast<const FrameCloneable*>(this))] = c;\n\tc->cloneMembers(map);\n\treturn c;\n}\n\n"
+		string = "\n" + \
+			"FrameCloneable* " + subclass + "::clone(std::map<FrameCloneable*, FrameCloneable*>* map) const\n" + \
+			"{\n" + \
+			"\t" + subclass + " *c = new " + subclass + "(*this);\n" + \
+			"\t(*map)[const_cast<FrameCloneable*>(static_cast<const FrameCloneable*>(this))] = c;\n" + \
+			"\tc->cloneMembers(map);\n" + \
+			"\treturn c;\n" + \
+			"}\n"
 		add_to_file(cpp, string, files)
 
 	# add cloneMembers()
 	add_to_class_def(subclass, "\n\tprotected:\n\t\tvoid cloneMembers(std::map<FrameCloneable*, FrameCloneable*>*);\n\tprivate:\n", files)
-	string = "void " + subclass + "::cloneMembers(std::map<FrameCloneable*, FrameCloneable*>* map)\n{\n"
+	string = "\nvoid " + subclass + "::cloneMembers(std::map<FrameCloneable*, FrameCloneable*>* map)\n{\n"
 	for supername in s.superstructures:
 		superstructure = files.structuredict[supername]
 		if superstructure.name in frame_cloneables:
@@ -50,11 +57,28 @@ for subclass in frame_cloneables:
 	if "clone" in l:
 		for marker in l["clone"]:
 			content = get_marker_content(marker, s.file, files).strip()
-			string += "\tif (map->find(" + content + ") == map->end())\n\t{\n\t\t" + content + "->clone(map);\n\t}\n\t" + content + " = static_cast<decltype(" + content + ")>((*map)[" + content + "]);\n"
+			string += "\tif (" + content + " != nullptr)\n" + \
+				"\t{\n" + \
+				"\t\tif (map->find(" + content + ") == map->end())\n" + \
+				"\t\t{\n" + \
+				"\t\t\t" + content + "->clone(map);\n" + \
+				"\t\t}\n" + \
+				"\t\t" + content + " = static_cast<decltype(" + content + ")>((*map)[" + content + "]);\n" + \
+				"\t}\n"
 	if "clone_list" in l:
 		for marker in l["clone_list"]:
 			content = get_marker_content(marker, s.file, files).strip()
-			string += "for (unsigned int i = 0; i < " + content + ".size(); i++)\n{\nif (map->find(" + content + "[i]) == map->end())\n{\n" + content + "[i]->clone(map);\n}\n" + content + "[i] = static_cast<decltype(" + content + ")::value_type>((*map)[" + content + "[i]]);\n}\n"
+			string += "\tfor (unsigned int i = 0; i < " + content + ".size(); i++)\n" + \
+				"\t{\n" + \
+				"\t\tif (" + content + "[i] != nullptr)\n" + \
+				"\t\t{\n" + \
+				"\t\t\tif (map->find(" + content + "[i]) == map->end())\n" + \
+				"\t\t\t{\n" \
+				"\t\t\t\t" + content + "[i]->clone(map);\n" + \
+				"\t\t\t}\n" \
+				"\t\t\t" + content + "[i] = static_cast<decltype(" + content + ")::value_type>((*map)[" + content + "[i]]);\n" + \
+				"\t\t}\n" + \
+				"\t}\n"
 
 	string += "}\n"
 	add_to_file(cpp, string, files)
