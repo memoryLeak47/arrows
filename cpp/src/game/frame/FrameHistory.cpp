@@ -135,7 +135,7 @@ int FrameHistory::frameIndexToSlotIndex(const int frameIndex) const
 	{
 		Debug::error("FrameHistory::frameIndexToSlotIndex(): frameIndex(" + Converter::intToString(frameIndex) + ") too small, frameCounter(" + Converter::intToString(getFrameCounter()) + ")");
 	}
-	return toIndex(getNewestFrameSlot() - frameCounter + frameIndex);
+	return toIndex(addTargetSlot - frameCounter + frameIndex);
 }
 
 int FrameHistory::toIndex(int n) const
