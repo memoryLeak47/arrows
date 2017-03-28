@@ -54,12 +54,6 @@ perf:
 
 .PHONY: create_prec
 create_prec:
-	@./compile.sh unlock debug
-	@cp -r build/debug/buf prec
-	@./compile.sh lock debug
-
-.PHONY: create_prec_release
-create_prec_release:
-	@./compile.sh unlock release
-	@cp -r build/release/buf prec
-	@./compile.sh lock release
+	@if [ -d prec ]; then rm -r prec; fi
+	@cp -r src prec
+	@./prec.py prec

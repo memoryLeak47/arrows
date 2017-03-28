@@ -176,6 +176,9 @@ class Files:
 	def filenames(self):
 		return self.filedict.keys()
 
+	def get_structure_names(self):
+		return self.structuredict.keys()
+
 def insert_into_file(filename, content, index, files):
 	filestr = files.filedict[filename]
 	files.filedict[filename] = filestr[:index+1] + content + filestr[index+1:]
