@@ -90,6 +90,8 @@ void FrameHistorian::backtrack(const FrameHistory *mainHistory)
 	if (backtrackHistory != nullptr) return;
 	if (oldestChangePoint == -1) return;
 
+	Debug::note("backtracking " + Converter::intToString(mainHistory->getFrameCounter() - oldestChangePoint) + " frames");
+
 	branchPoint = oldestChangePoint;
 	oldestChangePoint = -1;
 	backtrackHistory = mainHistory->branch(branchPoint);

@@ -46,10 +46,10 @@ void GameInterface::tick()
 		return;
 	}
 
-	/* if (getFrameCounter() % 100 == 0)
+	if (getFrameCounter() % 100 == 0)
 	{
 		system("paplay /usr/share/sounds/ubuntu/notifications/Blip.ogg &");
-	} */
+	}
 
 	historian.updateIfReady(&mainFrame, &history);
 	subTick();
