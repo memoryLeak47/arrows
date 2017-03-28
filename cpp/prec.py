@@ -15,9 +15,6 @@ dir = sys.argv[1].strip("/") + "/"
 files = Files()
 # add code here
 
-for s in files.get_structure_names():
-	add_to_class_def(s, "\n", files)
-
 frame_cloneables = list()
 
 frame_cloneables_with_tiles = get_subclasses("FrameCloneable", files)
