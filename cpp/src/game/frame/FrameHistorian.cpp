@@ -8,7 +8,9 @@ FrameHistorian::FrameHistorian()
 
 void FrameHistorian::executeCalendarEntry(const int frameIndex, const char playerID, const Actions actions, const FrameHistory* mainHistory)
 {
+	calendarMutex.lock();
 	calendar.addEntry(frameIndex, playerID, actions);
+	calendarMutex.unlock();
 
 	if (oldestChangePoint != -1 && oldestChangePoint < (int) frameIndex) return;
 	if (mainHistory->getFrameCounter() <= frameIndex) return;
@@ -18,8 +20,9 @@ void FrameHistorian::executeCalendarEntry(const int frameIndex, const char playe
 	backtrack(mainHistory);
 }
 
-std::vector<Calendar::Entry> FrameHistorian::getCalendarEntries(const int frameIndex) const
+std::vector<Calendar::Entry> FrameHistorian::getCalendarEntries(const int frameIndex)
 {
+	std::lock_guard<std::mutex> lock(calendarMutex);
 	return calendar.getEntries(frameIndex);
 }
 
@@ -58,7 +61,7 @@ void FrameHistorian::run()
 	Frame *frame = src->clone();
 	while (!readyForMerge())
 	{
-		frame->applyEntries(calendar.getEntries(getBacktrackFrameCounter()));
+		frame->applyEntries(getCalendarEntries(getBacktrackFrameCounter()));
 		frame->tick();
 		addHistoryEntry(frame->clone());
 	}

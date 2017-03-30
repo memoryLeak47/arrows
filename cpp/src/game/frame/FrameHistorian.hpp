@@ -17,7 +17,7 @@ class FrameHistorian
 		// adds the calendar entry and backtracks if necessary
 		void executeCalendarEntry(const int frameIndex, const char playerID, const Actions actions, const FrameHistory* mainHistory);
 
-		std::vector<Calendar::Entry> getCalendarEntries(const int frameIndex) const;
+		std::vector<Calendar::Entry> getCalendarEntries(const int frameIndex);
 
 		// returns backtrackHistories frameCounter
 		int getBacktrackFrameCounter();
@@ -45,6 +45,7 @@ class FrameHistorian
 		std::thread *thread;
 		std::mutex mutex;
 		std::mutex bactrackHistoryMutex;
+		std::mutex calendarMutex;
 };
 
 #endif
