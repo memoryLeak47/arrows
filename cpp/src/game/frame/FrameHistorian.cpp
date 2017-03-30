@@ -8,6 +8,7 @@ FrameHistorian::FrameHistorian()
 
 void FrameHistorian::executeCalendarEntry(const int frameIndex, const char playerID, const Actions actions, const FrameHistory* mainHistory)
 {
+	Debug::note("adding calendar entry: playerID(" + Converter::intToString(playerID) + "), actions(" + Converter::intToString((int) actions) + "), frameIndex(" + Converter::intToString(frameIndex) + ")");
 	calendarMutex.lock();
 	calendar.addEntry(frameIndex, playerID, actions);
 	calendarMutex.unlock();

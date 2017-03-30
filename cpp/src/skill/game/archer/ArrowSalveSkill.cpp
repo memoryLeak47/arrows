@@ -10,7 +10,7 @@ ArrowSalveSkill::ArrowSalveSkill(const SkillGivethrough& gt)
 
 void ArrowSalveSkill::onTrigger()
 {
-	constexpr int ARROW_COUNT = 40;
+	constexpr int ARROW_COUNT = 4;
 	if (getOwner()->getSpeed().x > 0.f)
 	{
 		for (int i = 0; i < ARROW_COUNT; i++)
