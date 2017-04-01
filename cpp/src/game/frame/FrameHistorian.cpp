@@ -15,7 +15,7 @@ void FrameHistorian::executeCalendarEntry(const int frameIndex, const char playe
 
 	if (oldestChangePoint != -1 && oldestChangePoint < (int) frameIndex) return;
 	if (mainHistory->getFrameCounter() <= frameIndex) return;
-	if (backtrackHistory != nullptr && getBacktrackFrameCounter() <= frameIndex) return;
+	if (backtrackHistory != nullptr && getBacktrackFrameCounter() < frameIndex) return;
 
 	oldestChangePoint = frameIndex;
 	backtrack(mainHistory);
