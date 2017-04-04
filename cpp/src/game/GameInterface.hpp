@@ -40,6 +40,7 @@ class GameInterface : public Menu, public NetworkInterface
 
 		void addForeignCalendarEntry(int frameIndex, char playerID, Actions actions);
 		void addOwnCalendarEntry(int frameIndex, Actions actions);
+		void backtrackIfNecessary();
 
 		int getFrameCounter() const;
 		void applyCalendar();

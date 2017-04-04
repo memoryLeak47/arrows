@@ -6,7 +6,7 @@ FrameHistorian::FrameHistorian()
 	: newestMainThreadFrameCounter(1), backtrackHistory(nullptr), oldestChangePoint(-1), branchPoint(-1), thread(nullptr)
 {}
 
-void FrameHistorian::executeCalendarEntry(const int frameIndex, const char playerID, const Actions actions, const FrameHistory* mainHistory)
+void FrameHistorian::addCalendarEntry(const int frameIndex, const char playerID, const Actions actions, const FrameHistory* mainHistory)
 {
 	Debug::note("adding calendar entry: playerID(" + Converter::intToString(playerID) + "), actions(" + Converter::intToString((int) actions) + "), frameIndex(" + Converter::intToString(frameIndex) + ")");
 	calendarMutex.lock();
@@ -18,7 +18,6 @@ void FrameHistorian::executeCalendarEntry(const int frameIndex, const char playe
 	if (backtrackHistory != nullptr && getBacktrackFrameCounter() < frameIndex) return;
 
 	oldestChangePoint = frameIndex;
-	backtrack(mainHistory);
 }
 
 std::vector<Calendar::Entry> FrameHistorian::getCalendarEntries(const int frameIndex)
@@ -56,6 +55,19 @@ void FrameHistorian::updateIfReady(Frame** mainFrame, FrameHistory* mainFrameHis
 	setNewestMainThreadFrameCounter(mainFrameHistory->getFrameCounter() + 1);
 }
 
+void FrameHistorian::backtrack(const FrameHistory *mainHistory)
+{
+	if (backtrackHistory != nullptr) return;
+	if (oldestChangePoint == -1) return;
+
+	Debug::note("backtracking " + Converter::intToString(mainHistory->getFrameCounter() - oldestChangePoint) + " frames");
+
+	branchPoint = oldestChangePoint;
+	oldestChangePoint = -1;
+	backtrackHistory = mainHistory->branch(branchPoint);
+	thread = new std::thread(&FrameHistorian::run, this);
+}
+
 void FrameHistorian::run()
 {
 	const Frame *src = backtrackHistory->getNewestFrame();
@@ -87,17 +99,4 @@ void FrameHistorian::addHistoryEntry(Frame* f)
 void FrameHistorian::setNewestMainThreadFrameCounter(const int frame)
 {
 	newestMainThreadFrameCounter = frame;
-}
-
-void FrameHistorian::backtrack(const FrameHistory *mainHistory)
-{
-	if (backtrackHistory != nullptr) return;
-	if (oldestChangePoint == -1) return;
-
-	Debug::note("backtracking " + Converter::intToString(mainHistory->getFrameCounter() - oldestChangePoint) + " frames");
-
-	branchPoint = oldestChangePoint;
-	oldestChangePoint = -1;
-	backtrackHistory = mainHistory->branch(branchPoint);
-	thread = new std::thread(&FrameHistorian::run, this);
 }

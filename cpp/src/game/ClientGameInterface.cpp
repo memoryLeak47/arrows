@@ -58,6 +58,8 @@ void ClientGameInterface::handlePacket(Packet* packet, const sf::IpAddress& ipAd
 
 void ClientGameInterface::subTick()
 {
+	handleAllPackets();
+
 	Actions a = calcActions();
 	if (serverActionsStatus != a)
 	{
@@ -69,7 +71,7 @@ void ClientGameInterface::subTick()
 		addOwnCalendarEntry(getFrameCounter(), a);
 	}
 
-	handleAllPackets();
+	backtrackIfNecessary();
 
 	applyCalendar();
 

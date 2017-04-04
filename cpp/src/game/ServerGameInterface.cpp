@@ -58,6 +58,8 @@ void ServerGameInterface::subTick()
 	}
 	handleAllPackets();
 
+	backtrackIfNecessary();
+
 	applyCalendar();
 
 	mainFrame->tick();

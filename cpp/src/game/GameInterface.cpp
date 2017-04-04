@@ -183,12 +183,17 @@ Actions GameInterface::calcActions() const
 
 void GameInterface::addForeignCalendarEntry(int frameIndex, char playerID, Actions actions)
 {
-	historian.executeCalendarEntry(frameIndex, playerID, actions, &history);
+	historian.addCalendarEntry(frameIndex, playerID, actions, &history);
 }
 
 void GameInterface::addOwnCalendarEntry(int frameIndex, Actions actions)
 {
-	historian.executeCalendarEntry(frameIndex, getLocalPlayerID(), actions, &history);
+	historian.addCalendarEntry(frameIndex, getLocalPlayerID(), actions, &history);
+}
+
+void GameInterface::backtrackIfNecessary()
+{
+	historian.backtrack(&history);
 }
 
 int GameInterface::getFrameCounter() const
