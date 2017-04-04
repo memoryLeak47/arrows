@@ -192,10 +192,7 @@ call_compile() {
 		done
 	}
 
-	for file in $changed_cpp_files
-	do
-		echo $file >> "build/$mode/to_compile"
-	done
+	echo $changed_cpp_files | sed 's/ /\n/g' | sort >> "build/$mode/to_compile"
 
 	cores=$(nproc)
 	for ((i=0;i<$cores;i++)) do
