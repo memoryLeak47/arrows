@@ -213,7 +213,7 @@ call_compile() {
 		exit
 	fi
 
-	if [[ ! -z $changed_files ]]; then
+	if [[ ! -z $changed_cpp_files ]]; then
 		# linking
 		echo "Linking ..."
 		obj_files=$(find -wholename "./build/$mode/obj/*.o")
