@@ -166,8 +166,6 @@ call_compile() {
 		unchecked_headers="$new_unchecked_headers"
 	done
 
-	echo 'Compiling ...'
-
 	# compilation
 	fun() {
 		while true
@@ -192,14 +190,21 @@ call_compile() {
 		done
 	}
 
-	echo $changed_cpp_files | sed 's/ /\n/g' | sort >> "build/$mode/to_compile"
+	changed_cpp_files=${changed_cpp_files##*( )}
+	changed_cpp_files=${changed_cpp_files%%( )*}
 
-	cores=$(nproc)
-	for ((i=0;i<$cores;i++)) do
-		fun $i &
-	done
+	if [[ ! -z $changed_cpp_files ]]; then
+		echo 'Compiling ...'
 
-	wait
+		echo $changed_cpp_files | sed 's/ /\n/g' | sort > "build/$mode/to_compile"
+		cores=$(nproc)
+		for ((i=0;i<$cores;i++)) do
+			fun $i &
+		done
+
+		wait
+	fi
+
 	call_lock "$mode"
 
 	if [ -f "build/$mode/failure" ]; then
@@ -208,11 +213,13 @@ call_compile() {
 		exit
 	fi
 
-	# linking
-	echo "Linking ..."
-	obj_files=$(find -wholename "./build/$mode/obj/*.o")
-	rm -f arrows
-	g++ $obj_files -o arrows $FLAGS
+	if [[ ! -z $changed_files ]]; then
+		# linking
+		echo "Linking ..."
+		obj_files=$(find -wholename "./build/$mode/obj/*.o")
+		rm -f arrows
+		g++ $obj_files -o arrows $FLAGS
+	fi
 
 	rm -r "build/lock"
 }
