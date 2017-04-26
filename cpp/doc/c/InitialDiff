@@ -1,6 +1,6 @@
 # c/InitialDiff
 
-Implementations/Tasks: "t/InitialDiff"
+Implementations/Tasks: "t/CoreSys, t/MenuSys, t/GameSys, t/NetworkSys, t/HelpSys"
 
 # Description
 Splits Arrows in CoreSys, MenuSys, GameSys, NetworkSys and HelpSys
