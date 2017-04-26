@@ -1,0 +1,23 @@
+# c/InitialDiff
+
+Implementations/Tasks: "t/InitialDiff"
+
+# Description
+Splits Arrows in CoreSys, MenuSys, GameSys, NetworkSys and HelpSys
+
+CoreSys:
+	Starts the program, initialize Screen and calls the tick() and render() function
+MenuSys:
+	Allows to replace the currently shown Menu with a new one, handles render()ing and tick()ing.
+GameSys:
+	Renders and handles the main-Game
+NetworkSys:
+	Handle sending and receiving Packets
+HelpSys:
+	Gives helpful functions for implementing stuff
+
+# Rating - Prediction
+-
+
+# Rating - Review
+Works fine

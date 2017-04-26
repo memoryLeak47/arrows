@@ -1,0 +1,28 @@
+# t/GameSys
+
+Approximate Duration: "unlimited"
+Priority: "1.0"
+Done: "No"
+Concepts: ""
+
+# Description
+Renders and handles the Game.
+
+Handles GameObjects like Players, Mobs, Bullets, Idlers, Tiles, Cosmetics and their behaviour, effects, rendering, networking and physics. Also the global game logic.
+
+Behaviour:
+	Players:
+		Players are controlled by a User.
+		Players can move left/right and jump. Also they can use 4 skills.
+	Mobs:
+		Mobs can move like Players and some can use skills, but by default they are not controlled by a User.
+	Bullets:
+		They are GameObjects, which are initially created by a Mob or Player.
+	Idlers:
+		Idlers are GameObjects, which doesn't move without external impact.
+	Tiles:
+		Tiles are GameObjects fixed on the Map and building the terrain.
+	Cosmetics:
+
+Effects:
+	An Effect is a property, which has been explicitly connected to a GameObject, mostly buffs and debuffs like "burning".
