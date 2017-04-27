@@ -8,7 +8,7 @@ Concepts: ""
 # Description
 Renders and handles the Game.
 
-Handles GameObjects like Players, Mobs, Bullets, Idlers, Tiles, Cosmetics and their behaviour, effects, rendering, networking and physics. Also the global game logic.
+Handles game-objects like Players, Mobs, Bullets, Idlers, Tiles, Cosmetics and their behaviour, health, effects, skills, rendering, networking and physics. Also the global game logic.
 
 Behaviour:
 	Players:
@@ -17,12 +17,22 @@ Behaviour:
 	Mobs:
 		Mobs can move like Players and some can use skills, but by default they are not controlled by a User.
 	Bullets:
-		They are GameObjects, which are initially created by a Mob or Player.
+		They are game-objects, which are initially created by a Mob or Player.
 	Idlers:
-		Idlers are GameObjects, which doesn't move without external impact.
+		Idlers are game-objects, which doesn't move without external impact.
 	Tiles:
-		Tiles are GameObjects fixed on the Map and building the terrain.
+		Tiles are game-objects fixed on the Map and building the terrain.
 	Cosmetics:
+		Cosmetics are only decorative objects, which may only collide with tiles and therefore have no direct impact on the game.
+
+Physics:
+	It depends on the game-objects, whether and how objects collide and react to the collision.
 
 Effects:
-	An Effect is a property, which has been explicitly connected to a GameObject, mostly buffs and debuffs like "burning".
+	An Effect is a property, which has been explicitly connected to a game object, mostly buffs and debuffs like "burning".
+
+Skills:
+	Every player and some mobs have skills.
+
+Health:
+	All Mobs and Players have a health bar, if the health decreases to zero, the particular unit dies.
