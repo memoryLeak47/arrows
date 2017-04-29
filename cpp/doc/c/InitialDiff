@@ -1,23 +1,84 @@
 # c/InitialDiff
 
-Implementations/Tasks: "t/CoreSys, t/MenuSys, t/GameSys, t/NetworkSys, t/HelpSys"
+Sub.CoreSys: ""
+Sub.MenuSys: ""
+Sub.GameSys: ""
+Sub.NetworkSys: ""
+Sub.HelpSys: ""
+ApproxDuration: "unlimited"
 
 # Description
 Splits Arrows in CoreSys, MenuSys, GameSys, NetworkSys and HelpSys
 
 CoreSys:
-	Starts the program, initialize Screen and calls the tick() and render() function
+	Starts the program, initialize Screen and calls the tick() and render() function regularly.
+
+	Start the Program:
+		Initialize Debug, Account, Screen, Team, GraphicsManager, MenuList, NetworkDevice.
+	Initialize Screen:
+		Create a new Window
+	tick/render:
+		The tick function and the render function should be called in a constant rate (by default 24 fps).
+		If a tick takes longer than a 1/24 Second the wasted time should be catched up.
+
 MenuSys:
 	Allows to replace the currently shown Menu with a new one, handles render()ing and tick()ing.
+	Provides functions for render()ing, tick()ing and Event-Handling.
+	Provides Components to build Menues with.
 GameSys:
 	Renders and handles the main-Game
+	Handles game-objects like Players, Mobs, Bullets, Idlers, Tiles, Cosmetics and their behaviour, health, effects, skills, rendering, networking and physics. Also the global game logic.
+
+	Behaviour:
+		Players:
+			Players are controlled by a User.
+			Players can move left/right and jump. Also they can use 4 skills.
+		Mobs:
+			Mobs can move like Players and some can use skills, but by default they are not controlled by a User.
+		Bullets:
+			They are game-objects, which are initially created by a Mob or Player.
+		Idlers:
+			Idlers are game-objects, which doesn't move without external impact.
+		Tiles:
+			Tiles are game-objects fixed on the Map and building the terrain.
+		Cosmetics:
+			Cosmetics are only decorative objects, which may only collide with tiles and therefore have no direct impact on the game.
+
+	Physics:
+		It depends on the game-objects, whether and how objects collide and react to the collision.
+
+	Effects:
+		An Effect is a property, which has been explicitly connected to a game object, mostly buffs and debuffs like "burning".
+
+	Skills:
+		Every player and some mobs have skills.
+
+	Health:
+		All Mobs and Players have a health bar, if the health decreases to zero, the particular unit dies.
+
+	Death:
+		If a Mob dies, it is just removed from the game.
+		If a player dies, he respawns.
+
+	GameLogic:
+		We may add a campaign mode, but this section now describes only the PvP mode.
+
+		There are n teams, who all play against each other.
+		Every team has it's own counter.
+		The first team, whichs counter has reached 100 has won.
+
+		Every player can decide whether the experience he gets, is granted to the team counter, or used to empower the player itself.
+		# TODO PARADOX, team none vs. counter
+
 NetworkSys:
-	Handle sending and receiving Packets
+	Handles sending and receiving Packets.
+	Provides functions for sending packets to a specific IP address and receiving & handling packets.
+
 HelpSys:
+	Provides general-purpose tools for simplifing implementations.
+	The goal of this task depends on the current situation.
 	Gives helpful functions for implementing stuff
 
 # Rating - Prediction
--
-
 # Rating - Review
 Works fine
