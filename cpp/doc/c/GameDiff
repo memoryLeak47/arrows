@@ -1,0 +1,31 @@
+# c/GameDiff
+
+Sub.GameMode: ""
+Sub.NetworkArchitecture: ""
+Sub.Physics: ""
+Sub.Mechanics: ""
+Sub.Datastructure: ""
+ApproxDuration: ""
+DependsOn: ""
+
+# Description
+There is a class Entity which represents all game-objects.
+There is a list of entities.
+
+GameMode:
+	Are there teams?
+	When does who win?
+NetworkArchitecture:
+	When does who send what packets, and how are they handled?
+Physics:
+	Between what Entities is a physical reaction?
+	How is that reaction?
+Mechanics:
+	Defines what players/entities can do.
+	This defines when a unit dies.
+	This also includes the combat logic and possibly vision and effects.
+DataStructure:
+	Defines how the entities are stored.
+
+# Rating - Prediction
+# Rating - Review

@@ -6,4 +6,6 @@ Done: "No"
 Concepts: "c/InitialDiff"
 
 # Description
-A 2D jump and run game. Auf alle Fälle geile Sache.
+It's a 2D battle arena sidescroller-game, with a spell-based fighting system.
+Before the game starts, you are in a lobby menu, in which you can decide what character you play / etc.
+We may once add the campaign mode otherwise it's a pure PvP game.
