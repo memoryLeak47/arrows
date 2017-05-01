@@ -4,14 +4,11 @@ Sub.GameMode: ""
 Sub.NetworkArchitecture: ""
 Sub.Physics: ""
 Sub.Mechanics: ""
-Sub.Datastructure: ""
+Sub.DataStructure: "c/FrameDataStructure"
 ApproxDuration: ""
-DependsOn: ""
+DependsOn: "c/Entity"
 
 # Description
-There is a class Entity which represents all game-objects.
-There is a list of entities.
-
 GameMode:
 	Are there teams?
 	When does who win?
@@ -26,6 +23,7 @@ Mechanics:
 	This also includes the combat logic and possibly vision and effects.
 DataStructure:
 	Defines how the entities are stored.
+	Defines how game and entities interact with each other.
 
 # Rating - Prediction
 # Rating - Review

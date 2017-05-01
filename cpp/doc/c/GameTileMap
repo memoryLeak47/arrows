@@ -1,0 +1,10 @@
+# c/GameTileMap
+
+ApproxDuration: ""
+DependsOn: "c/Tile"
+
+# Description
+The GameTileMap is a class, which contains all Tile-instances of a game.
+
+# Rating - Prediction
+# Rating - Review

@@ -1,8 +1,10 @@
-# c/<name>
+# c/Entity
 
 ApproxDuration: ""
 DependsOn: ""
 
 # Description
+There is a class 'Entity' which represents all game-objects.
+
 # Rating - Prediction
 # Rating - Review
