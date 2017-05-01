@@ -6,8 +6,8 @@ DependsOn: "c/Entity"
 # Description
 Every Entity has a MessageBox.
 This MessageBox contains a list of Messages.
-The Entity can ṕush new Messages into his own MessageBox.
-The game can poll this Messages.
+The Entity can push new Messages into his own MessageBox.
+The "game" can poll these Messages.
 Every Message has a field in which it can define, when to poll it.
 
 # Rating - Prediction

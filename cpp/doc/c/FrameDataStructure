@@ -2,20 +2,16 @@
 
 Sub.MessageSystem: "c/MessageSystem"
 ApproxDuration: ""
-DependsOn: "c/GameTileMap"
+DependsOn: "c/Entity"
 
 # Description
-All Entities, except for tiles, are stored in lists (std::vector).
-The lists are players, idlers and mobs.
-Tiles are stored in GameTileMap.
-
-All these lists, except for the list of tiles in the GameTileMap, are stored in frames.
+All Entities are stored in frames.
 A frame represents a moment in the game.
 
 the class FrameHistory contains a list of Frames, which happened after each other.
 
 The "game" contains a `Frame mainFrame` and a `FrameHistory mainFrameHistory`.
-Every Frame is cloneable, by using the Frame::clone() function, this also clones all objects inside the frame.
+A Frame is cloneable, by using the Frame::clone() function. This clones all stateful objects inside the frame, The stateless objects are preferably not cloned.
 In "game"::tick() the "game" calls `mainFrame.tick()` and `mainFrameHistory.add(mainFrame.clone())` in a yet to be decided order.
 
 MessageSystem:

@@ -49,8 +49,6 @@ class GameInterface : public Menu, public NetworkInterface
 	private:
 		RestrictedGameInterface restrictedGameInterface;
 	protected:
-		Frame *mainFrame;
-
 		// functions
 		void renderMap() const;
 		void renderBars() const;
@@ -58,6 +56,7 @@ class GameInterface : public Menu, public NetworkInterface
 		const View& getView() const;
 
 		// elements
+		Frame *mainFrame;
 		FrameHistory history;
 		FrameHistorian historian;
 		View view;
