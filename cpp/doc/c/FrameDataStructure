@@ -15,7 +15,7 @@ A Frame is cloneable, by using the Frame::clone() function. This clones all stat
 In "game"::tick() the "game" calls `mainFrame.tick()` and `mainFrameHistory.add(mainFrame.clone())` in a yet to be decided order.
 
 MessageSystem:
-	A MessageSystem provides a way for the entities to give information to each other and to the game.
+	A MessageSystem provides a way for the entities to give information to each other and to the "game".
 
 # Rating - Prediction
 # Rating - Review

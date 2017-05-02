@@ -1,0 +1,6 @@
+# p/SpawnTeamTile_NotOnlyPosition
+
+CausedBy: "c/SpawnTeamTile, c/OnlyPositionTile"
+
+# Description
+The SpawnTeamTile also stores a "Team" object, which is not the same, for all SpawnTeamTile-instances.

@@ -4,9 +4,7 @@ ApproxDuration: "unlimited"
 DependsOn: "c/Tile"
 
 # Description
-Tiles are stateless.
-This means: after they are initalized, they will never change.
-And except for position, there is no difference between Tiles of the same class.
+After Tiles are initalized, they will never change.
 
 # Rating - Prediction
 # Rating - Review

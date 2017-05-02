@@ -1,0 +1,11 @@
+# c/SpawnTeamTile
+
+ApproxDuration: ""
+DependsOn: "c/Tile, [c/Team; class Team { color, name, ... }; ]"
+
+# Description
+class SpawnTeamTile : public Tile { Team team; ... };
+The Tile where the players of the particular team spawn.
+
+# Rating - Prediction
+# Rating - Review

@@ -1,0 +1,10 @@
+# c/StatelessTile
+
+ApproxDuration: ""
+DependsOn: "c/StatelessTile"
+
+# Description
+Except for the position, all Tiles are equal to all the other Tiles of the same subclass.
+
+# Rating - Prediction
+# Rating - Review
