@@ -13,13 +13,13 @@ Message {
 	void applyTo(MessageListener* listener) { listener->applyMessage(*this); }
 };
 
-Frame::applyMessage(Message* msg) {
+When polling the 'list<Message*> ms', the Frame runs something like:
+for (auto* m : ms) {
+	m->applyTo(this);
 	for (auto* l : listeners) {
-		l->applyMessage(msg);
+		m->applyTo(l);
 	}
 }
-
-When the Frame polls a Message* m, it calls 'm->applyTo(this);'
 
 # Rating - Prediction
 Cons:
