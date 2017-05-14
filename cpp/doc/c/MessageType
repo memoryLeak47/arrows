@@ -1,0 +1,13 @@
+# c/MessageType
+
+ApproxDuration: ""
+DependsOn: "c/MessageSystem"
+
+# Description
+enum MessageType;
+Message { virtual MessageType getType() = 0 };
+
+Every <Sub>Message-class has a unique MessageType, which is returned in <Sub>Message::getType().
+
+# Rating - Prediction
+# Rating - Review

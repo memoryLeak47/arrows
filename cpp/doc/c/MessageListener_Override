@@ -1,12 +1,11 @@
-# c/MessageListener_Dispatcher
+# c/MessageListener_Override
 
 ApproxDuration: ""
-DependsOn: "c/MessageType"
+DependsOn: "c/MessageSystem"
 
 # Description
 class MessageListener {
-	bool listensTo(MessageType)
-	void applyMessage(const <Sub>Message&)
+	virtual void applyMessage(const <Sub>Message&) {}
 };
 Frame : MessageListener;
 Frame { list<MessageListener*> listeners; };
@@ -16,17 +15,16 @@ Message {
 
 Frame::applyMessage(Message* msg) {
 	for (auto* l : listeners) {
-		if (l->listensTo(msg->getType())) {
-			l->applyMessage(msg);
-		}
+		l->applyMessage(msg);
 	}
 }
 
-When the Frame polls Message* m, it calls 'm->applyTo(this);'
+When the Frame polls a Message* m, it calls 'm->applyTo(this);'
 
 # Rating - Prediction
 Cons:
 	- Every Listener must be iterated for every Message.
 Pros:
 	- Only one Listener-List
+
 # Rating - Review

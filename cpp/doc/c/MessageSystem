@@ -1,18 +1,20 @@
 # c/MessageSystem
 
+Sub.Listener: "c/MessageListener_Dispatcher, c/MessageListener_Override"
 ApproxDuration: ""
 DependsOn: "c/Entity"
 
 # Description
-enum MessageType;
-class Message { virtual MessageType getType() = 0 };
+class Message;
 class MessageBox { list<Message*> };
 Entity { MessageBox };
 
-Every <Sub>Message-class has a unique MessageType, which is returned in <Sub>Message::getType().
 The Entity can push new Messages into his own MessageBox.
 The "game" can poll these Messages.
 Every Message has a field in which it can define, when to poll it.
+
+Listener:
+	
 
 # Rating - Prediction
 # Rating - Review
