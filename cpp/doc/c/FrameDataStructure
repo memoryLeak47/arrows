@@ -5,6 +5,9 @@ ApproxDuration: ""
 DependsOn: "c/Entity"
 
 # Description
+class Frame;
+class FrameHistory;
+
 All Entities are stored in frames.
 A frame represents a moment in the game.
 

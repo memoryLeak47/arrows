@@ -4,6 +4,10 @@ ApproxDuration: ""
 DependsOn: "c/Entity"
 
 # Description
+enum MessageType;
+class Message { MessageType type };
+class MessageBox { list<Message*> };
+
 Every Entity has a MessageBox.
 This MessageBox contains a list of Messages.
 The Entity can push new Messages into his own MessageBox.

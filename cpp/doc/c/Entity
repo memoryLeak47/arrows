@@ -4,7 +4,10 @@ ApproxDuration: ""
 DependsOn: ""
 
 # Description
-There is a class 'Entity' which represents all game-objects.
+class Entity;
+
+'Entity' represents all game-objects.
+
 
 # Rating - Prediction
 # Rating - Review

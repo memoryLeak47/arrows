@@ -4,7 +4,9 @@ ApproxDuration: ""
 DependsOn: "c/Entity"
 
 # Description
-There is a Tile class, which is a (indirect?) subclass of Entity.
+class Tile;
+
+Tile is a (indirect?) subclass of Entity.
 
 # Rating - Prediction
 # Rating - Review

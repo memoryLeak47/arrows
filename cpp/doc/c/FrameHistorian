@@ -4,6 +4,8 @@ ApproxDuration: ""
 DependsOn: "c/FrameDataStructure"
 
 # Description
+class FrameHistorian;
+
 The FrameHistorian fixes inconsistencies of games on different computers, which may be caused by network delay.
 This is achieved by backtracking (re-running) the game in a parallel thread, when an information about a key press is received and it's too late to handle it.
 
