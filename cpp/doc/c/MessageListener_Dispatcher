@@ -1,5 +1,6 @@
 # c/MessageListener_Dispatcher
 
+Sub._: "c/MessageListener_DispatcherListensTo, c/MessageListener_DispatcherOverride"
 ApproxDuration: ""
 DependsOn: "c/MessageSystem"
 

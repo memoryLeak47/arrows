@@ -1,6 +1,6 @@
 # c/MessageSystem
 
-Sub.Listener: "c/MessageListener_Dispatcher, c/MessageListener_Override"
+Sub.Listener: "c/MessageListener_Dispatcher"
 ApproxDuration: ""
 DependsOn: "c/Entity"
 
