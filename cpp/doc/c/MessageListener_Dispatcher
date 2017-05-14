@@ -1,0 +1,30 @@
+# c/MessageListener_Dispatcher
+
+ApproxDuration: ""
+DependsOn: "c/MessageSystem"
+
+# Description
+class MessageListener {
+	bool listensTo(MessageType)
+	void applyMessage(const <Sub>Message&)
+};
+Frame : MessageListener;
+Frame { list<MessageListener*> listeners; };
+Message {
+	void applyTo(MessageListener* listener) { listener->applyMessage(*this); }
+};
+
+Frame::applyMessage(Message* msg) {
+	for (auto* l : listeners) {
+		if (l->listensTo(msg->getType())) {
+			l->applyMessage(msg);
+		}
+	}
+}
+
+# Rating - Prediction
+Cons:
+	- Every Listener must be iterated for every Message.
+Pros:
+	- Only one Listener-List
+# Rating - Review

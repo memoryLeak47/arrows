@@ -5,11 +5,11 @@ DependsOn: "c/Entity"
 
 # Description
 enum MessageType;
-class Message { MessageType type };
+class Message { virtual MessageType getType() = 0 };
 class MessageBox { list<Message*> };
+Entity { MessageBox };
 
-Every Entity has a MessageBox.
-This MessageBox contains a list of Messages.
+Every <Sub>Message-class has a unique MessageType, which is returned in <Sub>Message::getType().
 The Entity can push new Messages into his own MessageBox.
 The "game" can poll these Messages.
 Every Message has a field in which it can define, when to poll it.
