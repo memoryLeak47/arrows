@@ -8,13 +8,15 @@ MessageListener {
 	virtual void applyMessage(const <Sub>Message&) {} // is overriden on-demand
 };
 
-When polling the 'list<Message*> ms', the Frame runs something like:
+When polling the 'list<Message*> ms', the Game runs something like:
 for (auto* m : ms) {
 	m->applyTo(this);
 	for (auto* l : listeners) {
 		m->applyTo(l);
 	}
 }
+
+[c/Game: class Game; -- The superior modular unit]
 
 # Rating - Prediction
 # Rating - Review

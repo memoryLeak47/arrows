@@ -8,7 +8,7 @@ MessageListener {
 	bool listensTo(MessageType)
 };
 
-When polling the 'list<Message*> ms', the Frame runs something like:
+When polling the 'list<Message*> ms', the Game runs something like:
 for (auto* m : ms) {
 	m->applyTo(this);
 	for (auto* l : listeners) {
@@ -17,6 +17,8 @@ for (auto* m : ms) {
 		}
 	}
 }
+
+[c/Game: class Game; -- The superior modular unit]
 
 # Rating - Prediction
 # Rating - Review

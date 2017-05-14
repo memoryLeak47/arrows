@@ -10,11 +10,13 @@ class MessageBox { list<Message*> };
 Entity { MessageBox };
 
 The Entity can push new Messages into his own MessageBox.
-The "game" can poll these Messages.
+The Game can poll these Messages, and broadcast them to the necessary Listeners.
 Every Message has a field in which it can define, when to poll it.
 
+[c/Game: class Game; -- The superior modular unit]
+
 Listener:
-	
+	A method to listen to specific types of messages without direct access to the message-transmitter.
 
 # Rating - Prediction
 # Rating - Review

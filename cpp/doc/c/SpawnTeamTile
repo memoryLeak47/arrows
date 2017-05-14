@@ -1,7 +1,7 @@
 # c/SpawnTeamTile
 
 ApproxDuration: ""
-DependsOn: "c/Tile, [c/Team; class Team { color, name } ]"
+DependsOn: "c/Tile, [c/Team: class Team { color, name }; ]"
 
 # Description
 class SpawnTeamTile : Tile { Team team };

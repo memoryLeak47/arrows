@@ -1,6 +1,6 @@
 # c/MessageListener_Dispatcher
 
-Sub._: "c/MessageListener_DispatcherListensTo, c/MessageListener_DispatcherOverride"
+Sub: "c/MessageListener_DispatcherListensTo, c/MessageListener_DispatcherOverride"
 ApproxDuration: ""
 DependsOn: "c/MessageSystem"
 
@@ -8,13 +8,13 @@ DependsOn: "c/MessageSystem"
 class MessageListener {
 	void applyMessage(const <Sub>Message&)
 };
-Frame : MessageListener;
-Frame { list<MessageListener*> listeners; };
+Game : MessageListener;
+Game { list<MessageListener*> listeners; };
 Message {
 	void applyTo(MessageListener* listener) { listener->applyMessage(*this); }
 };
 
-When polling the 'list<Message*> ms', the Frame runs something like:
+When polling the 'list<Message*> ms', the Game runs something like:
 for (auto* m : ms) {
 	m->applyTo(this);
 	for (auto* l : listeners) {
@@ -23,6 +23,8 @@ for (auto* m : ms) {
 		// }
 	}
 }
+
+[c/Game: class Game; -- The superior modular unit]
 
 # Rating - Prediction
 Cons:
