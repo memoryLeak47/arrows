@@ -1,0 +1,20 @@
+# c/MessageListener_DispatcherOverride
+
+ApproxDuration: ""
+DependsOn: "c/MessageListener_Dispatcher"
+
+# Description
+MessageListener {
+	virtual void applyMessage(const <Sub>Message&) {} // is overriden on-demand
+};
+
+When polling the 'list<Message*> ms', the Frame runs something like:
+for (auto* m : ms) {
+	m->applyTo(this);
+	for (auto* l : listeners) {
+		m->applyTo(l);
+	}
+}
+
+# Rating - Prediction
+# Rating - Review

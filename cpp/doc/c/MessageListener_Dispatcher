@@ -1,11 +1,10 @@
 # c/MessageListener_Dispatcher
 
 ApproxDuration: ""
-DependsOn: "c/MessageType"
+DependsOn: "c/MessageSystem"
 
 # Description
 class MessageListener {
-	bool listensTo(MessageType)
 	void applyMessage(const <Sub>Message&)
 };
 Frame : MessageListener;
@@ -16,10 +15,11 @@ Message {
 
 When polling the 'list<Message*> ms', the Frame runs something like:
 for (auto* m : ms) {
+	m->applyTo(this);
 	for (auto* l : listeners) {
-		if (l->listensTo(m->getType())) {
+		// if (l cares for m) {
 			m->applyTo(l);
-		}
+		// }
 	}
 }
 

@@ -1,0 +1,22 @@
+# c/MessageListener_DispatcherListensTo
+
+ApproxDuration: ""
+DependsOn: "c/MessageType, c/MessageListener_Dispatcher"
+
+# Description
+MessageListener {
+	bool listensTo(MessageType)
+};
+
+When polling the 'list<Message*> ms', the Frame runs something like:
+for (auto* m : ms) {
+	m->applyTo(this);
+	for (auto* l : listeners) {
+		if (l->listensTo(m->getType())) {
+			m->applyTo(l);
+		}
+	}
+}
+
+# Rating - Prediction
+# Rating - Review
