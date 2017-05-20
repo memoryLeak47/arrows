@@ -2,6 +2,7 @@
 
 Sub.Listener: "c/MessageListener_Dispatcher"
 Sub?PollTime: ""
+Sub?BroadcastLimitation: "c/MessageIsBroadcast"
 ApproxDuration: ""
 DependsOn: "c/Entity"
 
@@ -20,6 +21,10 @@ The Game can poll these Messages, and broadcast them to the necessary Listeners.
 
 ?PollTime:
 	Every Message has can define, when to poll it.
+
+?BroadcastLimitation:
+	Specifies what Messages are sent to what Listeners.
+	If opted out: All Messages are sent to all Listeners.
 
 # Rating - Prediction
 # Rating - Review
