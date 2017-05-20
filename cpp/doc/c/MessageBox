@@ -1,0 +1,16 @@
+# c/MessageBox
+
+ApproxDuration: ""
+DependsOn: "c/MessageSystem"
+
+# Description
+class MessageBox { list<Message*> };
+Entity { MessageBox };
+
+The Entity can push new Messages into his own MessageBox.
+The Game can poll these Messages, and broadcast them to the necessary Listeners.
+
+[c/Game: class Game; -- The superior modular unit]
+
+# Rating - Prediction
+# Rating - Review

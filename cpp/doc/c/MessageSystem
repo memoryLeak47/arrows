@@ -1,6 +1,7 @@
 # c/MessageSystem
 
 Sub.Listener: "c/MessageListener_Dispatcher"
+Sub.Sending: "c/MessageBox, c/MessageHeap"
 Sub?PollTime: ""
 Sub?BroadcastLimitation: "c/MessageIsBroadcast"
 ApproxDuration: ""
@@ -8,19 +9,17 @@ DependsOn: "c/Entity"
 
 # Description
 class Message;
-class MessageBox { list<Message*> };
-Entity { MessageBox };
 
-The Entity can push new Messages into his own MessageBox.
-The Game can poll these Messages, and broadcast them to the necessary Listeners.
-
-[c/Game: class Game; -- The superior modular unit]
+Messages which will be handled in an async way.
 
 .Listener:
 	A method to listen to specific types of messages without direct access to the message-transmitter.
 
+.Sending:
+	How does someone send a message?
+
 ?PollTime:
-	Every Message has can define, when to poll it.
+	Every Message can define, when to poll it.
 
 ?BroadcastLimitation:
 	Specifies what Messages are sent to what Listeners.

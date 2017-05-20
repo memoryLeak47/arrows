@@ -1,0 +1,15 @@
+# c/MessageHeap
+
+ApproxDuration: ""
+DependsOn: "c/MessageSystem"
+
+# Description
+class MessageHeap { (static) list<Message*> };
+
+There is a "global" way to add messages to the MessageHeap.
+The Game can poll these Messages, and broadcast them to the necessary Listeners.
+
+[c/Game: class Game; -- The superior modular unit]
+
+# Rating - Prediction
+# Rating - Review
