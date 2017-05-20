@@ -1,0 +1,14 @@
+# c/MessageIsBroadcast
+
+ApproxDuration: ""
+DependsOn: "c/MessageSystem"
+
+# Description
+Message { virtual bool isBroadcast() const }
+
+[c/Game: the superior modular unit, which polls the Message]
+
+Returns whether the Game should broadcast this Message to other known Listeners, when polled.
+
+# Rating - Prediction
+# Rating - Review
