@@ -19,7 +19,7 @@ The Game contains a `Frame mainFrame` and a `FrameHistory mainFrameHistory`.
 A Frame is cloneable, by using the Frame::clone() function. This clones all stateful objects inside the frame, The stateless objects are preferably not cloned.
 In Game::tick() the Game calls `mainFrame.tick()` and `mainFrameHistory.add(mainFrame.clone())` in a yet to be decided order.
 
-MessageSystem:
+.MessageSystem:
 	A MessageSystem provides a way for the entities to give information to each other and to the Game.
 
 # Rating - Prediction

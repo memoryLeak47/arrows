@@ -11,21 +11,21 @@ DependsOn: ""
 # Description
 Splits Arrows in CoreSys, MenuSys, GameSys, NetworkSys and HelpSys
 
-CoreSys:
+.CoreSys:
 	Starts the program, initializes Screen and other basic systems and calls the heartbeat-functions tick() and render().
 
-MenuSys:
+.MenuSys:
 	Allows to replace the currently shown Menu with a new one.
 	Provides functions for Event-Handling.
 	Provides Components to build Menues with.
-GameSys:
+.GameSys:
 	Renders and handles the main-Game and their Game-Objects for example Players.
 	Decides how you win.
 
-NetworkSys:
+.NetworkSys:
 	Provides functions for sending packets to a specific IP address and receiving & handling packets.
 
-HelpSys:
+.HelpSys:
 	Provides general-purpose tools for simplifing implementations.
 	The goal of this task depends on the current situation.
 	Gives helpful functions for implementing stuff
