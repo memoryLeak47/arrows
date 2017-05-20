@@ -41,7 +41,6 @@ LobbyPlayer* ClientLobbyMenu::getLocalPlayer() const
 void ClientLobbyMenu::handlePacket(Packet* packet, const sf::IpAddress& ip)
 {
 	if (packet == nullptr) Debug::warn("ClientLobbyMenu::handlePacket(): packet == nullptr");
-
 	if (ip == serverIP)
 	{
 		handlePacketByID(packet, 0);
