@@ -1,0 +1,25 @@
+# c/MessageContainer
+
+ApproxDuration: ""
+DependsOn: "c/MessageSystem"
+
+# Description
+
+class MessageContainer
+{
+	public:
+		std::vector<Message*> messages
+		Message* pollMessage() { return messages.pop(); }
+		bool hasMessage() { !messages.empty(); }
+	protected:
+		void addMessage(Message* mes) { messages.push_back(mes); }
+}
+
+[c/Poller: Unit which wants to poll, process or forward the messages of a MessageContainer]
+[c/MessageOwner: A Unit, which can send messages; MessageOwner : MessageContainer]
+
+A MessageOwner can addMessages via the addMessage()-Function to his own messages-Pool.
+A Poller can poll this messages to process or forward them.
+
+# Rating - Prediction
+# Rating - Review

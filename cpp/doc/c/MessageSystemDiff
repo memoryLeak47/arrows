@@ -1,0 +1,25 @@
+# c/MessageSystemDiff
+
+Sub.Listener: "c/MessageListener_Dispatcher"
+Sub.Sending: "c/MessageBox, c/MessageHeap, c/MessageContainer"
+Sub.Procedure: "c/MessageEntitySubs"
+ApproxDuration: ""
+DependsOn: "c/MessageSystem"
+
+# Description
+
+Splits c/MessageSystem into .Listener & .Sending & .Procedure
+
+.Listener:
+	Implementation of the class MessageListener
+	A method to listen to specific types of messages without direct access to the message-transmitter.
+
+.Sending:
+	How does someone send a message?
+
+.Procedure:
+	In which Sequence are messages processed?"
+	In which Datastructure are messages processed?
+
+# Rating - Prediction
+# Rating - Review

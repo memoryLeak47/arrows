@@ -1,0 +1,18 @@
+# c/MessageEntitySubs
+
+ApproxDuration: ""
+DependsOn: "c/MessageSystem, c/Entity"
+
+# Description
+
+[c/EntitySubs: Skills, Items, Effects. Are stored in Entity and are ticked by Entity]
+[c/MessageSender: class who can store messages for later polling] // for example MessageContainer
+[Game: Unit who stores the Entities and process their Messages]
+
+(Sub)Entity, Skills, Items, Effects : MessageSender
+
+Entity can store Messages for later polling.
+After an Entity ticked an EntitySub the entity polls the messages from this EntitySub and stores these messages like an own message.
+
+# Rating - Prediction
+# Rating - Review

@@ -1,7 +1,6 @@
 # c/MessageSystem
 
-Sub.Listener: "c/MessageListener_Dispatcher"
-Sub.Sending: "c/MessageBox, c/MessageHeap"
+Sub: "c/MessageSystemDiff, c/MessageCommunicator"
 Sub?PollTime: ""
 Sub?BroadcastLimitation: "c/MessageIsBroadcast"
 ApproxDuration: ""
@@ -12,13 +11,6 @@ class Message;
 class MessageListener;
 
 Messages which will be handled in an async way.
-
-.Listener:
-	Implementation of the class MessageListener
-	A method to listen to specific types of messages without direct access to the message-transmitter.
-
-.Sending:
-	How does someone send a message?
 
 ?PollTime:
 	Every Message can define, when to poll it.

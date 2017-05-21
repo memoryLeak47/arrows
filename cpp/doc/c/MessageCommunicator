@@ -6,8 +6,8 @@ DependsOn: "c/MessageSystem, c/EffectOnlyInEntity"
 # Description
 class MessageCommunicator : MessageListener {
 	std::vector<Message*> messages
-	Message* pollMessage()
-	bool hasMessage()
+	Message* pollMessage() { return messages.pop(); }
+	bool hasMessage() { return !messages.empty(); }
 }
 Entity, Skill, Item, Effect : MessageCommunicator
 Game : MessageListener
@@ -15,7 +15,7 @@ Game : MessageListener
 [c/Game: class Game; -- The superior modular unit]
 
 The Game regularly polls the Messages of all Entities.
-Every Entity polls Messages of its Skills, Items, Effects.
+Entity::tick() ticks and then polls its skills, items and effects to it's own messages list.
 
 When a message is broadcasted, the Game broadcasts it to the entities,
 which then broadcast them farther to their Skills, Items and Effects.
