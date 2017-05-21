@@ -1,4 +1,4 @@
-# c/StatelessTile
+# c/OnlyPositionTile
 
 ApproxDuration: ""
 DependsOn: "c/StatelessTile"

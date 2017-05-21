@@ -1,0 +1,7 @@
+# p/MessageHeapBacktrack
+
+CausedBy: "c/MessageHeap, c/FrameHistorian"
+
+# Description
+
+The backtracking-thread would add the messages to the same MessageHeap as the main-thread would. This would obviously conflict.

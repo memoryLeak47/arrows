@@ -1,5 +1,6 @@
 # c/Tile
 
+Sub?Invariance: "c/OnlyPositionTile, c/StatelessTile"
 ApproxDuration: ""
 DependsOn: "c/Entity"
 
@@ -7,6 +8,10 @@ DependsOn: "c/Entity"
 class Tile;
 
 Tile is a (indirect?) subclass of Entity.
+
+?Invariance:
+	Invariance rules of the Tiles.
+	May be used to reduce the amount of needed Tile-instances.
 
 # Rating - Prediction
 # Rating - Review
