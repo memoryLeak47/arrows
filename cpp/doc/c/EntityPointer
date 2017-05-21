@@ -1,0 +1,15 @@
+# c/EntityPointer
+
+ApproxDuration: ""
+DependsOn: "c/Entity"
+
+# Description
+class EntityPointer { int id }
+Frame { Entity* getEntityById(int id) }
+
+There is a randomly generated id for every Entity.
+When an Entity is clone()d, the cloned Entity has the same id.
+There should never be two Entities sharing the same id in one Frame.
+
+# Rating - Prediction
+# Rating - Review
