@@ -1,0 +1,11 @@
+# c/EffectOnlyInEntity
+
+ApproxDuration: ""
+DependsOn: "c/Effect, c/Entity"
+
+# Description
+Entity or any (indirect) subclass of Entity contains a list of Effects.
+The effects are only stored there.
+
+# Rating - Prediction
+# Rating - Review

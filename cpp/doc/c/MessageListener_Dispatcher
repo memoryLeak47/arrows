@@ -5,7 +5,7 @@ ApproxDuration: ""
 DependsOn: "c/MessageSystem"
 
 # Description
-class MessageListener {
+MessageListener {
 	void applyMessage(const <Sub>Message&)
 };
 Game : MessageListener;

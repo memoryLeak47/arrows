@@ -1,0 +1,12 @@
+# c/Effect
+
+ApproxDuration: ""
+DependsOn: ""
+
+# Description
+class Effect;
+
+'Effect' represents status-changes for game-objects.
+
+# Rating - Prediction
+# Rating - Review

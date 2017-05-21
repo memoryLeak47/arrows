@@ -9,10 +9,12 @@ DependsOn: "c/Entity"
 
 # Description
 class Message;
+class MessageListener;
 
 Messages which will be handled in an async way.
 
 .Listener:
+	Implementation of the class MessageListener
 	A method to listen to specific types of messages without direct access to the message-transmitter.
 
 .Sending:
