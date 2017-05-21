@@ -5,11 +5,15 @@ DependsOn: "c/Entity"
 
 # Description
 class EntityPointer { int id }
-Frame { Entity* getEntityById(int id) }
+Game { Entity* getEntityById(int id) }
 
 There is a randomly generated id for every Entity.
-When an Entity is clone()d, the cloned Entity has the same id.
-There should never be two Entities sharing the same id in one Frame.
+There should never be two Entities sharing the same id in one Game.
+
+[c/Game: class Game; -- The superior modular unit]
+
+This concept is useful in conjunction with c/FrameDataStructure: (Game := Frame)
+	When an Entity is clone()d, the cloned Entity has the same id.
 
 # Rating - Prediction
 # Rating - Review
