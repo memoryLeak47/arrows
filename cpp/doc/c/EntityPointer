@@ -10,6 +10,8 @@ Game { Entity* getEntityById(int id) }
 There is a randomly generated id for every Entity.
 There should never be two Entities sharing the same id in one Game.
 
+This may be used to point to Tiles, which are not really Tile-instances for memory-overhead-reasons.
+
 [c/Game: class Game; -- The superior modular unit]
 
 This concept is useful in conjunction with c/FrameDataStructure: (Game := Frame)
