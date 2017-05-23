@@ -8,8 +8,6 @@ DependsOn: "c/MessageSystem"
 MessageListener {
 	void applyMessage(const <Sub>Message&)
 };
-Game : MessageListener;
-Game { list<MessageListener*> listeners; };
 Message {
 	void applyTo(MessageListener* listener) { listener->applyMessage(*this); }
 };
@@ -27,8 +25,4 @@ for (auto* m : ms) {
 [c/Game: class Game; -- The superior modular unit]
 
 # Rating - Prediction
-Cons:
-	- Every Listener must be iterated for every Message.
-Pros:
-	- Only one Listener-List
 # Rating - Review

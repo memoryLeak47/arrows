@@ -10,6 +10,10 @@ DependsOn: "c/Entity"
 class Message;
 class MessageListener;
 
+Game : MessageListener
+
+[c/Game: class Game; - The superior modular unit]
+
 Messages which will be handled in an async way.
 
 ?PollTime:

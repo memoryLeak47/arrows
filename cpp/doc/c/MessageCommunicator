@@ -1,6 +1,7 @@
 # c/MessageCommunicator
 
 ApproxDuration: ""
+Sub.Listener: "c/MessageListener_Dispatcher"
 DependsOn: "c/MessageSystem, c/EffectOnlyInEntity"
 
 # Description
@@ -10,7 +11,6 @@ class MessageCommunicator : MessageListener {
 	bool hasMessage() { return !messages.empty(); }
 }
 Entity, Skill, Item, Effect : MessageCommunicator
-Game : MessageListener
 
 [c/Game: class Game; -- The superior modular unit]
 
@@ -21,6 +21,11 @@ When a message is broadcasted, the Game broadcasts it to the entities,
 which then broadcast them farther to their Skills, Items and Effects.
 
 So the Game and {Skills, Items, Effects} do not communicate directly with each other.
+
+.Listener:
+	Implementation of the class MessageListener
+	A method to listen to specific types of messages without direct access to the message-transmitte
+
 
 # Rating - Prediction
 # Rating - Review

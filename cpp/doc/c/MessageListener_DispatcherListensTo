@@ -4,9 +4,13 @@ ApproxDuration: ""
 DependsOn: "c/MessageType, c/MessageListener_Dispatcher"
 
 # Description
+[c/Listeners: object listeners; -- a list of the listeners]
+[c/Game: class Game; -- The superior modular unit]
+
 MessageListener {
 	bool listensTo(MessageType)
 };
+
 
 When polling the 'list<Message*> ms', the Game runs something like:
 for (auto* m : ms) {
@@ -17,8 +21,6 @@ for (auto* m : ms) {
 		}
 	}
 }
-
-[c/Game: class Game; -- The superior modular unit]
 
 # Rating - Prediction
 # Rating - Review

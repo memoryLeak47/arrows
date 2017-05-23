@@ -4,6 +4,9 @@ ApproxDuration: ""
 DependsOn: "c/MessageListener_Dispatcher"
 
 # Description
+[c/Listeners: object listeners; -- a list of the listeners]
+[c/Game: class Game; -- The superior modular unit]
+
 MessageListener {
 	virtual void applyMessage(const <Sub>Message&) {} // is overriden on-demand
 };
@@ -15,8 +18,6 @@ for (auto* m : ms) {
 		m->applyTo(l);
 	}
 }
-
-[c/Game: class Game; -- The superior modular unit]
 
 # Rating - Prediction
 # Rating - Review
