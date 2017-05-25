@@ -1,0 +1,17 @@
+# c/DestroyList
+
+ApproxDuration: ""
+DependsOn: "c/Entity, c/MessageSystem"
+
+# Description
+Solves p/DestroyMessageDangling
+
+[c/EntityContainer: class EntityContainer; the class which contains the entities]
+
+EntityContainer { list<Entity*> destroyList }
+
+When an Entity E is removed (not yet deleted), E will be stored in the destroyList.
+In every frame before or after polling, the destroyList elements will be deleted and the list will be cleared.
+
+# Rating - Prediction
+# Rating - Review
