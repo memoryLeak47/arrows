@@ -1,5 +1,6 @@
 #include "GamePlayer.hpp"
 
+#include <game/messages/Message.hpp>
 #include <misc/compress/CompressBuffer.hpp>
 #include <misc/Global.hpp>
 #include <controller/PlayerController.hpp>
@@ -98,6 +99,35 @@ void GamePlayer::tick()
 	{
 		skills[i]->tick(); // TODO tick effects
 	}
+}
+
+void GamePlayer::broadcastMessage(Message* m)
+{
+	Mob::broadcastMessage(m);
+	for (Skill* skill : skills)
+		m->applyTo(skill);
+	for (Item* item : items)
+		m->applyTo(item);
+}
+
+void GamePlayer::pollSubMessages()
+{
+	Mob::pollSubMessages();
+	for (Skill* skill : skills)
+	{
+		while (skill->hasMessage())
+		{
+			addMessage(skill->pollMessage());
+		}
+	}
+	for (Item* item : items)
+	{
+		while (item->hasMessage())
+		{
+			addMessage(item->pollMessage());
+		}
+	}
+
 }
 
 void GamePlayer::optSetSkillEnabled(int i, bool b)

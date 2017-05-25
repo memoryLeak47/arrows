@@ -173,3 +173,13 @@ bool DynamicEntity::hasWrapperPartner(Entity* e) const
 	}
 	return false;
 }
+
+void DynamicEntity::broadcastMessage(Message* m)
+{
+	// TODO broadcast to the effects
+}
+
+void DynamicEntity::pollSubMessages()
+{
+	// TODO poll from effects
+}

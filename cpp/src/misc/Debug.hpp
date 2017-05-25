@@ -78,7 +78,7 @@ class TimerInstance
 };
 
 
-struct Message
+struct DebugMessage
 {
 	std::string text;
 	int counter;
@@ -104,7 +104,7 @@ class Debug
 		static std::vector<Timer*> timers;
 	private:
 		static int indentCounter;
-		static std::vector<Message> messages;
+		static std::vector<DebugMessage> messages;
 };
 
 #endif

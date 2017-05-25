@@ -19,8 +19,9 @@ struct SkillGivethrough
 #include <vector>
 #include <graphics/TextureID.hpp>
 #include <game/frame/FrameCloneable.hpp>
+#include <game/messages/MessageCommunicator.hpp>
 
-class Skill : public FrameCloneable
+class Skill : public FrameCloneable, public MessageCommunicator
 {
 	public:
 		Skill(const SkillGivethrough&);

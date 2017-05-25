@@ -24,6 +24,10 @@ class DynamicEntity : public Entity
 		virtual const std::vector<Entity*>& getWrapperPartners() const override;
 		virtual bool hasCollisionPartner(Entity* e) const override;
 		virtual bool hasWrapperPartner(Entity* e) const override;
+
+		// messages
+		virtual void broadcastMessage(Message* m);
+		virtual void pollSubMessages();
 	private:
 		bool changed;
 		std::vector<Entity*> $$clone_list$$ collisionPartners $!clone_list$$;

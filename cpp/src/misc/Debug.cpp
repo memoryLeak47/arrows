@@ -7,7 +7,7 @@
 #include <math/pixel/PixelVector.hpp>
 
 int Debug::indentCounter;
-std::vector<Message> Debug::messages;
+std::vector<DebugMessage> Debug::messages;
 std::vector<Timer*> Debug::timers;
 
 Timer::Timer(std::string function)
@@ -77,7 +77,7 @@ void Debug::renderConsole()
 {
 	// alle Messages rendern
 	int y = 0;
-	for (Message msg : messages)
+	for (DebugMessage msg : messages)
 	{
 		Screen::drawText(msg.text, PixelVector(3, y), sf::Color::Magenta);
 		y += 15;
@@ -212,7 +212,7 @@ void Debug::funcOff(const std::string& s)
 
 void Debug::screen(const std::string& text, int time)
 {
-	Message m;
+	DebugMessage m;
 	m.text = text;
 	m.counter = time+1;
 	messages.push_back(m);

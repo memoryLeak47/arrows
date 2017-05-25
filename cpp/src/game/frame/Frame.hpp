@@ -6,6 +6,7 @@
 #include <map>
 #include "FrameCloneable.hpp"
 #include <game/Calendar.hpp>
+#include <game/messages/MessageListener.hpp>
 
 class GameTileMap;
 class DynamicEntity;
@@ -18,8 +19,9 @@ class GamePlayer;
 class LobbyTileMap;
 class LobbyPlayer;
 class RestrictedGameInterface;
+class Message;
 
-class Frame : public FrameCloneable
+class Frame : public FrameCloneable, public MessageListener
 {
 	public:
 		Frame(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers, RestrictedGameInterface* restrictedGameInterface);
@@ -42,6 +44,9 @@ class Frame : public FrameCloneable
 		void removeEventsBetween(Entity* e1, Entity* e2, std::deque<CollisionEvent*>* events);
 		void tickEntities();
 		void tickPhysics();
+
+		void pollAndProcessMessages();
+		void processMessage(Message* m);
 
 		std::vector<GamePlayer*> $$clone_list$$ players $!clone_list$$;
 		std::vector<Idler*> $$clone_list$$ idlers $!clone_list$$;

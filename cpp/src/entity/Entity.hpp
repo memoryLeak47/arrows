@@ -40,9 +40,10 @@ class Shape;
 #include <SFML/Graphics/Texture.hpp>
 #include <math/game/GameVector.hpp>
 #include <game/frame/FrameCloneable.hpp>
+#include <game/messages/MessageCommunicator.hpp>
 
 $$abstract$$
-class Entity : public FrameCloneable
+class Entity : public FrameCloneable, public MessageCommunicator
 {
 	public:
 		Entity(const EntityGivethrough&);
@@ -124,7 +125,6 @@ class Entity : public FrameCloneable
 		virtual void render(const View&) const;
 		virtual sf::Texture* getTexture() const = 0;
 		void stop();
-
 	protected:
 		void basicRender(const View&) const;
 		PixelRect getRenderRect(const View&) const;

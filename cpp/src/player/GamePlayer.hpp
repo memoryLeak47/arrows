@@ -37,6 +37,10 @@ class GamePlayer : public Mob
 		const sf::IpAddress& getIP() const;
 
 		virtual void tick() override;
+
+		// messages
+		virtual void broadcastMessage(Message* m) override;
+		virtual void pollSubMessages() override;
 	protected:
 		virtual void optSetSkillEnabled(int, bool); // called from Mob::applyActions(); updates skills
 		virtual void apply(const std::string&); // Wird nur in ClientGameInterface::applyGameUpdate benutzt

@@ -1,6 +1,9 @@
 #include "Frame.hpp"
 
-#include <tilemap/GameTileMap.hpp>
+#include <map>
+#include <assert.h>
+
+#include <collision/CollisionDetector.hpp>
 #include <avatar/LobbyAvatar.hpp>
 #include <player/LobbyPlayer.hpp>
 #include <network/packets/AvatarPacket.hpp>
@@ -15,10 +18,9 @@
 #include <entity/Idler.hpp>
 #include <entity/Mob.hpp>
 #include <player/GamePlayer.hpp>
-#include <collision/CollisionDetector.hpp>
+#include <tilemap/GameTileMap.hpp>
 #include "FrameCloneable.hpp"
-#include <map>
-#include <assert.h>
+#include <game/messages/Message.hpp>
 
 static const int LOOP_LIMIT = 300;
 static const float FREQ = 10.f;
@@ -71,7 +73,8 @@ void Frame::tickEntities()
 		entity->tick();
 		entity->setChanged(true); // wichtig für tickPhysics()
 	}
-	// TODO tick tiles?
+
+	pollAndProcessMessages();
 }
 
 void Frame::tickPhysics()
@@ -156,6 +159,36 @@ void Frame::tickPhysics()
 		{
 			Debug::error("Frame::tickPhysics(): infinite loop");
 			break;
+		}
+	}
+}
+
+void Frame::pollAndProcessMessages()
+{
+	// messages
+	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
+	{
+		DynamicEntity* e = getDynamicEntity(i);
+		e->pollSubMessages();
+		while (e->hasMessage())
+		{
+			processMessage(e->pollMessage());
+		}
+	}
+}
+
+void Frame::processMessage(Message* m)
+{
+	m->applyTo(this);
+
+	// apply to Listeners
+	if (m->isBroadcast())
+	{
+		for (unsigned int j = 0; j < getDynamicEntityAmount(); j++)
+		{
+			DynamicEntity* e = getDynamicEntity(j);
+			e->broadcastMessage(m);
+			m->applyTo(e);
 		}
 	}
 }
