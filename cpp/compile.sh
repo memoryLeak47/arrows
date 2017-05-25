@@ -231,7 +231,7 @@ if [ -z "$1" ]; then
 fi
 
 if [ "$1" == "compile" ]; then
-	call_compile "$2" || call_lock "$2"
+	call_compile "$2"
 elif [ "$1" == "lock" ]; then
 	call_lock "$2"
 elif [ "$1" == "unlock" ]; then
