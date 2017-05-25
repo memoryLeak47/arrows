@@ -9,3 +9,5 @@ You also have dangling pointers when a message after this DestroyMessage has a p
 while (e->hasMessage()) {
 	process(e->pollMessage()) // deletes e
 }
+
+There is a similar issue with DestroyMessage, that when iterating over the entities and polling them: some entities are skipped.

@@ -1,0 +1,23 @@
+# c/PollAllMessagesFirst
+
+ApproxDuration: ""
+DependsOn: "c/Entity, c/MessageSystem"
+
+# Description
+Solves p/DestroyMessageDangling
+
+Instead of:
+	for entity in entities
+		messages = entity.poll()
+		for message in messages
+			handle(message)
+
+We do:
+	messages = list()
+	for entity in entities
+		messages += entity.poll()
+	for message in messages
+		handle(message)
+
+# Rating - Prediction
+# Rating - Review

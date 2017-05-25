@@ -15,3 +15,9 @@ In every frame before or after polling, the destroyList elements will be deleted
 
 # Rating - Prediction
 # Rating - Review
+This didn't work at all. 0/10
+
+for entity in entities
+	messages = entity.poll()
+	for message in messages
+		handle(message) // maybe modifies entities => invalid iteration
