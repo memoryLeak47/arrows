@@ -1,0 +1,11 @@
+# p/DestroyMessageDangling
+
+CausedBy: "c/DestroyMessage"
+
+# Description
+When an DestroyMessage is handled, you can't check for more messages because the entity is now a dangling pointer.
+You also have dangling pointers when a message after this DestroyMessage has a pointer to the sending entity itself.
+
+while (e->hasMessage()) {
+	process(e->pollMessage()) // deletes e
+}
