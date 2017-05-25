@@ -1,0 +1,21 @@
+# c/MessageDestruction
+
+ApproxDuration: ""
+DependsOn: "c/Entity, c/MessageSystem"
+
+# Description
+
+class DestroyMessage : Message {
+	DynamicEntity* entityToBeRemoved
+}
+
+DynamicEntity {
+	void destroy() { addMessage(new DestroyMessage(this)) }
+}
+
+When an entity E should no longer exist, E.destroy() should be called.
+E.destroy() sends a DestroyMessage.
+Every holder of a pointer to E should directly or indirectly process this message and remove the pointer to E.
+
+# Rating - Prediction
+# Rating - Review

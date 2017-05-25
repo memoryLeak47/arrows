@@ -24,6 +24,7 @@ DependsOn: "c/Entity"
 .DataStructure:
 	Defines how the entities are stored.
 	Defines how game and entities interact with each other.
+	Defines how the entities are deleted.
 
 # Rating - Prediction
 # Rating - Review

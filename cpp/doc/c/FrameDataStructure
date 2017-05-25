@@ -1,6 +1,7 @@
 # c/FrameDataStructure
 
 Sub.MessageSystem: "c/MessageSystem"
+Sub.EntityDestruction: "c/DetachDestruction, c/MessageDestruction"
 Sub?OutsideEntityAccess: "c/EntityPointer"
 ApproxDuration: ""
 DependsOn: "c/Entity"
@@ -22,6 +23,9 @@ In Game::tick() the Game calls `mainFrame.tick()` and `mainFrameHistory.add(main
 
 .MessageSystem:
 	A MessageSystem provides a way for the entities to give information to each other and to the Game.
+
+.EntityDestruction:
+	Defines when and how to remove the entities.
 
 ?OutsideEntityAccess:
 	Allows secure Entity-access from outside the frame-system, which is not invalidated by frame-cloning(, as a Entity* would).

@@ -1,0 +1,20 @@
+# c/DetachDestruction
+
+ApproxDuration: ""
+DependsOn: "c/DynamicEntity"
+
+# Description
+enum DetachState { ALIVE, REMOVE_POINTERS, DELETE }
+
+DynamicEntity {
+	void detach()
+	DetachState getDetachState() const
+}
+
+After the detach()-function is called, the corresponding entity has no more influence to the game.
+the detach()-function changes the detach_state from ALIVE to REMOVE_POINTERS.
+In the REMOVE_POINTERS-stage all the pointers to the entity should be removed within one frame.
+In the DELETE-stage the entity will be finally `delete`d.
+
+# Rating - Prediction
+# Rating - Review

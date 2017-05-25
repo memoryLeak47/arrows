@@ -1,0 +1,13 @@
+# c/DynamicEntity
+
+ApproxDuration: ""
+DependsOn: "c/Entity"
+
+class DynamicEntity : Entity {}
+
+DynamicEntity defines all Entities, which can change.
+Which is basically everything except for terrain.
+
+# Description
+# Rating - Prediction
+# Rating - Review
