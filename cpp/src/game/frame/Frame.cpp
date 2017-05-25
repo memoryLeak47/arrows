@@ -65,6 +65,11 @@ void Frame::applyEntries(std::vector<Calendar::Entry> entries)
 	}
 }
 
+void Frame::applyMessage(const AddIdlerMessage& m)
+{
+	idlers.push_back(m.getIdler());
+}
+
 void Frame::tickEntities()
 {
 	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)

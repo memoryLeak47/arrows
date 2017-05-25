@@ -2,3 +2,6 @@
 
 MessageListener::~MessageListener()
 {}
+
+void MessageListener::applyMessage(const AddIdlerMessage& m)
+{}

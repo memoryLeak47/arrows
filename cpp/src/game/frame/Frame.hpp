@@ -8,6 +8,7 @@
 #include "FrameCloneable.hpp"
 #include <game/Calendar.hpp>
 #include <game/message/MessageListener.hpp>
+#include <game/message/messages/AddIdlerMessage.hpp>
 
 class GameTileMap;
 class DynamicEntity;
@@ -36,6 +37,9 @@ class Frame : public FrameCloneable, public MessageListener
 		const GameTileMap* getGameTileMap() const;
 
 		void applyEntries(std::vector<Calendar::Entry>);
+
+		// apply Messages
+		virtual void applyMessage(const AddIdlerMessage& m);
 	private:
 		void moveAllEntities(float time);
 		void updateChanged(std::deque<CollisionEvent*>* events, float timeLeft);
@@ -45,6 +49,7 @@ class Frame : public FrameCloneable, public MessageListener
 		void tickEntities();
 		void tickPhysics();
 
+		// messages
 		void pollAndProcessMessages();
 		void processMessage(Message* m);
 
