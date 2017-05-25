@@ -57,7 +57,7 @@ class Entity : public FrameCloneable, public MessageCommunicator
 
 		// physics
 		void move(float time);
-		void setSpeed(const GameVector& speed);
+		virtual void setSpeed(const GameVector& speed) = 0;
 		void setPosition(const GameVector& position);
 		void setRotation(float rotation);
 		void setSpin(float spin);
@@ -95,7 +95,7 @@ class Entity : public FrameCloneable, public MessageCommunicator
 
 		const GameVector& getPosition() const;
 		const GameVector& getSize() const;
-		const GameVector& getSpeed() const;
+		virtual const GameVector& getSpeed() const = 0;
 		float getRotation() const;
 		float getSpin() const;
 
@@ -131,7 +131,7 @@ class Entity : public FrameCloneable, public MessageCommunicator
 
 		// should not be protected: XXX
 		Shape* $$clone$$ shape $!clone$$;
-		GameVector position, size, speed;
+		GameVector position, size;
 		float rotation, spin;
 		int dashCounter;
 

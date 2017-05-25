@@ -12,7 +12,7 @@
 #include <view/View.hpp>
 
 Entity::Entity(const EntityGivethrough& gt)
-	: shape(gt.shape), position(gt.position), size(gt.size), speed(gt.speed), rotation(gt.rotation), spin(gt.spin)
+	: shape(gt.shape), position(gt.position), size(gt.size), rotation(gt.rotation), spin(gt.spin)
 {}
 
 Entity::~Entity()
@@ -45,14 +45,6 @@ void Entity::move(float time)
 	}
 }
 
-void Entity::setSpeed(const GameVector& speed_arg)
-{
-	if (speed != speed_arg)
-	{
-		speed = speed_arg;
-		setChanged(true);
-	}
-}
 
 void Entity::setPosition(const GameVector& position_arg)
 {
@@ -105,11 +97,6 @@ const GameVector& Entity::getPosition() const
 const GameVector& Entity::getSize() const
 {
 	return size;
-}
-
-const GameVector& Entity::getSpeed() const
-{
-	return speed;
 }
 
 float Entity::getRotation() const

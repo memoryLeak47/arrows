@@ -15,6 +15,8 @@ class GameVector : public Compressable
 		GameVector(float x, float y);
 		GameVector(CompressBuffer*);
 
+		static const GameVector nullVector;
+
 		CompressID getCompressID() const override;
 		std::string getCompressString() const override;
 		bool inRect(const GameRect&) const;

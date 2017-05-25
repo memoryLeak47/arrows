@@ -3,10 +3,11 @@
 #include <misc/Global.hpp>
 #include <collision/CollisionTester.hpp>
 #include <collision/PhysicsHandler.hpp>
+#include <entity/EntityGivethrough.hpp>
 #include <math/game/GameVector.hpp>
 
 DynamicEntity::DynamicEntity(const EntityGivethrough& gt)
-	: Entity(gt), changed(true)
+	: Entity(gt), changed(true), speed(gt.speed)
 {}
 
 bool DynamicEntity::hasChanged() const
@@ -55,6 +56,20 @@ void DynamicEntity::checkWrapperPartners()
 			removeWrapperPartner(p);
 			p->removeWrapperPartner(this);
 		}
+	}
+}
+
+const GameVector& DynamicEntity::getSpeed() const
+{
+	return speed;
+}
+
+void DynamicEntity::setSpeed(const GameVector& speed_arg)
+{
+	if (speed != speed_arg)
+	{
+		speed = speed_arg;
+		setChanged(true);
 	}
 }
 

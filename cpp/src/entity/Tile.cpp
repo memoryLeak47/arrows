@@ -37,6 +37,16 @@ FrameCloneable* Tile::clone(std::map<FrameCloneable*, FrameCloneable*>* map) con
 	return t;
 }
 
+const GameVector& Tile::getSpeed() const
+{
+	return GameVector::nullVector;
+}
+
+void Tile::setSpeed(const GameVector& v)
+{
+	Debug::warn("Tile::setSpeed(): should never be called");
+}
+
 EntityType Tile::getEntityType() const
 {
 	return EntityType::TILE;

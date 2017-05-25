@@ -111,6 +111,8 @@ void RectShape::reactToCollision_solid(const float massshare, const GameVector& 
 	GameVector sponge_sum = GameVector(v_sum + (otherSpeed - entity->getSpeed()) * (1-massshare));
 	GameVector speedSum = v_sum * (1.f - sponge) + sponge_sum * sponge;
 
+	GameVector tmp_speed = entity->getSpeed();
+
 	if ((x == MID) && (y == MID)) // Wenn der CollisionPoint in der Mitte der Entity liegt
 	{
 		// Move Out
@@ -118,26 +120,26 @@ void RectShape::reactToCollision_solid(const float massshare, const GameVector& 
 		{
 			// Move Right
 			entity->position.x += collisionPoint.x - entity->getLeftest();
-			entity->speed.x = std::max(2*SPONGE + speedSum.x, entity->getSpeed().x);
+			tmp_speed.x = std::max(2*SPONGE + speedSum.x, entity->getSpeed().x);
 		}
 		else
 		{
 			// Move Left
 			entity->position.x += collisionPoint.x - entity->getRightest();
-			entity->speed.x = std::min(-2*SPONGE + speedSum.x, entity->getSpeed().x);
+			tmp_speed.x = std::min(-2*SPONGE + speedSum.x, entity->getSpeed().x);
 		}
 
 		if (collisionPoint.y < entity->getPosition().y)
 		{
 			// Move Down
 			entity->position.y += collisionPoint.y - entity->getToppest();
-			entity->speed.y = std::max(2*SPONGE + speedSum.y, entity->getSpeed().y);
+			tmp_speed.y = std::max(2*SPONGE + speedSum.y, entity->getSpeed().y);
 		}
 		else
 		{
 			// Move Up
 			entity->position.y += collisionPoint.y - entity->getBottest();
-			entity->speed.y = std::min(-2*SPONGE + speedSum.y, entity->getSpeed().y);
+			tmp_speed.y = std::min(-2*SPONGE + speedSum.y, entity->getSpeed().y);
 		}
 	}
 	else if (x == MID) // Wenn nur x in der Mitte liegt
@@ -146,13 +148,13 @@ void RectShape::reactToCollision_solid(const float massshare, const GameVector& 
 		{
 			// Move Down
 			entity->position.y += collisionPoint.y - entity->getToppest();
-			entity->speed.y = std::max(SPONGE + speedSum.y, entity->speed.y);
+			tmp_speed.y = std::max(SPONGE + speedSum.y, tmp_speed.y);
 		}
 		else // bot-collision
 		{
 			// Move Up
 			entity->position.y += collisionPoint.y - entity->getBottest();
-			entity->speed.y = std::min(-SPONGE + speedSum.y, entity->speed.y);
+			tmp_speed.y = std::min(-SPONGE + speedSum.y, tmp_speed.y);
 		}
 	}
 	else if (y == MID)
@@ -161,13 +163,15 @@ void RectShape::reactToCollision_solid(const float massshare, const GameVector& 
 		{
 			// Move Right
 			entity->position.x += collisionPoint.x - entity->getLeftest();
-			entity->speed.x = std::max(SPONGE + speedSum.x, entity->speed.x);
+			tmp_speed.x = std::max(SPONGE + speedSum.x, tmp_speed.x);
 		}
 		else // right-collision
 		{
 			// Move Left
 			entity->position.x += collisionPoint.x - entity->getRightest();
-			entity->speed.x = std::min(-SPONGE + speedSum.x, entity->speed.x);
+			tmp_speed.x = std::min(-SPONGE + speedSum.x, tmp_speed.x);
 		}
 	}
+
+	entity->setSpeed(tmp_speed);
 }

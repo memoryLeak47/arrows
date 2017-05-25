@@ -18,5 +18,5 @@ std::string Shape::getCompressString() const
 void Shape::reactToCollision_sticky(const float massshare, const GameVector& otherSpeed, const GameVector& collisionPoint)
 {
 	GameVector v_sum(entity->getSpeed()*massshare + otherSpeed*(1-massshare));
-	entity->speed = v_sum;
+	entity->setSpeed(v_sum);
 }

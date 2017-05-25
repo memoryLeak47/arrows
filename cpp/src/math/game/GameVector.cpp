@@ -6,6 +6,8 @@
 #include "GameRect.hpp"
 #include <misc/compress/CompressBuffer.hpp>
 
+const GameVector GameVector::nullVector;
+
 GameVector::GameVector()
 	: x(0.f), y(0.f)
 {}

@@ -21,6 +21,9 @@ class Tile : public Entity
 
 		virtual FrameCloneable* clone(std::map<FrameCloneable*, FrameCloneable*>*) const override final;
 
+		virtual const GameVector& getSpeed() const override final;
+		virtual void setSpeed(const GameVector& v) override final;
+
 		virtual EntityType getEntityType() const override;
 		virtual bool isSpawnTeamTile() const;
 		virtual void renderToImage(sf::Image&, int, int) const;

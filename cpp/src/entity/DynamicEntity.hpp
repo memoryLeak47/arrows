@@ -13,6 +13,9 @@ class DynamicEntity : public Entity
 
 		void checkWrapperPartners();
 
+		virtual const GameVector& getSpeed() const override final;
+		virtual void setSpeed(const GameVector& speed_arg) override final;
+
 		virtual bool hasChanged() const override;
 		virtual void setChanged(bool b) override;
 
@@ -30,6 +33,7 @@ class DynamicEntity : public Entity
 		virtual void pollSubMessages();
 	private:
 		bool changed;
+		GameVector speed;
 		std::vector<Entity*> $$clone_list$$ collisionPartners $!clone_list$$;
 		std::vector<Entity*> $$clone_list$$ wrapperPartners $!clone_list$$;
 };

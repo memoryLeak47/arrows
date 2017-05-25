@@ -156,7 +156,7 @@ void GamePlayer::apply(const std::string& s)
 
 	shape = gt->shape;
 	position = gt->position;
-	speed = gt->speed;
+	setSpeed(gt->speed);
 	size = gt->size;
 	rotation = gt->rotation;
 	spin = gt->spin;
