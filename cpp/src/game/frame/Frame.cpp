@@ -79,7 +79,7 @@ void Frame::applyMessage(const DestroyMessage& m)
 		if (players[i] == e)
 		{
 			players.erase(players.begin() + i);
-			delete e;
+			destroyList.push_back(e);
 			return;
 		}
 	}
@@ -88,7 +88,7 @@ void Frame::applyMessage(const DestroyMessage& m)
 		if (idlers[i] == e)
 		{
 			idlers.erase(idlers.begin() + i);
-			delete e;
+			destroyList.push_back(e);
 			return;
 		}
 	}
@@ -97,7 +97,7 @@ void Frame::applyMessage(const DestroyMessage& m)
 		if (mobs[i] == e)
 		{
 			mobs.erase(mobs.begin() + i);
-			delete e;
+			destroyList.push_back(e);
 			return;
 		}
 	}
@@ -115,6 +115,8 @@ void Frame::tickEntities()
 	}
 
 	pollAndProcessMessages();
+
+	deleteAndClearVector(destroyList);
 }
 
 void Frame::tickPhysics()
