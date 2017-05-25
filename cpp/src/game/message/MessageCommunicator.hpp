@@ -13,8 +13,9 @@ class MessageCommunicator : public MessageListener
 		MessageCommunicator();
 		virtual ~MessageCommunicator();
 		Message* pollMessage();
-		void addMessage(Message*);
 		bool hasMessage() const;
+	protected:
+		void addMessage(Message*);
 	private:
 		std::vector<Message*> messages;
 

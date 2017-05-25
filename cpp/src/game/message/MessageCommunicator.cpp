@@ -20,13 +20,12 @@ Message* MessageCommunicator::pollMessage()
 	return m;
 }
 
-void MessageCommunicator::addMessage(Message* m)
-{
-	messages.push_back(m);
-}
-
 bool MessageCommunicator::hasMessage() const
 {
 	return !messages.empty();
 }
 
+void MessageCommunicator::addMessage(Message* m)
+{
+	messages.push_back(m);
+}

@@ -3,6 +3,7 @@
 #include <entity/Bullet.hpp>
 #include <skill/LobbySkill.hpp>
 #include <entity/Mob.hpp>
+#include <game/message/messages/AddIdlerMessage.hpp>
 
 Skill::Skill(const SkillGivethrough& gt)
 	: owner(gt.owner),
@@ -71,5 +72,5 @@ Mob* Skill::getOwner() const
 
 void Skill::addBullet(Bullet* b)
 {
-  // TODO add Bullet here
+	addMessage(new AddIdlerMessage(b));
 }
