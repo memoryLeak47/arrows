@@ -2,7 +2,6 @@
 
 #include <entity/Bullet.hpp>
 #include <skill/LobbySkill.hpp>
-#include <game/RestrictedGameInterface.hpp>
 #include <entity/Mob.hpp>
 
 Skill::Skill(const SkillGivethrough& gt)
@@ -10,8 +9,7 @@ Skill::Skill(const SkillGivethrough& gt)
 	  enabled(false),
 	  charge(0.f),
 	  description(gt.lobbySkill->getDescription()),
-	  iconTextureID(gt.lobbySkill->getIconTextureID()),
-	  restrictedGameInterface(gt.restrictedGameInterface)
+	  iconTextureID(gt.lobbySkill->getIconTextureID())
 {}
 
 void Skill::setEnabled(bool b)
@@ -73,5 +71,5 @@ Mob* Skill::getOwner() const
 
 void Skill::addBullet(Bullet* b)
 {
-	restrictedGameInterface->addIdler(b);
+  // TODO add Bullet here
 }

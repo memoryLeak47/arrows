@@ -6,7 +6,7 @@
 #include <map>
 #include "FrameCloneable.hpp"
 #include <game/Calendar.hpp>
-#include <game/messages/MessageListener.hpp>
+#include <game/message/MessageListener.hpp>
 
 class GameTileMap;
 class DynamicEntity;
@@ -18,13 +18,12 @@ class Tile;
 class GamePlayer;
 class LobbyTileMap;
 class LobbyPlayer;
-class RestrictedGameInterface;
 class Message;
 
 class Frame : public FrameCloneable, public MessageListener
 {
 	public:
-		Frame(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers, RestrictedGameInterface* restrictedGameInterface);
+		Frame(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers);
 		virtual ~Frame();
 
 		Frame* clone() const;
@@ -56,7 +55,6 @@ class Frame : public FrameCloneable, public MessageListener
 	friend class GameInterface;
 	friend class ClientGameInterface;
 	friend class ServerGameInterface;
-	friend class RestrictedGameInterface;
 };
 
 #endif

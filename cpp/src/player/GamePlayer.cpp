@@ -1,6 +1,6 @@
 #include "GamePlayer.hpp"
 
-#include <game/messages/Message.hpp>
+#include <game/message/Message.hpp>
 #include <misc/compress/CompressBuffer.hpp>
 #include <misc/Global.hpp>
 #include <controller/PlayerController.hpp>
@@ -26,13 +26,12 @@ GamePlayer::GamePlayer(CompressBuffer *b)
 	Debug::error("GamePlayer::GamePlayer(): should never be called. Instead use the apply Function!");
 }
 
-GamePlayer::GamePlayer(const EntityGivethrough& gt, const LobbyPlayer* player, RestrictedGameInterface* rgi)
+GamePlayer::GamePlayer(const EntityGivethrough& gt, const LobbyPlayer* player)
 	: Mob(gt, new PlayerController()),
 	  name(player->getLoginPacket()->getName()),
 	  rank(player->getLoginPacket()->getRank()),
 	  description(LobbyAvatar::get(player->getAvatarPacket()->getAvatarID())->getDescription()),
-	  iconTextureID(LobbyAvatar::get(player->getAvatarPacket()->getAvatarID())->getIconTextureID()),
-	  restrictedGameInterface(rgi)
+	  iconTextureID(LobbyAvatar::get(player->getAvatarPacket()->getAvatarID())->getIconTextureID())
 {
 	ip = player->getIP();
 
@@ -46,7 +45,7 @@ GamePlayer::GamePlayer(const EntityGivethrough& gt, const LobbyPlayer* player, R
 		}
 		else
 		{
-			skills.push_back(lobbySkill->createGameSkill(this, restrictedGameInterface));
+			skills.push_back(lobbySkill->createGameSkill(this));
 		}
 	}
 

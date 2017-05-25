@@ -20,18 +20,18 @@
 #include <player/GamePlayer.hpp>
 #include <tilemap/GameTileMap.hpp>
 #include "FrameCloneable.hpp"
-#include <game/messages/Message.hpp>
+#include <game/message/Message.hpp>
 
 static const int LOOP_LIMIT = 300;
 static const float FREQ = 10.f;
 
-Frame::Frame(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers, RestrictedGameInterface* restrictedGameInterface)
+Frame::Frame(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers)
 	: tileMap(new GameTileMap(map))
 {
 	for (unsigned int i = 0; i < lobbyPlayers.size(); i++)
 	{
 		players.push_back(LobbyAvatar::get(lobbyPlayers[i]->getAvatarPacket()->getAvatarID())->createGamePlayer(
-			tileMap->teamToSpawnPosition(lobbyPlayers[i]->getTeamPacket()->getTeam()), lobbyPlayers[i], restrictedGameInterface));
+			tileMap->teamToSpawnPosition(lobbyPlayers[i]->getTeamPacket()->getTeam()), lobbyPlayers[i]));
 	}
 }
 
@@ -191,6 +191,7 @@ void Frame::processMessage(Message* m)
 			m->applyTo(e);
 		}
 	}
+	delete m;
 }
 
 void Frame::moveAllEntities(float time)

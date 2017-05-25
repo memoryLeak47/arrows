@@ -13,7 +13,6 @@ class Team;
 class LobbyAvatar;
 class Skill;
 class Item;
-class RestrictedGameInterface;
 
 #include <entity/Mob.hpp>
 #include <controller/Actions.hpp>
@@ -26,7 +25,7 @@ class GamePlayer : public Mob
 {
 	public:
 		GamePlayer(CompressBuffer*); // => Mob(b), cutCharges(b)
-		GamePlayer(const EntityGivethrough&, const LobbyPlayer*, RestrictedGameInterface*); // used when Game begins in Avatar::createGamePlayer()
+		GamePlayer(const EntityGivethrough&, const LobbyPlayer*); // used when Game begins in Avatar::createGamePlayer()
 		virtual ~GamePlayer(); // deletes ip
 
 		// compress
@@ -57,7 +56,6 @@ class GamePlayer : public Mob
 		// lobby avatar data
 		std::string description;
 		TextureID iconTextureID;
-		RestrictedGameInterface* restrictedGameInterface;
 
 	friend class Frame;
 	friend class GameInterface;

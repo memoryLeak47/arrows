@@ -11,7 +11,7 @@ struct ItemGivethrough
 #include <string>
 #include <graphics/TextureID.hpp>
 #include <game/frame/FrameCloneable.hpp>
-#include <game/messages/MessageCommunicator.hpp>
+#include <game/message/MessageCommunicator.hpp>
 
 class Item : public FrameCloneable, public MessageCommunicator
 {

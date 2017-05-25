@@ -6,20 +6,18 @@ const float MAX_CHARGE = 100.f;
 class Mob;
 class Bullet;
 class LobbySkill;
-class RestrictedGameInterface;
 
 struct SkillGivethrough
 {
 	Mob* owner;
 	const LobbySkill* lobbySkill;
-	RestrictedGameInterface* restrictedGameInterface;
 };
 
 #include <string>
 #include <vector>
 #include <graphics/TextureID.hpp>
 #include <game/frame/FrameCloneable.hpp>
-#include <game/messages/MessageCommunicator.hpp>
+#include <game/message/MessageCommunicator.hpp>
 
 class Skill : public FrameCloneable, public MessageCommunicator
 {
@@ -45,7 +43,6 @@ class Skill : public FrameCloneable, public MessageCommunicator
 		// lobby skill
 		std::string description;
 		TextureID iconTextureID;
-		RestrictedGameInterface* restrictedGameInterface;
 
 	friend class GamePlayer; // For setCharge on GameUpdatePacket (ClientSide)
 };

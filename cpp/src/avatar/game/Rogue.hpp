@@ -15,7 +15,7 @@ class Rogue : public GamePlayer
 {
 	public:
 		Rogue(CompressBuffer*);
-		Rogue(const GameVector&, const LobbyPlayer*, RestrictedGameInterface*);
+		Rogue(const GameVector&, const LobbyPlayer*);
 		virtual ~Rogue() {}
 
 		// compress

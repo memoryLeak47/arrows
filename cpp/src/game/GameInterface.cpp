@@ -22,7 +22,7 @@
 #include <entity/TestKiste.hpp>
 
 GameInterface::GameInterface(LobbyTileMap* map, const std::vector<LobbyPlayer*>& lobbyPlayers, long int startTime_arg)
-	: restrictedGameInterface(this), mainFrame(new Frame(map, lobbyPlayers, &restrictedGameInterface)), startTime(startTime_arg)
+	: mainFrame(new Frame(map, lobbyPlayers)), startTime(startTime_arg)
 {
 	Debug::note("------------ [ GAME ON ] ------------");
 	tileMap = mainFrame->tileMap;

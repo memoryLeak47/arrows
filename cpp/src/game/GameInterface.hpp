@@ -17,7 +17,6 @@ class CollisionEvent;
 #include <SFML/Network/IpAddress.hpp>
 #include <controller/Actions.hpp>
 #include <view/View.hpp>
-#include "RestrictedGameInterface.hpp"
 #include "Calendar.hpp"
 #include "frame/Frame.hpp"
 #include "frame/FrameHistory.hpp"
@@ -46,9 +45,6 @@ class GameInterface : public Menu, public NetworkInterface
 		void applyCalendar();
 		virtual void subTick() = 0;
 
-	private:
-		RestrictedGameInterface restrictedGameInterface;
-	protected:
 		// functions
 		void renderMap() const;
 		void renderBars() const;
@@ -62,8 +58,6 @@ class GameInterface : public Menu, public NetworkInterface
 		View view;
 		GameTileMap* tileMap;
 		const long int startTime;
-
-	friend class RestrictedGameInterface;
 };
 
 #endif

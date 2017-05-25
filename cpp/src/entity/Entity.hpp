@@ -40,7 +40,7 @@ class Shape;
 #include <SFML/Graphics/Texture.hpp>
 #include <math/game/GameVector.hpp>
 #include <game/frame/FrameCloneable.hpp>
-#include <game/messages/MessageCommunicator.hpp>
+#include <game/message/MessageCommunicator.hpp>
 
 $$abstract$$
 class Entity : public FrameCloneable, public MessageCommunicator

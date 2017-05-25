@@ -5,7 +5,6 @@ class CompressBuffer;
 class GameVector;
 class LobbyPlayer;
 class Entity;
-class RestrictedGameInterface;
 
 #include <player/GamePlayer.hpp>
 #include <misc/compress/CompressID.hpp>
@@ -16,7 +15,7 @@ class Archer : public GamePlayer
 {
 	public:
 		Archer(CompressBuffer*);
-		Archer(const GameVector&, const LobbyPlayer*, RestrictedGameInterface*);
+		Archer(const GameVector&, const LobbyPlayer*);
 		virtual ~Archer() {}
 
 		// compress

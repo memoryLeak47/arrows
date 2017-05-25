@@ -4,8 +4,8 @@
 #include <graphics/GraphicsManager.hpp>
 #include <collision/RectShape.hpp>
 
-Rogue::Rogue(const GameVector& pos, const LobbyPlayer* player, RestrictedGameInterface* rgi)
-	: GamePlayer(EntityGivethrough(new RectShape(this), pos, GraphicsManager::getGameSizeOf(GraphicsIDs::ROGUE)), player, rgi)
+Rogue::Rogue(const GameVector& pos, const LobbyPlayer* player)
+	: GamePlayer(EntityGivethrough(new RectShape(this), pos, GraphicsManager::getGameSizeOf(GraphicsIDs::ROGUE)), player)
 {}
 
 Rogue::Rogue(CompressBuffer* buffer)
