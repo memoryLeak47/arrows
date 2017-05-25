@@ -8,7 +8,7 @@
 #include <game/message/messages/DestroyMessage.hpp>
 
 DynamicEntity::DynamicEntity(const EntityGivethrough& gt)
-	: Entity(gt), changed(true), speed(gt.speed)
+	: Entity(gt), lifetime(0), changed(true), speed(gt.speed)
 {}
 
 void DynamicEntity::tick()
