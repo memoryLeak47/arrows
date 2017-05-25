@@ -18,8 +18,3 @@ bool AddIdlerMessage::isBroadcast() const
 {
 	return false;
 }
-
-void AddIdlerMessage::applyTo(MessageListener* l)
-{
-	l->applyMessage(*this);
-}

@@ -12,7 +12,6 @@ class AddIdlerMessage : public Message
 		virtual ~AddIdlerMessage();
 		Idler* getIdler() const;
 		virtual bool isBroadcast() const;
-		virtual void applyTo(MessageListener* l);
 	private:
 		Idler* idler;
 };

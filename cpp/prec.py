@@ -15,6 +15,20 @@ dir = sys.argv[1].strip("/") + "/"
 files = Files()
 # add code here
 
+# <Sub>Message::applyTo(...) { ... }
+message_subclasses = get_subclasses("Message", files)
+for message_subclass in message_subclasses:
+	hpp_string = "\n\tpublic:\n\t\tvirtual void applyTo(MessageListener* l);\n\tprivate:\n"
+	add_to_class_def(message_subclass, hpp_string, files)
+
+	s = files.structuredict[message_subclass]
+
+	cpp = s.file.replace(".hpp", ".cpp")
+	cpp_string = "\nvoid " + message_subclass + "::applyTo(MessageListener* l) { l->applyMessage(*this); }"
+	add_to_file(cpp, cpp_string, files)
+
+
+# frame cloneables stuff
 frame_cloneables = list()
 
 frame_cloneables_with_tiles = get_subclasses("FrameCloneable", files)
