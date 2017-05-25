@@ -22,6 +22,7 @@ call_unlock() {
 }
 
 call_compile() {
+	trap "{ echo 'locking'; call_lock "$1"; exit 1; }" INT
 	[[ ! -d build ]] && mkdir build
 
 	if ! mkdir "build/lock" 2>/dev/null; then
@@ -230,7 +231,7 @@ if [ -z "$1" ]; then
 fi
 
 if [ "$1" == "compile" ]; then
-	call_compile "$2"
+	call_compile "$2" || call_lock "$2"
 elif [ "$1" == "lock" ]; then
 	call_lock "$2"
 elif [ "$1" == "unlock" ]; then
