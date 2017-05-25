@@ -79,7 +79,7 @@ void Frame::applyMessage(const DestroyMessage& m)
 		if (players[i] == e)
 		{
 			players.erase(players.begin() + i);
-			destroyList.push_back(e);
+			delete e;
 			return;
 		}
 	}
@@ -88,7 +88,7 @@ void Frame::applyMessage(const DestroyMessage& m)
 		if (idlers[i] == e)
 		{
 			idlers.erase(idlers.begin() + i);
-			destroyList.push_back(e);
+			delete e;
 			return;
 		}
 	}
@@ -97,7 +97,7 @@ void Frame::applyMessage(const DestroyMessage& m)
 		if (mobs[i] == e)
 		{
 			mobs.erase(mobs.begin() + i);
-			destroyList.push_back(e);
+			delete e;
 			return;
 		}
 	}
@@ -115,8 +115,6 @@ void Frame::tickEntities()
 	}
 
 	pollAndProcessMessages();
-
-	deleteAndClearVector(destroyList);
 }
 
 void Frame::tickPhysics()
@@ -208,14 +206,19 @@ void Frame::tickPhysics()
 void Frame::pollAndProcessMessages()
 {
 	// messages
+	std::vector<Message*> messages;
 	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
 	{
 		DynamicEntity* e = getDynamicEntity(i);
 		e->pollSubMessages();
 		while (e->hasMessage())
 		{
-			processMessage(e->pollMessage());
+			messages.push_back(e->pollMessage());
 		}
+	}
+	for (Message* m : messages)
+	{
+		processMessage(m);
 	}
 }
 

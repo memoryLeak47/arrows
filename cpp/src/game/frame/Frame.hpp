@@ -60,8 +60,6 @@ class Frame : public FrameCloneable, public MessageListener
 		std::vector<Mob*> $$clone_list$$ mobs $!clone_list$$;
 		GameTileMap* tileMap;
 
-		std::vector<DynamicEntity*> destroyList;
-
 	friend class GameInterface;
 	friend class ClientGameInterface;
 	friend class ServerGameInterface;
