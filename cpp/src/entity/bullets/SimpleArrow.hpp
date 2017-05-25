@@ -14,6 +14,8 @@ class SimpleArrow : public Bullet
 
 		CompressID getCompressID() const override;
 
+		virtual void tick() override;
+
 		virtual float getCollisionPriority(Entity*) const;
 
 		virtual std::string toString() const;

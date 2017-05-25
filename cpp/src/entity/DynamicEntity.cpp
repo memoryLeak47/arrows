@@ -11,6 +11,12 @@ DynamicEntity::DynamicEntity(const EntityGivethrough& gt)
 	: Entity(gt), changed(true), speed(gt.speed)
 {}
 
+void DynamicEntity::tick()
+{
+	Entity::tick();
+	lifetime++;
+}
+
 bool DynamicEntity::hasChanged() const
 {
 	return changed;
@@ -221,4 +227,9 @@ void DynamicEntity::applyMessage(const DestroyMessage& m)
 void DynamicEntity::destroy()
 {
 	addMessage(new DestroyMessage(this));
+}
+
+int DynamicEntity::getLifetime() const
+{
+	return lifetime;
 }

@@ -11,6 +11,8 @@ class DynamicEntity : public Entity
 		DynamicEntity(const EntityGivethrough&);
 		virtual ~DynamicEntity() {}
 
+		virtual void tick() override;
+
 		void checkWrapperPartners();
 
 		virtual const GameVector& getSpeed() const override final;
@@ -35,7 +37,9 @@ class DynamicEntity : public Entity
 		virtual void applyMessage(const DestroyMessage& m) override;
 	protected:
 		void destroy();
+		int getLifetime() const;
 	private:
+		int lifetime;
 		bool changed;
 		GameVector speed;
 		std::vector<Entity*> $$clone_list$$ collisionPartners $!clone_list$$;

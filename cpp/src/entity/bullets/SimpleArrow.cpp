@@ -5,6 +5,8 @@
 #include <entity/EntityGivethrough.hpp>
 #include <collision/RectShape.hpp>
 
+static const int LIFESPAN = 100;
+
 SimpleArrow::SimpleArrow(const GameVector& pos, const GameVector& speed, Mob* owner)
 	: Bullet(EntityGivethrough(new RectShape(this) /* XXX Rotated */, pos, GameVector(0.7f, 0.1f), speed), owner)
 {}
@@ -16,6 +18,16 @@ SimpleArrow::SimpleArrow(CompressBuffer* buffer)
 CompressID SimpleArrow::getCompressID() const
 {
 	return CompressIDs::SIMPLE_ARROW;
+}
+
+void SimpleArrow::tick()
+{
+	Bullet::tick();
+
+	if (getLifetime() > LIFESPAN)
+	{
+		destroy();
+	}
 }
 
 float SimpleArrow::getCollisionPriority(Entity* e) const
