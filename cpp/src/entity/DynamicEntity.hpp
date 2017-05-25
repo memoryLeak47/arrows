@@ -31,6 +31,10 @@ class DynamicEntity : public Entity
 		// messages
 		virtual void broadcastMessage(Message* m);
 		virtual void pollSubMessages();
+
+		virtual void applyMessage(const DestroyMessage& m) override;
+	protected:
+		void destroy();
 	private:
 		bool changed;
 		GameVector speed;

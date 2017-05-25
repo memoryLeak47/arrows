@@ -24,7 +24,7 @@ for message_subclass in message_subclasses:
 	s = files.structuredict[message_subclass]
 
 	cpp = s.file.replace(".hpp", ".cpp")
-	cpp_string = "\nvoid " + message_subclass + "::applyTo(MessageListener* l) { l->applyMessage(*this); }"
+	cpp_string = "\n#include <game/message/MessageListener.hpp>\n\nvoid " + message_subclass + "::applyTo(MessageListener* l) { l->applyMessage(*this); }"
 	add_to_file(cpp, cpp_string, files)
 
 

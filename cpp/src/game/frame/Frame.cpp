@@ -70,6 +70,41 @@ void Frame::applyMessage(const AddIdlerMessage& m)
 	idlers.push_back(m.getIdler());
 }
 
+void Frame::applyMessage(const DestroyMessage& m)
+{
+	DynamicEntity* e = m.getEntity();
+
+	for (unsigned int i = 0; i < players.size(); i++)
+	{
+		if (players[i] == e)
+		{
+			players.erase(players.begin() + i);
+			delete e;
+			return;
+		}
+	}
+	for (unsigned int i = 0; i < idlers.size(); i++)
+	{
+		if (idlers[i] == e)
+		{
+			idlers.erase(idlers.begin() + i);
+			delete e;
+			return;
+		}
+	}
+	for (unsigned int i = 0; i < mobs.size(); i++)
+	{
+		if (mobs[i] == e)
+		{
+			mobs.erase(mobs.begin() + i);
+			delete e;
+			return;
+		}
+	}
+
+	Debug::warn("Frame::applyMessage(DestroyMessage): entity not found");
+}
+
 void Frame::tickEntities()
 {
 	for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
@@ -184,18 +219,20 @@ void Frame::pollAndProcessMessages()
 
 void Frame::processMessage(Message* m)
 {
-	m->applyTo(this);
-
 	// apply to Listeners
+	m->isBroadcast();
 	if (m->isBroadcast())
 	{
-		for (unsigned int j = 0; j < getDynamicEntityAmount(); j++)
+		for (unsigned int i = 0; i < getDynamicEntityAmount(); i++)
 		{
-			DynamicEntity* e = getDynamicEntity(j);
+			DynamicEntity* e = getDynamicEntity(i);
 			e->broadcastMessage(m);
 			m->applyTo(e);
 		}
 	}
+
+	m->applyTo(this);
+
 	delete m;
 }
 

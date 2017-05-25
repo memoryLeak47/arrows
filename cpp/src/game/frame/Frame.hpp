@@ -9,6 +9,7 @@
 #include <game/Calendar.hpp>
 #include <game/message/MessageListener.hpp>
 #include <game/message/messages/AddIdlerMessage.hpp>
+#include <game/message/messages/DestroyMessage.hpp>
 
 class GameTileMap;
 class DynamicEntity;
@@ -39,7 +40,8 @@ class Frame : public FrameCloneable, public MessageListener
 		void applyEntries(std::vector<Calendar::Entry>);
 
 		// apply Messages
-		virtual void applyMessage(const AddIdlerMessage& m);
+		virtual void applyMessage(const AddIdlerMessage& m) override;
+		virtual void applyMessage(const DestroyMessage& m) override;
 	private:
 		void moveAllEntities(float time);
 		void updateChanged(std::deque<CollisionEvent*>* events, float timeLeft);

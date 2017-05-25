@@ -1,7 +1,5 @@
 #include "AddIdlerMessage.hpp"
 
-#include <game/message/MessageListener.hpp>
-
 AddIdlerMessage::AddIdlerMessage(Idler* i)
 	: idler(i)
 {}

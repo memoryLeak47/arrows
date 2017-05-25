@@ -5,6 +5,7 @@
 #include <collision/PhysicsHandler.hpp>
 #include <entity/EntityGivethrough.hpp>
 #include <math/game/GameVector.hpp>
+#include <game/message/messages/DestroyMessage.hpp>
 
 DynamicEntity::DynamicEntity(const EntityGivethrough& gt)
 	: Entity(gt), changed(true), speed(gt.speed)
@@ -197,4 +198,27 @@ void DynamicEntity::broadcastMessage(Message* m)
 void DynamicEntity::pollSubMessages()
 {
 	// TODO poll from effects
+}
+
+void DynamicEntity::applyMessage(const DestroyMessage& m)
+{
+	for (unsigned int i = 0; i < wrapperPartners.size(); i++)
+	{
+		if (m.getEntity() == wrapperPartners[i])
+		{
+			wrapperPartners.erase(wrapperPartners.begin() + i--);
+		}
+	}
+	for (unsigned int i = 0; i < collisionPartners.size(); i++)
+	{
+		if (m.getEntity() == collisionPartners[i])
+		{
+			collisionPartners.erase(collisionPartners.begin() + i--);
+		}
+	}
+}
+
+void DynamicEntity::destroy()
+{
+	addMessage(new DestroyMessage(this));
 }

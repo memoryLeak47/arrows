@@ -6,7 +6,9 @@ MessageCommunicator::MessageCommunicator()
 {}
 
 MessageCommunicator::~MessageCommunicator()
-{}
+{
+	if (hasMessage()) Debug::warn("MessageCommunicator: deleted with messages");
+}
 
 Message* MessageCommunicator::pollMessage()
 {
