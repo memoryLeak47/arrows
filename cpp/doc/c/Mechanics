@@ -1,0 +1,32 @@
+# c/Mechanics
+
+ApproxDuration: ""
+Sub.Stats: "c/Stats1"
+Sub.Skills: ""
+Sub.Effects: "c/Effect"
+Sub.BasicMechanics: ""
+Sub.Death: ""
+DependsOn: ""
+
+# Description
+.Stats:
+	Who has which stats? How are they influencing the game?
+
+.Skills:
+	How many skills?
+	What can skills do?
+
+.Effects:
+	What can effects do?
+	Who can have effects?
+
+.BasicMechanics:
+	Mechanics, every player can do independent of its avatar.
+	What basic mechanics exist?
+
+.Death:
+	A unit dies if it's health goes to zero.
+	What happens when a unit dies?
+
+# Rating - Prediction
+# Rating - Review
