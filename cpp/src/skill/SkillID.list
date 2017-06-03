@@ -1,2 +1,2 @@
-X(ARROWSALVESKILL, LobbyArrowSalveSkill, ArrowSalveSkill)
-Y(ARROWSHOTSKILL, LobbyArrowShotSkill, ArrowShotSkill)
+X(ARROWSHOTSKILL, LobbyArrowShotSkill, ArrowShotSkill)
+Y(ARROWSALVESKILL, LobbyArrowSalveSkill, ArrowSalveSkill)
