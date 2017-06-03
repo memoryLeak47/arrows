@@ -1,0 +1,33 @@
+# c/Stats1
+
+ApproxDuration: "0"
+DependsOn: "c/Effect, c/Avatar, c/Item"
+
+# Description
+Stats depend on items and effects and optionally the avatar itself.
+There is no mana.
+
+player_attack is (sum of item attacks) + (sum of effect attacks) + (avatar attack).
+bullet_attack(player_attack) = m*player_attack + n, where m and n depend on the bullet.
+The real damage dealt to a player is damage(bullet_attack, defense) = (bullet_attack*k)/(defense+k), where k is a global constant.
+
+Stats which depend on the avatar:
+- Movement speed
+- Jump power
+- attack
+- defense
+- tenacity (max health)
+
+Stats which don't depend on the avatar:
+- Cooldown reduction (= 0)
+- Channeling reduction (= 0)
+- life-Regeneration (= 0)
+
+These are all stats.
+
+All "living" objects including players have these stats.
+
+All "not-living" objects, which can be destroyed just have tenacity (max health) and an implicit defense = 0.
+
+# Rating - Prediction
+# Rating - Review

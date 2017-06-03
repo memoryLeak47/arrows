@@ -3,7 +3,7 @@
 Sub.GameMode: ""
 Sub.NetworkArchitecture: ""
 Sub.Physics: ""
-Sub.Mechanics: ""
+Sub.Mechanics: "c/Mechanics"
 Sub.DataStructure: "c/FrameDataStructure"
 ApproxDuration: ""
 DependsOn: "c/Entity"
