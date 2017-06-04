@@ -1,0 +1,40 @@
+# c/EntityPart
+
+ApproxDuration: ""
+DependsOn: "c/Entity"
+
+# Description
+The properties of the Entity class are too complex to display by inheritance.
+Therefore the Entity is split into "parts".
+Every part specifies behaviour.
+
+class <X>Part {
+	public:
+		virtual float foo(Entity*) = 0;
+}
+
+class <Y>Part {
+	public:
+		virtual void baz(Entity*) = 0;
+
+		// should be private in Entity
+		virtual void bar(Entity*, int i) = 0;
+}
+
+// in Entity.hpp
+class <X>Part;
+class <Y>Part;
+
+Entity {
+	private:
+		<X>Part *x;
+		<Y>Part *y;
+	public:
+		float foo() { return x->foo(this); }
+		void baz() { return y->baz(this); }
+	private:
+		void bar(int i) { y->bar(this, i); }
+}
+
+# Rating - Prediction
+# Rating - Review
