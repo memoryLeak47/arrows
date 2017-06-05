@@ -2,6 +2,7 @@
 
 ApproxDuration: ""
 DependsOn: "c/Entity"
+Sub.CreateEntity: "c/EntityFactory"
 
 # Description
 The properties of the Entity class are too complex to display by inheritance.
@@ -16,8 +17,6 @@ class <X>Part {
 class <Y>Part {
 	public:
 		virtual void baz(Entity*) = 0;
-
-		// should be private in Entity
 		virtual void bar(Entity*, int i) = 0;
 }
 
@@ -32,9 +31,12 @@ Entity {
 	public:
 		float foo() { return x->foo(this); }
 		void baz() { return y->baz(this); }
-	private:
 		void bar(int i) { y->bar(this, i); }
 }
+
+.CreateEntity:
+	Defines how a new Entity is built.
+	Should only create valid state Entities (EntityParts != nullptr).
 
 # Rating - Prediction
 # Rating - Review

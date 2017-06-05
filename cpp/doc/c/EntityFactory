@@ -1,0 +1,32 @@
+# c/EntityFactory
+
+ApproxDuration: ""
+DependsOn: "c/EntityPart"
+
+# Description
+class EntityFactory {
+	private:
+		EntityFactory() = default; // should never be called
+		static <X>Part default<X>Part;
+		static <Y>Part default<Y>Part;
+	protected:
+		static Entity* createEntity(<X>Part, <Y>Part, ...);
+		static <X>Part* getDefault<X>Part() { return &default<X>Part; }
+		static <Y>Part* getDefault<Y>Part() { return &default<Y>Part; }
+		// ...
+}
+
+class NormalTileFactory : EntityFactory {
+	public:
+		static create(args...) {
+			// create parts
+			<X>Part* x = new <Sub><X>Part(args[0]); // custom create
+			<Y>Part* y = getDefault<Y>Part();	// default create
+
+			// create Entity
+			return createEntity(x, y, ...);
+		}
+}
+
+# Rating - Prediction
+# Rating - Review
