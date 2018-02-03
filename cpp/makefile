@@ -26,7 +26,7 @@ build_release:
 
 .PHONY: line-counter
 line-counter:
-	@wc -l `find -name "*.cpp" -o -name "*.hpp" -o -name "*.list"` | sort -g
+	@wc -l `find -wholename "./src/*.cpp" -o -wholename "./src/*.hpp" -o -wholename "./src/*.list"` | sort -g
 
 .PHONY: valgrind
 valgrind:
